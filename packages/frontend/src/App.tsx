@@ -1,18 +1,30 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Sidebar } from './components/layout/Sidebar';
+import { Header } from './components/layout/Header';
+import { Dashboard } from './pages/Dashboard';
+import { CustomersPage } from './pages/Customers';
+
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4">
-          <h1 className="text-3xl font-bold text-gray-900">mExpress</h1>
+    <Router>
+      <div className="flex h-screen bg-gray-100">
+        <Sidebar />
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <Header />
+          <main className="flex-1 overflow-auto">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/customers" element={<CustomersPage />} />
+              <Route path="*" element={
+                <div className="text-center py-12">
+                  <h2 className="text-2xl font-bold text-gray-900">Page Under Construction</h2>
+                  <p className="mt-2 text-gray-600">This feature is coming soon!</p>
+                </div>
+              } />
+            </Routes>
+          </main>
         </div>
-      </header>
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
-          <div className="bg-white overflow-hidden shadow rounded-lg p-6">
-            <p>Welcome to mExpress</p>
-          </div>
-        </div>
-      </main>
-    </div>
+      </div>
+    </Router>
   );
 }
