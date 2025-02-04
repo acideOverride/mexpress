@@ -1,0 +1,157 @@
+# GPM Mode Rules
+
+# Documentation Paths
+docs/project/
+  - project-milestones/   # Milestone tracking
+  - resource-allocation/  # Resource management
+  - timeline-planning/    # Project timeline
+  - quality-gates/       # Quality control
+  - risk-assessment/     # Risk management
+
+# Project Management Rules
+1. Milestone Management:
+   - Must define clear objectives
+   - Must set measurable outcomes
+   - Must allocate resources
+   - Must establish timeline
+   - Must identify dependencies
+
+2. Resource Planning:
+   - Must verify availability
+   - Must balance workload
+   - Must match skills
+   - Must plan contingencies
+   - Must track utilization
+
+3. Timeline Control:
+   - Must set realistic deadlines
+   - Must track progress
+   - Must manage dependencies
+   - Must handle blockers
+   - Must adjust as needed
+
+# Quality Requirements
+1. Milestone Quality:
+   - Must have clear definition
+   - Must be measurable
+   - Must be achievable
+   - Must be time-bound
+   - Must have owner
+
+2. Resource Quality:
+   - Must match skill requirements
+   - Must be properly allocated
+   - Must have backup plans
+   - Must track efficiency
+   - Must monitor burnout
+
+3. Documentation Quality:
+   - Must be complete
+   - Must be current
+   - Must be accessible
+   - Must be linked
+   - Must be versioned
+
+# Progress Monitoring
+1. Status Tracking:
+   - Must update regularly
+   - Must identify blockers
+   - Must measure progress
+   - Must track resources
+   - Must report variances
+
+2. Risk Management:
+   - Must identify early
+   - Must assess impact
+   - Must plan mitigation
+   - Must monitor status
+   - Must update plans
+
+# Reference Standards
+- /opt/mExpress/docs/standards/A_foundation.md
+- /opt/mExpress/docs/standards/D_quality_security.md
+- /opt/mExpress/docs/standards/E_process_workflow.md
+
+# Quality Gates
+1. Milestone Gates:
+   - Requirements complete
+   - Resources allocated
+   - Timeline feasible
+   - Risks assessed
+   - Dependencies mapped
+
+2. Progress Gates:
+   - Regular updates
+   - Blocker management
+   - Resource tracking
+   - Quality verification
+   - Documentation current
+
+# Error Prevention
+- NO undefined milestones
+- NO unallocated resources
+- NO unmapped dependencies
+- NO untracked progress
+- NO unmanaged risks
+
+# Mode Chain Integration
+hierarchical_workflow:
+  position: "Third in chain"
+  previous_mode: "ARCHITECT"
+  next_mode: "TASK_MANAGER"
+  transition_type: "Task Creation Only"
+
+mode_transition_rules:
+  prohibited_actions:
+    - Direct mode switching
+    - Skipping modes
+    - Bypassing approvals
+    - Incomplete documentation
+    - Unauthorized transitions
+
+  required_actions:
+    - Receive task from ARCHITECT
+    - Create task for TASK_MANAGER
+    - Obtain operator approval
+    - Continue documentation chain
+    - Document transition state
+
+task_creation_requirements:
+  - Complete project planning
+  - Define milestones
+  - Allocate resources
+  - Set quality gates
+  - Obtain stakeholder approval
+  - Secure operator authorization
+  - Prepare TASK_MANAGER task
+  - Verify documentation chain
+
+quality_gates:
+  documentation_chain:
+    - Project planning complete
+    - Milestones defined
+    - Resources allocated
+    - Quality gates established
+    - Documentation chain continued
+
+  approval_chain:
+    - ARCHITECT deliverables verified
+    - Stakeholder approval obtained
+    - Operator authorization secured
+    - Task creation validated
+    - Chain integrity verified
+
+task_creation_for_taskmanager:
+  documentation:
+    - Project planning complete
+    - Resource allocation defined
+    - Timeline established
+    - Quality gates set
+    - Mode chain validated
+  
+  approvals:
+    - Stakeholder sign-off obtained
+    - Operator approval secured
+    - ARCHITECT deliverables verified
+    - Documentation chain validated
+    - Mode transition authorized

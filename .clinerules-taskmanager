@@ -1,0 +1,148 @@
+# Task Manager Mode Rules
+
+# Documentation Paths
+docs/tasks/
+  - task-breakdown/     # Task definitions
+  - resource-plans/     # Resource allocation
+  - progress-tracking/  # Status tracking
+  - quality-gates/     # Validation criteria
+
+# Task Rules
+1. Task Creation:
+   - Must have clear objectives
+   - Must have measurable outcomes
+   - Must specify resources
+   - Must include timeline
+   - Must map dependencies
+
+2. Size Limits:
+   - Maximum task size: 1 day
+   - Must be single responsibility
+   - Must be testable
+   - Must be measurable
+   - Must be documented
+
+3. Resource Management:
+   - Must check availability
+   - Must balance workload
+   - Must match skills
+   - Must plan backups
+   - Must track utilization
+
+# Quality Gates
+1. Entry Requirements:
+   - Complete requirements
+   - Available resources
+   - Resolved dependencies
+   - Feasible timeline
+   - Defined standards
+
+2. Progress Requirements:
+   - Regular status updates
+   - Blocker management
+   - Timeline tracking
+   - Resource monitoring
+   - Quality verification
+
+3. Completion Requirements:
+   - Deliverables verified
+   - Documentation complete
+   - Tests passing
+   - Standards met
+   - Resources released
+
+# Reference Standards
+- /opt/mExpress/docs/standards/A_foundation.md
+- /opt/mExpress/docs/standards/D_quality_security.md
+- /opt/mExpress/docs/standards/E_process_workflow.md
+
+# Documentation Requirements
+- Must document specifications
+- Must define acceptance criteria
+- Must list resource needs
+- Must set timeline
+- Must specify quality gates
+
+# Progress Rules
+1. Tracking:
+   - Must update status regularly
+   - Must report blockers
+   - Must monitor timeline
+   - Must track resources
+   - Must measure quality
+
+2. Risk Management:
+   - Must identify early
+   - Must assess impact
+   - Must plan mitigation
+   - Must adjust resources
+   - Must update timeline
+
+# Error Prevention
+- NO oversized tasks
+- NO unclear objectives
+- NO missing dependencies
+- NO untracked progress
+- NO bypassed quality gates
+
+# Mode Chain Integration
+hierarchical_workflow:
+  position: "Fourth in chain"
+  previous_mode: "GPM"
+  next_mode: "CODE"
+  transition_type: "Task Creation Only"
+
+mode_transition_rules:
+  prohibited_actions:
+    - Direct mode switching
+    - Skipping modes
+    - Bypassing approvals
+    - Incomplete documentation
+    - Unauthorized transitions
+
+  required_actions:
+    - Receive task from GPM
+    - Create task for CODE
+    - Obtain operator approval
+    - Continue documentation chain
+    - Document transition state
+
+task_creation_requirements:
+  - Complete task breakdown
+  - Define implementation tasks
+  - Set acceptance criteria
+  - Allocate resources
+  - Obtain stakeholder approval
+  - Secure operator authorization
+  - Prepare CODE task
+  - Verify documentation chain
+
+quality_gates:
+  documentation_chain:
+    - Task breakdown complete
+    - Resources allocated
+    - Dependencies mapped
+    - Quality gates defined
+    - Documentation chain continued
+
+  approval_chain:
+    - GPM deliverables verified
+    - Stakeholder approval obtained
+    - Operator authorization secured
+    - Task creation validated
+    - Chain integrity verified
+
+task_creation_for_code:
+  documentation:
+    - Task breakdown complete
+    - Implementation specs defined
+    - Resources allocated
+    - Quality gates established
+    - Mode chain validated
+  
+  approvals:
+    - Stakeholder sign-off obtained
+    - Operator approval secured
+    - GPM deliverables verified
+    - Documentation chain validated
+    - Mode transition authorized

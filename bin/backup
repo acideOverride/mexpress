@@ -1,0 +1,245 @@
+#!/bin/bash
+
+# Backup CLI Tool
+# Version: 1.0.0
+
+set -e
+
+# Configuration
+BACKUP_DIR="$HOME/.local/share/dev-backup"
+BACKUP_REPO="$BACKUP_DIR/repo"
+BACKUP_META="$BACKUP_DIR/meta"
+BACKUP_LOG="$BACKUP_DIR/backup.log"
+CURRENT_DIR=""
+
+# Ensure required commands exist
+command -v git >/dev/null 2>&1 || { echo "Error: git is required but not installed" >&2; exit 1; }
+
+# Initialize logging
+log() {
+    mkdir -p "$(dirname "$BACKUP_LOG")"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$BACKUP_LOG"
+    echo "$1"
+}
+
+# Error handling
+error() {
+    log "ERROR: $1"
+    exit 1
+}
+
+# Save current directory
+save_current_dir() {
+    CURRENT_DIR=$(pwd)
+}
+
+# Restore current directory
+restore_current_dir() {
+    if [ -n "$CURRENT_DIR" ]; then
+        cd "$CURRENT_DIR" || error "Failed to restore directory"
+    fi
+}
+
+# Initialize backup repository
+init_backup_repo() {
+    if [ ! -d "$BACKUP_REPO" ]; then
+        mkdir -p "$BACKUP_REPO"
+        cd "$BACKUP_REPO" || error "Failed to create backup repository"
+        git init --quiet
+        git config user.name "Backup System"
+        git config user.email "backup@system"
+        touch .gitkeep
+        git add .gitkeep
+        git commit -m "Initial backup repository setup" --quiet
+        mkdir -p "$BACKUP_META"
+    fi
+}
+
+# Copy files preserving structure
+copy_files() {
+    local src="$1"
+    local dst="$2"
+    
+    # Create destination if it doesn't exist
+    mkdir -p "$dst"
+    
+    # Copy all files, including hidden ones, but exclude .git
+    rsync -a --exclude='.git' "$src"/ "$dst"/ 2>/dev/null || true
+}
+
+# Save current state
+cmd_save() {
+    local desc="$1"
+    [ -z "$desc" ] && desc="Automated backup $(date '+%Y-%m-%d %H:%M:%S')"
+    
+    save_current_dir
+    
+    # Ensure we're in a git repository
+    git rev-parse --git-dir > /dev/null 2>&1 || error "Not in a git repository"
+    
+    # Initialize backup repository if needed
+    init_backup_repo
+    
+    # Create temporary directory for state capture
+    local tmp_dir=$(mktemp -d)
+    
+    # Copy current directory contents to temp dir
+    copy_files "$CURRENT_DIR" "$tmp_dir"
+    
+    # Switch to backup repository and apply changes
+    cd "$BACKUP_REPO" || error "Failed to access backup repository"
+    
+    # Clear existing files but keep .git
+    find . -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} +
+    
+    # Copy files from temp dir
+    copy_files "$tmp_dir" "$BACKUP_REPO"
+    
+    # Cleanup temp directory
+    rm -rf "$tmp_dir"
+    
+    # Save metadata about the backup location
+    echo "$CURRENT_DIR" > .backup-source
+    
+    # Record state
+    git add -A
+    git commit -m "$desc" --quiet || log "No changes to backup"
+    
+    # Save metadata
+    mkdir -p "$BACKUP_META"
+    echo "$(date '+%s')|$desc|$CURRENT_DIR" >> "$BACKUP_META/points.log"
+    
+    restore_current_dir
+    log "Saved backup: $desc"
+}
+
+# List available backups
+cmd_list() {
+    save_current_dir
+    
+    # Ensure backup repository exists
+    [ -d "$BACKUP_REPO" ] || error "No backup repository found"
+    cd "$BACKUP_REPO" || error "Failed to access backup repository"
+    
+    echo "Your backups:"
+    echo "-------------"
+    
+    # Skip the initial setup commit and show only user backups
+    git log --pretty=format:"%h - %s (%ar)" | grep -v "Initial backup repository setup" || true
+    echo ""
+    
+    restore_current_dir
+}
+
+# Verify backup integrity
+cmd_verify() {
+    save_current_dir
+    
+    # Ensure backup repository exists
+    [ -d "$BACKUP_REPO" ] || error "No backup repository found"
+    cd "$BACKUP_REPO" || error "Failed to access backup repository"
+    
+    # Check git repository health
+    git fsck --full || error "Repository corruption detected"
+    
+    # Verify all commits are accessible
+    git log --all --pretty=format:"%h" | while read -r commit; do
+        git cat-file -e "$commit^{commit}" 2>/dev/null || error "Commit $commit is corrupted"
+    done
+    
+    restore_current_dir
+    log "Backup verification completed successfully"
+}
+
+# Restore from backup
+cmd_restore() {
+    local point="$1"
+    [ -z "$point" ] && point="HEAD"
+    
+    save_current_dir
+    
+    # Ensure backup repository exists
+    [ -d "$BACKUP_REPO" ] || error "No backup repository found"
+    cd "$BACKUP_REPO" || error "Failed to access backup repository"
+    
+    # Verify state before restore
+    git rev-parse --verify "$point" >/dev/null 2>&1 || error "Invalid restore point: $point"
+    
+    # Perform restore
+    git checkout "$point" --force || error "Failed to restore to point: $point"
+    
+    # Copy files back to working directory
+    copy_files "$BACKUP_REPO" "$CURRENT_DIR"
+    
+    restore_current_dir
+    log "Restored to: $point"
+}
+
+# Rollback to previous state
+cmd_rollback() {
+    save_current_dir
+    
+    # Ensure backup repository exists
+    [ -d "$BACKUP_REPO" ] || error "No backup repository found"
+    cd "$BACKUP_REPO" || error "Failed to access backup repository"
+    
+    # Get current and previous commit
+    local current=$(git rev-parse HEAD)
+    local previous=$(git rev-parse HEAD^1 2>/dev/null) || error "No previous state to rollback to"
+    
+    # Perform rollback
+    git checkout "$previous" --force || error "Failed to rollback"
+    
+    # Copy files back to working directory
+    copy_files "$BACKUP_REPO" "$CURRENT_DIR"
+    
+    restore_current_dir
+    log "Rolled back from $current to $previous"
+}
+
+# Display help
+cmd_help() {
+    echo "Usage: backup <command> [options]"
+    echo ""
+    echo "Commands:"
+    echo "  save [description]  Save current state with optional description"
+    echo "  restore [point]     Restore to specified point (default: latest)"
+    echo "  list               List all backup points"
+    echo "  verify             Verify backup integrity"
+    echo "  rollback           Rollback to previous state"
+    echo "  help               Show this help message"
+}
+
+# Main command processing
+main() {
+    # Process commands
+    case "$1" in
+        save)
+            shift
+            cmd_save "$*"
+            ;;
+        restore)
+            shift
+            cmd_restore "$1"
+            ;;
+        list)
+            cmd_list
+            ;;
+        verify)
+            cmd_verify
+            ;;
+        rollback)
+            cmd_rollback
+            ;;
+        help|--help|-h)
+            cmd_help
+            ;;
+        *)
+            cmd_help
+            exit 1
+            ;;
+    esac
+}
+
+# Execute main function with all arguments
+main "$@"

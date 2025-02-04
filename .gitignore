@@ -1,0 +1,7 @@
+node_modules/
+coverage/
+.backup/
+*.log
+.env
+dist/
+build/

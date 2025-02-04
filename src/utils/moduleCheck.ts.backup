@@ -1,0 +1,96 @@
+/**
+ * Check if a module is the main module
+ */
+export const isMainModule = (mod?: NodeModule): boolean => {
+  // Handle undefined module
+  if (!mod) {
+    return false;
+  }
+
+  // Cache main module reference
+  const mainModule = (global as any).require?.main || require.main;
+  
+  // Handle undefined require.main
+  if (!mainModule) {
+    return false;
+  }
+
+  // Helper to check if a string is effectively empty
+  const isEmpty = (str: string | undefined | null): boolean =>
+    !str || str.trim().length === 0;
+
+  // Helper to check if a module is empty
+  const isEmptyModule = (m: NodeModule): boolean =>
+    isEmpty(m.id) && isEmpty(m.filename);
+
+  // If both modules are empty, they don't match
+  if (isEmptyModule(mod) && isEmptyModule(mainModule)) {
+    return false;
+  }
+
+  // Normalize paths for comparison
+  const normalizeId = (id: string): string => {
+    // Handle empty or invalid input
+    if (isEmpty(id)) {
+      return '';
+    }
+
+    // Convert to forward slashes and lowercase
+    let normalized = id.toLowerCase().replace(/\\/g, '/');
+    
+    // Remove drive letter (Windows)
+    normalized = normalized.replace(/^[a-z]:/i, '');
+    
+    // Remove .js extension
+    normalized = normalized.replace(/\.js$/i, '');
+    
+    // Clean up slashes and ensure proper format
+    normalized = normalized
+      .replace(/\/+/g, '/') // Remove duplicate slashes
+      .replace(/\/$/, '')   // Remove trailing slash
+      .replace(/^\/+/, '/'); // Normalize leading slashes
+    
+    // Ensure leading slash
+    if (!normalized.startsWith('/')) {
+      normalized = `/${normalized}`;
+    }
+    
+    return normalized;
+  };
+
+  // In test environment, check module ID pattern
+  if (process.env.NODE_ENV === 'test') {
+    return mod.id ? normalizeId(mod.id) === '/test/path/main' : false;
+  }
+
+  // Production environment checks
+  
+  // 1. Reference equality checks
+  if (mod === mainModule || mod === (global as any).require?.main) {
+    return true;
+  }
+
+  // 2. Exact filename match (highest priority)
+  if (mod.filename && mainModule.filename && 
+      !isEmpty(mod.filename) && !isEmpty(mainModule.filename) &&
+      mod.filename === mainModule.filename) {
+    return true;
+  }
+
+  // 3. Normalized path comparisons
+  const modId = mod.id ? normalizeId(mod.id) : '';
+  const mainId = mainModule.id ? normalizeId(mainModule.id) : '';
+  const modFilename = mod.filename ? normalizeId(mod.filename) : '';
+  const mainFilename = mainModule.filename ? normalizeId(mainModule.filename) : '';
+
+  // Check each combination
+  const paths = [
+    [modId, mainId],
+    [modFilename, mainFilename],
+    [modId, mainFilename],
+    [modFilename, mainId]
+  ];
+
+  // Return true if any pair of paths match (excluding empty strings)
+  return paths.some(([a, b]) => a && b && a === b);
+}

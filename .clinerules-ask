@@ -1,0 +1,140 @@
+# Ask Mode Rules
+
+# Documentation Paths
+docs/business/
+  - business-requirements/  # Core requirements
+  - value-proposition/     # Business value
+  - feature-analysis/      # Feature details
+  - stakeholder-needs/     # Stakeholder info
+
+# Business Analysis Rules
+1. Requirements:
+   - Must be business-focused
+   - Must define clear value
+   - Must specify success criteria
+   - Must identify stakeholders
+   - Must document constraints
+
+2. Value Proposition:
+   - Must show business benefit
+   - Must define ROI
+   - Must analyze market
+   - Must assess competition
+   - Must evaluate risks
+
+3. Feature Analysis:
+   - Must prioritize features
+   - Must assess impact
+   - Must evaluate complexity
+   - Must identify dependencies
+   - Must plan phases
+
+# Language Rules
+1. Prohibited Terms:
+   - NO "API"
+   - NO "Database"
+   - NO "Framework"
+   - NO "Implementation"
+   - NO "Code"
+   - NO "Technical"
+   - NO "Development"
+   - NO "Programming"
+
+2. Use Instead:
+   - "information exchange point" (not "API endpoint")
+   - "information storage" (not "database")
+   - "user interaction" (not "user interface")
+   - "system capability" (not "technical feature")
+   - "solution approach" (not "implementation")
+
+# Documentation Requirements
+1. Business Requirements:
+   - Must include executive summary
+   - Must define business context
+   - Must state problem clearly
+   - Must analyze market
+   - Must identify users
+   - Must set metrics
+   - Must list constraints
+   - Must map dependencies
+
+2. Value Proposition:
+   - Must summarize value
+   - Must list benefits
+   - Must differentiate market
+   - Must analyze ROI
+   - Must assess costs
+   - Must evaluate risks
+
+# Quality Gates
+1. Business Focus:
+   - No technical terms used
+   - Clear business value defined
+   - Stakeholder needs clear
+   - Success criteria specified
+   - Constraints identified
+   - Risks documented
+
+2. Documentation:
+   - All sections complete
+   - Business terminology used
+   - Value proposition clear
+   - Measurable outcomes defined
+   - Resource implications clear
+
+# Reference Standards
+- /opt/mExpress/docs/standards/A_foundation.md
+- /opt/mExpress/docs/standards/B_architecture.md
+- /opt/mExpress/docs/standards/E_process_workflow.md
+
+# Error Prevention
+- NO technical details
+- NO implementation specifics
+- NO architectural decisions
+- NO resource allocation
+- NO technical planning
+
+# Mode Chain Integration
+hierarchical_workflow:
+  position: "First in chain"
+  next_mode: "ARCHITECT"
+  transition_type: "Task Creation Only"
+
+mode_transition_rules:
+  prohibited_actions:
+    - Direct mode switching
+    - Skipping modes
+    - Bypassing approvals
+    - Incomplete documentation
+    - Unauthorized transitions
+
+  required_actions:
+    - Create task for ARCHITECT
+    - Obtain operator approval
+    - Complete documentation chain
+    - Verify business requirements
+    - Document transition state
+
+task_creation_requirements:
+  - Complete business analysis
+  - Document value proposition
+  - Define success criteria
+  - Obtain stakeholder approval
+  - Secure operator authorization
+  - Prepare ARCHITECT task
+  - Verify documentation chain
+
+quality_gates:
+  documentation_chain:
+    - Business requirements complete
+    - Value proposition documented
+    - Feature analysis finished
+    - Stakeholder needs captured
+    - Documentation chain started
+
+  approval_chain:
+    - Stakeholder approval obtained
+    - Operator authorization secured
+    - Task creation validated
+    - Chain integrity verified
+    - Mode transition approved

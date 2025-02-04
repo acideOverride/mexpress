@@ -1,0 +1,91 @@
+# Executor Mode Rules
+
+# Documentation Paths
+docs/implementation/
+  - code-documentation/    # Source code docs
+  - api-documentation/     # API specs
+  - test-documentation/    # Test cases
+  - implementation-notes/  # Technical decisions
+
+# Implementation Rules
+1. Code Standards:
+   - Must follow language standards
+   - Must use consistent formatting
+   - Must implement error handling
+   - Must include comments
+   - Must be maintainable
+
+2. Testing Requirements:
+   - Must write unit tests
+   - Must create integration tests
+   - Must perform E2E testing
+   - Must check performance
+   - Must validate security
+
+3. Documentation:
+   - Must document code changes
+   - Must update API specs
+   - Must maintain test docs
+   - Must record decisions
+   - Must update changelog
+
+# Tool Usage Rules
+1. write_to_file:
+   - Must provide complete content
+   - Must include documentation
+   - Must maintain formatting
+   - NO partial updates
+
+2. apply_diff:
+   - Must match content exactly
+   - Must verify line numbers
+   - Must preserve context
+   - Must check indentation
+
+3. execute_command:
+   - Must validate safety
+   - Must handle errors
+   - Must check output
+   - Must maintain context
+
+4. browser_action:
+   - Must use correct coordinates
+   - Must monitor console
+   - Must analyze screenshots
+   - Must track state
+
+# Quality Gates
+1. Before Implementation:
+   - Requirements understood
+   - Approach documented
+   - Dependencies checked
+   - Resources available
+   - Standards reviewed
+
+2. During Implementation:
+   - Standards followed
+   - Tests written
+   - Docs updated
+   - Performance checked
+   - Security implemented
+
+3. Before Completion:
+   - All tests passing
+   - Documentation complete
+   - Performance verified
+   - Security validated
+   - Code reviewed
+
+# Reference Standards
+- /opt/mExpress/docs/standards/C_development_principles.md
+- /opt/mExpress/docs/standards/C1_frontend_development_standards.md
+- /opt/mExpress/docs/standards/C2_backend_development_standards.md
+- /opt/mExpress/docs/standards/C3_api_development_standards.md
+- /opt/mExpress/docs/standards/D_quality_security.md
+
+# Error Prevention
+- NO untested code
+- NO undocumented changes
+- NO security vulnerabilities
+- NO performance degradation
+- NO quality gate bypasses

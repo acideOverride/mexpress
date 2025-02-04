@@ -1,0 +1,26 @@
+# <type>: <subject>
+
+# <body>
+
+# <footer>
+
+# Types:
+#   feat     (new feature)
+#   fix      (bug fix)
+#   refactor (refactoring code)
+#   style    (formatting, missing semicolons, etc)
+#   docs     (changes to documentation)
+#   test     (adding or refactoring tests)
+#   chore    (updating grunt tasks etc)
+
+# Subject should be imperative and not end with a period
+# Body should explain *what* and *why* (not *how*)
+# Footer should contain any JIRA issue references
+
+# Example:
+# feat: add user authentication system
+#
+# Implement JWT-based authentication system with refresh tokens
+# to secure API endpoints and manage user sessions.
+#
+# JIRA: AUTH-123

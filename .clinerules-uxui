@@ -1,0 +1,159 @@
+# UX/UI Mode Rules
+
+# Documentation Paths
+docs/design/
+  - research/           # User research and analysis
+  - system/            # Design system documentation
+  - components/        # Component specifications
+  - patterns/          # Design patterns
+  - testing/           # Usability testing results
+
+# Mode Chain Integration
+hierarchical_workflow:
+  position: "Second in chain"
+  previous_mode: "ASK"
+  next_mode: "ARCHITECT"
+  transition_type: "Task Creation Only"
+
+mode_transition_rules:
+  prohibited_actions:
+    - Direct mode switching
+    - Skipping modes
+    - Bypassing approvals
+    - Incomplete documentation
+    - Unauthorized transitions
+    - Independent architecture decisions
+
+  required_actions:
+    - Receive task from ASK
+    - Create task for ARCHITECT
+    - Obtain operator approval
+    - Continue documentation chain
+    - Document design state
+
+task_reception_requirements:
+  - Verify business requirements
+  - Validate user research
+  - Check stakeholder approval
+  - Confirm value propositions
+  - Review success criteria
+  - Validate documentation chain
+
+task_creation_requirements:
+  - Complete design system
+  - Document components
+  - Define patterns
+  - Specify technical constraints
+  - Obtain stakeholder approval
+  - Secure operator authorization
+  - Prepare ARCHITECT task
+  - Verify documentation chain
+
+# Process Rules
+1. Research Requirements:
+   - Must conduct user research
+   - Must document findings
+   - Must validate with stakeholders
+   - Must align with business goals
+   - Must inform design decisions
+
+2. Design System:
+   - Must maintain component library
+   - Must document patterns
+   - Must version control assets
+   - Must ensure accessibility
+   - Must optimize performance
+
+3. Documentation:
+   - Must document decisions
+   - Must maintain specifications
+   - Must provide guidelines
+   - Must track changes
+   - Must include examples
+
+# Quality Gates
+1. Design Review:
+   - Visual consistency check
+   - Interaction pattern review
+   - Accessibility validation
+   - Performance assessment
+   - Documentation completeness
+
+2. Implementation Review:
+   - Component accuracy
+   - Responsive behavior
+   - Browser compatibility
+   - Asset optimization
+   - Integration validation
+
+3. User Testing:
+   - Usability validation
+   - Accessibility testing
+   - Performance testing
+   - User feedback
+   - Iteration planning
+
+4. Documentation Chain:
+   - Business requirements verified
+   - Design system documented
+   - Components specified
+   - Patterns defined
+   - Documentation chain continued
+
+5. Approval Chain:
+   - ASK deliverables verified
+   - Stakeholder approval obtained
+   - Operator authorization secured
+    - Receive task from ASK
+    - Create task for ARCHITECT
+    - Obtain operator approval
+    - Continue documentation chain
+    - Document design state
+
+task_reception_requirements:
+  - Verify business requirements
+  - Validate user research
+  - Check stakeholder approval
+  - Confirm value propositions
+  - Review success criteria
+  - Validate documentation chain
+
+task_creation_requirements:
+  - Complete design system
+  - Document components
+  - Define patterns
+  - Specify technical constraints
+  - Obtain stakeholder approval
+  - Secure operator authorization
+  - Prepare ARCHITECT task
+  - Verify documentation chain
+
+quality_gates:
+  documentation_chain:
+    - Business requirements verified
+    - Design system documented
+    - Components specified
+    - Patterns defined
+    - Documentation chain continued
+
+  approval_chain:
+    - ASK deliverables verified
+    - Stakeholder approval obtained
+    - Operator authorization secured
+    - Task creation validated
+    - Chain integrity verified
+
+handoff_to_architect:
+  documentation:
+    - Design system complete
+    - Components documented
+    - Patterns specified
+    - Technical constraints defined
+    - Mode chain validated
+  
+  approvals:
+    - Design system verified
+    - Components validated
+    - Stakeholder sign-off obtained
+    - Documentation chain complete
+    - Mode transition authorized

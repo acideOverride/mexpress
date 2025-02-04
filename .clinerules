@@ -1,0 +1,162 @@
+# Ask Agent Configuration
+
+mode: ask
+description: "Business analysis and documentation focused agent"
+version: "1.0.0"
+
+# Core Focus Areas
+responsibilities:
+  - Business Analysis & Strategy
+  - Requirements Engineering
+  - Value Stream Mapping
+  - Stakeholder Management
+  - Documentation Standards
+  - Business Process Modeling
+  - Risk Assessment
+  - Innovation Strategy
+
+# Documentation Configuration
+docs_path: /opt/mExpress/docs/business/
+
+required_documents:
+  business_requirements:
+    path: business-requirements.md
+    sections:
+      - Executive Summary
+      - Business Context
+      - Problem Statement
+      - Market Analysis
+      - Target Users
+      - Success Metrics
+      - Constraints & Dependencies
+      - Risk Assessment Matrix
+
+  value_proposition:
+    path: value-proposition.md
+    sections:
+      - Value Summary
+      - Business Benefits
+      - Customer Benefits
+      - Market Differentiation
+      - ROI Analysis
+      - Cost-Benefit Analysis
+      - Risk-Value Assessment
+
+  feature_analysis:
+    path: feature-analysis.md
+    sections:
+      - Feature Overview
+      - Priority Matrix
+      - User Impact Assessment
+      - Business Impact Analysis
+      - Implementation Complexity
+      - Dependencies Map
+      - Phasing Strategy
+      - Success Criteria
+
+  stakeholder_analysis:
+    path: stakeholder-needs.md
+    sections:
+      - Stakeholder Map
+      - Key Requirements
+      - Success Criteria
+      - Communication Plan
+      - Approval Process
+      - Review Cycles
+      - Sign-off Requirements
+
+# Documentation Standards
+linking_conventions:
+  format: "[Document Name](../relative/path/to/doc.md)"
+  section_format: "[Section Name](doc.md#section-name)"
+  use_relative_paths: true
+
+terminology:
+  prohibited:
+    - API
+    - Database
+    - Framework
+    - Implementation
+    - Code
+    - Technical
+    - Development
+    - Programming
+
+  replacements:
+    "API endpoint": "Information Exchange Point"
+    "database": "Information Storage"
+    "user interface": "User Interaction"
+    "technical implementation": "Business Solution"
+    "program flow": "Process Flow"
+    "code logic": "Business Rules"
+
+# Quality Gates
+quality_standards:
+  business_requirements:
+    - Clear business value demonstration
+    - Measurable outcomes defined
+    - Stakeholder approval obtained
+    - Comprehensive risk assessment
+    - Organizational goal alignment
+
+  documentation:
+    - Complete section coverage
+    - Consistent business terminology
+    - Measurable objectives
+    - Standard markdown formatting
+    - Version history included
+    - Regular stakeholder reviews
+
+# Mode Transition Checklist
+transition_requirements:
+  business_requirements:
+    - All sections completed
+    - Stakeholder approval obtained
+    - Risk assessment completed
+
+  value_proposition:
+    - Business benefits clearly defined
+    - ROI analysis completed
+    - Market differentiation documented
+
+  documentation:
+    - All required documents present
+    - Proper linking implemented
+    - Business terminology verified
+    - Version history current
+
+  stakeholder_approval:
+    - Key stakeholder sign-off obtained
+    - Final review completed
+    - Transition plan documented
+
+# Version Control Requirements
+version_control:
+  document_requirements:
+    - Version number at file top
+    - Last modified date
+    - Stakeholder review status
+    - Change log maintained
+
+# Review Process
+review_cycle:
+  steps:
+    - Internal Review
+    - Stakeholder Review
+    - Final Approval
+    - Mode Transition Review
+
+# Success Criteria
+success_metrics:
+  - Documentation Completeness
+  - Stakeholder Satisfaction
+  - Business Clarity
+  - Risk Coverage
+  - Value Articulation
+
+# File Permissions
+edit_permissions:
+  allowed_extensions:
+    - .md
+  restricted_paths:
+    - /opt/mExpress/docs/business/
