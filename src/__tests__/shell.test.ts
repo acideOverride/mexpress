@@ -156,6 +156,59 @@ describe('Shell Application', () => {
 
       await expect(app.unmount()).rejects.toThrow('Failed to unmount shell application: Unmount failed');
     });
+
+    it('should handle non-Error unmount failures', async () => {
+      const app = createShellApp({
+        name: 'shell',
+        remotes: ['dashboard']
+      });
+
+      await app.mount();
+      (mockModule.unmount as jest.Mock).mockRejectedValueOnce('String error');
+
+      await expect(app.unmount()).rejects.toThrow('Failed to unmount shell application: Unknown error');
+    });
+
+    it('should handle non-Error mount failures', async () => {
+      mockLoadRemoteModule.mockRejectedValueOnce('String error');
+
+      const app = createShellApp({
+        name: 'shell',
+        remotes: ['dashboard']
+      });
+
+      await expect(app.mount()).rejects.toThrow('Failed to mount shell application: Unknown error');
+    });
+
+    it('should set dark theme when system prefers dark mode', async () => {
+      // Mock system dark mode preference
+      Object.defineProperty(window, 'matchMedia', {
+        writable: true,
+        value: jest.fn().mockImplementation(query => ({
+          matches: true,
+          media: query,
+          onchange: null,
+          addListener: jest.fn(),
+          removeListener: jest.fn(),
+          addEventListener: jest.fn(),
+          removeEventListener: jest.fn(),
+          dispatchEvent: jest.fn(),
+        })),
+      });
+
+      const app = createShellApp({
+        name: 'shell',
+        remotes: ['dashboard']
+      });
+
+      await app.mount();
+
+      expect(mockOnStateChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          theme: 'dark'
+        })
+      );
+    });
   });
 
   describe('State Management', () => {
