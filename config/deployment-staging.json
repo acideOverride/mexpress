@@ -1,0 +1,54 @@
+{
+  "steps": [
+    {
+      "name": "backup",
+      "command": "npm run backup:create -- --env=staging"
+    },
+    {
+      "name": "stop-service",
+      "command": "pm2 stop mexpress-staging"
+    },
+    {
+      "name": "update-code",
+      "command": "git pull origin staging"
+    },
+    {
+      "name": "install-dependencies",
+      "command": "npm ci"
+    },
+    {
+      "name": "run-migrations",
+      "command": "npm run migrate:up -- --env=staging"
+    },
+    {
+      "name": "build",
+      "command": "npm run build"
+    },
+    {
+      "name": "start-service",
+      "command": "pm2 start mexpress-staging"
+    },
+    {
+      "name": "health-check",
+      "command": "npm run health-check -- --env=staging"
+    }
+  ],
+  "rollbackSteps": [
+    {
+      "name": "stop-service",
+      "command": "pm2 stop mexpress-staging"
+    },
+    {
+      "name": "restore-backup",
+      "command": "npm run backup:restore -- --env=staging"
+    },
+    {
+      "name": "rollback-migrations",
+      "command": "npm run migrate:down -- --env=staging"
+    },
+    {
+      "name": "start-service",
+      "command": "pm2 start mexpress-staging"
+    }
+  ]
+}

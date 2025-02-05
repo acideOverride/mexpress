@@ -1,0 +1,102 @@
+{
+  "steps": [
+    {
+      "name": "verify-branch",
+      "command": "git branch --show-current | grep '^main$'"
+    },
+    {
+      "name": "backup",
+      "command": "npm run backup:create -- --env=production"
+    },
+    {
+      "name": "tag-release",
+      "command": "npm run release:tag"
+    },
+    {
+      "name": "notify-maintenance",
+      "command": "npm run notify:maintenance:start"
+    },
+    {
+      "name": "scale-down",
+      "command": "kubectl scale deployment mexpress-prod --replicas=50%"
+    },
+    {
+      "name": "update-code",
+      "command": "git pull origin main"
+    },
+    {
+      "name": "install-dependencies",
+      "command": "npm ci --production"
+    },
+    {
+      "name": "run-migrations",
+      "command": "npm run migrate:up -- --env=production"
+    },
+    {
+      "name": "build",
+      "command": "npm run build"
+    },
+    {
+      "name": "deploy-blue",
+      "command": "kubectl apply -f k8s/blue-deployment.yaml"
+    },
+    {
+      "name": "health-check-blue",
+      "command": "npm run health-check -- --env=production-blue"
+    },
+    {
+      "name": "switch-traffic",
+      "command": "kubectl apply -f k8s/production-service.yaml"
+    },
+    {
+      "name": "verify-traffic",
+      "command": "npm run verify:traffic-switch"
+    },
+    {
+      "name": "scale-up",
+      "command": "kubectl scale deployment mexpress-prod --replicas=100%"
+    },
+    {
+      "name": "cleanup-green",
+      "command": "kubectl delete -f k8s/green-deployment.yaml"
+    },
+    {
+      "name": "notify-completion",
+      "command": "npm run notify:maintenance:end"
+    }
+  ],
+  "rollbackSteps": [
+    {
+      "name": "notify-rollback",
+      "command": "npm run notify:rollback:start"
+    },
+    {
+      "name": "switch-traffic-back",
+      "command": "kubectl apply -f k8s/rollback-service.yaml"
+    },
+    {
+      "name": "restore-backup",
+      "command": "npm run backup:restore -- --env=production"
+    },
+    {
+      "name": "rollback-migrations",
+      "command": "npm run migrate:down -- --env=production"
+    },
+    {
+      "name": "restore-deployment",
+      "command": "kubectl apply -f k8s/green-deployment.yaml"
+    },
+    {
+      "name": "cleanup-failed",
+      "command": "kubectl delete -f k8s/blue-deployment.yaml"
+    },
+    {
+      "name": "verify-rollback",
+      "command": "npm run verify:rollback"
+    },
+    {
+      "name": "notify-rollback-complete",
+      "command": "npm run notify:rollback:end"
+    }
+  ]
+}
