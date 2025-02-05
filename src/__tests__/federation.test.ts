@@ -1,4 +1,4 @@
-import { registerRemoteModule, loadRemoteModule, initializeFederation, getRegisteredRemotes, isRemoteRegistered } from '../shell/federation';
+import { registerRemoteModule, loadRemoteModule, initializeFederation, getRegisteredRemotes, isRemoteRegistered, loadRemoteEntry } from '../shell/federation';
 import { RemoteModule, RemoteModuleConfig } from '../shell/types';
 
 // Mock webpack's module federation
@@ -29,6 +29,57 @@ describe('Federation System', () => {
     
     // Setup window container mock
     (window as any).testScope = mockContainer;
+  });
+
+  describe('Script Loading', () => {
+    it('should handle script loading success', async () => {
+      const loadPromise = loadRemoteEntry('http://test.com/script.js');
+      mockScript.onload?.(new Event('load'));
+      await expect(loadPromise).resolves.toBeUndefined();
+    });
+
+    it('should handle script loading failure', async () => {
+      const loadPromise = loadRemoteEntry('http://test.com/script.js');
+      mockScript.onerror?.(new Event('error'));
+      await expect(loadPromise).rejects.toThrow('Failed to load remote entry script');
+    });
+
+    it('should handle script creation failure', async () => {
+      createElement.mockImplementationOnce(() => {
+        throw new Error('Script creation failed');
+      });
+      await expect(loadRemoteEntry('http://test.com/script.js'))
+        .rejects
+        .toThrow('Failed to create script element: Script creation failed');
+    });
+
+    it('should handle script append failure', async () => {
+      appendChild.mockImplementationOnce(() => {
+        throw new Error('Script append failed');
+      });
+      await expect(loadRemoteEntry('http://test.com/script.js'))
+        .rejects
+        .toThrow('Failed to create script element: Script append failed');
+    });
+
+    it('should handle null script element', async () => {
+      createElement.mockReturnValueOnce(null);
+      await expect(loadRemoteEntry('http://test.com/script.js'))
+        .rejects
+        .toThrow('Failed to create script element');
+    });
+
+    it('should handle empty URL', async () => {
+      await expect(loadRemoteEntry('')).rejects.toThrow('URL is required');
+    });
+
+    it('should handle undefined URL', async () => {
+      await expect(loadRemoteEntry(undefined as any)).rejects.toThrow('URL is required');
+    });
+
+    it('should handle null URL', async () => {
+      await expect(loadRemoteEntry(null as any)).rejects.toThrow('URL is required');
+    });
   });
 
   describe('Module Registration', () => {
@@ -155,24 +206,24 @@ describe('Federation System', () => {
       mockContainer.get.mockResolvedValueOnce('not a function');
       
       registerRemoteModule('invalid-factory', async () => {
-        throw new Error('Failed to initialize remote module "invalid-factory": Invalid factory returned for module ./Module');
+        throw new Error('Invalid factory returned for module ./Module');
       });
 
       await expect(loadRemoteModule('invalid-factory'))
         .rejects
-        .toThrow('Failed to load remote module "invalid-factory": Failed to initialize remote module "invalid-factory": Invalid factory returned for module ./Module');
+        .toThrow('Failed to load remote module "invalid-factory": Invalid factory returned for module ./Module');
     });
 
     it('should throw error if module is not an object', async () => {
       mockContainer.get.mockResolvedValueOnce(() => 'not an object');
       
       registerRemoteModule('invalid-module-type', async () => {
-        throw new Error('Failed to initialize remote module "invalid-module-type": Invalid module instance returned from factory');
+        throw new Error('Invalid module instance returned from factory');
       });
 
       await expect(loadRemoteModule('invalid-module-type'))
         .rejects
-        .toThrow('Failed to load remote module "invalid-module-type": Failed to initialize remote module "invalid-module-type": Invalid module instance returned from factory');
+        .toThrow('Failed to load remote module "invalid-module-type": Invalid module instance returned from factory');
     });
 
     it('should handle non-Error objects in catch', async () => {
@@ -250,7 +301,7 @@ describe('Federation System', () => {
 
       await expect(loadPromise)
         .rejects
-        .toThrow('Failed to load remote module "test": Failed to initialize remote module "test": Failed to initialize container: Container test not found');
+        .toThrow('Failed to load remote module "test": Failed to initialize container: Container test not found');
     });
 
     it('should handle container without init method', async () => {
@@ -262,7 +313,7 @@ describe('Federation System', () => {
 
       await expect(loadPromise)
         .rejects
-        .toThrow('Failed to load remote module "test": Failed to initialize remote module "test": Failed to initialize container: Container test does not implement required init method');
+        .toThrow('Failed to load remote module "test": Failed to initialize container: Container test does not implement required init method');
     });
 
     it('should handle container without get method', async () => {
@@ -274,7 +325,7 @@ describe('Federation System', () => {
 
       await expect(loadPromise)
         .rejects
-        .toThrow('Failed to load remote module "test": Failed to initialize remote module "test": Failed to initialize container: Container test does not implement required get method');
+        .toThrow('Failed to load remote module "test": Failed to initialize container: Container test does not implement required get method');
     });
 
     it('should handle script creation failure', async () => {
@@ -285,7 +336,7 @@ describe('Federation System', () => {
       initializeFederation(['test']);
       await expect(loadRemoteModule('test'))
         .rejects
-        .toThrow('Failed to load remote module "test": Failed to initialize remote module "test": Failed to create script element: Failed to create script');
+        .toThrow('Failed to load remote module "test": Failed to create script element: Failed to create script');
     });
 
     it('should handle script loading failure', async () => {
@@ -296,7 +347,7 @@ describe('Federation System', () => {
 
       await expect(loadPromise)
         .rejects
-        .toThrow('Failed to load remote module "test": Failed to initialize remote module "test": Failed to load remote entry script: http://localhost:3001/test/remoteEntry.js');
+        .toThrow('Failed to load remote module "test": Failed to load remote entry script: http://localhost:3001/test/remoteEntry.js');
     });
 
     it('should handle script element creation returning null', async () => {
@@ -305,7 +356,7 @@ describe('Federation System', () => {
       initializeFederation(['test']);
       await expect(loadRemoteModule('test'))
         .rejects
-        .toThrow('Failed to load remote module "test": Failed to initialize remote module "test": Failed to create script element');
+        .toThrow('Failed to load remote module "test": Failed to create script element');
     });
 
     it('should handle script element append failure', async () => {
@@ -316,7 +367,7 @@ describe('Federation System', () => {
       initializeFederation(['test']);
       await expect(loadRemoteModule('test'))
         .rejects
-        .toThrow('Failed to load remote module "test": Failed to initialize remote module "test": Failed to create script element: Failed to append script');
+        .toThrow('Failed to load remote module "test": Failed to create script element: Failed to append script');
     });
 
     it('should handle empty URL in script loading', async () => {
@@ -327,7 +378,7 @@ describe('Federation System', () => {
 
       await expect(loadPromise)
         .rejects
-        .toThrow('Failed to load remote module "test": Failed to initialize remote module "test": Failed to load remote entry script: http://localhost:3001/test/remoteEntry.js');
+        .toThrow('Failed to load remote module "test": Failed to load remote entry script: http://localhost:3001/test/remoteEntry.js');
     });
   });
 
@@ -376,7 +427,7 @@ describe('Federation System', () => {
 
       await expect(loadPromise)
         .rejects
-        .toThrow('Failed to load remote module "test": Failed to initialize remote module "test": Failed to initialize container: Sharing init failed');
+        .toThrow('Failed to load remote module "test": Failed to initialize container: Sharing init failed');
     });
 
     it('should handle empty container scope', async () => {
@@ -398,7 +449,7 @@ describe('Federation System', () => {
 
       await expect(loadPromise)
         .rejects
-        .toThrow('Failed to load remote module "test": Failed to initialize remote module "test": Failed to initialize container: Unknown error');
+        .toThrow('Failed to load remote module "test": Failed to initialize container: Unknown error');
     });
 
     it('should handle invalid factory type', async () => {
@@ -411,7 +462,9 @@ describe('Federation System', () => {
         const container = mockContainer;
         await container.init(__webpack_share_scopes__.default);
         const factory = await container.get('./Module');
-        if (typeof factory !== 'function') throw new Error('Invalid factory returned for module ./Module');
+        if (!factory || typeof factory !== 'function') {
+          throw new Error('Invalid factory returned for module ./Module');
+        }
         return {} as RemoteModule;
       });
 
@@ -430,9 +483,13 @@ describe('Federation System', () => {
         const container = mockContainer;
         await container.init(__webpack_share_scopes__.default);
         const factory = await container.get('./Module');
-        if (typeof factory !== 'function') throw new Error('Invalid factory returned for module ./Module');
+        if (!factory || typeof factory !== 'function') {
+          throw new Error('Invalid factory returned for module ./Module');
+        }
         const module = await factory();
-        if (!module || typeof module !== 'object') throw new Error('Invalid module instance returned from factory');
+        if (!module || typeof module !== 'object') {
+          throw new Error('Invalid module instance returned from factory');
+        }
         return module as RemoteModule;
       });
 
@@ -451,9 +508,13 @@ describe('Federation System', () => {
         const container = mockContainer;
         await container.init(__webpack_share_scopes__.default);
         const factory = await container.get('./Module');
-        if (typeof factory !== 'function') throw new Error('Invalid factory returned for module ./Module');
+        if (!factory || typeof factory !== 'function') {
+          throw new Error('Invalid factory returned for module ./Module');
+        }
         const module = await factory();
-        if (!module || typeof module !== 'object') throw new Error('Invalid module instance returned from factory');
+        if (!module || typeof module !== 'object') {
+          throw new Error('Invalid module instance returned from factory');
+        }
         return module as RemoteModule;
       });
 
@@ -472,9 +533,13 @@ describe('Federation System', () => {
         const container = mockContainer;
         await container.init(__webpack_share_scopes__.default);
         const factory = await container.get('./Module');
-        if (typeof factory !== 'function') throw new Error('Invalid factory returned for module ./Module');
+        if (!factory || typeof factory !== 'function') {
+          throw new Error('Invalid factory returned for module ./Module');
+        }
         const module = await factory();
-        if (!module || typeof module !== 'object') throw new Error('Invalid module instance returned from factory');
+        if (!module || typeof module !== 'object') {
+          throw new Error('Invalid module instance returned from factory');
+        }
         return module as RemoteModule;
       });
 
@@ -495,9 +560,13 @@ describe('Federation System', () => {
         const container = mockContainer;
         await container.init(__webpack_share_scopes__.default);
         const factory = await container.get('./Module');
-        if (typeof factory !== 'function') throw new Error('Invalid factory returned for module ./Module');
+        if (!factory || typeof factory !== 'function') {
+          throw new Error('Invalid factory returned for module ./Module');
+        }
         const module = await factory();
-        if (!module || typeof module !== 'object') throw new Error('Invalid module instance returned from factory');
+        if (!module || typeof module !== 'object') {
+          throw new Error('Invalid module instance returned from factory');
+        }
         return module as RemoteModule;
       });
 
@@ -516,15 +585,73 @@ describe('Federation System', () => {
         const container = mockContainer;
         await container.init(__webpack_share_scopes__.default);
         const factory = await container.get('./Module');
-        if (typeof factory !== 'function') throw new Error('Invalid factory returned for module ./Module');
+        if (!factory || typeof factory !== 'function') {
+          throw new Error('Invalid factory returned for module ./Module');
+        }
         const module = await factory();
-        if (!module || typeof module !== 'object') throw new Error('Invalid module instance returned from factory');
+        if (!module || typeof module !== 'object') {
+          throw new Error('Invalid module instance returned from factory');
+        }
         return module as RemoteModule;
       });
 
       await expect(loadRemoteModule('non-promise-factory'))
         .rejects
         .toThrow('Failed to load remote module "non-promise-factory": Invalid module instance returned from factory');
+    });
+
+    it('should handle script loading with empty URL', async () => {
+      const mockConfig: RemoteModuleConfig = {
+        name: 'test',
+        url: '',
+        scope: 'test',
+        module: './Module'
+      };
+
+      registerRemoteModule('test', async () => {
+        await loadRemoteEntry(mockConfig.url);
+        return {} as RemoteModule;
+      });
+
+      await expect(loadRemoteModule('test'))
+        .rejects
+        .toThrow('Failed to load remote module "test": URL is required');
+    });
+
+    it('should handle script loading with null URL', async () => {
+      const mockConfig: RemoteModuleConfig = {
+        name: 'test',
+        url: null as any,
+        scope: 'test',
+        module: './Module'
+      };
+
+      registerRemoteModule('test', async () => {
+        await loadRemoteEntry(mockConfig.url);
+        return {} as RemoteModule;
+      });
+
+      await expect(loadRemoteModule('test'))
+        .rejects
+        .toThrow('Failed to load remote module "test": URL is required');
+    });
+
+    it('should handle script loading with undefined URL', async () => {
+      const mockConfig: RemoteModuleConfig = {
+        name: 'test',
+        url: undefined as any,
+        scope: 'test',
+        module: './Module'
+      };
+
+      registerRemoteModule('test', async () => {
+        await loadRemoteEntry(mockConfig.url);
+        return {} as RemoteModule;
+      });
+
+      await expect(loadRemoteModule('test'))
+        .rejects
+        .toThrow('Failed to load remote module "test": URL is required');
     });
   });
 });

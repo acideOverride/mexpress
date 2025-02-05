@@ -7,27 +7,32 @@ const remoteModuleRegistry: Record<string, () => Promise<RemoteModule>> = {};
  * @param url Remote entry URL
  * @returns Promise that resolves when script is loaded
  */
-const loadRemoteEntry = async (url: string): Promise<void> => {
+export const loadRemoteEntry = async (url: string): Promise<void> => {
   if (!url) throw new Error('URL is required');
 
   return new Promise((resolve, reject) => {
+    let script: HTMLScriptElement;
     try {
-      const script = document.createElement('script');
-      if (!script) {
-        reject(new Error('Failed to create script element'));
-        return;
-      }
+      script = document.createElement('script');
+      if (!script) throw new Error('Failed to create script element');
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      reject(new Error(`Failed to create script element: ${errorMessage}`));
+      return;
+    }
 
-      script.src = url;
-      script.type = 'text/javascript';
-      script.async = true;
+    script.src = url;
+    script.type = 'text/javascript';
+    script.async = true;
 
-      script.onload = () => resolve();
-      script.onerror = () => reject(new Error(`Failed to load remote entry script: ${url}`));
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error(`Failed to load remote entry script: ${url}`));
 
+    try {
       document.head.appendChild(script);
     } catch (error) {
-      reject(new Error(`Failed to create script element: ${error instanceof Error ? error.message : 'Unknown error'}`));
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      reject(new Error(`Failed to create script element: ${errorMessage}`));
     }
   });
 };
@@ -105,11 +110,7 @@ export const loadRemoteModule = async (name: string): Promise<RemoteModule> => {
   try {
     const module = await loadFn();
     
-    if (!module || typeof module !== 'object') {
-      throw new Error(`Invalid module instance returned from factory`);
-    }
-
-    if (typeof module.mount !== 'function') {
+    if (!module || typeof module !== 'object' || typeof module.mount !== 'function') {
       throw new Error(`Invalid module instance returned from factory`);
     }
 
@@ -153,15 +154,18 @@ export const initializeFederation = (remotes: string[]): void => {
         const container = await initContainer(config.scope);
         const factory = await container.get(config.module);
 
-        if (typeof factory !== 'function') throw new Error('Invalid factory returned for module ./Module');
+        if (!factory) throw new Error(`Invalid factory returned for module ${config.module}`);
+        if (typeof factory !== 'function') throw new Error(`Invalid factory returned for module ${config.module}`);
+
         const module = await factory();
-        if (!module || typeof module !== 'object') throw new Error('Invalid module instance returned from factory');
-        if (typeof module.mount !== 'function') throw new Error('Invalid module instance returned from factory');
+        if (!module || typeof module !== 'object' || typeof module.mount !== 'function') {
+          throw new Error(`Invalid module instance returned from factory`);
+        }
 
         return module;
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-        throw new Error(`Failed to initialize remote module "${remote}": ${errorMessage}`);
+        throw new Error(errorMessage);
       }
     });
   });
