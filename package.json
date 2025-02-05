@@ -1,57 +1,28 @@
 {
-  "name": "mexpress",
+  "name": "mexpress-core",
   "version": "1.0.0",
-  "description": "mExpress project",
-  "main": "src/index.ts",
+  "description": "mExpress Core Services",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "jest --coverage",
-    "test:coverage": "jest --coverage --coverageThreshold='{\"global\":{\"branches\":90,\"functions\":90,\"lines\":90,\"statements\":90}}'",
-    "lint": "eslint . --ext .ts,.tsx",
-    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
-    "type-check": "tsc --noEmit",
-    "prepare": "husky install",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "build": "tsc",
-    "validate:environment": "ts-node scripts/validate-environment.ts",
-    "deploy:staging": "ts-node scripts/deploy.ts --env=staging",
-    "deploy:production": "ts-node scripts/deploy.ts --env=production",
-    "monitor:start": "ts-node scripts/monitoring/start.ts",
-    "monitor:test": "jest tests/monitoring/*.test.ts",
-    "ci:test": "npm run test:coverage && npm run lint && npm run type-check"
-  },
-  "devDependencies": {
-    "@types/jest": "^29.5.14",
-    "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.17.17",
-    "@types/react": "^19.0.8",
-    "@typescript-eslint/eslint-plugin": "^6.17.0",
-    "@typescript-eslint/parser": "^6.17.0",
-    "eslint": "^8.56.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jest": "^27.6.1",
-    "eslint-plugin-prettier": "^5.1.2",
-    "eslint-plugin-security": "^2.1.0",
-    "husky": "^8.0.3",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
-    "js-yaml": "^4.1.0",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.1.1",
-    "react": "^19.0.0",
-    "ts-jest": "^29.1.1",
-    "typescript": "^5.3.3"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md}": [
-      "prettier --write"
-    ]
+    "lint": "eslint src --ext .ts",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@types/uuid": "^10.0.0",
-    "uuid": "^11.0.5",
-    "zustand": "^5.0.3"
+    "axios": "^1.6.0",
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.0"
   }
 }

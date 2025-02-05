@@ -1,7 +1,22 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: 'jsdom',
+  testEnvironment: 'node',
+  roots: ['<rootDir>/src'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1'
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$',
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest'
+  },
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/types/**/*'
+  ],
+  coverageDirectory: 'coverage',
+  coverageReporters: ['json', 'lcov', 'text', 'clover'],
   coverageThreshold: {
     global: {
       branches: 90,
@@ -10,9 +25,9 @@ module.exports = {
       statements: 90
     }
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
-  transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest'
+  globals: {
+    'ts-jest': {
+      tsconfig: 'tsconfig.json'
+    }
   }
 };
