@@ -81,31 +81,16 @@ export const isMainModule = (mod?: NodeModule): boolean => {
 
   // 2. Direct filename comparison (highest priority)
   if (!modFilenameEmpty && !mainFilenameEmpty) {
-    console.log('Comparing filenames:', {
-      modId: mod.id,
-      mainId: mainModule.id,
-      modFilename: mod.filename,
-      mainFilename: mainModule.filename,
-      modEmpty: modFilenameEmpty,
-      mainEmpty: mainFilenameEmpty
-    });
-
     // Direct string comparison
     if (mod.filename === mainModule.filename) {
-      console.log('Direct filename match');
       return true;
     }
 
     // Normalized comparison
     const modNormalized = normalizeId(mod.filename);
     const mainNormalized = normalizeId(mainModule.filename);
-    console.log('Normalized filenames:', {
-      modNormalized,
-      mainNormalized
-    });
 
     if (modNormalized === mainNormalized) {
-      console.log('Normalized filename match');
       return true;
     }
   }
