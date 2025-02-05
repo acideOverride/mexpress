@@ -1,0 +1,23 @@
+{
+  "name": "staging",
+  "requiredServices": [
+    "database",
+    "cache",
+    "message-queue",
+    "auth-service"
+  ],
+  "minimumResources": {
+    "cpu": 2,
+    "memory": 4096,
+    "disk": 20
+  },
+  "requiredEnvVars": [
+    "NODE_ENV",
+    "DATABASE_URL",
+    "REDIS_URL",
+    "MQ_CONNECTION_STRING",
+    "AUTH_SERVICE_URL",
+    "API_KEY",
+    "LOG_LEVEL"
+  ]
+}
