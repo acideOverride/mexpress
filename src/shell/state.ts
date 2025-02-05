@@ -38,16 +38,28 @@ type StoreApi = {
   subscribe: (listener: (state: AppState) => void) => () => void;
 };
 
+// Track all active store instances
+const storeInstances = new Set<AppState>();
+
 // Global subscribers set
 const subscribers = new Set<(state: AppState) => void>();
 
-// Notify all subscribers of state changes
+// Notify all subscribers and update all stores
 const notifySubscribers = (state: AppState) => {
+  // Update all store instances with new values
+  storeInstances.forEach(store => {
+    store.user = state.user;
+    store.theme = state.theme;
+    store.notifications = [...state.notifications];
+  });
+  
+  // Notify subscribers
   subscribers.forEach(subscriber => subscriber(state));
 };
 
 export const initializeState = (): StoreApi => {
   const store = createStore();
+  storeInstances.add(store);
 
   return {
     getState: () => store,
@@ -89,12 +101,13 @@ export const subscribeToState = (callback: (state: AppState) => void) => {
  * Reset the global state to its initial values
  */
 export const resetGlobalState = () => {
-  // Create fresh store with initial values
-  const freshStore = createStore();
-  // Apply fresh state atomically
+  // Reset global state using setState to ensure proper updates
   globalState.setState(() => ({
-    user: freshStore.user,
-    theme: freshStore.theme,
-    notifications: freshStore.notifications
+    user: null,
+    theme: 'light',
+    notifications: []
   }));
+
+  // Notify subscribers of reset
+  notifySubscribers(globalState.getState());
 };
