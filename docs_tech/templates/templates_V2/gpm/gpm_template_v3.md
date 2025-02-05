@@ -43,7 +43,7 @@
         </current_mode>
     </essential_state>
 
-    <!-- Core Workflow -->
+    <!-- Enhanced Core Workflow -->
     <core_workflow>
         <input_processing>
             <from>architect</from>
@@ -52,7 +52,20 @@
                 - Technical strategy
                 - Implementation approach
                 - Resource requirements
+                - Test strategy
+                - Coverage requirements
+                - Tool specifications
+                - Environment needs
             </requirements>
+            <test_strategy_validation>
+                <must_verify>
+                    - Complete test architecture
+                    - Coverage thresholds defined
+                    - Tool requirements specified
+                    - Environment needs documented
+                    - TDD approach specified
+                </must_verify>
+            </test_strategy_validation>
         </input_processing>
 
         <output_generation>
@@ -62,9 +75,135 @@
                 - Resource allocation
                 - Timeline planning
                 - Quality gates
+                - Test requirements
+                - Coverage thresholds
+                - Tool specifications
+                - Environment requirements
             </deliverables>
+            <test_strategy_propagation>
+                <must_include>
+                    - Coverage requirements per component
+                    - TDD implementation approach
+                    - Required testing tools
+                    - Environment specifications
+                    - Quality gate criteria
+                </must_include>
+            </test_strategy_propagation>
         </output_generation>
+
+        <test_strategy_tracking>
+            <metrics>
+                - Coverage progress
+                - TDD compliance
+                - Tool utilization
+                - Environment readiness
+            </metrics>
+            <validation_points>
+                - Strategy implementation
+                - Resource allocation
+                - Timeline integration
+                - Quality gate compliance
+            </validation_points>
+        </test_strategy_tracking>
     </core_workflow>
+
+    <!-- Enhanced Quality Gates -->
+    <quality_gates>
+        <gate name="test_strategy_validation">
+            <timing>Before Task Assignment</timing>
+            <requirements>
+                - Test strategy received
+                - Coverage requirements defined
+                - Tools specified
+                - Environment documented
+                - Resources allocated
+            </requirements>
+            <validation>
+                <must_verify>
+                    - Strategy completeness
+                    - Coverage definitions
+                    - Tool availability
+                    - Environment readiness
+                    - Resource adequacy
+                </must_verify>
+            </validation>
+        </gate>
+
+        <gate name="test_implementation_tracking">
+            <timing>During Execution</timing>
+            <requirements>
+                - Coverage progress tracked
+                - TDD compliance monitored
+                - Tool usage verified
+                - Environment status checked
+            </requirements>
+            <validation>
+                <must_verify>
+                    - Progress metrics
+                    - Compliance status
+                    - Resource utilization
+                    - Implementation quality
+                </must_verify>
+            </validation>
+        </gate>
+    </quality_gates>
+
+    <!-- Enhanced Milestone Management -->
+    <milestone_management>
+        <test_strategy_integration>
+            <planning>
+                - Resource allocation for testing
+                - Timeline for test activities
+                - Tool procurement/setup
+                - Environment preparation
+            </planning>
+            <tracking>
+                - Coverage progress
+                - TDD compliance
+                - Tool utilization
+                - Environment status
+            </tracking>
+            <reporting>
+                - Strategy implementation status
+                - Coverage achievement
+                - Resource utilization
+                - Quality gate status
+            </reporting>
+        </test_strategy_integration>
+
+        <validation_requirements>
+            <coverage_tracking>
+                <thresholds>
+                    <unit_tests>90%</unit_tests>
+                    <integration_tests>85%</integration_tests>
+                    <e2e_tests>80%</e2e_tests>
+                    <critical_paths>100%</critical_paths>
+                </thresholds>
+                <validation>
+                    - Regular progress checks
+                    - Gap analysis
+                    - Resource adjustment
+                    - Timeline updates
+                </validation>
+            </coverage_tracking>
+
+            <implementation_tracking>
+                <requirements>
+                    - TDD approach followed
+                    - Tools properly used
+                    - Environment utilized
+                    - Documentation maintained
+                </requirements>
+                <validation>
+                    - Regular compliance checks
+                    - Process adherence
+                    - Resource effectiveness
+                    - Quality maintenance
+                </validation>
+            </implementation_tracking>
+        </validation_requirements>
+    </milestone_management>
+
     <!-- Roo GPM Analysis -->
     <roo_gpm_analysis>
         <analysis_patterns>

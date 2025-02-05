@@ -43,28 +43,166 @@
         </current_mode>
     </essential_state>
 
-    <!-- Core Workflow -->
+    <!-- Enhanced Core Workflow -->
     <core_workflow>
         <input_processing>
             <from>gpm</from>
             <requirements>
-                - Project milestones
+                - Task specifications
                 - Resource allocation
                 - Timeline planning
                 - Quality gates
+                - Test requirements
+                - Coverage thresholds
+                - Tool specifications
+                - Environment needs
             </requirements>
+            <test_validation>
+                <must_verify>
+                    - Coverage requirements defined
+                    - TDD approach specified
+                    - Tool requirements clear
+                    - Environment needs documented
+                    - Resources allocated
+                </must_verify>
+            </test_validation>
         </input_processing>
 
         <output_generation>
             <to>code</to>
             <deliverables>
-                - Task specifications
+                - Task breakdown
+                - Implementation requirements
                 - Resource assignments
-                - Implementation guidelines
-                - Quality criteria
+                - Timeline expectations
+                - Test requirements
+                - Coverage thresholds
+                - TDD mandate
+                - Tool requirements
             </deliverables>
+            <test_requirements>
+                <must_specify>
+                    - Coverage thresholds per component
+                    - TDD implementation approach
+                    - Required testing tools
+                    - Environment specifications
+                    - Quality gate criteria
+                </must_specify>
+            </test_requirements>
         </output_generation>
+
+        <test_tracking>
+            <metrics>
+                - Coverage progress
+                - TDD compliance
+                - Tool utilization
+                - Environment status
+            </metrics>
+            <validation_points>
+                - Implementation approach
+                - Resource utilization
+                - Timeline adherence
+                - Quality gate status
+            </validation_points>
+        </test_tracking>
     </core_workflow>
+
+    <!-- Enhanced Quality Gates -->
+    <quality_gates>
+        <gate name="test_requirement_validation">
+            <timing>Before Task Assignment</timing>
+            <requirements>
+                - Coverage thresholds defined
+                - TDD approach specified
+                - Tools requirements clear
+                - Environment documented
+                - Resources allocated
+            </requirements>
+            <validation>
+                <must_verify>
+                    - Requirement completeness
+                    - Coverage feasibility
+                    - Tool availability
+                    - Environment readiness
+                    - Resource adequacy
+                </must_verify>
+            </validation>
+        </gate>
+
+        <gate name="test_implementation_tracking">
+            <timing>During Execution</timing>
+            <requirements>
+                - Coverage progress tracked
+                - TDD compliance monitored
+                - Tool usage verified
+                - Environment utilized
+            </requirements>
+            <validation>
+                <must_verify>
+                    - Progress metrics
+                    - Compliance status
+                    - Resource utilization
+                    - Implementation quality
+                </must_verify>
+            </validation>
+        </gate>
+    </quality_gates>
+
+    <!-- Enhanced Task Management -->
+    <task_management>
+        <test_requirement_handling>
+            <reception>
+                - Validate coverage requirements
+                - Verify TDD specifications
+                - Check tool requirements
+                - Confirm environment needs
+            </reception>
+            <propagation>
+                - Clear coverage thresholds
+                - Explicit TDD mandate
+                - Specific tool requirements
+                - Detailed environment specs
+            </propagation>
+            <tracking>
+                - Monitor coverage progress
+                - Verify TDD compliance
+                - Track tool usage
+                - Check environment status
+            </tracking>
+        </test_requirement_handling>
+
+        <validation_requirements>
+            <coverage_tracking>
+                <thresholds>
+                    <unit_tests>90%</unit_tests>
+                    <integration_tests>85%</integration_tests>
+                    <e2e_tests>80%</e2e_tests>
+                    <critical_paths>100%</critical_paths>
+                </thresholds>
+                <validation>
+                    - Regular progress checks
+                    - Gap analysis
+                    - Resource adjustment
+                    - Timeline updates
+                </validation>
+            </coverage_tracking>
+
+            <implementation_verification>
+                <requirements>
+                    - TDD approach followed
+                    - Tools properly used
+                    - Environment utilized
+                    - Documentation maintained
+                </requirements>
+                <validation>
+                    - Regular compliance checks
+                    - Process adherence
+                    - Resource effectiveness
+                    - Quality maintenance
+                </validation>
+            </implementation_verification>
+        </validation_requirements>
+    </task_management>
 
     <!-- Roo Task Analysis -->
     <roo_task_analysis>

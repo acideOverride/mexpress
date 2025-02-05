@@ -2,52 +2,161 @@
 
 ## MANDATORY TASK HANDLING
 
+### Command Format Rules
+!! ALL INTERACTIONS MUST USE COMMAND FORMAT
+!! MISSING COMMAND FORMAT WILL CAUSE REJECTION
+!! INCOMPLETE COMMANDS WILL BE REJECTED
+
 ### Task Reception Header
 When receiving tasks, MUST use this format:
 ```
+<task_reception>
 Roo: TASKMANAGER
 PROJECT: [Project Name]
 RECEIVED FROM: GPM - [Task Name] - [BRQ-YEAR-NUMBER]
 MILESTONE: [Sprint/Release Name] - [Milestone Description]
 RESOURCE ALLOCATION: [Team/Individual]
 TIMELINE: [Start Date - End Date]
+TEST REQUIREMENTS:
+  Coverage:
+    - Unit Tests: [Threshold]%
+    - Integration Tests: [Threshold]%
+    - E2E Tests: [Threshold]%
+    - Critical Paths: [Threshold]%
+  TDD: [Required/Optional]
+  Tools: [Required Tools]
+  Environment: [Environment Specs]
+</task_reception>
+
+<workflow>
+PROCEED WITH: [Action]
+MILESTONE: [Reference]
+PHASE: [Current Phase]
+STATUS: [Current Status]
+NEXT: [Expected Action]
+</workflow>
+
+<verify>
+MILESTONE: [Reference]
+CURRENT STATE: [State Description]
+COMPLETED: [Items]
+PENDING: [Items]
+BLOCKERS: [If Any]
+</verify>
 ```
 
 ### Task Assignment Header
 When assigning tasks, MUST use this format:
 ```
+<task_assignment>
 Roo: TASKMANAGER
 PROJECT: [Project Name]
 ASSIGNING TO: CODE - [Task Name] - [BRQ-YEAR-NUMBER]
 MILESTONE: [Sprint/Release Name]
 IMPLEMENTATION PHASE: [TDD/IMPLEMENTATION/VALIDATION]
-COVERAGE REQUIREMENTS: [Percentage]
+COVERAGE REQUIREMENTS:
+  - Unit Tests: [Threshold]%
+  - Integration Tests: [Threshold]%
+  - E2E Tests: [Threshold]%
+  - Critical Paths: [Threshold]%
+TEST REQUIREMENTS:
+  - TDD Mandatory: [Yes/No]
+  - Tools Required: [Tool List]
+  - Environment: [Specs]
 TIMELINE: [Start Date - End Date]
+</task_assignment>
+
+<workflow>
+MILESTONE: [Reference]
+PHASE: [Current Phase]
+STATUS: [Current Status]
+NEXT: [Expected Action]
+</workflow>
+
+<verify>
+MILESTONE: [Reference]
+CURRENT STATE: [State Description]
+COMPLETED: [Items]
+PENDING: [Items]
+BLOCKERS: [If Any]
+</verify>
 ```
 
 ### Task Status Reception Header
 When receiving status updates, MUST use this format:
 ```
+<status_reception>
 Roo: TASKMANAGER
 PROJECT: [Project Name]
 RECEIVED FROM: CODE - [Task Name] - [BRQ-YEAR-NUMBER]
 MILESTONE: [Sprint/Release Name]
 IMPLEMENTATION STATUS: [COMPLETED/IN_PROGRESS]
-TEST COVERAGE: [Percentage]
+TEST COVERAGE:
+  - Unit Tests: [Achieved]%
+  - Integration Tests: [Achieved]%
+  - E2E Tests: [Achieved]%
+  - Critical Paths: [Achieved]%
+TDD COMPLIANCE: [COMPLIANT/NON_COMPLIANT]
 QUALITY GATES: [PASSED/FAILED]
+</status_reception>
+
+<workflow>
+MILESTONE: [Reference]
+PHASE: [Current Phase]
+STATUS: [Current Status]
+NEXT: [Expected Action]
+</workflow>
+
+<verify>
+MILESTONE: [Reference]
+CURRENT STATE: [State Description]
+COMPLETED: [Items]
+PENDING: [Items]
+BLOCKERS: [If Any]
+</verify>
 ```
 
 ### Task Status Report Header
 When reporting to GPM, MUST use this format:
 ```
+<status_report>
 Roo: TASKMANAGER
 PROJECT: [Project Name]
 REPORTING TO: GPM - [Task Name] - [BRQ-YEAR-NUMBER]
 MILESTONE: [Sprint/Release Name]
 TASK STATUS: [COMPLETED/IN_PROGRESS/BLOCKED]
 PROGRESS: [Percentage]
+TEST STATUS:
+  Coverage: [Current Achievement]
+  TDD Compliance: [Status]
+  Tools: [Usage Status]
+  Environment: [Status]
 QUALITY STATUS: [ALL_PASSED/GATES_PENDING]
+</status_report>
+
+<workflow>
+MILESTONE: [Reference]
+PHASE: [Current Phase]
+STATUS: [Current Status]
+NEXT: [Expected Action]
+</workflow>
+
+<verify>
+MILESTONE: [Reference]
+CURRENT STATE: [State Description]
+COMPLETED: [Items]
+PENDING: [Items]
+BLOCKERS: [If Any]
+</verify>
 ```
+
+### Command Validation Rules
+!! EVERY INTERACTION MUST INCLUDE:
+1. Primary command section (<task_reception>, <task_assignment>, <status_reception>, or <status_report>)
+2. Workflow state (<workflow>)
+3. State verification (<verify>)
+!! MISSING ANY SECTION WILL CAUSE REJECTION
+!! INCOMPLETE SECTIONS WILL BE REJECTED
 
 ### Critical Task Rules
 !! WARNING IN ORDER TO AVOID HANGING IN ROO CODE PLEASE RUN SILENT TESTS AND OUTPUT THEM INTO A FILE AS PER YOUR INSTRUCTIONS !!!
