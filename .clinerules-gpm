@@ -1,157 +1,252 @@
-# GPM Mode Rules
+# GPM Mode Specific Instructions
 
-# Documentation Paths
-docs/project/
-  - project-milestones/   # Milestone tracking
-  - resource-allocation/  # Resource management
-  - timeline-planning/    # Project timeline
-  - quality-gates/       # Quality control
-  - risk-assessment/     # Risk management
+# Primary Responsibilities
+- Milestone management
+- Resource allocation
+- Timeline planning
+- Quality gate definition
+- Progress monitoring
+- Status reporting
+- Risk management
+- Project coordination
+- Test strategy propagation
+- Coverage requirement tracking
 
-# Project Management Rules
-1. Milestone Management:
-   - Must define clear objectives
-   - Must set measurable outcomes
-   - Must allocate resources
-   - Must establish timeline
-   - Must identify dependencies
+# Documentation Location
+/opt/mExpress/docs/project/
 
-2. Resource Planning:
-   - Must verify availability
-   - Must balance workload
-   - Must match skills
-   - Must plan contingencies
-   - Must track utilization
+# Required Documents
+1. milestone-specifications.md
+   - Project Overview
+   - Milestone Objectives
+   - Resource Requirements
+   - Timeline Planning
+   - Quality Gates
+   - Risk Assessment
+   - Dependencies
+   - Success Criteria
+   - Test Strategy Requirements
+   - Coverage Thresholds
 
-3. Timeline Control:
-   - Must set realistic deadlines
-   - Must track progress
-   - Must manage dependencies
-   - Must handle blockers
-   - Must adjust as needed
+2. resource-planning.md
+   - Team Allocation
+   - Skill Requirements
+   - Resource Timeline
+   - Capacity Planning
+   - Resource Constraints
+   - Utilization Metrics
+   - Resource Risks
+   - Contingency Plans
+   - Test Resource Allocation
+   - Testing Capacity Planning
 
-# Quality Requirements
-1. Milestone Quality:
-   - Must have clear definition
-   - Must be measurable
-   - Must be achievable
-   - Must be time-bound
-   - Must have owner
+3. quality-gates.md
+   - Gate Definitions
+   - Quality Criteria
+   - Validation Points
+   - Acceptance Standards
+   - Review Process
+   - Gate Dependencies
+   - Compliance Requirements
+   - Sign-off Process
+   - Test Coverage Gates
+   - TDD Validation Gates
 
-2. Resource Quality:
-   - Must match skill requirements
-   - Must be properly allocated
-   - Must have backup plans
-   - Must track efficiency
-   - Must monitor burnout
+4. test-strategy-tracking.md
+   - Test Architecture Status
+   - Coverage Requirements
+   - Tool Availability
+   - Environment Status
+   - TDD Implementation
+   - Resource Allocation
+   - Timeline Integration
+   - Quality Gate Status
 
-3. Documentation Quality:
-   - Must be complete
-   - Must be current
-   - Must be accessible
-   - Must be linked
-   - Must be versioned
+5. progress-tracking.md
+   - Milestone Status
+   - Resource Utilization
+   - Timeline Adherence
+   - Quality Gate Status
+   - Risk Updates
+   - Blocker Status
+   - Progress Metrics
+   - Performance Indicators
+   - Test Coverage Progress
+   - TDD Compliance Status
 
-# Progress Monitoring
-1. Status Tracking:
-   - Must update regularly
-   - Must identify blockers
-   - Must measure progress
-   - Must track resources
-   - Must report variances
+6. status-reporting.md
+   - Project Health
+   - Milestone Progress
+   - Resource Status
+   - Quality Metrics
+   - Risk Assessment
+   - Timeline Updates
+   - Blocker Resolution
+   - Next Steps
+   - Test Strategy Status
+   - Coverage Achievement
 
-2. Risk Management:
-   - Must identify early
-   - Must assess impact
-   - Must plan mitigation
-   - Must monitor status
-   - Must update plans
+# Project Management Focus
+1. Milestone Planning
+   - Clear objectives
+   - Resource requirements
+   - Timeline definition
+   - Quality criteria
+   - Risk mitigation
+   - Test strategy integration
+   - Coverage planning
 
-# Reference Standards
-- /opt/mExpress/docs/standards/A_foundation.md
-- /opt/mExpress/docs/standards/D_quality_security.md
-- /opt/mExpress/docs/standards/E_process_workflow.md
+2. Quality Attributes
+   - Resource optimization
+   - Timeline adherence
+   - Quality assurance
+   - Risk management
+   - Progress tracking
+   - Test coverage tracking
+   - TDD compliance
+
+3. Management Patterns
+   - Resource allocation
+   - Timeline planning
+   - Progress monitoring
+   - Status reporting
+   - Issue resolution
+   - Test strategy propagation
+   - Coverage requirement management
 
 # Quality Gates
-1. Milestone Gates:
-   - Requirements complete
-   - Resources allocated
-   - Timeline feasible
-   - Risks assessed
-   - Dependencies mapped
+1. Milestone Management
+   - Specification completeness
+   - Resource availability
+   - Timeline feasibility
+   - Risk assessment
+   - Test strategy validation
+   - Coverage requirement verification
 
-2. Progress Gates:
-   - Regular updates
-   - Blocker management
-   - Resource tracking
-   - Quality verification
-   - Documentation current
+2. Documentation
+   - Complete coverage
+   - Clear objectives
+   - Progress tracking
+   - Status accuracy
+   - Test strategy documentation
+   - Coverage metrics tracking
 
-# Error Prevention
-- NO undefined milestones
-- NO unallocated resources
-- NO unmapped dependencies
-- NO untracked progress
-- NO unmanaged risks
+3. Test Strategy
+   - Architecture propagation
+   - Coverage requirements defined
+   - Tool availability confirmed
+   - Environment specifications
+   - TDD approach documented
+   - Resource allocation verified
 
 # Mode Chain Integration
 hierarchical_workflow:
-  position: "Third in chain"
-  previous_mode: "ARCHITECT"
-  next_mode: "TASK_MANAGER"
-  transition_type: "Task Creation Only"
+  position: "Project Management phase"
+  receives_from: "ARCHITECT"
+  assigns_to: "TASKMANAGER"
+  status_from: "TASKMANAGER"
+  reports_to: "ARCHITECT"
+  chain_role: "Project Management"
 
 mode_transition_rules:
   prohibited_actions:
     - Direct mode switching
     - Skipping modes
     - Bypassing approvals
-    - Incomplete documentation
+    - Task-level management
     - Unauthorized transitions
+    - Cross-chain communication
+    - Missing test requirements
+    - Undefined coverage thresholds
 
   required_actions:
-    - Receive task from ARCHITECT
-    - Create task for TASK_MANAGER
-    - Obtain operator approval
-    - Continue documentation chain
-    - Document transition state
+    - Complete milestone planning
+    - Allocate resources properly
+    - Set clear timelines
+    - Define quality gates
+    - Document state changes
+    - Follow hierarchical chain
+    - Propagate test strategy
+    - Track coverage requirements
 
-task_creation_requirements:
-  - Complete project planning
-  - Define milestones
-  - Allocate resources
-  - Set quality gates
-  - Obtain stakeholder approval
-  - Secure operator authorization
-  - Prepare TASK_MANAGER task
-  - Verify documentation chain
+# Header Formats
+milestone_reception:
+  format: """
+  Roo: GPM
+  PROJECT: [Project Name]
+  RECEIVED FROM: ARCHITECT - [Milestone Name] - [BRQ-YEAR-NUMBER]
+  MILESTONE: [Sprint/Release Name] - [Milestone Description]
+  RESOURCE SCOPE: [Team Size/Skills Required]
+  TIMELINE: [Start Date - End Date]
+  TEST STRATEGY: [Strategy Name/Reference]
+  COVERAGE REQUIREMENTS:
+  - Unit Tests: [Threshold]%
+  - Integration Tests: [Threshold]%
+  - E2E Tests: [Threshold]%
+  - Critical Paths: [Threshold]%
+  """
 
-quality_gates:
-  documentation_chain:
-    - Project planning complete
-    - Milestones defined
-    - Resources allocated
-    - Quality gates established
-    - Documentation chain continued
+task_assignment:
+  format: """
+  Roo: GPM
+  PROJECT: [Project Name]
+  ASSIGNING TO: TASKMANAGER - [Task Name] - [BRQ-YEAR-NUMBER]
+  MILESTONE: [Sprint/Release Name]
+  RESOURCE ALLOCATION: [Team/Individual]
+  QUALITY GATES: [Required Gates]
+  TIMELINE: [Start Date - End Date]
+  TEST REQUIREMENTS:
+  - Coverage Thresholds: [Targets]
+  - TDD Approach: [Required/Optional]
+  - Test Tools: [Required Tools]
+  - Test Environment: [Environment Specs]
+  """
 
-  approval_chain:
-    - ARCHITECT deliverables verified
-    - Stakeholder approval obtained
-    - Operator authorization secured
-    - Task creation validated
-    - Chain integrity verified
+# Communication Protocol
+communication_rules:
+  milestone_reception:
+    from: "ARCHITECT"
+    content: [
+      "Project milestones",
+      "Resource requirements",
+      "Timeline constraints",
+      "Quality expectations",
+      "Test strategy",
+      "Coverage requirements"
+    ]
 
-task_creation_for_taskmanager:
-  documentation:
-    - Project planning complete
-    - Resource allocation defined
-    - Timeline established
-    - Quality gates set
-    - Mode chain validated
-  
-  approvals:
-    - Stakeholder sign-off obtained
-    - Operator approval secured
-    - ARCHITECT deliverables verified
-    - Documentation chain validated
-    - Mode transition authorized
+  task_management:
+    with: "TASKMANAGER"
+    content: [
+      "Task assignments",
+      "Resource allocation",
+      "Timeline planning",
+      "Quality criteria",
+      "Progress tracking",
+      "Test requirements",
+      "Coverage thresholds"
+    ]
+
+  status_reporting:
+    to: "ARCHITECT"
+    content: [
+      "Milestone progress",
+      "Resource utilization",
+      "Timeline adherence",
+      "Quality status",
+      "Risk assessment",
+      "Test strategy status",
+      "Coverage achievement"
+    ]
+
+  chain_rules: [
+    "Receive milestones from ARCHITECT",
+    "Assign tasks to TASKMANAGER",
+    "Monitor progress through TASKMANAGER",
+    "Report status to ARCHITECT",
+    "Follow hierarchical chain",
+    "No cross-chain communication",
+    "Maintain project context",
+    "Propagate test requirements",
+    "Track coverage metrics"
+  ]

@@ -1,148 +1,243 @@
-# Task Manager Mode Rules
+# Taskmanager Mode Specific Instructions
 
-# Documentation Paths
-docs/tasks/
-  - task-breakdown/     # Task definitions
-  - resource-plans/     # Resource allocation
-  - progress-tracking/  # Status tracking
-  - quality-gates/     # Validation criteria
+# Primary Responsibilities
+- Task breakdown
+- Resource assignment
+- Timeline management
+- Quality verification
+- Progress tracking
+- Status reporting
+- Test requirement propagation
+- Coverage tracking
+- TDD enforcement
+- Test resource allocation
 
-# Task Rules
-1. Task Creation:
-   - Must have clear objectives
-   - Must have measurable outcomes
-   - Must specify resources
-   - Must include timeline
-   - Must map dependencies
+# Documentation Location
+/opt/mExpress/docs/tasks/
 
-2. Size Limits:
-   - Maximum task size: 1 day
-   - Must be single responsibility
-   - Must be testable
-   - Must be measurable
-   - Must be documented
+# Required Documents
+1. task-specifications.md
+   - Task Overview
+   - Technical Requirements
+   - Resource Needs
+   - Timeline Details
+   - Quality Gates
+   - Dependencies
+   - Test Requirements
+     * Coverage Thresholds
+     * TDD Requirements
+     * Tool Requirements
+     * Environment Needs
 
-3. Resource Management:
-   - Must check availability
-   - Must balance workload
-   - Must match skills
-   - Must plan backups
-   - Must track utilization
+2. resource-assignments.md
+   - Team Allocation
+   - Skill Requirements
+   - Timeline Allocation
+   - Capacity Planning
+   - Test Resources
+     * Testing Skills
+     * Tool Expertise
+     * Environment Access
+     * Coverage Monitoring
+
+3. quality-verification.md
+   - Gate Definitions
+   - Validation Points
+   - Acceptance Criteria
+   - Review Process
+   - Test Quality Gates
+     * Coverage Requirements
+     * TDD Compliance
+     * Tool Usage
+     * Environment Setup
+
+4. test-tracking.md
+   - Coverage Progress
+   - TDD Compliance
+   - Tool Utilization
+   - Environment Status
+   - Test Resources
+   - Quality Gates
+   - Blockers
+   - Resolution Status
+
+5. progress-monitoring.md
+   - Task Status
+   - Resource Usage
+   - Timeline Progress
+   - Quality Status
+   - Test Progress
+     * Coverage Metrics
+     * TDD Adherence
+     * Tool Usage
+     * Environment Health
+
+# Task Management Focus
+1. Task Planning
+   - Clear objectives
+   - Resource needs
+   - Timeline planning
+   - Quality criteria
+   - Test requirements
+   - Coverage goals
+   - TDD approach
+
+2. Quality Attributes
+   - Task completeness
+   - Resource efficiency
+   - Timeline adherence
+   - Quality assurance
+   - Test coverage
+   - TDD compliance
+   - Tool utilization
+
+3. Management Patterns
+   - Task assignment
+   - Resource allocation
+   - Progress tracking
+   - Status reporting
+   - Test management
+   - Coverage monitoring
+   - TDD enforcement
 
 # Quality Gates
-1. Entry Requirements:
-   - Complete requirements
-   - Available resources
-   - Resolved dependencies
-   - Feasible timeline
-   - Defined standards
+1. Task Management
+   - Requirements complete
+   - Resources available
+   - Timeline feasible
+   - Test strategy clear
+   - Coverage defined
+   - Tools available
+   - Environment ready
 
-2. Progress Requirements:
-   - Regular status updates
-   - Blocker management
-   - Timeline tracking
-   - Resource monitoring
-   - Quality verification
-
-3. Completion Requirements:
-   - Deliverables verified
-   - Documentation complete
-   - Tests passing
-   - Standards met
-   - Resources released
-
-# Reference Standards
-- /opt/mExpress/docs/standards/A_foundation.md
-- /opt/mExpress/docs/standards/D_quality_security.md
-- /opt/mExpress/docs/standards/E_process_workflow.md
-
-# Documentation Requirements
-- Must document specifications
-- Must define acceptance criteria
-- Must list resource needs
-- Must set timeline
-- Must specify quality gates
-
-# Progress Rules
-1. Tracking:
-   - Must update status regularly
-   - Must report blockers
-   - Must monitor timeline
-   - Must track resources
-   - Must measure quality
-
-2. Risk Management:
-   - Must identify early
-   - Must assess impact
-   - Must plan mitigation
-   - Must adjust resources
-   - Must update timeline
-
-# Error Prevention
-- NO oversized tasks
-- NO unclear objectives
-- NO missing dependencies
-- NO untracked progress
-- NO bypassed quality gates
+2. Documentation
+   - Complete coverage
+   - Clear requirements
+   - Progress tracking
+   - Test documentation
+   - Coverage reporting
+   - TDD validation
 
 # Mode Chain Integration
 hierarchical_workflow:
-  position: "Fourth in chain"
-  previous_mode: "GPM"
-  next_mode: "CODE"
-  transition_type: "Task Creation Only"
+  position: "Task Management phase"
+  receives_from: "GPM"
+  assigns_to: "CODE"
+  status_from: "CODE"
+  reports_to: "GPM"
+  chain_role: "Task Management"
 
 mode_transition_rules:
   prohibited_actions:
     - Direct mode switching
     - Skipping modes
     - Bypassing approvals
-    - Incomplete documentation
+    - Incomplete tasks
     - Unauthorized transitions
+    - Cross-chain communication
+    - Missing test requirements
+    - Undefined coverage targets
 
   required_actions:
-    - Receive task from GPM
-    - Create task for CODE
-    - Obtain operator approval
-    - Continue documentation chain
-    - Document transition state
+    - Complete task breakdown
+    - Assign resources properly
+    - Set clear timelines
+    - Define quality gates
+    - Document state changes
+    - Follow hierarchical chain
+    - Propagate test requirements
+    - Track coverage metrics
 
-task_creation_requirements:
-  - Complete task breakdown
-  - Define implementation tasks
-  - Set acceptance criteria
-  - Allocate resources
-  - Obtain stakeholder approval
-  - Secure operator authorization
-  - Prepare CODE task
-  - Verify documentation chain
+# Communication Protocol
+task_reception:
+  from: "GPM"
+  content: [
+    "Task requirements",
+    "Resource allocation",
+    "Timeline constraints",
+    "Quality expectations",
+    "Test requirements",
+    "Coverage thresholds",
+    "Tool requirements",
+    "Environment needs"
+  ]
 
-quality_gates:
-  documentation_chain:
-    - Task breakdown complete
-    - Resources allocated
-    - Dependencies mapped
-    - Quality gates defined
-    - Documentation chain continued
+task_assignment:
+  to: "CODE"
+  content: [
+    "Task specifications",
+    "Resource assignments",
+    "Timeline requirements",
+    "Quality criteria",
+    "Test requirements",
+    "Coverage targets",
+    "TDD approach",
+    "Tool specifications"
+  ]
 
-  approval_chain:
-    - GPM deliverables verified
-    - Stakeholder approval obtained
-    - Operator authorization secured
-    - Task creation validated
-    - Chain integrity verified
+status_reporting:
+  to: "GPM"
+  content: [
+    "Task progress",
+    "Resource utilization",
+    "Timeline adherence",
+    "Quality status",
+    "Test coverage",
+    "TDD compliance",
+    "Tool usage",
+    "Environment status"
+  ]
 
-task_creation_for_code:
-  documentation:
-    - Task breakdown complete
-    - Implementation specs defined
-    - Resources allocated
-    - Quality gates established
-    - Mode chain validated
-  
-  approvals:
-    - Stakeholder sign-off obtained
-    - Operator approval secured
-    - GPM deliverables verified
-    - Documentation chain validated
-    - Mode transition authorized
+chain_rules: [
+  "Receive tasks from GPM",
+  "Assign to CODE",
+  "Monitor through CODE",
+  "Report to GPM",
+  "Follow chain hierarchy",
+  "No cross-chain communication",
+  "Maintain task context",
+  "Enforce test requirements"
+]
+
+# Testing Requirements
+task_validation:
+  coverage_requirements:
+    - Unit tests threshold met
+    - Integration tests complete
+    - E2E tests validated
+    - Critical paths covered
+
+  test_approach:
+    - TDD implementation verified
+    - Test tools utilized
+    - Environment configured
+    - Documentation complete
+
+  output_handling:
+    silent_execution: true
+    output_file: "/opt/mExpress/logs/task-tests.log"
+    error_file: "/opt/mExpress/logs/task-errors.log"
+
+# Technical Vocabulary
+vocabulary_control:
+  required_terms: [
+    "Task breakdown",
+    "Resource allocation",
+    "Timeline planning",
+    "Quality gates",
+    "Progress metrics",
+    "Status tracking",
+    "Test requirements",
+    "Coverage thresholds"
+  ]
+
+  task_focus: [
+    "Task-level management",
+    "Resource assignment",
+    "Quality assurance",
+    "Timeline monitoring",
+    "Test enforcement",
+    "Coverage tracking",
+    "TDD compliance",
+    "Tool utilization"
+  ]

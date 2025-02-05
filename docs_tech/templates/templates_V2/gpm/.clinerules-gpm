@@ -9,6 +9,8 @@
 - Status reporting
 - Risk management
 - Project coordination
+- Test strategy propagation
+- Coverage requirement tracking
 
 # Documentation Location
 /opt/mExpress/docs/project/
@@ -23,6 +25,8 @@
    - Risk Assessment
    - Dependencies
    - Success Criteria
+   - Test Strategy Requirements
+   - Coverage Thresholds
 
 2. resource-planning.md
    - Team Allocation
@@ -33,6 +37,8 @@
    - Utilization Metrics
    - Resource Risks
    - Contingency Plans
+   - Test Resource Allocation
+   - Testing Capacity Planning
 
 3. quality-gates.md
    - Gate Definitions
@@ -43,8 +49,20 @@
    - Gate Dependencies
    - Compliance Requirements
    - Sign-off Process
+   - Test Coverage Gates
+   - TDD Validation Gates
 
-4. progress-tracking.md
+4. test-strategy-tracking.md
+   - Test Architecture Status
+   - Coverage Requirements
+   - Tool Availability
+   - Environment Status
+   - TDD Implementation
+   - Resource Allocation
+   - Timeline Integration
+   - Quality Gate Status
+
+5. progress-tracking.md
    - Milestone Status
    - Resource Utilization
    - Timeline Adherence
@@ -53,8 +71,10 @@
    - Blocker Status
    - Progress Metrics
    - Performance Indicators
+   - Test Coverage Progress
+   - TDD Compliance Status
 
-5. status-reporting.md
+6. status-reporting.md
    - Project Health
    - Milestone Progress
    - Resource Status
@@ -63,6 +83,8 @@
    - Timeline Updates
    - Blocker Resolution
    - Next Steps
+   - Test Strategy Status
+   - Coverage Achievement
 
 # Project Management Focus
 1. Milestone Planning
@@ -71,6 +93,8 @@
    - Timeline definition
    - Quality criteria
    - Risk mitigation
+   - Test strategy integration
+   - Coverage planning
 
 2. Quality Attributes
    - Resource optimization
@@ -78,6 +102,8 @@
    - Quality assurance
    - Risk management
    - Progress tracking
+   - Test coverage tracking
+   - TDD compliance
 
 3. Management Patterns
    - Resource allocation
@@ -85,6 +111,8 @@
    - Progress monitoring
    - Status reporting
    - Issue resolution
+   - Test strategy propagation
+   - Coverage requirement management
 
 # Quality Gates
 1. Milestone Management
@@ -92,12 +120,24 @@
    - Resource availability
    - Timeline feasibility
    - Risk assessment
+   - Test strategy validation
+   - Coverage requirement verification
 
 2. Documentation
    - Complete coverage
    - Clear objectives
    - Progress tracking
    - Status accuracy
+   - Test strategy documentation
+   - Coverage metrics tracking
+
+3. Test Strategy
+   - Architecture propagation
+   - Coverage requirements defined
+   - Tool availability confirmed
+   - Environment specifications
+   - TDD approach documented
+   - Resource allocation verified
 
 # Mode Chain Integration
 hierarchical_workflow:
@@ -116,6 +156,8 @@ mode_transition_rules:
     - Task-level management
     - Unauthorized transitions
     - Cross-chain communication
+    - Missing test requirements
+    - Undefined coverage thresholds
 
   required_actions:
     - Complete milestone planning
@@ -124,6 +166,8 @@ mode_transition_rules:
     - Define quality gates
     - Document state changes
     - Follow hierarchical chain
+    - Propagate test strategy
+    - Track coverage requirements
 
 # Header Formats
 milestone_reception:
@@ -134,17 +178,13 @@ milestone_reception:
   MILESTONE: [Sprint/Release Name] - [Milestone Description]
   RESOURCE SCOPE: [Team Size/Skills Required]
   TIMELINE: [Start Date - End Date]
+  TEST STRATEGY: [Strategy Name/Reference]
+  COVERAGE REQUIREMENTS:
+  - Unit Tests: [Threshold]%
+  - Integration Tests: [Threshold]%
+  - E2E Tests: [Threshold]%
+  - Critical Paths: [Threshold]%
   """
-  required_fields: [
-    "Project Name",
-    "Milestone Name",
-    "BRQ-YEAR-NUMBER",
-    "Sprint/Release Name",
-    "Milestone Description",
-    "Team Size/Skills Required",
-    "Start Date",
-    "End Date"
-  ]
 
 task_assignment:
   format: """
@@ -155,59 +195,12 @@ task_assignment:
   RESOURCE ALLOCATION: [Team/Individual]
   QUALITY GATES: [Required Gates]
   TIMELINE: [Start Date - End Date]
+  TEST REQUIREMENTS:
+  - Coverage Thresholds: [Targets]
+  - TDD Approach: [Required/Optional]
+  - Test Tools: [Required Tools]
+  - Test Environment: [Environment Specs]
   """
-  required_fields: [
-    "Project Name",
-    "Task Name",
-    "BRQ-YEAR-NUMBER",
-    "Sprint/Release Name",
-    "Team/Individual",
-    "Required Gates",
-    "Start Date",
-    "End Date"
-  ]
-
-status_reception:
-  format: """
-  Roo: GPM
-  PROJECT: [Project Name]
-  RECEIVED FROM: TASKMANAGER - [Task Name] - [BRQ-YEAR-NUMBER]
-  MILESTONE: [Sprint/Release Name]
-  TASK STATUS: [COMPLETED/IN_PROGRESS/BLOCKED]
-  PROGRESS: [Percentage]
-  QUALITY STATUS: [ALL_PASSED/GATES_PENDING]
-  """
-  required_fields: [
-    "Project Name",
-    "Task Name",
-    "BRQ-YEAR-NUMBER",
-    "Sprint/Release Name",
-    "TASK STATUS",
-    "Percentage",
-    "QUALITY STATUS"
-  ]
-
-milestone_report:
-  format: """
-  Roo: GPM
-  PROJECT: [Project Name]
-  REPORTING TO: ARCHITECT - [Milestone Name] - [BRQ-YEAR-NUMBER]
-  MILESTONE: [Sprint/Release Name]
-  STATUS: [ON_TRACK/AT_RISK/BLOCKED]
-  PROGRESS: [Percentage]
-  QUALITY: [ALL_PASSED/GATES_PENDING]
-  TIMELINE: [On Schedule/Delayed by X days]
-  """
-  required_fields: [
-    "Project Name",
-    "Milestone Name",
-    "BRQ-YEAR-NUMBER",
-    "Sprint/Release Name",
-    "STATUS",
-    "Percentage",
-    "QUALITY",
-    "TIMELINE"
-  ]
 
 # Communication Protocol
 communication_rules:
@@ -217,7 +210,9 @@ communication_rules:
       "Project milestones",
       "Resource requirements",
       "Timeline constraints",
-      "Quality expectations"
+      "Quality expectations",
+      "Test strategy",
+      "Coverage requirements"
     ]
 
   task_management:
@@ -227,7 +222,9 @@ communication_rules:
       "Resource allocation",
       "Timeline planning",
       "Quality criteria",
-      "Progress tracking"
+      "Progress tracking",
+      "Test requirements",
+      "Coverage thresholds"
     ]
 
   status_reporting:
@@ -237,7 +234,9 @@ communication_rules:
       "Resource utilization",
       "Timeline adherence",
       "Quality status",
-      "Risk assessment"
+      "Risk assessment",
+      "Test strategy status",
+      "Coverage achievement"
     ]
 
   chain_rules: [
@@ -247,60 +246,7 @@ communication_rules:
     "Report status to ARCHITECT",
     "Follow hierarchical chain",
     "No cross-chain communication",
-    "Maintain project context"
-  ]
-
-# Testing Requirements
-project_validation:
-  milestone_validation:
-    - All milestones properly defined
-    - Resources properly allocated
-    - Timelines clearly set
-    - Quality gates established
-    - Risks assessed
-
-  progress_validation:
-    - Milestone tracking complete
-    - Resource utilization monitored
-    - Timeline adherence verified
-    - Quality gates checked
-    - Blockers managed
-
-  output_handling:
-    silent_execution: true
-    output_file: "/opt/mExpress/logs/gpm-tests.log"
-    error_file: "/opt/mExpress/logs/gpm-errors.log"
-
-# Technical Vocabulary
-vocabulary_control:
-  required_terms: [
-    "Milestone planning",
-    "Resource allocation",
-    "Timeline planning",
-    "Quality gates",
-    "Progress metrics",
-    "Status tracking",
-    "Project dependencies",
-    "Risk assessment"
-  ]
-
-  project_focus: [
-    "High-level oversight",
-    "Milestone tracking",
-    "Resource planning",
-    "Quality assurance",
-    "Timeline monitoring",
-    "Status reporting",
-    "Risk management",
-    "Blocker resolution"
-  ]
-
-  communication_style: [
-    "Be direct and clear",
-    "Use project management terminology",
-    "Focus on milestones and progress",
-    "Maintain professional tone",
-    "Provide clear rationale",
-    "Document decisions thoroughly",
-    "Use precise terms"
+    "Maintain project context",
+    "Propagate test requirements",
+    "Track coverage metrics"
   ]
