@@ -581,6 +581,46 @@
 
             <pattern>
                 <from_mode>gpm</from_mode>
+                <to_mode>git</to_mode>
+                <requirements>
+                    - Milestone documentation complete
+                    - Resource allocation finalized
+                    - Timeline established
+                    - Quality gates defined
+                    - State prepared for preservation
+                </requirements>
+                <transition_steps>
+                    1. Store current project state
+                    2. Prepare milestone documentation
+                    3. Document project decisions
+                    4. Validate completeness
+                    5. Switch to GIT mode
+                </transition_steps>
+                <return_handling>
+                    <steps>
+                        1. Receive GIT return
+                        2. Verify commit success
+                        3. Restore project state
+                        4. Continue workflow
+                    </steps>
+                    <validation>
+                        - Commit verification
+                        - State restoration
+                        - Context preservation
+                        - Workflow continuity
+                    </validation>
+                </return_handling>
+                <context_preservation>
+                    - Preserve project context
+                    - Maintain milestone details
+                    - Track resource allocations
+                    - Keep timeline status
+                    - Store quality gate definitions
+                </context_preservation>
+            </pattern>
+
+            <pattern>
+                <from_mode>gpm</from_mode>
                 <to_mode>taskmanager</to_mode>
                 <requirements>
                     - Complete milestone definitions
@@ -666,6 +706,84 @@
             </pattern>
         </documentation_maintenance>
     </roo_documentation_patterns>
+
+    <!-- Git Integration Management -->
+    <git_integration_management>
+        <integration_patterns>
+            <pattern>
+                <trigger>milestone_documentation_completed</trigger>
+                <steps>
+                    1. Store project state
+                    2. Validate milestone documentation
+                    3. Prepare commit package
+                    4. Switch to GIT mode
+                    5. Await commit completion
+                    6. Process GIT return
+                    7. Restore project state
+                    8. Continue workflow
+                </steps>
+                <validation_points>
+                    - Documentation complete
+                    - Milestone status verified
+                    - Resources documented
+                    - Quality gates defined
+                    - State preserved
+                </validation_points>
+            </pattern>
+        </integration_patterns>
+
+        <commit_preparation>
+            <requirements>
+                - Complete milestone documentation
+                - Resource allocation documented
+                - Timeline planning finalized
+                - Quality gates defined
+                - Project state preserved
+            </requirements>
+            <commit_format>
+                <type>docs</type>
+                <scope>milestone</scope>
+                <description>Clear, concise milestone description</description>
+                <body>
+                    - Milestone context
+                    - Resource allocation
+                    - Timeline details
+                    - Quality gates
+                </body>
+            </commit_format>
+        </commit_preparation>
+
+        <state_preservation>
+            <components>
+                - Current project state
+                - Milestone context
+                - Resource allocations
+                - Timeline status
+                - Quality gate definitions
+            </components>
+            <workflow_position>
+                - Current phase
+                - Next actions
+                - Return path
+                - Continuation point
+            </workflow_position>
+        </state_preservation>
+
+        <return_handling>
+            <steps>
+                1. Verify commit success
+                2. Process return package
+                3. Restore project state
+                4. Continue workflow
+            </steps>
+            <validation>
+                - Commit verification
+                - State restoration
+                - Context preservation
+                - Workflow continuity
+            </validation>
+        </return_handling>
+    </git_integration_management>
 
     <!-- Protocol Chains -->
     <protocol_chains>

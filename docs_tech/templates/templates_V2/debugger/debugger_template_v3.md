@@ -327,6 +327,96 @@
         </tool_patterns>
     </roo_tool_interaction>
 
+    <!-- Git Integration Management -->
+    <git_integration_management>
+        <integration_patterns>
+            <pattern>
+                <trigger>fix_implementation_completed</trigger>
+                <steps>
+                    1. Store debug state
+                    2. Validate fix
+                    3. Prepare commit package
+                    4. Switch to GIT mode
+                    5. Await commit completion
+                    6. Process GIT return
+                    7. Restore debug state
+                    8. Continue workflow
+                </steps>
+                <validation_points>
+                    - Fix implementation complete
+                    - Tests passing
+                    - Documentation updated
+                    - State preserved
+                </validation_points>
+            </pattern>
+        </integration_patterns>
+
+        <commit_preparation>
+            <requirements>
+                - Complete fix implementation
+                - All tests passing
+                - Documentation updated
+                - Root cause documented
+                - Prevention measures defined
+            </requirements>
+            <commit_formats>
+                <format>
+                    <type>fix</type>
+                    <scope>bug fix</scope>
+                    <description>Clear, concise fix description</description>
+                    <body>
+                        - Issue context
+                        - Root cause
+                        - Fix details
+                        - Test coverage
+                    </body>
+                </format>
+                <format>
+                    <type>hotfix</type>
+                    <scope>critical fix</scope>
+                    <description>Clear, concise hotfix description</description>
+                    <body>
+                        - Critical issue details
+                        - Immediate fix
+                        - Validation steps
+                        - Rollback plan
+                    </body>
+                </format>
+            </commit_formats>
+        </commit_preparation>
+
+        <state_preservation>
+            <components>
+                - Current debug state
+                - Issue context
+                - Fix implementation
+                - Test results
+                - Documentation status
+            </components>
+            <workflow_position>
+                - Current phase
+                - Next actions
+                - Return path
+                - Continuation point
+            </workflow_position>
+        </state_preservation>
+
+        <return_handling>
+            <steps>
+                1. Verify commit success
+                2. Process return package
+                3. Restore debug state
+                4. Continue workflow
+            </steps>
+            <validation>
+                - Commit verification
+                - State restoration
+                - Context preservation
+                - Workflow continuity
+            </validation>
+        </return_handling>
+    </git_integration_management>
+
     <!-- Roo Mode Transitions -->
     <roo_mode_transitions>
         <transition_patterns>
@@ -350,6 +440,47 @@
                     - Preserve system state
                     - Keep technical details
                     - Track changes
+                </context_preservation>
+            </pattern>
+
+            <pattern>
+                <from_mode>debugger</from_mode>
+                <to_mode>git</to_mode>
+                <requirements>
+                    - Fix implementation complete
+                    - All tests passing
+                    - Documentation updated
+                    - Root cause documented
+                    - Prevention measures defined
+                    - State prepared for preservation
+                </requirements>
+                <transition_steps>
+                    1. Store current debug state
+                    2. Prepare fix for commit
+                    3. Document fix rationale
+                    4. Validate fix completeness
+                    5. Switch to GIT mode
+                </transition_steps>
+                <return_handling>
+                    <steps>
+                        1. Receive GIT return
+                        2. Verify commit success
+                        3. Restore debug state
+                        4. Continue workflow
+                    </steps>
+                    <validation>
+                        - Commit verification
+                        - State restoration
+                        - Context preservation
+                        - Workflow continuity
+                    </validation>
+                </return_handling>
+                <context_preservation>
+                    - Preserve debug context
+                    - Maintain fix details
+                    - Track test results
+                    - Keep documentation state
+                    - Store workflow position
                 </context_preservation>
             </pattern>
 

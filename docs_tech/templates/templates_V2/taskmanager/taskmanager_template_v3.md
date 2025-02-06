@@ -394,6 +394,46 @@
 
             <pattern>
                 <from_mode>taskmanager</from_mode>
+                <to_mode>git</to_mode>
+                <requirements>
+                    - Task documentation complete
+                    - Resource assignments documented
+                    - Timeline planning finalized
+                    - Quality gates defined
+                    - State prepared for preservation
+                </requirements>
+                <transition_steps>
+                    1. Store current task state
+                    2. Prepare task documentation
+                    3. Document task decisions
+                    4. Validate completeness
+                    5. Switch to GIT mode
+                </transition_steps>
+                <return_handling>
+                    <steps>
+                        1. Receive GIT return
+                        2. Verify commit success
+                        3. Restore task state
+                        4. Continue workflow
+                    </steps>
+                    <validation>
+                        - Commit verification
+                        - State restoration
+                        - Context preservation
+                        - Workflow continuity
+                    </validation>
+                </return_handling>
+                <context_preservation>
+                    - Preserve task context
+                    - Maintain task details
+                    - Track resource assignments
+                    - Keep timeline status
+                    - Store quality gate definitions
+                </context_preservation>
+            </pattern>
+
+            <pattern>
+                <from_mode>taskmanager</from_mode>
                 <to_mode>code</to_mode>
                 <requirements>
                     - Task breakdown complete
@@ -613,6 +653,84 @@
             </steps>
         </task_management>
     </protocol_chains>
+
+    <!-- Git Integration Management -->
+    <git_integration_management>
+        <integration_patterns>
+            <pattern>
+                <trigger>task_documentation_completed</trigger>
+                <steps>
+                    1. Store task state
+                    2. Validate task documentation
+                    3. Prepare commit package
+                    4. Switch to GIT mode
+                    5. Await commit completion
+                    6. Process GIT return
+                    7. Restore task state
+                    8. Continue workflow
+                </steps>
+                <validation_points>
+                    - Task state preserved
+                    - Documentation complete
+                    - Changes tracked
+                    - References maintained
+                    - State preserved
+                </validation_points>
+            </pattern>
+        </integration_patterns>
+
+        <commit_preparation>
+            <requirements>
+                - Complete task documentation
+                - Resource assignments documented
+                - Timeline planning finalized
+                - Quality gates defined
+                - Task state preserved
+            </requirements>
+            <commit_format>
+                <type>docs</type>
+                <scope>task</scope>
+                <description>Clear, concise task description</description>
+                <body>
+                    - Task context
+                    - Resource allocation
+                    - Timeline details
+                    - Quality gates
+                </body>
+            </commit_format>
+        </commit_preparation>
+
+        <state_preservation>
+            <components>
+                - Current task state
+                - Task context
+                - Resource assignments
+                - Timeline status
+                - Quality gate definitions
+            </components>
+            <workflow_position>
+                - Current phase
+                - Next actions
+                - Return path
+                - Continuation point
+            </workflow_position>
+        </state_preservation>
+
+        <return_handling>
+            <steps>
+                1. Verify commit success
+                2. Process return package
+                3. Restore task state
+                4. Continue workflow
+            </steps>
+            <validation>
+                - Commit verification
+                - State restoration
+                - Context preservation
+                - Workflow continuity
+            </validation>
+        </return_handling>
+    </git_integration_management>
 
     <!-- Business Rules Engine -->
     <business_rules_engine>
