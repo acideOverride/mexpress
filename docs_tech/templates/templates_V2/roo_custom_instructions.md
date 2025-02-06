@@ -77,6 +77,60 @@ Communication Flow:
 - CODE → DEBUGGER: Issue reports and technical context
 - ALL MODES → GIT: Version control and change management
 
+# GIT Integration Management
+All modes must:
+
+1. State Preservation
+   - Store source state before GIT operations
+   - Preserve workflow position
+   - Track return path
+   - Maintain context during transitions
+   - Enable workflow continuation
+
+2. GIT Communication
+   When sending to GIT:
+   ```
+   Roo: [MODE_NAME]
+   PROJECT: [Project Name]
+   SENDING TO: GIT - [Task Name] - [BRQ-YEAR-NUMBER]
+   COMMIT TYPE: [Feature/Fix/Docs/Refactor]
+   SCOPE: [Component/Module Name]
+   NEXT ACTION: [Expected Action After Return]
+   RETURN PATH: [Workflow Continuation Details]
+   ```
+
+   When receiving GIT return:
+   ```
+   Roo: GIT
+   RETURNING TO: [MODE_NAME]
+   STATUS: [Success/Failure]
+   COMMIT: [Commit Hash]
+   NEXT ACTION: [Expected Action]
+   STATE: [Preserved State Details]
+   ERROR: [Error Details If Any]
+   ```
+
+3. Mode Transitions
+   - Store state before switching to GIT
+   - Follow standardized message formats
+   - Process GIT returns properly
+   - Restore state after return
+   - Continue workflow execution
+
+4. Return Flow
+   - Verify commit success
+   - Process return package
+   - Restore mode state
+   - Execute next action
+   - Maintain workflow continuity
+
+5. Error Handling
+   - Log transition errors
+   - Preserve current state
+   - Handle failed commits
+   - Process error returns
+   - Enable recovery procedures
+
 # Workflow Integration
 All modes must:
 1. Check documentation before starting work
@@ -192,16 +246,53 @@ All modes must:
 
 # Version Control Integration
 All modes must:
-1. Track documentation versions
-2. Maintain change history
-3. Link related changes
-4. Update changelog
-5. Preserve previous versions
-6. Follow git commit standards
-7. Maintain clean history
-8. Handle merge conflicts
-9. Document repository changes
-10. Ensure backup integrity
+
+1. Documentation Versioning
+   - Track documentation versions with semantic versioning
+   - Maintain detailed change history
+   - Link related changes across documents
+   - Update changelog with all modifications
+   - Preserve previous versions for reference
+
+2. GIT Standards
+   - Follow conventional commit format:
+     * feat: New features
+     * fix: Bug fixes
+     * docs: Documentation changes
+     * refactor: Code refactoring
+     * test: Test updates
+   - Include clear, concise descriptions
+   - Reference related issues/tasks
+   - Maintain atomic commits
+   - Follow branch naming conventions
+
+3. State Management
+   - Store mode state before commits
+   - Track workflow position
+   - Preserve context during transitions
+   - Process return states
+   - Enable workflow continuation
+
+4. Quality Control
+   - Maintain clean commit history
+   - Handle merge conflicts properly
+   - Document all repository changes
+   - Ensure backup integrity
+   - Validate commit contents
+
+5. Integration Points
+   - Coordinate with GIT mode
+   - Follow standardized message formats
+   - Process return signals correctly
+   - Handle error conditions gracefully
+   - Maintain workflow chain integrity
+
+6. Documentation
+   - Document all GIT operations
+   - Track state changes comprehensively
+   - Maintain detailed commit logs
+   - Record merge history
+   - Document conflict resolutions
 
 # Security
 All modes must:
@@ -221,16 +312,48 @@ All modes must:
 
 # Communication Standards
 All modes must:
-1. Use mode-specific terminology
-2. Maintain professional tone
-3. Provide clear rationale
-4. Document decisions thoroughly
-5. Follow chain protocols
-6. Use standardized headers
-7. Include required metadata
-8. Link related documentation
-9. Track communication history
-10. Preserve context
+
+1. General Standards
+   - Use mode-specific terminology
+   - Maintain professional tone
+   - Provide clear rationale
+   - Document decisions thoroughly
+   - Follow chain protocols
+
+2. Message Formatting
+   - Use standardized headers
+   - Include required metadata
+   - Link related documentation
+   - Track communication history
+   - Preserve context
+
+3. GIT Communication
+   - Use standardized commit messages
+   - Follow conventional commit format
+   - Include proper references
+   - Maintain clear commit history
+   - Document state transitions
+
+4. Mode Transitions
+   - Follow standardized handoff formats
+   - Include complete state information
+   - Track workflow position
+   - Document transition context
+   - Handle return flows
+
+5. Error Communication
+   - Document error conditions clearly
+   - Include relevant context
+   - Specify recovery steps
+   - Track error patterns
+   - Maintain error history
+
+6. Documentation Links
+   - Maintain cross-references
+   - Track document relationships
+   - Version documentation properly
+   - Preserve historical context
+   - Enable traceability
 
 These instructions ensure:
 1. Consistent documentation practices
