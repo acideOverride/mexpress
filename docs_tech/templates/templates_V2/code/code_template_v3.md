@@ -342,6 +342,126 @@
         </tool_patterns>
     </roo_tool_interaction>
 
+    <!-- Git Integration Management -->
+    <git_integration_management>
+        <integration_patterns>
+            <pattern>
+                <trigger>implementation_completed</trigger>
+                <steps>
+                    1. Store implementation state
+                    2. Validate changes
+                    3. Update documentation
+                    4. Prepare commit
+                    5. Switch to GIT mode
+                    6. Await commit completion
+                    7. Process GIT return
+                    8. Restore CODE state
+                    9. Continue to QA
+                </steps>
+                <validation_points>
+                    - Implementation complete
+                    - Changes documented
+                    - Tests passing
+                    - Documentation updated
+                    - State preserved
+                    - Return processed
+                </validation_points>
+                <return_handling>
+                    <steps>
+                        1. Receive GIT return
+                        2. Verify commit success
+                        3. Restore CODE state
+                        4. Prepare QA handoff
+                        5. Continue workflow
+                    </steps>
+                    <validation>
+                        - Return status verified
+                        - Commit confirmed
+                        - State restored
+                        - QA ready
+                        - Workflow intact
+                    </validation>
+                </return_handling>
+            </pattern>
+        </integration_patterns>
+
+        <mode_switching>
+            <outbound_steps>
+                1. Store source state
+                2. Validate changes
+                3. Prepare mode switch
+                4. Execute switch
+                5. Verify completion
+                6. Await return
+            </outbound_steps>
+            <return_steps>
+                1. Receive return signal
+                2. Verify operation success
+                3. Restore CODE state
+                4. Process next action
+                5. Continue workflow
+            </return_steps>
+            <error_handling>
+                <outbound_failure>
+                    - Log switch error
+                    - Preserve CODE state
+                    - Notify system
+                    - Attempt recovery
+                </outbound_failure>
+                <return_failure>
+                    - Log return error
+                    - Preserve current state
+                    - Request guidance
+                    - Block continuation
+                </return_failure>
+            </error_handling>
+        </mode_switching>
+    </git_integration_management>
+
+    <!-- QA Integration Management -->
+    <qa_integration_management>
+        <integration_patterns>
+            <pattern>
+                <trigger>git_return_completed</trigger>
+                <steps>
+                    1. Verify GIT completion
+                    2. Prepare QA payload
+                        - Original requirements
+                        - Implementation details
+                        - Test results
+                        - Documentation status
+                    3. Switch to QA mode
+                    4. Await validation
+                </steps>
+                <validation_points>
+                    - Git changes committed
+                    - Implementation complete
+                    - Tests passing
+                    - Documentation ready
+                    - QA payload prepared
+                </validation_points>
+            </pattern>
+        </integration_patterns>
+
+        <qa_payload>
+            <components>
+                - Original requirements
+                - Implementation details
+                - Test coverage metrics
+                - Documentation status
+                - Quality gate results
+            </components>
+            <validation>
+                <requirements>
+                    - Complete payload
+                    - Clear requirements mapping
+                    - Full test results
+                    - Documentation links
+                </requirements>
+            </validation>
+        </qa_payload>
+    </qa_integration_management>
+
     <!-- Roo Mode Transitions -->
     <roo_mode_transitions>
         <transition_patterns>
@@ -370,24 +490,50 @@
 
             <pattern>
                 <from_mode>code</from_mode>
-                <to_mode>debugger</to_mode>
+                <to_mode>git</to_mode>
                 <requirements>
-                    - Complete implementation
-                    - Passing tests
-                    - Updated documentation
-                    - Quality gates passed
+                    - Implementation complete
+                    - Tests passing
+                    - Documentation updated
+                    - Changes ready for commit
                 </requirements>
                 <validation_steps>
-                    1. Verify implementation completeness
-                    2. Validate test coverage
-                    3. Check documentation
-                    4. Confirm quality gates
+                    1. Verify implementation
+                    2. Check test status
+                    3. Validate documentation
+                    4. Prepare commit details
+                </validation_steps>
+                <context_preservation>
+                    - Store implementation state
+                    - Preserve test results
+                    - Keep documentation status
+                    - Track changes
+                </context_preservation>
+            </pattern>
+
+            <pattern>
+                <from_mode>code</from_mode>
+                <to_mode>qa</to_mode>
+                <requirements>
+                    - Git changes committed
+                    - Implementation verified
+                    - Tests passing
+                    - Documentation complete
+                    - QA payload ready
+                </requirements>
+                <validation_steps>
+                    1. Verify git completion
+                    2. Check implementation
+                    3. Validate tests
+                    4. Review documentation
+                    5. Prepare QA payload
                 </validation_steps>
                 <context_preservation>
                     - Maintain implementation state
                     - Preserve test results
                     - Keep documentation updates
                     - Track quality metrics
+                    - Store requirements mapping
                 </context_preservation>
             </pattern>
         </transition_patterns>
