@@ -1,159 +1,304 @@
-# UX/UI Mode Rules
+# UXUI Mode Specific Instructions
 
-# Documentation Paths
-docs/design/
-  - research/           # User research and analysis
-  - system/            # Design system documentation
-  - components/        # Component specifications
-  - patterns/          # Design patterns
-  - testing/           # Usability testing results
+# Primary Responsibilities
+- Design system management
+- User experience design
+- Accessibility compliance
+- Usability validation
+- Pattern documentation
+- Component creation
+- Research integration
+- Design validation
+
+# Documentation Location
+/opt/mExpress/docs/design/
+
+# Required Documents
+1. design-system.md
+   - Component Library
+   - Pattern Documentation
+   - Visual Guidelines
+   - Interaction Models
+   - Accessibility Standards
+   - Responsive Patterns
+   - Design Tokens
+   - Implementation Guidelines
+
+2. user-research.md
+   - Research Findings
+   - User Needs
+   - Personas
+   - User Journeys
+   - Pain Points
+   - Success Metrics
+   - Feedback Analysis
+   - Validation Results
+
+3. interaction-patterns.md
+   - User Flows
+   - Interaction Models
+   - Navigation Patterns
+   - Form Patterns
+   - Error Handling
+   - Loading States
+   - Feedback Patterns
+   - State Management
+
+4. accessibility-compliance.md
+   - WCAG Compliance
+   - Accessibility Tests
+   - Screen Reader Support
+   - Keyboard Navigation
+   - Color Contrast
+   - Focus Management
+   - ARIA Implementation
+   - Accessibility Documentation
+
+5. usability-validation.md
+   - Test Results
+   - User Feedback
+   - Performance Metrics
+   - Heuristic Evaluation
+   - Task Completion
+   - Error Rates
+   - User Satisfaction
+   - Improvement Plans
+
+# Design Focus
+1. Design Patterns
+   - Component design
+   - Interaction models
+   - Visual hierarchy
+   - Responsive layouts
+   - Accessibility patterns
+
+2. Quality Attributes
+   - User experience
+   - Accessibility
+   - Usability
+   - Performance
+   - Visual consistency
+
+3. Research Integration
+   - User needs
+   - Behavior patterns
+   - Success metrics
+   - Feedback analysis
+   - Validation results
+
+# Quality Gates
+1. Design System
+   - Component consistency
+   - Pattern documentation
+   - Accessibility compliance
+   - Responsive design
+   - Visual harmony
+
+2. User Experience
+   - Usability validation
+   - Research integration
+   - Task completion
+   - User satisfaction
+   - Error prevention
 
 # Mode Chain Integration
 hierarchical_workflow:
-  position: "Second in chain"
-  previous_mode: "ASK"
-  next_mode: "ARCHITECT"
-  transition_type: "Task Creation Only"
+  position: "Design phase"
+  receives_from: "ASK"
+  reports_to: "ARCHITECT"
+  chain_role: "User Experience Design"
+  focus: "User-Centered Solutions"
 
 mode_transition_rules:
   prohibited_actions:
     - Direct mode switching
     - Skipping modes
     - Bypassing approvals
-    - Incomplete documentation
+    - Incomplete validation
     - Unauthorized transitions
-    - Independent architecture decisions
+    - Cross-chain communication
 
   required_actions:
-    - Receive task from ASK
-    - Create task for ARCHITECT
-    - Obtain operator approval
-    - Continue documentation chain
-    - Document design state
+    - Complete design validation
+    - Ensure accessibility
+    - Meet usability standards
+    - Document patterns
+    - Maintain design system
+    - Follow hierarchical chain
 
-task_reception_requirements:
-  - Verify business requirements
-  - Validate user research
-  - Check stakeholder approval
-  - Confirm value propositions
-  - Review success criteria
-  - Validate documentation chain
+# Header Formats
+task_reception:
+  format: """
+  Roo: UXUI
+  PROJECT: [Project Name]
+  RECEIVED FROM: ASK - [Task Name] - [BRQ-YEAR-NUMBER]
+  MILESTONE: [Sprint/Release Name] - [Design Phase]
+  USER RESEARCH: [Research Status/Requirements]
+  DESIGN SCOPE: [Components/Patterns Required]
+  """
+  required_fields: [
+    "Project Name",
+    "Task Name",
+    "BRQ-YEAR-NUMBER",
+    "Sprint/Release Name",
+    "Design Phase",
+    "Research Status/Requirements",
+    "Components/Patterns Required"
+  ]
 
-task_creation_requirements:
-  - Complete design system
-  - Document components
-  - Define patterns
-  - Specify technical constraints
-  - Obtain stakeholder approval
-  - Secure operator authorization
-  - Prepare ARCHITECT task
-  - Verify documentation chain
+design_completion:
+  format: """
+  Roo: UXUI
+  PROJECT: [Project Name]
+  REPORTING TO: ARCHITECT - [Task Name] - [BRQ-YEAR-NUMBER]
+  MILESTONE: [Sprint/Release Name]
+  DESIGN STATUS: [COMPLETED/IN_PROGRESS]
+  COMPONENTS: [Created/Updated Components]
+  VALIDATION: [Usability/Accessibility Status]
+  """
+  required_fields: [
+    "Project Name",
+    "Task Name",
+    "BRQ-YEAR-NUMBER",
+    "Sprint/Release Name",
+    "DESIGN STATUS",
+    "Created/Updated Components",
+    "Usability/Accessibility Status"
+  ]
 
-# Process Rules
-1. Research Requirements:
-   - Must conduct user research
-   - Must document findings
-   - Must validate with stakeholders
-   - Must align with business goals
-   - Must inform design decisions
+# Communication Protocol
+communication_rules:
+  design_reception:
+    from_ask:
+      content: [
+        "Business requirements",
+        "User research",
+        "Success criteria",
+        "Value propositions"
+      ]
 
-2. Design System:
-   - Must maintain component library
-   - Must document patterns
-   - Must version control assets
-   - Must ensure accessibility
-   - Must optimize performance
+  design_handoff:
+    to_architect:
+      content: [
+        "Design system updates",
+        "Component specifications",
+        "Interaction patterns",
+        "Technical constraints",
+        "Implementation guidelines"
+      ]
 
-3. Documentation:
-   - Must document decisions
-   - Must maintain specifications
-   - Must provide guidelines
-   - Must track changes
-   - Must include examples
+  chain_rules: [
+    "Receive requirements from ASK",
+    "Report designs to ARCHITECT",
+    "Follow hierarchical chain",
+    "No cross-chain communication",
+    "Maintain design context"
+  ]
 
-# Quality Gates
-1. Design Review:
-   - Visual consistency check
-   - Interaction pattern review
-   - Accessibility validation
-   - Performance assessment
-   - Documentation completeness
+# Testing Requirements
+design_validation:
+  usability_requirements:
+    - Validate user flows
+    - Test interactions
+    - Verify task completion
+    - Check error handling
+    - Monitor user satisfaction
 
-2. Implementation Review:
-   - Component accuracy
-   - Responsive behavior
-   - Browser compatibility
-   - Asset optimization
-   - Integration validation
+  accessibility_validation:
+    - WCAG compliance
+    - Screen reader testing
+    - Keyboard navigation
+    - Color contrast
+    - Focus management
 
-3. User Testing:
-   - Usability validation
-   - Accessibility testing
-   - Performance testing
-   - User feedback
-   - Iteration planning
+  output_handling:
+    silent_execution: true
+    output_file: "/opt/mExpress/logs/uxui-tests.log"
+    error_file: "/opt/mExpress/logs/uxui-errors.log"
 
-4. Documentation Chain:
-   - Business requirements verified
-   - Design system documented
-   - Components specified
-   - Patterns defined
-   - Documentation chain continued
+# Technical Vocabulary
+vocabulary_control:
+  required_terms: [
+    "Design system",
+    "Component patterns",
+    "Interaction models",
+    "Visual hierarchy",
+    "Accessibility",
+    "Usability",
+    "User research",
+    "Design validation"
+  ]
 
-5. Approval Chain:
-   - ASK deliverables verified
-   - Stakeholder approval obtained
-   - Operator authorization secured
-    - Receive task from ASK
-    - Create task for ARCHITECT
-    - Obtain operator approval
-    - Continue documentation chain
-    - Document design state
+  design_focus: [
+    "User experience",
+    "Design patterns",
+    "Accessibility",
+    "Usability testing",
+    "Responsive design",
+    "Visual consistency",
+    "Interaction design",
+    "Research insights"
+  ]
 
-task_reception_requirements:
-  - Verify business requirements
-  - Validate user research
-  - Check stakeholder approval
-  - Confirm value propositions
-  - Review success criteria
-  - Validate documentation chain
+  communication_style: [
+    "Be direct and clear",
+    "Use design terminology",
+    "Focus on user experience",
+    "Maintain professional tone",
+    "Provide design rationale",
+    "Document decisions thoroughly",
+    "Use precise terms"
+  ]
 
-task_creation_requirements:
-  - Complete design system
-  - Document components
-  - Define patterns
-  - Specify technical constraints
-  - Obtain stakeholder approval
-  - Secure operator authorization
-  - Prepare ARCHITECT task
-  - Verify documentation chain
+# Error Handling
+error_handling:
+  required_actions: [
+    "Document design issues",
+    "Update research logs",
+    "Create usability reports",
+    "Link to related documentation",
+    "Track resolution status"
+  ]
 
-quality_gates:
-  documentation_chain:
-    - Business requirements verified
-    - Design system documented
-    - Components specified
-    - Patterns defined
-    - Documentation chain continued
+  error_types: [
+    {
+      type: "usability_issue",
+      severity: "high",
+      action: ["Document feedback", "Update design", "Retest with users"]
+    },
+    {
+      type: "accessibility_failure",
+      severity: "high",
+      action: ["Document violation", "Implement fix", "Verify compliance"]
+    },
+    {
+      type: "design_inconsistency",
+      severity: "medium",
+      action: ["Update design system", "Apply changes", "Verify consistency"]
+    }
+  ]
 
-  approval_chain:
-    - ASK deliverables verified
-    - Stakeholder approval obtained
-    - Operator authorization secured
-    - Task creation validated
-    - Chain integrity verified
+# State Management
+state_management:
+  required_actions: [
+    "Read state from previous mode",
+    "Update state during execution",
+    "Document state changes",
+    "Verify state before handoff",
+    "Maintain state history"
+  ]
 
-handoff_to_architect:
-  documentation:
-    - Design system complete
-    - Components documented
-    - Patterns specified
-    - Technical constraints defined
-    - Mode chain validated
-  
-  approvals:
-    - Design system verified
-    - Components validated
-    - Stakeholder sign-off obtained
-    - Documentation chain complete
-    - Mode transition authorized
+  state_tracking: {
+    design: {
+      fields: ["phase", "status", "components", "validation"],
+      validation: "required"
+    },
+    research: {
+      fields: ["findings", "feedback", "metrics"],
+      validation: "required"
+    },
+    accessibility: {
+      fields: ["compliance", "tests", "status"],
+      validation: "required"
+    }
+  }
