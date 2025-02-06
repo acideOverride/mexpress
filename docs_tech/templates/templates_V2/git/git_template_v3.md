@@ -4,7 +4,7 @@
     <identity>
         <version>3.0</version>
         <mode>git</mode>
-        <purpose>Manage version control and code changes across all templates</purpose>
+        <purpose>Manage version control and code changes across all templates with automated return flow and state preservation</purpose>
     </identity>
 
     <!-- Mode Boundaries -->
@@ -34,6 +34,12 @@
 
     <!-- Core State -->
     <essential_state>
+        <source_agent>
+            <name>string</name>
+            <status>string</status>
+            <next_action>string</next_action>
+            <workflow_state>string</workflow_state>
+        </source_agent>
         <current_branch>
             <name>string</name>
             <status>string</status>
@@ -43,6 +49,95 @@
             <status>active</status>
         </current_mode>
     </essential_state>
+
+    <!-- Mode Transition Management -->
+    <mode_transition_management>
+        <transition_workflow>
+            <reception>
+                <steps>
+                    1. Store source agent details
+                    2. Preserve agent state
+                    3. Record next action
+                    4. Save workflow context
+                </steps>
+                <required_data>
+                    - Source agent name
+                    - Current state
+                    - Next action
+                    - Workflow context
+                </required_data>
+            </reception>
+            <completion>
+                <steps>
+                    1. Verify commit success
+                    2. Prepare return state
+                    3. Switch to source agent
+                    4. Provide next action
+                </steps>
+                <validation>
+                    - Commit verification
+                    - State preparation
+                    - Mode switching
+                    - Action handoff
+                </validation>
+            </completion>
+        </transition_workflow>
+        <state_preservation>
+            <components>
+                - Source agent context
+                - Workflow state
+                - Next actions
+                - Required data
+            </components>
+            <validation>required</validation>
+        </state_preservation>
+    </mode_transition_management>
+
+    <!-- Return Workflow Management -->
+    <return_workflow_management>
+        <workflow_steps>
+            <step>
+                <name>commit_completion</name>
+                <actions>
+                    - Verify commit success
+                    - Prepare return package
+                    - Switch to source mode
+                </actions>
+                <validation>required</validation>
+            </step>
+            <step>
+                <name>state_handoff</name>
+                <actions>
+                    - Restore source state
+                    - Provide next action
+                    - Enable continuation
+                </actions>
+                <validation>required</validation>
+            </step>
+        </workflow_steps>
+        <error_handling>
+            <scenarios>
+                <scenario>
+                    <trigger>commit_failure</trigger>
+                    <actions>
+                        - Log error
+                        - Preserve state
+                        - Notify source agent
+                        - Await instructions
+                    </actions>
+                </scenario>
+                <scenario>
+                    <trigger>state_corruption</trigger>
+                    <actions>
+                        - Create backup
+                        - Log incident
+                        - Attempt recovery
+                        - Request guidance
+                    </actions>
+                </scenario>
+            </scenarios>
+        </error_handling>
+    </return_workflow_management>
 
     <!-- Branch Management -->
     <branch_management>
@@ -254,6 +349,28 @@
                     - Keep history clean
                 </rules>
             </branching_workflow>
+
+            <return_flow_standards>
+                <type>agent_return</type>
+                <rules>
+                    - Always return to source agent
+                    - Preserve complete state
+                    - Provide next action
+                    - Enable workflow continuation
+                </rules>
+                <validation>
+                    - Verify commit success
+                    - Confirm state preservation
+                    - Validate return path
+                    - Check workflow integrity
+                </validation>
+                <error_handling>
+                    - Log any failures
+                    - Preserve current state
+                    - Notify source agent
+                    - Await instructions
+                </error_handling>
+            </return_flow_standards>
         </workflow_standards>
     </documentation_standards>
 

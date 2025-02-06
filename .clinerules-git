@@ -9,6 +9,10 @@
 - History preservation
 - Conflict resolution
 - Repository health
+- Return flow management
+- State preservation
+- Source tracking
+- Workflow continuation
 
 # Documentation Location
 /opt/mExpress/docs/git/
@@ -23,6 +27,9 @@
    - Conflict Resolution
    - Repository Health
    - Backup Strategy
+   - Return Flow Management
+   - State Preservation
+   - Source Agent Tracking
 
 2. commit-guidelines.md
    - Message Format
@@ -54,7 +61,19 @@
    - Quality Gates
    - Rollback Procedures
 
-5. repository-health.md
+5. return-flow-management.md
+   - Source Agent Tracking
+   - State Preservation
+   - Return Path Management
+   - Workflow Continuation
+   - Error Recovery
+   - Context Preservation
+   - Next Action Handling
+   - Validation Rules
+   - Success Criteria
+   - Failure Handling
+
+6. repository-health.md
    - Size Monitoring
    - Performance Metrics
    - LFS Management
@@ -105,9 +124,9 @@
 hierarchical_workflow:
   position: "Version Control phase"
   receives_from: "ALL_MODES"
-  reports_to: "NONE"
+  returns_to: "SOURCE_AGENT"
   chain_role: "Repository Management"
-  focus: "Version Control"
+  focus: "Version Control and Return Flow"
 
 mode_transition_rules:
   prohibited_actions:
@@ -117,6 +136,8 @@ mode_transition_rules:
     - Incomplete validation
     - Unauthorized changes
     - Cross-chain communication
+    - State loss during return
+    - Missing source tracking
 
   required_actions:
     - Complete commit validation
@@ -125,6 +146,25 @@ mode_transition_rules:
     - Run pre-commit hooks
     - Document changes
     - Maintain history
+    - Track source agent
+    - Preserve state
+    - Enable continuation
+    - Return to source
+
+return_flow_rules:
+  required_steps:
+    - Store source agent
+    - Track workflow state
+    - Complete commit
+    - Prepare return
+    - Switch back
+    - Provide next action
+
+  validation_points:
+    - Commit success
+    - State preservation
+    - Return path valid
+    - Workflow intact
 
 # Header Formats
 commit_reception:
@@ -132,18 +172,46 @@ commit_reception:
   Roo: GIT
   PROJECT: [Project Name]
   RECEIVED FROM: [ANY_MODE] - [Task Name] - [BRQ-YEAR-NUMBER]
+  SOURCE AGENT:
+    Name: [Agent Name]
+    Status: [Current Status]
+    Next Action: [Expected Action]
+    Workflow State: [Current State]
   COMMIT TYPE: [Feature/Fix/Docs/Refactor]
   SCOPE: [Component/Module Name]
   IMPACT: [Files Changed Count]
+  RETURN PATH: [Source Agent Return Details]
   """
   required_fields: [
     "Project Name",
     "ANY_MODE",
     "Task Name",
     "BRQ-YEAR-NUMBER",
+    "Agent Name",
+    "Current Status",
+    "Expected Action",
+    "Current State",
     "COMMIT TYPE",
     "Component/Module Name",
-    "Files Changed Count"
+    "Files Changed Count",
+    "Source Agent Return Details"
+  ]
+
+commit_return:
+  format: """
+  Roo: GIT
+  RETURNING TO: [Source Agent Name]
+  STATUS: [Success/Failure]
+  COMMIT: [Commit Hash]
+  NEXT ACTION: [Expected Action]
+  STATE: [Preserved State Details]
+  """
+  required_fields: [
+    "Source Agent Name",
+    "Status",
+    "Commit Hash",
+    "Expected Action",
+    "Preserved State Details"
   ]
 
 # Communication Protocol
@@ -155,7 +223,10 @@ communication_rules:
         "Branch information",
         "Changed files",
         "Impact scope",
-        "Technical context"
+        "Technical context",
+        "Source agent details",
+        "Return path information",
+        "Next action requirements"
       ]
 
   repository_management:
@@ -164,16 +235,38 @@ communication_rules:
       "Branch maintenance",
       "Merge handling",
       "Conflict resolution",
-      "Health monitoring"
+      "Health monitoring",
+      "Source tracking",
+      "State preservation",
+      "Return flow management"
     ]
 
   chain_rules: [
     "Accept commits from ALL_MODES",
-    "No response/reporting required",
+    "Track source agent",
+    "Preserve state",
+    "Return to source",
     "Follow git standards",
     "Maintain commit quality",
-    "Preserve repository integrity"
+    "Preserve repository integrity",
+    "Enable workflow continuation"
   ]
+
+  return_flow:
+    requirements: [
+      "Complete commit process",
+      "Verify commit success",
+      "Preserve source state",
+      "Prepare return package",
+      "Switch to source agent",
+      "Provide next action"
+    ]
+    validation: [
+      "Commit verification",
+      "State integrity",
+      "Return path validity",
+      "Workflow continuity"
+    ]
 
 # Testing Requirements
 version_control:
@@ -269,6 +362,11 @@ state_management:
   ]
 
   state_tracking: {
+    source_agent: {
+      fields: ["name", "status", "next_action", "workflow_state"],
+      validation: "required",
+      preservation: "mandatory"
+    },
     repository: {
       fields: ["branch", "commit", "status", "health"],
       validation: "required"
@@ -280,5 +378,28 @@ state_management:
     history: {
       fields: ["commits", "merges", "conflicts"],
       validation: "required"
+    },
+    return_flow: {
+      fields: ["source", "state", "next_action", "workflow"],
+      validation: "required",
+      preservation: "mandatory"
+    }
+  }
+
+  workflow_preservation: {
+    components: [
+      "Source agent context",
+      "Current operation state",
+      "Next action details",
+      "Return path validation"
+    ],
+    validation: "required",
+    recovery: {
+      on_failure: [
+        "Log error",
+        "Preserve partial state",
+        "Notify source agent",
+        "Request guidance"
+      ]
     }
   }

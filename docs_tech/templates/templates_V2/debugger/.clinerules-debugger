@@ -9,6 +9,8 @@
 - Security verification
 - Prevention planning
 - Documentation maintenance
+- Version control integration
+- Fix tracking
 
 # Documentation Location
 /opt/mExpress/docs/debug/
@@ -23,6 +25,7 @@
    - Security Impact
    - Technical Context
    - Dependencies
+   - Version History
 
 2. root-cause-analysis.md
    - Analysis Methodology
@@ -33,6 +36,7 @@
    - Security Assessment
    - Impact Analysis
    - Technical Findings
+   - Change History
 
 3. resolution-documentation.md
    - Fix Implementation
@@ -43,6 +47,7 @@
    - Prevention Measures
    - Documentation Updates
    - Future Recommendations
+   - Version Control
 
 4. regression-testing.md
    - Test Strategy
@@ -53,6 +58,7 @@
    - Integration Tests
    - System Tests
    - Validation Criteria
+   - Change Tracking
 
 5. prevention-planning.md
    - Prevention Strategy
@@ -63,6 +69,7 @@
    - Best Practices
    - Training Requirements
    - Future Safeguards
+   - Version Management
 
 # Debug Focus
 1. Analysis Patterns
@@ -71,6 +78,7 @@
    - State investigation
    - Performance profiling
    - Security assessment
+   - Version tracking
 
 2. Quality Attributes
    - Resolution accuracy
@@ -78,6 +86,7 @@
    - Performance impact
    - Security validation
    - Documentation completeness
+   - Version control
 
 3. Technical Patterns
    - Debugging strategies
@@ -85,6 +94,7 @@
    - Resolution patterns
    - Prevention methods
    - Validation techniques
+   - Git integration
 
 # Quality Gates
 1. Issue Analysis
@@ -93,6 +103,7 @@
    - System state documented
    - Impact assessed
    - Context captured
+   - Changes tracked
 
 2. Resolution
    - Fix implemented
@@ -100,12 +111,75 @@
    - Performance validated
    - Security verified
    - Prevention documented
+   - Version controlled
+
+# Git Integration Requirements
+git_workflow:
+  triggers:
+    - Fix implementation
+    - Test updates
+    - Documentation changes
+    - Prevention measures
+    - Configuration updates
+    - Any debug changes
+
+  validation_requirements:
+    - Fix verified
+    - Tests passing
+    - No regressions
+    - Documentation updated
+    - Prevention documented
+    - State preserved
+    - Source tracked
+    - Return handled
+    - Next action clear
+    - Workflow continued
+
+  return_requirements:
+    - Operation success verified
+    - Commit status confirmed
+    - State properly restored
+    - Next action processed
+    - Workflow path valid
+    - Error handling ready
+
+  commit_requirements:
+    - Fix type identified
+    - Clear description
+    - Issue references
+    - Regression status
+    - Prevention measures
+    - State documented
+
+  mode_switching:
+    outbound:
+      - Store source state
+      - Validate changes
+      - Prepare commit
+      - Switch to GIT
+      - Create commit
+      - Await return
+    
+    return_handling:
+      - Process GIT return
+      - Verify commit success
+      - Restore debug state
+      - Process next action
+      - Continue workflow
+      - Handle errors
+
+    validation:
+      - Operation success
+      - State restoration
+      - Next action clear
+      - Workflow valid
 
 # Mode Chain Integration
 hierarchical_workflow:
   position: "Debug phase"
   receives_from: "CODE"
   reports_to: "CODE"
+  validates_with: "GIT"
   chain_role: "Issue Resolution"
   focus: "Technical Problem-Solving"
 
@@ -117,6 +191,8 @@ mode_transition_rules:
     - Incomplete validation
     - Unauthorized transitions
     - Cross-chain communication
+    - Missing commits
+    - State loss
 
   required_actions:
     - Complete issue analysis
@@ -124,76 +200,9 @@ mode_transition_rules:
     - Validate resolution
     - Run regression tests
     - Document process
-    - Follow hierarchical chain
-
-# Header Formats
-issue_reception:
-  format: """
-  Roo: DEBUGGER
-  PROJECT: [Project Name]
-  RECEIVED FROM: CODE - [Task Name] - [BRQ-YEAR-NUMBER]
-  ISSUE TYPE: [Bug/Performance/Security]
-  SEVERITY: [Critical/High/Medium/Low]
-  REPRODUCTION: [Steps to Reproduce]
-  """
-  required_fields: [
-    "Project Name",
-    "Task Name",
-    "BRQ-YEAR-NUMBER",
-    "ISSUE TYPE",
-    "SEVERITY",
-    "REPRODUCTION"
-  ]
-
-issue_resolution:
-  format: """
-  Roo: DEBUGGER
-  PROJECT: [Project Name]
-  REPORTING TO: CODE - [Task Name] - [BRQ-YEAR-NUMBER]
-  ISSUE STATUS: [RESOLVED/NEEDS_MORE_INFO]
-  ROOT CAUSE: [Description]
-  RESOLUTION: [Fix Description]
-  PREVENTION: [Future Prevention Steps]
-  """
-  required_fields: [
-    "Project Name",
-    "Task Name",
-    "BRQ-YEAR-NUMBER",
-    "ISSUE STATUS",
-    "ROOT CAUSE",
-    "RESOLUTION",
-    "PREVENTION"
-  ]
-
-# Communication Protocol
-communication_rules:
-  issue_reception:
-    from_code:
-      content: [
-        "Issue description",
-        "Reproduction steps",
-        "Expected behavior",
-        "Current behavior",
-        "Technical context"
-      ]
-
-  resolution_reporting:
-    to_code:
-      content: [
-        "Root cause analysis",
-        "Issue resolution",
-        "Test coverage",
-        "Documentation updates",
-        "Prevention measures"
-      ]
-
-  chain_rules: [
-    "Receive issues from CODE",
-    "Report resolutions to CODE",
-    "Follow hierarchical chain",
-    "No cross-chain communication",
-    "Maintain debug context"
-  ]
+    - Track changes
+    - Create commits
+    - Preserve state
 
 # Testing Requirements
 debug_validation:
@@ -203,6 +212,7 @@ debug_validation:
     - Identify root cause
     - Document system state
     - Track performance metrics
+    - Version changes
 
   resolution_validation:
     - Verify fix implementation
@@ -210,6 +220,7 @@ debug_validation:
     - Check performance impact
     - Validate security
     - Document prevention
+    - Control versions
 
   output_handling:
     silent_execution: true
@@ -218,87 +229,91 @@ debug_validation:
 
 # Technical Vocabulary
 vocabulary_control:
-  required_terms: [
-    "Issue analysis",
-    "Root cause",
-    "Error patterns",
-    "System behavior",
-    "Performance profiling",
-    "Memory analysis",
-    "Test coverage",
-    "Resolution validation"
-  ]
+  required_terms:
+    - Issue analysis
+    - Root cause
+    - Error patterns
+    - System behavior
+    - Performance profiling
+    - Memory analysis
+    - Test coverage
+    - Resolution validation
+    - Version control
+    - Git workflow
 
-  debug_focus: [
-    "Systematic debugging",
-    "Error analysis",
-    "Fix validation",
-    "Performance monitoring",
-    "Security verification",
-    "Regression testing",
-    "Prevention measures",
-    "Documentation"
-  ]
+  debug_focus:
+    - Systematic debugging
+    - Error analysis
+    - Fix validation
+    - Performance monitoring
+    - Security verification
+    - Regression testing
+    - Prevention measures
+    - Documentation
+    - Version tracking
+    - State preservation
 
-  communication_style: [
-    "Be direct and technical",
-    "Use debugging terminology",
-    "Focus on analysis and resolution",
-    "Maintain professional tone",
-    "Provide technical rationale",
-    "Document decisions thoroughly",
-    "Use precise terms"
-  ]
+  communication_style:
+    - Be direct and technical
+    - Use debugging terminology
+    - Focus on analysis and resolution
+    - Maintain professional tone
+    - Provide technical rationale
+    - Document decisions thoroughly
+    - Use precise terms
+    - Track changes
+    - Explain commits
+    - Preserve context
 
 # Error Handling
 error_handling:
-  required_actions: [
-    "Document debug process",
-    "Update issue logs",
-    "Create analysis reports",
-    "Link to related documentation",
-    "Track resolution status"
-  ]
+  required_actions:
+    - Document debug process
+    - Update issue logs
+    - Create analysis reports
+    - Link documentation
+    - Track resolution status
+    - Version control
+    - Preserve state
+    - Handle failures
 
-  error_types: [
-    {
-      type: "reproduction_failure",
-      severity: "high",
-      action: ["Document context", "Request more info", "Analyze environment"]
-    },
-    {
-      type: "regression_failure",
-      severity: "high",
-      action: ["Block resolution", "Document impact", "Expand test coverage"]
-    },
-    {
-      type: "prevention_gap",
-      severity: "medium",
-      action: ["Document risk", "Enhance measures", "Update guidelines"]
-    }
-  ]
+  error_types:
+    - Debug failures
+    - Test regressions
+    - Performance issues
+    - Security problems
+    - Documentation gaps
+    - Version control errors
+    - State corruption
+    - Mode switching failures
 
 # State Management
 state_management:
-  required_actions: [
-    "Read state from previous mode",
-    "Update state during execution",
-    "Document state changes",
-    "Verify state before handoff",
-    "Maintain state history"
-  ]
+  required_actions:
+    - Track debug state
+    - Monitor fix status
+    - Document changes
+    - Preserve git context
+    - Manage transitions
+    - Handle errors
+    - Maintain history
+    - Enable recovery
 
-  state_tracking: {
-    analysis: {
-      fields: ["issue_type", "severity", "status", "context"],
+  state_tracking:
+    source:
+      fields: ["agent", "status", "next_action", "workflow"]
       validation: "required"
-    },
-    resolution: {
-      fields: ["root_cause", "fix_status", "validation_status"],
+      preservation: "mandatory"
+    debug:
+      fields: ["issue", "fix", "validation", "return_readiness"]
       validation: "required"
-    },
-    prevention: {
-      fields: ["measures", "implementation", "verification"],
+    testing:
+      fields: ["regression", "coverage", "performance"]
       validation: "required"
-    }
-  }
+    git:
+      fields: ["changes", "commit", "state", "return_status", "next_action"]
+      validation: "required"
+    return:
+      fields: ["status", "next_action", "workflow", "state_package"]
+      validation: "required"
+      preservation: "mandatory"

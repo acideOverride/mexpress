@@ -361,8 +361,125 @@
                     - Track strategic guidance
                 </context_preservation>
             </pattern>
+
+            <pattern>
+                <from_mode>architect</from_mode>
+                <to_mode>git</to_mode>
+                <requirements>
+                    - Architecture decision completed
+                    - Documentation updated
+                    - Changes validated
+                    - State prepared for preservation
+                </requirements>
+                <transition_steps>
+                    1. Store current architecture state
+                    2. Prepare architectural changes for commit
+                    3. Document decision rationale
+                    4. Validate documentation completeness
+                    5. Switch to GIT mode
+                </transition_steps>
+                <return_handling>
+                    <steps>
+                        1. Receive GIT return
+                        2. Verify commit success
+                        3. Restore architecture state
+                        4. Continue workflow
+                    </steps>
+                    <validation>
+                        - Commit verification
+                        - State restoration
+                        - Context preservation
+                        - Workflow continuity
+                    </validation>
+                </return_handling>
+                <context_preservation>
+                    - Preserve decision context
+                    - Maintain technical rationale
+                    - Track documentation state
+                    - Keep validation status
+                    - Store workflow position
+                </context_preservation>
+            </pattern>
         </transition_patterns>
     </roo_mode_transitions>
+
+    <!-- Git Integration Management -->
+    <git_integration_management>
+        <integration_patterns>
+            <pattern>
+                <trigger>architecture_decision_completed</trigger>
+                <steps>
+                    1. Store architecture state
+                    2. Validate documentation
+                    3. Prepare commit package
+                    4. Switch to GIT mode
+                    5. Await commit completion
+                    6. Process GIT return
+                    7. Restore architecture state
+                    8. Continue workflow
+                </steps>
+                <validation_points>
+                    - Architecture decision documented
+                    - Technical rationale complete
+                    - Documentation updated
+                    - Changes validated
+                    - State preserved
+                </validation_points>
+            </pattern>
+        </integration_patterns>
+
+        <commit_preparation>
+            <requirements>
+                - Complete architecture documentation
+                - Clear decision rationale
+                - Updated technical specifications
+                - Validated changes
+                - Preserved state
+            </requirements>
+            <commit_format>
+                <type>arch</type>
+                <scope>architecture decision</scope>
+                <description>Clear, concise decision description</description>
+                <body>
+                    - Decision context
+                    - Technical rationale
+                    - Implementation impact
+                    - Migration considerations
+                </body>
+            </commit_format>
+        </commit_preparation>
+
+        <state_preservation>
+            <components>
+                - Current architecture state
+                - Decision context
+                - Technical rationale
+                - Documentation status
+                - Validation results
+            </components>
+            <workflow_position>
+                - Current phase
+                - Next actions
+                - Return path
+                - Continuation point
+            </workflow_position>
+        </state_preservation>
+
+        <return_handling>
+            <steps>
+                1. Verify commit success
+                2. Process return package
+                3. Restore architecture state
+                4. Continue workflow
+            </steps>
+            <validation>
+                - Commit verification
+                - State restoration
+                - Context preservation
+                - Workflow continuity
+            </validation>
+        </return_handling>
+    </git_integration_management>
 
     <!-- Roo Documentation Patterns -->
     <roo_documentation_patterns>

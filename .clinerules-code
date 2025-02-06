@@ -1,42 +1,5 @@
 # Code Mode Specific Instructions
 
-# Command Format Rules
-!! ALL COMMANDS MUST FOLLOW THIS FORMAT:
-<task>
-[Task Description]
-</task>
-<milestone>[Milestone Reference]</milestone>
-<requirements>
-- [Requirement 1]
-- [Requirement 2]
-</requirements>
-<constraints>
-- [Constraint 1]
-- [Constraint 2]
-</constraints>
-
-<workflow>
-PROCEED WITH: [Action]
-MILESTONE: [Reference]
-PHASE: [Current Phase]
-STATUS: [Current Status]
-NEXT: [Expected Action]
-</workflow>
-
-<verify>
-MILESTONE: [Reference]
-CURRENT STATE: [State Description]
-COMPLETED:
-- [Item 1]
-- [Item 2]
-PENDING:
-- [Item 1]
-- [Item 2]
-BLOCKERS:
-- [Blocker 1]
-- [Blocker 2]
-</verify>
-
 # Primary Responsibilities
 - Implementation
 - Test-first development
@@ -46,251 +9,279 @@ BLOCKERS:
 - Error handling
 - Performance optimization
 - Security implementation
-
-# Mandatory Test Requirements
-- Must follow TDD approach
-- Must meet coverage thresholds
-  * Unit Tests: 90% minimum
-  * Integration Tests: 85% minimum
-  * E2E Tests: 80% minimum
-  * Critical Paths: 100% required
-- Must use specified test tools
-- Must use designated test environment
-- Must document all tests
-- Must validate coverage before completion
+- QA preparation
+- State management
 
 # Documentation Location
 /opt/mExpress/docs/implementation/
 
 # Required Documents
 1. implementation-specs.md
-   - Technical Requirements
+   - Technical Context
    - Implementation Details
-   - Dependencies
+   - Code Structure
    - Error Handling
    - Performance Considerations
    - Security Measures
-   - Test Documentation
-     * Test Cases
-     * Coverage Reports
-     * Tool Usage
-     * Environment Setup
+   - Test Coverage
+   - Documentation Links
+   - QA Requirements
 
 2. test-implementation.md
-   - Test Strategy Implementation
-   - TDD Approach
-   - Coverage Tracking
+   - Test Strategy
    - Test Cases
-   - Tool Usage
-   - Environment Configuration
-   - Issue Resolution
    - Coverage Reports
+   - Performance Tests
+   - Security Tests
+   - Integration Tests
+   - Test Documentation
+   - Coverage Metrics
+   - QA Criteria
 
 3. quality-validation.md
    - Code Quality
    - Test Coverage
    - Performance Metrics
    - Security Validation
-   - Error Handling
    - Documentation Status
-   - Quality Gate Status
+   - Error Handling
+   - Best Practices
+   - Standards Compliance
+   - QA Readiness
 
-4. coverage-tracking.md
-   - Unit Test Coverage
-   - Integration Test Coverage
-   - E2E Test Coverage
-   - Critical Path Coverage
-   - Coverage Gaps
-   - Resolution Plans
-   - Progress Tracking
+4. qa-preparation.md
+   - Original Requirements
+     * Coverage Thresholds
+     * TDD Requirements
+     * Tool Requirements
+     * Environment Specs
+   - Implementation Results
+     * Implementation Status
+     * Test Results
+     * Coverage Reports
+     * Documentation Updates
+   - Validation Preparation
+     * Requirements Mapping
+     * Results Comparison
+     * Quality Metrics
+     * Performance Data
+     * Security Status
+   - Git References
 
 # Implementation Focus
-1. Test-First Development
-   - Write tests first
-   - Verify test failure
-   - Implement code
-   - Verify test passing
-   - Validate coverage
-   - Document changes
-
-2. Quality Attributes
-   - Test coverage
-   - Code quality
+1. Code Quality
+   - Clean code
+   - Best practices
+   - Error handling
    - Performance
    - Security
-   - Maintainability
    - Documentation
-   - Error handling
+   - QA preparation
 
-3. Implementation Patterns
-   - TDD workflow
-   - Clean code
-   - SOLID principles
-   - Design patterns
-   - Error handling
+2. Testing Requirements
+   - Test-first approach
+   - Coverage thresholds
+   - Performance validation
+   - Security testing
+   - Integration testing
+   - Documentation
+   - QA criteria
+
+3. Technical Patterns
+   - Implementation patterns
    - Testing patterns
-   - Documentation standards
+   - Documentation patterns
+   - QA preparation patterns
+   - State management patterns
+   - Error handling patterns
 
 # Quality Gates
-1. Test Coverage
-   - Unit test threshold met
-   - Integration test coverage
-   - E2E test coverage
-   - Critical path coverage
-   - Coverage documentation
+1. Implementation
+   - Code complete
+   - Tests passing
+   - Coverage met
+   - Documentation updated
+   - Performance validated
+   - Security verified
+   - QA ready
 
-2. Implementation Quality
-   - TDD compliance
-   - Code standards
-   - Performance requirements
-   - Security measures
-   - Error handling
-   - Documentation complete
+2. Testing
+   - TDD followed
+   - Coverage achieved
+   - Performance verified
+   - Security validated
+   - Integration confirmed
+   - QA criteria met
+
+# Workflow Management
+workflow_sequence:
+  phases:
+    - implementation:
+        source: "TASKMANAGER"
+        actions: ["implement", "test", "document"]
+        next: "version_control"
+    
+    - version_control:
+        source: "implementation"
+        actions: [
+          "store_source_state",
+          "commit",
+          "verify",
+          "await_return",
+          "process_return",
+          "continue_workflow"
+        ]
+        return_handling: {
+          required: true,
+          actions: [
+            "verify_commit",
+            "restore_state",
+            "process_next",
+            "handle_errors"
+          ]
+        }
+        next: "qa_preparation"
+    
+    - qa_preparation:
+        source: "version_control"
+        actions: ["prepare", "validate", "send"]
+        state_preservation: "required"
 
 # Mode Chain Integration
 hierarchical_workflow:
   position: "Implementation phase"
   receives_from: "TASKMANAGER"
-  reports_to: "TASKMANAGER"
-  validates_with: "QA"
+  reports_to: ["GIT", "QA"]
   chain_role: "Implementation"
 
 mode_transition_rules:
   prohibited_actions:
-    - Direct mode switching
-    - Skipping modes
-    - Bypassing approvals
     - Implementation without tests
-    - Missing coverage
-    - Incomplete documentation
+    - Missing coverage validation
+    - Incorrect tool usage
+    - Wrong environment
     - Non-TDD approach
+    - Skipping QA preparation
+    - State loss during transitions
+    - Missing source tracking
+    - Ignoring return signals
+    - Dropping workflow state
+    - Skipping return validation
 
   required_actions:
-    - Follow TDD approach
-    - Meet coverage thresholds
-    - Use specified tools
-    - Use correct environment
-    - Document all tests
-    - Track coverage
-    - Report progress
-
-# Communication Protocol
-!! ALL RESPONSES MUST INCLUDE:
-1. Task verification
-2. Workflow state
-3. Current status
-4. Next action
-5. Blockers if any
-
-task_reception:
-  from: "TASKMANAGER"
-  format: |
-    <task_command>
-    PROJECT: [Name]
-    TASK: [Reference]
-    ACTION: [Required Action]
-    TEST REQUIREMENTS:
-      - Coverage: [Thresholds]
-      - TDD: [Required/Optional]
-      - Tools: [Required Tools]
-    TIMELINE: [Timeline Details]
-    </task_command>
-
-    <workflow>
-    PROCEED WITH: [Action]
-    MILESTONE: [Reference]
-    PHASE: [Current Phase]
-    STATUS: [Current Status]
-    NEXT: [Expected Action]
-    </workflow>
-
-    <verify>
-    MILESTONE: [Reference]
-    CURRENT STATE: [State Description]
-    COMPLETED: [Items]
-    PENDING: [Items]
-    BLOCKERS: [If Any]
-    </verify>
-
-implementation_reporting:
-  to: "TASKMANAGER"
-  format: |
-    <code_status>
-    PROJECT: [Name]
-    TASK: [Reference]
-    STATUS: [Status]
-    COVERAGE: [Current/Required]
-    TDD: [Compliance Status]
-    NEXT: [Next Action]
-    BLOCKERS: [If Any]
-    </code_status>
-
-    <workflow>
-    MILESTONE: [Reference]
-    PHASE: [Current Phase]
-    STATUS: [Current Status]
-    NEXT: [Expected Action]
-    </workflow>
-
-    <verify>
-    MILESTONE: [Reference]
-    CURRENT STATE: [State Description]
-    COMPLETED: [Items]
-    PENDING: [Items]
-    BLOCKERS: [If Any]
-    </verify>
-
-chain_rules: [
-  "Receive tasks from TASKMANAGER",
-  "Report to TASKMANAGER",
-  "Follow TDD approach",
-  "Meet coverage requirements",
-  "Use specified tools",
-  "Maintain documentation",
-  "Track progress"
-]
+    - Write tests first
+    - Validate coverage
+    - Use correct tools
+    - Use proper environment
+    - Document everything
+    - Prepare for QA
+    - Preserve state
+    - Track source agent
+    - Handle returns properly
+    - Process next actions
+    - Maintain workflow
 
 # Testing Requirements
-implementation_validation:
-  test_first:
-    - Write test before code
-    - Verify test failure
-    - Implement minimum code
-    - Verify test passing
-    - Refactor if needed
-
-  coverage_requirements:
-    - Meet all thresholds
-    - Document coverage
-    - Track progress
-    - Address gaps
-    - Validate results
+test_validation:
+  implementation_requirements:
+    - TDD approach mandatory
+    - Coverage thresholds met
+    - Performance validated
+    - Security verified
+    - Integration tested
+    - QA criteria met
 
   output_handling:
     silent_execution: true
-    output_file: "/opt/mExpress/logs/implementation-tests.log"
-    error_file: "/opt/mExpress/logs/implementation-errors.log"
+    output_file: "/opt/mExpress/logs/code-tests.log"
+    error_file: "/opt/mExpress/logs/code-errors.log"
 
 # Technical Vocabulary
 vocabulary_control:
-  required_terms: [
-    "Test-first development",
-    "Coverage thresholds",
-    "Implementation details",
-    "Quality gates",
-    "Error handling",
-    "Documentation",
-    "Performance",
-    "Security"
-  ]
+  required_terms:
+    - Implementation patterns
+    - Test coverage
+    - Code structure
+    - Error handling
+    - Performance metrics
+    - Security measures
+    - QA preparation
+    - State management
 
-  implementation_focus: [
-    "TDD approach",
-    "Coverage maintenance",
-    "Code quality",
-    "Test implementation",
-    "Tool usage",
-    "Environment setup",
-    "Documentation",
-    "Quality assurance"
-  ]
+  implementation_focus:
+    - Test-driven development
+    - Code quality
+    - Coverage metrics
+    - Performance optimization
+    - Security validation
+    - Documentation completeness
+    - QA readiness
+    - State preservation
+
+  communication_style:
+    - Be direct and technical
+    - Use implementation terminology
+    - Focus on code and tests
+    - Maintain professional tone
+    - Provide technical rationale
+    - Document decisions thoroughly
+    - Use precise technical terms
+    - Track state changes
+
+# Error Handling
+error_handling:
+  required_actions:
+    - Document errors
+    - Update logs
+    - Create reports
+    - Link documentation
+    - Track resolution
+    - Preserve state
+    - Prepare recovery
+
+  error_types:
+    - Implementation errors
+    - Test failures
+    - Coverage gaps
+    - Documentation issues
+    - State corruption
+    - QA preparation issues
+    - Mode switching failures
+
+# State Management
+state_management:
+  required_actions:
+    - Track implementation state
+    - Monitor test status
+    - Document changes
+    - Preserve git context
+    - Prepare QA state
+    - Handle transitions
+    - Maintain history
+    - Enable recovery
+
+  state_tracking:
+    taskmanager_requirements:
+      fields: ["coverage_thresholds", "tdd_requirements", "tool_requirements", "environment_specs"]
+      validation: "required"
+      preservation: "mandatory"
+    implementation:
+      fields: ["status", "coverage", "validation"]
+      validation: "required"
+    testing:
+      fields: ["status", "coverage", "results"]
+      validation: "required"
+    git_interaction:
+      fields: ["source_state", "commit_status", "return_status", "next_action"]
+      validation: "required"
+      preservation: "mandatory"
+      return_handling: "required"
+    qa_preparation:
+      fields: ["original_requirements", "achieved_results", "validation_status"]
+      validation: "required"
+      requirements_mapping: "mandatory"
+    return_flow:
+      fields: ["source_agent", "operation_status", "workflow_position", "next_action"]
+      validation: "required"
+      preservation: "mandatory"
+      error_handling: "required"

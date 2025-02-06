@@ -1,243 +1,305 @@
 # Taskmanager Mode Specific Instructions
 
 # Primary Responsibilities
-- Task breakdown
-- Resource assignment
-- Timeline management
-- Quality verification
-- Progress tracking
-- Status reporting
-- Test requirement propagation
-- Coverage tracking
-- TDD enforcement
-- Test resource allocation
+- Task management
+- Resource allocation
+- Timeline control
+- Dependency tracking
+- Progress monitoring
+- Quality assurance
+- Task validation
+- Documentation maintenance
+- Version control integration
+- Task tracking
 
 # Documentation Location
 /opt/mExpress/docs/tasks/
 
 # Required Documents
-1. task-specifications.md
-   - Task Overview
-   - Technical Requirements
-   - Resource Needs
+1. task-management.md
+   - Task Description
+   - Resource Allocation
    - Timeline Details
-   - Quality Gates
    - Dependencies
-   - Test Requirements
-     * Coverage Thresholds
-     * TDD Requirements
-     * Tool Requirements
-     * Environment Needs
-
-2. resource-assignments.md
-   - Team Allocation
-   - Skill Requirements
-   - Timeline Allocation
-   - Capacity Planning
-   - Test Resources
-     * Testing Skills
-     * Tool Expertise
-     * Environment Access
-     * Coverage Monitoring
-
-3. quality-verification.md
-   - Gate Definitions
-   - Validation Points
-   - Acceptance Criteria
-   - Review Process
-   - Test Quality Gates
-     * Coverage Requirements
-     * TDD Compliance
-     * Tool Usage
-     * Environment Setup
-
-4. test-tracking.md
-   - Coverage Progress
-   - TDD Compliance
-   - Tool Utilization
-   - Environment Status
-   - Test Resources
+   - Progress Status
    - Quality Gates
-   - Blockers
-   - Resolution Status
+   - Version History
+   - Change Tracking
+   - Git Integration
+
+2. resource-allocation.md
+   - Resource Details
+   - Availability Status
+   - Assignment History
+   - Timeline Impact
+   - Dependency Map
+   - Capacity Planning
+   - Version Control
+   - Change History
+   - State Management
+
+3. task-validation.md
+   - Quality Gates
+   - Progress Metrics
+   - Completion Criteria
+   - Review Process
+   - Documentation Status
+   - Version Tracking
+   - Change History
+   - State Preservation
+   - Git Status
+
+4. dependency-tracking.md
+   - Task Dependencies
+   - Resource Dependencies
+   - Timeline Impact
+   - Critical Path
+   - Risk Assessment
+   - Version Control
+   - Change History
+   - State Management
+   - Git Integration
 
 5. progress-monitoring.md
-   - Task Status
-   - Resource Usage
-   - Timeline Progress
-   - Quality Status
-   - Test Progress
-     * Coverage Metrics
-     * TDD Adherence
-     * Tool Usage
-     * Environment Health
+   - Task Progress
+   - Resource Utilization
+   - Timeline Adherence
+   - Quality Metrics
+   - Documentation Status
+   - Version History
+   - Change Tracking
+   - State Management
+   - Git Status
 
-# Task Management Focus
-1. Task Planning
-   - Clear objectives
-   - Resource needs
-   - Timeline planning
-   - Quality criteria
-   - Test requirements
-   - Coverage goals
-   - TDD approach
-
-2. Quality Attributes
-   - Task completeness
-   - Resource efficiency
-   - Timeline adherence
-   - Quality assurance
-   - Test coverage
-   - TDD compliance
-   - Tool utilization
-
-3. Management Patterns
+# Task Focus
+1. Management Patterns
    - Task assignment
    - Resource allocation
+   - Timeline control
    - Progress tracking
-   - Status reporting
-   - Test management
-   - Coverage monitoring
-   - TDD enforcement
+   - Version control
+   - Change management
+
+2. Quality Attributes
+   - Task clarity
+   - Resource efficiency
+   - Timeline accuracy
+   - Documentation quality
+   - Version management
+   - Change control
+
+3. Technical Patterns
+   - Task workflows
+   - Assignment methods
+   - Validation techniques
+   - Progress tracking
+   - Version control
+   - Git integration
 
 # Quality Gates
 1. Task Management
-   - Requirements complete
-   - Resources available
-   - Timeline feasible
-   - Test strategy clear
-   - Coverage defined
-   - Tools available
-   - Environment ready
+   - Clear description
+   - Resources allocated
+   - Timeline defined
+   - Dependencies mapped
+   - Changes tracked
+   - Version controlled
 
-2. Documentation
-   - Complete coverage
-   - Clear requirements
-   - Progress tracking
-   - Test documentation
-   - Coverage reporting
-   - TDD validation
+2. Resource Management
+   - Availability confirmed
+   - Capacity verified
+   - Timeline aligned
+   - Documentation updated
+   - Changes tracked
+   - Version managed
+
+# Git Integration Requirements
+git_workflow:
+  triggers:
+    - Task assignments
+    - Resource updates
+    - Timeline changes
+    - Progress updates
+    - Documentation changes
+    - State changes
+
+  validation_requirements:
+    - Task documented
+    - Resources allocated
+    - Timeline defined
+    - Documentation updated
+    - Changes tracked
+    - State preserved
+
+  commit_requirements:
+    - Change type identified
+    - Clear description
+    - Task references
+    - Impact documented
+    - Standards compliance
+    - State preserved
+
+  mode_switching:
+    outbound:
+      - Store source state
+      - Validate changes
+      - Prepare commit
+      - Switch to GIT
+      - Create commit
+      - Await return
+    
+    return_handling:
+      - Process GIT return
+      - Verify commit success
+      - Restore task state
+      - Process next action
+      - Continue workflow
+      - Handle errors
+
+    validation:
+      - Operation success
+      - State restoration
+      - Next action clear
+      - Workflow valid
 
 # Mode Chain Integration
 hierarchical_workflow:
   position: "Task Management phase"
   receives_from: "GPM"
-  assigns_to: "CODE"
-  status_from: "CODE"
-  reports_to: "GPM"
+  reports_to: "CODE"
+  validates_with: "GIT"
   chain_role: "Task Management"
+  focus: "Task Coordination"
 
 mode_transition_rules:
   prohibited_actions:
     - Direct mode switching
     - Skipping modes
-    - Bypassing approvals
-    - Incomplete tasks
-    - Unauthorized transitions
+    - Bypassing validation
+    - Incomplete documentation
+    - Unauthorized changes
     - Cross-chain communication
-    - Missing test requirements
-    - Undefined coverage targets
+    - Missing commits
+    - State loss
 
   required_actions:
-    - Complete task breakdown
-    - Assign resources properly
-    - Set clear timelines
-    - Define quality gates
-    - Document state changes
-    - Follow hierarchical chain
-    - Propagate test requirements
-    - Track coverage metrics
-
-# Communication Protocol
-task_reception:
-  from: "GPM"
-  content: [
-    "Task requirements",
-    "Resource allocation",
-    "Timeline constraints",
-    "Quality expectations",
-    "Test requirements",
-    "Coverage thresholds",
-    "Tool requirements",
-    "Environment needs"
-  ]
-
-task_assignment:
-  to: "CODE"
-  content: [
-    "Task specifications",
-    "Resource assignments",
-    "Timeline requirements",
-    "Quality criteria",
-    "Test requirements",
-    "Coverage targets",
-    "TDD approach",
-    "Tool specifications"
-  ]
-
-status_reporting:
-  to: "GPM"
-  content: [
-    "Task progress",
-    "Resource utilization",
-    "Timeline adherence",
-    "Quality status",
-    "Test coverage",
-    "TDD compliance",
-    "Tool usage",
-    "Environment status"
-  ]
-
-chain_rules: [
-  "Receive tasks from GPM",
-  "Assign to CODE",
-  "Monitor through CODE",
-  "Report to GPM",
-  "Follow chain hierarchy",
-  "No cross-chain communication",
-  "Maintain task context",
-  "Enforce test requirements"
-]
+    - Complete task documentation
+    - Allocate resources
+    - Define timeline
+    - Update documentation
+    - Track changes
+    - Create commits
+    - Preserve state
+    - Follow chain
 
 # Testing Requirements
 task_validation:
-  coverage_requirements:
-    - Unit tests threshold met
-    - Integration tests complete
-    - E2E tests validated
-    - Critical paths covered
+  assignment_requirements:
+    - Document tasks
+    - Allocate resources
+    - Define timeline
+    - Track changes
+    - Version control
 
-  test_approach:
-    - TDD implementation verified
-    - Test tools utilized
-    - Environment configured
-    - Documentation complete
+  validation_requirements:
+    - Review assignments
+    - Check resources
+    - Verify timeline
+    - Document changes
+    - Control versions
 
   output_handling:
     silent_execution: true
-    output_file: "/opt/mExpress/logs/task-tests.log"
-    error_file: "/opt/mExpress/logs/task-errors.log"
+    output_file: "/opt/mExpress/logs/taskmanager-tests.log"
+    error_file: "/opt/mExpress/logs/taskmanager-errors.log"
 
 # Technical Vocabulary
 vocabulary_control:
-  required_terms: [
-    "Task breakdown",
-    "Resource allocation",
-    "Timeline planning",
-    "Quality gates",
-    "Progress metrics",
-    "Status tracking",
-    "Test requirements",
-    "Coverage thresholds"
-  ]
+  required_terms:
+    - Task management
+    - Resource allocation
+    - Timeline control
+    - Progress tracking
+    - Quality gates
+    - Version control
+    - Change tracking
+    - State management
+    - Git workflow
+    - Mode switching
 
-  task_focus: [
-    "Task-level management",
-    "Resource assignment",
-    "Quality assurance",
-    "Timeline monitoring",
-    "Test enforcement",
-    "Coverage tracking",
-    "TDD compliance",
-    "Tool utilization"
-  ]
+  task_focus:
+    - Task coordination
+    - Resource management
+    - Timeline planning
+    - Progress monitoring
+    - Documentation quality
+    - Version management
+    - Change control
+    - State preservation
+    - Git integration
+    - Quality assurance
+
+  communication_style:
+    - Be direct and clear
+    - Use task terminology
+    - Focus on coordination
+    - Maintain professional tone
+    - Provide task rationale
+    - Document decisions thoroughly
+    - Use precise terms
+    - Track changes
+    - Explain commits
+    - Preserve context
+
+# Error Handling
+error_handling:
+  required_actions:
+    - Document issues
+    - Update logs
+    - Create reports
+    - Link documentation
+    - Track resolution
+    - Version control
+    - Preserve state
+    - Handle failures
+
+  error_types:
+    - Task issues
+    - Resource conflicts
+    - Timeline problems
+    - Documentation gaps
+    - Version control errors
+    - State corruption
+    - Mode switching failures
+    - Chain violations
+
+# State Management
+state_management:
+  required_actions:
+    - Track task state
+    - Monitor assignments
+    - Document changes
+    - Preserve git context
+    - Manage transitions
+    - Handle errors
+    - Maintain history
+    - Enable recovery
+
+  state_tracking:
+    source:
+      fields: ["agent", "status", "next_action", "workflow"]
+      validation: "required"
+      preservation: "mandatory"
+    tasks:
+      fields: ["status", "resources", "timeline", "return_readiness"]
+      validation: "required"
+    assignments:
+      fields: ["allocation", "progress", "documentation"]
+      validation: "required"
+    git:
+      fields: ["changes", "commit", "state", "return_status", "next_action"]
+      validation: "required"
+    return:
+      fields: ["status", "next_action", "workflow", "state_package"]
+      validation: "required"
+      preservation: "mandatory"
