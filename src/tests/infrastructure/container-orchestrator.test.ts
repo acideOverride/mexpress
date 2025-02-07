@@ -44,8 +44,8 @@ describe('ContainerOrchestrator', () => {
       });
     });
 
-    test('should deploy service with HA configuration', () => {
-      const deployment = orchestrator.deployService({
+    test('should deploy service with HA configuration', async () => {
+      const deployment = await orchestrator.deployService({
         name: 'test-service',
         image: 'nginx',
         version: '1.21',
@@ -63,13 +63,13 @@ describe('ContainerOrchestrator', () => {
       expect(deployment.runtime.engine).toBe('containerd');
     });
 
-    test('should validate service configuration', () => {
-      expect(() => orchestrator.deployService({
+    test('should validate service configuration', async () => {
+      await expect(orchestrator.deployService({
         name: '',
         image: '',
         version: '',
         ports: []
-      })).toThrow('Invalid service configuration');
+      })).rejects.toThrow('Invalid service configuration');
     });
   });
 
@@ -92,23 +92,25 @@ describe('ContainerOrchestrator', () => {
       expect(resources.nodes.available).toBeGreaterThan(0);
     });
 
-    test('should enforce resource limits', () => {
-      expect(() => orchestrator.deployService({
+    test('should enforce resource limits', async () => {
+      await expect(orchestrator.deployService({
         name: 'resource-heavy',
         image: 'heavy-app',
         version: '1.0',
         ports: [{ port: 8080, targetPort: 8080, protocol: 'TCP' }],
         resources: {
           cpu: {
-            request: '100000m',
             limit: '200000m'
+          },
+          memory: {
+            limit: '128Gi'
           }
         }
-      })).toThrow('Resource limits exceeded');
+      })).rejects.toThrow('Resource limits exceeded');
     });
   });
 
-  describe('Integration Tests', () => {
+  describe('Service Lifecycle', () => {
     let orchestrator: ContainerOrchestrator;
     
     beforeEach(() => {
@@ -119,8 +121,8 @@ describe('ContainerOrchestrator', () => {
       });
     });
 
-    test('should handle complete deployment lifecycle', () => {
-      const deployment = orchestrator.deployService({
+    test('should handle complete deployment lifecycle', async () => {
+      const deployment = await orchestrator.deployService({
         name: 'lifecycle-test',
         image: 'test-app',
         version: '1.0',
@@ -129,15 +131,15 @@ describe('ContainerOrchestrator', () => {
 
       expect(deployment.status).toBe('Deployed');
 
-      const scaled = orchestrator.scaleService('lifecycle-test', 5);
+      const scaled = await orchestrator.scaleService('lifecycle-test', 5);
       expect(scaled.service.replicas.current).toBe(5);
 
-      const updated = orchestrator.updateService('lifecycle-test', {
+      const updated = await orchestrator.updateService('lifecycle-test', {
         version: '1.1'
       });
       expect(updated.service.version).toBe('1.1');
 
-      const removed = orchestrator.removeService('lifecycle-test');
+      const removed = await orchestrator.removeService('lifecycle-test');
       expect(removed.status).toBe('Removed');
     });
   });

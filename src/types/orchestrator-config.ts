@@ -1,4 +1,5 @@
 import { ServicePort } from './deployment-config';
+import { ServiceMeshConfig } from './deployment-config';
 
 export interface OrchestratorConfig {
   clusterName: string;
@@ -25,6 +26,22 @@ export interface ServiceConfig {
     memory?: {
       request?: string;
       limit?: string;
+    };
+  };
+  mesh?: ServiceMeshConfig;
+}
+
+export interface ServiceUpdateConfig {
+  version?: string;
+  replicas?: number;
+  resources?: {
+    requests?: {
+      cpu?: string;
+      memory?: string;
+    };
+    limits?: {
+      cpu?: string;
+      memory?: string;
     };
   };
 }
@@ -71,19 +88,60 @@ export interface ServiceDeploymentStatus {
     engine: string;
     version: string;
   };
-}
-
-export interface ServiceUpdateConfig {
-  version?: string;
-  replicas?: number;
-  resources?: {
-    cpu?: {
-      request?: string;
-      limit?: string;
+  mesh?: {
+    enabled: boolean;
+    proxy: {
+      name: string;
+      port: number;
+      protocol: 'http' | 'grpc' | 'tcp';
+      timeout: number;
+      retries: number;
+      circuitBreaker: {
+        enabled: boolean;
+        threshold: number;
+        interval: number;
+        timeout: number;
+      };
     };
-    memory?: {
-      request?: string;
-      limit?: string;
+    route: {
+      name: string;
+      path: string;
+      method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | '*';
+      service: string;
+      timeout: number;
+      retries: number;
+      loadBalancer: {
+        type: 'round-robin' | 'least-conn' | 'random';
+        weight?: number;
+      };
     };
+    policies: Array<{
+      name: string;
+      type: 'rate-limit' | 'circuit-breaker' | 'retry' | 'timeout';
+      scope: 'global' | 'service' | 'route';
+      target?: string;
+      config: {
+        rateLimit?: {
+          requests: number;
+          interval: number;
+          burst?: number;
+        };
+        circuitBreaker?: {
+          threshold: number;
+          interval: number;
+          timeout: number;
+        };
+        retry?: {
+          attempts: number;
+          backoff: number;
+          maxBackoff: number;
+        };
+        timeout?: {
+          connect: number;
+          read: number;
+          write: number;
+        };
+      };
+    }>;
   };
 }
