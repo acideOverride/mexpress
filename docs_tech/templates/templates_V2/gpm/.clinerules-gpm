@@ -71,6 +71,24 @@
    - State Management
    - Git Status
 
+# Project Structure Analysis
+project_structure_analysis:
+  required_actions:
+    - Map project components
+    - Document dependencies
+    - Identify critical paths
+    - Track resource needs
+    - Analyze milestone impacts
+  validation:
+    required: true
+    timing: before_planning
+  documentation:
+    - Project structure map
+    - Component relationships
+    - Resource dependencies
+    - Timeline impacts
+    - Risk assessment
+
 # Project Focus
 1. Management Patterns
    - Project planning
@@ -96,6 +114,24 @@
    - Version control
    - Git integration
 
+# Incremental Milestone Management
+incremental_management:
+  rules:
+    - One milestone at a time
+    - Validate each milestone
+    - Document incrementally
+    - Track dependencies
+    - Assess impact
+  validation:
+    required: true
+    blocking: true
+  documentation:
+    - Milestone details
+    - Resource allocation
+    - Timeline impact
+    - Dependencies affected
+    - Progress tracking
+
 # Quality Gates
 1. Project Management
    - Clear objectives
@@ -112,6 +148,23 @@
    - Documentation updated
    - Changes tracked
    - Version managed
+
+# Completion Protocol
+completion_protocol:
+  requirements:
+    - All milestones documented
+    - Resources allocated
+    - Timeline defined
+    - Dependencies mapped
+    - Documentation complete
+  actions:
+    - Use attempt_completion tool
+    - Include clear result message
+    - Create next tasks if needed
+    - No waiting for instructions
+  validation:
+    required: true
+    blocking: true
 
 # Git Integration Requirements
 git_workflow:

@@ -79,6 +79,24 @@
      * Required Fixes
      * Return Instructions
 
+# Project Structure Analysis
+project_structure_analysis:
+  required_actions:
+    - Map validation components
+    - Document test relationships
+    - Identify critical validations
+    - Track coverage needs
+    - Analyze validation impacts
+  validation:
+    required: true
+    timing: before_validation
+  documentation:
+    - Validation structure map
+    - Test relationships
+    - Coverage matrix
+    - Impact assessment
+    - Risk analysis
+
 # Quality Focus
 1. Validation Patterns
    - Requirements analysis
@@ -106,6 +124,24 @@
    - Feedback generation
    - Report creation
 
+# Incremental Validation
+incremental_validation:
+  rules:
+    - One validation aspect at a time
+    - Verify each requirement
+    - Document incrementally
+    - Track dependencies
+    - Assess impact
+  validation:
+    required: true
+    blocking: true
+  documentation:
+    - Validation details
+    - Requirements status
+    - Results comparison
+    - Dependencies affected
+    - Progress tracking
+
 # Quality Gates
 1. Requirements Validation
    - Complete requirements
@@ -122,6 +158,23 @@
    - Documentation updated
    - Standards met
    - Performance verified
+
+# Completion Protocol
+completion_protocol:
+  requirements:
+    - All aspects validated
+    - Requirements verified
+    - Results compared
+    - Decision made
+    - Documentation complete
+  actions:
+    - Use attempt_completion tool
+    - Include clear result message
+    - Create next tasks if needed
+    - No waiting for instructions
+  validation:
+    required: true
+    blocking: true
 
 # Mode Chain Integration
 hierarchical_workflow:

@@ -2,6 +2,36 @@
 
 ## MANDATORY TASK HANDLING
 
+### Instruction Reading Requirements
+- Must read and acknowledge all role instructions
+- Must verify understanding of project requirements
+- Must confirm readiness for project management
+- Must document instruction compliance
+- Must validate understanding before proceeding
+
+### Project Structure Analysis
+Must perform before planning:
+1. Project Component Analysis
+   - Map project components
+   - Document dependencies
+   - Identify critical paths
+   - Track resource needs
+   - Analyze milestone impacts
+
+2. Project Organization Review
+   - Analyze workflows
+   - Review structure
+   - Map relationships
+   - Document findings
+   - Assess scalability
+
+3. Impact Assessment
+   - Identify affected areas
+   - Map dependencies
+   - Document risks
+   - Plan mitigations
+   - Track changes
+
 ### Project Milestone Header
 When defining milestones, MUST use this format:
 ```
@@ -26,6 +56,42 @@ BLOCKERS: [If Any]
 NEXT ACTIONS: [Required Steps]
 GIT STATUS: [COMMITTED/PENDING]
 ```
+
+### Incremental Milestone Protocol
+1. Milestone Management Process
+   - One milestone at a time
+   - Document details
+   - Assess impact
+   - Validate before next
+   - Track dependencies
+
+2. Milestone Validation
+   - Verify each milestone
+   - Test implications
+   - Document validation
+   - Track progress
+   - Update status
+
+3. Change Documentation
+   - Document each milestone
+   - Update related docs
+   - Track dependencies
+   - Maintain history
+   - Version control
+
+### Completion Protocol
+1. Project Completion Requirements
+   - All milestones documented
+   - Resources allocated
+   - Timeline defined
+   - Dependencies mapped
+   - Documentation complete
+
+2. Completion Actions
+   - Use attempt_completion tool
+   - Include clear result message
+   - Create next tasks if needed
+   - No waiting for instructions
 
 ### Critical Task Rules
 !! WARNING IN ORDER TO AVOID HANGING IN ROO CODE PLEASE RUN SILENT TESTS AND OUTPUT THEM INTO A FILE AS PER YOUR INSTRUCTIONS !!!

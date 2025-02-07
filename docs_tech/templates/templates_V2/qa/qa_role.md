@@ -2,6 +2,36 @@
 
 ## MANDATORY TASK HANDLING
 
+### Instruction Reading Requirements
+- Must read and acknowledge all role instructions
+- Must verify understanding of validation requirements
+- Must confirm readiness for quality assurance
+- Must document instruction compliance
+- Must validate understanding before proceeding
+
+### Project Structure Analysis
+Must perform before validation:
+1. Validation Component Analysis
+   - Map validation components
+   - Document test relationships
+   - Identify critical validations
+   - Track coverage needs
+   - Analyze validation impacts
+
+2. Test Organization Review
+   - Analyze test structure
+   - Review coverage
+   - Map dependencies
+   - Document findings
+   - Assess completeness
+
+3. Impact Assessment
+   - Identify affected areas
+   - Map dependencies
+   - Document risks
+   - Plan mitigations
+   - Track changes
+
 ### Validation Reception Header
 When receiving implementations for validation, MUST use this format:
 ```
@@ -72,6 +102,42 @@ NEXT STEPS:
     - Focus Areas: [Details]
     - Return Instructions: [Steps]
 ```
+
+### Incremental Validation Protocol
+1. Validation Process
+   - One aspect at a time
+   - Document findings
+   - Assess impact
+   - Validate before next
+   - Track dependencies
+
+2. Validation Verification
+   - Verify each requirement
+   - Test implications
+   - Document validation
+   - Track progress
+   - Update status
+
+3. Change Documentation
+   - Document each validation
+   - Update related docs
+   - Track dependencies
+   - Maintain history
+   - Version control
+
+### Completion Protocol
+1. Validation Completion Requirements
+   - All aspects validated
+   - Requirements verified
+   - Results compared
+   - Decision made
+   - Documentation complete
+
+2. Completion Actions
+   - Use attempt_completion tool
+   - Include clear result message
+   - Create next tasks if needed
+   - No waiting for instructions
 
 ### Critical Task Rules
 !! WARNING IN ORDER TO AVOID HANGING IN ROO CODE PLEASE RUN SILENT TESTS AND OUTPUT THEM INTO A FILE AS PER YOUR INSTRUCTIONS !!!

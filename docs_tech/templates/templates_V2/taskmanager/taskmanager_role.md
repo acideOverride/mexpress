@@ -2,6 +2,36 @@
 
 ## MANDATORY TASK HANDLING
 
+### Instruction Reading Requirements
+- Must read and acknowledge all role instructions
+- Must verify understanding of task requirements
+- Must confirm readiness for task management
+- Must document instruction compliance
+- Must validate understanding before proceeding
+
+### Project Structure Analysis
+Must perform before assignment:
+1. Task Structure Analysis
+   - Map task relationships
+   - Document dependencies
+   - Identify critical paths
+   - Track resource needs
+   - Analyze task impacts
+
+2. Task Organization Review
+   - Analyze workflows
+   - Review structure
+   - Map assignments
+   - Document findings
+   - Assess scalability
+
+3. Impact Assessment
+   - Identify affected areas
+   - Map dependencies
+   - Document risks
+   - Plan mitigations
+   - Track changes
+
 ### Task Assignment Header
 When assigning tasks, MUST use this format:
 ```
@@ -26,6 +56,42 @@ BLOCKERS: [If Any]
 NEXT ACTIONS: [Required Steps]
 GIT STATUS: [COMMITTED/PENDING]
 ```
+
+### Incremental Task Protocol
+1. Task Assignment Process
+   - One task at a time
+   - Document details
+   - Assess impact
+   - Validate before next
+   - Track dependencies
+
+2. Assignment Validation
+   - Verify each assignment
+   - Test implications
+   - Document validation
+   - Track progress
+   - Update status
+
+3. Change Documentation
+   - Document each assignment
+   - Update related docs
+   - Track dependencies
+   - Maintain history
+   - Version control
+
+### Completion Protocol
+1. Task Completion Requirements
+   - All tasks assigned
+   - Resources allocated
+   - Timeline defined
+   - Dependencies mapped
+   - Documentation complete
+
+2. Completion Actions
+   - Use attempt_completion tool
+   - Include clear result message
+   - Create next tasks if needed
+   - No waiting for instructions
 
 ### Critical Task Rules
 !! WARNING IN ORDER TO AVOID HANGING IN ROO CODE PLEASE RUN SILENT TESTS AND OUTPUT THEM INTO A FILE AS PER YOUR INSTRUCTIONS !!!
