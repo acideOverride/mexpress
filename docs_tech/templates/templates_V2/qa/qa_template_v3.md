@@ -75,12 +75,19 @@
             <pattern>
                 <trigger>quality_validation_started</trigger>
                 <source_phase>validation_reception</source_phase>
-                <actions>
-                    - Execute validation suite
-                    - Verify quality criteria
-                    - Document findings
-                    - Track metrics
+                <actions mandatory="true" blocking="true" skip_allowed="false">
+                    - Execute validation suite silently
+                    - Output to qa-tests.log
+                    - Verify test results
+                    - Block on test failures
+                    - Document all findings
+                    - Track all metrics
                 </actions>
+                <validation mandatory="true" blocking="true">
+                    - No proceed without test results
+                    - No validation without evidence
+                    - No acceptance with failures
+                </validation>
                 <next_phase>decision_making</next_phase>
                 <incremental_validation>
                     <rules>
@@ -197,126 +204,181 @@
     </task_workflow_management>
 
     <!-- Workflow States -->
-    <workflow_states>
-        <reception_state>
+    <workflow_states mandatory="true" skip_allowed="false">
+        <reception_state blocking="true">
             <name>RECEIVING</name>
             <from>CODE</from>
-            <requirements>
-                <requirement>Implementation complete</requirement>
-                <requirement>Tests passing</requirement>
-                <requirement>Documentation ready</requirement>
-                <requirement>Metrics available</requirement>
+            <requirements blocking="true">
+                <requirement mandatory="true">Implementation complete with evidence</requirement>
+                <requirement mandatory="true">All tests passing with logs</requirement>
+                <requirement mandatory="true">Documentation complete and verified</requirement>
+                <requirement mandatory="true">All metrics collected and validated</requirement>
             </requirements>
+            <validation blocking="true">
+                <verify_all>true</verify_all>
+                <proceed_on_fail>false</proceed_on_fail>
+                <require_evidence>true</require_evidence>
+            </validation>
         </reception_state>
 
-        <verification_state>
+        <verification_state blocking="true">
             <name>VERIFYING</name>
             <gate>[Current Gate]</gate>
-            <requirements>
-                <requirement>Access to evidence</requirement>
-                <requirement>Test environment</requirement>
-                <requirement>Monitoring tools</requirement>
-                <requirement>Documentation</requirement>
+            <requirements blocking="true">
+                <requirement mandatory="true">Complete test evidence available</requirement>
+                <requirement mandatory="true">Test environment verified</requirement>
+                <requirement mandatory="true">All monitoring tools active</requirement>
+                <requirement mandatory="true">Documentation verified</requirement>
             </requirements>
+            <validation blocking="true">
+                <verify_all>true</verify_all>
+                <proceed_on_fail>false</proceed_on_fail>
+                <require_evidence>true</require_evidence>
+            </validation>
         </verification_state>
 
-        <blocking_state>
+        <blocking_state blocking="true">
             <name>BLOCKING</name>
             <gate>[Failed Gate]</gate>
-            <requirements>
-                <requirement>Failure evidence</requirement>
-                <requirement>Impact assessment</requirement>
-                <requirement>Resolution path</requirement>
-                <requirement>Escalation plan</requirement>
+            <requirements blocking="true">
+                <requirement mandatory="true">Complete failure evidence collected</requirement>
+                <requirement mandatory="true">Full impact assessment documented</requirement>
+                <requirement mandatory="true">Clear resolution path defined</requirement>
+                <requirement mandatory="true">Escalation plan documented</requirement>
             </requirements>
+            <validation blocking="true">
+                <verify_all>true</verify_all>
+                <proceed_on_fail>false</proceed_on_fail>
+                <require_evidence>true</require_evidence>
+            </validation>
         </blocking_state>
 
-        <approval_state>
+        <approval_state blocking="true">
             <name>APPROVING</name>
             <gates>ALL_PASSED</gates>
-            <requirements>
-                <requirement>All gates verified</requirement>
-                <requirement>Evidence documented</requirement>
-                <requirement>Issues resolved</requirement>
-                <requirement>Metrics collected</requirement>
+            <requirements blocking="true">
+                <requirement mandatory="true">All gates verified with evidence</requirement>
+                <requirement mandatory="true">Complete evidence documented</requirement>
+                <requirement mandatory="true">All issues resolved and verified</requirement>
+                <requirement mandatory="true">All metrics collected and validated</requirement>
             </requirements>
+            <validation blocking="true">
+                <verify_all>true</verify_all>
+                <proceed_on_fail>false</proceed_on_fail>
+                <require_evidence>true</require_evidence>
+            </validation>
         </approval_state>
     </workflow_states>
 
     <!-- Gate Progression -->
-    <gate_progression>
-        <sequence>
-            <gate>
+    <gate_progression mandatory="true" skip_allowed="false">
+        <sequence blocking="true">
+            <gate mandatory="true">
                 <id>QG1</id>
                 <name>Architecture Compliance</name>
                 <state>QG1_VERIFICATION</state>
-                <requires>
-                    <requirement>Architecture docs</requirement>
-                    <requirement>Implementation evidence</requirement>
-                    <requirement>Pattern validation</requirement>
+                <requires blocking="true">
+                    <requirement mandatory="true">Architecture docs</requirement>
+                    <requirement mandatory="true">Implementation evidence</requirement>
+                    <requirement mandatory="true">Pattern validation</requirement>
                 </requires>
+                <validation blocking="true">
+                    <verify_all>true</verify_all>
+                    <proceed_on_fail>false</proceed_on_fail>
+                </validation>
             </gate>
 
-            <gate>
+            <gate mandatory="true">
                 <id>QG2</id>
                 <name>Performance Standards</name>
                 <state>QG2_VERIFICATION</state>
-                <requires>
-                    <requirement>Performance metrics</requirement>
-                    <requirement>Load test results</requirement>
-                    <requirement>Resource usage data</requirement>
+                <requires blocking="true">
+                    <requirement mandatory="true">Performance metrics</requirement>
+                    <requirement mandatory="true">Load test results</requirement>
+                    <requirement mandatory="true">Resource usage data</requirement>
                 </requires>
+                <validation blocking="true">
+                    <verify_all>true</verify_all>
+                    <proceed_on_fail>false</proceed_on_fail>
+                </validation>
             </gate>
 
-            <gate>
+            <gate mandatory="true">
                 <id>QG3</id>
                 <name>Security Requirements</name>
                 <state>QG3_VERIFICATION</state>
-                <requires>
-                    <requirement>Security scan results</requirement>
-                    <requirement>Authentication tests</requirement>
-                    <requirement>Authorization checks</requirement>
+                <requires blocking="true">
+                    <requirement mandatory="true">Security scan results</requirement>
+                    <requirement mandatory="true">Authentication tests</requirement>
+                    <requirement mandatory="true">Authorization checks</requirement>
                 </requires>
+                <validation blocking="true">
+                    <verify_all>true</verify_all>
+                    <proceed_on_fail>false</proceed_on_fail>
+                </validation>
             </gate>
 
-            <gate>
+            <gate mandatory="true">
                 <id>QG4</id>
                 <name>Integration Verification</name>
                 <state>QG4_VERIFICATION</state>
-                <requires>
-                    <requirement>Integration tests</requirement>
-                    <requirement>Service communication</requirement>
-                    <requirement>Error handling</requirement>
+                <requires blocking="true">
+                    <requirement mandatory="true">Integration tests</requirement>
+                    <requirement mandatory="true">Service communication</requirement>
+                    <requirement mandatory="true">Error handling</requirement>
                 </requires>
+                <validation blocking="true">
+                    <verify_all>true</verify_all>
+                    <proceed_on_fail>false</proceed_on_fail>
+                </validation>
             </gate>
         </sequence>
 
-        <transitions>
-            Reception → QG1 → QG2 → QG3 → QG4 → Approval
-                       ↓      ↓      ↓      ↓
-                    Blocking State (if fails)
-                       ↓      ↓      ↓      ↓
-                    Resolution Verification
+        <transitions mandatory="true" blocking="true" skip_allowed="false">
+            <sequence mandatory="true">
+                Reception → QG1 → QG2 → QG3 → QG4 → Approval
+                           ↓      ↓      ↓      ↓
+                        Blocking State (if fails)
+                           ↓      ↓      ↓      ↓
+                        Resolution Verification
+            </sequence>
+            <rules blocking="true">
+                <rule>Must follow sequence exactly</rule>
+                <rule>No skipping gates</rule>
+                <rule>Must block on failures</rule>
+                <rule>Must verify resolution before proceeding</rule>
+            </rules>
         </transitions>
 
-        <recovery>
+        <recovery mandatory="true" blocking="true">
             <on_gate_failure>
-                <steps>
-                    <step>Document failure</step>
-                    <step>Collect evidence</step>
-                    <step>Block progression</step>
-                    <step>Track resolution</step>
-                    <step>Re-verify</step>
+                <steps mandatory="true" blocking="true">
+                    <step mandatory="true">Document failure with evidence</step>
+                    <step mandatory="true">Collect all test results</step>
+                    <step mandatory="true">Block progression immediately</step>
+                    <step mandatory="true">Track resolution status</step>
+                    <step mandatory="true">Re-verify with full evidence</step>
                 </steps>
+                <validation blocking="true">
+                    <verify_all>true</verify_all>
+                    <proceed_on_fail>false</proceed_on_fail>
+                    <require_evidence>true</require_evidence>
+                </validation>
             </on_gate_failure>
 
             <on_resolution>
-                <steps>
-                    <step>Verify fix</step>
-                    <step>Update evidence</step>
-                    <step>Document resolution</step>
-                    <step>Resume progression</step>
+                <steps mandatory="true" blocking="true">
+                    <step mandatory="true">Verify fix with tests</step>
+                    <step mandatory="true">Update all evidence</step>
+                    <step mandatory="true">Document full resolution</step>
+                    <step mandatory="true">Verify gate requirements</step>
+                    <step mandatory="true">Resume with validation</step>
                 </steps>
+                <validation blocking="true">
+                    <verify_all>true</verify_all>
+                    <proceed_on_fail>false</proceed_on_fail>
+                    <require_evidence>true</require_evidence>
+                </validation>
             </on_resolution>
         </recovery>
 
@@ -339,71 +401,6 @@
 
     <!-- Validation Management -->
     <validation_management>
-        <test_results_validation>
-            <file_locations>
-                <test_results>/opt/mExpress/coverage/test-results.json</test_results>
-                <coverage_metrics>/opt/mExpress/coverage/coverage-summary.json</coverage_metrics>
-                <changes_tracking>/opt/mExpress/coverage/changes.json</changes_tracking>
-            </file_locations>
-
-            <validation_sequence>
-                <step order="1" blocking="true">
-                    <name>Check Test Results</name>
-                    <file>test-results.json</file>
-                    <checks>
-                        - Total tests count
-                        - Failed tests count
-                        - Runtime errors count
-                        - Failed suites count
-                    </checks>
-                </step>
-
-                <step order="2" blocking="true">
-                    <name>Verify Coverage</name>
-                    <file>coverage-summary.json</file>
-                    <checks>
-                        - Compare metrics against requirements
-                        - Verify threshold compliance
-                        - Document coverage gaps
-                    </checks>
-                </step>
-
-                <step order="3" blocking="true">
-                    <name>Compare Requirements</name>
-                    <source>CODE handoff header</source>
-                    <checks>
-                        - Coverage requirements met
-                        - TDD compliance verified
-                        - Tool requirements met
-                        - Environment requirements met
-                    </checks>
-                </step>
-            </validation_sequence>
-
-            <decision_criteria>
-                <accept>
-                    - All files present and valid
-                    - No test failures detected
-                    - Coverage requirements met
-                    - All compliance checks passed
-                </accept>
-                <reject>
-                    - Missing test result files
-                    - Any test failures found
-                    - Coverage below requirements
-                    - Non-compliant implementation
-                </reject>
-            </decision_criteria>
-
-            <critical_rules>
-                - Check test-results.json first
-                - Block without coverage-summary.json
-                - Reject on any test failures
-                - Require all metrics to meet thresholds
-                - Block if required files missing
-            </critical_rules>
-        </test_results_validation>
-
         <criteria>
             <category>
                 <name>implementation</name>

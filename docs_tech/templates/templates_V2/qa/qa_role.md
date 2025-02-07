@@ -170,28 +170,7 @@ Must link:
 
 ### 3. Validation Requirements
 Must:
-1. Test Results Validation
-   - Check test-results.json first
-     * Total tests count
-     * Failed tests count
-     * Runtime errors count
-     * Failed suites count
-   - Verify coverage-summary.json
-     * Compare against requirements
-     * Verify threshold compliance
-     * Document any gaps
-   - Compare with requirements
-     * Coverage metrics met
-     * TDD compliance verified
-     * Tool requirements met
-     * Environment requirements met
-   - Critical Rules:
-     * Block without test files
-     * Reject on test failures
-     * Require metrics compliance
-     * Document all findings
-
-2. Requirements Analysis
+1. Requirements Analysis
    - Review original requirements
    - Verify completeness
    - Check thresholds
