@@ -15,7 +15,14 @@
 - Workflow continuation
 
 # Documentation Location
-/opt/mExpress/docs/git/
+Primary: /opt/mExpress/docs/git/
+Operational: /opt/mExpress/docs_tech/git_ops/
+Read access: all directories
+Write access: 
+  - git directory
+  - .git/
+  - docs_tech/git_ops/
+Must link: commit history, branch structure, merge documentation
 
 # Required Documents
 1. repository-management.md
@@ -82,6 +89,18 @@
    - Health Checks
    - Optimization Plans
    - Maintenance Schedule
+
+# Operational Files Location
+operational_files:
+  directory: /opt/mExpress/docs_tech/git_ops/
+  contents:
+    - Commit message templates
+    - Git operation logs
+    - Workflow state files
+    - Return flow tracking
+  purpose: "Separate operational files from technical specifications"
+  access: "Write access for git operations"
+  validation: "Required for all git operations"
 
 # Project Structure Analysis
 project_structure_analysis:
