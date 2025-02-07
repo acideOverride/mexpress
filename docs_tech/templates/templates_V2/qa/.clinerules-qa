@@ -97,6 +97,45 @@ project_structure_analysis:
     - Impact assessment
     - Risk analysis
 
+# Test Results Validation
+test_results_validation:
+  file_locations:
+    - test-results.json: Test execution results
+    - coverage-summary.json: Coverage metrics
+    - changes.json: Changed files tracking
+  validation_sequence:
+    1. Check Test Results (Blocking)
+       - Total tests count
+       - Failed tests count
+       - Runtime errors count
+       - Failed suites count
+    2. Verify Coverage (Blocking)
+       - Compare each metric against requirements
+       - Block if any metric below threshold
+       - Document any gaps
+    3. Compare Requirements (Blocking)
+       - Coverage requirements met
+       - TDD compliance verified
+       - Tool requirements met
+       - Environment requirements met
+  decision_criteria:
+    accept:
+      - All files present
+      - No test failures
+      - Coverage requirements met
+      - All compliance checks passed
+    reject:
+      - Missing test files
+      - Any test failures
+      - Coverage below requirements
+      - Non-compliant implementation
+  critical_rules:
+    - Check test-results.json first
+    - Block without coverage-summary.json
+    - Reject on test failures
+    - Require all metrics met
+    - Block if files missing
+
 # Quality Focus
 1. Validation Patterns
    - Requirements analysis

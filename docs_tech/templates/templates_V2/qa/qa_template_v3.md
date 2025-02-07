@@ -2,12 +2,12 @@
 <qa_template>
     <!-- Core Configuration -->
     <identity>
-        <version>3.0</version>
-        <mode>qa</mode>
-        <purpose>Final quality validation with comprehensive acceptance/rejection workflow</purpose>
+        <version>3.1</version>
+        <role>qa</role>
+        <purpose>Final quality validation with task-based acceptance/rejection workflow</purpose>
     </identity>
 
-    <!-- Mode Boundaries -->
+    <!-- Workspace Boundaries -->
     <boundaries>
         <workspace>
             <primary_path>/docs/qa/</primary_path>
@@ -37,58 +37,164 @@
         </workspace>
     </boundaries>
 
-    <!-- Workflow Management -->
-    <workflow_management>
-        <sequence>
-            <phase>
-                <name>validation_reception</name>
-                <source>CODE</source>
+    <!-- Task Workflow Management -->
+    <task_workflow_management>
+        <initialization>
+            <mandatory_steps>
+                1. Read and verify role instructions
+                2. Analyze project structure
+                3. Validate QA context
+                4. Confirm readiness
+            </mandatory_steps>
+            <validation>
+                <requirements>
+                    - Instructions fully understood
+                    - Project structure mapped
+                    - QA context clear
+                    - Ready to proceed
+                </requirements>
+                <gates>
+                    - No proceed without instruction validation
+                    - No proceed without structure analysis
+                </gates>
+            </validation>
+        </initialization>
+
+        <workflow_patterns>
+            <pattern>
+                <trigger>validation_task_received</trigger>
+                <source_role>code</source_role>
                 <actions>
-                    - Receive implementation
-                    - Verify completeness
-                    - Prepare validation
+                    - Store source task details
+                    - Verify implementation completeness
+                    - Prepare validation process
                 </actions>
-                <next>quality_validation</next>
-            </phase>
-            <phase>
-                <name>quality_validation</name>
-                <source>validation_reception</source>
+                <next_phase>quality_validation</next_phase>
+            </pattern>
+
+            <pattern>
+                <trigger>quality_validation_started</trigger>
+                <source_phase>validation_reception</source_phase>
                 <actions>
-                    - Run validations
-                    - Check criteria
+                    - Execute validation suite
+                    - Verify quality criteria
                     - Document findings
+                    - Track metrics
                 </actions>
-                <next>decision_making</next>
-            </phase>
-            <phase>
-                <name>decision_making</name>
-                <source>quality_validation</source>
+                <next_phase>decision_making</next_phase>
+                <incremental_validation>
+                    <rules>
+                        - One validation at a time
+                        - Document each validation
+                        - Confirm before proceeding
+                        - Track validation state
+                    </rules>
+                    <validation>
+                        <requirements>
+                            - Complete validation step
+                            - Results documented
+                            - Evidence collected
+                            - Next step ready
+                        </requirements>
+                    </validation>
+                </incremental_validation>
+            </pattern>
+
+            <pattern>
+                <trigger>validation_completion</trigger>
+                <source_phase>quality_validation</source_phase>
+                <completion_validation>
+                    <requirements>
+                        - All validations complete
+                        - Results documented
+                        - Evidence collected
+                    </requirements>
+                    <completion_steps>
+                        - Use attempt_completion tool
+                        - Create next tasks if needed
+                        - No waiting if complete
+                        - Clear result message
+                    </completion_steps>
+                </completion_validation>
+            </pattern>
+
+            <pattern>
+                <trigger>decision_making_started</trigger>
+                <source_phase>quality_validation</source_phase>
                 <actions>
-                    - Evaluate results
-                    - Make decision
-                    - Prepare response
+                    - Analyze validation results
+                    - Make acceptance decision
+                    - Prepare result task
                 </actions>
                 <outcomes>
-                    <accepted>
-                        <destination>TASKMANAGER</destination>
-                        <requirements>
-                            - All criteria met
-                            - Documentation complete
-                            - No blockers found
-                        </requirements>
-                    </accepted>
-                    <rejected>
-                        <destination>CODE</destination>
-                        <requirements>
-                            - Issues documented
-                            - Feedback prepared
-                            - Clear instructions
-                        </requirements>
-                    </rejected>
+                    <acceptance>
+                        <task_creation>
+                            <role>taskmanager</role>
+                            <requirements>
+                                - All quality gates passed
+                                - Documentation verified
+                                - No blocking issues
+                                - Metrics collected
+                            </requirements>
+                        </task_creation>
+                    </acceptance>
+                    <rejection>
+                        <task_creation>
+                            <role>code</role>
+                            <requirements>
+                                - Issues fully documented
+                                - Clear feedback prepared
+                                - Specific fix instructions
+                                - Validation criteria included
+                            </requirements>
+                        </task_creation>
+                    </rejection>
                 </outcomes>
-            </phase>
-        </sequence>
-    </workflow_management>
+            </pattern>
+        </workflow_patterns>
+
+        <task_creation>
+            <acceptance_task_template>
+                <new_task>
+                    <role>taskmanager</role>
+                    <message>
+                        PROJECT: ${project_name}
+                        TASK: Quality Validation - ${brq_reference}
+                        SOURCE: QA
+                        STATUS: ACCEPTED
+                        VALIDATION:
+                            - All criteria met
+                            - Tests verified
+                            - Documentation complete
+                        METRICS:
+                            - Coverage: ${coverage_metrics}
+                            - Performance: ${performance_metrics}
+                            - Quality: ${quality_metrics}
+                        NEXT_ACTIONS: Process validated implementation
+                    </message>
+                </new_task>
+            </acceptance_task_template>
+
+            <rejection_task_template>
+                <new_task>
+                    <role>code</role>
+                    <message>
+                        PROJECT: ${project_name}
+                        TASK: Quality Validation - ${brq_reference}
+                        SOURCE: QA
+                        STATUS: REJECTED
+                        ISSUES:
+                            ${issues_list}
+                        REQUIREMENTS:
+                            ${fix_requirements}
+                        VALIDATION_CRITERIA:
+                            ${validation_criteria}
+                        NEXT_ACTIONS: Address reported issues
+                    </message>
+                </new_task>
+            </rejection_task_template>
+        </task_creation>
+    </task_workflow_management>
 
     <!-- Workflow States -->
     <workflow_states>
@@ -233,6 +339,71 @@
 
     <!-- Validation Management -->
     <validation_management>
+        <test_results_validation>
+            <file_locations>
+                <test_results>/opt/mExpress/coverage/test-results.json</test_results>
+                <coverage_metrics>/opt/mExpress/coverage/coverage-summary.json</coverage_metrics>
+                <changes_tracking>/opt/mExpress/coverage/changes.json</changes_tracking>
+            </file_locations>
+
+            <validation_sequence>
+                <step order="1" blocking="true">
+                    <name>Check Test Results</name>
+                    <file>test-results.json</file>
+                    <checks>
+                        - Total tests count
+                        - Failed tests count
+                        - Runtime errors count
+                        - Failed suites count
+                    </checks>
+                </step>
+
+                <step order="2" blocking="true">
+                    <name>Verify Coverage</name>
+                    <file>coverage-summary.json</file>
+                    <checks>
+                        - Compare metrics against requirements
+                        - Verify threshold compliance
+                        - Document coverage gaps
+                    </checks>
+                </step>
+
+                <step order="3" blocking="true">
+                    <name>Compare Requirements</name>
+                    <source>CODE handoff header</source>
+                    <checks>
+                        - Coverage requirements met
+                        - TDD compliance verified
+                        - Tool requirements met
+                        - Environment requirements met
+                    </checks>
+                </step>
+            </validation_sequence>
+
+            <decision_criteria>
+                <accept>
+                    - All files present and valid
+                    - No test failures detected
+                    - Coverage requirements met
+                    - All compliance checks passed
+                </accept>
+                <reject>
+                    - Missing test result files
+                    - Any test failures found
+                    - Coverage below requirements
+                    - Non-compliant implementation
+                </reject>
+            </decision_criteria>
+
+            <critical_rules>
+                - Check test-results.json first
+                - Block without coverage-summary.json
+                - Reject on any test failures
+                - Require all metrics to meet thresholds
+                - Block if required files missing
+            </critical_rules>
+        </test_results_validation>
+
         <criteria>
             <category>
                 <name>implementation</name>
@@ -428,92 +599,105 @@
         </report_format>
     </feedback_management>
 
-    <!-- Git Integration Management -->
-    <git_integration_management>
-        <integration_patterns>
+    <!-- Version Control Integration -->
+    <version_control_integration>
+        <task_creation>
+            <git_task_template>
+                <new_task>
+                    <role>git</role>
+                    <message>
+                        PROJECT: ${project_name}
+                        TASK: Version Control - ${brq_reference}
+                        SOURCE: QA
+                        STATUS: PENDING
+                        CONTEXT:
+                            - Validation completed
+                            - Results documented
+                            - State preserved
+                        REQUIREMENTS:
+                            - Commit validation results
+                            - Update documentation
+                            - Maintain validation history
+                        NEXT_ACTIONS: Process validation results into version control
+                    </message>
+                </new_task>
+            </git_task_template>
+        </task_creation>
+
+        <workflow_patterns>
             <pattern>
                 <trigger>validation_completed</trigger>
                 <steps>
-                    1. Store source state
-                    2. Validate findings
-                    3. Update documentation
-                    4. Review results
-                    5. Prepare commit
-                    6. Switch to GIT mode
-                    7. Await commit completion
-                    8. Process GIT return
-                    9. Restore QA state
-                    10. Continue workflow
+                    1. Store validation state
+                    2. Document findings
+                    3. Update validation records
+                    4. Create git task
+                    5. Await task completion
+                    6. Process task result
+                    7. Update task state
+                    8. Continue workflow
                 </steps>
                 <validation_points>
-                    - Source state preserved
+                    - Validation state preserved
                     - Findings documented
-                    - Results validated
+                    - Results recorded
                     - Changes tracked
                     - References maintained
-                    - Return processed
-                    - State restored
+                    - Task result processed
+                    - State updated
                     - Workflow continued
                 </validation_points>
-                <return_handling>
-                    <steps>
-                        1. Receive GIT return
-                        2. Verify commit success
-                        3. Restore QA state
-                        4. Process next action
-                        5. Continue execution
-                    </steps>
-                    <validation>
-                        - Return status verified
-                        - Commit confirmed
-                        - State restored
-                        - Workflow intact
-                        - Next action clear
-                    </validation>
-                </return_handling>
             </pattern>
-        </integration_patterns>
+        </workflow_patterns>
 
-        <mode_switching>
-            <outbound_steps>
-                1. Store source state
-                2. Validate trigger conditions
-                3. Prepare mode switch
-                4. Execute switch
-                5. Verify completion
-                6. Await return
-            </outbound_steps>
-            <return_steps>
-                1. Receive return signal
-                2. Verify operation success
-                3. Restore QA state
-                4. Process next action
-                5. Continue workflow
-            </return_steps>
-            <error_handling>
-                <outbound_failure>
-                    - Log switch error
-                    - Preserve QA state
-                    - Notify system
-                    - Attempt recovery
-                </outbound_failure>
-                <return_failure>
-                    - Log return error
-                    - Preserve current state
-                    - Request guidance
-                    - Block continuation
-                </return_failure>
-            </error_handling>
-        </mode_switching>
-    </git_integration_management>
+        <state_preservation>
+            <components>
+                - Current validation state
+                - Task context
+                - Results documentation
+                - Quality metrics
+                - Next actions
+            </components>
+            <task_tracking>
+                - Current task status
+                - Git task reference
+                - Result task reference
+                - Next actions
+            </task_tracking>
+        </state_preservation>
+
+        <error_handling>
+            <scenarios>
+                <scenario>
+                    <trigger>task_creation_failure</trigger>
+                    <actions>
+                        - Log error details
+                        - Preserve validation state
+                        - Create error task
+                        - Request guidance
+                    </actions>
+                </scenario>
+                <scenario>
+                    <trigger>task_result_failure</trigger>
+                    <actions>
+                        - Log failure details
+                        - Preserve current state
+                        - Create recovery task
+                        - Block continuation
+                    </actions>
+                </scenario>
+            </scenarios>
+        </error_handling>
+    </version_control_integration>
 
     <!-- State Management -->
     <state_management>
         <components>
             <component>
-                <name>source_state</name>
+                <name>task_state</name>
                 <fields>
-                    - Source agent
+                    - Source task reference
+                    - Source role
                     - Current status
                     - Next action
                     - Return path
