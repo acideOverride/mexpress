@@ -52,6 +52,52 @@
 
     <!-- Core Workflow -->
     <core_workflow>
+        <context_management>
+            <thresholds>
+                <warning>70</warning>
+                <critical>85</critical>
+            </thresholds>
+            <monitoring_points>
+                <debug_specific>
+                    - Before loading debug logs
+                    - Before stack trace analysis
+                    - Before loading system state
+                    - After each debug operation
+                    - Before state transitions
+                </debug_specific>
+                <data_handling>
+                    - Load logs incrementally
+                    - Process stack traces in chunks
+                    - Stream system state data
+                    - Use pagination for large outputs
+                    - Clear non-essential context regularly
+                </data_handling>
+            </monitoring_points>
+            <actions>
+                <at_warning>
+                    - Complete current debug operation
+                    - Force commit changes
+                    - Clear processed debug data
+                    - Continue with fresh context
+                    - Use incremental loading
+                </at_warning>
+                <at_critical>
+                    - Stop current operation
+                    - Force immediate commit
+                    - Clear all debug data
+                    - Start fresh debug session
+                    - Split remaining analysis
+                </at_critical>
+            </actions>
+            <prohibited_operations>
+                - Loading full debug logs at once
+                - Complete stack trace in single load
+                - Multiple debug sessions without clearing
+                - Large operations near warning threshold
+                - Any operations at critical threshold
+            </prohibited_operations>
+        </context_management>
+
         <input_processing>
             <from>code</from>
             <requirements>

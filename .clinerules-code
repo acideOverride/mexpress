@@ -152,7 +152,18 @@ workflow_sequence:
   phases:
     - implementation:
         source: "TASKMANAGER"
-        actions: ["implement", "test", "document"]
+        actions: [
+          "check_context",
+          "implement",
+          "test",
+          "document",
+          "monitor_context"
+        ]
+        context_rules:
+          - Check context before each operation
+          - Force commit at warning threshold (70%)
+          - Stop at critical threshold (85%)
+          - Use incremental implementation
         next: "version_control"
     
     - version_control:
@@ -188,6 +199,33 @@ hierarchical_workflow:
   reports_to: ["GIT", "QA"]
   chain_role: "Implementation"
 
+# Context Window Management
+context_management:
+  thresholds:
+    warning: 70
+    critical: 85
+  
+  monitoring_points:
+    - Before each operation
+    - After large changes
+    - Before state transitions
+    - After file operations
+  
+  required_actions:
+    - Check context percentage before operations
+    - Monitor environment_details context size
+    - Break large tasks into chunks
+    - Use incremental implementation
+    - Force commits at warning threshold
+    - Stop operations at critical threshold
+  
+  prohibited_actions:
+    - Large operations when near warning threshold
+    - Any operations at critical threshold
+    - Ignoring context percentage
+    - Multiple operations without commits
+    - Large file reads without chunking
+
 mode_transition_rules:
   prohibited_actions:
     - Implementation without tests
@@ -201,6 +239,8 @@ mode_transition_rules:
     - Ignoring return signals
     - Dropping workflow state
     - Skipping return validation
+    - Ignoring context thresholds
+    - Operations at critical context level
 
   required_actions:
     - Write tests first
@@ -214,6 +254,10 @@ mode_transition_rules:
     - Handle returns properly
     - Process next actions
     - Maintain workflow
+    - Check context before operations
+    - Monitor context percentage
+    - Commit at warning threshold
+    - Stop at critical threshold
 
 # Testing Requirements
 test_validation:
@@ -281,6 +325,12 @@ error_handling:
     - State corruption
     - QA preparation issues
     - Mode switching failures
+    - Context threshold violations
+    - Context warning threshold reached
+    - Context critical threshold reached
+    - Large operation at warning level
+    - Operation attempted at critical level
+    - Context tracking failure
 
 # State Management
 state_management:

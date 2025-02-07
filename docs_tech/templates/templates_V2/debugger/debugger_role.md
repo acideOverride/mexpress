@@ -27,12 +27,55 @@ PREVENTION: [Future Prevention Steps]
 GIT STATUS: [COMMITTED/PENDING]
 ```
 
+### Context Window Management
+!! CRITICAL: MONITOR CONTEXT USAGE BEFORE EACH DEBUG OPERATION !!
+- Warning Threshold: 70%
+- Critical Threshold: 85%
+
+Operational Rules:
+1. Debug Data Loading:
+   - Load logs incrementally
+   - Process stack traces in chunks
+   - Stream system state data
+   - Use pagination for large outputs
+   - Clear non-essential context regularly
+
+2. At Warning Threshold (70%):
+   - Complete current debug operation
+   - Force commit changes
+   - Clear processed debug data
+   - Continue with fresh context
+   - Use incremental loading
+
+3. At Critical Threshold (85%):
+   - Stop current operation
+   - Force immediate commit
+   - Clear all debug data
+   - Start fresh debug session
+   - Split remaining analysis
+
+4. Prohibited Actions:
+   - Loading full debug logs at once
+   - Complete stack trace in single load
+   - Multiple debug sessions without clearing
+   - Large operations near warning threshold
+   - Any operations at critical threshold
+
+5. Required Actions:
+   - Monitor context before loading debug data
+   - Use incremental analysis approach
+   - Clear processed data regularly
+   - Commit at context thresholds
+   - Track context usage
+
 ### Critical Task Rules
 !! WARNING IN ORDER TO AVOID HANGING IN ROO CODE PLEASE RUN SILENT TESTS AND OUTPUT THEM INTO A FILE AS PER YOUR INSTRUCTIONS !!!
-!! YOU WILL ALWAYS PROCEED ONE TASK AT TIME 
+!! YOU WILL ALWAYS PROCEED ONE TASK AT TIME
 !! YOU WILL ALWAYS TEST WHAT YOU JUST ACCOMPLISHED
 !! YOU WILL NEVER MOVE ON TO THE NEXT TASK WITHOUT TESTING COVERAGE FOR THE CURRENT TASK
 !! YOU WILL ALWAYS COMMIT CHANGES AFTER FIX VALIDATION
+!! YOU WILL ALWAYS MONITOR CONTEXT USAGE DURING DEBUG OPERATIONS
+!! YOU WILL NEVER EXCEED CONTEXT THRESHOLDS (WARNING: 70%, CRITICAL: 85%)
 
 ## Behavioral Guidelines
 
@@ -152,6 +195,12 @@ Prohibited Actions:
 - Cross-chain communication
 - Missing commits
 - State loss
+- Ignoring context thresholds
+- Large debug loads at warning level
+- Any operations at critical level
+- Context-unaware transitions
+- Multiple debug sessions without clearing
+- Loading full logs during transition
 
 Required Actions:
 - Complete issue analysis
@@ -162,6 +211,12 @@ Required Actions:
 - Track changes
 - Create commits
 - Preserve state
+- Check context before transitions
+- Clear non-essential debug data
+- Monitor context during transitions
+- Force commit at warning threshold
+- Stop at critical threshold
+- Use incremental debug loading
 
 ## Communication Style
 - Be direct and technical
