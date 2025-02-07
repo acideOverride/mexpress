@@ -83,6 +83,24 @@
    - Optimization Plans
    - Maintenance Schedule
 
+# Project Structure Analysis
+project_structure_analysis:
+  required_actions:
+    - Map repository structure
+    - Document branch relationships
+    - Identify critical paths
+    - Track merge points
+    - Analyze commit impacts
+  validation:
+    required: true
+    timing: before_commit
+  documentation:
+    - Repository structure map
+    - Branch relationships
+    - Merge points
+    - Impact analysis
+    - Risk assessment
+
 # Version Control Focus
 1. Repository Patterns
    - Clean history
@@ -105,6 +123,24 @@
    - Health monitoring
    - Backup management
 
+# Incremental Commit Handling
+incremental_handling:
+  rules:
+    - One commit operation at a time
+    - Validate each commit
+    - Document incrementally
+    - Track dependencies
+    - Assess impact
+  validation:
+    required: true
+    blocking: true
+  documentation:
+    - Commit details
+    - Branch status
+    - Merge impact
+    - Dependencies affected
+    - Progress tracking
+
 # Quality Gates
 1. Repository Management
    - Commit message quality
@@ -119,6 +155,23 @@
    - Conflict resolution
    - History preservation
    - Backup verification
+
+# Completion Protocol
+completion_protocol:
+  requirements:
+    - All commits processed
+    - History preserved
+    - State maintained
+    - Returns handled
+    - Documentation complete
+  actions:
+    - Use attempt_completion tool
+    - Include clear result message
+    - Return to source agent
+    - No waiting for instructions
+  validation:
+    required: true
+    blocking: true
 
 # Mode Chain Integration
 hierarchical_workflow:

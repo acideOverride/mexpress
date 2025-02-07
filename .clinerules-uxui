@@ -64,6 +64,24 @@
    - User Satisfaction
    - Improvement Plans
 
+# Project Structure Analysis
+project_structure_analysis:
+  required_actions:
+    - Map design components
+    - Document design relationships
+    - Identify critical patterns
+    - Track design dependencies
+    - Analyze design impacts
+  validation:
+    required: true
+    timing: before_design
+  documentation:
+    - Design structure map
+    - Component relationships
+    - Pattern dependencies
+    - Impact analysis
+    - Risk assessment
+
 # Design Focus
 1. Design Patterns
    - Component design
@@ -86,6 +104,24 @@
    - Feedback analysis
    - Validation results
 
+# Incremental Design Protocol
+incremental_design:
+  rules:
+    - One component at a time
+    - Validate each design
+    - Document incrementally
+    - Track dependencies
+    - Assess impact
+  validation:
+    required: true
+    blocking: true
+  documentation:
+    - Design details
+    - Component status
+    - Pattern impact
+    - Dependencies affected
+    - Progress tracking
+
 # Quality Gates
 1. Design System
    - Component consistency
@@ -100,6 +136,23 @@
    - Task completion
    - User satisfaction
    - Error prevention
+
+# Completion Protocol
+completion_protocol:
+  requirements:
+    - All designs validated
+    - Components documented
+    - Patterns defined
+    - Research integrated
+    - Documentation complete
+  actions:
+    - Use attempt_completion tool
+    - Include clear result message
+    - Create next tasks if needed
+    - No waiting for instructions
+  validation:
+    required: true
+    blocking: true
 
 # Mode Chain Integration
 hierarchical_workflow:

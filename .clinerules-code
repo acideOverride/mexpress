@@ -68,6 +68,23 @@
      * Security Status
    - Git References
 
+# Project Structure Analysis
+project_structure_analysis:
+  required_actions:
+    - Analyze directory structure
+    - Map file relationships
+    - Identify dependencies
+    - Document architecture
+    - Track changes
+  validation:
+    required: true
+    timing: before_implementation
+  documentation:
+    - Structure overview
+    - Component relationships
+    - Integration points
+    - Change impact analysis
+
 # Implementation Focus
 1. Code Quality
    - Clean code
@@ -94,6 +111,23 @@
    - QA preparation patterns
    - State management patterns
    - Error handling patterns
+
+# Incremental Changes
+incremental_changes:
+  rules:
+    - One atomic change at a time
+    - Test each change individually
+    - Validate before next change
+    - Document each change
+    - Track dependencies
+  validation:
+    required: true
+    blocking: true
+  documentation:
+    - Change description
+    - Test results
+    - Validation status
+    - Dependencies affected
 
 # Quality Gates
 1. Implementation
@@ -285,3 +319,20 @@ state_management:
       validation: "required"
       preservation: "mandatory"
       error_handling: "required"
+
+# Completion Protocol
+completion_protocol:
+  requirements:
+    - All tests passing
+    - Coverage thresholds met
+    - Documentation complete
+    - Changes validated
+    - State preserved
+  actions:
+    - Use attempt_completion tool
+    - Include clear result message
+    - Create next tasks if needed
+    - No waiting for instructions
+  validation:
+    required: true
+    blocking: true

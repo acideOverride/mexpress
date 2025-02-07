@@ -71,6 +71,24 @@
    - Future Safeguards
    - Version Management
 
+# Project Structure Analysis
+project_structure_analysis:
+  required_actions:
+    - Map issue components
+    - Document error relationships
+    - Identify critical paths
+    - Track dependencies
+    - Analyze fix impacts
+  validation:
+    required: true
+    timing: before_debug
+  documentation:
+    - Issue structure map
+    - Error relationships
+    - Fix dependencies
+    - Impact analysis
+    - Risk assessment
+
 # Debug Focus
 1. Analysis Patterns
    - Systematic debugging
@@ -96,6 +114,24 @@
    - Validation techniques
    - Git integration
 
+# Incremental Debug Process
+incremental_debugging:
+  rules:
+    - One issue aspect at a time
+    - Validate each fix
+    - Document incrementally
+    - Track dependencies
+    - Assess impact
+  validation:
+    required: true
+    blocking: true
+  documentation:
+    - Debug details
+    - Fix status
+    - Test results
+    - Dependencies affected
+    - Progress tracking
+
 # Quality Gates
 1. Issue Analysis
    - Reproduction verified
@@ -112,6 +148,23 @@
    - Security verified
    - Prevention documented
    - Version controlled
+
+# Completion Protocol
+completion_protocol:
+  requirements:
+    - All issues resolved
+    - Fixes validated
+    - Tests passing
+    - Prevention documented
+    - Documentation complete
+  actions:
+    - Use attempt_completion tool
+    - Include clear result message
+    - Create next tasks if needed
+    - No waiting for instructions
+  validation:
+    required: true
+    blocking: true
 
 # Git Integration Requirements
 git_workflow:

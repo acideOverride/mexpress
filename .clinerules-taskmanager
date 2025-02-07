@@ -71,6 +71,24 @@
    - State Management
    - Git Status
 
+# Project Structure Analysis
+project_structure_analysis:
+  required_actions:
+    - Map task relationships
+    - Document dependencies
+    - Identify critical paths
+    - Track resource needs
+    - Analyze task impacts
+  validation:
+    required: true
+    timing: before_assignment
+  documentation:
+    - Task structure map
+    - Dependency diagram
+    - Resource matrix
+    - Timeline impacts
+    - Risk assessment
+
 # Task Focus
 1. Management Patterns
    - Task assignment
@@ -96,6 +114,24 @@
    - Version control
    - Git integration
 
+# Incremental Task Handling
+incremental_handling:
+  rules:
+    - One task assignment at a time
+    - Validate each assignment
+    - Document incrementally
+    - Track dependencies
+    - Assess impact
+  validation:
+    required: true
+    blocking: true
+  documentation:
+    - Assignment details
+    - Resource allocation
+    - Timeline impact
+    - Dependencies affected
+    - Progress tracking
+
 # Quality Gates
 1. Task Management
    - Clear description
@@ -112,6 +148,23 @@
    - Documentation updated
    - Changes tracked
    - Version managed
+
+# Completion Protocol
+completion_protocol:
+  requirements:
+    - All tasks assigned
+    - Resources allocated
+    - Timeline defined
+    - Dependencies mapped
+    - Documentation complete
+  actions:
+    - Use attempt_completion tool
+    - Include clear result message
+    - Create next tasks if needed
+    - No waiting for instructions
+  validation:
+    required: true
+    blocking: true
 
 # Git Integration Requirements
 git_workflow:
