@@ -1,13 +1,12 @@
-E. PROCESS AND WORKFLOW
+# PROCESS AND WORKFLOW
 
-# process and workflow
+## CI/CD Test Execution Standards
 
-XVI. VERSION CONTROL GUIDELINES
-[⬆ Back to Top](#table-of-contents)
+1. Pipeline Configuration:
+```yaml
+# .github/workflows/ci.yml
+name: CI Pipeline
 
-# version control guidelines
-
-A. Git Flow Implementation
 
 1.  Branch Structure:
 
@@ -422,6 +421,92 @@ env:
   MONGODB_URI: mongodb://localhost:27017/test
   REDIS_URL: redis://localhost:6379
   JWT_SECRET: ${{ secrets.JWT_SECRET }}
+```
+
+B. Context Window Management
+
+1. CI Pipeline Context Management:
+```yaml
+# .github/workflows/ci.yml
+jobs:
+  test:
+    steps:
+      - name: Run Tests
+        run: |
+          mkdir -p logs
+          # Token-efficient test execution
+          npm run test:ci > logs/test-status.log 2> logs/test-errors.log
+
+      - name: Check Coverage
+        run: |
+          # Use text-summary instead of JSON
+          npm run test:coverage -- --coverageReporters="text-summary" > logs/coverage-summary.log
+
+      - name: Upload Minimal Logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: logs/
+          retention-days: 7
+```
+
+2. Context Thresholds:
+```yaml
+# .github/workflows/context-monitor.yml
+env:
+  CONTEXT_WARNING: 70  # Percentage threshold for warning
+  CONTEXT_CRITICAL: 85 # Percentage threshold for critical
+```
+
+3. Context Monitoring Procedures:
+```typescript
+// Monitor and manage context usage
+const contextMonitor = {
+  checkContextUsage() {
+    const currentUsage = process.memoryUsage();
+    if (currentUsage.heapUsed > CONTEXT_WARNING_THRESHOLD) {
+      // Force incremental commits
+      // Break task into smaller chunks
+      // Clear non-essential data
+    }
+    if (currentUsage.heapUsed > CONTEXT_CRITICAL_THRESHOLD) {
+      // Stop current operation
+      // Force immediate commit
+      // Clear context and restart
+    }
+  }
+};
+
+// Implementation in CI pipeline
+steps:
+  - name: Monitor Context
+    run: |
+      # Check before each major operation
+      npm run check-context
+      # If threshold exceeded, break into chunks
+      npm run chunk-tests
+```
+
+4. Context-Related Error Handling:
+```yaml
+# Error handling for context issues
+steps:
+  - name: Handle Context Errors
+    if: ${{ env.CONTEXT_USAGE > env.CONTEXT_WARNING }}
+    run: |
+      # Log warning and take action
+      echo "Context usage high (${CONTEXT_USAGE}%)"
+      # Break current operation into chunks
+      ./scripts/chunk-operation.sh
+      
+  - name: Critical Context Handler
+    if: ${{ env.CONTEXT_USAGE > env.CONTEXT_CRITICAL }}
+    run: |
+      # Emergency handling
+      echo "Context usage critical (${CONTEXT_USAGE}%)"
+      # Force save state and restart
+      ./scripts/save-state.sh
+      ./scripts/clear-context.sh
 ```
 
 B. Quality Gates Implementation

@@ -314,3 +314,134 @@ This expanded section:
 - Includes performance considerations
 - Demonstrates error handling
 - Shows state management patterns
+
+G. Test Development Principles
+
+1. Token-Efficient Testing
+```typescript
+// Good Example - Minimal Output
+describe('UserService', () => {
+  test('should validate credentials', async () => {
+    const result = await service.validate(validInput);
+    expect(result).toBe(true);
+  });
+});
+
+// Bad Example - Verbose Output
+describe('UserService', () => {
+  test('should validate credentials', async () => {
+    console.log('Testing validation...'); // Avoid console output
+    const result = await service.validate(validInput);
+    console.log('Result:', result); // Avoid logging results
+    expect(result).toBe(true);
+  });
+});
+```
+
+2. Test Organization
+```typescript
+// Good Example - Focused Tests
+describe('Authentication', () => {
+  // Group related tests
+  describe('login', () => {
+    test('succeeds with valid credentials');
+    test('fails with invalid password');
+  });
+});
+
+// Bad Example - Mixed Concerns
+describe('User Tests', () => {
+  test('should do everything related to users'); // Too broad
+});
+```
+
+3. Context Management
+- Write focused, single-responsibility tests
+- Avoid console.log statements
+- Use minimal, focused assertions
+- Break large test suites into smaller files
+
+4. Token-Efficient Test Patterns
+```typescript
+// Good Example - Minimal Test Setup
+describe('UserService', () => {
+  // Shared minimal setup
+  const testUser = { id: '1', name: 'test' }; // Only required fields
+
+  test('creates user', async () => {
+    const result = await service.create(testUser);
+    expect(result.id).toBeDefined();
+  });
+});
+
+// Bad Example - Verbose Test Setup
+describe('UserService', () => {
+  // Avoid large test data
+  const testUser = {
+    id: '1',
+    name: 'test',
+    profile: { /* large nested object */ },
+    preferences: { /* more nested data */ }
+  };
+
+  beforeEach(() => {
+    console.log('Setting up test...'); // Avoid logging
+    // ... verbose setup
+  });
+});
+```
+
+5. Test Output Management
+```typescript
+// Good Example - Silent Tests
+test('processes data', async () => {
+  const result = await processor.run(data);
+  expect(result.status).toBe('success');
+});
+
+// Bad Example - Noisy Tests
+test('processes data', async () => {
+  console.time('process'); // Avoid performance logging
+  const result = await processor.run(data);
+  console.timeEnd('process');
+  console.log('Result:', result); // Avoid debug logging
+  expect(result.status).toBe('success');
+});
+```
+
+6. Test Data Management
+```typescript
+// Good Example - Minimal Test Data Factory
+const createTestUser = (overrides = {}) => ({
+  id: '1',
+  email: 'test@example.com',
+  // Only include required fields by default
+  ...overrides
+});
+
+// Use in tests
+test('updates user email', async () => {
+  const user = createTestUser();
+  const newEmail = 'new@example.com';
+  const result = await updateEmail(user.id, newEmail);
+  expect(result.email).toBe(newEmail);
+});
+
+// Bad Example - Excessive Test Data
+const fullTestUser = {
+  id: '1',
+  email: 'test@example.com',
+  profile: {
+    firstName: 'Test',
+    lastName: 'User',
+    address: {
+      street: '123 Test St',
+      city: 'Test City',
+      // ... more unnecessary data
+    }
+  },
+  preferences: {
+    // ... more unnecessary data
+  }
+};
+```
