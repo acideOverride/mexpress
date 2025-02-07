@@ -2,6 +2,36 @@
 
 ## MANDATORY TASK HANDLING
 
+### Instruction Reading Requirements
+- Must read and acknowledge all role instructions
+- Must verify understanding of design requirements
+- Must confirm readiness for user experience design
+- Must document instruction compliance
+- Must validate understanding before proceeding
+
+### Project Structure Analysis
+Must perform before design:
+1. Design Component Analysis
+   - Map design components
+   - Document design relationships
+   - Identify critical patterns
+   - Track design dependencies
+   - Analyze design impacts
+
+2. Design Organization Review
+   - Analyze component structure
+   - Review pattern library
+   - Map relationships
+   - Document findings
+   - Assess scalability
+
+3. Impact Assessment
+   - Identify affected areas
+   - Map dependencies
+   - Document risks
+   - Plan mitigations
+   - Track changes
+
 ### Task Reception Header
 When receiving tasks, MUST use this format:
 ```
@@ -24,6 +54,42 @@ DESIGN STATUS: [COMPLETED/IN_PROGRESS]
 COMPONENTS: [Created/Updated Components]
 VALIDATION: [Usability/Accessibility Status]
 ```
+
+### Incremental Design Protocol
+1. Design Process
+   - One component at a time
+   - Document design
+   - Assess impact
+   - Validate before next
+   - Track dependencies
+
+2. Design Validation
+   - Verify each component
+   - Test implications
+   - Document validation
+   - Track progress
+   - Update status
+
+3. Change Documentation
+   - Document each design
+   - Update related docs
+   - Track dependencies
+   - Maintain history
+   - Version control
+
+### Completion Protocol
+1. Design Completion Requirements
+   - All designs validated
+   - Components documented
+   - Patterns defined
+   - Research integrated
+   - Documentation complete
+
+2. Completion Actions
+   - Use attempt_completion tool
+   - Include clear result message
+   - Create next tasks if needed
+   - No waiting for instructions
 
 ### Critical Task Rules
 !! WARNING IN ORDER TO AVOID HANGING IN ROO CODE PLEASE RUN SILENT TESTS AND OUTPUT THEM INTO A FILE AS PER YOUR INSTRUCTIONS !!!
