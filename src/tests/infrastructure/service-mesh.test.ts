@@ -1,116 +1,250 @@
-import { IstioClient } from '../lib/istio-client';
-import { MonitoringClient } from '../lib/monitoring';
-import { SecurityConfig } from '../lib/security';
-import { ServiceMeshConfig } from '../lib/config';
+import { ServiceMesh } from '../../lib/service-mesh';
+import { ServiceMeshProxy, ServiceMeshRoute, ServiceMeshPolicy } from '../../types/service-mesh-config';
 
-describe('Service Mesh Infrastructure', () => {
-    let istioClient: IstioClient;
-    let monitoringClient: MonitoringClient;
-    let securityConfig: SecurityConfig;
-    let config: ServiceMeshConfig;
-
+describe('ServiceMesh', () => {
+  describe('Configuration Setup', () => {
+    let serviceMesh: ServiceMesh;
+    
     beforeEach(() => {
-        config = new ServiceMeshConfig({
-            namespace: 'mexpress',
-            version: '1.0.0',
-            monitoring: {
-                metrics: true,
-                tracing: true
-            },
-            security: {
-                mtls: true,
-                authorization: true
+      serviceMesh = new ServiceMesh({
+        name: 'test-mesh',
+        namespace: 'default',
+        ingress: {
+          enabled: true,
+          port: 8080
+        }
+      });
+    });
+
+    test('should create valid service mesh configuration', () => {
+      const config = serviceMesh.getMeshConfig();
+      expect(config.apiVersion).toBe('v1');
+      expect(config.kind).toBe('ServiceMeshConfiguration');
+      expect(config.metadata.name).toBe('test-mesh');
+      expect(config.spec.ingress.enabled).toBe(true);
+      expect(config.spec.ingress.port).toBe(8080);
+    });
+
+    test('should throw error for invalid configuration', () => {
+      expect(() => new ServiceMesh({
+        name: '',
+        namespace: ''
+      })).toThrow('Invalid service mesh configuration');
+    });
+  });
+
+  describe('Proxy Management', () => {
+    let serviceMesh: ServiceMesh;
+    
+    beforeEach(() => {
+      serviceMesh = new ServiceMesh({
+        name: 'test-mesh',
+        namespace: 'default',
+        proxies: [{
+          name: 'api-proxy',
+          port: 9000,
+          protocol: 'http',
+          timeout: 5000,
+          retries: 3,
+          circuitBreaker: {
+            enabled: true,
+            threshold: 0.5,
+            interval: 30,
+            timeout: 60
+          }
+        }]
+      });
+    });
+
+    test('should configure proxy with circuit breaker', () => {
+      const config = serviceMesh.getMeshConfig();
+      const proxy = config.spec.proxies[0];
+      expect(proxy.name).toBe('api-proxy');
+      expect(proxy.port).toBe(9000);
+      expect(proxy.circuitBreaker.enabled).toBe(true);
+      expect(proxy.circuitBreaker.threshold).toBe(0.5);
+    });
+
+    test('should validate proxy configuration', () => {
+      expect(() => serviceMesh.addProxy({
+        name: '',
+        port: -1,
+        protocol: 'invalid' as any,
+        timeout: 0,
+        retries: -1,
+        circuitBreaker: {
+          enabled: true,
+          threshold: 2,
+          interval: -1,
+          timeout: 0
+        }
+      })).toThrow('Invalid proxy configuration');
+    });
+  });
+
+  describe('Route Management', () => {
+    let serviceMesh: ServiceMesh;
+    
+    beforeEach(() => {
+      serviceMesh = new ServiceMesh({
+        name: 'test-mesh',
+        namespace: 'default',
+        routes: [{
+          name: 'api-route',
+          path: '/api/v1',
+          method: 'GET',
+          service: 'api-service',
+          timeout: 5000,
+          retries: 3,
+          loadBalancer: {
+            type: 'round-robin',
+            weight: 1
+          }
+        }]
+      });
+    });
+
+    test('should configure route with load balancer', () => {
+      const config = serviceMesh.getMeshConfig();
+      const route = config.spec.routes[0];
+      expect(route.name).toBe('api-route');
+      expect(route.path).toBe('/api/v1');
+      expect(route.loadBalancer.type).toBe('round-robin');
+    });
+
+    test('should validate route configuration', () => {
+      expect(() => serviceMesh.addRoute({
+        name: '',
+        path: '',
+        method: 'INVALID' as any,
+        service: '',
+        timeout: -1,
+        retries: -1,
+        loadBalancer: {
+          type: 'invalid' as any
+        }
+      })).toThrow('Invalid route configuration');
+    });
+  });
+
+  describe('Policy Management', () => {
+    let serviceMesh: ServiceMesh;
+    
+    beforeEach(() => {
+      serviceMesh = new ServiceMesh({
+        name: 'test-mesh',
+        namespace: 'default',
+        policies: [{
+          name: 'rate-limit-policy',
+          type: 'rate-limit',
+          scope: 'global',
+          config: {
+            rateLimit: {
+              requests: 1000,
+              interval: 60,
+              burst: 100
             }
-        });
-        istioClient = new IstioClient(config);
-        monitoringClient = new MonitoringClient(config);
-        securityConfig = new SecurityConfig(config);
+          }
+        }]
+      });
     });
 
-    describe('Istio Deployment', () => {
-        test('should deploy Istio control plane', async () => {
-            const result = await istioClient.deployControlPlane();
-            expect(result.status).toBe('success');
-            expect(result.components).toContain('istiod');
-            expect(result.components).toContain('ingress-gateway');
-        });
-
-        test('should configure traffic management', async () => {
-            const trafficConfig = {
-                timeout: 1000,
-                retries: 3,
-                circuitBreaker: {
-                    maxRequests: 100,
-                    consecutiveErrors: 5
-                }
-            };
-            const result = await istioClient.configureTrafficManagement(trafficConfig);
-            expect(result.status).toBe('success');
-            expect(result.config).toMatchObject(trafficConfig);
-        });
-
-        test('should enable distributed tracing', async () => {
-            const tracingConfig = {
-                sampling: 100,
-                exporters: ['jaeger']
-            };
-            const result = await istioClient.enableTracing(tracingConfig);
-            expect(result.status).toBe('success');
-            expect(result.sampling).toBe(100);
-            expect(result.exporters).toContain('jaeger');
-        });
+    test('should configure rate limit policy', () => {
+      const config = serviceMesh.getMeshConfig();
+      const policy = config.spec.policies[0];
+      expect(policy.name).toBe('rate-limit-policy');
+      expect(policy.type).toBe('rate-limit');
+      expect(policy.config.rateLimit?.requests).toBe(1000);
     });
 
-    describe('Monitoring Integration', () => {
-        test('should configure metrics collection', async () => {
-            const metricsConfig = {
-                prometheus: true,
-                customMetrics: ['latency', 'errors', 'requests']
-            };
-            const result = await monitoringClient.configureMetrics(metricsConfig);
-            expect(result.status).toBe('success');
-            expect(result.metrics).toContain('latency');
-        });
+    test('should validate policy configuration', () => {
+      expect(() => serviceMesh.addPolicy({
+        name: '',
+        type: 'invalid' as any,
+        scope: 'invalid' as any,
+        config: {}
+      })).toThrow('Invalid policy configuration');
+    });
+  });
 
-        test('should validate performance metrics', async () => {
-            const perfTest = await monitoringClient.runPerformanceTest();
-            expect(perfTest.responseTime).toBeLessThan(100);
-            expect(perfTest.latency).toBeLessThan(200);
-        });
+  describe('Metrics and Monitoring', () => {
+    let serviceMesh: ServiceMesh;
+    
+    beforeEach(() => {
+      serviceMesh = new ServiceMesh({
+        name: 'test-mesh',
+        namespace: 'default',
+        metrics: {
+          enabled: true,
+          interval: 15,
+          retention: 86400,
+          exporters: {
+            prometheus: {
+              enabled: true,
+              port: 9090
+            },
+            jaeger: {
+              enabled: true,
+              endpoint: 'http://jaeger:14268/api/traces',
+              samplingRate: 0.1
+            }
+          }
+        }
+      });
     });
 
-    describe('Security Configuration', () => {
-        test('should enable mTLS', async () => {
-            const mtlsResult = await securityConfig.enableMTLS();
-            expect(mtlsResult.status).toBe('success');
-            expect(mtlsResult.mode).toBe('STRICT');
-        });
-
-        test('should configure authorization policies', async () => {
-            const authzConfig = {
-                default: 'deny-all',
-                rules: [
-                    {
-                        from: 'frontend',
-                        to: 'backend',
-                        methods: ['GET', 'POST']
-                    }
-                ]
-            };
-            const result = await securityConfig.configureAuthorization(authzConfig);
-            expect(result.status).toBe('success');
-            expect(result.policies).toHaveLength(1);
-        });
+    test('should configure metrics collection', () => {
+      const config = serviceMesh.getMeshConfig();
+      expect(config.spec.metrics.enabled).toBe(true);
+      expect(config.spec.metrics.exporters.prometheus?.enabled).toBe(true);
+      expect(config.spec.metrics.exporters.jaeger?.enabled).toBe(true);
     });
 
-    describe('Integration Tests', () => {
-        test('should verify end-to-end service mesh setup', async () => {
-            const e2eTest = await istioClient.runE2ETest();
-            expect(e2eTest.status).toBe('success');
-            expect(e2eTest.components).toContain('control-plane');
-            expect(e2eTest.components).toContain('data-plane');
-            expect(e2eTest.security).toBe('enabled');
-            expect(e2eTest.monitoring).toBe('active');
-        });
+    test('should validate metrics configuration', () => {
+      expect(() => serviceMesh.updateMetrics({
+        enabled: true,
+        interval: -1,
+        retention: -1,
+        exporters: {
+          prometheus: {
+            enabled: true,
+            port: -1
+          }
+        }
+      })).toThrow('Invalid metrics configuration');
     });
+  });
+
+  describe('Service Discovery', () => {
+    let serviceMesh: ServiceMesh;
+    
+    beforeEach(() => {
+      serviceMesh = new ServiceMesh({
+        name: 'test-mesh',
+        namespace: 'default',
+        discovery: {
+          enabled: true,
+          type: 'kubernetes',
+          interval: 30,
+          ttl: 300
+        }
+      });
+    });
+
+    test('should configure service discovery', () => {
+      const config = serviceMesh.getMeshConfig();
+      expect(config.spec.discovery.enabled).toBe(true);
+      expect(config.spec.discovery.type).toBe('kubernetes');
+      expect(config.spec.discovery.interval).toBe(30);
+    });
+
+    test('should validate discovery configuration', () => {
+      expect(() => serviceMesh.updateDiscovery({
+        enabled: true,
+        type: 'invalid' as any,
+        interval: -1,
+        ttl: -1
+      })).toThrow('Invalid discovery configuration');
+    });
+  });
 });
