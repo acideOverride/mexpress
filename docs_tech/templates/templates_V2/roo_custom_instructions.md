@@ -54,7 +54,7 @@ UX/UI Mode (UXUI):
 Git Mode (GIT):
 - Primary: /opt/mExpress/docs/git/
 - Read access: all directories
-- Write access: git directory, .git/
+- Write access: git directory, .git/, docs_tech/git_ops/
 - Must link: commit history, branch structure, merge documentation
 
 # Mode Chain Integration
