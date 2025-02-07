@@ -47,12 +47,57 @@
 
     <!-- Core Workflow -->
     <core_workflow>
+        <context_management>
+            <thresholds>
+                <warning>70</warning>
+                <critical>85</critical>
+            </thresholds>
+            <monitoring>
+                <check_points>
+                    - Before each operation
+                    - After large changes
+                    - Before state transitions
+                    - After file operations
+                </check_points>
+                <actions>
+                    <at_warning>
+                        - Complete current operation
+                        - Force incremental commits
+                        - Break tasks into chunks
+                        - Avoid large operations
+                    </at_warning>
+                    <at_critical>
+                        - Stop current operation
+                        - Force immediate commit
+                        - Clear non-essential context
+                        - Restart with fresh context
+                    </at_critical>
+                </actions>
+            </monitoring>
+        </context_management>
+
         <task_validation>
+            <instruction_validation required="true">
+                <steps>
+                    1. Read role instructions
+                    2. Verify understanding
+                    3. Confirm readiness
+                </steps>
+                <on_skip>reject_task</on_skip>
+            </instruction_validation>
             <source_validation required="true">
                 <allowed_sources>["TASKMANAGER"]</allowed_sources>
                 <required_reference>BRQ-YEAR-NUMBER</required_reference>
                 <on_invalid>reject_task</on_invalid>
             </source_validation>
+            <structure_validation required="true">
+                <steps>
+                    1. Analyze project structure
+                    2. Map file locations
+                    3. Identify dependencies
+                </steps>
+                <on_skip>reject_task</on_skip>
+            </structure_validation>
             <scope_validation required="true">
                 <authorized_files>defined_in_task</authorized_files>
                 <authorized_changes>task_specific_only</authorized_changes>
@@ -124,13 +169,27 @@
                     5. Prepare documentation updates
                 </evaluation_framework>
                 <implementation_points>
+                    - Check context percentage before operation
                     - Test implementation first (TDD)
+                    - One atomic change at a time
                     - Test coverage verification
+                    - Validate before next change
                     - Code implementation only after tests
                     - Coverage thresholds validation
                     - Documentation updates
                     - Quality measures
+                    - Force commit at warning threshold (70%)
+                    - Stop and reset at critical threshold (85%)
                 </implementation_points>
+                <change_validation>
+                    <rules>
+                        - No multiple changes at once
+                        - Each change must be tested
+                        - Each change must be validated
+                        - Each change must be documented
+                    </rules>
+                    <on_violation>block_next_change</on_violation>
+                </change_validation>
                 <validation_requirements>
                     - Technical alignment
                     - Test coverage
@@ -147,7 +206,13 @@
             <pattern>
                 <trigger>implementation_validation_needed</trigger>
                 <validation_sequence>
-                    1. Test Implementation Validation
+                    1. Context Usage Validation
+                       - Check current context percentage
+                       - Monitor warning threshold (70%)
+                       - Monitor critical threshold (85%)
+                       - Prepare for context management
+
+                    2. Test Implementation Validation
                        - TDD approach verification
                        - Test cases completeness
                        - Test quality assessment
@@ -184,6 +249,12 @@
                        - Coverage thresholds met
                        - Documentation complete
                        - Performance targets achieved
+
+                    7. Task Completion Validation
+                       - Use attempt_completion tool
+                       - Include clear result message
+                       - Create next tasks if needed
+                       - No waiting for instructions
                 </validation_sequence>
                 <validation_outputs>
                     - Validation status report
@@ -444,21 +515,23 @@
         </integration_patterns>
 
         <qa_payload>
-            <components>
-                - Original requirements
-                - Implementation details
-                - Test coverage metrics
-                - Documentation status
-                - Quality gate results
-            </components>
-            <validation>
-                <requirements>
-                    - Complete payload
-                    - Clear requirements mapping
-                    - Full test results
-                    - Documentation links
-                </requirements>
-            </validation>
+            <format>
+                <req>REQ:[id]|COV:[thresholds]|ENV:[specs]</req>
+                <imp>IMP:[hash]|COV:[metrics]|DOC:[refs]</imp>
+                <log>qa-payload.log</log>
+            </format>
+            <rules>
+                - Use short keys
+                - Store refs not data
+                - Keep metrics minimal
+                - Log details separately
+                - Clear after handoff
+            </rules>
+            <cleanup>
+                - Archive payload
+                - Clear raw data
+                - Rotate logs daily
+            </cleanup>
         </qa_payload>
     </qa_integration_management>
 
@@ -832,6 +905,31 @@
         <!-- Error Handling Extension -->
         <error_handling>
             <error_types>
+                <context_errors>
+                    <type>
+                        <name>context_warning</name>
+                        <severity>medium</severity>
+                        <description>Context usage at warning threshold (70%)</description>
+                        <recovery>
+                            - Complete current operation
+                            - Force incremental commit
+                            - Break task into chunks
+                            - Continue with fresh context
+                        </recovery>
+                    </type>
+                    <type>
+                        <name>context_critical</name>
+                        <severity>high</severity>
+                        <description>Context usage at critical threshold (85%)</description>
+                        <recovery>
+                            - Stop current operation
+                            - Force immediate commit
+                            - Clear non-essential context
+                            - Restart with fresh context
+                        </recovery>
+                    </type>
+                </context_errors>
+
                 <boundary_errors>
                     <type>
                         <name>path_violation</name>
@@ -971,20 +1069,22 @@
             <error_reporting>
                 <formats>
                     <error_log>
-                        <template>
-                            # Error Report
-                            - Type: ${error_type}
-                            - Severity: ${severity}
-                            - Context: ${context}
-                            - Recovery: ${recovery_action}
-                            - Status: ${status}
-                        </template>
+                        <template>E:${type}|S:${sev}|R:${rec}|ST:${status}</template>
+                        <rules>
+                            - Use short keys
+                            - Omit context
+                            - Pipe delimited
+                            - No line breaks
+                        </rules>
                     </error_log>
                     <user_message>
-                        <template>
-                            Error: ${user_friendly_message}
-                            Action: ${suggested_action}
-                        </template>
+                        <template>${code}:${action}</template>
+                        <rules>
+                            - Use error codes
+                            - Short actions
+                            - One line only
+                            - No formatting
+                        </rules>
                     </user_message>
                 </formats>
                 <channels>
@@ -1092,97 +1192,76 @@
                 <test_command_integration>
                     <tool>
                         <name>execute_command</name>
-                        <purpose>Silent test execution with file output</purpose>
+                        <purpose>silent_test_execution</purpose>
                         <commands>
-                            <command>
-                                <name>full_suite</name>
-                                <execute>cd /opt/mExpress && npx jest --silent --coverage --json --outputFile=coverage/coverage.json > /dev/null 2>&1</execute>
-                                <output_handling>file_only</output_handling>
-                            </command>
-                            <command>
-                                <name>changed_files</name>
-                                <execute>cd /opt/mExpress && npx jest --silent --onlyChanged --json --outputFile=coverage/changes.json > /dev/null 2>&1</execute>
-                                <output_handling>file_only</output_handling>
-                            </command>
-                            <command>
-                                <name>type_check</name>
-                                <execute>cd /opt/mExpress && npx tsc --noEmit --pretty false > logs/type-check.log 2>&1</execute>
-                                <output_handling>file_only</output_handling>
-                            </command>
-                            <command>
-                                <name>lint_check</name>
-                                <execute>cd /opt/mExpress && npx eslint . --quiet --format json --output-file logs/lint.json > /dev/null 2>&1</execute>
-                                <output_handling>file_only</output_handling>
-                            </command>
+                            <test>
+                                <cmd>jest --silent --json --noLocation --out=test.json</cmd>
+                                <log>test.log</log>
+                            </test>
+                            <coverage>
+                                <cmd>jest --silent --coverage --summary --out=cov.json</cmd>
+                                <log>cov.log</log>
+                            </coverage>
+                            <changes>
+                                <cmd>jest --silent --changed --json --out=chg.json</cmd>
+                                <log>chg.log</log>
+                            </changes>
+                            <types>
+                                <cmd>tsc --noEmit --noLog</cmd>
+                                <log>type.log</log>
+                            </types>
+                            <lint>
+                                <cmd>eslint --quiet --json --out=lint.json</cmd>
+                                <log>lint.log</log>
+                            </lint>
                         </commands>
                     </tool>
                 </test_command_integration>
 
                 <output_structure>
-                    <directories>
-                        <directory>
-                            <path>/opt/mExpress/coverage</path>
-                            <files>
-                                - coverage.json
-                                - changes.json
-                                - summary.json
-                            </files>
-                        </directory>
-                        <directory>
-                            <path>/opt/mExpress/logs</path>
-                            <files>
-                                - type-check.log
-                                - lint.json
-                                - test-runs.log
-                                - errors.json
-                            </files>
-                        </directory>
-                    </directories>
+                    <logs>
+                        <test>test.json,cov.json,chg.json</test>
+                        <check>type.log,lint.log</check>
+                        <error>err.json</error>
+                    </logs>
+                    <format>
+                        - Use JSON for metrics
+                        - Keep logs minimal
+                        - Store summaries only
+                        - Clear after processing
+                    </format>
+                    <cleanup>
+                        - Rotate logs daily
+                        - Archive summaries
+                        - Remove raw data
+                    </cleanup>
                 </output_structure>
 
                 <test_result_processing>
-                    <error_monitoring>
-                        <file_watchers>
-                            <watcher>
-                                <files>
-                                    - coverage/coverage.json
-                                    - logs/type-check.log
-                                    - logs/lint.json
-                                </files>
-                                <on_change>
-                                    <action>process_errors</action>
-                                    <notification>changes_only</notification>
-                                </on_change>
-                            </watcher>
-                        </file_watchers>
-                    </error_monitoring>
+                    <monitor>
+                        <watch>test.json,cov.json,type.log</watch>
+                        <on_change>process_minimal</on_change>
+                    </monitor>
 
-                    <patterns>
-                        <pattern>
+                    <extract>
+                        <fail>
                             <match>FAIL</match>
-                            <extraction>
-                                <fields>
-                                    <field>Test name</field>
-                                    <field>Expected vs Actual</field>
-                                    <field>File location</field>
-                                </fields>
-                                <format>json</format>
-                                <output_file>logs/errors.json</output_file>
-                            </extraction>
-                        </pattern>
-                        <pattern>
+                            <data>name,expect,loc</data>
+                            <out>err.json</out>
+                        </fail>
+                        <error>
                             <match>TypeError</match>
-                            <extraction>
-                                <fields>
-                                    <field>Error message</field>
-                                    <field>Line number</field>
-                                    <field>Stack trace (first 3 lines)</field>
-                                </fields>
-                                <format>json</format>
-                                <output_file>logs/errors.json</output_file>
-                            </extraction>
-                        </pattern>
-                    </patterns>
+                            <data>msg,line,stack:3</data>
+                            <out>err.json</out>
+                        </error>
+                    </extract>
+
+                    <rules>
+                        - Store minimal data
+                        - Use short keys
+                        - Keep latest only
+                        - Clear after process
+                    </rules>
                 </test_result_processing>
             </automated_testing>
         </testing_extension>
