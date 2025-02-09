@@ -16,13 +16,17 @@ interface MessageQueueEvents {
 describe('MessageQueue', () => {
     let messageQueue: MessageQueue;
     let eventHandler: EventHandler;
+    let consoleErrorSpy: jest.SpyInstance;
 
     beforeEach(async () => {
+        // Silence console.error during tests since we expect errors
+        consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
         eventHandler = new EventHandler();
         messageQueue = await setupMessageQueueTest(eventHandler);
     });
 
     afterEach(async () => {
+        consoleErrorSpy.mockRestore();
         await cleanupMessageQueueTest();
     });
 
@@ -466,6 +470,141 @@ describe('MessageQueue', () => {
 
             const cachedMessage = await messageQueue.getCachedMessage(message.id);
             expect(cachedMessage?.status).toBe('processed');
+        });
+
+        test('should handle invalid operation error', async () => {
+            const message: QueuedMessage = {
+                id: 'invalid-op',
+                type: 'git-operation',
+                payload: { operation: 'invalid' },
+                priority: 1
+            };
+
+            const errorPromise = new Promise<MessageQueueEvents['message-error']>(resolve => {
+                messageQueue.on('message-error', resolve);
+            });
+
+            await messageQueue.enqueue(message);
+            await messageQueue.processQueue();
+
+            const errorEvent = await errorPromise;
+            expect(errorEvent.error.message).toBe('Invalid operation');
+            expect(errorEvent.message.status).toBe('failed');
+        });
+
+        test('should handle retry with cached message status mismatch', async () => {
+            const message: QueuedMessage = {
+                id: 'retry-status-mismatch',
+                type: 'git-operation',
+                payload: { operation: 'commit' },
+                priority: 1
+            };
+
+            let retryAttempt = 0;
+            messageQueue.on('message-processing', () => {
+                retryAttempt++;
+                if (retryAttempt === 1) {
+                    throw new Error('First attempt error');
+                }
+            });
+
+            // Track retry events
+            const retryPromise = new Promise<MessageQueueEvents['message-retry']>(resolve => {
+                messageQueue.on('message-retry', resolve);
+            });
+
+            await messageQueue.enqueue(message);
+            await messageQueue.processQueue();
+
+            // Wait for retry event
+            const retryEvent = await retryPromise;
+
+            // Manually modify cached message status to test mismatch handling
+            const cachedMessage = await messageQueue.getCachedMessage(message.id);
+            if (cachedMessage) {
+                cachedMessage.status = 'processed'; // Create status mismatch
+                await (messageQueue as any)._updateCache(message.id, cachedMessage);
+            }
+
+            // Wait for retry processing
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // Verify the message was properly handled despite status mismatch
+            const finalMessage = await messageQueue.getCachedMessage(message.id);
+            expect(finalMessage?.status).toBe('processed');
+        });
+
+        test('should handle errors in retry process', async () => {
+            const message: QueuedMessage = {
+                id: 'retry-error',
+                type: 'git-operation',
+                payload: { operation: 'commit' },
+                priority: 1
+            };
+
+            let attempts = 0;
+            messageQueue.on('message-processing', () => {
+                attempts++;
+                throw new Error(`Error in attempt ${attempts}`);
+            });
+
+            const errorPromise = new Promise<MessageQueueEvents['message-error']>(resolve => {
+                messageQueue.on('message-error', resolve);
+            });
+
+            await messageQueue.enqueue(message);
+            await messageQueue.processQueue();
+
+            // Wait for error event
+            const errorEvent = await errorPromise;
+            expect(errorEvent.error.message).toContain('Error in attempt');
+            expect(errorEvent.message.status).toBe('failed');
+        });
+
+        test('should handle production retry cleanup errors', async () => {
+            const originalEnv = process.env.NODE_ENV;
+            process.env.NODE_ENV = 'production';
+
+            try {
+                const message: QueuedMessage = {
+                    id: 'prod-retry-cleanup',
+                    type: 'git-operation',
+                    payload: { operation: 'commit' },
+                    priority: 1
+                };
+
+                // Simulate error in retry cleanup
+                messageQueue.on('message-processing', () => {
+                    throw new Error('Processing error');
+                });
+
+                // Add an invalid retry promise that's already caught
+                const invalidPromise = Promise.reject(new Error('Invalid retry promise')).catch(() => {});
+                (messageQueue as any).retryPromises.add(invalidPromise);
+
+                // Add an invalid timeout to test cleanup error handling
+                const invalidTimeout = setTimeout(() => {}, 1000);
+                (messageQueue as any).timeouts.add(invalidTimeout);
+                clearTimeout(invalidTimeout); // Make it invalid
+
+                await messageQueue.enqueue(message);
+                await messageQueue.processQueue();
+
+                // Wait for retry delay
+                await new Promise(resolve => setTimeout(resolve, 1100));
+
+                // Cleanup should handle the invalid promise and timeout without throwing
+                await messageQueue.cleanup();
+
+                const pendingMessages = await messageQueue.getPendingMessages();
+                expect(pendingMessages).toHaveLength(0);
+
+                // Verify cleanup state
+                expect(messageQueue['timeouts'].size).toBe(0);
+                expect(messageQueue['retryPromises'].size).toBe(0);
+            } finally {
+                process.env.NODE_ENV = originalEnv;
+            }
         });
 
         test('should handle invalid handler types', async () => {
