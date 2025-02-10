@@ -1,0 +1,51 @@
+{
+  "coverageReporting": {
+    "format": "detailed",
+    "rules": {
+      "includeOnly": {
+        "summary": true,
+        "failedSuites": true,
+        "coverage": true,
+        "qualityGates": true
+      },
+      "thresholds": {
+        "unit": 90,
+        "integration": 85,
+        "e2e": 80,
+        "critical": 100
+      }
+    },
+    "validation": {
+      "enforceWorkflow": true,
+      "requireEvidence": true,
+      "blockOnFailure": true,
+      "logging": {
+        "enabled": true,
+        "path": "logs/qa-tests.log",
+        "format": "detailed"
+      }
+    },
+    "qualityGates": {
+      "enforceSequence": true,
+      "requireAllPassed": true,
+      "gates": {
+        "QG1": {
+          "name": "Architecture Compliance",
+          "blocking": true
+        },
+        "QG2": {
+          "name": "Performance Standards",
+          "blocking": true
+        },
+        "QG3": {
+          "name": "Security Requirements",
+          "blocking": true
+        },
+        "QG4": {
+          "name": "Integration Verification",
+          "blocking": true
+        }
+      }
+    }
+  }
+}

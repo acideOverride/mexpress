@@ -1,16 +1,46 @@
 # Code Mode Specific Instructions
 
 # Primary Responsibilities
-- Implementation
-- Test-first development
-- Coverage maintenance
-- Documentation
-- Quality assurance
-- Error handling
-- Performance optimization
-- Security implementation
-- QA preparation
-- State management
+- Implementation (with context awareness)
+- Test-first development (token-efficient)
+- Coverage maintenance (optimized output)
+- Documentation (incremental updates)
+- Quality assurance (focused validation)
+- Error handling (minimal logging)
+- Performance optimization (context-aware)
+- Security implementation (efficient checks)
+- QA preparation (streamlined handoff)
+- State management (context preservation)
+
+# Context Management Rules
+1. Monitoring Requirements
+   - Check context before operations
+   - Track environment_details percentage
+   - Monitor warning threshold (70%)
+   - Monitor critical threshold (85%)
+   - Log minimal context data
+
+2. Operational Guidelines
+   - Use incremental implementation
+   - Break large tasks into chunks
+   - Implement one change at a time
+   - Validate changes individually
+   - Maintain minimal state
+
+3. Threshold Actions
+   At Warning Level (70%):
+   - Complete current operation only
+   - Force incremental commit
+   - Split remaining work
+   - Avoid large operations
+   - Clear non-essential data
+
+   At Critical Level (85%):
+   - Stop current operation
+   - Force immediate commit
+   - Clear context and restart
+   - Split into smaller chunks
+   - Process one chunk at a time
 
 # Documentation Location
 /opt/mExpress/docs/implementation/
@@ -270,9 +300,40 @@ test_validation:
     - QA criteria met
 
   output_handling:
-    silent_execution: true
-    output_file: "/opt/mExpress/logs/code-tests.log"
-    error_file: "/opt/mExpress/logs/code-errors.log"
+    execution_mode: "silent"
+    output_structure:
+      test_results: "/opt/mExpress/logs/test-status.log"
+      coverage_summary: "/opt/mExpress/logs/coverage-summary.log"
+      errors: "/opt/mExpress/logs/test-errors.log"
+    format_rules:
+      - Use text-summary for coverage reports
+      - Minimize stack trace information
+      - Filter out test location data
+      - Exclude debug information
+      - Compress error context
+    retention:
+      keep_latest: true
+      cleanup_old: true
+
+  result_processing:
+    format: "compact"
+    rules:
+      - Store only pass/fail status
+      - Use percentage for coverage
+      - Skip detailed test output
+      - Summarize error messages
+      - Batch similar failures
+    metrics:
+      format: "minimal"
+      include:
+        - Total tests count
+        - Failed tests count
+        - Coverage percentage
+        - Critical failures
+    cleanup:
+      - Remove debug logs
+      - Clear detailed reports
+      - Archive summaries only
 
 # Technical Vocabulary
 vocabulary_control:
@@ -309,13 +370,26 @@ vocabulary_control:
 # Error Handling
 error_handling:
   required_actions:
-    - Document errors
-    - Update logs
-    - Create reports
-    - Link documentation
-    - Track resolution
-    - Preserve state
-    - Prepare recovery
+    - Document errors (minimal format)
+    - Update logs (token-efficient)
+    - Create reports (summary only)
+    - Link documentation (essential only)
+    - Track resolution (compact format)
+    - Preserve state (critical data)
+    - Prepare recovery (focused plan)
+
+  error_format:
+    template: "E:${type}|S:${severity}|A:${action}"
+    rules:
+      - Use abbreviated keys
+      - Omit non-essential context
+      - Use pipe delimiter
+      - Skip stack traces
+      - Limit error context
+    retention:
+      - Keep latest errors only
+      - Rotate logs frequently
+      - Archive summaries only
 
   error_types:
     - Implementation errors

@@ -1,33 +1,47 @@
-/// <reference types="jest" />
-/// <reference types="node" />
+import '@testing-library/jest-dom';
+import { TextEncoder, TextDecoder } from 'util';
+import { expect } from '@jest/globals';
 
-// Jest setup file
+// Make expect available globally
+global.expect = expect;
 
-// Extend the Jest timeout for all tests
-jest.setTimeout(10000);
+// Mock browser APIs
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder as any;
 
-// Global test setup
-beforeAll(() => {
-  // Add any global test setup here
+// Mock browser environment
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
 });
 
-// Global test teardown
-afterAll(() => {
-  // Add any global test cleanup here
-});
+// Mock IntersectionObserver
+global.IntersectionObserver = class IntersectionObserver {
+  constructor() {}
+  observe() { return null; }
+  unobserve() { return null; }
+  disconnect() { return null; }
+} as any;
 
-// Reset mocks automatically after each test
-afterEach(() => {
-  jest.clearAllMocks();
-});
+// Mock ResizeObserver
+global.ResizeObserver = class ResizeObserver {
+  constructor() {}
+  observe() { return null; }
+  unobserve() { return null; }
+  disconnect() { return null; }
+} as any;
 
-// Add custom matchers if needed
-expect.extend({
-  // Add custom matchers here
-});
-
-// Error when there are unhandled promise rejections
-process.on('unhandledRejection', (error: Error) => {
-  console.error('Unhandled Promise Rejection:', error);
-  process.exit(1);
+// Mock window.scrollTo
+Object.defineProperty(window, 'scrollTo', {
+  writable: true,
+  value: jest.fn()
 });

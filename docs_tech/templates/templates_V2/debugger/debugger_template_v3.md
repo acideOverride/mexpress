@@ -712,9 +712,16 @@
             <output_control>
                 <commands>
                     <command>
-                        <name>full_suite</name>
-                        <execute>cd /opt/mExpress && npx jest --silent --coverage --json --outputFile=coverage/coverage.json > /dev/null 2>&1</execute>
+                        <name>test_execution</name>
+                        <execute>cd /opt/mExpress && npx jest --silent --json --testLocationInResults=false --outputFile=coverage/test-results.json > /dev/null 2>&1</execute>
                         <output_handling>file_only</output_handling>
+                        <purpose>Focused test results without location data</purpose>
+                    </command>
+                    <command>
+                        <name>coverage_report</name>
+                        <execute>cd /opt/mExpress && npx jest --silent --coverage --coverageReporters=json-summary --coverageDirectory=./coverage > /dev/null 2>&1</execute>
+                        <output_handling>file_only</output_handling>
+                        <purpose>Separate coverage metrics in summary format</purpose>
                     </command>
                     <command>
                         <name>changed_files</name>
@@ -738,9 +745,9 @@
                         <directory>
                             <path>/opt/mExpress/coverage</path>
                             <files>
-                                - coverage.json
+                                - test-results.json
+                                - coverage-summary.json
                                 - changes.json
-                                - summary.json
                             </files>
                         </directory>
                         <directory>

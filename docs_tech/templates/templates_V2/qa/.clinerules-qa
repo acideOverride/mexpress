@@ -90,6 +90,8 @@ project_structure_analysis:
   validation:
     required: true
     timing: before_validation
+    blocking: true
+    skip_allowed: false
   documentation:
     - Validation structure map
     - Test relationships
@@ -135,6 +137,7 @@ incremental_validation:
   validation:
     required: true
     blocking: true
+    skip_allowed: false
   documentation:
     - Validation details
     - Requirements status
@@ -150,6 +153,8 @@ incremental_validation:
    - Tool specifications
    - Environment requirements
    - Documentation standards
+   blocking: true
+   skip_allowed: false
 
 2. Results Verification
    - Implementation complete
@@ -158,6 +163,25 @@ incremental_validation:
    - Documentation updated
    - Standards met
    - Performance verified
+   blocking: true
+   skip_allowed: false
+
+# Test Execution Requirements
+test_execution:
+  required: true
+  blocking: true
+  skip_allowed: false
+  sequence:
+    1. Run all tests silently
+    2. Output to qa-tests.log
+    3. Verify test results
+    4. Block on failures
+    5. Document all results
+  validation:
+    - No validation without test results
+    - No acceptance with failing tests
+    - Full documentation required
+    - Evidence preservation mandatory
 
 # Completion Protocol
 completion_protocol:
@@ -175,6 +199,7 @@ completion_protocol:
   validation:
     required: true
     blocking: true
+    skip_allowed: false
 
 # Mode Chain Integration
 hierarchical_workflow:
@@ -194,6 +219,10 @@ mode_transition_rules:
     - Cross-chain communication
     - Direct implementation
     - Unauthorized changes
+    - Skipping validations
+    - Ignoring test results
+    - Missing evidence
+    - Incomplete documentation
 
   required_actions:
     - Complete validation
@@ -204,6 +233,10 @@ mode_transition_rules:
     - Documentation updates
     - Status reporting
     - Chain following
+    - Test result verification
+    - Evidence collection
+    - Full documentation
+    - Proper validation sequence
 
 # Testing Requirements
 quality_validation:
@@ -214,11 +247,15 @@ quality_validation:
     - Decision making
     - Feedback generation
     - Documentation review
+  blocking: true
+  skip_allowed: false
 
   output_handling:
     silent_execution: true
     output_file: "/opt/mExpress/logs/qa-tests.log"
     error_file: "/opt/mExpress/logs/qa-errors.log"
+    required: true
+    blocking: true
 
 # Technical Vocabulary
 vocabulary_control:
@@ -264,6 +301,8 @@ error_handling:
     - Track resolution
     - Preserve state
     - Handle failures
+  blocking: true
+  skip_allowed: false
 
   error_types:
     - Validation failures
@@ -291,6 +330,8 @@ git_workflow:
     - Documentation updated
     - Changes tracked
     - State preserved
+    blocking: true
+    skip_allowed: false
 
   commit_requirements:
     - Change type identified
@@ -299,6 +340,8 @@ git_workflow:
     - Impact documented
     - Standards compliance
     - State preserved
+    blocking: true
+    skip_allowed: false
 
   mode_switching:
     outbound:
@@ -308,6 +351,8 @@ git_workflow:
       - Switch to GIT
       - Create commit
       - Await return
+      blocking: true
+      skip_allowed: false
     
     return_handling:
       - Process GIT return
@@ -316,12 +361,16 @@ git_workflow:
       - Process next action
       - Continue workflow
       - Handle errors
+      blocking: true
+      skip_allowed: false
 
     validation:
       - Operation success
       - State restoration
       - Next action clear
       - Workflow valid
+      blocking: true
+      skip_allowed: false
 
 # State Management
 state_management:
@@ -336,25 +385,33 @@ state_management:
     - Enable recovery
     - Process returns
     - Continue workflow
+  blocking: true
+  skip_allowed: false
 
   state_tracking:
     source:
       fields: ["agent", "status", "next_action", "workflow"]
       validation: "required"
       preservation: "mandatory"
+      blocking: true
     requirements:
       fields: ["thresholds", "tdd", "tools", "environment"]
       validation: "required"
+      blocking: true
     results:
       fields: ["coverage", "tests", "documentation", "performance"]
       validation: "required"
+      blocking: true
     decision:
       fields: ["status", "findings", "destination", "return_readiness"]
       validation: "required"
+      blocking: true
     git:
       fields: ["changes", "commit", "state", "return_status", "next_action"]
       validation: "required"
+      blocking: true
     return:
       fields: ["status", "next_action", "workflow", "state_package"]
       validation: "required"
       preservation: "mandatory"
+      blocking: true

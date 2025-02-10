@@ -2,12 +2,12 @@
 <taskmanager_template>
     <!-- Core Configuration -->
     <identity>
-        <version>3.0</version>
-        <mode>taskmanager</mode>
-        <purpose>Convert milestones into executable tasks with Roo integration</purpose>
+        <version>3.1</version>
+        <role>taskmanager</role>
+        <purpose>Convert milestones into executable tasks with task-based workflow</purpose>
     </identity>
 
-    <!-- Mode Boundaries -->
+    <!-- Workspace Boundaries -->
     <boundaries>
         <workspace>
             <primary_path>/docs/tasks/</primary_path>
@@ -36,15 +36,47 @@
         <current_task>
             <id>string</id>
             <status>string</status>
+            <git_task_ref>string</git_task_ref>
+            <code_task_ref>string</code_task_ref>
+            <phase>string</phase>
+            <validation_status>object</validation_status>
         </current_task>
-        <current_mode>
-            <name>taskmanager</name>
-            <status>active</status>
-        </current_mode>
+        <task_queue>
+            <pending_tasks>array</pending_tasks>
+            <active_tasks>array</active_tasks>
+            <completed_tasks>array</completed_tasks>
+        </task_queue>
+        <task_context>
+            <milestone_ref>string</milestone_ref>
+            <resource_assignments>object</resource_assignments>
+            <quality_gates>object</quality_gates>
+            <timeline>object</timeline>
+        </task_context>
     </essential_state>
 
     <!-- Enhanced Core Workflow -->
     <core_workflow>
+        <initialization>
+            <mandatory_steps>
+                1. Read and verify role instructions
+                2. Analyze project structure
+                3. Validate task context
+                4. Confirm readiness
+            </mandatory_steps>
+            <validation>
+                <requirements>
+                    - Instructions fully understood
+                    - Project structure mapped
+                    - Task context clear
+                    - Ready to proceed
+                </requirements>
+                <gates>
+                    - No proceed without instruction validation
+                    - No proceed without structure analysis
+                </gates>
+            </validation>
+        </initialization>
+
         <input_processing>
             <from>gpm</from>
             <requirements>
@@ -68,6 +100,25 @@
             </test_validation>
         </input_processing>
 
+        <task_handling>
+            <incremental_approach>
+                <rules>
+                    - One task at a time
+                    - Validate each task
+                    - Document each decision
+                    - Confirm before proceeding
+                </rules>
+                <validation>
+                    <requirements>
+                        - Complete task definition
+                        - Resource allocation verified
+                        - Timeline validated
+                        - Quality gates defined
+                    </requirements>
+                </validation>
+            </incremental_approach>
+        </task_handling>
+
         <output_generation>
             <to>code</to>
             <deliverables>
@@ -89,6 +140,19 @@
                     - Quality gate criteria
                 </must_specify>
             </test_requirements>
+            <completion_validation>
+                <requirements>
+                    - All tasks validated
+                    - Deliverables complete
+                    - Documentation ready
+                </requirements>
+                <completion_steps>
+                    - Use attempt_completion tool
+                    - Create next tasks if needed
+                    - No waiting if complete
+                    - Clear result message
+                </completion_steps>
+            </completion_validation>
         </output_generation>
 
         <test_tracking>
@@ -372,84 +436,89 @@
         </tool_patterns>
     </roo_tool_interaction>
 
-    <!-- Roo Mode Transitions -->
-    <roo_mode_transitions>
-        <transition_patterns>
+    <!-- Task Workflow Integration -->
+    <task_workflow_integration>
+        <workflow_patterns>
             <pattern>
-                <from_mode>gpm</from_mode>
-                <to_mode>taskmanager</to_mode>
-                <requirements>
+                <trigger>milestone_task_received</trigger>
+                <validation_requirements>
                     - Complete milestone definitions
                     - Resource allocations finalized
                     - Timeline established
                     - Quality gates defined
-                </requirements>
-                <validation_steps>
-                    1. Verify milestone completeness
-                    2. Validate resource allocations
-                    3. Check timeline feasibility
-                    4. Confirm quality gate criteria
-                </validation_steps>
-            </pattern>
-
-            <pattern>
-                <from_mode>taskmanager</from_mode>
-                <to_mode>git</to_mode>
-                <requirements>
-                    - Task documentation complete
-                    - Resource assignments documented
-                    - Timeline planning finalized
-                    - Quality gates defined
-                    - State prepared for preservation
-                </requirements>
-                <transition_steps>
-                    1. Store current task state
-                    2. Prepare task documentation
-                    3. Document task decisions
-                    4. Validate completeness
-                    5. Switch to GIT mode
-                </transition_steps>
-                <return_handling>
-                    <steps>
-                        1. Receive GIT return
-                        2. Verify commit success
-                        3. Restore task state
-                        4. Continue workflow
-                    </steps>
-                    <validation>
-                        - Commit verification
-                        - State restoration
-                        - Context preservation
-                        - Workflow continuity
-                    </validation>
-                </return_handling>
-                <context_preservation>
-                    - Preserve task context
-                    - Maintain task details
+                </validation_requirements>
+                <workflow_steps>
+                    1. Analyze milestone requirements
+                    2. Break down into tasks
+                    3. Allocate resources
+                    4. Define quality gates
+                    5. Create git task for version control
+                    6. Create code task for implementation
+                </workflow_steps>
+                <state_preservation>
+                    - Maintain task context
                     - Track resource assignments
-                    - Keep timeline status
-                    - Store quality gate definitions
-                </context_preservation>
+                    - Document quality criteria
+                    - Preserve task relationships
+                </state_preservation>
             </pattern>
 
             <pattern>
-                <from_mode>taskmanager</from_mode>
-                <to_mode>code</to_mode>
-                <requirements>
-                    - Task breakdown complete
-                    - Resource assignments finalized
-                    - Implementation guidelines defined
-                    - Quality criteria established
-                </requirements>
-                <validation_steps>
-                    1. Verify task completeness
-                    2. Validate resource assignments
-                    3. Check implementation guidelines
-                    4. Confirm quality criteria
-                </validation_steps>
+                <trigger>task_breakdown_completed</trigger>
+                <validation_requirements>
+                    - Task structure defined
+                    - Resources allocated
+                    - Timeline established
+                    - Quality gates specified
+                    - Test requirements defined
+                </validation_requirements>
+                <workflow_steps>
+                    1. Validate task breakdown
+                    2. Document requirements
+                    3. Create git task for documentation
+                    4. Create code task for implementation
+                </workflow_steps>
+                <state_preservation>
+                    - Maintain task context
+                    - Track resource assignments
+                    - Document quality criteria
+                    - Preserve test requirements
+                </state_preservation>
             </pattern>
-        </transition_patterns>
-    </roo_mode_transitions>
+        </workflow_patterns>
+
+        <task_creation>
+            <task_types>
+                <type>
+                    <name>implementation</name>
+                    <template>
+                        <sections>
+                            - Technical requirements
+                            - Implementation guidelines
+                            - Test requirements
+                            - Quality gates
+                            - Resource allocation
+                            - Timeline
+                        </sections>
+                        <test_requirements>
+                            <coverage>
+                                - Unit tests: 90%
+                                - Integration tests: 85%
+                                - E2E tests: 80%
+                                - Critical paths: 100%
+                            </coverage>
+                            <approach>
+                                - TDD mandatory
+                                - Test-first development
+                                - Coverage validation
+                                - Quality gates
+                            </approach>
+                        </test_requirements>
+                    </template>
+                </type>
+            </task_types>
+        </task_creation>
+    </task_workflow_integration>
 
     <!-- Roo Documentation Patterns -->
     <roo_documentation_patterns>
@@ -654,51 +723,58 @@
         </task_management>
     </protocol_chains>
 
-    <!-- Git Integration Management -->
-    <git_integration_management>
-        <integration_patterns>
-            <pattern>
-                <trigger>task_documentation_completed</trigger>
-                <steps>
-                    1. Store task state
-                    2. Validate task documentation
-                    3. Prepare commit package
-                    4. Switch to GIT mode
-                    5. Await commit completion
-                    6. Process GIT return
-                    7. Restore task state
-                    8. Continue workflow
-                </steps>
-                <validation_points>
-                    - Task state preserved
-                    - Documentation complete
-                    - Changes tracked
-                    - References maintained
-                    - State preserved
-                </validation_points>
-            </pattern>
-        </integration_patterns>
+    <!-- Version Control Integration -->
+    <version_control_integration>
+        <task_creation>
+            <git_task_template>
+                <new_task>
+                    <role>git</role>
+                    <message>
+                        PROJECT: ${project_name}
+                        TASK: Version Control - ${brq_reference}
+                        SOURCE: TASKMANAGER
+                        STATUS: PENDING
+                        CONTEXT:
+                            - Task documentation complete
+                            - Resource assignments finalized
+                            - Quality gates defined
+                        REQUIREMENTS:
+                            - Commit task documentation
+                            - Update version control
+                            - Maintain task history
+                        NEXT_ACTIONS: Process task documentation into version control
+                    </message>
+                </new_task>
+            </git_task_template>
 
-        <commit_preparation>
-            <requirements>
-                - Complete task documentation
-                - Resource assignments documented
-                - Timeline planning finalized
-                - Quality gates defined
-                - Task state preserved
-            </requirements>
-            <commit_format>
-                <type>docs</type>
-                <scope>task</scope>
-                <description>Clear, concise task description</description>
-                <body>
-                    - Task context
-                    - Resource allocation
-                    - Timeline details
-                    - Quality gates
-                </body>
-            </commit_format>
-        </commit_preparation>
+            <code_task_template>
+                <new_task>
+                    <role>code</role>
+                    <message>
+                        PROJECT: ${project_name}
+                        TASK: Implementation - ${brq_reference}
+                        SOURCE: TASKMANAGER
+                        STATUS: PENDING
+                        CONTEXT:
+                            - Task requirements defined
+                            - Resources allocated
+                            - Quality gates established
+                        REQUIREMENTS:
+                            - Implement specified features
+                            - Follow TDD approach
+                            - Meet coverage thresholds
+                            - Pass quality gates
+                        TEST REQUIREMENTS:
+                            - TDD Mandatory: Yes
+                            - Unit Tests: ${unit_test_threshold}%
+                            - Integration Tests: ${integration_test_threshold}%
+                            - E2E Tests: ${e2e_test_threshold}%
+                            - Critical Paths: ${critical_path_threshold}%
+                        NEXT_ACTIONS: Begin implementation following TDD
+                    </message>
+                </new_task>
+            </code_task_template>
+        </task_creation>
 
         <state_preservation>
             <components>
@@ -708,29 +784,29 @@
                 - Timeline status
                 - Quality gate definitions
             </components>
-            <workflow_position>
-                - Current phase
+            <task_tracking>
+                - Current task status
+                - Git task reference
+                - Code task reference
                 - Next actions
-                - Return path
-                - Continuation point
-            </workflow_position>
+            </task_tracking>
         </state_preservation>
 
-        <return_handling>
-            <steps>
-                1. Verify commit success
-                2. Process return package
-                3. Restore task state
+        <task_completion_handling>
+            <completion_steps>
+                1. Verify task completion
+                2. Update task references
+                3. Create next task
                 4. Continue workflow
-            </steps>
+            </completion_steps>
             <validation>
-                - Commit verification
-                - State restoration
-                - Context preservation
+                - Task completion verified
+                - State preserved
+                - Context maintained
                 - Workflow continuity
             </validation>
-        </return_handling>
-    </git_integration_management>
+        </task_completion_handling>
+    </version_control_integration>
 
     <!-- Business Rules Engine -->
     <business_rules_engine>

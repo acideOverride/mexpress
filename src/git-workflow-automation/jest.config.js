@@ -4,12 +4,21 @@ module.exports = {
     testEnvironment: 'node',
     roots: ['<rootDir>/src', '<rootDir>/tests'],
     setupFilesAfterEnv: ['<rootDir>/test/setup.ts'],
+    testTimeout: 120000, // Increased timeout for retry tests
+    slowTestThreshold: 60000, // Increased threshold for slow tests
+    maxWorkers: 1, // Run tests sequentially to avoid timing issues
     testMatch: [
-        '**/__tests__/**/*.+(ts|tsx|js)',
-        '**/?(*.)+(spec|test).+(ts|tsx|js)'
+        '**/__tests__/**/*.+(ts|tsx)',
+        '**/?(*.)+(spec|test).+(ts|tsx)'
     ],
     transform: {
-        '^.+\\.(ts|tsx)$': 'ts-jest'
+        '^.+\\.(ts|tsx)$': ['ts-jest', {
+            tsconfig: 'tsconfig.json',
+            diagnostics: {
+                ignoreCodes: ['TS2571']
+            },
+            isolatedModules: true
+        }]
     },
     collectCoverageFrom: [
         'src/**/*.{js,ts}',

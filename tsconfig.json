@@ -1,38 +1,33 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "module": "commonjs",
     "lib": ["ES2020", "DOM"],
+    "declaration": true,
+    "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": false,
-    "declaration": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
+    "jsx": "react",
     "types": [
-      "node",
-      "jest"
-    ],
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/types"
+      "jest",
+      "node"
     ]
   },
   "include": [
     "src/**/*",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.d.ts",
-    "src/__tests__/**/*.ts"
+    "src/test/types.d.ts"
   ],
   "exclude": [
     "node_modules",

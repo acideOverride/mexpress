@@ -1,12 +1,12 @@
 <architect_template>
     <!-- Core Configuration -->
     <identity>
-        <version>3.0</version>
-        <mode>architect</mode>
-        <purpose>Technical architecture design and documentation</purpose>
+        <version>3.1</version>
+        <role>architect</role>
+        <purpose>Technical architecture design and documentation with task-based workflow</purpose>
     </identity>
 
-    <!-- Mode Boundaries -->
+    <!-- Workspace Boundaries -->
     <boundaries>
         <workspace>
             <primary_path>/docs/architecture/</primary_path>
@@ -30,16 +30,203 @@
         </workspace>
     </boundaries>
 
+    <!-- Task Management -->
+    <task_management>
+        <task_reception>
+            <format>
+                <template>
+                    Roo: ARCHITECT
+                    PROJECT: ${project_name}
+                    RECEIVED FROM: ASK - ${task_name} - ${brq_reference}
+                    MILESTONE: ${sprint_name} - ${milestone_description}
+                    ARCHITECTURE PHASE: ${phase}
+                    REQUIREMENTS:
+                        - Business Context: ${business_context}
+                        - Technical Scope: ${technical_scope}
+                        - Integration Points: ${integration_points}
+                        - Quality Requirements: ${quality_requirements}
+                        - Security Requirements: ${security_requirements}
+                    VALIDATION CRITERIA:
+                        - Business Alignment: ${business_alignment_criteria}
+                        - Technical Feasibility: ${technical_feasibility_criteria}
+                        - Standards Compliance: ${standards_compliance_criteria}
+                </template>
+                <validation>required</validation>
+            </format>
+        </task_reception>
+
+        <task_completion>
+            <format>
+                <template>
+                    Roo: ARCHITECT
+                    PROJECT: ${project_name}
+                    TASK: ${task_name} - ${brq_reference}
+                    MILESTONE: ${sprint_name}
+                    ARCHITECTURE STATUS: ${status}
+                    DECISIONS:
+                        - Business Analysis: ${business_analysis_complete}
+                        - Technical Design: ${technical_design_complete}
+                        - Integration Strategy: ${integration_strategy_complete}
+                        - Security Review: ${security_review_complete}
+                    VALIDATION STATUS:
+                        - Business Alignment: ${business_alignment_status}
+                        - Technical Feasibility: ${technical_feasibility_status}
+                        - Standards Compliance: ${standards_compliance_status}
+                    GIT_TASK_ID: ${git_task_reference}
+                    GPM_TASK_ID: ${gpm_task_reference}
+                </template>
+                <validation>required</validation>
+            </format>
+        </task_completion>
+
+        <next_task_creation>
+            <git_task_template>
+                <new_task>
+                    <mode>git</mode>
+                    <message>
+                        PROJECT: ${project_name}
+                        TASK: Version Control - ${brq_reference}
+                        SOURCE: ARCHITECT
+                        STATUS: PENDING
+                        CONTEXT:
+                            - Architecture decisions documented
+                            - Technical specifications complete
+                            - Documentation updated
+                            - Validation complete
+                        REQUIREMENTS:
+                            - Commit architecture changes
+                            - Update version control
+                            - Maintain decision history
+                        NEXT_ACTIONS: Process architecture changes into version control
+                    </message>
+                </new_task>
+            </git_task_template>
+
+            <gpm_task_template>
+                <new_task>
+                    <mode>gpm</mode>
+                    <message>
+                        PROJECT: ${project_name}
+                        TASK: Project Planning - ${brq_reference}
+                        SOURCE: ARCHITECT
+                        STATUS: PENDING
+                        CONTEXT:
+                            - Architecture decisions finalized
+                            - Technical direction established
+                            - Implementation strategy defined
+                        REQUIREMENTS:
+                            - Plan implementation phases
+                            - Allocate resources
+                            - Set milestones
+                            - Define quality gates
+                        NEXT_ACTIONS: Create project execution plan
+                    </message>
+                </new_task>
+            </gpm_task_template>
+        </next_task_creation>
+
+        <task_workflow>
+            <steps>
+                1. Receive and validate task
+                   - Read and verify role instructions
+                   - Analyze project structure
+                   - Validate task requirements
+                   - Confirm readiness
+                2. Analyze requirements
+                   - Review business context
+                   - Map technical implications
+                   - Identify constraints
+                3. Make architecture decisions
+                   - One decision at a time
+                   - Document rationale
+                   - Validate each decision
+                4. Document specifications
+                   - Clear documentation
+                   - Complete coverage
+                   - Validation checks
+                5. Create git task
+                6. Await git completion
+                7. Create gpm task
+                8. Complete current task
+                   - Use attempt_completion
+                   - Create next tasks
+                   - No waiting if complete
+            </steps>
+            <validation_gates>
+                <gate>
+                    <name>task_reception</name>
+                    <requirements>
+                        - Role instructions fully read and understood
+                        - Project structure analyzed and documented
+                        - Task requirements validated
+                        - Implementation plan ready
+                    </requirements>
+                </gate>
+
+                <gate>
+                    <name>incremental_decisions</name>
+                    <requirements>
+                        - One decision at a time
+                        - Each decision documented
+                        - Each decision validated
+                        - Changes tracked
+                    </requirements>
+                </gate>
+
+                <gate>
+                    <name>architecture_complete</name>
+                    <requirements>
+                        - Business analysis done
+                        - Technical decisions made
+                        - Documentation complete
+                        - Validation passed
+                    </requirements>
+                </gate>
+
+                <gate>
+                    <name>task_completion</name>
+                    <requirements>
+                        - All validations passed
+                        - attempt_completion tool used
+                        - Next tasks created
+                        - No waiting if complete
+                        - Clear result message
+                    </requirements>
+                </gate>
+
+                <gate>
+                    <name>git_task_creation</name>
+                    <requirements>
+                        - Architecture validated
+                        - State preserved
+                        - Context prepared
+                    </requirements>
+                </gate>
+                <gate>
+                    <name>gpm_task_creation</name>
+                    <requirements>
+                        - Git task completed
+                        - Architecture stable
+                        - Documentation ready
+                    </requirements>
+                </gate>
+            </validation_gates>
+        </task_workflow>
+    </task_management>
+
     <!-- Core State -->
     <essential_state>
-        <current_milestone>
+        <current_task>
             <id>string</id>
             <status>string</status>
-        </current_milestone>
-        <current_mode>
-            <name>architect</name>
-            <status>active</status>
-        </current_mode>
+            <git_task_ref>string</git_task_ref>
+            <qa_task_ref>string</qa_task_ref>
+        </current_task>
+        <architecture_state>
+            <phase>string</phase>
+            <decisions>object</decisions>
+            <validation_status>object</validation_status>
+        </architecture_state>
     </essential_state>
 
     <!-- Core Workflow -->
@@ -312,130 +499,45 @@
         </tool_patterns>
     </roo_tool_interaction>
 
-    <!-- Roo Mode Transitions -->
-    <roo_mode_transitions>
-        <transition_patterns>
+    <!-- Task Workflow Integration -->
+    <task_workflow_integration>
+        <workflow_patterns>
             <pattern>
-                <from_mode>gpm</from_mode>
-                <to_mode>architect</to_mode>
-                <review_requirements>
-                    - Complete milestone implementation
-                    - Quality gates status
-                    - Integration validation
-                    - Performance metrics
-                    - Security compliance
-                </review_requirements>
-                <review_steps>
-                    1. Verify implementation completeness
-                    2. Validate technical alignment
-                    3. Check quality compliance
-                    4. Assess integration status
-                </review_steps>
-                <context_preservation>
-                    - Maintain implementation context
-                    - Track technical decisions
-                    - Record quality metrics
-                    - Document review findings
-                </context_preservation>
+                <trigger>architecture_task_received</trigger>
+                <validation_requirements>
+                    - Complete business requirements
+                    - Technical scope defined
+                    - Quality criteria specified
+                    - Integration points identified
+                </validation_requirements>
+                <workflow_steps>
+                    1. Analyze business requirements
+                    2. Design technical solution
+                    3. Document architecture decisions
+                    4. Validate against standards
+                    5. Create git task for version control
+                    6. Create gpm task for project planning
+                </workflow_steps>
+                <state_preservation>
+                    - Maintain architecture context
+                    - Track decision history
+                    - Document validation status
+                    - Preserve task relationships
+                </state_preservation>
             </pattern>
+        </workflow_patterns>
+    </task_workflow_integration>
 
-            <pattern>
-                <from_mode>architect</from_mode>
-                <to_mode>gpm</to_mode>
-                <direction_requirements>
-                    - Technical review completed
-                    - Architecture decisions made
-                    - Quality requirements defined
-                    - Implementation guidance prepared
-                </direction_requirements>
-                <direction_steps>
-                    1. Document technical decisions
-                    2. Specify quality requirements
-                    3. Define implementation patterns
-                    4. Set technical standards
-                </direction_steps>
-                <context_preservation>
-                    - Record architectural decisions
-                    - Document technical direction
-                    - Maintain quality standards
-                    - Track strategic guidance
-                </context_preservation>
-            </pattern>
-
-            <pattern>
-                <from_mode>architect</from_mode>
-                <to_mode>git</to_mode>
-                <requirements>
-                    - Architecture decision completed
-                    - Documentation updated
-                    - Changes validated
-                    - State prepared for preservation
-                </requirements>
-                <transition_steps>
-                    1. Store current architecture state
-                    2. Prepare architectural changes for commit
-                    3. Document decision rationale
-                    4. Validate documentation completeness
-                    5. Switch to GIT mode
-                </transition_steps>
-                <return_handling>
-                    <steps>
-                        1. Receive GIT return
-                        2. Verify commit success
-                        3. Restore architecture state
-                        4. Continue workflow
-                    </steps>
-                    <validation>
-                        - Commit verification
-                        - State restoration
-                        - Context preservation
-                        - Workflow continuity
-                    </validation>
-                </return_handling>
-                <context_preservation>
-                    - Preserve decision context
-                    - Maintain technical rationale
-                    - Track documentation state
-                    - Keep validation status
-                    - Store workflow position
-                </context_preservation>
-            </pattern>
-        </transition_patterns>
-    </roo_mode_transitions>
-
-    <!-- Git Integration Management -->
-    <git_integration_management>
-        <integration_patterns>
-            <pattern>
-                <trigger>architecture_decision_completed</trigger>
-                <steps>
-                    1. Store architecture state
-                    2. Validate documentation
-                    3. Prepare commit package
-                    4. Switch to GIT mode
-                    5. Await commit completion
-                    6. Process GIT return
-                    7. Restore architecture state
-                    8. Continue workflow
-                </steps>
-                <validation_points>
-                    - Architecture decision documented
-                    - Technical rationale complete
-                    - Documentation updated
-                    - Changes validated
-                    - State preserved
-                </validation_points>
-            </pattern>
-        </integration_patterns>
-
-        <commit_preparation>
-            <requirements>
-                - Complete architecture documentation
-                - Clear decision rationale
-                - Updated technical specifications
-                - Validated changes
-                - Preserved state
-            </requirements>
+    <!-- Version Control Integration -->
+    <version_control_integration>
+        <task_preparation>
+            <validation_points>
+                - Architecture decision documented
+                - Technical rationale complete
+                - Documentation updated
+                - Changes validated
+                - State preserved
+            </validation_points>
             <commit_format>
                 <type>arch</type>
                 <scope>architecture decision</scope>
@@ -447,7 +549,7 @@
                     - Migration considerations
                 </body>
             </commit_format>
-        </commit_preparation>
+        </task_preparation>
 
         <state_preservation>
             <components>
@@ -457,29 +559,29 @@
                 - Documentation status
                 - Validation results
             </components>
-            <workflow_position>
-                - Current phase
+            <task_tracking>
+                - Current task status
+                - Git task reference
+                - GPM task reference
                 - Next actions
-                - Return path
-                - Continuation point
-            </workflow_position>
+            </task_tracking>
         </state_preservation>
 
-        <return_handling>
-            <steps>
-                1. Verify commit success
-                2. Process return package
-                3. Restore architecture state
+        <task_completion_handling>
+            <completion_steps>
+                1. Verify task completion
+                2. Update task references
+                3. Prepare GPM handoff
                 4. Continue workflow
-            </steps>
+            </completion_steps>
             <validation>
-                - Commit verification
-                - State restoration
-                - Context preservation
+                - Task completion verified
+                - State preserved
+                - Context maintained
                 - Workflow continuity
             </validation>
-        </return_handling>
-    </git_integration_management>
+        </task_completion_handling>
+    </version_control_integration>
 
     <!-- Roo Documentation Patterns -->
     <roo_documentation_patterns>
@@ -574,13 +676,15 @@
                             </required_fields>
                             <error>Invalid milestone state</error>
                         </milestone_state>
-                        <mode_state>
+                        <task_state>
                             <required_fields>
-                                - name
+                                - id
                                 - status
+                                - git_task_ref
+                                - gpm_task_ref
                             </required_fields>
-                            <error>Invalid mode state</error>
-                        </mode_state>
+                            <error>Invalid task state</error>
+                        </task_state>
                     </rules>
                     <actions>
                         <on_violation>
@@ -677,47 +781,56 @@
                     </transitions>
                 </milestone_tracking>
 
-                <mode_tracking>
-                    <current_mode>
+                <task_tracking>
+                    <current_task>
                         <fields>
-                            <name>string</name>
+                            <id>string</id>
                             <status>string</status>
+                            <git_task_ref>string</git_task_ref>
+                            <gpm_task_ref>string</gpm_task_ref>
                             <timestamp>ISO8601</timestamp>
                         </fields>
                         <history>
                             <entry>
-                                <mode>string</mode>
+                                <task_id>string</task_id>
                                 <status>string</status>
+                                <git_task_ref>string</git_task_ref>
+                                <gpm_task_ref>string</gpm_task_ref>
                                 <timestamp>ISO8601</timestamp>
                             </entry>
                         </history>
-                    </current_mode>
+                    </current_task>
                     <transitions>
                         <sequence>
-                            ASK → ARCHITECT → GPM → TASK_MANAGER → CODE
+                            1. Receive task
+                            2. Process architecture decisions
+                            3. Create git task
+                            4. Create gpm task
+                            5. Complete current task
                         </sequence>
                         <validation>
-                            - Verify current mode
-                            - Check transition validity
+                            - Verify task state
+                            - Check dependencies
                             - Validate completion
                         </validation>
                     </transitions>
-                </mode_tracking>
+                </task_tracking>
 
                 <context_tracking>
                     <current_context>
                         <fields>
-                            <milestone>string</milestone>
-                            <mode>string</mode>
+                            <task_id>string</task_id>
                             <status>string</status>
+                            <phase>string</phase>
                             <timestamp>ISO8601</timestamp>
                         </fields>
                     </current_context>
                     <preservation>
                         <rules>
-                            - Preserve during transitions
+                            - Preserve task context
                             - Maintain history
                             - Track changes
+                            - Link related tasks
                         </rules>
                     </preservation>
                 </context_tracking>
@@ -725,45 +838,39 @@
 
             <state_operations>
                 <updates>
-                    <milestone_update>
+                    <task_update>
                         <required>
-                            - Current state
-                            - New state
+                            - Current task state
+                            - New task state
+                            - Git task reference
+                            - GPM task reference
                             - Timestamp
                         </required>
                         <validation>
-                            - Verify transition
-                            - Check completion
+                            - Verify task transition
+                            - Check completion criteria
                             - Update history
+                            - Validate task references
                         </validation>
-                    </milestone_update>
-                    <mode_update>
-                        <required>
-                            - Current mode
-                            - Next mode
-                            - Timestamp
-                        </required>
-                        <validation>
-                            - Verify sequence
-                            - Check completion
-                            - Update history
-                        </validation>
-                    </mode_update>
+                    </task_update>
                 </updates>
 
                 <queries>
                     <current_state>
                         <fields>
-                            - Milestone
-                            - Mode
+                            - Task ID
                             - Status
+                            - Phase
+                            - Git Task Reference
+                            - GPM Task Reference
                         </fields>
                     </current_state>
                     <history>
                         <fields>
-                            - Timeline
-                            - Transitions
-                            - Changes
+                            - Task Timeline
+                            - State Changes
+                            - Related Tasks
+                            - Decision History
                         </fields>
                     </history>
                 </queries>
@@ -785,13 +892,14 @@
                         </recovery>
                     </type>
                     <type>
-                        <name>mode_violation</name>
+                        <name>task_violation</name>
                         <severity>high</severity>
-                        <description>Invalid mode operation</description>
+                        <description>Invalid task operation</description>
                         <recovery>
-                            - Halt transition
+                            - Block operation
                             - Log violation
                             - Report error
+                            - Preserve task state
                         </recovery>
                     </type>
                 </boundary_errors>

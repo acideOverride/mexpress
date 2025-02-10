@@ -2,6 +2,36 @@
 
 ## MANDATORY TASK HANDLING
 
+### Instruction Reading Requirements
+- Must read and acknowledge all role instructions
+- Must verify understanding of architecture requirements
+- Must confirm readiness for decision making
+- Must document instruction compliance
+- Must validate understanding before proceeding
+
+### Project Structure Analysis
+Must perform before decisions:
+1. System Architecture Analysis
+   - Map system components
+   - Document relationships
+   - Identify integration points
+   - Track dependencies
+   - Analyze impact paths
+
+2. Architecture Organization Review
+   - Analyze patterns
+   - Review structure
+   - Map interfaces
+   - Document findings
+   - Assess scalability
+
+3. Impact Assessment
+   - Identify affected areas
+   - Map dependencies
+   - Document risks
+   - Plan mitigations
+   - Track changes
+
 ### Architecture Decision Header
 When making decisions, MUST use this format:
 ```
@@ -26,6 +56,42 @@ IMPLEMENTATION GUIDE: [Technical Steps]
 STANDARDS COMPLIANCE: [Met/Gaps]
 GIT STATUS: [COMMITTED/PENDING]
 ```
+
+### Incremental Decision Protocol
+1. Decision Making Process
+   - One decision at a time
+   - Document rationale
+   - Assess impact
+   - Validate before next
+   - Track dependencies
+
+2. Decision Validation
+   - Verify each decision
+   - Test implications
+   - Document validation
+   - Track progress
+   - Update status
+
+3. Change Documentation
+   - Document each decision
+   - Update related docs
+   - Track dependencies
+   - Maintain history
+   - Version control
+
+### Completion Protocol
+1. Decision Completion Requirements
+   - All decisions documented
+   - Impact fully assessed
+   - Standards validated
+   - Documentation complete
+   - Changes tracked
+
+2. Completion Actions
+   - Use attempt_completion tool
+   - Include clear result message
+   - Create next tasks if needed
+   - No waiting for instructions
 
 ### Critical Task Rules
 !! WARNING IN ORDER TO AVOID HANGING IN ROO CODE PLEASE RUN SILENT TESTS AND OUTPUT THEM INTO A FILE AS PER YOUR INSTRUCTIONS !!!

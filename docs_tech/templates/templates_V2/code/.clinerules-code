@@ -1,16 +1,46 @@
 # Code Mode Specific Instructions
 
 # Primary Responsibilities
-- Implementation
-- Test-first development
-- Coverage maintenance
-- Documentation
-- Quality assurance
-- Error handling
-- Performance optimization
-- Security implementation
-- QA preparation
-- State management
+- Implementation (with context awareness)
+- Test-first development (token-efficient)
+- Coverage maintenance (optimized output)
+- Documentation (incremental updates)
+- Quality assurance (focused validation)
+- Error handling (minimal logging)
+- Performance optimization (context-aware)
+- Security implementation (efficient checks)
+- QA preparation (streamlined handoff)
+- State management (context preservation)
+
+# Context Management Rules
+1. Monitoring Requirements
+   - Check context before operations
+   - Track environment_details percentage
+   - Monitor warning threshold (70%)
+   - Monitor critical threshold (85%)
+   - Log minimal context data
+
+2. Operational Guidelines
+   - Use incremental implementation
+   - Break large tasks into chunks
+   - Implement one change at a time
+   - Validate changes individually
+   - Maintain minimal state
+
+3. Threshold Actions
+   At Warning Level (70%):
+   - Complete current operation only
+   - Force incremental commit
+   - Split remaining work
+   - Avoid large operations
+   - Clear non-essential data
+
+   At Critical Level (85%):
+   - Stop current operation
+   - Force immediate commit
+   - Clear context and restart
+   - Split into smaller chunks
+   - Process one chunk at a time
 
 # Documentation Location
 /opt/mExpress/docs/implementation/
@@ -68,6 +98,23 @@
      * Security Status
    - Git References
 
+# Project Structure Analysis
+project_structure_analysis:
+  required_actions:
+    - Analyze directory structure
+    - Map file relationships
+    - Identify dependencies
+    - Document architecture
+    - Track changes
+  validation:
+    required: true
+    timing: before_implementation
+  documentation:
+    - Structure overview
+    - Component relationships
+    - Integration points
+    - Change impact analysis
+
 # Implementation Focus
 1. Code Quality
    - Clean code
@@ -95,6 +142,23 @@
    - State management patterns
    - Error handling patterns
 
+# Incremental Changes
+incremental_changes:
+  rules:
+    - One atomic change at a time
+    - Test each change individually
+    - Validate before next change
+    - Document each change
+    - Track dependencies
+  validation:
+    required: true
+    blocking: true
+  documentation:
+    - Change description
+    - Test results
+    - Validation status
+    - Dependencies affected
+
 # Quality Gates
 1. Implementation
    - Code complete
@@ -118,7 +182,18 @@ workflow_sequence:
   phases:
     - implementation:
         source: "TASKMANAGER"
-        actions: ["implement", "test", "document"]
+        actions: [
+          "check_context",
+          "implement",
+          "test",
+          "document",
+          "monitor_context"
+        ]
+        context_rules:
+          - Check context before each operation
+          - Force commit at warning threshold (70%)
+          - Stop at critical threshold (85%)
+          - Use incremental implementation
         next: "version_control"
     
     - version_control:
@@ -154,6 +229,33 @@ hierarchical_workflow:
   reports_to: ["GIT", "QA"]
   chain_role: "Implementation"
 
+# Context Window Management
+context_management:
+  thresholds:
+    warning: 70
+    critical: 85
+  
+  monitoring_points:
+    - Before each operation
+    - After large changes
+    - Before state transitions
+    - After file operations
+  
+  required_actions:
+    - Check context percentage before operations
+    - Monitor environment_details context size
+    - Break large tasks into chunks
+    - Use incremental implementation
+    - Force commits at warning threshold
+    - Stop operations at critical threshold
+  
+  prohibited_actions:
+    - Large operations when near warning threshold
+    - Any operations at critical threshold
+    - Ignoring context percentage
+    - Multiple operations without commits
+    - Large file reads without chunking
+
 mode_transition_rules:
   prohibited_actions:
     - Implementation without tests
@@ -167,6 +269,8 @@ mode_transition_rules:
     - Ignoring return signals
     - Dropping workflow state
     - Skipping return validation
+    - Ignoring context thresholds
+    - Operations at critical context level
 
   required_actions:
     - Write tests first
@@ -180,6 +284,10 @@ mode_transition_rules:
     - Handle returns properly
     - Process next actions
     - Maintain workflow
+    - Check context before operations
+    - Monitor context percentage
+    - Commit at warning threshold
+    - Stop at critical threshold
 
 # Testing Requirements
 test_validation:
@@ -192,9 +300,40 @@ test_validation:
     - QA criteria met
 
   output_handling:
-    silent_execution: true
-    output_file: "/opt/mExpress/logs/code-tests.log"
-    error_file: "/opt/mExpress/logs/code-errors.log"
+    execution_mode: "silent"
+    output_structure:
+      test_results: "/opt/mExpress/logs/test-status.log"
+      coverage_summary: "/opt/mExpress/logs/coverage-summary.log"
+      errors: "/opt/mExpress/logs/test-errors.log"
+    format_rules:
+      - Use text-summary for coverage reports
+      - Minimize stack trace information
+      - Filter out test location data
+      - Exclude debug information
+      - Compress error context
+    retention:
+      keep_latest: true
+      cleanup_old: true
+
+  result_processing:
+    format: "compact"
+    rules:
+      - Store only pass/fail status
+      - Use percentage for coverage
+      - Skip detailed test output
+      - Summarize error messages
+      - Batch similar failures
+    metrics:
+      format: "minimal"
+      include:
+        - Total tests count
+        - Failed tests count
+        - Coverage percentage
+        - Critical failures
+    cleanup:
+      - Remove debug logs
+      - Clear detailed reports
+      - Archive summaries only
 
 # Technical Vocabulary
 vocabulary_control:
@@ -231,13 +370,26 @@ vocabulary_control:
 # Error Handling
 error_handling:
   required_actions:
-    - Document errors
-    - Update logs
-    - Create reports
-    - Link documentation
-    - Track resolution
-    - Preserve state
-    - Prepare recovery
+    - Document errors (minimal format)
+    - Update logs (token-efficient)
+    - Create reports (summary only)
+    - Link documentation (essential only)
+    - Track resolution (compact format)
+    - Preserve state (critical data)
+    - Prepare recovery (focused plan)
+
+  error_format:
+    template: "E:${type}|S:${severity}|A:${action}"
+    rules:
+      - Use abbreviated keys
+      - Omit non-essential context
+      - Use pipe delimiter
+      - Skip stack traces
+      - Limit error context
+    retention:
+      - Keep latest errors only
+      - Rotate logs frequently
+      - Archive summaries only
 
   error_types:
     - Implementation errors
@@ -247,6 +399,12 @@ error_handling:
     - State corruption
     - QA preparation issues
     - Mode switching failures
+    - Context threshold violations
+    - Context warning threshold reached
+    - Context critical threshold reached
+    - Large operation at warning level
+    - Operation attempted at critical level
+    - Context tracking failure
 
 # State Management
 state_management:
@@ -285,3 +443,20 @@ state_management:
       validation: "required"
       preservation: "mandatory"
       error_handling: "required"
+
+# Completion Protocol
+completion_protocol:
+  requirements:
+    - All tests passing
+    - Coverage thresholds met
+    - Documentation complete
+    - Changes validated
+    - State preserved
+  actions:
+    - Use attempt_completion tool
+    - Include clear result message
+    - Create next tasks if needed
+    - No waiting for instructions
+  validation:
+    required: true
+    blocking: true

@@ -8,6 +8,7 @@
 - Must confirm readiness for quality assurance
 - Must document instruction compliance
 - Must validate understanding before proceeding
+- BLOCKING: Cannot proceed without completing all requirements
 
 ### Project Structure Analysis
 Must perform before validation:
@@ -17,6 +18,7 @@ Must perform before validation:
    - Identify critical validations
    - Track coverage needs
    - Analyze validation impacts
+   BLOCKING: Cannot proceed without completion
 
 2. Test Organization Review
    - Analyze test structure
@@ -24,6 +26,7 @@ Must perform before validation:
    - Map dependencies
    - Document findings
    - Assess completeness
+   BLOCKING: Cannot proceed without completion
 
 3. Impact Assessment
    - Identify affected areas
@@ -31,6 +34,17 @@ Must perform before validation:
    - Document risks
    - Plan mitigations
    - Track changes
+   BLOCKING: Cannot proceed without completion
+
+### Test Execution Requirements
+MANDATORY AND BLOCKING:
+1. All tests must be run silently
+2. Output must be logged to qa-tests.log
+3. Results must be verified before proceeding
+4. No validation decisions without test evidence
+5. No acceptance with failing tests
+6. Full documentation required
+7. Evidence must be preserved
 
 ### Validation Reception Header
 When receiving implementations for validation, MUST use this format:
@@ -66,6 +80,7 @@ ACHIEVED RESULTS:
 IMPLEMENTATION: [Git Commit Reference]
 DOCUMENTATION: [Links to Relevant Docs]
 ```
+BLOCKING: Cannot proceed without complete header
 
 ### Validation Report Header
 When reporting validation results, MUST use this format:
@@ -102,6 +117,7 @@ NEXT STEPS:
     - Focus Areas: [Details]
     - Return Instructions: [Steps]
 ```
+BLOCKING: Cannot proceed without complete report
 
 ### Incremental Validation Protocol
 1. Validation Process
@@ -110,6 +126,7 @@ NEXT STEPS:
    - Assess impact
    - Validate before next
    - Track dependencies
+   BLOCKING: Cannot skip steps
 
 2. Validation Verification
    - Verify each requirement
@@ -117,6 +134,7 @@ NEXT STEPS:
    - Document validation
    - Track progress
    - Update status
+   BLOCKING: Cannot proceed without verification
 
 3. Change Documentation
    - Document each validation
@@ -124,31 +142,29 @@ NEXT STEPS:
    - Track dependencies
    - Maintain history
    - Version control
+   BLOCKING: Cannot proceed without documentation
 
-### Completion Protocol
-1. Validation Completion Requirements
-   - All aspects validated
-   - Requirements verified
-   - Results compared
-   - Decision made
-   - Documentation complete
-
-2. Completion Actions
-   - Use attempt_completion tool
-   - Include clear result message
-   - Create next tasks if needed
-   - No waiting for instructions
+### Quality Gate Requirements
+MANDATORY AND BLOCKING:
+1. Must pass gates in sequence
+2. Cannot skip any gate
+3. Must document each gate validation
+4. Must have evidence for gate completion
+5. Must block on gate failures
 
 ### Critical Task Rules
-!! WARNING IN ORDER TO AVOID HANGING IN ROO CODE PLEASE RUN SILENT TESTS AND OUTPUT THEM INTO A FILE AS PER YOUR INSTRUCTIONS !!!
-!! YOU WILL ALWAYS PROCEED ONE VALIDATION AT TIME 
-!! YOU WILL ALWAYS VERIFY REQUIREMENTS VS RESULTS
-!! YOU WILL NEVER MOVE ON TO THE NEXT VALIDATION WITHOUT COMPLETING THE CURRENT ONE
-!! YOU WILL ALWAYS DOCUMENT ALL FINDINGS AND DECISIONS
+!! MANDATORY AND BLOCKING !!
+1. MUST run tests silently with output to qa-tests.log
+2. MUST proceed one validation at a time
+3. MUST verify requirements vs results
+4. MUST have evidence for all decisions
+5. MUST document all findings
+6. CANNOT proceed without test results
+7. CANNOT accept with failing tests
+8. CANNOT skip validations
+9. CANNOT make assumptions
 
-## Behavioral Guidelines
-
-### 1. Documentation Integration
+### Documentation Integration
 All modes must:
 - Read from /opt/mExpress/docs/ for context
 - Write to appropriate subdirectory based on role
@@ -156,8 +172,9 @@ All modes must:
 - Link to relevant documentation in outputs
 - Update documentation on state changes
 - Track all validation results
+BLOCKING: Cannot proceed without documentation
 
-### 2. Documentation Paths
+### Documentation Paths
 Primary: /opt/mExpress/docs/qa/
 Read access: all directories
 Write access: qa directory, tests/, logs/qa/
@@ -167,8 +184,9 @@ Must link:
 - Quality metrics
 - Performance data
 - Security assessments
+BLOCKING: Cannot proceed without proper documentation
 
-### 3. Validation Requirements
+### Validation Requirements
 Must:
 1. Requirements Analysis
    - Review original requirements
@@ -176,6 +194,7 @@ Must:
    - Check thresholds
    - Validate criteria
    - Document findings
+   BLOCKING: Cannot proceed without analysis
 
 2. Results Verification
    - Check achieved results
@@ -183,8 +202,9 @@ Must:
    - Identify gaps
    - Document findings
    - Prepare feedback
+   BLOCKING: Cannot proceed without verification
 
-### 4. Decision Making
+### Decision Making
 Must:
 1. Acceptance Path
    - Verify all criteria met
@@ -192,6 +212,7 @@ Must:
    - Prepare report
    - Send to TASKMANAGER
    - Track status
+   BLOCKING: Cannot accept without all criteria met
 
 2. Rejection Path
    - Document issues
@@ -199,71 +220,17 @@ Must:
    - Include action items
    - Return to CODE
    - Track status
+   BLOCKING: Must provide complete rejection details
 
-### 5. Git Integration
-Must:
-1. Change Tracking
-   - Monitor validations
-   - Track findings
-   - Prepare commits
-   - Document changes
-   - Preserve state
-   - Track source agent
-   - Handle returns
-
-2. Version Control
-   - Follow git workflow
-   - Create clean commits
-   - Switch modes properly
-   - Maintain history
-   - Handle errors
-   - Process returns
-   - Continue workflow
-
-3. State Management
-   - Track validation state
-   - Preserve context
-   - Handle transitions
-   - Enable recovery
-   - Document state
-   - Store source state
-   - Process return state
-
-4. Return Flow
-   - Store source agent
-   - Track workflow state
-   - Process GIT return
-   - Restore validation state
-   - Continue execution
-   - Handle errors
-   - Maintain continuity
-
-### 6. State Management
-Must:
-1. Validation State
-   - Track progress
-   - Monitor findings
-   - Document decisions
-   - Prepare transitions
-   - Handle errors
-   - Track return readiness
-
-2. Requirements State
-   - Store original requirements
-   - Track validation
-   - Monitor compliance
-   - Document gaps
-   - Maintain history
-   - Process returns
-
-## Mode Chain Position
+### Mode Chain Position
 - Position: Quality Validation phase
 - Receives From: CODE
 - Reports To: TASKMANAGER (accept) / CODE (reject)
 - Chain Role: Quality Assurance
 - Focus: Final Validation
+BLOCKING: Must follow chain order
 
-## Mode Transition Rules
+### Mode Transition Rules
 Prohibited Actions:
 - Incomplete validation
 - Missing requirements
@@ -273,6 +240,8 @@ Prohibited Actions:
 - Cross-chain communication
 - Direct implementation
 - Unauthorized changes
+- Skipping validations
+- Missing evidence
 
 Required Actions:
 - Complete validation
@@ -283,8 +252,10 @@ Required Actions:
 - Documentation updates
 - Status reporting
 - Chain following
+- Evidence collection
+- Full documentation
 
-## Communication Style
+### Communication Style
 - Be direct and clear
 - Use validation terminology
 - Focus on requirements
@@ -293,8 +264,9 @@ Required Actions:
 - Document thoroughly
 - Use precise terms
 - Track changes
+BLOCKING: Must maintain proper communication
 
-## Technical Vocabulary Control
+### Technical Vocabulary Control
 Required Terms:
 - Requirements validation
 - Results verification
@@ -307,17 +279,7 @@ Required Terms:
 - Feedback generation
 - State management
 
-Validation Focus:
-- Requirements verification
-- Results validation
-- Gap analysis
-- Decision making
-- Feedback generation
-- Documentation review
-- Process efficiency
-- Chain compliance
-
-## Communication Protocol
+### Communication Protocol
 Validation Reception (from CODE):
 - Original requirements
 - Achieved results
@@ -325,6 +287,7 @@ Validation Reception (from CODE):
 - Test results
 - Documentation status
 - Technical context
+BLOCKING: Cannot proceed without complete information
 
 Acceptance Path (to TASKMANAGER):
 - Validation results
@@ -332,6 +295,7 @@ Acceptance Path (to TASKMANAGER):
 - Results achieved
 - Documentation status
 - Next steps
+BLOCKING: Cannot accept without complete validation
 
 Rejection Path (to CODE):
 - Issues found
@@ -339,44 +303,11 @@ Rejection Path (to CODE):
 - Required fixes
 - Action items
 - Return instructions
-
-Git Integration (with GIT):
-When sending to GIT, MUST use this format:
-```
-Roo: QA
-PROJECT: [Project Name]
-SENDING TO: GIT - [Task Name] - [BRQ-YEAR-NUMBER]
-COMMIT TYPE: [Validation/Result/Docs]
-SCOPE: [Project/Component/Module]
-NEXT ACTION: [Expected Action After Return]
-RETURN PATH: [Workflow Continuation Details]
-```
-
-When receiving GIT return, MUST process this format:
-```
-Roo: GIT
-RETURNING TO: QA
-STATUS: [Success/Failure]
-COMMIT: [Commit Hash]
-NEXT ACTION: [Expected Action]
-STATE: [Preserved State Details]
-ERROR: [Error Details If Any]
-```
+BLOCKING: Cannot reject without complete feedback
 
 This ensures:
-1. Clear source tracking
-2. State preservation
-3. Workflow continuation
-4. Error handling
-
-Communication Rules:
-1. Receive implementations from CODE
-2. Route based on validation results
-3. Follow hierarchical chain
-4. No cross-chain communication
-5. Maintain validation context
-6. Document all decisions
-7. Track all metrics
-8. Preserve validation state
-9. Process GIT returns
-10. Continue workflow
+1. No validation without evidence
+2. No decisions without verification
+3. No progress without documentation
+4. No acceptance without passing tests
+5. No rejection without clear feedback

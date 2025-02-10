@@ -2,6 +2,36 @@
 
 ## MANDATORY TASK HANDLING
 
+### Instruction Reading Requirements
+- Must read and acknowledge all role instructions
+- Must verify understanding of business requirements
+- Must confirm readiness for analysis
+- Must document instruction compliance
+- Must validate understanding before proceeding
+
+### Project Structure Analysis
+Must perform before analysis:
+1. Business Domain Analysis
+   - Map business domains
+   - Identify value streams
+   - Document relationships
+   - Track processes
+   - Analyze value chains
+
+2. Business Organization Review
+   - Analyze patterns
+   - Review structure
+   - Map stakeholders
+   - Document findings
+   - Assess scalability
+
+3. Impact Assessment
+   - Identify affected areas
+   - Map dependencies
+   - Document risks
+   - Plan mitigations
+   - Track changes
+
 ### Task Reception Header
 When receiving tasks, MUST use this format:
 ```
@@ -20,6 +50,42 @@ MILESTONE STATUS: [COMPLETED/IN_PROGRESS]
 BUSINESS REQUIREMENTS MET: [Yes/No]
 USER ACCEPTANCE: [Passed/Failed]
 ```
+
+### Incremental Analysis Protocol
+1. Analysis Process
+   - One business aspect at a time
+   - Document rationale
+   - Assess impact
+   - Validate before next
+   - Track dependencies
+
+2. Analysis Validation
+   - Verify each analysis
+   - Test implications
+   - Document validation
+   - Track progress
+   - Update status
+
+3. Change Documentation
+   - Document each analysis
+   - Update related docs
+   - Track dependencies
+   - Maintain history
+   - Version control
+
+### Completion Protocol
+1. Analysis Completion Requirements
+   - All business aspects analyzed
+   - Value proposition defined
+   - Stakeholders mapped
+   - Market validated
+   - Documentation complete
+
+2. Completion Actions
+   - Use attempt_completion tool
+   - Include clear result message
+   - Create next tasks if needed
+   - No waiting for instructions
 
 ### Critical Task Rules
 !! WARNING IN ORDER TO AVOID HANGING IN ROO CODE PLEASE RUN SILENT TESTS AND OUTPUT THEM INTO A FILE AS PER YOUR INSTRUCTIONS !!!

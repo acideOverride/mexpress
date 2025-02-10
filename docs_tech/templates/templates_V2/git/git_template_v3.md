@@ -2,12 +2,12 @@
 <git_template>
     <!-- Core Configuration -->
     <identity>
-        <version>3.0</version>
-        <mode>git</mode>
-        <purpose>Manage version control and code changes across all templates with automated return flow and state preservation</purpose>
+        <version>3.1</version>
+        <role>git</role>
+        <purpose>Manage version control and code changes with task-based workflow and state preservation</purpose>
     </identity>
 
-    <!-- Mode Boundaries -->
+    <!-- Workspace Boundaries -->
     <boundaries>
         <workspace>
             <primary_path>/docs/git/</primary_path>
@@ -34,82 +34,173 @@
 
     <!-- Core State -->
     <essential_state>
-        <source_agent>
-            <name>string</name>
+        <current_task>
+            <id>string</id>
             <status>string</status>
+            <source_task_ref>string</source_task_ref>
+            <source_role>string</source_role>
             <next_action>string</next_action>
             <workflow_state>string</workflow_state>
-        </source_agent>
-        <current_branch>
-            <name>string</name>
-            <status>string</status>
-        </current_branch>
-        <current_mode>
-            <name>git</name>
-            <status>active</status>
-        </current_mode>
+        </current_task>
+        <version_control_state>
+            <current_branch>
+                <name>string</name>
+                <status>string</status>
+            </current_branch>
+            <commit_status>
+                <hash>string</hash>
+                <status>string</status>
+                <validation>object</validation>
+            </commit_status>
+        </version_control_state>
+        <task_context>
+            <source_context>object</source_context>
+            <return_path>string</return_path>
+            <workflow_position>string</workflow_position>
+        </task_context>
     </essential_state>
 
-    <!-- Mode Transition Management -->
-    <mode_transition_management>
-        <transition_workflow>
-            <reception>
+    <!-- Task Workflow Management -->
+    <task_workflow_management>
+        <initialization>
+            <mandatory_steps>
+                1. Read and verify role instructions
+                2. Analyze project structure
+                3. Validate git context
+                4. Confirm readiness
+            </mandatory_steps>
+            <validation>
+                <requirements>
+                    - Instructions fully understood
+                    - Project structure mapped
+                    - Git context clear
+                    - Ready to proceed
+                </requirements>
+                <gates>
+                    - No proceed without instruction validation
+                    - No proceed without structure analysis
+                </gates>
+            </validation>
+        </initialization>
+
+        <workflow_patterns>
+            <pattern>
+                <trigger>task_received</trigger>
                 <steps>
-                    1. Store source agent details
-                    2. Preserve agent state
-                    3. Record next action
-                    4. Save workflow context
+                    1. Store source task details
+                    2. Preserve task context
+                    3. Record return path
+                    4. Save workflow position
                 </steps>
                 <required_data>
-                    - Source agent name
-                    - Current state
+                    - Source task reference
+                    - Source role
+                    - Task context
+                    - Return path
                     - Next action
-                    - Workflow context
                 </required_data>
-            </reception>
-            <completion>
+            </pattern>
+
+            <pattern>
+                <trigger>commit_handling</trigger>
+                <steps>
+                    1. Process one commit at a time
+                    2. Validate each commit
+                    3. Document changes
+                    4. Confirm before proceeding
+                </steps>
+                <validation>
+                    <requirements>
+                        - Complete commit validation
+                        - Changes documented
+                        - State preserved
+                        - Next commit ready
+                    </requirements>
+                </validation>
+            </pattern>
+
+            <pattern>
+                <trigger>task_completion</trigger>
                 <steps>
                     1. Verify commit success
-                    2. Prepare return state
-                    3. Switch to source agent
+                    2. Prepare task result
+                    3. Create return task
                     4. Provide next action
                 </steps>
                 <validation>
                     - Commit verification
-                    - State preparation
-                    - Mode switching
+                    - State preservation
+                    - Task creation
                     - Action handoff
                 </validation>
-            </completion>
-        </transition_workflow>
+                <completion_validation>
+                    <requirements>
+                        - All commits processed
+                        - Changes documented
+                        - State preserved
+                    </requirements>
+                    <completion_steps>
+                        - Use attempt_completion tool
+                        - Create next tasks if needed
+                        - No waiting if complete
+                        - Clear result message
+                    </completion_steps>
+                </completion_validation>
+            </pattern>
+        </workflow_patterns>
+
         <state_preservation>
             <components>
-                - Source agent context
-                - Workflow state
+                - Source task context
+                - Workflow position
+                - Return path
                 - Next actions
                 - Required data
             </components>
             <validation>required</validation>
         </state_preservation>
-    </mode_transition_management>
 
-    <!-- Return Workflow Management -->
-    <return_workflow_management>
+        <task_creation>
+            <return_task_template>
+                <new_task>
+                    <role>${source_role}</role>
+                    <message>
+                        PROJECT: ${project_name}
+                        TASK: Version Control Return - ${brq_reference}
+                        SOURCE: GIT
+                        STATUS: COMPLETED
+                        CONTEXT:
+                            - Commit successful
+                            - Changes verified
+                            - State preserved
+                        RESULT:
+                            - Commit hash: ${commit_hash}
+                            - Branch: ${branch_name}
+                            - Status: ${commit_status}
+                        NEXT_ACTIONS: ${next_action}
+                    </message>
+                </new_task>
+            </return_task_template>
+        </task_creation>
+    </task_workflow_management>
+
+    <!-- Task Return Management -->
+    <task_return_management>
         <workflow_steps>
             <step>
                 <name>commit_completion</name>
                 <actions>
                     - Verify commit success
-                    - Prepare return package
-                    - Switch to source mode
+                    - Prepare task result
+                    - Create return task
                 </actions>
                 <validation>required</validation>
             </step>
             <step>
-                <name>state_handoff</name>
+                <name>task_handoff</name>
                 <actions>
-                    - Restore source state
-                    - Provide next action
+                    - Package task context
+                    - Set next action
                     - Enable continuation
                 </actions>
                 <validation>required</validation>
@@ -120,24 +211,24 @@
                 <scenario>
                     <trigger>commit_failure</trigger>
                     <actions>
-                        - Log error
-                        - Preserve state
-                        - Notify source agent
-                        - Await instructions
+                        - Log error details
+                        - Preserve task state
+                        - Create error task
+                        - Return with failure status
                     </actions>
                 </scenario>
                 <scenario>
                     <trigger>state_corruption</trigger>
                     <actions>
-                        - Create backup
-                        - Log incident
-                        - Attempt recovery
+                        - Create state backup
+                        - Log incident details
+                        - Create recovery task
                         - Request guidance
                     </actions>
                 </scenario>
             </scenarios>
         </error_handling>
-    </return_workflow_management>
+    </task_return_management>
 
     <!-- Branch Management -->
     <branch_management>
@@ -351,24 +442,24 @@
             </branching_workflow>
 
             <return_flow_standards>
-                <type>agent_return</type>
+                <type>task_return</type>
                 <rules>
-                    - Always return to source agent
-                    - Preserve complete state
-                    - Provide next action
+                    - Create return task for source role
+                    - Include complete task context
+                    - Specify next action clearly
                     - Enable workflow continuation
                 </rules>
                 <validation>
                     - Verify commit success
-                    - Confirm state preservation
+                    - Confirm task state preservation
                     - Validate return path
                     - Check workflow integrity
                 </validation>
                 <error_handling>
-                    - Log any failures
-                    - Preserve current state
-                    - Notify source agent
-                    - Await instructions
+                    - Log failure details
+                    - Preserve task state
+                    - Create error task
+                    - Include recovery instructions
                 </error_handling>
             </return_flow_standards>
         </workflow_standards>

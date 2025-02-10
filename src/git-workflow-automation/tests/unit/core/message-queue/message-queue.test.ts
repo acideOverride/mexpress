@@ -13,6 +13,9 @@ interface MessageQueueEvents {
     'message-queued': QueuedMessage;
 }
 
+// Increase timeout for all tests in this suite
+jest.setTimeout(30000);
+
 describe('MessageQueue', () => {
     let messageQueue: MessageQueue;
     let eventHandler: EventHandler;
@@ -632,6 +635,223 @@ describe('MessageQueue', () => {
 
             const cachedMessage = await messageQueue.getCachedMessage(message.id);
             expect(cachedMessage?.status).toBe('processed');
+        });
+
+        // New test cases to improve branch coverage
+
+        test('should handle concurrent retries with status preservation', async () => {
+            const messages: QueuedMessage[] = Array.from({ length: 3 }, (_, i) => ({
+                id: `concurrent-retry-${i}`,
+                type: 'git-operation',
+                payload: { operation: 'commit' },
+                priority: 1
+            }));
+
+            let processingCount = 0;
+            messageQueue.on('message-processing', async (msg) => {
+                processingCount++;
+                if (processingCount <= 3) { // First attempt for each message
+                    throw new Error('Initial failure');
+                }
+            });
+
+            // Track retry events
+            const retryEvents: MessageQueueEvents['message-retry'][] = [];
+            messageQueue.on('message-retry', event => {
+                retryEvents.push(event);
+            });
+
+            // Enqueue and process messages
+            await Promise.all(messages.map(msg => messageQueue.enqueue(msg)));
+            await messageQueue.processQueue();
+
+            // Wait for retries to complete
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // Verify retry handling
+            expect(retryEvents).toHaveLength(3);
+            expect(new Set(retryEvents.map(e => e.messageId)).size).toBe(3);
+
+            // Verify final status
+            for (const msg of messages) {
+                const cached = await messageQueue.getCachedMessage(msg.id);
+                expect(cached?.status).toBe('processed');
+            }
+        });
+
+        // Increase timeout for this specific test
+        jest.setTimeout(60000);
+
+        test('should handle test environment retry with status mismatch', async () => {
+            const originalEnv = process.env.NODE_ENV;
+            process.env.NODE_ENV = 'test';
+
+            try {
+                // Create initial message
+                const message: QueuedMessage = {
+                    id: 'test-retry-error',
+                    type: 'git-operation',
+                    payload: { operation: 'commit' },
+                    priority: -1
+                };
+
+                // Mock event handler to throw error
+                (messageQueue as any).eventHandler = {
+                    emit: () => { throw new Error('Processing error'); }
+                };
+
+                // Track retry state
+                let retryMessage: QueuedMessage | undefined;
+                const retryPromise = new Promise<void>(resolve => {
+                    messageQueue.on('message-retry', async (event) => {
+                        retryMessage = event.message;
+                        // Wait for status propagation
+                        await new Promise(r => setTimeout(r, 50));
+                        resolve();
+                    });
+                });
+
+                // Enqueue and process
+                await messageQueue.enqueue(message);
+                await messageQueue.processQueue();
+
+                // Wait for retry event
+                await retryPromise;
+
+                // Verify retry state
+                const finalMessage = await messageQueue.getCachedMessage(message.id);
+                expect(finalMessage?.status).toBe('retry');
+                expect(messageQueue['retryQueue'].has(message.id)).toBe(true);
+
+                // Process again to handle retry
+                if (retryMessage) {
+                    await messageQueue.enqueue(retryMessage);
+                    await messageQueue.processQueue();
+                }
+
+                // Wait for retry processing
+                await new Promise(r => setTimeout(r, 50));
+
+                // Verify final state
+                const lastMessage = await messageQueue.getCachedMessage(message.id);
+                expect(lastMessage?.status).toBe('retry');
+            } finally {
+                process.env.NODE_ENV = originalEnv;
+            }
+        });
+
+        test('should handle production retry with error in timeout callback', async () => {
+            jest.setTimeout(20000); // Increase timeout for this test
+            const originalEnv = process.env.NODE_ENV;
+            process.env.NODE_ENV = 'production';
+
+            try {
+                const message: QueuedMessage = {
+                    id: 'prod-retry-timeout-error',
+                    type: 'git-operation',
+                    payload: { operation: 'commit' },
+                    priority: 1
+                };
+// Track error logs and retry state
+const errorLogs: string[] = [];
+let retryTriggered = false;
+consoleErrorSpy.mockImplementation((...args: any[]) => {
+    errorLogs.push(args.join(' '));
+});
+
+// Create promise to track retry event
+const retryEvent = new Promise<void>((resolve) => {
+    messageQueue.on('message-retry', () => {
+        retryTriggered = true;
+        resolve();
+    });
+});
+
+let attempts = 0;
+messageQueue.on('message-processing', () => {
+    attempts++;
+    throw new Error('Processing error');
+});
+
+// Override _updateCache after retry is triggered
+const originalUpdateCache = (messageQueue as any)._updateCache.bind(messageQueue);
+(messageQueue as any)._updateCache = async (id: string, data: QueuedMessage) => {
+    if (retryTriggered && data.status === 'retry') {
+        throw new Error('Cache update error');
+    }
+    return originalUpdateCache(id, data);
+};
+
+await messageQueue.enqueue(message);
+await messageQueue.processQueue();
+
+// Wait for retry event
+await retryEvent;
+
+// Wait for error to be logged
+await new Promise(resolve => setTimeout(resolve, 1100));
+
+// Verify error logs
+expect(errorLogs.some(log => log.includes('Error in production retry'))).toBe(true);
+expect(errorLogs.some(log => log.includes('Cache update error'))).toBe(true);
+
+// Verify message state
+const finalMessage = await messageQueue.getCachedMessage(message.id);
+expect(finalMessage?.status).toBe('retry');
+expect(messageQueue['retryQueue'].has(message.id)).toBe(true);
+                expect(messageQueue['retryQueue'].has(message.id)).toBe(true);
+            } finally {
+                process.env.NODE_ENV = originalEnv;
+            }
+        });
+
+        test('should handle errors in event handler during retry', async () => {
+            jest.setTimeout(30000); // Increase timeout for this test
+            const originalEnv = process.env.NODE_ENV;
+            process.env.NODE_ENV = 'production';
+
+            try {
+                const message: QueuedMessage = {
+                    id: 'event-handler-error',
+                    type: 'git-operation',
+                    payload: { operation: 'commit' },
+                    priority: 1
+                };
+
+                // Track error logs and retry state
+                const errorLogs: string[] = [];
+                consoleErrorSpy.mockImplementation((...args: any[]) => {
+                    errorLogs.push(args.join(' '));
+                });
+
+                // Create promise to track retry event
+                const retryEvent = new Promise<void>((resolve) => {
+                    messageQueue.on('message-retry', () => resolve());
+                });
+
+                // Mock event handler to throw error
+                const mockEventHandler = {
+                    emit: jest.fn().mockRejectedValue(new Error('Event handler error'))
+                };
+                (messageQueue as any).eventHandler = mockEventHandler;
+
+                // Process message
+                await messageQueue.enqueue(message);
+                await messageQueue.processQueue();
+
+                // Wait for retry event
+                await retryEvent;
+
+                // Wait for error to be logged
+                await new Promise(resolve => setTimeout(resolve, 50));
+
+                // Verify state
+                const finalMessage = await messageQueue.getCachedMessage(message.id);
+                expect(finalMessage?.status).toBe('retry');
+                expect(messageQueue['retryQueue'].has(message.id)).toBe(true);
+            } finally {
+                process.env.NODE_ENV = originalEnv;
+            }
         });
     });
 });

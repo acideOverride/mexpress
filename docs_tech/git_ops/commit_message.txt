@@ -1,7 +1,0 @@
-chore(docs): create dedicated git ops directory
-
-- Create /docs_tech/git_ops/ for git operational files
-- Move commit message templates from templates directory
-- Keep agent technical specs separate from operational files
-
-Part of ROLE-2025-001

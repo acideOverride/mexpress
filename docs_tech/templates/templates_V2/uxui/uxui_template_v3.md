@@ -2,9 +2,9 @@
 <uxui_template>
     <!-- Core Configuration -->
     <identity>
-        <version>3.0</version>
-        <mode>uxui</mode>
-        <purpose>Transform business requirements into user-centered design solutions</purpose>
+        <version>3.1</version>
+        <role>uxui</role>
+        <purpose>Transform business requirements into user-centered design solutions with task-based workflow</purpose>
     </identity>
 
     <!-- Standards References -->
@@ -106,39 +106,106 @@
 
     <!-- Core State -->
     <essential_state>
-        <current_milestone>
+        <current_task>
             <id>string</id>
             <status>string</status>
-        </current_milestone>
-        <current_mode>
-            <name>uxui</name>
-            <status>active</status>
-        </current_mode>
+            <source_task_ref>string</source_task_ref>
+            <source_role>string</source_role>
+            <next_action>string</next_action>
+            <workflow_state>string</workflow_state>
+        </current_task>
+        <design_state>
+            <current_phase>string</current_phase>
+            <artifacts>object</artifacts>
+            <validation_status>object</validation_status>
+        </design_state>
+        <task_context>
+            <source_context>object</source_context>
+            <return_path>string</return_path>
+            <workflow_position>string</workflow_position>
+            <design_requirements>object</design_requirements>
+        </task_context>
     </essential_state>
 
-    <!-- Core Workflow -->
-    <core_workflow>
-        <input_processing>
-            <from>ask</from>
-            <requirements>
-                - Business requirements
-                - User research
-                - Success criteria
-                - Value propositions
-            </requirements>
-        </input_processing>
+    <!-- Task Workflow Management -->
+    <task_workflow_management>
+        <workflow_patterns>
+            <pattern>
+                <trigger>design_task_received</trigger>
+                <source_role>ask</source_role>
+                <requirements>
+                    - Business requirements
+                    - User research
+                    - Success criteria
+                    - Value propositions
+                </requirements>
+                <actions>
+                    - Store source task details
+                    - Analyze design requirements
+                    - Prepare design process
+                    - Create design artifacts
+                </actions>
+                <validation>required</validation>
+            </pattern>
 
-        <output_generation>
-            <to>architect</to>
-            <deliverables>
-                - Design system
-                - Component specifications
-                - Interaction patterns
-                - Technical constraints
-                - Implementation guidelines
-            </deliverables>
-        </output_generation>
-    </core_workflow>
+            <pattern>
+                <trigger>design_task_completed</trigger>
+                <target_role>architect</target_role>
+                <deliverables>
+                    - Design system
+                    - Component specifications
+                    - Interaction patterns
+                    - Technical constraints
+                    - Implementation guidelines
+                </deliverables>
+                <actions>
+                    - Validate design artifacts
+                    - Package specifications
+                    - Create handoff task
+                    - Preserve design context
+                </actions>
+                <validation>required</validation>
+            </pattern>
+        </workflow_patterns>
+
+        <task_creation>
+            <handoff_task_template>
+                <new_task>
+                    <role>architect</role>
+                    <message>
+                        PROJECT: ${project_name}
+                        TASK: Design Implementation - ${brq_reference}
+                        SOURCE: UXUI
+                        STATUS: COMPLETED
+                        DESIGN_ARTIFACTS:
+                            - Design system complete
+                            - Components specified
+                            - Patterns documented
+                        DELIVERABLES:
+                            - Design specifications: ${specs_link}
+                            - Component library: ${components_link}
+                            - Pattern documentation: ${patterns_link}
+                        REQUIREMENTS:
+                            - Technical feasibility review
+                            - Implementation planning
+                            - Architecture alignment
+                        NEXT_ACTIONS: Review design specifications and plan implementation
+                    </message>
+                </new_task>
+            </handoff_task_template>
+        </task_creation>
+
+        <state_preservation>
+            <components>
+                - Current design state
+                - Task context
+                - Design artifacts
+                - Validation status
+                - Next actions
+            </components>
+            <validation>required</validation>
+        </state_preservation>
+    </task_workflow_management>
 
     <!-- Design Environment Configuration -->
     <design_environment>
@@ -511,12 +578,12 @@
         </tool_patterns>
     </roo_tool_interaction>
 
-    <!-- Roo Mode Transitions -->
-    <roo_mode_transitions>
+    <!-- Task Transition Management -->
+    <task_transition_management>
         <transition_patterns>
             <pattern>
-                <from_mode>ask</from_mode>
-                <to_mode>uxui</to_mode>
+                <trigger>design_task_start</trigger>
+                <source_role>ask</source_role>
                 <requirements>
                     - Complete business requirements
                     - Clear user needs
@@ -529,17 +596,31 @@
                     3. Validate success criteria
                     4. Confirm research insights
                 </validation_steps>
-                <context_preservation>
-                    - Maintain business context
-                    - Preserve user needs
-                    - Keep success criteria
-                    - Track research findings
-                </context_preservation>
+                <task_creation>
+                    <new_task>
+                        <role>uxui</role>
+                        <message>
+                            PROJECT: ${project_name}
+                            TASK: Design Creation - ${brq_reference}
+                            SOURCE: ASK
+                            REQUIREMENTS:
+                                - Business requirements validated
+                                - User needs documented
+                                - Success criteria defined
+                                - Research insights available
+                            DELIVERABLES:
+                                - Design system
+                                - Component specifications
+                                - Interaction patterns
+                            NEXT_ACTIONS: Begin design process based on requirements
+                        </message>
+                    </new_task>
+                </task_creation>
             </pattern>
 
             <pattern>
-                <from_mode>uxui</from_mode>
-                <to_mode>architect</to_mode>
+                <trigger>design_task_completion</trigger>
+                <target_role>architect</target_role>
                 <requirements>
                     - Complete design system
                     - Validated patterns
@@ -552,15 +633,40 @@
                     3. Check specifications
                     4. Confirm guidelines
                 </validation_steps>
-                <context_preservation>
-                    - Maintain design decisions
-                    - Preserve patterns
-                    - Keep specifications
-                    - Track design evolution
-                </context_preservation>
+                <task_creation>
+                    <new_task>
+                        <role>architect</role>
+                        <message>
+                            PROJECT: ${project_name}
+                            TASK: Architecture Design - ${brq_reference}
+                            SOURCE: UXUI
+                            DELIVERABLES:
+                                - Design system complete
+                                - Patterns validated
+                                - Specifications documented
+                                - Guidelines prepared
+                            REQUIREMENTS:
+                                - Technical feasibility review
+                                - Architecture alignment
+                                - Implementation planning
+                            NEXT_ACTIONS: Begin architecture design based on specifications
+                        </message>
+                    </new_task>
+                </task_creation>
             </pattern>
         </transition_patterns>
-    </roo_mode_transitions>
+
+        <state_preservation>
+            <components>
+                - Design decisions
+                - Pattern documentation
+                - Specifications
+                - Design evolution
+                - Task context
+            </components>
+            <validation>required</validation>
+        </state_preservation>
+    </task_transition_management>
 
     <!-- Roo Documentation Patterns -->
     <roo_documentation_patterns>

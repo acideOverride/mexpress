@@ -1,3 +1,5 @@
+import { ServiceMeshProxy, ServiceMeshRoute, ServiceMeshPolicy } from './service-mesh-config';
+
 export interface ServicePort {
   port: number;
   targetPort: number;
@@ -15,34 +17,6 @@ export interface HealthCheck {
   failureThreshold: number;
 }
 
-export interface ServiceResources {
-  cpu: {
-    request: string;
-    limit: string;
-  };
-  memory: {
-    request: string;
-    limit: string;
-  };
-}
-
-export interface ServiceReplicas {
-  min: number;
-  max: number;
-  target: number;
-}
-
-export interface ServiceSpec {
-  name: string;
-  image: string;
-  version: string;
-  ports: ServicePort[];
-  healthCheck: HealthCheck;
-  resources: ServiceResources;
-  replicas: ServiceReplicas;
-  environment: Record<string, string>;
-}
-
 export interface DeploymentConfig {
   apiVersion: string;
   kind: string;
@@ -51,7 +25,49 @@ export interface DeploymentConfig {
     namespace: string;
     labels?: Record<string, string>;
   };
-  spec: ServiceSpec;
+  spec: {
+    image: string;
+    version: string;
+    ports: ServicePort[];
+    replicas: number;
+    selector: {
+      matchLabels: Record<string, string>;
+    };
+    template: {
+      metadata: {
+        labels: Record<string, string>;
+      };
+      spec: {
+        containers: {
+          name: string;
+          image: string;
+          ports: ServicePort[];
+          healthCheck?: HealthCheck;
+          resources?: {
+            requests?: {
+              cpu?: string;
+              memory?: string;
+            };
+            limits?: {
+              cpu?: string;
+              memory?: string;
+            };
+          };
+        }[];
+      };
+    };
+    healthCheck?: HealthCheck;
+    resources?: {
+      requests?: {
+        cpu?: string;
+        memory?: string;
+      };
+      limits?: {
+        cpu?: string;
+        memory?: string;
+      };
+    };
+  };
 }
 
 export interface DeploymentConfigOptions {
@@ -60,9 +76,93 @@ export interface DeploymentConfigOptions {
   image: string;
   version: string;
   ports: ServicePort[];
-  healthCheck?: Partial<HealthCheck>;
-  resources?: Partial<ServiceResources>;
-  replicas?: Partial<ServiceReplicas>;
-  environment?: Record<string, string>;
+  healthCheck?: HealthCheck;
+  resources?: {
+    requests?: {
+      cpu?: string;
+      memory?: string;
+    };
+    limits?: {
+      cpu?: string;
+      memory?: string;
+    };
+  };
   labels?: Record<string, string>;
+}
+
+export interface ServiceDeploymentStatus {
+  status: 'Deployed' | 'Failed' | 'Removed';
+  service: {
+    name: string;
+    version: string;
+    replicas: {
+      current: number;
+      desired: number;
+      available: number;
+    };
+  };
+  ha: {
+    enabled: boolean;
+    status: string;
+  };
+  runtime: {
+    engine: string;
+    version: string;
+  };
+  mesh?: {
+    enabled: boolean;
+    proxy: ServiceMeshProxy;
+    route: ServiceMeshRoute;
+    policies: ServiceMeshPolicy[];
+  };
+}
+
+export interface ServiceMeshConfig {
+  proxy: ServiceMeshProxy;
+  route: ServiceMeshRoute;
+  policies?: ServiceMeshPolicy[];
+}
+
+export interface ServiceConfig {
+  name: string;
+  image: string;
+  version: string;
+  ports: ServicePort[];
+  replicas?: {
+    min?: number;
+    max?: number;
+    target?: number;
+  };
+  resources?: {
+    requests?: {
+      cpu?: string;
+      memory?: string;
+    };
+    limits?: {
+      cpu?: string;
+      memory?: string;
+    };
+  };
+  mesh?: ServiceMeshConfig;
+}
+
+export interface ServiceUpdateConfig {
+  version?: string;
+  replicas?: number;
+  resources?: {
+    requests?: {
+      cpu?: string;
+      memory?: string;
+    };
+    limits?: {
+      cpu?: string;
+      memory?: string;
+    };
+  };
+}
+
+export interface ServiceMeshUpdateConfig {
+  proxy?: Partial<ServiceMeshProxy>;
+  route?: Partial<ServiceMeshRoute>;
+  policies?: ServiceMeshPolicy[];
 }

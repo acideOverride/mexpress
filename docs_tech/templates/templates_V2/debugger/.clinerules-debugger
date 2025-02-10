@@ -71,6 +71,24 @@
    - Future Safeguards
    - Version Management
 
+# Project Structure Analysis
+project_structure_analysis:
+  required_actions:
+    - Map issue components
+    - Document error relationships
+    - Identify critical paths
+    - Track dependencies
+    - Analyze fix impacts
+  validation:
+    required: true
+    timing: before_debug
+  documentation:
+    - Issue structure map
+    - Error relationships
+    - Fix dependencies
+    - Impact analysis
+    - Risk assessment
+
 # Debug Focus
 1. Analysis Patterns
    - Systematic debugging
@@ -96,6 +114,24 @@
    - Validation techniques
    - Git integration
 
+# Incremental Debug Process
+incremental_debugging:
+  rules:
+    - One issue aspect at a time
+    - Validate each fix
+    - Document incrementally
+    - Track dependencies
+    - Assess impact
+  validation:
+    required: true
+    blocking: true
+  documentation:
+    - Debug details
+    - Fix status
+    - Test results
+    - Dependencies affected
+    - Progress tracking
+
 # Quality Gates
 1. Issue Analysis
    - Reproduction verified
@@ -112,6 +148,23 @@
    - Security verified
    - Prevention documented
    - Version controlled
+
+# Completion Protocol
+completion_protocol:
+  requirements:
+    - All issues resolved
+    - Fixes validated
+    - Tests passing
+    - Prevention documented
+    - Documentation complete
+  actions:
+    - Use attempt_completion tool
+    - Include clear result message
+    - Create next tasks if needed
+    - No waiting for instructions
+  validation:
+    required: true
+    blocking: true
 
 # Git Integration Requirements
 git_workflow:
@@ -174,6 +227,42 @@ git_workflow:
       - Next action clear
       - Workflow valid
 
+# Context Window Management
+context_management:
+  thresholds:
+    warning: 70
+    critical: 85
+  
+  monitoring_points:
+    - Before loading debug logs
+    - Before stack trace analysis
+    - Before loading system state
+    - After each debug operation
+    - Before state transitions
+  
+  debug_specific_rules:
+    - Load logs incrementally
+    - Process stack traces in chunks
+    - Stream system state data
+    - Use pagination for large outputs
+    - Clear non-essential context regularly
+  
+  required_actions:
+    - Check context before loading debug data
+    - Monitor environment_details context size
+    - Break large debug sessions into chunks
+    - Use incremental analysis
+    - Force commits at warning threshold
+    - Stop operations at critical threshold
+    - Clear debug logs after analysis
+  
+  prohibited_actions:
+    - Loading full logs at once
+    - Complete stack trace in single load
+    - Multiple debug sessions without clearing
+    - Large operations near warning threshold
+    - Any operations at critical threshold
+
 # Mode Chain Integration
 hierarchical_workflow:
   position: "Debug phase"
@@ -193,6 +282,10 @@ mode_transition_rules:
     - Cross-chain communication
     - Missing commits
     - State loss
+    - Ignoring context thresholds
+    - Large debug loads at warning level
+    - Any operations at critical level
+    - Context-unaware transitions
 
   required_actions:
     - Complete issue analysis
@@ -203,6 +296,11 @@ mode_transition_rules:
     - Track changes
     - Create commits
     - Preserve state
+    - Check context before transitions
+    - Clear non-essential debug data
+    - Monitor context during transitions
+    - Force commit at warning threshold
+    - Stop at critical threshold
 
 # Testing Requirements
 debug_validation:
@@ -267,6 +365,15 @@ vocabulary_control:
 
 # Error Handling
 error_handling:
+  context_aware_actions:
+    - Monitor context percentage before loading logs
+    - Check thresholds before stack trace analysis
+    - Use incremental log loading
+    - Clear processed debug data
+    - Track context usage during debugging
+    - Force commits at warning threshold (70%)
+    - Stop operations at critical threshold (85%)
+
   required_actions:
     - Document debug process
     - Update issue logs
@@ -278,6 +385,7 @@ error_handling:
     - Handle failures
 
   error_types:
+    # Standard Debug Errors
     - Debug failures
     - Test regressions
     - Performance issues
@@ -286,6 +394,16 @@ error_handling:
     - Version control errors
     - State corruption
     - Mode switching failures
+
+    # Context Management Errors
+    - Context threshold violations
+    - Log loading context overflow
+    - Stack trace context limit reached
+    - Debug session context exceeded
+    - Context warning threshold (70%) reached
+    - Context critical threshold (85%) reached
+    - Debug data chunking failure
+    - Incremental loading failure
 
 # State Management
 state_management:

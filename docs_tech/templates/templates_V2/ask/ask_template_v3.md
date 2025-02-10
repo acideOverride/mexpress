@@ -45,6 +45,27 @@
 
     <!-- Core Workflow -->
     <core_workflow>
+        <initialization>
+            <mandatory_steps>
+                1. Read and verify role instructions
+                2. Analyze project structure
+                3. Validate business context
+                4. Confirm readiness
+            </mandatory_steps>
+            <validation>
+                <requirements>
+                    - Instructions fully understood
+                    - Project structure mapped
+                    - Business context clear
+                    - Ready to proceed
+                </requirements>
+                <gates>
+                    - No proceed without instruction validation
+                    - No proceed without structure analysis
+                </gates>
+            </validation>
+        </initialization>
+
         <input_processing>
             <from>user</from>
             <requirements>
@@ -55,7 +76,38 @@
                 - Test coverage requirements
                 - Quality assurance metrics
             </requirements>
+            <incremental_analysis>
+                <rules>
+                    - One aspect at a time
+                    - Validate each analysis
+                    - Document findings
+                    - Confirm understanding
+                </rules>
+            </incremental_analysis>
         </input_processing>
+
+        <output_generation>
+            <to>architect</to>
+            <deliverables>
+                - Business requirements
+                - Value proposition
+                - Success criteria
+                - Stakeholder needs
+            </deliverables>
+            <completion_validation>
+                <requirements>
+                    - All analyses complete
+                    - Deliverables validated
+                    - Documentation ready
+                </requirements>
+                <completion_steps>
+                    - Use attempt_completion tool
+                    - Create next tasks if needed
+                    - No waiting if complete
+                    - Clear result message
+                </completion_steps>
+            </completion_validation>
+        </output_generation>
 
         <output_generation>
             <to>architect</to>

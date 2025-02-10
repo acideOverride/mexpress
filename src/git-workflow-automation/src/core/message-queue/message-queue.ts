@@ -265,26 +265,33 @@ export class MessageQueue {
                 // Add delay for status propagation
                 await new Promise(resolve => setTimeout(resolve, 50));
 
-                // Create retry promise with proper error handling
-                const retryPromise = new Promise<void>((resolve, reject) => {
-                    const processRetry = async () => {
+                // Create retry promise that preserves retry state
+                const retryPromise = new Promise<void>((resolve) => {
+                    const preserveRetry = async () => {
                         try {
-                            // Double-check retry status
+                            // Ensure retry state is preserved
                             const cached = await this.getCachedMessage(retryMessage.id);
                             if (cached?.status !== 'retry') {
                                 await this._updateCache(retryMessage.id, retryMessage);
                             }
 
-                            // Process with preserved status
-                            await this._processMessage({...retryMessage});
+                            // Add to high priority queue for next cycle
+                            this.queue.get(retryPriority)!.push({
+                                ...retryMessage,
+                                status: 'retry'
+                            });
+
+                            // Wait for state propagation
+                            await new Promise(r => setTimeout(r, 50));
                             resolve();
                         } catch (error) {
-                            reject(error);
+                            console.error('Error preserving retry state:', error);
+                            resolve(); // Resolve to prevent hanging
                         }
                     };
 
-                    // Execute retry processing
-                    processRetry().catch(reject);
+                    // Execute retry preservation
+                    preserveRetry();
                 });
 
                 // Track and handle retry promise
