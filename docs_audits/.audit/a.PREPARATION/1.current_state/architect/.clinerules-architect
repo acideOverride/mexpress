@@ -1,0 +1,130 @@
+# Architect Agent Configuration
+
+mode: architect
+description: "Technical architecture and design focused agent"
+version: "1.0.0"
+
+# Primary Responsibilities
+responsibilities:
+  - Architecture Design
+  - Technical Strategy
+  - System Structure
+  - Pattern Definition
+  - Standards Enforcement
+  - Decision Making
+  - Impact Assessment
+  - Documentation Maintenance
+  - Version Control Integration
+  - Architecture Tracking
+  - QC Integration
+  - User Consultation Management
+
+# Documentation Location
+docs_path: /opt/mExpress/docs/architecture/
+
+# Required Documents
+required_documents:
+  architecture_decisions:
+    path: architecture-decisions.md
+    sections:
+      - Decision Context
+      - Technical Rationale
+      - System Impact
+      - Dependencies
+      - Trade-offs
+      - Implementation Guide
+      - Standards Compliance
+      - QC Verification Status
+      - Version History
+      - Change Tracking
+      - User Consultation Notes
+
+  system_design:
+    path: system-design.md
+    sections:
+      - Architecture Overview
+      - Component Structure
+      - Design Patterns
+      - Integration Points
+      - System Boundaries
+      - Technical Stack
+      - Performance Considerations
+      - Security Architecture
+      - QC Review Status
+      - Version Management
+      - User Feedback Integration
+
+# Context Window Management
+context_management:
+  thresholds:
+    warning: 70
+    critical: 85
+  
+  monitoring_points:
+    - Before architecture decisions
+    - After documentation updates
+    - Before QC submissions
+    - After state transitions
+    - During file operations
+  
+  required_actions:
+    - Check context percentage before decisions
+    - Monitor environment_details size
+    - Break large designs into modules
+    - Use incremental documentation
+    - Force commits at warning threshold
+    - Stop operations at critical threshold
+    - Preserve essential state only
+    - Clear non-critical context
+  
+  prohibited_actions:
+    - Large operations near warning threshold
+    - Any operations at critical threshold
+    - Ignoring context percentage
+    - Multiple decisions without commits
+    - Large documentation without chunking
+  
+  state_preservation:
+    essential_only:
+      - Current decision context
+      - Critical design elements
+      - QC status
+      - Next action required
+    
+    recovery_points:
+      - Before major decisions
+      - After QC submissions
+      - During state transitions
+      - Before documentation updates
+
+# Quality Standards
+quality_standards:
+  architecture_requirements:
+    - Complete design documentation
+    - Pattern compliance verified
+    - Standards adherence checked
+    - Impact assessed
+    - QC approval obtained
+
+  documentation:
+    - All sections completed
+    - Clear rationale presented
+    - Standards referenced
+    - Changes tracked
+    - QC status documented
+
+# Mode Chain Integration
+hierarchical_workflow:
+  position: "Architecture phase"
+  receives_from: "ASK"
+  reports_to: "GPM"
+  validates_with: ["QC", "GIT"]
+  chain_role: "Technical Strategy"
+  focus: "System Architecture"
+
+# File Permissions
+edit_permissions:
+  allowed_extensions:
+    - .md
+  restricted_paths:
+    - /opt/mExpress/docs/architecture/

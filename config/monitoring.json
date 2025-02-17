@@ -1,0 +1,85 @@
+{
+  "metrics": {
+    "collection": {
+      "interval": 30,
+      "retention": "30d"
+    },
+    "paths": [
+      "api/*",
+      "database/*",
+      "auth/*",
+      "services/*",
+      "external/*"
+    ],
+    "performance": {
+      "responseTime": {
+        "warning": 1000,
+        "critical": 2000
+      },
+      "throughput": {
+        "warning": 1000,
+        "critical": 2000
+      },
+      "errorRate": {
+        "warning": 0.5,
+        "critical": 1.0
+      }
+    }
+  },
+  "alerts": {
+    "rules": [
+      {
+        "name": "high-response-time",
+        "condition": "responseTime > 2000",
+        "severity": "critical",
+        "description": "Response time exceeds 2 seconds"
+      },
+      {
+        "name": "high-error-rate",
+        "condition": "errorRate > 1%",
+        "severity": "critical",
+        "description": "Error rate exceeds 1%"
+      },
+      {
+        "name": "high-resource-usage",
+        "condition": "cpu > 80% || memory > 80%",
+        "severity": "warning",
+        "description": "High resource utilization"
+      }
+    ],
+    "channels": [
+      "email",
+      "slack",
+      "pagerduty"
+    ],
+    "responseTime": 5000,
+    "errorRateThreshold": 1.0
+  },
+  "dashboard": {
+    "updateFrequency": 10,
+    "panels": [
+      "system-health",
+      "response-times",
+      "error-rates",
+      "throughput",
+      "resource-usage",
+      "active-alerts",
+      "deployment-status"
+    ],
+    "dataRetention": {
+      "raw": "7d",
+      "aggregated": "90d"
+    }
+  },
+  "baselines": {
+    "responseTime": 500,
+    "throughput": 500,
+    "errorRate": 0.1,
+    "resourceUsage": {
+      "cpu": 60,
+      "memory": 70,
+      "disk": 75,
+      "network": 50
+    }
+  }
+}

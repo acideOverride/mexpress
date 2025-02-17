@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mExpress - Customer & Product Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>mExpress Management</h1>
+            <nav>
+                <button onclick="showSection('customers')">Customers</button>
+                <button onclick="showSection('products')">Products</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Customers Section -->
+            <section id="customers" class="section">
+                <h2>Customer Management</h2>
+                <div class="actions">
+                    <button onclick="showForm('customer-form')">Add Customer</button>
+                </div>
+                <div id="customer-form" class="form-container hidden">
+                    <form onsubmit="handleCustomerSubmit(event)">
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="tel" name="phone" placeholder="Phone">
+                        <button type="submit">Save Customer</button>
+                    </form>
+                </div>
+                <div id="customer-list" class="list-container">
+                    <!-- Customer list will be populated here -->
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products" class="section hidden">
+                <h2>Product Management</h2>
+                <div class="actions">
+                    <button onclick="showForm('product-form')">Add Product</button>
+                </div>
+                <div id="product-form" class="form-container hidden">
+                    <form onsubmit="handleProductSubmit(event)">
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="text" name="description" placeholder="Description" required>
+                        <input type="number" name="price" placeholder="Price" step="0.01" required>
+                        <input type="text" name="sku" placeholder="SKU" required>
+                        <input type="number" name="stock" placeholder="Stock" required>
+                        <input type="text" name="category" placeholder="Category">
+                        <button type="submit">Save Product</button>
+                    </form>
+                </div>
+                <div id="product-list" class="list-container">
+                    <!-- Product list will be populated here -->
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

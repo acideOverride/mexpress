@@ -1,14 +1,12 @@
 import '@types/jest';
 
 declare global {
-  namespace jest {
-    interface SpyInstance<T extends (...args: unknown[]) => unknown> {
-      mockImplementation(
-        fn?: (...args: Parameters<T>) => ReturnType<T>
-      ): SpyInstance<T>;
-      mockReturnValue(value: ReturnType<T>): SpyInstance<T>;
-    }
-  }
+    const describe: jest.Describe;
+    const test: jest.It;
+    const expect: jest.Expect;
+    const beforeEach: jest.Lifecycle;
+    const afterEach: jest.Lifecycle;
+    const beforeAll: jest.Lifecycle;
+    const afterAll: jest.Lifecycle;
+    const jest: jest.Jest;
 }
-
-export {};

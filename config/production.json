@@ -1,0 +1,33 @@
+{
+  "name": "production",
+  "requiredServices": [
+    "database-primary",
+    "database-replica",
+    "cache-cluster",
+    "message-queue-cluster",
+    "auth-service",
+    "monitoring-service",
+    "backup-service"
+  ],
+  "minimumResources": {
+    "cpu": 4,
+    "memory": 8192,
+    "disk": 100
+  },
+  "requiredEnvVars": [
+    "NODE_ENV",
+    "DATABASE_PRIMARY_URL",
+    "DATABASE_REPLICA_URL",
+    "REDIS_CLUSTER_URLS",
+    "MQ_CLUSTER_CONNECTION_STRING",
+    "AUTH_SERVICE_URL",
+    "MONITORING_SERVICE_URL",
+    "BACKUP_SERVICE_URL",
+    "API_KEY",
+    "SSL_CERT_PATH",
+    "SSL_KEY_PATH",
+    "LOG_LEVEL",
+    "ALERT_WEBHOOK_URL",
+    "METRICS_API_KEY"
+  ]
+}

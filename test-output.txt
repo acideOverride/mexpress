@@ -1,0 +1,4 @@
+
+> mexpress-core@1.0.0 test
+> jest --silent > logs/test-status.log src/git-workflow-automation/tests/unit/core/message-queue/message-queue.test.ts
+
