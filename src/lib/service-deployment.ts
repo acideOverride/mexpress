@@ -1,6 +1,13 @@
 import { DeploymentConfig, DeploymentConfigOptions, ServicePort, HealthCheck } from '../types/deployment-config';
 
 export class ServiceDeployment {
+  private static readonly ERROR_MESSAGES = {
+    INVALID_CONFIG: 'Invalid deployment configuration',
+    INVALID_PORTS: 'Invalid deployment configuration: invalid ports',
+    INVALID_HEALTH_CHECK: 'Invalid deployment configuration: invalid health check',
+    INVALID_RESOURCES: 'Invalid deployment configuration: invalid resources'
+  };
+
   private name: string;
   private namespace: string;
   private image: string;
@@ -34,13 +41,13 @@ export class ServiceDeployment {
   private validateConfig(options: DeploymentConfigOptions): void {
     // Validate required fields
     if (!options.name || !options.namespace || !options.image || !options.version || !options.ports.length) {
-      throw new Error('Invalid service configuration');
+      throw new Error(ServiceDeployment.ERROR_MESSAGES.INVALID_CONFIG);
     }
 
     // Validate ports
     for (const port of options.ports) {
       if (port.port < 1 || port.targetPort < 1 || !['TCP', 'UDP'].includes(port.protocol)) {
-        throw new Error('Invalid service configuration');
+        throw new Error(ServiceDeployment.ERROR_MESSAGES.INVALID_PORTS);
       }
     }
 
@@ -56,7 +63,7 @@ export class ServiceDeployment {
         successThreshold < 1 ||
         failureThreshold < 1
       ) {
-        throw new Error('Invalid service configuration');
+        throw new Error(ServiceDeployment.ERROR_MESSAGES.INVALID_HEALTH_CHECK);
       }
     }
 
@@ -70,7 +77,7 @@ export class ServiceDeployment {
         (requests?.cpu && !cpuRegex.test(requests.cpu)) ||
         (limits?.cpu && !cpuRegex.test(limits.cpu))
       ) {
-        throw new Error('Invalid service configuration');
+        throw new Error(ServiceDeployment.ERROR_MESSAGES.INVALID_RESOURCES);
       }
 
       // Validate memory format (e.g., '128Mi', '1Gi')
@@ -79,7 +86,7 @@ export class ServiceDeployment {
         (requests?.memory && !memoryRegex.test(requests.memory)) ||
         (limits?.memory && !memoryRegex.test(limits.memory))
       ) {
-        throw new Error('Invalid service configuration');
+        throw new Error(ServiceDeployment.ERROR_MESSAGES.INVALID_RESOURCES);
       }
 
       // Validate that limits are not negative
@@ -89,7 +96,7 @@ export class ServiceDeployment {
         (limits?.cpu && limits.cpu.startsWith('-')) ||
         (limits?.memory && limits.memory.startsWith('-'))
       ) {
-        throw new Error('Invalid service configuration');
+        throw new Error(ServiceDeployment.ERROR_MESSAGES.INVALID_RESOURCES);
       }
     }
   }

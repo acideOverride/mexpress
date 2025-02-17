@@ -1,0 +1,9 @@
+v1.0.0
+
+Core files locked:
+- .clinerules-* files
+- *_role.md files
+- *_template_v3.md files
+
+No further modifications allowed to core files.
+Focus on implementation using these as reference.

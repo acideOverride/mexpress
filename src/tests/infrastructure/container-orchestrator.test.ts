@@ -69,7 +69,7 @@ describe('ContainerOrchestrator', () => {
         image: '',
         version: '',
         ports: []
-      })).rejects.toThrow('Invalid service configuration');
+      })).rejects.toThrow('Invalid deployment configuration');
     });
   });
 

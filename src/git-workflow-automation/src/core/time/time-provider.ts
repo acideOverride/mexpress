@@ -68,20 +68,26 @@ export class TestTimeProvider implements TimeProvider {
    * @param ms - The number of milliseconds to advance time by
    */
   advance(ms: number): void {
-    const targetTime = this.currentTime + ms;
-    
-    // Collect and sort timeouts that should be executed
-    const timeoutsToExecute = Array.from(this.timeouts.entries())
-      .filter(([_, timeout]) => timeout.time <= targetTime)
-      .sort((a, b) => a[1].time - b[1].time);
+      const targetTime = this.currentTime + ms;
+      
+      // Collect and sort timeouts that should be executed
+      const timeoutsToExecute = Array.from(this.timeouts.entries())
+        .filter(([_, timeout]) => timeout.time <= targetTime)
+        .sort((a, b) => a[1].time - b[1].time);
 
-    // Update current time before executing callbacks
-    this.currentTime = targetTime;
+      // Execute timeouts in order, updating time for each callback
+      for (const [id, timeout] of timeoutsToExecute) {
+          this.currentTime = timeout.time;
+          try {
+              timeout.callback();
+          } catch (error) {
+              this.timeouts.delete(id);
+              throw error;
+          }
+          this.timeouts.delete(id);
+      }
 
-    // Execute timeouts in order
-    for (const [id, timeout] of timeoutsToExecute) {
-      timeout.callback();
-      this.timeouts.delete(id);
-    }
+      // Set final time after all executions
+      this.currentTime = targetTime;
   }
 }

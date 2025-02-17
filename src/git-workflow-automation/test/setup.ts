@@ -92,12 +92,6 @@ export const cleanupMessageQueueTest = async (): Promise<void> => {
     const queue = global.testMessageQueue;
     if (queue) {
         try {
-            if (typeof queue.clear === 'function') {
-                await queue.clear();
-            }
-            if (typeof queue.close === 'function') {
-                await queue.close();
-            }
             await queue.cleanup();
         } catch (error) {
             console.error('Error during queue cleanup:', error);

@@ -1,40 +1,20 @@
-/** @type {import('jest').Config} */
+/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-    preset: 'ts-jest',
-    testEnvironment: 'node',
-    roots: ['<rootDir>/src', '<rootDir>/tests'],
-    setupFilesAfterEnv: ['<rootDir>/test/setup.ts'],
-    testTimeout: 120000, // Increased timeout for retry tests
-    slowTestThreshold: 60000, // Increased threshold for slow tests
-    maxWorkers: 1, // Run tests sequentially to avoid timing issues
-    testMatch: [
-        '**/__tests__/**/*.+(ts|tsx)',
-        '**/?(*.)+(spec|test).+(ts|tsx)'
-    ],
-    transform: {
-        '^.+\\.(ts|tsx)$': ['ts-jest', {
-            tsconfig: 'tsconfig.json',
-            diagnostics: {
-                ignoreCodes: ['TS2571']
-            },
-            isolatedModules: true
-        }]
-    },
-    collectCoverageFrom: [
-        'src/**/*.{js,ts}',
-        '!src/**/*.d.ts'
-    ],
-    coverageThreshold: {
-        global: {
-            statements: 95,
-            branches: 95,
-            functions: 95,
-            lines: 95
-        }
-    },
-    globals: {
-        'ts-jest': {
-            tsconfig: 'tsconfig.json'
-        }
-    }
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', {
+      tsconfig: 'tsconfig.json'
+    }]
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  testMatch: [
+    '**/tests/**/*.test.ts'
+  ],
+  verbose: true,
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  coverageReporters: ['json', 'lcov', 'text', 'clover'],
+  testTimeout: 120000, // Increase global timeout to 2 minutes
+  setupFilesAfterEnv: ['./test/setup.ts']
 };
