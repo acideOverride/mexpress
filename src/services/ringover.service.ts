@@ -1,40 +1,129 @@
-/**
- * Ringover service interface
- */
-interface RingoverContact {
-    firstName: string;
-    lastName?: string;
-    email: string;
-    phone?: string;
+import axios, { AxiosInstance, AxiosError } from 'axios';
+import { RateLimiter } from '../utils/rateLimiter';
+
+export interface RingoverConfig {
+  baseUrl: string;
+  apiKey: string;
+  teamId: string;
+  axiosInstance?: AxiosInstance;
+}
+
+export interface RingoverCall {
+  id: string;
+  callerNumber: string;
+  recipientNumber: string;
+  durationSeconds: number;
+  status: string;
+  timestamp: Date;
+  recordingUrl: string;
 }
 
 export class RingoverService {
-    private contacts: Map<string, RingoverContact> = new Map();
+  private client: AxiosInstance;
+  private rateLimiter: RateLimiter;
+  private maxRetries = 3;
+  private retryDelay = 1000; // 1 second
 
-    /**
-     * Create contact in Ringover
-     */
-    async createContact(data: RingoverContact): Promise<string> {
-        // Simulated API call
-        const contactId = `rov-${Date.now()}`;
-        this.contacts.set(contactId, data);
-        return contactId;
-    }
+  constructor(config: RingoverConfig) {
+    this.client = config.axiosInstance || axios.create({
+      baseURL: config.baseUrl,
+      headers: {
+        Authorization: `Bearer ${config.apiKey}`,
+        'Content-Type': 'application/json',
+        'X-Team-Id': config.teamId
+      }
+    });
 
-    /**
-     * Get contact from Ringover
-     */
-    async getContact(id: string): Promise<RingoverContact | undefined> {
-        return this.contacts.get(id);
-    }
+    // Initialize rate limiter (100 requests per minute)
+    this.rateLimiter = new RateLimiter(100, 60000);
 
-    /**
-     * Clear test data
-     */
-    clearTestData(): void {
-        this.contacts.clear();
+    // If using a provided instance, set default headers
+    if (config.axiosInstance) {
+      this.client.defaults.headers.common['Authorization'] = `Bearer ${config.apiKey}`;
+      this.client.defaults.headers.common['Content-Type'] = 'application/json';
+      this.client.defaults.headers.common['X-Team-Id'] = config.teamId;
     }
+  }
+
+  /**
+   * Get recent calls
+   */
+  async getRecentCalls(): Promise<RingoverCall[]> {
+    await this.rateLimiter.acquire();
+    try {
+      const response = await this.client.get('/calls');
+      return this.mapCalls(response.data);
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  }
+
+  /**
+   * Get call by ID
+   */
+  async getCallById(id: string): Promise<RingoverCall> {
+    await this.rateLimiter.acquire();
+    try {
+      const response = await this.client.get(`/calls/${id}`);
+      return this.mapCall(response.data);
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  }
+
+  /**
+   * Handle API errors
+   */
+  private handleError(error: unknown): Error {
+    // Handle Axios errors
+    if (axios.isAxiosError(error)) {
+      const axiosError = error as AxiosError;
+      
+      // Network or connection errors
+      if (!axiosError.response) {
+        return new Error('Network error');
+      }
+
+      // Handle specific HTTP status codes
+      switch (axiosError.response.status) {
+        case 401:
+          return new Error('Authentication failed');
+        case 404:
+          return new Error('Call not found');
+        case 429:
+          return new Error('Rate limit exceeded');
+        case 500:
+        case 502:
+        case 503:
+          return new Error('Server error');
+        default:
+          return new Error(`API error: ${axiosError.response.status}`);
+      }
+    }
+    
+    // Handle non-Axios errors
+    return error instanceof Error ? error : new Error('Unknown error');
+  }
+
+  /**
+   * Map API call to internal format
+   */
+  private mapCall(data: any): RingoverCall {
+    return {
+      id: data.id,
+      callerNumber: data.caller,
+      recipientNumber: data.recipient,
+      durationSeconds: data.duration,
+      status: data.status,
+      timestamp: new Date(data.timestamp),
+      recordingUrl: data.recording_url
+    };
+  }
+
+  /**
+   * Map array of API calls to internal format
+   */
+  private mapCalls(data: any[]): RingoverCall[] {
+    return data.map(call => this.mapCall(call));
+  }
 }
-
-// Export interface for use in tests
-export type { RingoverContact };
