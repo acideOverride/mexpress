@@ -1,5 +1,5 @@
 import { HiboutikService, HiboutikCustomer } from './hiboutik.service';
-import { RingoverService, RingoverCall } from './ringover.service';
+import { RingoverService, RingoverCall, RingoverCustomer } from './ringover.service';
 
 export interface CustomerCallRecord {
   customerId: string;
@@ -50,6 +50,39 @@ export class SyncService {
         }
       }
       // Re-throw unknown errors
+      throw error;
+    }
+  }
+
+  /**
+   * Sync customer from Hiboutik to Ringover
+   */
+  async syncCustomer(hiboutikId: string): Promise<void> {
+    try {
+      // Get Hiboutik customer
+      const hiboutikCustomer = await this.hiboutikService.getCustomerById(hiboutikId);
+      
+      // Prepare Ringover customer data
+      const ringoverCustomer = {
+        firstName: hiboutikCustomer.firstName,
+        lastName: hiboutikCustomer.lastName,
+        email: hiboutikCustomer.email,
+        phone: hiboutikCustomer.phone,
+        hiboutikId: hiboutikCustomer.id
+      };
+
+      // Check if customer exists in Ringover
+      const existingCustomer = await this.ringoverService.getCustomerByPhone(hiboutikCustomer.phone);
+
+      if (existingCustomer) {
+        // Update existing customer
+        await this.ringoverService.updateCustomer(existingCustomer.id, ringoverCustomer);
+      } else {
+        // Create new customer
+        await this.ringoverService.createCustomer(ringoverCustomer);
+      }
+    } catch (error) {
+      // Re-throw all errors as they're already properly handled by the services
       throw error;
     }
   }

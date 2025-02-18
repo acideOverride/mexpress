@@ -18,6 +18,15 @@ export interface RingoverCall {
   recordingUrl: string;
 }
 
+export interface RingoverCustomer {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  hiboutikId?: string;
+}
+
 export class RingoverService {
   private client: AxiosInstance;
   private rateLimiter: RateLimiter;
@@ -72,6 +81,61 @@ export class RingoverService {
   }
 
   /**
+   * Create a new customer
+   */
+  async createCustomer(customer: Omit<RingoverCustomer, 'id'>): Promise<RingoverCustomer> {
+    await this.rateLimiter.acquire();
+    try {
+      const response = await this.client.post('/customers', customer);
+      return response.data;
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  }
+
+  /**
+   * Get customer by ID
+   */
+  async getCustomerById(id: string): Promise<RingoverCustomer> {
+    await this.rateLimiter.acquire();
+    try {
+      const response = await this.client.get(`/customers/${id}`);
+      return response.data;
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  }
+
+  /**
+   * Update customer
+   */
+  async updateCustomer(id: string, customer: Omit<RingoverCustomer, 'id'>): Promise<RingoverCustomer> {
+    await this.rateLimiter.acquire();
+    try {
+      const response = await this.client.put(`/customers/${id}`, customer);
+      return response.data;
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  }
+
+  /**
+   * Get customer by phone number
+   */
+  async getCustomerByPhone(phone: string): Promise<RingoverCustomer | null> {
+    await this.rateLimiter.acquire();
+    try {
+      const response = await this.client.get('/customers/search', {
+        params: { phone }
+      });
+      const customers = response.data;
+      return customers.length > 0 ? customers[0] : null;
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  }
+
+  /**
    * Handle API errors
    */
   private handleError(error: unknown): Error {
@@ -89,7 +153,7 @@ export class RingoverService {
         case 401:
           return new Error('Authentication failed');
         case 404:
-          return new Error('Call not found');
+          return new Error('Customer not found');
         case 429:
           return new Error('Rate limit exceeded');
         case 500:
