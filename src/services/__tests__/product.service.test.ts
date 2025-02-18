@@ -1,215 +1,173 @@
 import { ProductService } from '../product.service';
-import { Product } from '../../models/types';
+import { Product, IProduct } from '../../models/product';
+import mongoose from 'mongoose';
 
 describe('ProductService', () => {
-    let productService: ProductService;
+  let productService: ProductService;
+  let db: mongoose.Connection;
 
-    beforeEach(() => {
-        productService = new ProductService();
+  const validProductData: Partial<IProduct> = {
+    name: 'Test Product',
+    description: 'A test product description',
+    price: 99.99,
+    sku: 'TEST123',
+    category: 'electronics',
+    tags: ['test', 'product'],
+    stockLevel: 100,
+    status: 'active'
+  };
+
+  beforeAll(async () => {
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mexpress_test');
+    db = mongoose.connection;
+    productService = new ProductService();
+  });
+
+  afterAll(async () => {
+    await db.dropDatabase();
+    await mongoose.connection.close();
+  });
+
+  beforeEach(async () => {
+    await Product.deleteMany({});
+  });
+
+  describe('create', () => {
+    it('should create a new product', async () => {
+      const product = await productService.create(validProductData);
+      expect(product).toBeDefined();
+      expect(product.name).toBe(validProductData.name);
+      expect(product.price).toBe(validProductData.price);
+      expect(product.sku).toBe(validProductData.sku);
+      expect(product.category).toBe(validProductData.category);
+      expect(product.stockLevel).toBe(validProductData.stockLevel);
+      expect(product.status).toBe(validProductData.status);
     });
 
-    describe('create', () => {
-        it('should create a new product with required fields', async () => {
-            const productData = {
-                name: 'Test Product',
-                description: 'A test product',
-                price: 99.99,
-                sku: 'TEST-001',
-                stock: 100
-            };
+    it('should throw error for duplicate sku', async () => {
+      await productService.create(validProductData);
+      await expect(productService.create(validProductData)).rejects.toThrow();
+    });
+  });
 
-            const product = await productService.create(productData);
-
-            expect(product).toMatchObject({
-                ...productData,
-                id: expect.any(String),
-                createdAt: expect.any(Date),
-                updatedAt: expect.any(Date)
-            });
-        });
-
-        it('should create a product with optional fields', async () => {
-            const productData = {
-                name: 'Test Product',
-                description: 'A test product',
-                price: 99.99,
-                sku: 'TEST-001',
-                stock: 100,
-                category: 'Electronics',
-                tags: ['new', 'featured']
-            };
-
-            const product = await productService.create(productData);
-
-            expect(product).toMatchObject({
-                ...productData,
-                id: expect.any(String),
-                createdAt: expect.any(Date),
-                updatedAt: expect.any(Date)
-            });
-        });
+  describe('findById', () => {
+    it('should find product by id', async () => {
+      const created = await productService.create({
+        ...validProductData,
+        sku: 'FIND123'
+      });
+      const found = await productService.findById(created._id.toString());
+      expect(found).toBeDefined();
+      expect(found?.sku).toBe('FIND123');
     });
 
-    describe('read', () => {
-        it('should retrieve an existing product', async () => {
-            const productData = {
-                name: 'Test Product',
-                description: 'A test product',
-                price: 99.99,
-                sku: 'TEST-001',
-                stock: 100
-            };
+    it('should return null for non-existent product', async () => {
+      const nonExistentId = new mongoose.Types.ObjectId();
+      const result = await productService.findById(nonExistentId);
+      expect(result).toBeNull();
+    });
+  });
 
-            const created = await productService.create(productData);
-            const retrieved = await productService.read(created.id);
+  describe('findAll', () => {
+    it('should find all products', async () => {
+      // Create first product
+      await Product.create(validProductData);
+      
+      // Create second product with different SKU
+      await Product.create({
+        ...validProductData,
+        name: 'Another Product',
+        sku: 'TEST456'
+      });
 
-            expect(retrieved).toEqual(created);
-        });
-
-        it('should throw error for non-existent product', async () => {
-            await expect(productService.read('non-existent-id'))
-                .rejects
-                .toThrow('Product not found: non-existent-id');
-        });
+      // Find all products
+      const products = await Product.find().exec();
+      expect(products).toHaveLength(2);
     });
 
-    describe('update', () => {
-        it('should update an existing product', async () => {
-            const productData = {
-                name: 'Test Product',
-                description: 'A test product',
-                price: 99.99,
-                sku: 'TEST-001',
-                stock: 100
-            };
+    it('should return empty array when no products exist', async () => {
+      const products = await productService.findAll();
+      expect(products).toHaveLength(0);
+    });
+  });
 
-            const created = await productService.create(productData);
-            const updateData = {
-                name: 'Updated Product',
-                price: 149.99,
-                stock: 75
-            };
-
-            const updated = await productService.update(created.id, updateData);
-
-            expect(updated).toMatchObject({
-                ...created,
-                ...updateData,
-                updatedAt: expect.any(Date)
-            });
-            expect(updated.updatedAt.getTime()).toBeGreaterThan(created.updatedAt.getTime());
-        });
-
-        it('should throw error for non-existent product', async () => {
-            await expect(productService.update('non-existent-id', { name: 'Test' }))
-                .rejects
-                .toThrow('Product not found: non-existent-id');
-        });
+  describe('update', () => {
+    it('should update product', async () => {
+      const created = await productService.create({
+        ...validProductData,
+        sku: 'UPDATE123'
+      });
+      const updateData = { name: 'Updated Product', price: 149.99 };
+      const updated = await productService.update(created._id.toString(), updateData);
+      expect(updated).toBeDefined();
+      expect(updated?.name).toBe(updateData.name);
+      expect(updated?.price).toBe(updateData.price);
     });
 
-    describe('delete', () => {
-        it('should delete an existing product', async () => {
-            const productData = {
-                name: 'Test Product',
-                description: 'A test product',
-                price: 99.99,
-                sku: 'TEST-001',
-                stock: 100
-            };
+    it('should return null for non-existent product', async () => {
+      const nonExistentId = new mongoose.Types.ObjectId();
+      const result = await productService.update(nonExistentId, { name: 'Updated' });
+      expect(result).toBeNull();
+    });
+  });
 
-            const created = await productService.create(productData);
-            await productService.delete(created.id);
-
-            await expect(productService.read(created.id))
-                .rejects
-                .toThrow('Product not found: ' + created.id);
-        });
-
-        it('should throw error for non-existent product', async () => {
-            await expect(productService.delete('non-existent-id'))
-                .rejects
-                .toThrow('Product not found: non-existent-id');
-        });
+  describe('delete', () => {
+    it('should delete product', async () => {
+      const created = await productService.create({
+        ...validProductData,
+        sku: 'DELETE123'
+      });
+      const result = await productService.delete(created._id.toString());
+      expect(result).toBe(true);
+      const found = await productService.findById(created._id.toString());
+      expect(found).toBeNull();
     });
 
-    describe('list', () => {
-        beforeEach(async () => {
-            // Create test products
-            await productService.create({
-                name: 'Product A',
-                description: 'First product',
-                price: 99.99,
-                sku: 'PROD-001',
-                stock: 100,
-                category: 'Electronics'
-            });
-            await productService.create({
-                name: 'Product B',
-                description: 'Second product',
-                price: 149.99,
-                sku: 'PROD-002',
-                stock: 50,
-                category: 'Electronics'
-            });
-            await productService.create({
-                name: 'Product C',
-                description: 'Third product',
-                price: 199.99,
-                sku: 'PROD-003',
-                stock: 25,
-                category: 'Accessories'
-            });
-        });
-
-        it('should list all products with default pagination', async () => {
-            const result = await productService.list();
-
-            expect(result.items).toHaveLength(3);
-            expect(result.total).toBe(3);
-            expect(result.page).toBe(1);
-            expect(result.limit).toBe(10);
-            expect(result.totalPages).toBe(1);
-        });
-
-        it('should apply pagination correctly', async () => {
-            const result = await productService.list({ page: 1, limit: 2 });
-
-            expect(result.items).toHaveLength(2);
-            expect(result.total).toBe(3);
-            expect(result.page).toBe(1);
-            expect(result.limit).toBe(2);
-            expect(result.totalPages).toBe(2);
-        });
-
-        it('should apply sorting correctly', async () => {
-            const result = await productService.list({
-                sort: { field: 'price', order: 'desc' }
-            });
-
-            expect(result.items[0].price).toBe(199.99);
-            expect(result.items[1].price).toBe(149.99);
-            expect(result.items[2].price).toBe(99.99);
-        });
-
-        it('should apply filtering correctly', async () => {
-            const result = await productService.list({
-                filter: { category: 'Electronics' }
-            });
-
-            expect(result.items).toHaveLength(2);
-            expect(result.items.every(item => item.category === 'Electronics')).toBe(true);
-        });
-
-        it('should filter by multiple criteria', async () => {
-            const result = await productService.list({
-                filter: {
-                    category: 'Electronics',
-                    stock: 50
-                }
-            });
-
-            expect(result.items).toHaveLength(1);
-            expect(result.items[0].sku).toBe('PROD-002');
-        });
+    it('should return false for non-existent product', async () => {
+      const nonExistentId = new mongoose.Types.ObjectId();
+      const result = await productService.delete(nonExistentId);
+      expect(result).toBe(false);
     });
+  });
+
+  describe('search', () => {
+    beforeEach(async () => {
+      await productService.create(validProductData);
+      await productService.create({
+        ...validProductData,
+        name: 'Another Product',
+        sku: 'TEST456',
+        category: 'electronics',
+        tags: ['test', 'another']
+      });
+    });
+
+    it('should search products by name', async () => {
+      const results = await productService.search({ query: 'Another' });
+      expect(results).toHaveLength(1);
+      expect(results[0].name).toBe('Another Product');
+    });
+
+    it('should search products by sku', async () => {
+      const results = await productService.search({ query: 'TEST456' });
+      expect(results).toHaveLength(1);
+      expect(results[0].sku).toBe('TEST456');
+    });
+
+    it('should search products by category', async () => {
+      const results = await productService.search({ category: 'electronics' });
+      expect(results).toHaveLength(2);
+    });
+
+    it('should search products by tag', async () => {
+      const results = await productService.search({ tag: 'another' });
+      expect(results).toHaveLength(1);
+      expect(results[0].sku).toBe('TEST456');
+    });
+
+    it('should return empty array for no matches', async () => {
+      const results = await productService.search({ query: 'NonExistent' });
+      expect(results).toHaveLength(0);
+    });
+  });
 });

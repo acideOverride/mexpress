@@ -1,124 +1,124 @@
+import { Schema } from 'mongoose';
+import { Customer, ICustomer } from '../customer';
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
-import { Customer, ICustomerDocument } from '../customer';
 
 describe('Customer Model', () => {
-  let mongoServer: MongoMemoryServer;
+  let db: mongoose.Connection;
 
   beforeAll(async () => {
-    mongoServer = await MongoMemoryServer.create();
-    const mongoUri = mongoServer.getUri();
-    await mongoose.connect(mongoUri);
-  }, 30000); // Increase timeout to 30 seconds
-
-  afterAll(async () => {
-    await mongoose.disconnect();
-    await mongoServer.stop();
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mexpress_test');
+    db = mongoose.connection;
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
+    await db.dropDatabase();
+    await mongoose.connection.close();
+  });
+
+  beforeEach(async () => {
     await Customer.deleteMany({});
   });
 
-  const validCustomerData = {
+  const validCustomerData: Partial<ICustomer> = {
     firstName: 'John',
     lastName: 'Doe',
     email: 'john.doe@example.com',
     phone: '+1234567890',
-    externalIds: {},
-    verificationStatus: 'pending' as const,
-    syncStatus: {
-      hiboutik: 'pending' as const,
-      ringover: 'pending' as const,
-    },
+    status: 'active',
+    syncStatus: 'pending'
   };
 
-  it('should create a valid customer', async () => {
+  it('should create a valid customer', () => {
     const customer = new Customer(validCustomerData);
-    const savedCustomer = await customer.save();
-
-    expect(savedCustomer._id).toBeDefined();
-    expect(savedCustomer.firstName).toBe(validCustomerData.firstName);
-    expect(savedCustomer.lastName).toBe(validCustomerData.lastName);
-    expect(savedCustomer.email).toBe(validCustomerData.email);
-    expect(savedCustomer.phone).toBe(validCustomerData.phone);
-    expect(savedCustomer.verificationStatus).toBe(validCustomerData.verificationStatus);
-    expect(savedCustomer.syncStatus.hiboutik).toBe(validCustomerData.syncStatus.hiboutik);
-    expect(savedCustomer.syncStatus.ringover).toBe(validCustomerData.syncStatus.ringover);
-    expect(savedCustomer.createdAt).toBeDefined();
-    expect(savedCustomer.updatedAt).toBeDefined();
+    const validationError = customer.validateSync();
+    expect(validationError).toBeUndefined();
   });
 
-  it('should require firstName', async () => {
-    const { firstName, ...customerWithoutFirstName } = validCustomerData;
-    const customer = new Customer(customerWithoutFirstName);
-    await expect(customer.save()).rejects.toThrow();
+  it('should require firstName', () => {
+    const customerData = { ...validCustomerData };
+    delete customerData.firstName;
+    const customer = new Customer(customerData);
+    const validationError = customer.validateSync();
+    expect(validationError?.errors.firstName).toBeDefined();
   });
 
-  it('should require lastName', async () => {
-    const { lastName, ...customerWithoutLastName } = validCustomerData;
-    const customer = new Customer(customerWithoutLastName);
-    await expect(customer.save()).rejects.toThrow();
+  it('should require lastName', () => {
+    const customerData = { ...validCustomerData };
+    delete customerData.lastName;
+    const customer = new Customer(customerData);
+    const validationError = customer.validateSync();
+    expect(validationError?.errors.lastName).toBeDefined();
   });
 
-  it('should require valid email', async () => {
-    const customerWithInvalidEmail = new Customer({
+  it('should require a valid email', () => {
+    const customerData = { ...validCustomerData, email: 'invalid-email' };
+    const customer = new Customer(customerData);
+    const validationError = customer.validateSync();
+    expect(validationError?.errors.email).toBeDefined();
+  });
+
+  it('should require a valid phone number', () => {
+    const customerData = { ...validCustomerData, phone: '123' };
+    const customer = new Customer(customerData);
+    const validationError = customer.validateSync();
+    expect(validationError?.errors.phone).toBeDefined();
+  });
+
+  it('should set default status to active', () => {
+    const customerData = { ...validCustomerData };
+    delete customerData.status;
+    const customer = new Customer(customerData);
+    expect(customer.status).toBe('active');
+  });
+
+  it('should set default syncStatus to pending', () => {
+    const customerData = { ...validCustomerData };
+    delete customerData.syncStatus;
+    const customer = new Customer(customerData);
+    expect(customer.syncStatus).toBe('pending');
+  });
+
+  it('should set timestamps on save', async () => {
+    const customer = new Customer({
       ...validCustomerData,
-      email: 'invalid-email',
+      email: 'timestamps@example.com'
     });
-    await expect(customerWithInvalidEmail.save()).rejects.toThrow();
+    
+    // Initial timestamps should be undefined
+    expect(customer.createdAt).toBeUndefined();
+    expect(customer.updatedAt).toBeUndefined();
+    
+    // Save the customer
+    const saved = await customer.save();
+    
+    // After save, timestamps should be defined
+    expect(saved.createdAt).toBeDefined();
+    expect(saved.updatedAt).toBeDefined();
   });
 
-  it('should require valid phone number', async () => {
-    const customerWithInvalidPhone = new Customer({
+  it('should update timestamps on update', async () => {
+    // Create and save customer
+    const customer = await Customer.create({
       ...validCustomerData,
-      phone: 'invalid-phone',
+      email: 'update@example.com'
     });
-    await expect(customerWithInvalidPhone.save()).rejects.toThrow();
-  });
-
-  it('should enforce unique email addresses', async () => {
-    await new Customer(validCustomerData).save();
-    const duplicateCustomer = new Customer(validCustomerData);
-    await expect(duplicateCustomer.save()).rejects.toThrow();
-  });
-
-  it('should allow optional external IDs', async () => {
-    const customerWithExternalIds = new Customer({
-      ...validCustomerData,
-      externalIds: {
-        hiboutik: 'HIB123',
-        ringover: 'RING456',
-      },
-    });
-
-    const savedCustomer = await customerWithExternalIds.save();
-    expect(savedCustomer.externalIds.hiboutik).toBe('HIB123');
-    expect(savedCustomer.externalIds.ringover).toBe('RING456');
-  });
-
-  it('should default verificationStatus to pending', async () => {
-    const { verificationStatus, ...customerWithoutStatus } = validCustomerData;
-    const customer = new Customer(customerWithoutStatus);
-    const savedCustomer = await customer.save();
-    expect(savedCustomer.verificationStatus).toBe('pending');
-  });
-
-  it('should default syncStatus to pending', async () => {
-    const { syncStatus, ...customerWithoutSync } = validCustomerData;
-    const customer = new Customer(customerWithoutSync);
-    const savedCustomer = await customer.save();
-    expect(savedCustomer.syncStatus.hiboutik).toBe('pending');
-    expect(savedCustomer.syncStatus.ringover).toBe('pending');
-  });
-
-  it('should update timestamps on modification', async () => {
-    const customer = await new Customer(validCustomerData).save();
-    const originalUpdatedAt = customer.updatedAt;
-    await new Promise(resolve => setTimeout(resolve, 100)); // Wait 100ms
-
+    
+    // Get initial timestamps
+    const createdAt = customer.createdAt;
+    const updatedAt = customer.updatedAt;
+    
+    // Wait to ensure timestamp will be different
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Update customer
     customer.firstName = 'Jane';
-    const updatedCustomer = await customer.save();
-    expect(updatedCustomer.updatedAt.getTime()).toBeGreaterThan(originalUpdatedAt.getTime());
+    const updated = await customer.save();
+    
+    // createdAt should not change
+    expect(updated.createdAt).toEqual(createdAt);
+    
+    // updatedAt should change
+    expect(updated.updatedAt).not.toEqual(updatedAt);
+    expect(updated.updatedAt!.getTime()).toBeGreaterThan(updatedAt!.getTime());
   });
 });

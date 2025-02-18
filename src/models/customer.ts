@@ -1,46 +1,36 @@
-import { Schema, model, Document, Model, HydratedDocument, CallbackError, Types } from 'mongoose';
+import mongoose, { Schema, Document, Types } from 'mongoose';
 
 export interface ICustomer {
+  _id?: Types.ObjectId;
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
-  externalIds: {
-    hiboutik?: string;
-    ringover?: string;
-  };
-  verificationStatus: 'verified' | 'pending' | 'error';
-  syncStatus: {
-    hiboutik: 'synced' | 'pending' | 'error';
-    ringover: 'synced' | 'pending' | 'error';
-  };
-  createdAt: Date;
-  updatedAt: Date;
+  status: 'active' | 'inactive';
+  syncStatus: 'pending' | 'synced' | 'failed';
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface ICustomerDocument extends ICustomer, Document {
   _id: Types.ObjectId;
 }
 
-export interface ICustomerModel extends Model<ICustomerDocument> {
-  // Add any static methods here if needed
-}
-
-const customerSchema = new Schema<ICustomerDocument, ICustomerModel>(
+const customerSchema = new Schema<ICustomerDocument>(
   {
     firstName: {
       type: String,
       required: [true, 'First name is required'],
       trim: true,
       minlength: [2, 'First name must be at least 2 characters long'],
-      maxlength: [50, 'First name cannot exceed 50 characters'],
+      maxlength: [50, 'First name cannot exceed 50 characters']
     },
     lastName: {
       type: String,
       required: [true, 'Last name is required'],
       trim: true,
       minlength: [2, 'Last name must be at least 2 characters long'],
-      maxlength: [50, 'Last name cannot exceed 50 characters'],
+      maxlength: [50, 'Last name cannot exceed 50 characters']
     },
     email: {
       type: String,
@@ -48,64 +38,78 @@ const customerSchema = new Schema<ICustomerDocument, ICustomerModel>(
       unique: true,
       trim: true,
       lowercase: true,
-      match: [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Please enter a valid email address'],
+      validate: {
+        validator: (value: string) => {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        },
+        message: 'Invalid email format'
+      }
     },
     phone: {
       type: String,
       required: [true, 'Phone number is required'],
       trim: true,
-      match: [/^\+?[1-9]\d{1,14}$/, 'Please enter a valid phone number in E.164 format'],
-      index: true,
+      validate: {
+        validator: (value: string) => {
+          // Allow only digits and plus sign, minimum 8 digits
+          return /^\+?[1-9]\d{7,14}$/.test(value);
+        },
+        message: 'Invalid phone number format. Must be 8-15 digits with optional + prefix.'
+      }
     },
-    externalIds: {
-      hiboutik: {
-        type: String,
-        sparse: true,
-      },
-      ringover: {
-        type: String,
-        sparse: true,
-      },
-    },
-    verificationStatus: {
+    status: {
       type: String,
-      enum: ['verified', 'pending', 'error'],
-      default: 'pending',
-      index: true,
+      enum: {
+        values: ['active', 'inactive'],
+        message: 'Status must be either active or inactive'
+      },
+      default: 'active'
     },
     syncStatus: {
-      hiboutik: {
-        type: String,
-        enum: ['synced', 'pending', 'error'],
-        default: 'pending',
+      type: String,
+      enum: {
+        values: ['pending', 'synced', 'failed'],
+        message: 'SyncStatus must be pending, synced, or failed'
       },
-      ringover: {
-        type: String,
-        enum: ['synced', 'pending', 'error'],
-        default: 'pending',
-      },
-    },
+      default: 'pending'
+    }
   },
   {
-    timestamps: true,
-    collection: 'customers',
+    // Enable timestamps
+    timestamps: {
+      createdAt: true,
+      updatedAt: true,
+      currentTime: () => new Date()
+    },
+    // Disable version key
+    versionKey: false,
+    // Enable virtuals in JSON
+    toJSON: {
+      virtuals: true,
+      getters: true
+    }
   }
 );
 
-// Pre-save middleware for validation
-customerSchema.pre('save', async function(next: (err?: CallbackError) => void) {
-  if (this.isModified('email')) {
-    const CustomerModel = this.constructor as Model<ICustomerDocument>;
-    const existingCustomer = await CustomerModel.findOne({ email: this.email }) as ICustomerDocument | null;
-    if (existingCustomer && existingCustomer._id.toString() !== this._id.toString()) {
-      next(new Error('Email address already exists'));
-      return;
-    }
-  }
+// Remove duplicate index
+customerSchema.index({ email: 1 }, { unique: true, background: true });
+customerSchema.index({ phone: 1 });
+customerSchema.index({ status: 1 });
+customerSchema.index({ syncStatus: 1 });
+
+// Virtual for full name
+customerSchema.virtual('fullName').get(function(this: ICustomerDocument) {
+  return `${this.firstName} ${this.lastName}`;
+});
+
+// Pre-save middleware for data cleanup
+customerSchema.pre('save', function(next) {
+  // Trim all string fields
+  if (this.isModified('firstName')) this.firstName = this.firstName.trim();
+  if (this.isModified('lastName')) this.lastName = this.lastName.trim();
+  if (this.isModified('email')) this.email = this.email.trim().toLowerCase();
+  if (this.isModified('phone')) this.phone = this.phone.trim();
   next();
 });
 
-// Create compound index for sync status
-customerSchema.index({ 'syncStatus.hiboutik': 1, 'syncStatus.ringover': 1 });
-
-export const Customer = model<ICustomerDocument, ICustomerModel>('Customer', customerSchema);
+export const Customer = mongoose.model<ICustomerDocument>('Customer', customerSchema);
