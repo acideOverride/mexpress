@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Component Tests</title>
+    <script type="module" src="/src/test-runner.jsx"></script>
+    <link href="/src/index.css" rel="stylesheet">
+    <script>
+      // Mock fetch responses
+      window.fetch = async (url) => {
+        if (url.includes('/api/calls/recent')) {
+          return {
+            ok: true,
+            json: () => Promise.resolve([])
+          };
+        }
+        if (url.includes('/api/activities/recent')) {
+          return {
+            ok: true,
+            json: () => Promise.resolve([])
+          };
+        }
+        if (url.includes('/api/metrics/dashboard')) {
+          return {
+            ok: true,
+            json: () => Promise.resolve({
+              totalCalls: 0,
+              missedCalls: 0,
+              averageCallDuration: 0,
+              activeCustomers: 0,
+              customerSatisfaction: 0,
+              syncStatus: {
+                lastSync: new Date().toISOString(),
+                status: 'success',
+                message: 'No sync required'
+              }
+            })
+          };
+        }
+        return Response.error();
+      };
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

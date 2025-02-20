@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mExpress - Customers</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        /* Customer List Specific Styles */
+        .customer-filters {
+            display: flex;
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .customer-list {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+        }
+
+        .customer-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .customer-table th {
+            background: var(--background-secondary);
+            padding: var(--spacing-3);
+            text-align: left;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .customer-table td {
+            padding: var(--spacing-3);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .customer-table tr:hover {
+            background: var(--background-secondary);
+        }
+
+        .customer-name {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .customer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+        }
+
+        .customer-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-1);
+        }
+
+        .customer-meta {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+
+        .device-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-1);
+            padding: var(--spacing-1) var(--spacing-2);
+            background: var(--background-secondary);
+            border-radius: var(--border-radius-full);
+            font-size: var(--font-size-sm);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-1);
+            padding: var(--spacing-1) var(--spacing-2);
+            border-radius: var(--border-radius-full);
+            font-size: var(--font-size-sm);
+        }
+
+        .status-active {
+            background: var(--success-light);
+            color: var(--success-color);
+        }
+
+        .status-pending {
+            background: var(--warning-light);
+            color: var(--warning-color);
+        }
+
+        .action-cell {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Left Navigation -->
+        <aside class="sidebar">
+            <div class="logo">mExpress</div>
+
+            <!-- Operations -->
+            <div class="nav-section">
+                <div class="nav-header">Operations</div>
+                <a href="#" class="nav-item">
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Repairs</span>
+                    <span class="nav-badge">15</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Quotes</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Parts & Stock</span>
+                    <span class="nav-badge">3</span>
+                </a>
+            </div>
+
+            <!-- Customers -->
+            <div class="nav-section">
+                <div class="nav-header">Customers</div>
+                <a href="#" class="nav-item active">
+                    <span>Customers</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Devices</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Messages</span>
+                </a>
+            </div>
+
+            <!-- Financial -->
+            <div class="nav-section">
+                <div class="nav-header">Financial</div>
+                <a href="#" class="nav-item">
+                    <span>Invoices</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Accounting</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-wrapper">
+            <!-- Header -->
+            <header class="header">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="heading-2">Customers</h1>
+                        <p class="text-secondary">Tuesday, February 19, 2025</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <button class="btn btn-primary">New Customer</button>
+                    </div>
+                </div>
+                <div class="mega-search">
+                    <input type="text" class="search-input" placeholder="Search customers by name, phone, email...">
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Filters -->
+                <div class="customer-filters">
+                    <div class="filter-group">
+                        <label>Status:</label>
+                        <select class="select">
+                            <option>All Customers</option>
+                            <option>Active</option>
+                            <option>Pending</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sort by:</label>
+                        <select class="select">
+                            <option>Last Visit</option>
+                            <option>Name</option>
+                            <option>Active Repairs</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Customer List -->
+                <div class="customer-list">
+                    <table class="customer-table">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Devices</th>
+                                <th>Status</th>
+                                <th>Last Visit</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="customer-name">
+                                        <div class="customer-avatar">JD</div>
+                                        <div class="customer-info">
+                                            <div>John Doe</div>
+                                            <div class="customer-meta">+1 234-567-8900</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="device-tag">📱 iPhone 13</div>
+                                    <div class="device-tag">💻 MacBook Pro</div>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-active">Active Repair</span>
+                                </td>
+                                <td>Today, 10:30 AM</td>
+                                <td class="action-cell">
+                                    <button class="btn btn-secondary btn-sm">View Details</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="customer-name">
+                                        <div class="customer-avatar">AJ</div>
+                                        <div class="customer-info">
+                                            <div>Alice Johnson</div>
+                                            <div class="customer-meta">+1 234-567-8901</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="device-tag">💻 MacBook Air</div>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-pending">Quote Pending</span>
+                                </td>
+                                <td>Yesterday</td>
+                                <td class="action-cell">
+                                    <button class="btn btn-secondary btn-sm">View Details</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mExpress - Business Control Center</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <style>
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            height: 100vh;
+        }
+
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header {
+            padding: var(--spacing-4);
+            background: var(--background-primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: var(--spacing-4);
+            overflow-y: auto;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .metric-card {
+            background: var(--background-primary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-4);
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: 600;
+            margin: var(--spacing-2) 0;
+        }
+
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            font-size: var(--font-size-sm);
+        }
+
+        .trend-up { color: var(--success-color); }
+        .trend-down { color: var(--error-color); }
+
+        .progress-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .progress-card {
+            background: var(--background-primary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-4);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .progress-bars {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4);
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+        }
+
+        .progress-label {
+            width: 120px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 24px;
+            background: var(--background-secondary);
+            border-radius: var(--border-radius-full);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .progress-fill.warning {
+            background: var(--warning-color);
+        }
+
+        .progress-fill.success {
+            background: var(--success-color);
+        }
+
+        .progress-value {
+            width: 60px;
+            text-align: right;
+        }
+
+        .workload-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-4);
+        }
+
+        .workload-card {
+            background: var(--background-primary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-4);
+        }
+
+        .tech-workload {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3);
+            background: var(--background-secondary);
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-3);
+        }
+
+        .tech-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .tech-info {
+            flex: 1;
+        }
+
+        .tech-progress {
+            width: 100px;
+            height: 8px;
+            background: var(--background-primary);
+            border-radius: var(--border-radius-full);
+            overflow: hidden;
+        }
+
+        .tech-progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+        }
+
+        .alerts-section {
+            margin-top: var(--spacing-6);
+        }
+
+        .alert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-4);
+        }
+
+        .alert-card {
+            background: var(--background-primary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-4);
+        }
+
+        .alert-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            margin-bottom: var(--spacing-3);
+        }
+
+        .alert-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .alert-critical {
+            background: var(--error-light);
+            color: var(--error-color);
+        }
+
+        .alert-warning {
+            background: var(--warning-light);
+            color: var(--warning-color);
+        }
+
+        .alert-success {
+            background: var(--success-light);
+            color: var(--success-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <!-- Sidebar content -->
+        </aside>
+
+        <main class="main-wrapper">
+            <header class="header">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <h1 class="heading-2">Business Control Center</h1>
+                        <p class="text-secondary">Tuesday, February 19, 2025</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <button class="btn btn-secondary">Notifications</button>
+                        <button class="btn btn-primary">End Day</button>
+                    </div>
+                </div>
+                <input type="text" class="search-input" placeholder="Search customers, repairs, products, invoices...">
+            </header>
+
+            <div class="main-content">
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3 class="heading-3">Today's Revenue</h3>
+                        <div class="metric-value">€12,458</div>
+                        <div class="metric-trend trend-up">
+                            <span>↑ 15%</span>
+                            <span>vs yesterday</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h3 class="heading-3">Active Repairs</h3>
+                        <div class="metric-value">24</div>
+                        <div class="metric-trend trend-up">
+                            <span>↑ 4</span>
+                            <span>since morning</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h3 class="heading-3">Completed Today</h3>
+                        <div class="metric-value">18</div>
+                        <div class="metric-trend trend-up">
+                            <span>↑ 3</span>
+                            <span>vs target</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h3 class="heading-3">Customer Rating</h3>
+                        <div class="metric-value">4.8/5</div>
+                        <div class="metric-trend trend-up">
+                            <span>↑ 0.2</span>
+                            <span>this week</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Section -->
+                <div class="progress-section">
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <h2 class="heading-2">Repair Progress</h2>
+                            <button class="btn btn-secondary">View All</button>
+                        </div>
+                        <div class="progress-bars">
+                            <div class="progress-item">
+                                <div class="progress-label">Phone Repairs</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill warning" style="width: 75%"></div>
+                                </div>
+                                <div class="progress-value">15/20</div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label">Laptop Repairs</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill success" style="width: 90%"></div>
+                                </div>
+                                <div class="progress-value">9/10</div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label">PC Repairs</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                                <div class="progress-value">6/10</div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label">Other Repairs</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill success" style="width: 100%"></div>
+                                </div>
+                                <div class="progress-value">5/5</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="workload-card">
+                        <div class="progress-header">
+                            <h2 class="heading-2">Team Workload</h2>
+                            <button class="btn btn-secondary">Schedule</button>
+                        </div>
+                        <div class="tech-workload">
+                            <div class="tech-avatar">MT</div>
+                            <div class="tech-info">
+                                <h3 class="heading-3">Mike Thompson</h3>
+                                <p class="text-secondary">4 repairs in progress</p>
+                            </div>
+                            <div class="tech-progress">
+                                <div class="tech-progress-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="tech-workload">
+                            <div class="tech-avatar">AJ</div>
+                            <div class="tech-info">
+                                <h3 class="heading-3">Alice Johnson</h3>
+                                <p class="text-secondary">2 repairs in progress</p>
+                            </div>
+                            <div class="tech-progress">
+                                <div class="tech-progress-fill" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        <div class="tech-workload">
+                            <div class="tech-avatar">RK</div>
+                            <div class="tech-info">
+                                <h3 class="heading-3">Robert Kim</h3>
+                                <p class="text-secondary">3 repairs in progress</p>
+                            </div>
+                            <div class="tech-progress">
+                                <div class="tech-progress-fill" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alerts Section -->
+                <div class="alerts-section">
+                    <h2 class="heading-2 mb-4">System Alerts</h2>
+                    <div class="alert-grid">
+                        <div class="alert-card">
+                            <div class="alert-header">
+                                <div class="alert-icon alert-critical">⚠️</div>
+                                <h3 class="heading-3">Late Repairs</h3>
+                            </div>
+                            <p class="text-lg font-bold">2 repairs overdue</p>
+                            <p class="text-secondary">iPhone 12 Screen (30m late)</p>
+                            <p class="text-secondary">MacBook Battery (15m late)</p>
+                            <button class="btn btn-primary mt-3">Take Action</button>
+                        </div>
+                        <div class="alert-card">
+                            <div class="alert-header">
+                                <div class="alert-icon alert-warning">📦</div>
+                                <h3 class="heading-3">Low Stock</h3>
+                            </div>
+                            <p class="text-lg font-bold">3 items below threshold</p>
+                            <p class="text-secondary">iPhone 12 screens (2 left)</p>
+                            <p class="text-secondary">iPhone 13 screens (3 left)</p>
+                            <button class="btn btn-primary mt-3">Order Parts</button>
+                        </div>
+                        <div class="alert-card">
+                            <div class="alert-header">
+                                <div class="alert-icon alert-success">✓</div>
+                                <h3 class="heading-3">Completed</h3>
+                            </div>
+                            <p class="text-lg font-bold">18 repairs completed</p>
+                            <p class="text-secondary">Ahead of daily target by 3</p>
+                            <p class="text-secondary">Customer satisfaction: 4.8/5</p>
+                            <button class="btn btn-secondary mt-3">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

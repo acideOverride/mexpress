@@ -1,99 +1,108 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Dashboard from '../Dashboard';
 
 describe('Dashboard', () => {
   const mockOnSearch = jest.fn();
   const mockOnActionSelect = jest.fn();
+  const originalFetch = global.fetch;
+
+  beforeAll(() => {
+    global.fetch = jest.fn();
+    jest.useFakeTimers();
+  });
+
+  afterAll(() => {
+    global.fetch = originalFetch;
+    jest.useRealTimers();
+  });
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should render all main components', () => {
-    render(
-      <Dashboard
-        onSearch={mockOnSearch}
-        onActionSelect={mockOnActionSelect}
-      />
-    );
+  it('should render all dashboard components', async () => {
+    // Mock successful API responses
+    (global.fetch as jest.Mock)
+      .mockImplementationOnce(() => Promise.resolve({ // Metrics
+        ok: true,
+        json: () => Promise.resolve([
+          { id: '1', label: 'Total Calls', value: 150, unit: 'calls' }
+        ])
+      }))
+      .mockImplementationOnce(() => Promise.resolve({ // Recent Calls
+        ok: true,
+        json: () => Promise.resolve([
+          { id: '1', callerName: 'John Doe', timestamp: '2025-02-19T09:00:00Z' }
+        ])
+      }))
+      .mockImplementationOnce(() => Promise.resolve({ // Activities
+        ok: true,
+        json: () => Promise.resolve([
+          { id: '1', type: 'call', description: 'Call with John Doe' }
+        ])
+      }));
 
-    // Header components
-    expect(screen.getByTestId('quick-search')).toBeInTheDocument();
+    await act(async () => {
+      render(
+        <Dashboard
+          onSearch={mockOnSearch}
+          onActionSelect={mockOnActionSelect}
+        />
+      );
+    });
+
+    // Should render QuickSearch
+    expect(screen.getByRole('searchbox')).toBeInTheDocument();
+
+    // Should render ActionShortcuts
     expect(screen.getByTestId('action-shortcuts')).toBeInTheDocument();
 
-    // Main content components
-    expect(screen.getByTestId('recent-calls')).toBeInTheDocument();
-    expect(screen.getByTestId('activity-feed')).toBeInTheDocument();
+    // Should render MetricsDisplay
+    expect(screen.getByText('Total Calls')).toBeInTheDocument();
+    expect(screen.getByText('150 calls')).toBeInTheDocument();
 
-    // Sidebar components
-    expect(screen.getByTestId('metrics-display')).toBeInTheDocument();
+    // Should render RecentCalls
+    expect(screen.getByText('John Doe')).toBeInTheDocument();
+
+    // Should render ActivityFeed
+    expect(screen.getByText('Call with John Doe')).toBeInTheDocument();
   });
 
-  it('should handle search', async () => {
-    render(
-      <Dashboard
-        onSearch={mockOnSearch}
-        onActionSelect={mockOnActionSelect}
-      />
+  it('should handle component interactions', async () => {
+    const user = userEvent.setup({ delay: null });
+
+    // Mock successful API responses
+    (global.fetch as jest.Mock).mockImplementation(() => 
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve([])
+      })
     );
 
+    await act(async () => {
+      render(
+        <Dashboard
+          onSearch={mockOnSearch}
+          onActionSelect={mockOnActionSelect}
+        />
+      );
+    });
+
+    // Test search interaction
     const searchInput = screen.getByRole('searchbox');
-    await userEvent.type(searchInput, 'test query');
+    await user.type(searchInput, 'test query');
+
+    // Wait for debounce
+    await act(async () => {
+      jest.advanceTimersByTime(300);
+    });
 
     expect(mockOnSearch).toHaveBeenCalledWith('test query');
-  });
 
-  it('should handle action selection', async () => {
-    render(
-      <Dashboard
-        onSearch={mockOnSearch}
-        onActionSelect={mockOnActionSelect}
-      />
-    );
-
-    const newCallButton = screen.getByRole('button', { name: /new call/i });
-    await userEvent.click(newCallButton);
-
+    // Test action selection
+    const actionButton = screen.getByRole('button', { name: /new call/i });
+    await user.click(actionButton);
     expect(mockOnActionSelect).toHaveBeenCalledWith('new-call');
-  });
-
-  it('should be responsive', () => {
-    const { container } = render(
-      <Dashboard
-        onSearch={mockOnSearch}
-        onActionSelect={mockOnActionSelect}
-      />
-    );
-
-    // Check grid classes
-    expect(container.firstChild).toHaveClass('grid');
-    expect(container.firstChild).toHaveClass('grid-cols-12');
-    expect(container.firstChild).toHaveClass('gap-4');
-  });
-
-  it('should handle loading states', () => {
-    render(
-      <Dashboard
-        onSearch={mockOnSearch}
-        onActionSelect={mockOnActionSelect}
-        isLoading={true}
-      />
-    );
-
-    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
-  });
-
-  it('should handle error states', () => {
-    const error = 'Failed to load dashboard data';
-    render(
-      <Dashboard
-        onSearch={mockOnSearch}
-        onActionSelect={mockOnActionSelect}
-        error={error}
-      />
-    );
-
-    expect(screen.getByText(error)).toBeInTheDocument();
   });
 });

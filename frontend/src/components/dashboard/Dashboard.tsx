@@ -8,64 +8,51 @@ import ActionShortcuts from './ActionShortcuts';
 interface DashboardProps {
   onSearch: (query: string) => void;
   onActionSelect: (action: string) => void;
-  isLoading?: boolean;
-  error?: string;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({
   onSearch,
-  onActionSelect,
-  isLoading,
-  error
+  onActionSelect
 }) => {
-  if (error) {
-    return (
-      <div className="p-4 text-red-600 bg-red-50 rounded-lg" role="alert">
-        {error}
-      </div>
-    );
-  }
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen" data-testid="loading-spinner">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
   return (
-    <div className="grid grid-cols-12 gap-4 p-4">
-      {/* Header Section */}
-      <div className="col-span-12 space-y-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <ActionShortcuts
-            onActionSelect={onActionSelect}
-            data-testid="action-shortcuts"
-          />
-        </div>
-        <QuickSearch
-          onSearch={onSearch}
-          recentSearches={[]}
-          data-testid="quick-search"
-        />
-      </div>
-
-      {/* Main Content */}
-      <div className="col-span-12 lg:col-span-8 space-y-4">
-        <div className="bg-white rounded-lg shadow p-4">
-          <RecentCalls data-testid="recent-calls" />
-        </div>
-        <div className="bg-white rounded-lg shadow p-4">
-          <ActivityFeed data-testid="activity-feed" />
+    <div className="space-y-6">
+      {/* Action Bar */}
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <div className="flex flex-col space-y-6">
+          <div className="flex justify-between items-center">
+            <div className="flex-1 max-w-2xl">
+              <QuickSearch
+                onSearch={onSearch}
+              />
+            </div>
+            <div className="ml-4">
+              <ActionShortcuts
+                onActionSelect={onActionSelect}
+                data-testid="action-shortcuts"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Sidebar */}
-      <div className="col-span-12 lg:col-span-4">
-        <div className="bg-white rounded-lg shadow p-4">
-          <MetricsDisplay data-testid="metrics-display" />
+      {/* Metrics Grid */}
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <h2 className="text-lg font-semibold text-gray-900 mb-6">Key Metrics</h2>
+        <MetricsDisplay />
+      </div>
+
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Recent Calls */}
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-6">Recent Calls</h2>
+          <RecentCalls />
+        </div>
+
+        {/* Activity Feed */}
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-6">Activity Feed</h2>
+          <ActivityFeed />
         </div>
       </div>
     </div>

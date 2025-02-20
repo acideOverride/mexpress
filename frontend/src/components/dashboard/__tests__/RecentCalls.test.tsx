@@ -1,111 +1,102 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import RecentCalls from '../RecentCalls';
 
-// Mock fetch globally
-const mockFetch = jest.fn();
-global.fetch = mockFetch;
-
 describe('RecentCalls', () => {
-  const mockCalls = [
-    {
-      id: 'call1',
-      callerNumber: '+1234567890',
-      recipientNumber: '+0987654321',
-      durationSeconds: 300,
-      status: 'completed',
-      timestamp: '2025-02-18T12:00:00Z',
-      recordingUrl: 'https://example.com/recording1.mp3'
-    },
-    {
-      id: 'call2',
-      callerNumber: '+1234567891',
-      recipientNumber: '+0987654322',
-      durationSeconds: 120,
-      status: 'missed',
-      timestamp: '2025-02-18T12:30:00Z',
-      recordingUrl: 'https://example.com/recording2.mp3'
-    }
-  ];
+  const originalFetch = global.fetch;
+
+  beforeAll(() => {
+    global.fetch = jest.fn();
+  });
+
+  afterAll(() => {
+    global.fetch = originalFetch;
+  });
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should render loading state initially', () => {
-    mockFetch.mockImplementationOnce(() => new Promise(() => {}));
-    render(<RecentCalls />);
-
-    // Should show skeleton loading items
-    const skeletonContainer = screen.getByTestId('loading-skeleton');
-    expect(skeletonContainer).toHaveClass('animate-pulse');
-  });
-
-  it('should render calls when loaded', async () => {
-    mockFetch.mockImplementationOnce(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(mockCalls)
-      })
+  it('should render loading state initially', async () => {
+    // Mock fetch to return a pending promise that never resolves
+    (global.fetch as jest.Mock).mockImplementationOnce(() => 
+      new Promise(() => {})
     );
-
-    render(<RecentCalls />);
-
-    // Wait for calls to be rendered
-    await waitFor(() => {
-      expect(screen.getByText(mockCalls[0].callerNumber)).toBeInTheDocument();
+    
+    await act(async () => {
+      render(<RecentCalls />);
     });
 
-    // Verify all calls are rendered
-    mockCalls.forEach(call => {
-      expect(screen.getByText(call.callerNumber)).toBeInTheDocument();
-      expect(screen.getByText(call.status)).toBeInTheDocument();
-      
-      // Verify duration format
-      const minutes = Math.floor(call.durationSeconds / 60);
-      const seconds = (call.durationSeconds % 60).toString().padStart(2, '0');
-      expect(screen.getByText(`${minutes}:${seconds}`)).toBeInTheDocument();
-    });
+    const loadingSkeleton = screen.getByTestId('loading-skeleton');
+    expect(loadingSkeleton).toBeInTheDocument();
+    expect(loadingSkeleton).toHaveClass('animate-pulse');
+
+    // Should render 5 skeleton items
+    const skeletonItems = screen.getAllByTestId('skeleton-item');
+    expect(skeletonItems).toHaveLength(5);
   });
 
   it('should handle error state', async () => {
-    const errorMessage = 'Failed to load recent calls';
-    mockFetch.mockImplementationOnce(() =>
-      Promise.reject(new Error(errorMessage))
+    // Mock fetch to simulate error
+    (global.fetch as jest.Mock).mockImplementationOnce(() => 
+      Promise.reject(new Error('Failed to load recent calls'))
     );
-
-    render(<RecentCalls />);
-
-    await waitFor(() => {
-      expect(screen.getByText(errorMessage)).toBeInTheDocument();
+    
+    await act(async () => {
+      render(<RecentCalls />);
     });
+
+    // Should show error message
+    const errorMessage = await screen.findByRole('alert');
+    expect(errorMessage).toBeInTheDocument();
+    expect(errorMessage).toHaveTextContent('Failed to load recent calls');
+    expect(errorMessage).toHaveClass('text-red-600');
   });
 
-  it('should apply correct status styles', async () => {
-    mockFetch.mockImplementationOnce(() =>
+  it('should render recent calls data', async () => {
+    // Mock successful API response
+    const mockCalls = [
+      {
+        id: '1',
+        callerName: 'John Doe',
+        callerNumber: '+1234567890',
+        timestamp: '2025-02-19T09:00:00Z',
+        duration: 300,
+        status: 'completed' as const
+      },
+      {
+        id: '2',
+        callerNumber: '+1987654321',
+        timestamp: '2025-02-19T08:30:00Z',
+        duration: 0,
+        status: 'missed' as const
+      }
+    ];
+
+    (global.fetch as jest.Mock).mockImplementationOnce(() => 
       Promise.resolve({
+        ok: true,
         json: () => Promise.resolve(mockCalls)
       })
     );
-
-    render(<RecentCalls />);
-
-    await waitFor(() => {
-      const completedStatus = screen.getByText('completed');
-      const missedStatus = screen.getByText('missed');
-
-      expect(completedStatus).toHaveClass('bg-green-100 text-green-800');
-      expect(missedStatus).toHaveClass('bg-red-100 text-red-800');
+    
+    await act(async () => {
+      render(<RecentCalls />);
     });
-  });
 
-  it('should handle data-testid prop', () => {
-    const testId = 'recent-calls';
-    mockFetch.mockImplementationOnce(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(mockCalls)
-      })
-    );
+    // Should render call list
+    const callList = screen.getByRole('list');
+    expect(callList).toBeInTheDocument();
 
-    render(<RecentCalls data-testid={testId} />);
-    expect(screen.getByTestId(testId)).toBeInTheDocument();
+    // Should render call items
+    const callItems = screen.getAllByRole('listitem');
+    expect(callItems).toHaveLength(2);
+
+    // Should render caller info
+    expect(screen.getByText('John Doe')).toBeInTheDocument();
+    expect(screen.getByText('+1987654321')).toBeInTheDocument();
+
+    // Should render call status
+    expect(screen.getByTestId('status-completed')).toBeInTheDocument();
+    expect(screen.getByTestId('status-missed')).toBeInTheDocument();
   });
 });

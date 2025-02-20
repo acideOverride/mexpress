@@ -1,122 +1,121 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import MetricsDisplay from '../MetricsDisplay';
 
-// Mock fetch globally
-const mockFetch = jest.fn();
-global.fetch = mockFetch;
-
 describe('MetricsDisplay', () => {
-  const mockMetrics = {
-    totalCalls: 1234,
-    missedCalls: 45,
-    averageCallDuration: 125, // in minutes
-    activeCustomers: 567,
-    customerSatisfaction: 92,
-    syncStatus: {
-      lastSync: '2025-02-18T12:00:00Z',
-      status: 'success' as const,
-      message: 'Last sync successful'
-    }
-  };
+  const originalFetch = global.fetch;
+
+  beforeAll(() => {
+    global.fetch = jest.fn();
+  });
+
+  afterAll(() => {
+    global.fetch = originalFetch;
+  });
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should render loading state initially', () => {
-    mockFetch.mockImplementationOnce(() => new Promise(() => {}));
-    render(<MetricsDisplay />);
-
-    const skeletonContainer = screen.getByTestId('loading-skeleton');
-    expect(skeletonContainer).toHaveClass('animate-pulse');
-  });
-
-  it('should render metrics when loaded', async () => {
-    mockFetch.mockImplementationOnce(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(mockMetrics)
-      })
+  it('should render loading state initially', async () => {
+    // Mock fetch to return a pending promise that never resolves
+    (global.fetch as jest.Mock).mockImplementationOnce(() => 
+      new Promise(() => {})
     );
-
-    render(<MetricsDisplay />);
-
-    // Wait for metrics to be rendered
-    await waitFor(() => {
-      expect(screen.getByText('Total Calls')).toBeInTheDocument();
+    
+    await act(async () => {
+      render(<MetricsDisplay />);
     });
 
-    // Verify all metrics are rendered
-    expect(screen.getByText(mockMetrics.totalCalls.toLocaleString())).toBeInTheDocument();
-    expect(screen.getByText(`${mockMetrics.missedCalls} missed`)).toBeInTheDocument();
-    expect(screen.getByText('2h 5m')).toBeInTheDocument(); // 125 minutes formatted
-    expect(screen.getByText(mockMetrics.activeCustomers.toLocaleString())).toBeInTheDocument();
-    expect(screen.getByText(`${mockMetrics.customerSatisfaction}%`)).toBeInTheDocument();
-    expect(screen.getByText(mockMetrics.syncStatus.message)).toBeInTheDocument();
+    const loadingSkeleton = screen.getByTestId('loading-skeleton');
+    expect(loadingSkeleton).toBeInTheDocument();
+    expect(loadingSkeleton).toHaveClass('animate-pulse');
+
+    // Should render 4 metric card skeletons
+    const skeletonItems = screen.getAllByTestId('skeleton-item');
+    expect(skeletonItems).toHaveLength(4);
   });
 
   it('should handle error state', async () => {
-    const errorMessage = 'Failed to load metrics';
-    mockFetch.mockImplementationOnce(() =>
-      Promise.reject(new Error(errorMessage))
+    // Mock fetch to simulate error
+    (global.fetch as jest.Mock).mockImplementationOnce(() => 
+      Promise.reject(new Error('Failed to load metrics'))
     );
-
-    render(<MetricsDisplay />);
-
-    await waitFor(() => {
-      expect(screen.getByText(errorMessage)).toBeInTheDocument();
+    
+    await act(async () => {
+      render(<MetricsDisplay />);
     });
+
+    // Should show error message
+    const errorMessage = await screen.findByRole('alert');
+    expect(errorMessage).toBeInTheDocument();
+    expect(errorMessage).toHaveTextContent('Failed to load metrics');
+    expect(errorMessage).toHaveClass('text-red-600');
   });
 
-  it('should apply correct status styles for sync status', async () => {
-    const successMetrics = {
-      ...mockMetrics,
-      syncStatus: { ...mockMetrics.syncStatus, status: 'success' as const }
-    };
-    mockFetch.mockImplementationOnce(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(successMetrics)
-      })
-    );
-
-    render(<MetricsDisplay />);
-
-    await waitFor(() => {
-      const statusBadge = screen.getByText(successMetrics.syncStatus.message);
-      expect(statusBadge).toHaveClass('bg-green-100 text-green-800');
-    });
-
-    // Re-render with warning status
-    const warningMetrics = {
-      ...mockMetrics,
-      syncStatus: {
-        ...mockMetrics.syncStatus,
-        status: 'warning' as const,
-        message: 'Sync delayed'
+  it('should render metrics data', async () => {
+    // Mock successful API response
+    const mockMetrics = [
+      {
+        id: '1',
+        label: 'Total Calls',
+        value: 150,
+        unit: 'calls',
+        trend: 'up' as const,
+        changePercentage: 12.5
+      },
+      {
+        id: '2',
+        label: 'Average Duration',
+        value: 5.2,
+        unit: 'minutes',
+        trend: 'down' as const,
+        changePercentage: -3.1
+      },
+      {
+        id: '3',
+        label: 'Success Rate',
+        value: 98.5,
+        unit: '%',
+        trend: 'stable' as const
+      },
+      {
+        id: '4',
+        label: 'Active Users',
+        value: 45,
+        unit: 'users',
+        trend: 'up' as const,
+        changePercentage: 8.7
       }
-    };
-    mockFetch.mockImplementationOnce(() =>
+    ];
+
+    (global.fetch as jest.Mock).mockImplementationOnce(() => 
       Promise.resolve({
-        json: () => Promise.resolve(warningMetrics)
-      })
-    );
-
-    render(<MetricsDisplay />);
-
-    await waitFor(() => {
-      const statusBadge = screen.getByText(warningMetrics.syncStatus.message);
-      expect(statusBadge).toHaveClass('bg-yellow-100 text-yellow-800');
-    });
-  });
-
-  it('should handle data-testid prop', () => {
-    const testId = 'metrics-display';
-    mockFetch.mockImplementationOnce(() =>
-      Promise.resolve({
+        ok: true,
         json: () => Promise.resolve(mockMetrics)
       })
     );
+    
+    await act(async () => {
+      render(<MetricsDisplay />);
+    });
 
-    render(<MetricsDisplay data-testid={testId} />);
-    expect(screen.getByTestId(testId)).toBeInTheDocument();
+    // Should render metric cards
+    const metricCards = screen.getAllByTestId('metric-card');
+    expect(metricCards).toHaveLength(4);
+
+    // Should render metric values and labels
+    expect(screen.getByText('Total Calls')).toBeInTheDocument();
+    expect(screen.getByText('150 calls')).toBeInTheDocument();
+    expect(screen.getByText('Average Duration')).toBeInTheDocument();
+    expect(screen.getByText('5.2 minutes')).toBeInTheDocument();
+
+    // Should render trend indicators
+    expect(screen.getByTestId('trend-up-1')).toBeInTheDocument();
+    expect(screen.getByTestId('trend-down-2')).toBeInTheDocument();
+    expect(screen.getByTestId('trend-stable-3')).toBeInTheDocument();
+
+    // Should render change percentages
+    expect(screen.getByText('+12.5%')).toBeInTheDocument();
+    expect(screen.getByText('-3.1%')).toBeInTheDocument();
   });
 });

@@ -1,0 +1,144 @@
+.customer-list__container {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--surface-background);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.customer-list__table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 750px;
+}
+
+.customer-list__header {
+  background: var(--surface-background-alt);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.customer-list__header-cell {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.customer-list__row {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.customer-list__row:hover {
+  background-color: var(--surface-hover);
+  cursor: pointer;
+}
+
+.customer-list__cell {
+  padding: 1rem;
+  color: var(--text-primary);
+}
+
+.customer-list__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.customer-list__name-cell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.customer-list__customer-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-list__customer-name {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.customer-list__customer-email {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.customer-list__status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--border-radius-full);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.customer-list__status-badge--active {
+  background-color: var(--success-light);
+  color: var(--success-dark);
+}
+
+.customer-list__status-badge--inactive {
+  background-color: var(--warning-light);
+  color: var(--warning-dark);
+}
+
+.customer-list__devices {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.customer-list__device-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--surface-alt);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.customer-list__actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.customer-list__action-button {
+  padding: 0.5rem;
+  border-radius: var(--border-radius-sm);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.customer-list__action-button:hover {
+  background-color: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.customer-list__empty-state {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .customer-list__table {
+    min-width: 500px;
+  }
+
+  .customer-list__device-tag {
+    font-size: 0.7rem;
+  }
+
+  .customer-list__customer-email {
+    font-size: 0.8rem;
+  }
+}

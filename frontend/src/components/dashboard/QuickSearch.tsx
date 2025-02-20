@@ -1,143 +1,95 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 
 interface QuickSearchProps {
   onSearch: (query: string) => void;
-  recentSearches: string[];
 }
 
-const QuickSearch: React.FC<QuickSearchProps> = ({ onSearch, recentSearches }) => {
-  const [query, setQuery] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(-1);
-  const debouncedQuery = useDebounce(query, 300);
-  const containerRef = useRef<HTMLDivElement>(null);
+const QuickSearch: React.FC<QuickSearchProps> = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   useEffect(() => {
-    onSearch(debouncedQuery);
-  }, [debouncedQuery, onSearch]);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
-
-  const handleClear = () => {
-    setQuery('');
-    onSearch('');
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (!isOpen) {
-      if (event.key === 'ArrowDown') {
-        setIsOpen(true);
-        setSelectedIndex(0);
-        event.preventDefault();
-      }
-      return;
+    if (debouncedSearchTerm) {
+      setIsSearching(true);
+      onSearch(debouncedSearchTerm);
+      // Simulate search delay
+      setTimeout(() => setIsSearching(false), 500);
+    } else {
+      onSearch('');
+      setIsSearching(false);
     }
-
-    switch (event.key) {
-      case 'ArrowDown':
-        setSelectedIndex(prev => 
-          prev < recentSearches.length - 1 ? prev + 1 : prev
-        );
-        event.preventDefault();
-        break;
-      case 'ArrowUp':
-        setSelectedIndex(prev => prev > 0 ? prev - 1 : -1);
-        event.preventDefault();
-        break;
-      case 'Enter':
-        if (selectedIndex >= 0) {
-          setQuery(recentSearches[selectedIndex]);
-          onSearch(recentSearches[selectedIndex]);
-          setIsOpen(false);
-        }
-        break;
-      case 'Escape':
-        setIsOpen(false);
-        setSelectedIndex(-1);
-        break;
-    }
-  };
-
-  const handleRecentSearchClick = (search: string) => {
-    setQuery(search);
-    onSearch(search);
-    setIsOpen(false);
-  };
+  }, [debouncedSearchTerm, onSearch]);
 
   return (
-    <div 
-      ref={containerRef}
-      className="relative w-full max-w-md"
-      data-testid="quick-search"
-    >
-      <div className="relative">
-        <input
-          type="search"
-          role="searchbox"
-          className="w-full px-4 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Search customers, calls, or companies..."
-          value={query}
-          onChange={handleInputChange}
-          onFocus={() => setIsOpen(true)}
-          onKeyDown={handleKeyDown}
-          aria-label="Quick search"
-          aria-expanded={isOpen}
-          aria-controls="quick-search-suggestions"
-          aria-autocomplete="list"
-        />
-        {query && (
-          <button
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-            onClick={handleClear}
-            aria-label="Clear search"
+    <div className="relative w-full">
+      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+        {isSearching ? (
+          <svg 
+            className="animate-spin h-5 w-5 text-blue-500" 
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="none" 
+            viewBox="0 0 24 24"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+            <circle 
+              className="opacity-25" 
+              cx="12" 
+              cy="12" 
+              r="10" 
+              stroke="currentColor" 
+              strokeWidth="4"
+            />
+            <path 
+              className="opacity-75" 
+              fill="currentColor" 
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            />
+          </svg>
+        ) : (
+          <svg 
+            className="h-5 w-5 text-gray-400" 
+            viewBox="0 0 20 20" 
+            fill="currentColor" 
+            aria-hidden="true"
+          >
+            <path 
+              fillRule="evenodd" 
+              d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" 
+              clipRule="evenodd" 
+            />
+          </svg>
         )}
       </div>
-
-      {isOpen && recentSearches.length > 0 && (
-        <div
-          id="quick-search-suggestions"
-          className="absolute w-full mt-1 bg-white border rounded-lg shadow-lg z-10"
-          role="listbox"
+      <input
+        type="search"
+        role="searchbox"
+        className="block w-full rounded-lg border border-gray-200 bg-white py-3 pl-12 pr-4 text-gray-900 
+                 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 
+                 placeholder:text-gray-400 shadow-sm transition-colors
+                 hover:border-gray-300"
+        placeholder="Search customers, calls or activities..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      {searchTerm && (
+        <button
+          onClick={() => setSearchTerm('')}
+          className="absolute inset-y-0 right-0 flex items-center pr-4 
+                   text-gray-400 hover:text-gray-600"
         >
-          {recentSearches.map((search, index) => (
-            <button
-              key={search}
-              className={`w-full px-4 py-2 text-left hover:bg-gray-100 ${
-                index === selectedIndex ? 'bg-gray-100' : ''
-              }`}
-              onClick={() => handleRecentSearchClick(search)}
-              role="option"
-              aria-selected={index === selectedIndex}
-              tabIndex={-1}
-            >
-              <div className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                {search}
-              </div>
-            </button>
-          ))}
-        </div>
+          <svg 
+            className="h-5 w-5" 
+            viewBox="0 0 20 20" 
+            fill="currentColor"
+          >
+            <path 
+              fillRule="evenodd" 
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" 
+              clipRule="evenodd" 
+            />
+          </svg>
+        </button>
       )}
     </div>
   );

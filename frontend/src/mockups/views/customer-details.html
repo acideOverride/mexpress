@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mExpress - Customer Details</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        /* Customer Details Specific Styles */
+        .customer-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+            background: white;
+            padding: var(--spacing-4);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .customer-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 500;
+        }
+
+        .customer-details {
+            flex: 1;
+        }
+
+        .customer-contact {
+            display: flex;
+            gap: var(--spacing-4);
+            margin-top: var(--spacing-2);
+            color: var(--text-secondary);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-4);
+        }
+
+        .device-card {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-4);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .device-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            margin-bottom: var(--spacing-3);
+        }
+
+        .device-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--border-radius-lg);
+            background: var(--background-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .device-meta {
+            display: flex;
+            gap: var(--spacing-4);
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-2);
+        }
+
+        .repair-history {
+            margin-top: var(--spacing-4);
+        }
+
+        .repair-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .repair-item:last-child {
+            border-bottom: none;
+        }
+
+        .repair-status {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .status-completed {
+            background: var(--success-light);
+            color: var(--success-color);
+        }
+
+        .status-in-progress {
+            background: var(--warning-light);
+            color: var(--warning-color);
+        }
+
+        .repair-content {
+            flex: 1;
+        }
+
+        .repair-meta {
+            display: flex;
+            gap: var(--spacing-4);
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-1);
+        }
+
+        .side-section {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-4);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .activity-item {
+            display: flex;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--border-radius-md);
+            background: var(--background-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-meta {
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-1);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Left Navigation -->
+        <aside class="sidebar">
+            <div class="logo">mExpress</div>
+
+            <!-- Operations -->
+            <div class="nav-section">
+                <div class="nav-header">Operations</div>
+                <a href="#" class="nav-item">
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Repairs</span>
+                    <span class="nav-badge">15</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Quotes</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Parts & Stock</span>
+                    <span class="nav-badge">3</span>
+                </a>
+            </div>
+
+            <!-- Customers -->
+            <div class="nav-section">
+                <div class="nav-header">Customers</div>
+                <a href="#" class="nav-item active">
+                    <span>Customers</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Devices</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Messages</span>
+                </a>
+            </div>
+
+            <!-- Financial -->
+            <div class="nav-section">
+                <div class="nav-header">Financial</div>
+                <a href="#" class="nav-item">
+                    <span>Invoices</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Accounting</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-wrapper">
+            <!-- Header -->
+            <header class="header">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="heading-2">Customer Details</h1>
+                        <p class="text-secondary">Tuesday, February 19, 2025</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <button class="btn btn-secondary">Message</button>
+                        <button class="btn btn-primary">New Repair</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Customer Header -->
+                <div class="customer-header">
+                    <div class="customer-avatar-large">JD</div>
+                    <div class="customer-details">
+                        <h2 class="heading-2">John Doe</h2>
+                        <div class="customer-contact">
+                            <div class="contact-item">
+                                <span>📱</span>
+                                <span>+1 234-567-8900</span>
+                            </div>
+                            <div class="contact-item">
+                                <span>📧</span>
+                                <span>john.doe@example.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <span>📍</span>
+                                <span>San Francisco, CA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Details Grid -->
+                <div class="details-grid">
+                    <!-- Left Column -->
+                    <div class="main-column">
+                        <!-- Devices -->
+                        <div class="device-card">
+                            <div class="device-header">
+                                <div class="device-icon">📱</div>
+                                <div>
+                                    <h3 class="heading-3">iPhone 13 Pro</h3>
+                                    <div class="device-meta">
+                                        <span>Serial: IMEI123456789</span>
+                                        <span>Added: Jan 15, 2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="repair-history">
+                                <div class="repair-item">
+                                    <div class="repair-status status-in-progress">🔧</div>
+                                    <div class="repair-content">
+                                        <h4 class="heading-4">Screen Replacement</h4>
+                                        <div class="repair-meta">
+                                            <span>Started: Today</span>
+                                            <span>Technician: Alice J.</span>
+                                            <span>Due: 2:30 PM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="repair-item">
+                                    <div class="repair-status status-completed">✓</div>
+                                    <div class="repair-content">
+                                        <h4 class="heading-4">Battery Replacement</h4>
+                                        <div class="repair-meta">
+                                            <span>Completed: Jan 20, 2025</span>
+                                            <span>Technician: Mike T.</span>
+                                            <span>Invoice: #INV-2025-001</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="device-card">
+                            <div class="device-header">
+                                <div class="device-icon">💻</div>
+                                <div>
+                                    <h3 class="heading-3">MacBook Pro</h3>
+                                    <div class="device-meta">
+                                        <span>Serial: MBP123456789</span>
+                                        <span>Added: Dec 10, 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="repair-history">
+                                <div class="repair-item">
+                                    <div class="repair-status status-completed">✓</div>
+                                    <div class="repair-content">
+                                        <h4 class="heading-4">Keyboard Replacement</h4>
+                                        <div class="repair-meta">
+                                            <span>Completed: Dec 15, 2024</span>
+                                            <span>Technician: Robert K.</span>
+                                            <span>Invoice: #INV-2024-089</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="side-panel">
+                        <!-- Quick Stats -->
+                        <section class="side-section">
+                            <h3 class="heading-3 mb-4">Customer Stats</h3>
+                            <div class="stats-grid">
+                                <div>
+                                    <div class="text-secondary">Total Repairs</div>
+                                    <div class="heading-2">3</div>
+                                </div>
+                                <div>
+                                    <div class="text-secondary">Total Spent</div>
+                                    <div class="heading-2">€789.00</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Recent Activity -->
+                        <section class="side-section">
+                            <h3 class="heading-3 mb-4">Recent Activity</h3>
+                            <div class="activity-item">
+                                <div class="activity-icon">🔧</div>
+                                <div class="activity-content">
+                                    <div>Started iPhone Screen Repair</div>
+                                    <div class="activity-meta">Today, 10:30 AM</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">💬</div>
+                                <div class="activity-content">
+                                    <div>Received Quote Approval</div>
+                                    <div class="activity-meta">Today, 9:45 AM</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">📱</div>
+                                <div class="activity-content">
+                                    <div>Added New Device: iPhone 13 Pro</div>
+                                    <div class="activity-meta">Jan 15, 2025</div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

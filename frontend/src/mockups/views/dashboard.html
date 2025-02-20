@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mExpress - Business Control Center</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Left Navigation -->
+        <aside class="sidebar">
+            <div class="logo">mExpress</div>
+
+            <!-- Operations -->
+            <div class="nav-section">
+                <div class="nav-header">Operations</div>
+                <a href="#" class="nav-item active">
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Repairs</span>
+                    <span class="nav-badge">15</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Quotes</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Parts & Stock</span>
+                    <span class="nav-badge">3</span>
+                </a>
+            </div>
+
+            <!-- Customers -->
+            <div class="nav-section">
+                <div class="nav-header">Customers</div>
+                <a href="#" class="nav-item">
+                    <span>Customers</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Devices</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Messages</span>
+                </a>
+            </div>
+
+            <!-- Financial -->
+            <div class="nav-section">
+                <div class="nav-header">Financial</div>
+                <a href="#" class="nav-item">
+                    <span>Invoices</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>Accounting</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-wrapper">
+            <!-- Header -->
+            <header class="header">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="heading-2">Business Dashboard</h1>
+                        <p class="text-secondary">Tuesday, February 19, 2025</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <button class="btn btn-secondary">Notifications</button>
+                        <button class="btn btn-primary">End Day</button>
+                    </div>
+                </div>
+                <div class="mega-search">
+                    <input type="text" class="search-input" placeholder="Search customers, repairs, products, invoices...">
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <button class="action-button">
+                        <span class="action-icon">👤</span>
+                        <span>New Customer</span>
+                    </button>
+                    <button class="action-button">
+                        <span class="action-icon">🛠️</span>
+                        <span>New Repair</span>
+                    </button>
+                    <button class="action-button">
+                        <span class="action-icon">📋</span>
+                        <span>New Quote</span>
+                    </button>
+                    <button class="action-button">
+                        <span class="action-icon">📝</span>
+                        <span>New Invoice</span>
+                    </button>
+                    <button class="action-button">
+                        <span class="action-icon">📦</span>
+                        <span>Order Parts</span>
+                    </button>
+                </div>
+
+                <!-- Main Grid -->
+                <div class="main-grid">
+                    <!-- Left Column: Today's Schedule -->
+                    <div class="main-column">
+                        <section class="panel-section">
+                            <div class="section-header">
+                                <h2 class="heading-2">Today's Schedule</h2>
+                                <button class="btn btn-secondary btn-sm">View All</button>
+                            </div>
+                            <div class="timeline-section">
+                                <div class="timeline-hours">
+                                    <div class="hour-slot">9:00 AM</div>
+                                    <div class="hour-slot current-hour">10:00 AM</div>
+                                    <div class="hour-slot">11:00 AM</div>
+                                    <div class="hour-slot">12:00 PM</div>
+                                    <div class="hour-slot">1:00 PM</div>
+                                    <div class="hour-slot">2:00 PM</div>
+                                    <div class="hour-slot">3:00 PM</div>
+                                    <div class="hour-slot">4:00 PM</div>
+                                    <div class="hour-slot">5:00 PM</div>
+                                </div>
+                                <div class="timeline-events">
+                                    <div class="timeline-event late">
+                                        <div class="event-icon">📱
+                                            <div class="event-priority priority-high"></div>
+                                        </div>
+                                        <div class="event-content">
+                                            <h3 class="heading-3">iPhone 13 Screen Repair</h3>
+                                            <div class="event-meta">
+                                                <div class="event-tech">
+                                                    <div class="tech-avatar">AJ</div>
+                                                    <span>Alice J.</span>
+                                                </div>
+                                                <div class="event-duration">⏱️ 45m</div>
+                                                <div class="parts-status parts-low">
+                                                    <span>📦</span>
+                                                    <span>2 left</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="side-panel">
+                        <!-- Quick Metrics -->
+                        <section class="panel-section">
+                            <div class="business-metrics">
+                                <div class="metric-card">
+                                    <div class="metric-header">
+                                        <h3 class="heading-3">Today's Revenue</h3>
+                                        <div class="metric-trend">↑ 15%</div>
+                                    </div>
+                                    <p class="finance-value">€2,458.00</p>
+                                    <p class="text-secondary">vs yesterday</p>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-header">
+                                        <h3 class="heading-3">Pending Payments</h3>
+                                    </div>
+                                    <p class="finance-value">€1,245.00</p>
+                                    <p class="text-secondary">8 invoices</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Alerts -->
+                        <section class="panel-section">
+                            <div class="section-header">
+                                <h2 class="heading-2">Alerts</h2>
+                                <span class="badge">3 urgent</span>
+                            </div>
+                            <div class="alert-item">
+                                <div class="alert-icon alert-critical">⚠️</div>
+                                <div class="alert-content">
+                                    <h3 class="heading-3">Late: iPhone 13</h3>
+                                    <p>30m overdue</p>
+                                </div>
+                            </div>
+                            <div class="alert-item">
+                                <div class="alert-icon alert-warning">📦</div>
+                                <div class="alert-content">
+                                    <h3 class="heading-3">Low Stock</h3>
+                                    <p>2 iPhone screens left</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Team Status -->
+                        <section class="panel-section">
+                            <div class="section-header">
+                                <h2 class="heading-2">Team</h2>
+                                <button class="btn btn-secondary btn-sm">Schedule</button>
+                            </div>
+                            <div class="team-status">
+                                <div class="team-member busy">
+                                    <div class="tech-avatar">MT</div>
+                                    <div class="member-info">
+                                        <h3 class="heading-3">Mike T.</h3>
+                                        <div class="member-tasks">
+                                            <span class="task-badge busy">MacBook Battery</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="team-member available">
+                                    <div class="tech-avatar">AJ</div>
+                                    <div class="member-info">
+                                        <h3 class="heading-3">Alice J.</h3>
+                                        <div class="member-tasks">
+                                            <span class="task-badge available">Available</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

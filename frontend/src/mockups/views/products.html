@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mExpress - Products</title>
+    <link rel="stylesheet" href="../css/design-system.css">
+    <style>
+        /* Product Catalog Specific Styles */
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background-color: var(--background-primary);
+            border-right: 1px solid var(--border-color);
+            padding: var(--spacing-4);
+        }
+
+        .main-content {
+            padding: var(--spacing-6);
+        }
+
+        .header {
+            background-color: var(--background-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: var(--spacing-4);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .catalog-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: var(--spacing-6);
+        }
+
+        .filter-sidebar {
+            background-color: var(--background-primary);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-4);
+            height: fit-content;
+        }
+
+        .filter-section {
+            margin-bottom: var(--spacing-4);
+            padding-bottom: var(--spacing-4);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-2);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            cursor: pointer;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-4);
+        }
+
+        .product-card {
+            background-color: var(--background-primary);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--background-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        .product-content {
+            padding: var(--spacing-4);
+        }
+
+        .product-price {
+            color: var(--primary-color);
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+        }
+
+        .stock-badge {
+            display: inline-block;
+            padding: var(--spacing-1) var(--spacing-2);
+            border-radius: var(--border-radius-base);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+        }
+
+        .in-stock {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .low-stock {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .view-options {
+            display: flex;
+            gap: var(--spacing-2);
+        }
+
+        .view-btn {
+            padding: var(--spacing-2);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .view-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        @media (max-width: 1024px) {
+            .catalog-layout {
+                grid-template-columns: 200px 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .catalog-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="flex flex-col gap-4">
+                <h2 class="heading-2">mExpress</h2>
+                <nav>
+                    <a href="#" class="nav-item">Dashboard</a>
+                    <a href="#" class="nav-item">Customers</a>
+                    <a href="#" class="nav-item active">Products</a>
+                    <a href="#" class="nav-item">Orders</a>
+                    <a href="#" class="nav-item">Analytics</a>
+                    <a href="#" class="nav-item">Settings</a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Header -->
+            <header class="header">
+                <div class="flex justify-between items-center">
+                    <h1 class="heading-2">Products</h1>
+                    <button class="btn btn-primary">Add Product</button>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <div class="catalog-layout">
+                    <!-- Filter Sidebar -->
+                    <aside class="filter-sidebar">
+                        <div class="filter-section">
+                            <h3 class="heading-3">Categories</h3>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> Electronics
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Clothing
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Home & Garden
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Sports
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h3 class="heading-3">Price Range</h3>
+                            <div class="flex flex-col gap-2">
+                                <input type="range" min="0" max="1000" class="w-full">
+                                <div class="flex justify-between">
+                                    <span>€0</span>
+                                    <span>€1000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h3 class="heading-3">Stock Status</h3>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> In Stock
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Low Stock
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Out of Stock
+                                </label>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Product Grid -->
+                    <div>
+                        <!-- Toolbar -->
+                        <div class="toolbar">
+                            <div class="view-options">
+                                <button class="view-btn active">Grid</button>
+                                <button class="view-btn">List</button>
+                            </div>
+                            <select class="filter-select">
+                                <option>Sort by: Featured</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Newest First</option>
+                            </select>
+                        </div>
+
+                        <!-- Products -->
+                        <div class="product-grid">
+                            <!-- Product Card 1 -->
+                            <div class="product-card">
+                                <div class="product-image">Product Image</div>
+                                <div class="product-content">
+                                    <h3 class="heading-3">Wireless Headphones</h3>
+                                    <p class="text-secondary">High-quality sound, long battery life</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="product-price">€99.99</span>
+                                        <span class="stock-badge in-stock">In Stock</span>
+                                    </div>
+                                    <div class="flex gap-2 mt-4">
+                                        <button class="btn btn-secondary">Edit</button>
+                                        <button class="btn btn-primary">Add to Order</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product Card 2 -->
+                            <div class="product-card">
+                                <div class="product-image">Product Image</div>
+                                <div class="product-content">
+                                    <h3 class="heading-3">Smart Watch</h3>
+                                    <p class="text-secondary">Fitness tracking, notifications</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="product-price">€199.99</span>
+                                        <span class="stock-badge low-stock">Low Stock</span>
+                                    </div>
+                                    <div class="flex gap-2 mt-4">
+                                        <button class="btn btn-secondary">Edit</button>
+                                        <button class="btn btn-primary">Add to Order</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product Card 3 -->
+                            <div class="product-card">
+                                <div class="product-image">Product Image</div>
+                                <div class="product-content">
+                                    <h3 class="heading-3">Laptop Pro</h3>
+                                    <p class="text-secondary">16" display, 512GB SSD</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="product-price">€1,299.99</span>
+                                        <span class="stock-badge in-stock">In Stock</span>
+                                    </div>
+                                    <div class="flex gap-2 mt-4">
+                                        <button class="btn btn-secondary">Edit</button>
+                                        <button class="btn btn-primary">Add to Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
