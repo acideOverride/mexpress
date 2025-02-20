@@ -2,13 +2,13 @@
 
 ## Table of Contents
 1. [Test Strategy](#1-test-strategy)
-   - [Test Types](#11-test-types)
+   - [Test Categories](#11-test-categories)
    - [Test Environment](#12-test-environment)
    - [Test Data Management](#13-test-data-management)
 2. [Test Execution](#2-test-execution)
-   - [Configuration](#21-configuration)
+   - [Resource Management](#21-resource-management)
    - [Output Management](#22-output-management)
-   - [Context Management](#23-context-management)
+   - [Performance Baselines](#23-performance-baselines)
 3. [Quality Control](#3-quality-control)
    - [Quality Metrics](#31-quality-metrics)
    - [Review Process](#32-review-process)
@@ -24,7 +24,72 @@
 
 ## 1. Test Strategy
 
-### 1.1 Test Types
+### 1.1 Test Categories
+
+1. Priority Categories:
+   ```typescript
+   enum TestPriority {
+     P0 = 'p0', // Critical path, core functionality
+     P1 = 'p1', // High-impact business logic
+     P2 = 'p2', // Important features
+     P3 = 'p3', // Edge cases, nice-to-have features
+   }
+
+   interface TestDefinition {
+     priority: TestPriority;
+     maxDuration: number; // milliseconds
+     maxMemory: number;  // MB
+     maxConcurrency: number;
+   }
+
+   const testLimits: Record<TestPriority, TestDefinition> = {
+     [TestPriority.P0]: {
+       priority: TestPriority.P0,
+       maxDuration: 5000,    // 5 seconds
+       maxMemory: 512,       // 512MB
+       maxConcurrency: 1     // Run sequentially
+     },
+     [TestPriority.P1]: {
+       priority: TestPriority.P1,
+       maxDuration: 10000,   // 10 seconds
+       maxMemory: 1024,      // 1GB
+       maxConcurrency: 2     // 2 concurrent tests
+     },
+     [TestPriority.P2]: {
+       priority: TestPriority.P2,
+       maxDuration: 20000,   // 20 seconds
+       maxMemory: 1536,      // 1.5GB
+       maxConcurrency: 3     // 3 concurrent tests
+     },
+     [TestPriority.P3]: {
+       priority: TestPriority.P3,
+       maxDuration: 30000,   // 30 seconds
+       maxMemory: 2048,      // 2GB
+       maxConcurrency: 4     // 4 concurrent tests
+     }
+   };
+   ```
+
+2. Test Organization:
+   ```typescript
+   // Directory Structure
+   /tests
+     /p0
+       /core          // Core functionality tests
+       /api          // Critical API tests
+       /data         // Data integrity tests
+     /p1
+       /business     // Business logic tests
+       /integration  // Key integration tests
+     /p2
+       /features     // Feature tests
+       /components   // Component tests
+     /p3
+       /edge         // Edge cases
+       /performance  // Non-critical performance tests
+   ```
+
+### 1.2 Test Types
 
 1. Unit Testing:
    ```typescript
@@ -155,38 +220,64 @@
 
 ## 2. Test Execution
 
-### 2.1 Configuration
+### 2.1 Resource Management
 
-1. Jest Configuration:
-   ```javascript
-   // jest.config.js
-   module.exports = {
-     // Core Configuration
-     silent: true,
-     verbose: false,
-     
-     // Coverage Configuration
-     coverageDirectory: 'logs',
-     coverageReporters: ['text-summary'],
-     coverageThreshold: {
-       global: {
-         branches: 90,
-         functions: 90,
-         lines: 90,
-         statements: 90
-       }
+1. Resource Limits:
+   ```typescript
+   interface ResourceLimits {
+     test: {
+       maxConcurrentSuites: number;
+       maxTestsPerSuite: number;
+       maxSuiteMemory: number;
+       maxSuiteDuration: number;
+     };
+     process: {
+       maxCpuUsage: number;
+       maxMemoryUsage: number;
+       maxFileDescriptors: number;
+     };
+     output: {
+       maxLogSize: number;
+       maxErrorSize: number;
+     };
+   }
+
+   const resourceLimits: ResourceLimits = {
+     test: {
+       maxConcurrentSuites: 4,
+       maxTestsPerSuite: 50,
+       maxSuiteMemory: 2048,  // 2GB
+       maxSuiteDuration: 300000 // 5 minutes
+     },
+     process: {
+       maxCpuUsage: 70,     // 70%
+       maxMemoryUsage: 80,  // 80%
+       maxFileDescriptors: 1000
+     },
+     output: {
+       maxLogSize: 5242880,  // 5MB
+       maxErrorSize: 1048576 // 1MB
      }
    };
    ```
 
-2. Test Scripts:
-   ```json
-   {
-     "scripts": {
-       "test": "jest --silent > logs/test-status.log",
-       "test:coverage": "jest --silent --coverage --coverageReporters=\"text-summary\" > logs/coverage-summary.log",
-       "test:ci": "jest --silent --coverage --ci > logs/test-status.log 2> logs/test-errors.log"
-     }
+2. Resource Monitoring:
+   ```typescript
+   interface ResourceMonitor {
+     metrics: {
+       cpu: number;
+       memory: number;
+       fileDescriptors: number;
+       testDuration: number;
+     };
+     thresholds: {
+       warning: number;
+       critical: number;
+     };
+     actions: {
+       onWarning: () => void;
+       onCritical: () => void;
+     };
    }
    ```
 
@@ -207,14 +298,49 @@
    - Avoid JSON reporters
    - Implement threshold-based validation
 
-### 2.3 Context Management
+### 2.3 Performance Baselines
 
-1. Context Rules:
-   - Monitor context usage before operations
-   - Break large test suites into chunks
-   - Use incremental testing approach
-   - Avoid large JSON outputs
-   - Track context thresholds
+1. Test Performance Metrics:
+   ```typescript
+   interface PerformanceBaselines {
+     execution: {
+       setup: number;    // milliseconds
+       teardown: number; // milliseconds
+       assertion: number;// milliseconds
+     };
+     memory: {
+       baselineUsage: number;  // MB
+       maxIncrease: number;    // MB
+     };
+     throughput: {
+       testsPerSecond: number;
+       suitsPerMinute: number;
+     };
+   }
+
+   const performanceBaselines: PerformanceBaselines = {
+     execution: {
+       setup: 100,      // 100ms
+       teardown: 100,   // 100ms
+       assertion: 50    // 50ms
+     },
+     memory: {
+       baselineUsage: 256,  // 256MB
+       maxIncrease: 512     // 512MB
+     },
+     throughput: {
+       testsPerSecond: 10,
+       suitsPerMinute: 2
+     }
+   };
+   ```
+
+2. Performance Guidelines:
+   - Monitor test execution time
+   - Track memory usage
+   - Measure throughput
+   - Set performance alerts
+   - Regular optimization
 
 ## 3. Quality Control
 
