@@ -1240,32 +1240,90 @@
 
         <!-- Testing Extension -->
         <testing_extension>
+            <test_organization>
+                <priority_levels>
+                    <p0>
+                        <name>Critical Tests</name>
+                        <path>/tests/p0</path>
+                        <categories>
+                            <core>Core functionality tests</core>
+                            <api>Critical API tests</api>
+                            <data>Data integrity tests</data>
+                        </categories>
+                        <limits>
+                            <duration>5000</duration>
+                            <memory>512</memory>
+                            <concurrency>1</concurrency>
+                        </limits>
+                    </p0>
+                    <p1>
+                        <name>High Priority Tests</name>
+                        <path>/tests/p1</path>
+                        <categories>
+                            <business>Business logic tests</business>
+                            <integration>Key integration tests</integration>
+                        </categories>
+                        <limits>
+                            <duration>10000</duration>
+                            <memory>1024</memory>
+                            <concurrency>2</concurrency>
+                        </limits>
+                    </p1>
+                    <p2>
+                        <name>Medium Priority Tests</name>
+                        <path>/tests/p2</path>
+                        <categories>
+                            <features>Feature tests</features>
+                            <components>Component tests</components>
+                        </categories>
+                        <limits>
+                            <duration>20000</duration>
+                            <memory>1536</memory>
+                            <concurrency>3</concurrency>
+                        </limits>
+                    </p2>
+                    <p3>
+                        <name>Low Priority Tests</name>
+                        <path>/tests/p3</path>
+                        <categories>
+                            <edge>Edge cases</edge>
+                            <performance>Performance tests</performance>
+                        </categories>
+                        <limits>
+                            <duration>30000</duration>
+                            <memory>2048</memory>
+                            <concurrency>4</concurrency>
+                        </limits>
+                    </p3>
+                </priority_levels>
+            </test_organization>
+
             <automated_testing>
                 <test_command_integration>
                     <tool>
                         <name>execute_command</name>
-                        <purpose>silent_test_execution</purpose>
+                        <purpose>priority_based_test_execution</purpose>
                         <commands>
-                            <test>
-                                <cmd>jest --silent --json --noLocation --out=test.json</cmd>
-                                <log>test.log</log>
-                            </test>
+                            <p0>
+                                <cmd>jest --silent --selectProjects p0 --json --out=test-p0.json</cmd>
+                                <log>test-p0.log</log>
+                            </p0>
+                            <p1>
+                                <cmd>jest --silent --selectProjects p1 --json --out=test-p1.json</cmd>
+                                <log>test-p1.log</log>
+                            </p1>
+                            <p2>
+                                <cmd>jest --silent --selectProjects p2 --json --out=test-p2.json</cmd>
+                                <log>test-p2.log</log>
+                            </p2>
+                            <p3>
+                                <cmd>jest --silent --selectProjects p3 --json --out=test-p3.json</cmd>
+                                <log>test-p3.log</log>
+                            </p3>
                             <coverage>
                                 <cmd>jest --silent --coverage --summary --out=cov.json</cmd>
                                 <log>cov.log</log>
                             </coverage>
-                            <changes>
-                                <cmd>jest --silent --changed --json --out=chg.json</cmd>
-                                <log>chg.log</log>
-                            </changes>
-                            <types>
-                                <cmd>tsc --noEmit --noLog</cmd>
-                                <log>type.log</log>
-                            </types>
-                            <lint>
-                                <cmd>eslint --quiet --json --out=lint.json</cmd>
-                                <log>lint.log</log>
-                            </lint>
                         </commands>
                     </tool>
                 </test_command_integration>

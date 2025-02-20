@@ -1,23 +1,53 @@
-import type { Config } from 'jest';
+import type { Config } from '@jest/types';
+const baseConfig = require('../jest.config.base');
 
-const config: Config = {
-  preset: 'ts-jest',
+const config: Config.InitialOptions = {
+  ...baseConfig,
+  displayName: 'frontend',
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
-  moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
-    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
-  },
-  transform: {
-    '^.+\\.tsx?$': ['ts-jest', {
-      tsconfig: 'tsconfig.test.json'
-    }]
-  },
-  testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.{ts,tsx}',
-    '<rootDir>/src/**/*.{spec,test}.{ts,tsx}'
+  setupFilesAfterEnv: [
+    '<rootDir>/src/setupTests.ts',
+    '../jest.resource-monitor.js'
   ],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
+  
+  // Frontend-specific module mapping
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+    '^@/(.*)$': '<rootDir>/src/$1'
+  },
+  
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest'
+  },
+
+  // Frontend-specific coverage collection
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/index.tsx',
+    '!src/setupTests.ts'
+  ],
+
+  // Frontend-specific resource limits
+  globals: {
+    ...baseConfig.globals,
+    __RESOURCE_LIMITS__: {
+      ...baseConfig.globals.__RESOURCE_LIMITS__,
+      test: {
+        ...baseConfig.globals.__RESOURCE_LIMITS__.test,
+        maxConcurrentSuites: 3,  // Higher for frontend tests
+        maxSuiteMemory: 1536     // 1.5GB for frontend
+      }
+    },
+    __PERFORMANCE_BASELINES__: {
+      ...baseConfig.globals.__PERFORMANCE_BASELINES__,
+      execution: {
+        ...baseConfig.globals.__PERFORMANCE_BASELINES__.execution,
+        setup: 150,      // 150ms for DOM setup
+        teardown: 150    // 150ms for DOM cleanup
+      }
+    }
+  }
 };
 
 export default config;

@@ -157,30 +157,47 @@ Format Rules:
    - Update status tracking
 
 ### Critical Task Rules
-!! TOKEN-EFFICIENT TESTING PROTOCOL !!
+!! RESOURCE-AWARE TESTING PROTOCOL !!
 
-1. Test Execution Rules:
-   - Run tests in silent mode only
-   - Output to structured log files
-   - Use minimal test reporters
+1. Test Organization Rules:
+   - Categorize tests by priority (P0-P3)
+   - Follow directory structure:
+     * p0/: core, api, data
+     * p1/: business, integration
+     * p2/: features, components
+     * p3/: edge, performance
+   - Execute tests by priority
+   - Respect concurrency limits
+   - Monitor resource usage
+
+2. Resource Management Rules:
+   - Track CPU and memory usage
+   - Monitor file descriptors
+   - Control log file sizes
+   - Enforce priority-based limits
+   - Handle resource violations
+
+3. Test Execution Rules:
+   - Run in silent mode
+   - Output to structured logs
+   - Use minimal reporters
    - Filter unnecessary output
    - Clear logs after processing
+   - Follow priority order:
+     * P0: Sequential execution
+     * P1: Max 2 concurrent
+     * P2: Max 3 concurrent
+     * P3: Max 4 concurrent
 
-2. Task Processing Rules:
-   - Process one task at a time
-   - Test each atomic change
-   - Verify coverage immediately
-   - Store results in logs
-   - Clear test context after
+4. Performance Monitoring Rules:
+   - Track execution times
+   - Monitor memory usage
+   - Measure throughput
+   - Log performance metrics
+   - Handle threshold violations
+   - Document resource usage
 
-3. Coverage Validation Rules:
-   - Check thresholds silently
-   - Store minimal metrics
-   - Use summary reports
-   - Track critical paths
-   - Log coverage deltas
-
-4. Workflow Completion Rules:
+5. Workflow Completion Rules:
    - Complete full sequence
    - Maintain minimal state
    - Use compact formats
@@ -271,7 +288,13 @@ Path Rules:
 
 ### 3. Test-First Integration
 Must:
-1. Test Implementation (Token-Efficient)
+1. Test Implementation (Priority-Based)
+   - Organize tests by priority (P0-P3)
+   - Follow test category guidelines:
+     * P0: Critical path, core functionality (sequential)
+     * P1: High-impact business logic (2 concurrent)
+     * P2: Important features (3 concurrent)
+     * P3: Edge cases, nice-to-have (4 concurrent)
    - Write minimal test first
    - Verify failure (silent mode)
    - Implement code incrementally
@@ -279,18 +302,23 @@ Must:
    - Check coverage (summary)
    - Document essential changes
 
-2. Coverage Validation (Optimized)
-   - Track coverage percentages only
+2. Coverage Validation (Resource-Aware)
+   - Track coverage by priority level
+   - Monitor resource usage:
+     * Memory limits per priority
+     * CPU usage thresholds
+     * Execution time limits
    - Use summary reports
    - Store minimal metrics
    - Focus on thresholds
    - Log essential results
    - Prepare compact QA payload
 
-3. Tool Usage (Context-Aware)
+3. Tool Usage (Resource-Managed)
    - Use silent execution mode
-   - Configure for minimal output
-   - Track essential metrics
+   - Configure resource monitoring
+   - Track performance metrics
+   - Enforce priority-based limits
    - Document critical setup
    - Maintain minimal state
 
@@ -383,15 +411,52 @@ State Format Rules:
 
 ### 6. Performance and Security Validation
 Must:
-1. Performance Metrics
-   - Response time threshold: 100ms
-   - Memory usage limit: 256MB
-   - CPU usage threshold: 75%
-   - Performance benchmarking
-   - Resource monitoring
-   - Metrics validation
+1. Performance Metrics by Priority
+   P0 Tests:
+   - Max Duration: 5 seconds
+   - Max Memory: 512MB
+   - Execution: Sequential
+   - Response time: 100ms
+   
+   P1 Tests:
+   - Max Duration: 10 seconds
+   - Max Memory: 1GB
+   - Max Concurrent: 2
+   - Response time: 200ms
+   
+   P2 Tests:
+   - Max Duration: 20 seconds
+   - Max Memory: 1.5GB
+   - Max Concurrent: 3
+   - Response time: 300ms
+   
+   P3 Tests:
+   - Max Duration: 30 seconds
+   - Max Memory: 2GB
+   - Max Concurrent: 4
+   - Response time: 500ms
 
-2. Security Requirements
+2. Resource Monitoring
+   Process Limits:
+   - CPU Usage: 70%
+   - Memory Usage: 80%
+   - File Descriptors: 1000
+   - Log Size: 5MB
+   - Error Log: 1MB
+
+3. Performance Baselines
+   Execution:
+   - Setup: 100ms
+   - Teardown: 100ms
+   - Assertion: 50ms
+   Memory:
+   - Baseline: 256MB
+   - Max Increase: 512MB
+   Throughput:
+   - Tests/Second: 10
+   - Suites/Minute: 2
+
+4. Security Requirements
    - Static code analysis
    - Dependency scanning
    - Code signing verification
@@ -399,17 +464,18 @@ Must:
    - Vulnerability checks
    - Compliance verification
 
-3. Validation Process
-   - Regular performance checks
-   - Security scan execution
-   - Metrics collection
-   - Threshold validation
-   - Results documentation
-   - Issue remediation
+5. Validation Process
+   - Monitor resource usage
+   - Track performance metrics
+   - Execute security scans
+   - Validate thresholds
+   - Document results
+   - Handle violations
 
-4. Documentation Requirements
-   - Performance metrics logs
-   - Security scan reports
+6. Documentation Requirements
+   - Resource usage logs
+   - Performance metrics
+   - Security reports
    - Validation results
    - Issue tracking
    - Resolution status

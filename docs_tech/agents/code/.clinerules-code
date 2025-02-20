@@ -20,9 +20,19 @@ documentation_structure:
       - components/
       - interfaces/
     tests:
-      - unit/
-      - integration/
-      - coverage/
+      - p0/
+        - core/       # Core functionality tests
+        - api/        # Critical API tests
+        - data/       # Data integrity tests
+      - p1/
+        - business/   # Business logic tests
+        - integration/# Key integration tests
+      - p2/
+        - features/   # Feature tests
+        - components/ # Component tests
+      - p3/
+        - edge/       # Edge cases
+        - performance/# Non-critical performance tests
     quality:
       - validation/
       - metrics/
@@ -163,13 +173,49 @@ project_structure_analysis:
    - QA preparation
 
 2. Testing Requirements
-   - Test-first approach
-   - Coverage thresholds
-   - Performance validation
-   - Security testing
-   - Integration testing
-   - Documentation
-   - QA criteria
+   Priority-Based Testing:
+   P0 (Critical):
+   - Sequential execution
+   - Max Duration: 5s
+   - Max Memory: 512MB
+   - Core functionality
+   - Data integrity
+   - Critical APIs
+
+   P1 (High Priority):
+   - Max 2 concurrent
+   - Max Duration: 10s
+   - Max Memory: 1GB
+   - Business logic
+   - Key integrations
+
+   P2 (Medium Priority):
+   - Max 3 concurrent
+   - Max Duration: 20s
+   - Max Memory: 1.5GB
+   - Features
+   - Components
+
+   P3 (Low Priority):
+   - Max 4 concurrent
+   - Max Duration: 30s
+   - Max Memory: 2GB
+   - Edge cases
+   - Performance tests
+
+   Resource Management:
+   - CPU Usage: 70% max
+   - Memory Usage: 80% max
+   - File Descriptors: 1000 max
+   - Log Size: 5MB max
+   - Error Log: 1MB max
+
+   Performance Baselines:
+   - Setup: 100ms
+   - Teardown: 100ms
+   - Assertion: 50ms
+   - Tests/Second: 10
+   - Suites/Minute: 2
 
 3. Technical Patterns
    - Implementation patterns
@@ -424,18 +470,51 @@ test_validation:
 
   performance_validation:
     metrics:
-      response_time_ms: 100
-      memory_usage_mb: 256
-      cpu_usage_percent: 75
+      by_priority:
+        p0:
+          response_time_ms: 100
+          memory_usage_mb: 512
+          max_duration_ms: 5000
+          concurrency: 1
+        p1:
+          response_time_ms: 200
+          memory_usage_mb: 1024
+          max_duration_ms: 10000
+          concurrency: 2
+        p2:
+          response_time_ms: 300
+          memory_usage_mb: 1536
+          max_duration_ms: 20000
+          concurrency: 3
+        p3:
+          response_time_ms: 500
+          memory_usage_mb: 2048
+          max_duration_ms: 30000
+          concurrency: 4
+      global:
+        cpu_usage_percent: 70
+        memory_usage_percent: 80
+        file_descriptors: 1000
+        log_size_mb: 5
+        error_log_mb: 1
+    baselines:
+      execution:
+        setup_ms: 100
+        teardown_ms: 100
+        assertion_ms: 50
+      throughput:
+        tests_per_second: 10
+        suites_per_minute: 2
     validation:
       required: true
       blocking: true
     monitoring:
-      - Regular performance checks
-      - Resource usage tracking
-      - Threshold validation
-      - Performance benchmarking
-      - Metrics documentation
+      - Resource usage by priority level
+      - Execution time tracking
+      - Memory consumption monitoring
+      - Throughput measurement
+      - Performance baseline validation
+      - Resource limit enforcement
 
   security_validation:
     requirements:
