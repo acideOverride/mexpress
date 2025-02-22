@@ -1,0 +1,12 @@
+{
+  "name": "@mexpress/project-mexpress",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend"
+  ],
+  "dependencies": {
+    "@mexpress/core": "1.0.0",
+    "@mexpress/utils": "1.0.0"
+  }
+}
