@@ -3,29 +3,27 @@
 ## Directory Organization
 
 ### /docs
-Root documentation directory. Should not contain project-specific documentation directly.
+Root documentation directory.
 
 ### /docs/core
 Core documentation that applies across all projects:
 - /standards - Development and architectural standards
 - /workflow - Process and workflow documentation
 - /agents - Agent-specific documentation
-- /projects - Project-related core documentation
-
-### /docs/projects/${project_name}
-Project-specific documentation:
-- /architecture - Architectural decisions and designs
-- /design - Design documents and specifications
-- /implementation - Implementation details and guides
-- /project - Project management documents
-- /qa - Quality assurance documentation
+- /projects - Project-specific core documentation
+  * /${project_name} - Project documentation and artifacts
+  * /mexpress - mExpress project documentation
+  * /montpc_crm - MontPC CRM project documentation
 
 ### /docs/docs_audits
-Documentation audit trails and verification records.
+Documentation audit trails and verification records:
+- /standards - Standards audit records
+- /workflow - Workflow audit records
+- /agents - Agent audit records
 
 ## Documentation Standards
 
-1. Project-specific documentation should always be placed in `/docs/projects/${project_name}/`
+1. Project documentation should be placed in `/docs/core/projects/${project_name}/`
 2. Core standards and workflows belong in `/docs/core/`
 3. Documentation should follow the established directory structure
 4. File names should be lowercase with hyphens (kebab-case)
@@ -33,8 +31,8 @@ Documentation audit trails and verification records.
 
 ## Recent Changes
 
-- 2025-02-22: Reorganized project documentation from root docs to project-specific locations
-  * Moved PROJECT_SUMMARY.md → /projects/mexpress/project/project-summary.md
-  * Moved PURPOSE_ANALYSIS.md → /projects/mexpress/project/purpose-analysis.md
-  * Moved BRQ_GAP_ANALYSIS.md → /projects/mexpress/project/brq-gap-analysis.md
-  * Moved MINIMAL_DEPLOYMENT.md → /projects/mexpress/project/minimal-deployment.md
+- 2025-02-22: Reorganized project documentation to correct location
+  * Moved PROJECT_SUMMARY.md → /core/projects/mexpress/project-summary.md
+  * Moved PURPOSE_ANALYSIS.md → /core/projects/mexpress/purpose-analysis.md
+  * Moved BRQ_GAP_ANALYSIS.md → /core/projects/mexpress/brq-gap-analysis.md
+  * Moved MINIMAL_DEPLOYMENT.md → /core/projects/mexpress/minimal-deployment.md
