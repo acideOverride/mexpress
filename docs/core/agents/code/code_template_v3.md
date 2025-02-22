@@ -1338,45 +1338,67 @@
                         <purpose>priority_based_test_execution</purpose>
                         <commands>
                             <p0>
-                                <cmd>jest --silent --selectProjects p0 --json --out=test-p0.json</cmd>
-                                <log>test-p0.log</log>
+                                <cmd>jest --silent --selectProjects p0 --json --out=tests/results/p0/test.json 2>/dev/null</cmd>
+                                <log>tests/results/p0/test.log</log>
                             </p0>
                             <p1>
-                                <cmd>jest --silent --selectProjects p1 --json --out=test-p1.json</cmd>
-                                <log>test-p1.log</log>
+                                <cmd>jest --silent --selectProjects p1 --json --out=tests/results/p1/test.json 2>/dev/null</cmd>
+                                <log>tests/results/p1/test.log</log>
                             </p1>
                             <p2>
-                                <cmd>jest --silent --selectProjects p2 --json --out=test-p2.json</cmd>
-                                <log>test-p2.log</log>
+                                <cmd>jest --silent --selectProjects p2 --json --out=tests/results/p2/test.json 2>/dev/null</cmd>
+                                <log>tests/results/p2/test.log</log>
                             </p2>
                             <p3>
-                                <cmd>jest --silent --selectProjects p3 --json --out=test-p3.json</cmd>
-                                <log>test-p3.log</log>
+                                <cmd>jest --silent --selectProjects p3 --json --out=tests/results/p3/test.json 2>/dev/null</cmd>
+                                <log>tests/results/p3/test.log</log>
                             </p3>
                             <coverage>
-                                <cmd>jest --silent --coverage --summary --out=cov.json</cmd>
-                                <log>cov.log</log>
+                                <cmd>jest --silent --coverage --summary --out=tests/results/summary/coverage.json 2>/dev/null</cmd>
+                                <log>tests/results/summary/coverage.log</log>
                             </coverage>
                         </commands>
                     </tool>
                 </test_command_integration>
 
                 <output_structure>
-                    <logs>
-                        <test>test.json,cov.json,chg.json</test>
-                        <check>type.log,lint.log</check>
-                        <error>err.json</error>
-                    </logs>
+                    <base_paths>
+                        <package>packages/[package]/tests/results/</package>
+                        <project>projects/[project]/tests/results/</project>
+                    </base_paths>
+                    <organization>
+                        <test_outputs>
+                            <unit>unit/test.json</unit>
+                            <integration>integration/test.json</integration>
+                            <e2e>e2e/test.json</e2e>
+                            <summary>summary/test-summary.json</summary>
+                        </test_outputs>
+                        <coverage_outputs>
+                            <unit>unit/coverage.json</unit>
+                            <integration>integration/coverage.json</integration>
+                            <e2e>e2e/coverage.json</e2e>
+                            <summary>summary/coverage-summary.json</summary>
+                        </coverage_outputs>
+                        <logs>
+                            <test>tests/results/[test-type]/test.log</test>
+                            <coverage>tests/results/[test-type]/coverage.log</coverage>
+                            <error>tests/results/[test-type]/error.log</error>
+                        </logs>
+                    </organization>
                     <format>
                         - Use JSON for metrics
                         - Keep logs minimal
                         - Store summaries only
                         - Clear after processing
+                        - NEVER output to terminal
+                        - ALWAYS redirect stderr to /dev/null
                     </format>
                     <cleanup>
+                        - Follow package/project structure
+                        - Maintain test category hierarchy
+                        - Archive by test type
                         - Rotate logs daily
-                        - Archive summaries
-                        - Remove raw data
+                        - Remove raw data after processing
                     </cleanup>
                 </output_structure>
 

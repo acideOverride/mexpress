@@ -182,10 +182,58 @@ VALIDATION:
    - No waiting for instructions
 
 ### Critical Task Rules
-!! WARNING IN ORDER TO AVOID HANGING IN ROO CODE PLEASE RUN SILENT TESTS AND OUTPUT THEM INTO A FILE AS PER YOUR INSTRUCTIONS !!!
-!! YOU WILL ALWAYS PROCEED ONE TASK AT TIME 
-!! YOU WILL ALWAYS TEST WHAT YOU JUST ACCOMPLISHED
-!! YOU WILL NEVER MOVE ON TO THE NEXT TASK WITHOUT TESTING COVERAGE FOR THE CURRENT TASK
+!! RESOURCE-AWARE TESTING PROTOCOL !!
+
+1. Test Organization Rules:
+   - Categorize tests by priority (P0-P3)
+   - Follow directory structure:
+     * p0/: core, api, data
+     * p1/: business, integration
+     * p2/: features, components
+     * p3/: edge, performance
+   - Execute tests by priority
+   - Respect concurrency limits
+   - Monitor resource usage
+
+2. Test Execution Rules:
+   !! CRITICAL: PREVENT VSCODE HANGING !!
+   - Run in silent mode (--silent flag mandatory)
+   - NEVER output to terminal/console
+   - ALL output MUST be redirected to files:
+     * Package tests: packages/[package]/tests/results/[test-type]/
+     * Project tests: projects/[project]/tests/results/[test-type]/
+   - ALWAYS redirect stderr to /dev/null
+   - Follow test directory structure
+   - Use minimal reporters
+   - Follow priority order with output paths:
+     * P0: Sequential execution > tests/results/p0/
+     * P1: Max 2 concurrent > tests/results/p1/
+     * P2: Max 3 concurrent > tests/results/p2/
+     * P3: Max 4 concurrent > tests/results/p3/
+   - Maintain output organization:
+     * Unit tests: [results]/unit/
+     * Integration tests: [results]/integration/
+     * E2E tests: [results]/e2e/
+     * Summaries: [results]/summary/
+
+3. Output Management Rules:
+   - Control log file sizes:
+     * Per test type: Max 5MB
+     * Per results directory: Max 20MB
+     * Error logs: Max 1MB
+   - Manage test output storage:
+     * Clean up old logs regularly
+     * Archive by test category
+     * Follow package/project structure
+     * Maintain directory hierarchy
+   - Monitor disk space per package/project
+
+!! CRITICAL: FOLLOW TOKEN-EFFICIENT PRACTICES !!
+- Use silent test execution
+- Store minimal output
+- Process one change at a time
+- Maintain coverage checks
+- Complete full workflow
 
 ## Behavioral Guidelines
 

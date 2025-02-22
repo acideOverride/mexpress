@@ -1,49 +1,47 @@
-/// <reference types="node" />
 import { logger } from './utils/logger';
+import { isMainModule } from './utils/moduleCheck';
 
 /**
- * Main application entry point
+ * Bootstrap the application
  */
-export const bootstrap = async (): Promise<void> => {
-  // Application initialization will be implemented here
-  logger.info('Application starting...');
-};
+export async function bootstrap(): Promise<void> {
+    logger.info('Application starting...');
+    // Additional initialization logic can be added here
+}
 
 /**
  * Handle bootstrap errors
+ * @param error The error that occurred during bootstrap
  */
-export const handleBootstrapError = (error: Error): void => {
-  try {
-    logger.error('Failed to start application:', error);
-  } catch (loggingError) {
-    // If logging fails, at least try to write to console
-    console.error('Failed to start application:', error);
-    console.error('Additionally, logging failed:', loggingError);
-  } finally {
+export function handleBootstrapError(error: Error): void {
+    try {
+        logger.error('Failed to start application:', error);
+    } catch (loggingError) {
+        console.error('Failed to start application:', error);
+        console.error('Additionally, logging failed:', loggingError);
+    }
     process.exit(1);
-  }
-};
-
-import { isMainModule as checkIsMainModule } from './utils/moduleCheck';
-
-// Re-export for backward compatibility
-export const isMainModule = checkIsMainModule;
+}
 
 /**
- * Initialize application if running as main module
+ * Initialize the application
+ * @param forceMain Force initialization even if not main module
  */
-export const initializeApp = async (forceMain?: boolean): Promise<void> => {
-  // Check if we should run based on forceMain or module check
-  const shouldRun = typeof forceMain === 'boolean' 
-    ? forceMain 
-    : isMainModule(module);
+export async function initializeApp(forceMain?: boolean): Promise<void> {
+    // Run only if forced or if this is the main module
+    if (forceMain || isMainModule(module)) {
+        try {
+            await bootstrap();
+        } catch (error) {
+            handleBootstrapError(error as Error);
+        }
+    }
+}
 
-  if (shouldRun) {
-    await bootstrap().catch(handleBootstrapError);
-  }
-};
+// Re-export isMainModule for convenience
+export { isMainModule } from './utils/moduleCheck';
 
-// Run initialization if this is the main module
-if (require.main === module) {
-  initializeApp();
+// Auto-initialize if this is the main module
+if (isMainModule(module)) {
+    initializeApp().catch(handleBootstrapError);
 }

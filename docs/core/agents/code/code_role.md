@@ -162,8 +162,8 @@ INT_TESTS:[P/F]
 API_COMP:[P/F]
 SYS_TESTS:[P/F]
 
-LOG:test-status.log
-ERR:test-errors.log
+LOG:tests/results/[test-type]/test-status.log
+ERR:tests/results/[test-type]/test-errors.log
 </code_status>
 ```
 
@@ -234,36 +234,76 @@ Format Rules:
 2. Resource Management Rules:
    - Track CPU and memory usage
    - Monitor file descriptors
-   - Control log file sizes
+   - Control log file sizes:
+     * Per test type: Max 5MB
+     * Per results directory: Max 20MB
+     * Error logs: Max 1MB
    - Enforce priority-based limits
    - Handle resource violations
+   - Manage test output storage:
+     * Clean up old logs regularly
+     * Archive by test category
+     * Follow package/project structure
+     * Maintain directory hierarchy
+   - Monitor disk space per package/project
 
 3. Test Execution Rules:
-   - Run in silent mode
-   - Output to structured logs
+   !! CRITICAL: PREVENT VSCODE HANGING !!
+   - Run in silent mode (--silent flag mandatory)
+   - NEVER output to terminal/console
+   - ALL output MUST be redirected to files:
+     * Package tests: packages/[package]/tests/results/[test-type]/
+     * Project tests: projects/[project]/tests/results/[test-type]/
+   - ALWAYS redirect stderr to /dev/null
+   - Follow test directory structure (see C4_test_standards.md)
    - Use minimal reporters
-   - Filter unnecessary output
-   - Clear logs after processing
-   - Follow priority order:
-     * P0: Sequential execution
-     * P1: Max 2 concurrent
-     * P2: Max 3 concurrent
-     * P3: Max 4 concurrent
+   - Follow priority order with output paths:
+     * P0: Sequential execution > tests/results/p0/
+     * P1: Max 2 concurrent > tests/results/p1/
+     * P2: Max 3 concurrent > tests/results/p2/
+     * P3: Max 4 concurrent > tests/results/p3/
+   - Maintain output organization:
+     * Unit tests: [results]/unit/
+     * Integration tests: [results]/integration/
+     * E2E tests: [results]/e2e/
+     * Summaries: [results]/summary/
 
 4. Performance Monitoring Rules:
    - Track execution times
    - Monitor memory usage
    - Measure throughput
-   - Log performance metrics
+   - Log performance metrics to dedicated files:
+     * Timing: tests/results/[test-type]/timing.log
+     * Memory: tests/results/[test-type]/memory.log
+     * Throughput: tests/results/[test-type]/throughput.log
    - Handle threshold violations
    - Document resource usage
+   - Store monitoring data:
+     * Follow package/project structure
+     * Use results/summary/ for aggregated metrics
+     * Keep monitoring logs separate from test output
+     * Clean up old monitoring data regularly
 
 5. Workflow Completion Rules:
    - Complete full sequence
    - Maintain minimal state
    - Use compact formats
-   - Reference logs for details
+   - Reference logs for details:
+     * Test results: tests/results/[test-type]/test.log
+     * Coverage: tests/results/[test-type]/coverage.log
+     * Metrics: tests/results/[test-type]/metrics.log
+     * Summary: tests/results/summary/
    - Clear context after phase
+   - Handle test artifacts:
+     * Archive to package/project results directory
+     * Follow test category structure
+     * Maintain proper hierarchy
+     * Clean up temporary outputs
+   - Manage output organization:
+     * Move logs to appropriate results directory
+     * Follow package/project structure
+     * Maintain test category organization
+     * Remove any terminal output files
 
 !! CRITICAL: FOLLOW TOKEN-EFFICIENT PRACTICES !!
 - Use silent test execution
@@ -289,15 +329,20 @@ Format Rules:
    ```
    COMP:[Task]-[BRQ-NUM]
    STATUS:DONE
-   LOGS:completion.log
+   LOGS:tests/results/summary/completion.log
    NEXT:[TaskID/NONE]
    ```
 
 4. Cleanup Actions
-   - Archive test results
-   - Compress log files
-   - Clear temp data
-   - Reset context
+   - Archive test results to appropriate locations:
+     * Package tests: packages/[package]/tests/results/[test-type]/
+     * Project tests: projects/[project]/tests/results/[test-type]/
+   - Compress and organize log files:
+     * Follow package/project structure
+     * Maintain test category hierarchy
+     * Store in results/summary/
+   - Clear temp data and terminal output
+   - Reset context after proper archival
 
 ## Behavioral Guidelines
 
@@ -315,7 +360,7 @@ Documentation Format:
 DOC:[Type]|PATH:[Location]
 REF:[Links,...]
 UPD:[Changes]
-LOG:doc-changes.log
+LOG:tests/results/docs/changes.log
 ```
 
 Rules:
@@ -337,7 +382,7 @@ IMPL:[doc-id]
 TEST:[test-id]
 COV:[cov-id]
 QA:[qa-id]
-LOG:doc-links.log
+LOG:tests/results/docs/links.log
 ```
 
 Path Rules:

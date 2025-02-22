@@ -823,53 +823,77 @@
                 <commands>
                     <command>
                         <name>test_execution</name>
-                        <execute>cd /opt/mExpress && npx jest --silent --json --testLocationInResults=false --outputFile=coverage/test-results.json > /dev/null 2>&1</execute>
+                        <execute>cd /opt/mExpress && npx jest --silent --json --testLocationInResults=false --outputFile=tests/results/[test-type]/test-results.json 2>/dev/null</execute>
                         <output_handling>file_only</output_handling>
                         <purpose>Focused test results without location data</purpose>
                     </command>
                     <command>
                         <name>coverage_report</name>
-                        <execute>cd /opt/mExpress && npx jest --silent --coverage --coverageReporters=json-summary --coverageDirectory=./coverage > /dev/null 2>&1</execute>
+                        <execute>cd /opt/mExpress && npx jest --silent --coverage --coverageReporters=json-summary --coverageDirectory=tests/results/summary 2>/dev/null</execute>
                         <output_handling>file_only</output_handling>
                         <purpose>Separate coverage metrics in summary format</purpose>
                     </command>
                     <command>
                         <name>changed_files</name>
-                        <execute>cd /opt/mExpress && npx jest --silent --onlyChanged --json --outputFile=coverage/changes.json > /dev/null 2>&1</execute>
+                        <execute>cd /opt/mExpress && npx jest --silent --onlyChanged --json --outputFile=tests/results/summary/changes.json 2>/dev/null</execute>
                         <output_handling>file_only</output_handling>
                     </command>
                     <command>
                         <name>type_check</name>
-                        <execute>cd /opt/mExpress && npx tsc --noEmit --pretty false > logs/type-check.log 2>&1</execute>
+                        <execute>cd /opt/mExpress && npx tsc --noEmit --pretty false > tests/results/[test-type]/type-check.log 2>/dev/null</execute>
                         <output_handling>file_only</output_handling>
                     </command>
                     <command>
                         <name>lint_check</name>
-                        <execute>cd /opt/mExpress && npx eslint . --quiet --format json --output-file logs/lint.json > /dev/null 2>&1</execute>
+                        <execute>cd /opt/mExpress && npx eslint . --quiet --format json --output-file tests/results/[test-type]/lint.json 2>/dev/null</execute>
                         <output_handling>file_only</output_handling>
                     </command>
                 </commands>
 
                 <output_structure>
-                    <directories>
-                        <directory>
-                            <path>/opt/mExpress/coverage</path>
-                            <files>
-                                - test-results.json
-                                - coverage-summary.json
-                                - changes.json
-                            </files>
-                        </directory>
-                        <directory>
-                            <path>/opt/mExpress/logs</path>
-                            <files>
-                                - type-check.log
-                                - lint.json
-                                - test-runs.log
-                                - errors.json
-                            </files>
-                        </directory>
-                    </directories>
+                    <base_paths>
+                        <package>packages/[package]/tests/results/</package>
+                        <project>projects/[project]/tests/results/</project>
+                    </base_paths>
+                    <organization>
+                        <test_outputs>
+                            <unit>unit/test.json</unit>
+                            <integration>integration/test.json</integration>
+                            <e2e>e2e/test.json</e2e>
+                            <summary>summary/test-summary.json</summary>
+                        </test_outputs>
+                        <coverage_outputs>
+                            <unit>unit/coverage.json</unit>
+                            <integration>integration/coverage.json</integration>
+                            <e2e>e2e/coverage.json</e2e>
+                            <summary>summary/coverage-summary.json</summary>
+                        </coverage_outputs>
+                        <logs>
+                            <test>tests/results/[test-type]/test.log</test>
+                            <coverage>tests/results/[test-type]/coverage.log</coverage>
+                            <error>tests/results/[test-type]/error.log</error>
+                        </logs>
+                    </organization>
+                    <format_rules>
+                        - Use JSON for metrics
+                        - Keep logs minimal
+                        - Store summaries only
+                        - Clear after processing
+                        - NEVER output to terminal
+                        - ALWAYS redirect stderr to /dev/null
+                    </format_rules>
+                    <cleanup>
+                        - Follow package/project structure
+                        - Maintain test category hierarchy
+                        - Archive by test type
+                        - Rotate logs daily
+                        - Remove raw data after processing
+                    </cleanup>
+                    <log_size_limits>
+                        - Per test type: Max 5MB
+                        - Per results directory: Max 20MB
+                        - Error logs: Max 1MB
+                    </log_size_limits>
                 </output_structure>
 
                 <filter_rules>

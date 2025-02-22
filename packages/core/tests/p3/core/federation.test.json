@@ -1,0 +1,25 @@
+{
+  "suite": "p0.unit.federation",
+  "stats": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0,
+    "duration": 11582
+  },
+  "tests": [],
+  "performance": {
+    "memory": {
+      "start": 17435448,
+      "end": 295243704,
+      "used": 277808256,
+      "peak": null
+    },
+    "cpu": {
+      "usage": 2.27,
+      "cores": 6
+    },
+    "duration": 11582,
+    "averageTestDuration": null,
+    "slowestTests": []
+  }
+}

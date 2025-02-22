@@ -43,7 +43,7 @@ module.exports = {
 
   // Setup files
   setupFilesAfterEnv: [
-    '<rootDir>/src/__tests__/helpers/utils/assertions.ts'  // Load custom matchers
+    '<rootDir>/tests/helpers/utils/assertions.ts'  // Load custom matchers
   ],
 
   // Global settings
@@ -61,7 +61,7 @@ module.exports = {
   // Output settings
   reporters: [
     'default',
-    ['./jest.minimal-reporter.js', {
+    ['../jest/jest.minimal-reporter.js', {
       outputFile: 'src/__tests__/results/test-results.json'
     }]
   ],

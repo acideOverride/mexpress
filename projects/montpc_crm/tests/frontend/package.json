@@ -1,0 +1,13 @@
+{
+  "name": "@montpc_crm-frontend/tests",
+  "private": true,
+  "scripts": {
+    "test:p0": "jest --config jest.config.js --testMatch='<rootDir>/p0/**/*.test.{ts,js,tsx}' --silent > results/p0/test.log 2>/dev/null",
+    "test:p1": "jest --config jest.config.js --testMatch='<rootDir>/p1/**/*.test.{ts,js,tsx}' --silent > results/p1/test.log 2>/dev/null",
+    "test:p2": "jest --config jest.config.js --testMatch='<rootDir>/p2/**/*.test.{ts,js,tsx}' --silent > results/p2/test.log 2>/dev/null",
+    "test:p3": "jest --config jest.config.js --testMatch='<rootDir>/p3/**/*.test.{ts,js,tsx}' --silent > results/p3/test.log 2>/dev/null",
+    "test:integration": "jest --config jest.config.js --testMatch='<rootDir>/integration/**/*.test.{ts,js,tsx}' --silent > results/integration/test.log 2>/dev/null",
+    "test:coverage": "jest --config jest.config.js --coverage --silent > results/summary/coverage.log 2>/dev/null",
+    "test": "npm run test:p0 && npm run test:p1 && npm run test:p2 && npm run test:p3 && npm run test:integration && npm run test:coverage > results/summary/test.log 2>/dev/null"
+  }
+}

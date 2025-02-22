@@ -679,6 +679,25 @@
                             - Interaction patterns
                             - Responsive behavior
                         </validation>
+                        <output_handling>
+                            - Run in silent mode (--silent flag mandatory)
+                            - NEVER output to terminal/console
+                            - ALL output MUST be redirected to files:
+                                * Package tests: packages/[package]/tests/results/[test-type]/
+                                * Project tests: projects/[project]/tests/results/[test-type]/
+                            - ALWAYS redirect stderr to /dev/null
+                            - Follow test directory structure
+                            - Use minimal reporters
+                            - Maintain output organization:
+                                * Unit tests: [results]/unit/
+                                * Integration tests: [results]/integration/
+                                * E2E tests: [results]/e2e/
+                                * Summaries: [results]/summary/
+                            - Control log file sizes:
+                                * Per test type: Max 5MB
+                                * Per results directory: Max 20MB
+                                * Error logs: Max 1MB
+                        </output_handling>
                     </usage>
                 </pattern>
             </design_tools>

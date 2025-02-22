@@ -1,90 +1,45 @@
-import { apiClient } from '../client';
-import {
-  LoginCredentials,
-  AuthResponse,
-  RefreshTokenRequest,
-  ProfileResponse
-} from '../types/auth';
+import axios from 'axios';
+import { User, AuthTokens } from '../../types/auth';
+
+interface LoginData {
+    email: string;
+    password: string;
+}
+
+interface RegisterData {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+}
+
+interface AuthResponse {
+    user: User;
+    tokens: AuthTokens;
+}
 
 class AuthService {
-  private readonly basePath = '/auth';
+    private readonly baseUrl = '/auth';
 
-  /**
-   * Login with email and password
-   * @param credentials Login credentials
-   * @returns Promise with auth tokens
-   */
-  async login(credentials: LoginCredentials) {
-    const response = await apiClient.post<AuthResponse>(`${this.basePath}/login`, credentials);
-    const { token, refreshToken } = response.data.data;
-    
-    // Store tokens
-    localStorage.setItem('auth_token', token);
-    localStorage.setItem('refresh_token', refreshToken);
-    
-    return response.data;
-  }
+    async login(data: LoginData): Promise<{ data: AuthResponse }> {
+        return axios.post(`${this.baseUrl}/login`, data);
+    }
 
-  /**
-   * Logout user and clear tokens
-   */
-  async logout() {
-    await apiClient.post(`${this.basePath}/logout`);
-    
-    // Clear tokens
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('refresh_token');
-  }
+    async register(data: RegisterData): Promise<{ data: AuthResponse }> {
+        return axios.post(`${this.baseUrl}/register`, data);
+    }
 
-  /**
-   * Refresh auth token using refresh token
-   * @param refreshToken Refresh token
-   * @returns Promise with new auth tokens
-   */
-  async refreshToken(refreshToken: string) {
-    const data: RefreshTokenRequest = { refreshToken };
-    const response = await apiClient.post<AuthResponse>(`${this.basePath}/refresh`, data);
-    const tokens = response.data.data;
-    
-    // Store new tokens
-    localStorage.setItem('auth_token', tokens.token);
-    localStorage.setItem('refresh_token', tokens.refreshToken);
-    
-    return response.data;
-  }
+    async logout(): Promise<void> {
+        await axios.post(`${this.baseUrl}/logout`);
+    }
 
-  /**
-   * Get current user profile
-   * @returns Promise with user profile data
-   */
-  async getProfile() {
-    const response = await apiClient.get<ProfileResponse>(`${this.basePath}/profile`);
-    return response.data;
-  }
+    async refreshToken(refreshToken: string): Promise<{ data: { tokens: AuthTokens } }> {
+        return axios.post(`${this.baseUrl}/refresh`, { refreshToken });
+    }
 
-  /**
-   * Check if user is currently logged in
-   * @returns boolean indicating if user is logged in
-   */
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('auth_token');
-  }
-
-  /**
-   * Get current auth token
-   * @returns Current auth token or null if not logged in
-   */
-  getToken(): string | null {
-    return localStorage.getItem('auth_token');
-  }
-
-  /**
-   * Get current refresh token
-   * @returns Current refresh token or null if not logged in
-   */
-  getRefreshToken(): string | null {
-    return localStorage.getItem('refresh_token');
-  }
+    async validateToken(token: string): Promise<{ data: { valid: boolean } }> {
+        return axios.post(`${this.baseUrl}/validate`, { token });
+    }
 }
 
 export const authService = new AuthService();

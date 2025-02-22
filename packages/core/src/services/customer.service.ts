@@ -1,79 +1,124 @@
-import { Customer, ICustomer } from '../models/customer';
+import { Customer, CreateCustomerDto, UpdateCustomerDto } from '../models/customer';
+import { CustomerModel, CustomerDocument } from '../models/customer.schema';
 import mongoose from 'mongoose';
 
-export interface SearchOptions {
-  query: string;
-  limit?: number;
-  offset?: number;
+export class CustomerError extends Error {
+    constructor(message: string, public code: 'DUPLICATE_EMAIL' | 'INVALID_ID' | 'NOT_FOUND' | 'VALIDATION_ERROR') {
+        super(message);
+        this.name = 'CustomerError';
+    }
 }
 
 export class CustomerService {
-  /**
-   * Create a new customer
-   */
-  async create(customerData: Partial<ICustomer>) {
-    const customer = new Customer(customerData);
-    return await customer.save();
-  }
+    async create(dto: CreateCustomerDto): Promise<Customer> {
+        try {
+            const customer = new CustomerModel(dto);
+            return await customer.save();
+        } catch (error) {
+            if (error instanceof mongoose.Error.ValidationError) {
+                throw new CustomerError('Validation failed: ' + error.message, 'VALIDATION_ERROR');
+            }
+            if ((error as any).code === 11000) { // MongoDB duplicate key error
+                throw new CustomerError('Email already exists', 'DUPLICATE_EMAIL');
+            }
+            throw error;
+        }
+    }
 
-  /**
-   * Find customer by ID
-   */
-  async findById(id: mongoose.Types.ObjectId | string) {
-    return await Customer.findById(id).exec();
-  }
+    async findAll(): Promise<Customer[]> {
+        return CustomerModel.find().exec();
+    }
 
-  /**
-   * Find all customers
-   */
-  async findAll() {
-    return await Customer.find().exec();
-  }
+    async findById(id: string): Promise<Customer | null> {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            throw new CustomerError('Invalid customer ID', 'INVALID_ID');
+        }
+        return CustomerModel.findById(id).exec();
+    }
 
-  /**
-   * Update customer
-   */
-  async update(
-    id: mongoose.Types.ObjectId | string,
-    updateData: Partial<ICustomer>
-  ) {
-    // Use findOneAndUpdate to get the updated document
-    return await Customer.findOneAndUpdate(
-      { _id: id },
-      { $set: updateData },
-      { 
-        new: true, // Return updated document
-        runValidators: true // Run schema validators
-      }
-    ).exec();
-  }
+    async update(id: string, dto: UpdateCustomerDto): Promise<Customer | null> {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            throw new CustomerError('Invalid customer ID', 'INVALID_ID');
+        }
 
-  /**
-   * Delete customer
-   */
-  async delete(id: mongoose.Types.ObjectId | string): Promise<boolean> {
-    const result = await Customer.findByIdAndDelete(id).exec();
-    return result !== null;
-  }
+        try {
+            const customer = await CustomerModel.findByIdAndUpdate(
+                id,
+                { ...dto, updatedAt: new Date() },
+                { new: true, runValidators: true }
+            ).exec();
 
-  /**
-   * Search customers
-   */
-  async search(options: SearchOptions) {
-    const { query, limit = 10, offset = 0 } = options;
+            if (!customer) {
+                throw new CustomerError('Customer not found', 'NOT_FOUND');
+            }
 
-    const searchRegex = new RegExp(query, 'i');
-    
-    return await Customer.find({
-      $or: [
-        { firstName: searchRegex },
-        { lastName: searchRegex },
-        { email: searchRegex },
-        { phone: searchRegex }
-      ]
-    })
-      .skip(offset)
-      .limit(limit)
-      .exec();
-  }
+            return customer;
+        } catch (error) {
+            if (error instanceof CustomerError) {
+                throw error;
+            }
+            if (error instanceof mongoose.Error.ValidationError) {
+                throw new CustomerError('Validation failed: ' + error.message, 'VALIDATION_ERROR');
+            }
+            if ((error as any).code === 11000) {
+                throw new CustomerError('Email already exists', 'DUPLICATE_EMAIL');
+            }
+            throw error;
+        }
+    }
+
+    async delete(id: string): Promise<boolean> {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            throw new CustomerError('Invalid customer ID', 'INVALID_ID');
+        }
+
+        const result = await CustomerModel.findByIdAndDelete(id).exec();
+        if (!result) {
+            throw new CustomerError('Customer not found', 'NOT_FOUND');
+        }
+        return true;
+    }
+
+    async findByEmail(email: string): Promise<Customer | null> {
+        if (!email || typeof email !== 'string') {
+            throw new CustomerError('Invalid email', 'VALIDATION_ERROR');
+        }
+        return CustomerModel.findOne({ email }).exec();
+    }
+
+    async search(query: string): Promise<Customer[]> {
+        if (!query || typeof query !== 'string') {
+            throw new CustomerError('Invalid search query', 'VALIDATION_ERROR');
+        }
+
+        // Use text search for better performance when possible
+        if (query.length >= 3) {
+            try {
+                const textSearchResults = await CustomerModel.find(
+                    { $text: { $search: query } },
+                    { score: { $meta: 'textScore' } }
+                )
+                .sort({ score: { $meta: 'textScore' } })
+                .exec();
+
+                if (textSearchResults.length > 0) {
+                    return textSearchResults;
+                }
+            } catch (error) {
+                // Fallback to regex if text search fails
+                console.error('Text search failed, falling back to regex:', error);
+            }
+        }
+
+        // Fallback to regex search for shorter queries or if text search returns no results
+        const searchPattern = new RegExp(query, 'i');
+        return CustomerModel.find({
+            $or: [
+                { name: searchPattern },
+                { email: searchPattern },
+                { phone: searchPattern },
+                { 'address.city': searchPattern }
+            ]
+        }).exec();
+    }
 }

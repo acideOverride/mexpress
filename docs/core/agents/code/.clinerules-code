@@ -655,18 +655,40 @@ test_validation:
   output_handling:
     execution_mode: "silent"
     output_structure:
-      test_results: "/opt/mExpress/logs/test-status.log"
-      coverage_summary: "/opt/mExpress/logs/coverage-summary.log"
-      errors: "/opt/mExpress/logs/test-errors.log"
+      # Package-specific outputs
+      package_tests:
+        base_path: "packages/[package]/tests/results/"
+        structure:
+          - unit/test.log
+          - integration/test.log
+          - e2e/test.log
+          - summary/coverage.log
+          - summary/metrics.log
+      # Project-specific outputs
+      project_tests:
+        base_path: "projects/[project]/tests/results/"
+        structure:
+          - unit/test.log
+          - integration/test.log
+          - e2e/test.log
+          - summary/coverage.log
+          - summary/metrics.log
     format_rules:
       - Use text-summary for coverage reports
       - Minimize stack trace information
       - Filter out test location data
       - Exclude debug information
       - Compress error context
+      - NEVER output to terminal/console
+      - ALWAYS redirect stderr to /dev/null
     retention:
       keep_latest: true
       cleanup_old: true
+      organization:
+        - Follow package/project structure
+        - Maintain test category hierarchy
+        - Archive by test type
+        - Clean up by directory
 
   result_processing:
     format: "compact"

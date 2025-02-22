@@ -1,0 +1,25 @@
+{
+  "suite": "p0.unit.customer.service",
+  "stats": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0,
+    "duration": 35359
+  },
+  "tests": [],
+  "performance": {
+    "memory": {
+      "start": 17611088,
+      "end": 391690072,
+      "used": 374078984,
+      "peak": null
+    },
+    "cpu": {
+      "usage": 3.99,
+      "cores": 6
+    },
+    "duration": 35359,
+    "averageTestDuration": null,
+    "slowestTests": []
+  }
+}

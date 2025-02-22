@@ -17,6 +17,7 @@
    - [Package Tests](#41-package-tests)
    - [Project Tests](#42-project-tests)
    - [Full Suite](#43-full-suite)
+   - [Output Management](#44-output-management)
 
 ## 1. Test Organization
 
@@ -296,10 +297,10 @@ test.describe('Customer Management', () => {
 ```json
 {
   "scripts": {
-    "test:core": "jest --config packages/core/jest.config.js",
-    "test:ui": "jest --config packages/ui-components/jest.config.js",
-    "test:utils": "jest --config packages/utils/jest.config.js",
-    "test:packages": "jest --config jest.packages.config.js"
+    "test:core": "jest --config packages/core/jest.config.js --silent > packages/core/tests/results/test.log 2>/dev/null",
+    "test:ui": "jest --config packages/ui-components/jest.config.js --silent > packages/ui-components/tests/results/test.log 2>/dev/null",
+    "test:utils": "jest --config packages/utils/jest.config.js --silent > packages/utils/tests/results/test.log 2>/dev/null",
+    "test:packages": "jest --config jest.packages.config.js --silent > packages/core/tests/results/packages.log 2>/dev/null"
   }
 }
 ```
@@ -308,10 +309,10 @@ test.describe('Customer Management', () => {
 ```json
 {
   "scripts": {
-    "test:frontend": "jest --config projects/mexpress/frontend/jest.config.js",
-    "test:backend": "jest --config projects/mexpress/backend/jest.config.js",
-    "test:e2e": "playwright test",
-    "test:projects": "jest --config jest.projects.config.js"
+    "test:frontend": "jest --config projects/mexpress/frontend/jest.config.js --silent > projects/mexpress/frontend/tests/results/test.log 2>/dev/null",
+    "test:backend": "jest --config projects/mexpress/backend/jest.config.js --silent > projects/mexpress/backend/tests/results/test.log 2>/dev/null",
+    "test:e2e": "playwright test --reporter null > projects/mexpress/frontend/tests/results/e2e.log 2>/dev/null",
+    "test:projects": "jest --config jest.projects.config.js --silent > projects/mexpress/frontend/tests/results/projects.log 2>/dev/null"
   }
 }
 ```
@@ -320,18 +321,119 @@ test.describe('Customer Management', () => {
 ```json
 {
   "scripts": {
-    "test": "jest --config jest.config.js",
-    "test:ci": "jest --config jest.config.js --ci --coverage",
-    "test:watch": "jest --config jest.config.js --watch",
-    "test:all": "npm run test:packages && npm run test:projects && npm run test:e2e"
+    "test": "jest --config jest.config.js --silent > packages/core/tests/results/test.log 2>/dev/null",
+    "test:ci": "jest --config jest.config.js --ci --coverage --silent > packages/core/tests/results/ci.log 2>/dev/null",
+    "test:watch": "jest --config jest.config.js --watch --silent > packages/core/tests/results/watch.log 2>/dev/null",
+    "test:all": "npm run test:packages && npm run test:projects && npm run test:e2e > packages/core/tests/results/all.log 2>/dev/null"
   }
 }
 ```
 
+### 4.4 Output Management
+!! CRITICAL: PREVENT VSCODE/EXTENSION HANGING !!
+
+To prevent VSCode and the RooCode extension from hanging due to large terminal outputs:
+
+1. Output Redirection Requirements:
+   - NEVER output directly to console/terminal
+   - ALL test output MUST be redirected to files
+   - Use `> tests/results/[name].log 2>/dev/null` for ALL test commands
+   - Follow package/project test directory structure
+
+2. Output Directory Structure:
+   ```text
+   /opt/mexpress/
+   ├── packages/
+   │   ├── core/
+   │   │   └── tests/
+   │   │       ├── unit/
+   │   │       ├── integration/
+   │   │       ├── __mocks__/
+   │   │       └── results/        # Test output files
+   │   │           ├── unit/
+   │   │           ├── integration/
+   │   │           └── summary/
+   │   ├── ui-components/
+   │   │   └── tests/
+   │   │       ├── unit/
+   │   │       ├── e2e/
+   │   │       ├── __fixtures__/
+   │   │       └── results/        # Test output files
+   │   │           ├── unit/
+   │   │           ├── e2e/
+   │   │           └── summary/
+   │   └── utils/
+   │       └── tests/
+   │           ├── unit/
+   │           ├── __helpers__/
+   │           └── results/        # Test output files
+   │               ├── unit/
+   │               └── summary/
+   └── projects/
+       └── mexpress/
+           ├── frontend/
+           │   └── tests/
+           │       ├── unit/
+           │       ├── e2e/
+           │       ├── __mocks__/
+           │       └── results/    # Test output files
+           │           ├── unit/
+           │           ├── e2e/
+           │           └── summary/
+           └── backend/
+               └── tests/
+                   ├── unit/
+                   ├── api/
+                   ├── __mocks__/
+                   └── results/    # Test output files
+                       ├── unit/
+                       ├── api/
+                       └── summary/
+   ```
+
+3. Output Processing:
+   - Use silent mode for all test runs
+   - Redirect stderr to /dev/null
+   - Store output in corresponding results directory
+   - Follow test type structure (unit/integration/e2e)
+   - Maintain structured output format
+   - Clean up old logs regularly
+   - Keep results organized by test category
+
+4. Result Handling:
+   - Process test results from log files
+   - Generate summaries in results/summary/
+   - Use structured formats for reporting
+   - Clean up temporary files after processing
+   - Keep results aligned with test structure
+   - Maintain package/project organization
+   - Follow test category hierarchy
+
+5. Performance Considerations:
+   - Large terminal outputs WILL cause VSCode to hang
+   - Direct console output WILL impact extension performance
+   - Always use file output redirection
+   - Process results in chunks if needed
+   - Clean up logs regularly to manage disk space
+   - Follow package/project structure for cleanup
+   - Maintain disk space per package/project
+
+6. Log Management:
+   - Organize logs by test category
+   - Follow package/project structure
+   - Keep separate summary files
+   - Clean up by test type
+   - Maintain hierarchy:
+     * Package level: tests/results/[test-type]/
+     * Project level: tests/results/[test-type]/
+     * Summary level: tests/results/summary/
+
 Remember to:
-- Keep tests organized by package/project
-- Share test utilities and helpers
-- Maintain consistent naming conventions
-- Use appropriate test types for each layer
-- Configure proper test environments
-- Set up CI/CD test pipelines
+- Keep test outputs organized by package/project
+- Maintain parallel structure with tests
+- Use consistent naming conventions
+- Clean up old results regularly
+- NEVER output directly to terminal
+- ALWAYS redirect test output to corresponding results directory
+- Follow package/project test structure
+- Maintain test category organization

@@ -1,0 +1,234 @@
+{
+  "suite": "p0.unit.index",
+  "stats": {
+    "total": 14,
+    "passed": 14,
+    "failed": 0,
+    "duration": 6385
+  },
+  "tests": [
+    {
+      "name": "should throw error for missing service URL",
+      "fullName": "Environment Service Configuration should throw error for missing service URL",
+      "status": "passed",
+      "duration": 39,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should throw error for missing environment",
+      "fullName": "Environment Environment Validation should throw error for missing environment",
+      "status": "passed",
+      "duration": 30,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should correctly initialize with config",
+      "fullName": "Environment Basic Configuration should correctly initialize with config",
+      "status": "passed",
+      "duration": 12,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should throw error for invalid environment",
+      "fullName": "Environment Environment Validation should throw error for invalid environment",
+      "status": "passed",
+      "duration": 10,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should throw error for invalid log level",
+      "fullName": "Environment Environment Validation should throw error for invalid log level",
+      "status": "passed",
+      "duration": 6,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should throw error for invalid timeout",
+      "fullName": "Environment Service Configuration should throw error for invalid timeout",
+      "status": "passed",
+      "duration": 6,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should throw error for invalid retries",
+      "fullName": "Environment Service Configuration should throw error for invalid retries",
+      "status": "passed",
+      "duration": 6,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should return complete configuration",
+      "fullName": "Environment Basic Configuration should return complete configuration",
+      "status": "passed",
+      "duration": 5,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should create deep copy of services",
+      "fullName": "Environment Basic Configuration should create deep copy of services",
+      "status": "passed",
+      "duration": 5,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should set log level based on environment",
+      "fullName": "Environment Default Values should set log level based on environment",
+      "status": "passed",
+      "duration": 5,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should use default service settings",
+      "fullName": "Environment Default Values should use default service settings",
+      "status": "passed",
+      "duration": 5,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should set debug based on environment",
+      "fullName": "Environment Default Values should set debug based on environment",
+      "status": "passed",
+      "duration": 4,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should get all services",
+      "fullName": "Environment Service Configuration should get all services",
+      "status": "passed",
+      "duration": 4,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    },
+    {
+      "name": "should handle missing service",
+      "fullName": "Environment Service Configuration should handle missing service",
+      "status": "passed",
+      "duration": 3,
+      "memory": 139300448,
+      "priority": "p0",
+      "type": "unit",
+      "error": null,
+      "location": {
+        "file": "/opt/mExpress/packages/core/tests/p0/core/environment.test.ts"
+      }
+    }
+  ],
+  "performance": {
+    "memory": {
+      "start": 18032368,
+      "end": 170656624,
+      "used": 152624256,
+      "peak": 139300448
+    },
+    "cpu": {
+      "usage": 4.56,
+      "cores": 6
+    },
+    "duration": 6385,
+    "averageTestDuration": 10,
+    "slowestTests": [
+      {
+        "name": "should throw error for missing service URL",
+        "duration": 39,
+        "memory": 139300448
+      },
+      {
+        "name": "should throw error for missing environment",
+        "duration": 30,
+        "memory": 139300448
+      },
+      {
+        "name": "should correctly initialize with config",
+        "duration": 12,
+        "memory": 139300448
+      },
+      {
+        "name": "should throw error for invalid environment",
+        "duration": 10,
+        "memory": 139300448
+      },
+      {
+        "name": "should throw error for invalid log level",
+        "duration": 6,
+        "memory": 139300448
+      }
+    ]
+  }
+}

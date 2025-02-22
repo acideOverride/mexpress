@@ -492,9 +492,46 @@ debug_validation:
     - Control versions
 
   output_handling:
-    silent_execution: true
-    output_file: "/opt/mExpress/logs/debug-tests.log"
-    error_file: "/opt/mExpress/logs/debug-errors.log"
+    execution_mode: "silent"
+    output_structure:
+      # Package-specific outputs
+      package_tests:
+        base_path: "packages/[package]/tests/results/"
+        structure:
+          - unit/test.log
+          - integration/test.log
+          - e2e/test.log
+          - summary/coverage.log
+          - summary/metrics.log
+      # Project-specific outputs
+      project_tests:
+        base_path: "projects/[project]/tests/results/"
+        structure:
+          - unit/test.log
+          - integration/test.log
+          - e2e/test.log
+          - summary/coverage.log
+          - summary/metrics.log
+    format_rules:
+      - Use text-summary for test reports
+      - Minimize stack trace information
+      - Filter out test location data
+      - Exclude debug information
+      - Compress error context
+      - NEVER output to terminal/console
+      - ALWAYS redirect stderr to /dev/null
+    retention:
+      keep_latest: true
+      cleanup_old: true
+      organization:
+        - Follow package/project structure
+        - Maintain test category hierarchy
+        - Archive by test type
+        - Clean up by directory
+    log_size_limits:
+      - Per test type: Max 5MB
+      - Per results directory: Max 20MB
+      - Error logs: Max 1MB
 
 # Technical Vocabulary
 vocabulary_control:
