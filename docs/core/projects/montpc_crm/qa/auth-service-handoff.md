@@ -19,7 +19,7 @@ HANDOFF PACKAGE:
     - Quality: Passed
 
   Documentation:
-    - Implementation: /docs/projects/montpc_crm/implementation/auth-service.md
+    - Implementation: /docs/projects/montpc_crm/architecture/implementation/auth-service.md
     - QA Report: /docs/projects/montpc_crm/qa/auth-service-qa-report.md
     - API Specs: Included in implementation doc
     - Test Results: Verified and archived

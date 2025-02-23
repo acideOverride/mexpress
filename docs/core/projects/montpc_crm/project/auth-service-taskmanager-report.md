@@ -65,7 +65,7 @@ QUALITY GATES:
 
 EVIDENCE CHAIN:
   Package Evidence:
-    - Implementation: /docs/projects/montpc_crm/implementation/auth-service.md
+    - Implementation: /docs/projects/montpc_crm/architecture/implementation/auth-service.md
     - QA Report: /docs/projects/montpc_crm/qa/auth-service-qa-report.md
     - Handoff: /docs/projects/montpc_crm/qa/auth-service-handoff.md
     - Test Results: Verified and archived

@@ -82,7 +82,7 @@ SECURITY REQUIREMENTS:
 
 EVIDENCE PACKAGE:
   Documentation:
-    - Implementation: /docs/projects/montpc_crm/implementation/auth-service.md
+    - Implementation: /docs/projects/montpc_crm/architecture/implementation/auth-service.md
     - API Specs: Included in implementation
     - Integration Guide: Available in docs
     - Security Guidelines: Documented

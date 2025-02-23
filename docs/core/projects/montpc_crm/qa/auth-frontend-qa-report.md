@@ -69,7 +69,7 @@ VERIFICATION CHAIN:
   State:
     - History: Initial verification
     - Decisions: Pending QA review
-    - Evidence: /docs/projects/montpc_crm/implementation/auth-frontend-implementation.md
+    - Evidence: /docs/projects/montpc_crm/architecture/implementation/auth-frontend-implementation.md
     - Flow: CODE -> QA -> TASKMANAGER
 
 EVIDENCE PACKAGE: AUTH-FRONTEND-PKG-2025-002

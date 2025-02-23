@@ -19,9 +19,9 @@ HANDOFF PACKAGE:
     - Quality: Passed
 
   Documentation:
-    - Implementation: /docs/projects/montpc_crm/implementation/auth-frontend-implementation.md
+    - Implementation: /docs/projects/montpc_crm/architecture/implementation/auth-frontend-implementation.md
     - QA Report: /docs/projects/montpc_crm/qa/auth-frontend-qa-report.md
-    - Component Specs: /docs/projects/montpc_crm/design/auth-components-spec.md
+    - Component Specs: /docs/projects/montpc_crm/components/admin-dashboard/design/auth-components-spec.md
     - Test Results: Verified and archived
 
   Evidence:

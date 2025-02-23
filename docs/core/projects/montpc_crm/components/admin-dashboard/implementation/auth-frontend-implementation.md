@@ -1,0 +1,1 @@
+../../architecture/implementation/auth-frontend-implementation.md

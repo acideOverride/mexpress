@@ -71,7 +71,7 @@ VALIDATION CHAIN:
 
 EVIDENCE PACKAGE:
   Documentation:
-    - Implementation: /docs/projects/montpc_crm/implementation/auth-frontend-implementation.md
+    - Implementation: /docs/projects/montpc_crm/architecture/implementation/auth-frontend-implementation.md
     - QA Report: /docs/projects/montpc_crm/qa/auth-frontend-qa-report.md
     - TM Report: /docs/projects/montpc_crm/project/auth-frontend-taskmanager-report.md
     - GPM Status: This document

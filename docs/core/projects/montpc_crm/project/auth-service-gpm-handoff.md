@@ -28,7 +28,7 @@ VALIDATION CHAIN:
 
 MILESTONE EVIDENCE:
   Documentation:
-    - Implementation: /docs/projects/montpc_crm/implementation/auth-service.md
+    - Implementation: /docs/projects/montpc_crm/architecture/implementation/auth-service.md
     - QA Report: /docs/projects/montpc_crm/qa/auth-service-qa-report.md
     - TM Report: /docs/projects/montpc_crm/project/auth-service-taskmanager-report.md
     - Handoff Package: This document

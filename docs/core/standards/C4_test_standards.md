@@ -1,10 +1,10 @@
-# Test Standards for Monorepo
+# Test Standards and Organization v2.0
 
 ## Table of Contents
 1. [Test Organization](#1-test-organization)
    - [Directory Structure](#11-directory-structure)
-   - [Test Types](#12-test-types)
-   - [Shared Utilities](#13-shared-utilities)
+   - [Priority Levels](#12-priority-levels)
+   - [Resource Management](#13-resource-management)
 2. [Test Configuration](#2-test-configuration)
    - [Package Configs](#21-package-configs)
    - [Project Configs](#22-project-configs)
@@ -22,101 +22,115 @@
 ## 1. Test Organization
 
 ### 1.1 Directory Structure
-```text
-/opt/mexpress/
-├── packages/
-│   ├── core/
-│   │   ├── src/
-│   │   └── tests/
-│   │       ├── unit/        # Unit tests
-│   │       ├── integration/ # Integration tests
-│   │       └── __mocks__/   # Shared mocks
-│   ├── ui-components/
-│   │   ├── src/
-│   │   └── tests/
-│   │       ├── unit/        # Component tests
-│   │       ├── e2e/         # Browser tests
-│   │       └── __fixtures__/# Test fixtures
-│   └── utils/
-│       ├── src/
-│       └── tests/
-│           ├── unit/        # Utility tests
-│           └── __helpers__/ # Test helpers
-└── projects/
-    └── mexpress/
-        ├── frontend/
-        │   ├── src/
-        │   └── tests/
-        │       ├── unit/    # Project unit tests
-        │       ├── e2e/     # Project E2E tests
-        │       └── __mocks__/
-        └── backend/
-            ├── src/
-            └── tests/
-                ├── unit/    # Project unit tests
-                ├── api/     # API tests
-                └── __mocks__/
+
+#### Package-Level Organization
+```
+packages/[package]/
+├── tests/
+│   ├── p0/                    # Critical path tests
+│   │   ├── core/             # Core functionality
+│   │   ├── api/              # Critical API tests
+│   │   └── data/             # Data integrity tests
+│   │
+│   ├── p1/                    # High priority tests
+│   │   ├── business/         # Business logic
+│   │   └── integration/      # Key integration tests
+│   │
+│   ├── p2/                    # Medium priority tests
+│   │   ├── features/         # Feature tests
+│   │   └── components/       # Component tests
+│   │
+│   ├── p3/                    # Low priority tests
+│   │   ├── edge/             # Edge cases
+│   │   └── performance/      # Performance tests
+│   │
+│   ├── __helpers__/          # Test helpers and utilities
+│   │
+│   └── results/              # Test execution results
+│       ├── p0/
+│       │   ├── test.log
+│       │   ├── coverage.log
+│       │   └── metrics.log
+│       ├── p1/
+│       ├── p2/
+│       ├── p3/
+│       └── summary/          # Aggregated results
 ```
 
-### 1.2 Test Types
-```typescript
-// packages/core/tests/unit/auth/auth.service.test.ts
-describe('Core - AuthService', () => {
-  it('should validate credentials', async () => {
-    const authService = new AuthService(mockUserRepo, mockConfig);
-    const result = await authService.validateCredentials('test@example.com', 'password');
-    expect(result).toBe(true);
-  });
-});
-
-// packages/ui-components/tests/unit/Button/Button.test.tsx
-describe('UI Components - Button', () => {
-  it('should render with default props', () => {
-    const { getByRole } = render(<Button>Click me</Button>);
-    expect(getByRole('button')).toHaveTextContent('Click me');
-  });
-});
-
-// projects/mexpress/frontend/tests/unit/features/CustomerForm.test.tsx
-describe('mExpress - CustomerForm', () => {
-  it('should handle submit', async () => {
-    const onSubmit = jest.fn();
-    const { getByRole } = render(<CustomerForm onSubmit={onSubmit} />);
-    await userEvent.click(getByRole('button', { name: /submit/i }));
-    expect(onSubmit).toHaveBeenCalled();
-  });
-});
+#### Project-Level Organization
+```
+projects/[project]/
+├── frontend/
+│   └── tests/
+│       ├── p0/
+│       │   ├── core/         # Core UI tests
+│       │   ├── routing/      # Critical routing tests
+│       │   └── auth/         # Authentication tests
+│       │
+│       ├── p1/
+│       │   ├── features/     # Key feature tests
+│       │   └── integration/  # UI integration tests
+│       │
+│       ├── p2/
+│       │   ├── components/   # Component tests
+│       │   └── hooks/        # Custom hook tests
+│       │
+│       ├── p3/
+│       │   ├── edge/         # Edge cases
+│       │   └── performance/  # Performance tests
+│       │
+│       └── results/          # Test execution results
+           ├── p0/
+           ├── p1/
+           ├── p2/
+           ├── p3/
+           └── summary/
 ```
 
-### 1.3 Shared Utilities
-```typescript
-// packages/utils/tests/__helpers__/test-utils.ts
-export const createTestUser = (overrides = {}) => ({
-  id: 'test-id',
-  email: 'test@example.com',
-  name: 'Test User',
-  role: 'user',
-  ...overrides
-});
+### 1.2 Priority Levels
 
-export const mockRepository = <T>() => ({
-  find: jest.fn(),
-  findOne: jest.fn(),
-  create: jest.fn(),
-  save: jest.fn(),
-  update: jest.fn(),
-  delete: jest.fn()
-});
+#### P0 (Critical) Tests
+- Core functionality
+- Authentication
+- Data integrity
+- Critical APIs
+- Response time: 100ms
+- Max Duration: 5 seconds
+- Max Memory: 512MB
+- Execution: Sequential
 
-// packages/ui-components/tests/__helpers__/render-utils.tsx
-export const renderWithTheme = (ui: React.ReactElement) => {
-  return render(
-    <ThemeProvider theme={defaultTheme}>
-      {ui}
-    </ThemeProvider>
-  );
-};
-```
+#### P1 (High Priority) Tests
+- Business logic
+- Key integrations
+- Response time: 200ms
+- Max Duration: 10 seconds
+- Max Memory: 1GB
+- Max Concurrent: 2
+
+#### P2 (Medium Priority) Tests
+- Features
+- Components
+- Response time: 300ms
+- Max Duration: 20 seconds
+- Max Memory: 1.5GB
+- Max Concurrent: 3
+
+#### P3 (Low Priority) Tests
+- Edge cases
+- Performance tests
+- Response time: 500ms
+- Max Duration: 30 seconds
+- Max Memory: 2GB
+- Max Concurrent: 4
+
+### 1.3 Resource Management
+
+Process Limits:
+- CPU Usage: 70%
+- Memory Usage: 80%
+- File Descriptors: 1000
+- Log Size: 5MB
+- Error Log: 1MB
 
 ## 2. Test Configuration
 
@@ -135,20 +149,6 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^@mexpress/core/(.*)$': '<rootDir>/src/$1'
-  }
-};
-
-// packages/ui-components/jest.config.js
-module.exports = {
-  displayName: 'ui-components',
-  preset: '../../jest.preset.js',
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: [
-    '@testing-library/jest-dom/extend-expect'
-  ],
-  moduleNameMapper: {
-    '^@mexpress/ui-components/(.*)$': '<rootDir>/src/$1',
-    '\\.(css|less|scss)$': 'identity-obj-proxy'
   }
 };
 ```
@@ -199,10 +199,7 @@ module.exports = {
 
 ### 3.1 Unit Tests
 ```typescript
-// packages/core/tests/unit/services/user.service.test.ts
-import { UserService } from '@mexpress/core/services/user.service';
-import { createTestUser, mockRepository } from '@mexpress/utils/test-helpers';
-
+// Example unit test structure
 describe('UserService', () => {
   let userService: UserService;
   let userRepository: any;
@@ -221,26 +218,13 @@ describe('UserService', () => {
       const result = await userService.createUser(userData);
       expect(result).toEqual(userData);
     });
-
-    it('should throw if email exists', async () => {
-      const userData = createTestUser();
-      userRepository.findOne.mockResolvedValue(userData);
-
-      await expect(userService.createUser(userData))
-        .rejects
-        .toThrow('Email already exists');
-    });
   });
 });
 ```
 
 ### 3.2 Integration Tests
 ```typescript
-// packages/core/tests/integration/auth/auth.test.ts
-import { createTestingModule } from '@nestjs/testing';
-import { AuthModule } from '@mexpress/core/auth/auth.module';
-import { createTestUser } from '@mexpress/utils/test-helpers';
-
+// Example integration test structure
 describe('Auth Integration', () => {
   let app: INestApplication;
   let authService: AuthService;
@@ -271,9 +255,7 @@ describe('Auth Integration', () => {
 
 ### 3.3 E2E Tests
 ```typescript
-// projects/mexpress/frontend/tests/e2e/customer-management.test.ts
-import { test, expect } from '@playwright/test';
-
+// Example E2E test structure
 test.describe('Customer Management', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/customers');
@@ -332,73 +314,34 @@ test.describe('Customer Management', () => {
 ### 4.4 Output Management
 !! CRITICAL: PREVENT VSCODE/EXTENSION HANGING !!
 
-To prevent VSCode and the RooCode extension from hanging due to large terminal outputs:
-
-1. Output Redirection Requirements:
-   - NEVER output directly to console/terminal
-   - ALL test output MUST be redirected to files
-   - Use `> tests/results/[name].log 2>/dev/null` for ALL test commands
-   - Follow package/project test directory structure
+1. Output Requirements:
+   - NEVER output to terminal/console
+   - ALL output MUST be redirected to files
+   - Use silent execution mode (--silent flag)
+   - ALWAYS redirect stderr to /dev/null
+   - Follow test directory structure
+   - Maintain proper hierarchy
 
 2. Output Directory Structure:
-   ```text
-   /opt/mexpress/
-   ├── packages/
-   │   ├── core/
-   │   │   └── tests/
-   │   │       ├── unit/
-   │   │       ├── integration/
-   │   │       ├── __mocks__/
-   │   │       └── results/        # Test output files
-   │   │           ├── unit/
-   │   │           ├── integration/
-   │   │           └── summary/
-   │   ├── ui-components/
-   │   │   └── tests/
-   │   │       ├── unit/
-   │   │       ├── e2e/
-   │   │       ├── __fixtures__/
-   │   │       └── results/        # Test output files
-   │   │           ├── unit/
-   │   │           ├── e2e/
-   │   │           └── summary/
-   │   └── utils/
-   │       └── tests/
-   │           ├── unit/
-   │           ├── __helpers__/
-   │           └── results/        # Test output files
-   │               ├── unit/
-   │               └── summary/
-   └── projects/
-       └── mexpress/
-           ├── frontend/
-           │   └── tests/
-           │       ├── unit/
-           │       ├── e2e/
-           │       ├── __mocks__/
-           │       └── results/    # Test output files
-           │           ├── unit/
-           │           ├── e2e/
-           │           └── summary/
-           └── backend/
-               └── tests/
-                   ├── unit/
-                   ├── api/
-                   ├── __mocks__/
-                   └── results/    # Test output files
-                       ├── unit/
-                       ├── api/
-                       └── summary/
+   ```
+   tests/results/
+   ├── p0/                 # Priority 0 test results
+   │   ├── test.log       # Test execution output
+   │   ├── coverage.log   # Coverage report
+   │   └── metrics.log    # Performance metrics
+   ├── p1/
+   ├── p2/
+   ├── p3/
+   └── summary/           # Aggregated results
    ```
 
-3. Output Processing:
-   - Use silent mode for all test runs
-   - Redirect stderr to /dev/null
-   - Store output in corresponding results directory
-   - Follow test type structure (unit/integration/e2e)
-   - Maintain structured output format
-   - Clean up old logs regularly
-   - Keep results organized by test category
+3. Output Format:
+   - Use JSON for metrics
+   - Keep logs minimal
+   - Store summaries only
+   - Clear after processing
+   - Follow package/project structure
+   - Maintain test category hierarchy
 
 4. Result Handling:
    - Process test results from log files
@@ -427,13 +370,3 @@ To prevent VSCode and the RooCode extension from hanging due to large terminal o
      * Package level: tests/results/[test-type]/
      * Project level: tests/results/[test-type]/
      * Summary level: tests/results/summary/
-
-Remember to:
-- Keep test outputs organized by package/project
-- Maintain parallel structure with tests
-- Use consistent naming conventions
-- Clean up old results regularly
-- NEVER output directly to terminal
-- ALWAYS redirect test output to corresponding results directory
-- Follow package/project test structure
-- Maintain test category organization

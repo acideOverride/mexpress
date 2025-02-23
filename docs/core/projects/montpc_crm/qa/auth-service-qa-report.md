@@ -69,7 +69,7 @@ VERIFICATION CHAIN:
   State:
     - History: Initial verification
     - Decisions: Pending QA review
-    - Evidence: /docs/projects/montpc_crm/implementation/auth-service.md
+    - Evidence: /docs/projects/montpc_crm/architecture/implementation/auth-service.md
     - Flow: CODE -> QA -> TASKMANAGER
 
 EVIDENCE PACKAGE: AUTH-PKG-2025-002

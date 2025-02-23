@@ -64,7 +64,7 @@ QUALITY GATES:
 
 EVIDENCE CHAIN:
   Package Evidence:
-    - Implementation: /docs/projects/montpc_crm/implementation/auth-frontend-implementation.md
+    - Implementation: /docs/projects/montpc_crm/architecture/implementation/auth-frontend-implementation.md
     - QA Report: /docs/projects/montpc_crm/qa/auth-frontend-qa-report.md
     - Handoff: /docs/projects/montpc_crm/qa/auth-frontend-taskmanager-handoff.md
     - Test Results: Verified and archived
