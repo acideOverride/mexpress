@@ -1,0 +1,10 @@
+{
+  "name": "UserService",
+  "documentedStatus": "COMPLETE",
+  "actualStatus": "COMPLETE",
+  "priority": "HIGH",
+  "owner": "Bob",
+  "targetDate": "2025-02-26",
+  "lastUpdated": "2025-02-26T11:04:55.358Z",
+  "gapDescription": "Complete implementation with all required functions"
+}

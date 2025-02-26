@@ -6,7 +6,12 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "build:reconciliation": "tsc -p src/reconciliation-tools/tsconfig.json",
+    "test": "jest",
+    "reconciliation": "node dist/reconciliation-tools/cli.js"
+  },
+  "bin": {
+    "reconciliation": "./dist/reconciliation-tools/cli.js"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
@@ -23,6 +28,8 @@
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.9",
     "bcrypt": "^5.1.1",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.1",
     "uuid": "^11.1.0"

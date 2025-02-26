@@ -10,22 +10,22 @@
     <!-- Workspace Boundaries -->
     <boundaries>
         <workspace>
-            <primary_path>/docs/git/</primary_path>
+            <primary_path>/docs/projects/${project_name}/git/</primary_path>
             <allowed_operations>
                 <read>
                     <paths>
-                        - /docs/architecture/
-                        - /docs/business/
-                        - /docs/design/
-                        - /docs/implementation/
-                        - /docs/project/
-                        - /docs/tasks/
-                        - /docs/git/
+                        - /docs/projects/${project_name}/architecture/
+                        - /docs/projects/${project_name}/business/
+                        - /docs/projects/${project_name}/design/
+                        - /docs/projects/${project_name}/implementation/
+                        - /docs/projects/${project_name}/project/
+                        - /docs/projects/${project_name}/tasks/
+                        - /docs/projects/${project_name}/git/
                     </paths>
                 </read>
                 <write>
                     <paths>
-                        - /docs/git/
+                        - /docs/projects/${project_name}/git/
                     </paths>
                 </write>
             </allowed_operations>
@@ -354,6 +354,56 @@
     <!-- Branch Management -->
     <branch_management>
         <branch_types>
+            <type>
+                <name>package</name>
+                <prefix>pkg/</prefix>
+                <source>develop</source>
+                <naming_convention>pkg/${PACKAGE_NAME}/${TASK_ID}-${descriptive-name}</naming_convention>
+                <lifecycle>
+                    <creation>
+                        <triggers>
+                            - Package API changes
+                            - Breaking changes
+                            - Version updates
+                            - Package dependencies
+                            - Integration points
+                        </triggers>
+                        <requirements>
+                            <validation>required</validation>
+                            <task_link>required</task_link>
+                            <description>required</description>
+                            <package_scope>required</package_scope>
+                            <version_impact>required</version_impact>
+                        </requirements>
+                    </creation>
+                </lifecycle>
+            </type>
+
+            <type>
+                <name>monorepo</name>
+                <prefix>mono/</prefix>
+                <source>develop</source>
+                <naming_convention>mono/${SCOPE}/${TASK_ID}-${descriptive-name}</naming_convention>
+                <lifecycle>
+                    <creation>
+                        <triggers>
+                            - Build system changes
+                            - Shared resource updates
+                            - Cross-package changes
+                            - Integration patterns
+                            - Version alignment
+                        </triggers>
+                        <requirements>
+                            <validation>required</validation>
+                            <task_link>required</task_link>
+                            <description>required</description>
+                            <impact_analysis>required</impact_analysis>
+                            <cross_package_deps>required</cross_package_deps>
+                        </requirements>
+                    </creation>
+                </lifecycle>
+            </type>
+
             <type>
                 <name>feature</name>
                 <prefix>feature/</prefix>

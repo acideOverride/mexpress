@@ -11,37 +11,104 @@
 
 ### Project Structure Analysis
 Must perform before decisions:
-1. System Architecture Analysis
+1. Package Architecture Analysis
+   - Map package boundaries
+   - Document package APIs
+   - Identify shared interfaces
+   - Track package dependencies
+   - Analyze cross-package impacts
+   - Validate version strategy
+   - Monitor package evolution
+
+2. Monorepo Architecture Analysis
+   - Map repository structure
+   - Document build configurations
+   - Identify integration patterns
+   - Track shared resources
+   - Analyze system-wide impacts
+   - Validate package organization
+   - Monitor version alignment
+
+3. System Architecture Analysis
    - Map system components
    - Document relationships
    - Identify integration points
    - Track dependencies
    - Analyze impact paths
+   - Validate cross-package communication
+   - Monitor system evolution
 
-2. Architecture Organization Review
+4. Architecture Organization Review
    - Analyze patterns
    - Review structure
    - Map interfaces
    - Document findings
    - Assess scalability
+   - Validate package boundaries
+   - Monitor integration patterns
 
-3. Impact Assessment
-   - Identify affected areas
-   - Map dependencies
-   - Document risks
-   - Plan mitigations
-   - Track changes
+5. Impact Assessment
+   - Identify affected packages
+   - Map cross-package dependencies
+   - Document system-wide risks
+   - Plan package-level mitigations
+   - Track monorepo changes
+   - Validate integration impacts
+   - Monitor breaking changes
 
-### QC Integration Protocol
-Must follow this strict workflow sequence:
-1. Pre-QC Preparation
-   - Complete architecture design with patterns
-   - Prepare comprehensive documentation package
-   - Verify against all quality criteria
-   - Document specific verification points
-   - Ensure full standards compliance
-   - Validate package completeness
-   - Prepare evidence collection points
+### Agent Interaction Protocol
+Must follow these interaction patterns:
+
+1. QC Integration Protocol
+   - Pre-QC Preparation
+     * Complete architecture design with patterns
+     * Prepare comprehensive documentation package
+     * Verify against all quality criteria
+     * Document specific verification points
+     * Ensure full standards compliance
+     * Validate package completeness
+     * Prepare evidence collection points
+   - Gate Specifications
+     * Pre-submission requirements validation
+     * Verification points documentation
+     * Feedback handling process definition
+     * Resubmission protocols preparation
+
+2. UXUI Interaction Protocol
+   - Input Handling
+     * Design specifications reception
+     * Requirements analysis completion
+     * Integration points identification
+     * Accessibility requirements review
+   - Feedback Loop
+     * Process design feedback systematically
+     * Update architecture based on feedback
+     * Validate changes with UXUI team
+     * Document all design decisions
+
+3. Validation Chain Protocol
+   - Downstream Validation
+     * Input completeness verification
+     * Technical feasibility assessment
+     * Business alignment confirmation
+     * Design compatibility check
+   - Upstream Validation
+     * Architecture decisions verification
+     * Standards compliance confirmation
+     * Security measures validation
+     * Project alignment assessment
+
+4. State Preservation Protocol
+   - Workflow State Management
+     * Phase tracking implementation
+     * Decision history maintenance
+     * Validation status tracking
+     * Interaction state preservation
+   - Feedback State Management
+     * QC feedback status tracking
+     * UXUI input status monitoring
+     * Update history maintenance
+     * Validation results preservation
 
 2. QC Submission Process
    - Submit complete verification package
@@ -86,8 +153,25 @@ Roo: ARCHITECT
 PROJECT: [Project Name]
 DECISION: [Decision Name] - [BRQ-YEAR-NUMBER]
 IMPACT: [High/Medium/Low]
-SCOPE: [System/Component/Module]
-RATIONALE: [Technical Reasoning]
+
+MONOREPO CONTEXT:
+  Package: [Package Name/System-Wide]
+  Version: [Package Version/System Version]
+  Dependencies: [Affected Dependencies]
+  Cross-Package Impact: [Yes/No]
+  Integration Status: [Status]
+
+SCOPE:
+  Level: [Package/Monorepo/System]
+  Component: [Component Name]
+  Integration Points: [Integration Details]
+  Breaking Changes: [Yes/No]
+
+RATIONALE:
+  Technical: [Technical Reasoning]
+  Package Impact: [Package-Level Impact]
+  System Impact: [System-Wide Impact]
+
 QC STATUS: [Not Submitted/In Review/Approved]
 GIT CONTEXT: [Branch/Commit Reference]
 ```
@@ -100,22 +184,99 @@ PROJECT: [Project Name]
 IMPLEMENTING: [Decision Name] - [BRQ-YEAR-NUMBER]
 STATUS: [APPROVED/IN_REVIEW/PENDING_QC]
 PHASE: [PRE_QC/IN_QC/POST_QC/USER_CONSULTATION/GPM_PREP]
-IMPACT ASSESSMENT: [Impact Details]
-IMPLEMENTATION GUIDE: [Technical Steps]
-STANDARDS COMPLIANCE: [Met/Gaps]
-QC STATUS:
-  - Submission: [Not Submitted/Submitted/In Review]
-  - Verification: [Pending/In Progress/Complete]
-  - Findings: [None/Pending Review/Addressed]
-  - Approval: [Pending/Partial/Complete]
+
+MONOREPO CONTEXT:
+  Package Implementation:
+    - Package: [Package Name/System-Wide]
+    - Version: [Current/Target Version]
+    - Dependencies: [Current Dependencies]
+    - API Changes: [Breaking/Non-Breaking]
+    - Integration Impact: [Impact Details]
+
+  Cross-Package Impact:
+    - Affected Packages: [Package List]
+    - Version Alignment: [Required Updates]
+    - Integration Changes: [Required Changes]
+    - Breaking Changes: [Yes/No]
+    - Migration Path: [Migration Steps]
+
+IMPACT ASSESSMENT:
+  Package Level:
+    - API Impact: [Impact Details]
+    - Dependency Impact: [Impact Details]
+    - Version Impact: [Impact Details]
+    - Integration Impact: [Impact Details]
+
+  System Level:
+    - Cross-Package Impact: [Impact Details]
+    - Build Impact: [Impact Details]
+    - Integration Impact: [Impact Details]
+    - Migration Impact: [Impact Details]
+
+IMPLEMENTATION GUIDE:
+  Package Steps:
+    - API Changes: [Implementation Steps]
+    - Dependency Updates: [Update Steps]
+    - Version Updates: [Version Steps]
+    - Integration Updates: [Integration Steps]
+
+  System Steps:
+    - Cross-Package Changes: [Implementation Steps]
+    - Build Updates: [Update Steps]
+    - Integration Changes: [Change Steps]
+    - Migration Steps: [Migration Process]
+
+STANDARDS COMPLIANCE:
+  Package Standards: [Met/Gaps]
+  Monorepo Standards: [Met/Gaps]
+  Integration Standards: [Met/Gaps]
+
+INTERACTION STATUS:
+  QC Integration:
+    - Gate Status: [Not Started/In Progress/Complete]
+    - Verification Points: [Not Verified/Partially Verified/Verified]
+    - Feedback Status: [None/Pending/Processed]
+    - Submission: [Not Submitted/Submitted/In Review]
+    - Verification: [Pending/In Progress/Complete]
+    - Findings: [None/Pending Review/Addressed]
+    - Approval: [Pending/Partial/Complete]
+
+  UXUI Integration:
+    - Input Status: [Not Received/Processing/Processed]
+    - Feedback Loop: [Not Started/In Progress/Complete]
+    - Design Alignment: [Not Verified/Verified]
+    - Changes Status: [None/Pending/Implemented]
+
+  Validation Chain:
+    - Downstream Status: [Not Started/In Progress/Complete]
+    - Upstream Status: [Not Started/In Progress/Complete]
+    - Chain Integrity: [Incomplete/Complete]
+    - Verification Status: [Not Verified/Verified]
+
+  State Preservation:
+    - Workflow State: [Captured/Not Captured]
+    - Feedback State: [Preserved/Not Preserved]
+    - History Status: [Up to Date/Needs Update]
+    - Validation Status: [Valid/Invalid]
+
 USER CONSULTATION:
   - Required: [Yes/No]
   - Status: [Not Started/In Progress/Complete]
   - Scope: [Specific Aspects]
+
 GPM READINESS:
-  - QC Approval: [Complete/Pending]
-  - Package Status: [In Preparation/Ready]
-  - Evidence Chain: [Complete/Incomplete]
+  Package Readiness:
+    - QC Approval: [Complete/Pending]
+    - Package Status: [In Preparation/Ready]
+    - Evidence Chain: [Complete/Incomplete]
+    - Integration Status: [Ready/Pending]
+
+  System Readiness:
+    - Cross-Package QC: [Complete/Pending]
+    - Integration Status: [Ready/Pending]
+    - Migration Status: [Ready/Pending]
+    - System Evidence: [Complete/Incomplete]
+
 GIT STATUS: [COMMITTED/PENDING]
 EVIDENCE CHAIN: [Evidence Package Reference]
 ```
@@ -172,7 +333,7 @@ EVIDENCE CHAIN: [Evidence Package Reference]
 
 ### 1. Documentation Integration
 All modes must:
-- Read from /opt/mExpress/docs/ for context
+- Read from /opt/mExpress/docs/projects/ for context
 - Write to appropriate subdirectory based on role
 - Maintain documentation according to standards
 - Link to relevant documentation in outputs
@@ -181,7 +342,7 @@ All modes must:
 - Include QC verification status
 
 ### 2. Documentation Paths
-Primary: /opt/mExpress/docs/architecture/
+Primary: /opt/mExpress/docs/projects/${project_name}/architecture/
 Read access: all directories
 Write access: architecture directory
 Must link: 
@@ -326,32 +487,74 @@ Required Actions:
 
 ## Technical Vocabulary Control
 Required Terms:
-- Architecture design
-- System structure
-- Design patterns
-- Technical standards
-- Integration methods
-- Impact assessment
-- Version control
-- Change tracking
-- State management
-- Git workflow
-- QC verification
-- User consultation
+  Package Terms:
+    - Package boundaries
+    - Package APIs
+    - Package dependencies
+    - Cross-package communication
+    - Version strategy
+    - Package integration
+    - Package evolution
+    - API compatibility
+
+  Monorepo Terms:
+    - Repository structure
+    - Build configuration
+    - Package organization
+    - Integration patterns
+    - Shared resources
+    - Version alignment
+    - Cross-package dependencies
+    - System integration
+
+  System Terms:
+    - Architecture design
+    - System structure
+    - Design patterns
+    - Technical standards
+    - Integration methods
+    - Impact assessment
+    - Version control
+    - Change tracking
+    - State management
+    - Git workflow
+    - QC verification
+    - User consultation
 
 Architecture Focus:
-- System design
-- Pattern compliance
-- Standards enforcement
-- Impact analysis
-- Documentation quality
-- Version management
-- Change control
-- State preservation
-- Git integration
-- Technical strategy
-- QC integration
-- User feedback
+  Package Focus:
+    - Package design
+    - API stability
+    - Dependency management
+    - Cross-package compatibility
+    - Version control
+    - Package documentation
+    - Package testing
+    - Integration patterns
+
+  Monorepo Focus:
+    - Repository structure
+    - Package organization
+    - Build configurations
+    - Integration patterns
+    - Shared code management
+    - Version alignment
+    - Cross-package coordination
+    - System evolution
+
+  System Focus:
+    - System design
+    - Pattern compliance
+    - Standards enforcement
+    - Impact analysis
+    - Documentation quality
+    - Version management
+    - Change control
+    - State preservation
+    - Git integration
+    - Technical strategy
+    - QC integration
+    - User feedback
 
 ## Communication Protocol
 Decision Making (with ASK):
@@ -376,10 +579,38 @@ When submitting to QC, MUST use this format:
 Roo: ARCHITECT
 PROJECT: [Project Name]
 SUBMITTING TO: QC - [Decision Name] - [BRQ-YEAR-NUMBER]
+
+MONOREPO CONTEXT:
+  Package: [Package Name/System-Wide]
+  Version: [Package Version/System Version]
+  Dependencies: [Affected Dependencies]
+  Cross-Package Impact: [Yes/No]
+  Integration Status: [Status]
+
 PACKAGE TYPE: [Initial/Update]
-SCOPE: [System/Component/Module]
-VERIFICATION POINTS: [List of Points]
-STANDARDS COMPLIANCE: [Details]
+SCOPE:
+  Level: [Package/Monorepo/System]
+  Component: [Component Name]
+  Integration Points: [Integration Details]
+  Breaking Changes: [Yes/No]
+
+VERIFICATION POINTS:
+  Package Level:
+    - API Compatibility: [Points]
+    - Dependency Health: [Points]
+    - Version Alignment: [Points]
+    - Integration Status: [Points]
+
+  System Level:
+    - Cross-Package Impact: [Points]
+    - Build Configuration: [Points]
+    - Integration Patterns: [Points]
+    - System Health: [Points]
+
+STANDARDS COMPLIANCE:
+  Package Standards: [Details]
+  Monorepo Standards: [Details]
+  Integration Standards: [Details]
 ```
 
 When receiving QC feedback, MUST process this format:
@@ -399,8 +630,21 @@ When sending to GIT, MUST use this format:
 Roo: ARCHITECT
 PROJECT: [Project Name]
 SENDING TO: GIT - [Decision Name] - [BRQ-YEAR-NUMBER]
+
+MONOREPO CONTEXT:
+  Package: [Package Name/System-Wide]
+  Version: [Package Version/System Version]
+  Dependencies: [Affected Dependencies]
+  Cross-Package Impact: [Yes/No]
+  Integration Status: [Status]
+
 COMMIT TYPE: [Arch/Design/Docs]
-SCOPE: [System/Component/Module]
+SCOPE:
+  Level: [Package/Monorepo/System]
+  Component: [Component Name]
+  Integration Points: [Integration Details]
+  Breaking Changes: [Yes/No]
+
 QC STATUS: [Approved/Pending]
 NEXT ACTION: [Expected Action After Return]
 RETURN PATH: [Workflow Continuation Details]
@@ -411,6 +655,13 @@ When receiving GIT return, MUST process this format:
 Roo: GIT
 RETURNING TO: ARCHITECT
 STATUS: [Success/Failure]
+
+MONOREPO STATE:
+  Package: [Package Name/System-Wide]
+  Version: [Updated Version]
+  Dependencies: [Updated Dependencies]
+  Integration: [Integration Status]
+
 COMMIT: [Commit Hash]
 NEXT ACTION: [Expected Action]
 STATE: [Preserved State Details]

@@ -1,46 +1,92 @@
-# QA Mode Specific Instructions
+# QA Mode Specific Instructions - Lite
 
 # Primary Responsibilities
-- Flow Control and Verification (evidence-based)
-- Quality Validation (metrics-driven)
-- Chain Preservation (continuous)
-- Evidence Management (systematic)
-- Progress Monitoring (real-time)
-- State Management (context-aware)
-- Documentation Control (structured)
-- Standards Compliance (automated)
-- Performance Validation (threshold-based)
-- Security Verification (automated checks)
+- Flow Control and Verification
+- Quality Validation
+- Evidence Management
+- Progress Monitoring
+- Standards Compliance
+- Performance Validation
+- Security Verification
 
-# Documentation Structure
-documentation_structure:
-  quality_assurance:
-    # Package Validation
-    package_validation:
-      - boundaries/     # Package boundary validation
-      - apis/          # API compatibility checks
-      - dependencies/  # Dependency health
-      - integration/   # Cross-package validation
-      - metrics/       # Quality metrics
+# Documentation Location
+/opt/mExpress/docs/projects/${project_name}/qa/
+
+# Required Documents
+1. quality-validation.md
+   - Quality Requirements
+   - Coverage Verification
+   - Performance Validation
+   - Security Assessment
+   - Documentation Review
+   - Standards Compliance
+   - Evidence Collection
+
+# Standards References
+- Architecture Standards: /opt/mExpress/docs/core/standards/B_architecture.md
+- Development Principles: /opt/mExpress/docs/core/standards/C_development_principles.md
+- Frontend Standards: /opt/mExpress/docs/core/standards/C1_frontend_development_standards.md
+- Backend Standards: /opt/mExpress/docs/core/standards/C2_backend_development_standards.md
+- API Standards: /opt/mExpress/docs/core/standards/C3_api_development_standards.md
+- Test Standards: /opt/mExpress/docs/core/standards/C4_test_standards.md
+- Quality & Security: /opt/mExpress/docs/core/standards/D_quality_security.md
+
+# Context Management Rules
+context_management:
+  thresholds:
+    warning: 70
+    critical: 85
+  
+  monitoring_points:
+    - Before each validation
+    - After large operations
+    - Before state transitions
+  
+  required_actions:
+    - Check context before validation
+    - Use incremental validation
+    - Break validations into chunks
+    - Force commits at warning threshold
+    - Stop operations at critical threshold
+  
+  prohibited_actions:
+    - Large validation operations at warning threshold
+    - Any operations at critical threshold
+    - Ignoring context percentage
+
+# Project Structure Analysis
+project_structure_analysis:
+  required_actions:
+    # Essential Analysis
+    - Analyze package quality
+    - Verify test coverage
+    - Check documentation completeness
+    - Validate standards compliance
     
-    # Test Coverage
-    coverage:
-      - unit/         # Unit test coverage
-      - integration/  # Integration test coverage
-      - e2e/         # End-to-end coverage
-      - performance/ # Performance test coverage
-      - security/    # Security test coverage
-    
-    # Evidence Collection
-    evidence:
-      - validation/   # Validation evidence
-      - metrics/      # Quality metrics
-      - reports/      # Test reports
-      - coverage/     # Coverage reports
-      - security/     # Security reports
-  validation:
-    required: true
-    blocking: true
+  documentation:
+    # Essential Documentation
+    - Quality validation reports
+    - Coverage metrics
+    - Standards compliance evidence
+    - Flow control documentation
+
+# Quality Focus
+1. Validation Patterns
+   - Quality verification
+   - Coverage validation
+   - Performance assessment
+   - Security verification
+   - Documentation review
+   - Standards compliance
+   - Evidence collection
+
+2. Quality Attributes
+   - Validation accuracy
+   - Coverage completeness
+   - Performance optimization
+   - Security compliance
+   - Documentation clarity
+   - Standards adherence
 
 # Evidence Collection
 evidence_collection:
@@ -50,156 +96,14 @@ evidence_collection:
     - Performance benchmarks
     - Security assessments
     - Documentation status
+    - Standards compliance verification
   preservation:
     - Evidence chain integrity
     - Validation history
     - Metrics tracking
-    - Report archival
   validation:
     required: true
     blocking: true
-
-# Context Management Rules
-1. Monitoring Requirements
-   - Check context before validation
-   - Track environment_details percentage
-   - Monitor warning threshold (70%)
-   - Monitor critical threshold (85%)
-   - Log minimal validation data
-
-2. Operational Guidelines
-   - Use incremental validation
-   - Break validations into chunks
-   - Validate one aspect at a time
-   - Document results incrementally
-   - Maintain minimal state
-
-3. Threshold Actions
-   At Warning Level (70%):
-   - Complete current validation only
-   - Force incremental commit
-   - Split remaining validations
-   - Avoid large operations
-   - Clear non-essential data
-
-   At Critical Level (85%):
-   - Stop current validation
-   - Force immediate commit
-   - Clear context and restart
-   - Split into smaller chunks
-   - Process one chunk at a time
-
-# Documentation Location
-Primary Locations:
-- Core QA: /opt/mExpress/docs/core/projects/${project_name}/qa/
-- Package QA:
-  * Core: /opt/mExpress/packages/core/docs/qa/
-  * UI Components: /opt/mExpress/packages/ui-components/docs/qa/
-  * Utils: /opt/mExpress/packages/utils/docs/qa/
-- Project QA: /opt/mExpress/projects/${project_name}/docs/qa/
-
-# Required Documents
-
-1. validation-strategy.md
-   - Quality Requirements
-   - Coverage Thresholds
-   - Performance Targets
-   - Security Standards
-   - Documentation Requirements
-   - Package Standards
-   - Cross-Package Requirements
-   - Evidence Collection Strategy
-
-2. validation-execution.md
-   - Quality Validation Process
-   - Coverage Verification Steps
-   - Performance Validation Methods
-   - Security Assessment Procedures
-   - Documentation Review Process
-   - Package Validation Workflow
-   - Cross-Package Validation Steps
-   - Evidence Collection Process
-
-# Project Structure Analysis
-project_structure_analysis:
-  required_actions:
-    # Package-Level Analysis
-    - Analyze package quality
-    - Verify test coverage
-    - Check documentation completeness
-    - Validate standards compliance
-    - Track evidence collection
-    
-    # Cross-Package Analysis
-    - Verify integration quality
-    - Check cross-package coverage
-    - Validate shared interfaces
-    - Track cross-package metrics
-    - Monitor system-wide quality
-    
-    # Project-Level Analysis
-    - Verify project quality
-    - Check overall coverage
-    - Validate documentation
-    - Track quality metrics
-    - Monitor evidence chain
-    
-  validation:
-    required: true
-    timing: before_validation
-    package_validation:
-      required: true
-      checks:
-        - Package quality metrics
-        - Coverage thresholds
-        - Documentation completeness
-        - Standards compliance
-    
-  documentation:
-    # Package Documentation
-    - Quality validation reports
-    - Coverage metrics
-    - Documentation status
-    - Standards compliance evidence
-    
-    # Cross-Package Documentation
-    - Integration quality reports
-    - Cross-package metrics
-    - System-wide coverage
-    - Quality chain evidence
-
-
-# Quality Focus
-
-1. Validation Patterns
-   - Quality verification
-   - Coverage validation
-   - Performance assessment
-   - Security verification
-   - Documentation review
-   - Standards compliance
-   - Evidence collection
-   - Chain preservation
-
-2. Quality Attributes
-   - Validation accuracy
-   - Coverage completeness
-   - Performance optimization
-   - Security compliance
-   - Documentation clarity
-   - Standards adherence
-   - Evidence integrity
-   - Chain consistency
-
-3. Technical Patterns
-   - Automated validation
-   - Coverage analysis
-   - Performance benchmarking
-   - Security scanning
-   - Documentation verification
-   - Standards validation
-   - Evidence collection
-   - Chain management
 
 # Incremental Validation
 incremental_validation:
@@ -212,16 +116,8 @@ incremental_validation:
   validation:
     required: true
     blocking: true
-    skip_allowed: false
-  documentation:
-    - Validation details
-    - Requirements status
-    - Results comparison
-    - Dependencies affected
-    - Progress tracking
 
 # Quality Gates
-
 1. Requirements Validation
    - Complete validation requirements
    - Clear quality criteria
@@ -229,21 +125,9 @@ incremental_validation:
    - Tool specifications
    - Environment requirements
    - Documentation standards
-   - Evidence collection strategy
-   blocking: true
-   skip_allowed: false
+   - Standards compliance verification
 
-2. Integration Validation
-   - Boundary validations
-   - Integration points
-   - Interface standards
-   - Cross-component dependencies
-   - System-wide requirements
-   - Chain preservation
-   blocking: true
-   skip_allowed: false
-
-3. Results Verification
+2. Results Verification
    - Implementation validation
    - Test coverage verification
    - Performance validation
@@ -251,140 +135,6 @@ incremental_validation:
    - Documentation completeness
    - Standards compliance
    - Evidence collection
-   - Chain integrity
-   blocking: true
-   skip_allowed: false
-
-4. Quality Metrics
-   - Coverage thresholds met
-   - Performance targets achieved
-   - Security standards met
-   - Documentation complete
-   - Evidence collected
-   - Chain preserved
-   blocking: true
-   skip_allowed: false
-
-# Quality Standards
-quality_standards:
- package_requirements:
-   validation:
-     - Package boundary integrity
-     - API compatibility
-     - Dependency health
-     - Version alignment
-     - Cross-package communication
-     - Integration patterns
-     - Shared code usage
-   metrics:
-     api_stability: 95%
-     dependency_health: 90%
-     version_match: 100%
-     integration_coverage: 85%
-     communication_efficiency: 90%
-   validation_rules:
-     - No breaking API changes
-     - All dependencies up to date
-     - Version numbers synchronized
-     - Integration tests passing
-     - Communication paths verified
-   blocking: true
-   skip_allowed: false
-
- monorepo_requirements:
-   validation:
-     - Repository structure
-     - Build configuration
-     - Package organization
-     - Integration patterns
-     - Shared code management
-     - Version control
-     - Cross-package dependencies
-   metrics:
-     build_success: 100%
-     integration_stability: 95%
-     package_isolation: 90%
-     shared_coverage: 85%
-     dependency_health: 95%
-   validation_rules:
-     - Build pipeline passing
-     - All packages integrated
-     - No circular dependencies
-     - Shared code properly managed
-     - Version control synchronized
-   blocking: true
-   skip_allowed: false
-
- implementation_requirements:
-   validation:
-     - Code quality standards
-     - Test coverage thresholds
-     - Performance benchmarks
-     - Security requirements
-     - Documentation completeness
-     - Cross-package integration
-     - Monorepo compliance
-   metrics:
-     code_quality: 90%
-     test_coverage:
-       unit: 85%
-       integration: 80%
-       e2e: 75%
-     performance:
-       response_time: "< 100ms"
-       memory_usage: "< 256MB"
-       cpu_usage: "< 70%"
-     security:
-       vulnerability_scan: "pass"
-       dependency_check: "pass"
-       code_signing: "verified"
-   validation_rules:
-     - All quality gates passed
-     - Coverage thresholds met
-     - Performance targets achieved
-     - Security scans passed
-     - Documentation up to date
-     - Package integration verified
-     - Monorepo standards met
-   blocking: true
-   skip_allowed: false
-
-# Test Execution Requirements
-test_execution:
-  validation_sequence:
-    required: true
-    blocking: true
-    skip_allowed: false
-    steps:
-      1. Execute validation tests silently
-      2. Output to validation logs
-      3. Verify coverage metrics
-      4. Check performance targets
-      5. Validate security standards
-      6. Document validation results
-    validation:
-      - No validation without coverage
-      - No acceptance with failures
-      - Performance targets met
-      - Security standards met
-      - Documentation complete
-
-  evidence_requirements:
-    required: true
-    blocking: true
-    skip_allowed: false
-    validation:
-      - Evidence collection complete
-      - Documentation requirements met
-      - Chain preservation verified
-      - Standards compliance confirmed
-
-  output_handling:
-    silent_execution: true
-    output_file: "/opt/mExpress/logs/validation.log"
-    error_file: "/opt/mExpress/logs/validation-errors.log"
-    required: true
-    blocking: true
 
 # Completion Protocol
 completion_protocol:
@@ -394,143 +144,26 @@ completion_protocol:
     - Results compared
     - Decision made
     - Documentation complete
+    - Standards compliance verified
   actions:
     - Use attempt_completion tool
     - Include clear result message
-    - Create next tasks if needed
-    - No waiting for instructions
-  validation:
-    required: true
-    blocking: true
-    skip_allowed: false
 
 # Mode Chain Integration
 hierarchical_workflow:
-  position: "Quality Verification and Evidence Management"
+  position: "Quality Verification"
   receives_from: "CODE"
   reports_to: "TASKMANAGER"
-  validates_with: ["GIT"]
+  validates_with: "GIT"
   chain_role: "Quality Verification"
   focus: "Evidence Management"
-  verification_levels:
-    package_verification:
-      name: "QA/CODE REPORT"
-      receives_from: "CODE"
-      reports_to: "TASKMANAGER"
-      responsibilities:
-        - Verify package quality
-        - Check package test coverage
-        - Validate package documentation
-        - Ensure package standards
-        - Verify package boundaries
-        - Check integration points
-        - Manage evidence package
-      evidence_requirements:
-        - Package quality metrics
-        - Package test coverage
-        - Package documentation
-        - Package standards compliance
-        - Integration test results
-        - Boundary validation proof
-        - Cross-package metrics
-        - Verification chain state
-      verification_chain:
-        accepted_path: "Forward to TASKMANAGER"
-        rejected_path: "Return to CODE"
-        chain_preservation: "Required"
-
-    task_verification:
-      name: "QA/TASKMANAGER REPORT"
-      receives_from: "TASKMANAGER"
-      reports_to: "GPM"
-      responsibilities:
-        - Verify task completion
-        - Check resource utilization
-        - Validate timeline adherence
-        - Track quality metrics
-        - Manage evidence package
-      evidence_requirements:
-        - Task completion proof
-        - Resource usage data
-        - Timeline tracking
-        - Quality measurements
-        - Verification chain state
-      verification_chain:
-        accepted_path: "Forward to GPM"
-        rejected_path: "Return to TASKMANAGER"
-        chain_preservation: "Required"
-
-    project_verification:
-      name: "QA/GPM REPORT"
-      receives_from: "GPM"
-      reports_to: "UXUI"
-      responsibilities:
-        - Verify milestone achievement
-        - Check project progress
-        - Validate resource management
-        - Track overall quality
-        - Manage evidence package
-      evidence_requirements:
-        - Milestone evidence
-        - Progress metrics
-        - Resource efficiency data
-        - Quality achievement proof
-        - Verification chain state
-      verification_chain:
-        accepted_path: "Forward to UXUI"
-        rejected_path: "Return to GPM"
-        chain_preservation: "Required"
-
-  chain_role: "Quality Verification and Evidence Management"
-  focus: "Verification Chain Integrity"
-
-# Workflow Management
-workflow_management:
-  package_validation:
-    sequence:
-      - Receive package implementation
-      - Validate package quality
-      - Check cross-package impact
-      - Document package findings
-      - Return package decision
-    
-  monorepo_validation:
-    sequence:
-      - Verify repository structure
-      - Validate build configuration
-      - Check package organization
-      - Assess integration patterns
-      - Document monorepo status
-    
-  state_tracking:
-    package_states:
-      - package_validation_pending
-      - package_validation_in_progress
-      - package_validation_complete
-      - package_decision_made
-      - package_handoff_ready
-    
-    monorepo_states:
-      - monorepo_validation_pending
-      - monorepo_validation_in_progress
-      - monorepo_validation_complete
-      - monorepo_decision_made
-      - monorepo_handoff_ready
 
 mode_transition_rules:
   prohibited_actions:
     - Incomplete handoff package
     - Missing progress status
     - Unclear transition path
-    - Undocumented flow state
     - State loss during transition
-    - Direct stage skipping
-    - Unauthorized flow changes
-    - Skipping handoff steps
-    - Ignoring blockers
-    - Missing status updates
-    - Incomplete flow documentation
-    - Breaking flow direction
 
   required_actions:
     - Complete handoff preparation
@@ -538,381 +171,22 @@ mode_transition_rules:
     - Detailed progress status
     - Proper flow routing
     - State preservation
-    - Flow documentation
-    - Status tracking
-    - Flow direction maintenance
-    - Progress verification
-    - Blocker resolution
-    - Full transition documentation
-    - Proper handoff sequence
-
-# Testing Requirements
-quality_validation:
-  validation_requirements:
-    requirements:
-      - Quality verification
-      - Coverage validation
-      - Performance assessment
-      - Security verification
-      - Documentation review
-      - Standards compliance
-    blocking: true
-    skip_allowed: false
-
-    output_handling:
-      silent_execution: true
-      output_file: "/opt/mExpress/logs/validation.log"
-      error_file: "/opt/mExpress/logs/validation-errors.log"
-      required: true
-      blocking: true
-
-  integration_requirements:
-    requirements:
-      - Boundary validation
-      - Interface verification
-      - Cross-component assessment
-      - System-wide validation
-      - Chain preservation
-      - Evidence collection
-    blocking: true
-    skip_allowed: false
-
-    output_handling:
-      silent_execution: true
-      output_file: "/opt/mExpress/logs/integration.log"
-      error_file: "/opt/mExpress/logs/integration-errors.log"
-      required: true
-      blocking: true
-
-  core_requirements:
-    validation_requirements:
-      - Requirements verification
-      - Results validation
-      - Gap analysis
-      - Decision making
-      - Feedback generation
-      - Documentation review
-    blocking: true
-    skip_allowed: false
-
-    output_handling:
-      silent_execution: true
-      output_file: "/opt/mExpress/logs/qa-common.log"
-      error_file: "/opt/mExpress/logs/qa-common-errors.log"
-      required: true
-      blocking: true
+    - Standards compliance verification
 
 # Technical Vocabulary
 vocabulary_control:
-  validation_terms:
-    quality_focus:
-      - Quality verification
-      - Coverage validation
-      - Performance assessment
-      - Security verification
-      - Documentation review
-      - Standards compliance
-      - Evidence collection
-      - Chain preservation
+  required_terms:
+    - Quality verification
+    - Coverage validation
+    - Performance assessment
+    - Security verification
+    - Documentation review
+    - Standards compliance
+    - Evidence collection
 
-    integration_focus:
-      - Boundary validation
-      - Integration verification
-      - System-wide quality
-      - Cross-component validation
-      - Interface standards
-      - Chain management
-      - Security compliance
-      - Documentation completeness
-
-    metrics_focus:
-      - Coverage metrics
-      - Performance metrics
-      - Security metrics
-      - Quality metrics
-      - Evidence metrics
-      - Chain metrics
-      - Resource utilization
-      - Timeline adherence
-      - Process efficiency
-      - Documentation completeness
-
-  core_terms:
-    required_terms:
-      - Requirements validation
-      - Results verification
-      - Quality assurance
-      - Documentation standards
-      - Evidence collection
-      - Decision making
-      - Feedback generation
-      - State management
-      - Process improvement
-      - Continuous monitoring
-
-    validation_focus:
-      - Requirements verification
-      - Results validation
-      - Gap analysis
-      - Decision making
-      - Feedback generation
-      - Documentation review
-      - Process efficiency
-      - Chain compliance
-
-    communication_style:
-      - Be direct and clear
-      - Use validation terminology
-      - Focus on requirements
-      - Maintain professional tone
-      - Provide metrics
-      - Document thoroughly
-      - Use precise terms
-      - Track changes
-
-# Error Handling
-error_handling:
-  validation_errors:
-    required_actions:
-      - Document validation issues
-      - Update validation logs
-      - Create validation reports
-      - Link validation documentation
-      - Track resolution status
-      - Preserve validation state
-      - Handle validation failures
-    blocking: true
-    skip_allowed: false
-
-    error_types:
-      - Coverage validation failures
-      - Performance validation issues
-      - Security validation gaps
-      - Documentation validation errors
-      - Standards compliance violations
-      - Chain preservation failures
-      - Evidence collection issues
-      - State corruption incidents
-
-  integration_errors:
-    required_actions:
-      - Document integration issues
-      - Update integration logs
-      - Create integration reports
-      - Link integration documentation
-      - Track integration fixes
-      - Preserve integration state
-      - Handle integration failures
-    blocking: true
-    skip_allowed: false
-
-    error_types:
-      - Boundary validation failures
-      - Interface compatibility issues
-      - Cross-component errors
-      - System-wide failures
-      - Chain integrity breaks
-      - Integration evidence gaps
-      - State synchronization errors
-
-  core_requirements:
-    required_actions:
-      - Document issues
-      - Update logs
-      - Create reports
-      - Link documentation
-      - Track resolution
-      - Preserve state
-      - Handle failures
-    blocking: true
-    skip_allowed: false
-
-    error_types:
-      - Validation failures
-      - Requirements gaps
-      - Results mismatch
-      - Documentation issues
-      - Standards violations
-      - Process deviations
-      - Chain breaks
-      - State corruption
-
-# Git Integration Requirements
-git_workflow:
-  triggers:
-    - Validation completion
-    - Results documentation
-    - Decision recording
-    - Documentation updates
-    - State changes
-
-  validation_requirements:
-    - Validation documented
-    - Results recorded
-    - Decision made
-    - Documentation updated
-    - Changes tracked
-    - State preserved
-    blocking: true
-    skip_allowed: false
-
-  commit_requirements:
-    package_level:
-      - Package change type identified
-      - Package version update
-      - Package validation references
-      - Package impact documented
-      - Package standards compliance
-      - Package state preserved
-    
-    monorepo_level:
-      - Cross-package changes identified
-      - Integration impact documented
-      - System version alignment
-      - Boundary changes tracked
-      - Integration test references
-      - System state preserved
-    blocking: true
-    skip_allowed: false
-
-  mode_switching:
-    outbound:
-      - Store source state
-      - Validate changes
-      - Prepare commit
-      - Switch to GIT
-      - Create commit
-      - Await return
-      blocking: true
-      skip_allowed: false
-    
-    return_handling:
-      - Process GIT return
-      - Verify commit success
-      - Restore QA state
-      - Process next action
-      - Continue workflow
-      - Handle errors
-      blocking: true
-      skip_allowed: false
-
-    validation:
-      - Operation success
-      - State restoration
-      - Next action clear
-      - Workflow valid
-      blocking: true
-      skip_allowed: false
-
-# State Management
-state_management:
-  flow_control_state:
-    required_actions:
-      - Track flow progress (real-time)
-      - Monitor pipeline health
-      - Document flow transitions
-      - Preserve flow context
-      - Manage stage transitions
-      - Handle flow blockers
-      - Maintain flow history
-      - Enable flow recovery
-      - Process flow returns
-      - Continue flow pipeline
-    blocking: true
-    skip_allowed: false
-
-    state_tracking:
-      flow_progress:
-        fields: ["stage", "status", "completion_rate", "health_metrics"]
-        validation: "required"
-        preservation: "mandatory"
-        blocking: true
-      pipeline_health:
-        fields: ["efficiency", "throughput", "blocker_count", "stage_times"]
-        validation: "required"
-        blocking: true
-      monitoring:
-        fields: ["alerts", "thresholds", "trends", "metrics"]
-        validation: "required"
-        blocking: true
-      transitions:
-        fields: ["current_stage", "next_stage", "blockers", "readiness"]
-        validation: "required"
-        blocking: true
-
-  pipeline_integration_state:
-    required_actions:
-      - Track cross-stage flow
-      - Monitor pipeline metrics
-      - Document stage transitions
-      - Preserve pipeline context
-      - Manage flow handoffs
-      - Handle pipeline blockers
-      - Maintain pipeline history
-      - Enable flow recovery
-      - Process stage returns
-      - Optimize pipeline efficiency
-    blocking: true
-    skip_allowed: false
-
-    state_tracking:
-      pipeline_flow:
-        fields: ["stage_interfaces", "handoff_points", "flow_paths"]
-        validation: "required"
-        preservation: "mandatory"
-        blocking: true
-      pipeline_health:
-        fields: ["throughput", "efficiency", "bottlenecks", "blockers"]
-        validation: "required"
-        blocking: true
-      stage_metrics:
-        fields: ["completion_rates", "return_rates", "cycle_times", "queue_times"]
-        validation: "required"
-        blocking: true
-      flow_decisions:
-        fields: ["stage_status", "flow_direction", "next_stage", "readiness"]
-        validation: "required"
-        blocking: true
-
-  core_flow_requirements:
-    required_actions:
-      - Track flow progress (real-time)
-      - Monitor pipeline health
-      - Document stage transitions
-      - Preserve flow context
-      - Manage handoffs
-      - Handle blockers
-      - Maintain flow history
-      - Enable recovery
-      - Process returns
-      - Optimize pipeline
-    blocking: true
-    skip_allowed: false
-
-    state_tracking:
-      monitoring:
-        fields: ["progress_metrics", "health_metrics", "alert_status", "thresholds"]
-        validation: "required"
-        preservation: "mandatory"
-        blocking: true
-      flow_control:
-        fields: ["stage_progress", "pipeline_health", "blocker_status", "efficiency"]
-        validation: "required"
-        blocking: true
-      reporting:
-        fields: ["hourly_metrics", "daily_health", "alerts", "trends"]
-        validation: "required"
-        blocking: true
-      decisions:
-        fields: ["flow_status", "stage_direction", "next_action", "readiness"]
-        validation: "required"
-        blocking: true
-      recovery:
-        fields: ["alert_handling", "root_causes", "action_plan", "resolution"]
-        validation: "required"
-        blocking: true
-      thresholds:
-        fields: ["progress_limits", "health_limits", "alert_triggers", "recovery_points"]
-        validation: "required"
-        preservation: "mandatory"
-        blocking: true
+  communication_style:
+    - Be direct and clear
+    - Use validation terminology
+    - Focus on requirements
+    - Document decisions thoroughly
+    - Reference relevant standards

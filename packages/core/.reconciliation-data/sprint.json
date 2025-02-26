@@ -1,0 +1,95 @@
+{
+  "id": "RECON-1",
+  "name": "Documentation Reconciliation Sprint",
+  "startDate": "2025-02-26",
+  "endDate": "2025-03-12",
+  "currentDay": 1,
+  "totalDays": 14,
+  "team": [
+    {
+      "name": "Alice",
+      "role": "Backend Developer",
+      "ownedComponents": [
+        "AuthService"
+      ],
+      "tasks": [
+        {
+          "name": "Implement 2FA for AuthService",
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "name": "Bob",
+      "role": "Backend Developer",
+      "ownedComponents": [
+        "UserService"
+      ],
+      "tasks": [
+        {
+          "name": "Documentation validation for UserService",
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "name": "Charlie",
+      "role": "Backend Developer",
+      "ownedComponents": [
+        "PaymentService"
+      ],
+      "tasks": [
+        {
+          "name": "Implement subscription handling",
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "name": "Documentation Team",
+      "role": "Technical Writer",
+      "ownedComponents": [
+        "LoggingService"
+      ],
+      "tasks": [
+        {
+          "name": "Document LoggingService",
+          "status": "NOT_STARTED"
+        }
+      ]
+    }
+  ],
+  "milestones": [
+    {
+      "name": "Sprint Planning",
+      "day": 1,
+      "status": "NOT_STARTED",
+      "description": "Define reconciliation goals and assign tasks"
+    },
+    {
+      "name": "Implementation Phase",
+      "day": 5,
+      "status": "NOT_STARTED",
+      "description": "Focus on implementing missing functionality"
+    },
+    {
+      "name": "Documentation Phase",
+      "day": 8,
+      "status": "NOT_STARTED",
+      "description": "Focus on updating documentation"
+    },
+    {
+      "name": "Verification Phase",
+      "day": 12,
+      "status": "NOT_STARTED",
+      "description": "Verify all gaps are closed"
+    },
+    {
+      "name": "Sprint Review",
+      "day": 14,
+      "status": "NOT_STARTED",
+      "description": "Present results and plan next steps"
+    }
+  ],
+  "blockers": []
+}

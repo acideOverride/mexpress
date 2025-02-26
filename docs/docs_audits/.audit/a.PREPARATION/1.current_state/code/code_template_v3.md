@@ -10,21 +10,21 @@
     <!-- Mode Boundaries -->
     <boundaries>
         <workspace>
-            <primary_path>/docs/implementation/</primary_path>
+            <primary_path>/docs/projects/${project_name}/implementation/</primary_path>
             <allowed_operations>
                 <read>
                     <paths>
-                        - /docs/architecture/
-                        - /docs/business/
-                        - /docs/design/
-                        - /docs/implementation/
-                        - /docs/project/
-                        - /docs/tasks/
+                        - /docs/projects/${project_name}/architecture/
+                        - /docs/projects/${project_name}/business/
+                        - /docs/projects/${project_name}/design/
+                        - /docs/projects/${project_name}/implementation/
+                        - /docs/projects/${project_name}/project/
+                        - /docs/projects/${project_name}/tasks/
                     </paths>
                 </read>
                 <write>
                     <paths>
-                        - /docs/implementation/
+                        - /docs/projects/${project_name}/implementation/
                         - /src/
                         - /tests/
                     </paths>
@@ -109,29 +109,102 @@
             </coverage_validation>
         </task_validation>
 
+        <!-- Downstream Flow -->
         <input_processing>
             <from>taskmanager</from>
             <requirements>
-                - Implementation specifications
-                - Technical requirements
-                - Test requirements
-                - Documentation needs
-                - Coverage thresholds
-                - TDD requirements
-                - Scope boundaries
-                - Authorized files
+                <package_level>
+                    - Package implementation specs
+                    - API requirements
+                    - Breaking changes policy
+                    - Package test requirements
+                    - Package documentation
+                    - Version requirements
+                    - Integration points
+                </package_level>
+
+                <monorepo_level>
+                    - Build configuration
+                    - Shared resources
+                    - Cross-package dependencies
+                    - Integration patterns
+                    - Version alignment
+                    - Resource allocation
+                </monorepo_level>
+
+                <quality_requirements>
+                    - Coverage thresholds
+                    - TDD requirements
+                    - Scope boundaries
+                    - Authorized files
+                    - Evidence requirements
+                </quality_requirements>
             </requirements>
+            <validation>
+                <must_verify>
+                    <package_validation>
+                        - Package task clarity
+                        - API compatibility
+                        - Breaking changes impact
+                        - Integration feasibility
+                    </package_validation>
+
+                    <monorepo_validation>
+                        - Build configuration clarity
+                        - Resource availability
+                        - Cross-package impact
+                        - Integration viability
+                    </monorepo_validation>
+
+                    <quality_validation>
+                        - Quality criteria
+                        - Evidence needs
+                        - Test coverage requirements
+                        - Documentation completeness
+                    </quality_validation>
+                </must_verify>
+            </validation>
         </input_processing>
 
-        <output_generation>
-            <to>debugger</to>
-            <deliverables>
-                - Implemented code
-                - Test coverage
-                - Documentation updates
-                - Quality validations
-            </deliverables>
-        </output_generation>
+        <!-- Implementation Support -->
+        <support_integration>
+            <git_support>
+                - Version control
+                - Change tracking
+                - History preservation
+            </git_support>
+            <debug_support>
+                - Error resolution
+                - Performance optimization
+                - Implementation assistance
+            </debug_support>
+        </support_integration>
+
+        <!-- Upstream Flow -->
+        <qa_verification>
+            <qa_code_report_submission>
+                <to>qa/code_report</to>
+                <content>
+                    - Implementation quality
+                    - Test coverage
+                    - Documentation status
+                    - Standards compliance
+                    - Evidence package
+                </content>
+                <handling>
+                    <accepted_path>
+                        - Forward to TASKMANAGER
+                        - Update implementation status
+                        - Archive evidence
+                    </accepted_path>
+                    <rejected_path>
+                        - Process feedback
+                        - Make improvements
+                        - Prepare resubmission
+                    </rejected_path>
+                </handling>
+            </qa_code_report_submission>
+        </qa_verification>
     </core_workflow>
 
     <!-- Roo Code Analysis -->
@@ -586,28 +659,40 @@
 
             <pattern>
                 <from_mode>code</from_mode>
-                <to_mode>qa</to_mode>
+                <to_mode>qa/code_report</to_mode>
                 <requirements>
                     - Git changes committed
                     - Implementation verified
                     - Tests passing
                     - Documentation complete
-                    - QA payload ready
+                    - Evidence package ready
                 </requirements>
                 <validation_steps>
                     1. Verify git completion
-                    2. Check implementation
-                    3. Validate tests
+                    2. Check implementation quality
+                    3. Validate test coverage
                     4. Review documentation
-                    5. Prepare QA payload
+                    5. Prepare evidence package
                 </validation_steps>
                 <context_preservation>
                     - Maintain implementation state
                     - Preserve test results
                     - Keep documentation updates
                     - Track quality metrics
-                    - Store requirements mapping
+                    - Store evidence chain
                 </context_preservation>
+                <verification_paths>
+                    <accepted>
+                        - Update implementation status
+                        - Forward to TASKMANAGER
+                        - Archive evidence
+                    </accepted>
+                    <rejected>
+                        - Process feedback
+                        - Plan improvements
+                        - Prepare resubmission
+                    </rejected>
+                </verification_paths>
             </pattern>
         </transition_patterns>
     </roo_mode_transitions>
@@ -1188,52 +1273,132 @@
 
         <!-- Testing Extension -->
         <testing_extension>
+            <test_organization>
+                <priority_levels>
+                    <p0>
+                        <name>Critical Tests</name>
+                        <path>/tests/p0</path>
+                        <categories>
+                            <core>Core functionality tests</core>
+                            <api>Critical API tests</api>
+                            <data>Data integrity tests</data>
+                        </categories>
+                        <limits>
+                            <duration>5000</duration>
+                            <memory>512</memory>
+                            <concurrency>1</concurrency>
+                        </limits>
+                    </p0>
+                    <p1>
+                        <name>High Priority Tests</name>
+                        <path>/tests/p1</path>
+                        <categories>
+                            <business>Business logic tests</business>
+                            <integration>Key integration tests</integration>
+                        </categories>
+                        <limits>
+                            <duration>10000</duration>
+                            <memory>1024</memory>
+                            <concurrency>2</concurrency>
+                        </limits>
+                    </p1>
+                    <p2>
+                        <name>Medium Priority Tests</name>
+                        <path>/tests/p2</path>
+                        <categories>
+                            <features>Feature tests</features>
+                            <components>Component tests</components>
+                        </categories>
+                        <limits>
+                            <duration>20000</duration>
+                            <memory>1536</memory>
+                            <concurrency>3</concurrency>
+                        </limits>
+                    </p2>
+                    <p3>
+                        <name>Low Priority Tests</name>
+                        <path>/tests/p3</path>
+                        <categories>
+                            <edge>Edge cases</edge>
+                            <performance>Performance tests</performance>
+                        </categories>
+                        <limits>
+                            <duration>30000</duration>
+                            <memory>2048</memory>
+                            <concurrency>4</concurrency>
+                        </limits>
+                    </p3>
+                </priority_levels>
+            </test_organization>
+
             <automated_testing>
                 <test_command_integration>
                     <tool>
                         <name>execute_command</name>
-                        <purpose>silent_test_execution</purpose>
+                        <purpose>priority_based_test_execution</purpose>
                         <commands>
-                            <test>
-                                <cmd>jest --silent --json --noLocation --out=test.json</cmd>
-                                <log>test.log</log>
-                            </test>
+                            <p0>
+                                <cmd>jest --silent --selectProjects p0 --json --out=tests/results/p0/test.json 2>/dev/null</cmd>
+                                <log>tests/results/p0/test.log</log>
+                            </p0>
+                            <p1>
+                                <cmd>jest --silent --selectProjects p1 --json --out=tests/results/p1/test.json 2>/dev/null</cmd>
+                                <log>tests/results/p1/test.log</log>
+                            </p1>
+                            <p2>
+                                <cmd>jest --silent --selectProjects p2 --json --out=tests/results/p2/test.json 2>/dev/null</cmd>
+                                <log>tests/results/p2/test.log</log>
+                            </p2>
+                            <p3>
+                                <cmd>jest --silent --selectProjects p3 --json --out=tests/results/p3/test.json 2>/dev/null</cmd>
+                                <log>tests/results/p3/test.log</log>
+                            </p3>
                             <coverage>
-                                <cmd>jest --silent --coverage --summary --out=cov.json</cmd>
-                                <log>cov.log</log>
+                                <cmd>jest --silent --coverage --summary --out=tests/results/summary/coverage.json 2>/dev/null</cmd>
+                                <log>tests/results/summary/coverage.log</log>
                             </coverage>
-                            <changes>
-                                <cmd>jest --silent --changed --json --out=chg.json</cmd>
-                                <log>chg.log</log>
-                            </changes>
-                            <types>
-                                <cmd>tsc --noEmit --noLog</cmd>
-                                <log>type.log</log>
-                            </types>
-                            <lint>
-                                <cmd>eslint --quiet --json --out=lint.json</cmd>
-                                <log>lint.log</log>
-                            </lint>
                         </commands>
                     </tool>
                 </test_command_integration>
 
                 <output_structure>
-                    <logs>
-                        <test>test.json,cov.json,chg.json</test>
-                        <check>type.log,lint.log</check>
-                        <error>err.json</error>
-                    </logs>
+                    <base_paths>
+                        <package>packages/[package]/tests/results/</package>
+                        <project>projects/[project]/tests/results/</project>
+                    </base_paths>
+                    <organization>
+                        <test_outputs>
+                            <unit>unit/test.json</unit>
+                            <integration>integration/test.json</integration>
+                            <e2e>e2e/test.json</e2e>
+                            <summary>summary/test-summary.json</summary>
+                        </test_outputs>
+                        <coverage_outputs>
+                            <unit>unit/coverage.json</unit>
+                            <integration>integration/coverage.json</integration>
+                            <e2e>e2e/coverage.json</e2e>
+                            <summary>summary/coverage-summary.json</summary>
+                        </coverage_outputs>
+                        <logs>
+                            <test>tests/results/[test-type]/test.log</test>
+                            <coverage>tests/results/[test-type]/coverage.log</coverage>
+                            <error>tests/results/[test-type]/error.log</error>
+                        </logs>
+                    </organization>
                     <format>
                         - Use JSON for metrics
                         - Keep logs minimal
                         - Store summaries only
                         - Clear after processing
+                        - NEVER output to terminal
+                        - ALWAYS redirect stderr to /dev/null
                     </format>
                     <cleanup>
+                        - Follow package/project structure
+                        - Maintain test category hierarchy
+                        - Archive by test type
                         - Rotate logs daily
-                        - Archive summaries
-                        - Remove raw data
+                        - Remove raw data after processing
                     </cleanup>
                 </output_structure>
 
@@ -1269,7 +1434,7 @@
 
     <!-- Documentation Requirements -->
     <documentation_responsibilities>
-        <primary_location>/opt/mExpress/docs/implementation/</primary_location>
+        <primary_location>/opt/mExpress/docs/projects/${project_name}/implementation/</primary_location>
         <required_documents>
             <document>
                 <name>code-documentation/</name>

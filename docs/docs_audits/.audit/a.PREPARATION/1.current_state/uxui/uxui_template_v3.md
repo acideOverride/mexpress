@@ -11,7 +11,7 @@
     <standards_references>
         <documentation_standards>
             <reference>
-                <path>/opt/mExpress/docs/standards/C1.1_uxui_documentation_standards.md</path>
+                <path>/opt/mExpress/docs/projects/${project_name}/standards/C1.1_uxui_documentation_standards.md</path>
                 <description>Comprehensive documentation standards for design artifacts</description>
                 <sections>
                     <section>Design Process Documentation</section>
@@ -23,7 +23,7 @@
         
         <quality_standards>
             <reference>
-                <path>/opt/mExpress/docs/standards/C1.1.1_uxui_quality_standards.md</path>
+                <path>/opt/mExpress/docs/projects/${project_name}/standards/C1.1.1_uxui_quality_standards.md</path>
                 <description>Quality metrics and standards for design</description>
                 <sections>
                     <section>Design Quality Metrics</section>
@@ -35,7 +35,7 @@
 
         <validation_standards>
             <reference>
-                <path>/opt/mExpress/docs/standards/C1.1.1_uxui_quality_standards.md#validation-frameworks</path>
+                <path>/opt/mExpress/docs/projects/${project_name}/standards/C1.1.1_uxui_quality_standards.md#validation-frameworks</path>
                 <description>Enhanced validation frameworks for design, usability, accessibility, and performance</description>
                 <sections>
                     <section>Automated Validation Tools</section>
@@ -80,24 +80,24 @@
     <!-- Mode Boundaries -->
     <boundaries>
         <workspace>
-            <primary_path>/docs/design/</primary_path>
+            <primary_path>/docs/projects/${project_name}/design/</primary_path>
             <allowed_operations>
                 <read>
                     <paths>
-                        - /docs/design/
-                        - /docs/business/
-                        - /docs/architecture/
-                        - /docs/implementation/
-                        - /docs/project/
-                        - /docs/tasks/
+                        - /docs/projects/${project_name}/design/
+                        - /docs/projects/${project_name}/business/
+                        - /docs/projects/${project_name}/architecture/
+                        - /docs/projects/${project_name}/implementation/
+                        - /docs/projects/${project_name}/project/
+                        - /docs/projects/${project_name}/tasks/
                     </paths>
                 </read>
                 <write>
                     <paths>
-                        - /docs/design/
-                        - /design/artifacts/
-                        - /design/components/
-                        - /design/research/
+                        - /docs/projects/${project_name}/design/
+                        - /docs/projects/${project_name}/design/artifacts/
+                        - /docs/projects/${project_name}/design/components/
+                        - /docs/projects/${project_name}/design/research/
                     </paths>
                 </write>
             </allowed_operations>
@@ -235,17 +235,17 @@
     <!-- Design Environment Configuration -->
     <design_environment>
         <workspace>
-            <base_path>/opt/mExpress/design</base_path>
+            <base_path>/opt/mExpress/docs/projects/${project_name}/design</base_path>
             <directories>
-                <research_path>/opt/mExpress/design/research</research_path>
-                <wireframes_path>/opt/mExpress/design/wireframes</wireframes_path>
-                <prototypes_path>/opt/mExpress/design/prototypes</prototypes_path>
-                <style_guides_path>/opt/mExpress/design/style-guides</style_guides_path>
+                <research_path>/opt/mExpress/docs/projects/${project_name}/design/research</research_path>
+                <wireframes_path>/opt/mExpress/docs/projects/${project_name}/design/wireframes</wireframes_path>
+                <prototypes_path>/opt/mExpress/docs/projects/${project_name}/design/prototypes</prototypes_path>
+                <style_guides_path>/opt/mExpress/docs/projects/${project_name}/design/style-guides</style_guides_path>
             </directories>
             <assets>
-                <design_systems>/opt/mExpress/design/systems</design_systems>
-                <components>/opt/mExpress/design/components</components>
-                <resources>/opt/mExpress/design/resources</resources>
+                <design_systems>/opt/mExpress/docs/projects/${project_name}/design/systems</design_systems>
+                <components>/opt/mExpress/docs/projects/${project_name}/design/components</components>
+                <resources>/opt/mExpress/docs/projects/${project_name}/design/resources</resources>
             </assets>
         </workspace>
 
@@ -269,32 +269,74 @@
     <!-- Design System Configuration -->
     <design_system>
         <structure>
-            <foundations>
-                <colors>managed</colors>
-                <typography>managed</typography>
-                <spacing>managed</spacing>
-                <grid_system>managed</grid_system>
-                <iconography>managed</iconography>
-            </foundations>
+            <package_design_systems>
+                <foundations>
+                    <colors>managed</colors>
+                    <typography>managed</typography>
+                    <spacing>managed</spacing>
+                    <grid_system>managed</grid_system>
+                    <iconography>managed</iconography>
+                    <tokens>
+                        <versioning>managed</versioning>
+                        <sharing>controlled</sharing>
+                        <overrides>tracked</overrides>
+                    </tokens>
+                </foundations>
 
-            <components>
-                <atomic_design>enforced</atomic_design>
-                <hierarchy>
-                    <atoms>tracked</atoms>
-                    <molecules>tracked</molecules>
-                    <organisms>tracked</organisms>
-                    <templates>tracked</templates>
-                    <pages>tracked</pages>
-                </hierarchy>
-            </components>
+                <components>
+                    <atomic_design>enforced</atomic_design>
+                    <hierarchy>
+                        <atoms>tracked</atoms>
+                        <molecules>tracked</molecules>
+                        <organisms>tracked</organisms>
+                        <templates>tracked</templates>
+                        <pages>tracked</pages>
+                    </hierarchy>
+                    <sharing>
+                        <exports>managed</exports>
+                        <imports>controlled</imports>
+                        <overrides>tracked</overrides>
+                    </sharing>
+                </components>
 
-            <patterns>
-                <interaction>documented</interaction>
-                <layout>documented</layout>
-                <navigation>documented</navigation>
-                <forms>documented</forms>
-                <feedback>documented</feedback>
-            </patterns>
+                <patterns>
+                    <interaction>documented</interaction>
+                    <layout>documented</layout>
+                    <navigation>documented</navigation>
+                    <forms>documented</forms>
+                    <feedback>documented</feedback>
+                    <versioning>
+                        <strategy>semantic</strategy>
+                        <breaking_changes>tracked</breaking_changes>
+                        <dependencies>managed</dependencies>
+                    </versioning>
+                </patterns>
+            </package_design_systems>
+
+            <monorepo_design_system>
+                <shared_foundations>
+                    <global_tokens>managed</global_tokens>
+                    <theme_system>managed</theme_system>
+                    <brand_guidelines>enforced</brand_guidelines>
+                    <accessibility_standards>enforced</accessibility_standards>
+                    <responsive_system>managed</responsive_system>
+                </shared_foundations>
+
+                <cross_package_components>
+                    <sharing_strategy>managed</sharing_strategy>
+                    <dependency_management>controlled</dependency_management>
+                    <version_alignment>enforced</version_alignment>
+                    <override_system>tracked</override_system>
+                </cross_package_components>
+
+                <integration_patterns>
+                    <component_composition>documented</component_composition>
+                    <style_inheritance>managed</style_inheritance>
+                    <theme_propagation>controlled</theme_propagation>
+                    <responsive_behavior>enforced</responsive_behavior>
+                    <accessibility_compliance>enforced</accessibility_compliance>
+                </integration_patterns>
+            </monorepo_design_system>
         </structure>
 
         <versioning>
@@ -637,6 +679,25 @@
                             - Interaction patterns
                             - Responsive behavior
                         </validation>
+                        <output_handling>
+                            - Run in silent mode (--silent flag mandatory)
+                            - NEVER output to terminal/console
+                            - ALL output MUST be redirected to files:
+                                * Package tests: packages/[package]/tests/results/[test-type]/
+                                * Project tests: projects/[project]/tests/results/[test-type]/
+                            - ALWAYS redirect stderr to /dev/null
+                            - Follow test directory structure
+                            - Use minimal reporters
+                            - Maintain output organization:
+                                * Unit tests: [results]/unit/
+                                * Integration tests: [results]/integration/
+                                * E2E tests: [results]/e2e/
+                                * Summaries: [results]/summary/
+                            - Control log file sizes:
+                                * Per test type: Max 5MB
+                                * Per results directory: Max 20MB
+                                * Error logs: Max 1MB
+                        </output_handling>
                     </usage>
                 </pattern>
             </design_tools>
@@ -814,7 +875,7 @@
 
     <!-- Documentation Requirements -->
     <documentation_responsibilities>
-        <primary_location>/opt/mExpress/docs/design/</primary_location>
+        <primary_location>/opt/mExpress/docs/projects/${project_name}/design/</primary_location>
         <required_documents>
             <document>
                 <name>design-system.md</name>

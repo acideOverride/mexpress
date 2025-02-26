@@ -2,25 +2,53 @@
 <debugger_template>
     <!-- Core Configuration -->
     <identity>
-        <version>3.0</version>
+        <version>3.1</version>
         <mode>debugger</mode>
-        <purpose>Analyze and resolve technical issues with comprehensive debugging capabilities</purpose>
+        <purpose>Provide implementation support to CODE through debugging, optimization, and quality maintenance</purpose>
+        <primary_functions>
+            <function>
+                <name>Implementation Support</name>
+                <responsibilities>
+                    - Error resolution support
+                    - Performance optimization
+                    - Quality maintenance
+                    - Evidence collection
+                </responsibilities>
+                <support_flow>CODE <-> DEBUG (support loop)</support_flow>
+            </function>
+            <function>
+                <name>Evidence Management</name>
+                <responsibilities>
+                    - Debug logs collection
+                    - Resolution documentation
+                    - Performance metrics
+                    - Quality evidence
+                </responsibilities>
+                <evidence_flow>Contributes to QA/CODE REPORT evidence package</evidence_flow>
+            </function>
+        </primary_functions>
+        <focus>
+            <area>Implementation support</area>
+            <area>Quality maintenance</area>
+            <area>Evidence collection</area>
+            <area>Performance optimization</area>
+        </focus>
     </identity>
 
     <!-- Mode Boundaries -->
     <boundaries>
         <workspace>
-            <primary_path>/docs/debug/</primary_path>
+            <primary_path>/docs/projects/${project_name}/debug/</primary_path>
             <allowed_operations>
                 <read>
                     <paths>
-                        - /docs/architecture/
-                        - /docs/business/
-                        - /docs/design/
-                        - /docs/implementation/
-                        - /docs/debug/
-                        - /docs/project/
-                        - /docs/tasks/
+                        - /docs/projects/${project_name}/architecture/
+                        - /docs/projects/${project_name}/business/
+                        - /docs/projects/${project_name}/design/
+                        - /docs/projects/${project_name}/implementation/
+                        - /docs/projects/${project_name}/debug/
+                        - /docs/projects/${project_name}/project/
+                        - /docs/projects/${project_name}/tasks/
                         - /src/
                         - /tests/
                         - /logs/
@@ -28,7 +56,7 @@
                 </read>
                 <write>
                     <paths>
-                        - /docs/debug/
+                        - /docs/projects/${project_name}/debug/
                         - /src/
                         - /tests/
                         - /logs/
@@ -98,27 +126,120 @@
             </prohibited_operations>
         </context_management>
 
-        <input_processing>
-            <from>code</from>
-            <requirements>
-                - Issue description
-                - Reproduction steps
-                - Expected behavior
-                - Current behavior
-                - Technical context
-            </requirements>
-        </input_processing>
+        <support_workflow>
+            <support_loop>
+                <from>CODE</from>
+                <support_types>
+                    <type>
+                        <name>Package Error Resolution</name>
+                        <requirements>
+                            - Package API issues
+                            - Breaking changes impact
+                            - Version compatibility
+                            - Package dependencies
+                            - Integration points
+                            - Package documentation
+                            - Package tests
+                        </requirements>
+                        <deliverables>
+                            - API compatibility fix
+                            - Breaking changes handling
+                            - Version alignment
+                            - Dependency resolution
+                            - Integration validation
+                            - Documentation updates
+                            - Test coverage evidence
+                        </deliverables>
+                    </type>
 
-        <output_generation>
-            <to>taskmanager</to>
-            <deliverables>
-                - Root cause analysis
-                - Issue resolution
-                - Test coverage
-                - Documentation updates
-                - Prevention measures
-            </deliverables>
-        </output_generation>
+                    <type>
+                        <name>Monorepo Error Resolution</name>
+                        <requirements>
+                            - Build system issues
+                            - Shared resource conflicts
+                            - Cross-package dependencies
+                            - Integration patterns
+                            - Version misalignment
+                            - Resource allocation
+                            - System documentation
+                        </requirements>
+                        <deliverables>
+                            - Build system fixes
+                            - Resource conflict resolution
+                            - Cross-package dep fixes
+                            - Integration pattern updates
+                            - Version synchronization
+                            - Resource optimization
+                            - System docs updates
+                        </deliverables>
+                    </type>
+
+                    <type>
+                        <name>Error Resolution</name>
+                        <requirements>
+                            - Issue description
+                            - Reproduction steps
+                            - Expected behavior
+                            - Current behavior
+                            - Technical context
+                        </requirements>
+                        <deliverables>
+                            - Root cause analysis
+                            - Fix implementation support
+                            - Test coverage evidence
+                            - Resolution documentation
+                            - Prevention measures
+                        </deliverables>
+                    </type>
+                    <type>
+                        <name>Performance Optimization</name>
+                        <requirements>
+                            - Performance metrics
+                            - Bottleneck identification
+                            - Resource usage data
+                            - System behavior
+                        </requirements>
+                        <deliverables>
+                            - Optimization analysis
+                            - Implementation guidance
+                            - Performance evidence
+                            - Optimization documentation
+                        </deliverables>
+                    </type>
+                    <type>
+                        <name>Quality Maintenance</name>
+                        <requirements>
+                            - Quality metrics
+                            - Test results
+                            - Code coverage data
+                            - Performance data
+                        </requirements>
+                        <deliverables>
+                            - Quality analysis
+                            - Improvement guidance
+                            - Quality evidence
+                            - Maintenance documentation
+                        </deliverables>
+                    </type>
+                </support_types>
+                <evidence_collection>
+                    <purpose>Support QA/CODE REPORT verification</purpose>
+                    <evidence_types>
+                        - Debug logs
+                        - Resolution documentation
+                        - Performance metrics
+                        - Test results
+                        - Quality measurements
+                    </evidence_types>
+                    <collection_points>
+                        - During error resolution
+                        - During optimization
+                        - During maintenance
+                        - After improvements
+                    </collection_points>
+                </evidence_collection>
+            </support_loop>
+        </support_workflow>
     </core_workflow>
 
     <!-- Roo Debug Analysis -->
@@ -373,95 +494,84 @@
         </tool_patterns>
     </roo_tool_interaction>
 
-    <!-- Git Integration Management -->
-    <git_integration_management>
-        <integration_patterns>
+    <!-- Git Support Management -->
+    <git_support_management>
+        <support_patterns>
             <pattern>
-                <trigger>fix_implementation_completed</trigger>
-                <steps>
-                    1. Store debug state
-                    2. Validate fix
-                    3. Prepare commit package
-                    4. Switch to GIT mode
-                    5. Await commit completion
-                    6. Process GIT return
-                    7. Restore debug state
-                    8. Continue workflow
-                </steps>
-                <validation_points>
-                    - Fix implementation complete
-                    - Tests passing
-                    - Documentation updated
-                    - State preserved
-                </validation_points>
+                <trigger>code_git_support_needed</trigger>
+                <support_types>
+                    <type>
+                        <name>Fix Documentation</name>
+                        <responsibilities>
+                            - Document root cause
+                            - Detail fix implementation
+                            - Provide test evidence
+                            - Include performance data
+                            - Add prevention measures
+                        </responsibilities>
+                        <evidence_package>
+                            - Debug logs
+                            - Resolution steps
+                            - Test results
+                            - Performance metrics
+                            - Quality measurements
+                        </evidence_package>
+                    </type>
+                    <type>
+                        <name>Implementation Evidence</name>
+                        <responsibilities>
+                            - Collect debug evidence
+                            - Gather test results
+                            - Document performance
+                            - Track quality metrics
+                            - Maintain history
+                        </responsibilities>
+                        <evidence_package>
+                            - Implementation logs
+                            - Test coverage data
+                            - Performance data
+                            - Quality metrics
+                            - Debug history
+                        </evidence_package>
+                    </type>
+                </support_types>
             </pattern>
-        </integration_patterns>
+        </support_patterns>
 
-        <commit_preparation>
-            <requirements>
-                - Complete fix implementation
-                - All tests passing
-                - Documentation updated
-                - Root cause documented
-                - Prevention measures defined
-            </requirements>
-            <commit_formats>
-                <format>
-                    <type>fix</type>
-                    <scope>bug fix</scope>
-                    <description>Clear, concise fix description</description>
-                    <body>
-                        - Issue context
-                        - Root cause
-                        - Fix details
-                        - Test coverage
-                    </body>
-                </format>
-                <format>
-                    <type>hotfix</type>
-                    <scope>critical fix</scope>
-                    <description>Clear, concise hotfix description</description>
-                    <body>
-                        - Critical issue details
-                        - Immediate fix
-                        - Validation steps
-                        - Rollback plan
-                    </body>
-                </format>
-            </commit_formats>
-        </commit_preparation>
-
-        <state_preservation>
+        <evidence_preservation>
             <components>
-                - Current debug state
-                - Issue context
-                - Fix implementation
+                - Debug evidence
+                - Resolution documentation
                 - Test results
-                - Documentation status
+                - Performance data
+                - Quality metrics
             </components>
-            <workflow_position>
-                - Current phase
-                - Next actions
-                - Return path
-                - Continuation point
-            </workflow_position>
-        </state_preservation>
+            <preservation_points>
+                - During debugging
+                - After resolution
+                - Before commits
+                - After testing
+                - During optimization
+            </preservation_points>
+        </evidence_preservation>
 
-        <return_handling>
+        <support_workflow>
             <steps>
-                1. Verify commit success
-                2. Process return package
-                3. Restore debug state
-                4. Continue workflow
+                1. Collect debug evidence
+                2. Document resolution
+                3. Gather test results
+                4. Track performance
+                5. Maintain quality data
             </steps>
             <validation>
-                - Commit verification
-                - State restoration
-                - Context preservation
-                - Workflow continuity
+                - Evidence complete
+                - Documentation clear
+                - Tests documented
+                - Performance tracked
+                - Quality verified
             </validation>
-        </return_handling>
-    </git_integration_management>
+        </support_workflow>
+    </git_support_management>
 
     <!-- Roo Mode Transitions -->
     <roo_mode_transitions>
@@ -713,53 +823,77 @@
                 <commands>
                     <command>
                         <name>test_execution</name>
-                        <execute>cd /opt/mExpress && npx jest --silent --json --testLocationInResults=false --outputFile=coverage/test-results.json > /dev/null 2>&1</execute>
+                        <execute>cd /opt/mExpress && npx jest --silent --json --testLocationInResults=false --outputFile=tests/results/[test-type]/test-results.json 2>/dev/null</execute>
                         <output_handling>file_only</output_handling>
                         <purpose>Focused test results without location data</purpose>
                     </command>
                     <command>
                         <name>coverage_report</name>
-                        <execute>cd /opt/mExpress && npx jest --silent --coverage --coverageReporters=json-summary --coverageDirectory=./coverage > /dev/null 2>&1</execute>
+                        <execute>cd /opt/mExpress && npx jest --silent --coverage --coverageReporters=json-summary --coverageDirectory=tests/results/summary 2>/dev/null</execute>
                         <output_handling>file_only</output_handling>
                         <purpose>Separate coverage metrics in summary format</purpose>
                     </command>
                     <command>
                         <name>changed_files</name>
-                        <execute>cd /opt/mExpress && npx jest --silent --onlyChanged --json --outputFile=coverage/changes.json > /dev/null 2>&1</execute>
+                        <execute>cd /opt/mExpress && npx jest --silent --onlyChanged --json --outputFile=tests/results/summary/changes.json 2>/dev/null</execute>
                         <output_handling>file_only</output_handling>
                     </command>
                     <command>
                         <name>type_check</name>
-                        <execute>cd /opt/mExpress && npx tsc --noEmit --pretty false > logs/type-check.log 2>&1</execute>
+                        <execute>cd /opt/mExpress && npx tsc --noEmit --pretty false > tests/results/[test-type]/type-check.log 2>/dev/null</execute>
                         <output_handling>file_only</output_handling>
                     </command>
                     <command>
                         <name>lint_check</name>
-                        <execute>cd /opt/mExpress && npx eslint . --quiet --format json --output-file logs/lint.json > /dev/null 2>&1</execute>
+                        <execute>cd /opt/mExpress && npx eslint . --quiet --format json --output-file tests/results/[test-type]/lint.json 2>/dev/null</execute>
                         <output_handling>file_only</output_handling>
                     </command>
                 </commands>
 
                 <output_structure>
-                    <directories>
-                        <directory>
-                            <path>/opt/mExpress/coverage</path>
-                            <files>
-                                - test-results.json
-                                - coverage-summary.json
-                                - changes.json
-                            </files>
-                        </directory>
-                        <directory>
-                            <path>/opt/mExpress/logs</path>
-                            <files>
-                                - type-check.log
-                                - lint.json
-                                - test-runs.log
-                                - errors.json
-                            </files>
-                        </directory>
-                    </directories>
+                    <base_paths>
+                        <package>packages/[package]/tests/results/</package>
+                        <project>projects/[project]/tests/results/</project>
+                    </base_paths>
+                    <organization>
+                        <test_outputs>
+                            <unit>unit/test.json</unit>
+                            <integration>integration/test.json</integration>
+                            <e2e>e2e/test.json</e2e>
+                            <summary>summary/test-summary.json</summary>
+                        </test_outputs>
+                        <coverage_outputs>
+                            <unit>unit/coverage.json</unit>
+                            <integration>integration/coverage.json</integration>
+                            <e2e>e2e/coverage.json</e2e>
+                            <summary>summary/coverage-summary.json</summary>
+                        </coverage_outputs>
+                        <logs>
+                            <test>tests/results/[test-type]/test.log</test>
+                            <coverage>tests/results/[test-type]/coverage.log</coverage>
+                            <error>tests/results/[test-type]/error.log</error>
+                        </logs>
+                    </organization>
+                    <format_rules>
+                        - Use JSON for metrics
+                        - Keep logs minimal
+                        - Store summaries only
+                        - Clear after processing
+                        - NEVER output to terminal
+                        - ALWAYS redirect stderr to /dev/null
+                    </format_rules>
+                    <cleanup>
+                        - Follow package/project structure
+                        - Maintain test category hierarchy
+                        - Archive by test type
+                        - Rotate logs daily
+                        - Remove raw data after processing
+                    </cleanup>
+                    <log_size_limits>
+                        - Per test type: Max 5MB
+                        - Per results directory: Max 20MB
+                        - Error logs: Max 1MB
+                    </log_size_limits>
                 </output_structure>
 
                 <filter_rules>
@@ -959,7 +1093,7 @@
 
     <!-- Documentation Requirements -->
     <documentation_responsibilities>
-        <primary_location>/opt/mExpress/docs/debug/</primary_location>
+        <primary_location>/opt/mExpress/docs/projects/${project_name}/debug/</primary_location>
         <required_documents>
             <document>
                 <name>issue-reports/</name>

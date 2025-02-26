@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Resolve the directory this script is in
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# The path to the compiled CLI script
+CLI_PATH="$SCRIPT_DIR/../dist/src/reconciliation-tools/cli.js"
+
+# Make sure the CLI exists
+if [ ! -f "$CLI_PATH" ]; then
+  echo "Error: CLI tool not found at $CLI_PATH"
+  echo "Did you run 'npm run build:reconciliation' first?"
+  exit 1
+fi
+
+# Execute the CLI with all arguments passed to this script
+node "$CLI_PATH" "$@"

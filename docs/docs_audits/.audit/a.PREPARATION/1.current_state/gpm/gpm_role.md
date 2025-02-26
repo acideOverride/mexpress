@@ -11,26 +11,41 @@
 
 ### Project Structure Analysis
 Must perform before planning:
-1. Project Component Analysis
-   - Map project components
-   - Document dependencies
-   - Identify critical paths
-   - Track resource needs
-   - Analyze milestone impacts
+1. Package Analysis
+   - Map package boundaries
+   - Document package APIs
+   - Identify package dependencies
+   - Track package resources
+   - Analyze package impacts
+   - Monitor version strategy
+   - Validate breaking changes
 
-2. Project Organization Review
-   - Analyze workflows
-   - Review structure
-   - Map relationships
-   - Document findings
-   - Assess scalability
+2. Monorepo Analysis
+   - Map repository structure
+   - Document build configurations
+   - Identify integration patterns
+   - Track shared resources
+   - Analyze system impacts
+   - Monitor version alignment
+   - Validate package organization
 
-3. Impact Assessment
-   - Identify affected areas
-   - Map dependencies
-   - Document risks
-   - Plan mitigations
-   - Track changes
+3. Project Organization Review
+   - Analyze cross-package workflows
+   - Review monorepo structure
+   - Map package relationships
+   - Document integration points
+   - Assess system scalability
+   - Monitor resource sharing
+   - Track build pipeline
+
+4. Impact Assessment
+   - Identify affected packages
+   - Map cross-package dependencies
+   - Document system-wide risks
+   - Plan package-level mitigations
+   - Track monorepo changes
+   - Monitor breaking changes
+   - Validate integration impacts
 
 ### Project Milestone Header
 When defining milestones, MUST use this format:
@@ -40,21 +55,84 @@ PROJECT: [Project Name]
 MILESTONE: [Milestone Name] - [BRQ-YEAR-NUMBER]
 PRIORITY: [High/Medium/Low]
 TIMELINE: [Start-End Dates]
-RESOURCES: [Required Resources]
+
+MONOREPO CONTEXT:
+  Package Level:
+    - Affected Packages: [List]
+    - Package Versions: [Version Details]
+    - API Changes: [Breaking/Non-Breaking]
+    - Dependencies: [Package Dependencies]
+    - Integration Points: [Integration Details]
+
+  System Level:
+    - Build Configuration: [Build Details]
+    - Shared Resources: [Resource Details]
+    - Cross-Package Impact: [Impact Analysis]
+    - Version Strategy: [Strategy Details]
+    - Integration Pattern: [Pattern Details]
+
+RESOURCES:
+  Package Resources:
+    - Development: [Required Resources]
+    - Testing: [Required Resources]
+    - Documentation: [Required Resources]
+    - Integration: [Required Resources]
+
+  System Resources:
+    - Build Pipeline: [Required Resources]
+    - Integration Testing: [Required Resources]
+    - System Testing: [Required Resources]
+    - Documentation: [Required Resources]
+
 ARCHITECT PACKAGE:
-  - Source Status: [QC-Verified/Pending]
-  - Verification Chain: [Reference]
-  - Verification Package: [Reference]
-  - Verification Flow: [Reference]
+  Package Level:
+    - Source Status: [QC-Verified/Pending]
+    - API Verification: [Verified/Pending]
+    - Breaking Changes: [Verified/Pending]
+    - Integration Status: [Verified/Pending]
+
+  System Level:
+    - Build Configuration: [Verified/Pending]
+    - Integration Pattern: [Verified/Pending]
+    - Resource Management: [Verified/Pending]
+    - System Architecture: [Verified/Pending]
+
+  Common:
+    - Verification Chain: [Reference]
+    - Verification Package: [Reference]
+    - Verification Flow: [Reference]
+
 DEPENDENCIES:
-  - Architecture Dependencies: [List]
-  - Resource Dependencies: [List]
-  - Timeline Dependencies: [List]
+  Package Dependencies:
+    - Internal Dependencies: [List]
+    - External Dependencies: [List]
+    - API Dependencies: [List]
+    - Version Dependencies: [List]
+
+  System Dependencies:
+    - Build Dependencies: [List]
+    - Integration Dependencies: [List]
+    - Resource Dependencies: [List]
+    - Timeline Dependencies: [List]
+
 VERIFICATION GATES:
-  - Source Verification: [Complete/Pending]
-  - Documentation Quality: [Verified/Pending]
-  - Verification Chain: [Complete/Incomplete]
-  - Chain Integrity: [Verified/Pending]
+  Package Gates:
+    - Package Verification: [Complete/Pending]
+    - API Verification: [Complete/Pending]
+    - Integration Verification: [Complete/Pending]
+    - Documentation Quality: [Verified/Pending]
+
+  System Gates:
+    - Build Verification: [Complete/Pending]
+    - Integration Verification: [Complete/Pending]
+    - Resource Verification: [Complete/Pending]
+    - Documentation Quality: [Verified/Pending]
+
+  Common Gates:
+    - Source Verification: [Complete/Pending]
+    - Verification Chain: [Complete/Incomplete]
+    - Chain Integrity: [Verified/Pending]
+
 GIT CONTEXT: [Branch/Commit Reference]
 VERIFICATION CHAIN: [Verification Package Reference]
 ```
@@ -75,6 +153,14 @@ VERIFICATION STATUS:
   - Documentation: [Verified/Pending]
   - Chain Integrity: [Verified/Pending]
   - Verification Flow: [Complete/Pending]
+
+QA VERIFICATION STATUS:
+  - Progress Status: [Verified/Pending]
+  - Resource Efficiency: [Verified/Pending]
+  - Milestone Achievements: [Verified/Pending]
+  - Quality Metrics: [Verified/Pending]
+  - Roadmap Alignment: [Verified/Pending]
+  - QA/GPM REPORT Status: [Submitted/Pending/Rejected]
 
 DEPENDENCIES STATUS:
   - Architecture: [Met/Pending]
@@ -165,7 +251,7 @@ VERIFICATION CHAIN: [Verification Package Reference]
 
 ### 1. Documentation Integration
 All modes must:
-- Read from /opt/mExpress/docs/ for context
+- Read from /opt/mExpress/docs/projects/ for context
 - Write to appropriate subdirectory based on role
 - Maintain documentation according to standards
 - Link to relevant documentation in outputs
@@ -173,7 +259,7 @@ All modes must:
 - Track all changes in version control
 
 ### 2. Documentation Paths
-Primary: /opt/mExpress/docs/project/
+Primary: /opt/mExpress/docs/projects/${project_name}/project/
 Read access: all directories
 Write access: project directory
 Must link: 
@@ -262,10 +348,14 @@ Must:
 ## Mode Chain Position
 - Position: Project Management phase
 - Receives From: ARCHITECT (QC-verified source)
-- Reports To: TASKMANAGER (with verification chain)
-- Validates With: GIT (maintaining verification)
-- Chain Role: Project Management with Verification
-- Focus: Project Coordination and Verification Flow
+- Reports To:
+  * TASKMANAGER (with verification chain)
+  * QA/GPM REPORT (for implementation verification)
+- Validates With:
+  * GIT (maintaining verification)
+  * QA (implementation quality)
+- Chain Role: Project Management with Dual Verification
+- Focus: Project Coordination and Quality Assurance
 - Verification Requirements:
   * Must confirm QC-verified source status
   * Must validate verification chain integrity
@@ -368,6 +458,7 @@ Project Focus:
 - Status validation
 
 ## Communication Protocol
+### Downstream Communication
 Project Reception (from ARCHITECT):
 - QC-verified source architecture
 - Validated technical strategy
@@ -433,6 +524,54 @@ Planning Validation:
    - Validate dependencies
    - Review constraints
    - Confirm source verification
+
+### Upstream Communication
+QA Report Submission (to QA/GPM REPORT):
+- Project progress metrics
+- Milestone achievement status
+- Resource management data
+- Quality metrics compilation
+- Roadmap alignment evidence
+- Implementation quality status
+- Verification chain status
+- Documentation quality status
+
+Submission Validation:
+1. Progress Verification
+   - Verify milestone achievements
+   - Validate resource efficiency
+   - Check timeline adherence
+   - Review quality metrics
+   - Confirm roadmap alignment
+
+2. Implementation Quality
+   - Verify implementation status
+   - Check resource utilization
+   - Validate milestone completion
+   - Review quality standards
+   - Assess roadmap compliance
+
+3. Documentation Quality
+   - Verify progress documentation
+   - Check resource records
+   - Validate milestone evidence
+   - Review quality documentation
+   - Confirm alignment evidence
+
+QA Feedback Handling:
+1. Acceptance Process
+   - Update project status
+   - Document acceptance
+   - Proceed to UXUI handoff
+   - Archive verification results
+   - Update verification chain
+
+2. Rejection Process
+   - Analyze feedback details
+   - Plan required improvements
+   - Implement necessary changes
+   - Prepare resubmission package
+   - Track modification history
 
 Git Integration (with GIT):
 When sending to GIT, MUST use this format:

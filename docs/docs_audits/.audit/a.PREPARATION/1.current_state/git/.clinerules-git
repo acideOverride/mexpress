@@ -19,7 +19,7 @@
 - Quality context maintenance
 
 # Documentation Location
-/opt/mExpress/docs/git/
+/opt/mExpress/docs/projects/${project_name}/git/
 
 # Required Documents
 1. repository-management.md
@@ -106,42 +106,125 @@ project_structure_analysis:
     - Risk assessment
 
 # Version Control Focus
-1. Repository Patterns
-   - Clean history
-   - Branch management
-   - Merge handling
-   - Conflict resolution
-   - History preservation
+1. Package Level Control
+   repository_patterns:
+     - Package-specific branches
+     - Feature isolation
+     - Version tagging
+     - Release management
+     - History preservation
+   quality_attributes:
+     - Package commit quality
+     - Branch organization
+     - Version integrity
+     - Documentation completeness
+     - Cross-package impact
+   management_patterns:
+     - Package versioning
+     - Change tracking
+     - Dependency updates
+     - Health monitoring
+     - Integration status
 
-2. Quality Attributes
-   - Commit quality
-   - Branch structure
-   - Merge integrity
-   - History clarity
-   - Documentation completeness
+2. Monorepo Level Control
+   repository_patterns:
+     - Global branch strategy
+     - Cross-package merges
+     - System-wide tags
+     - Release coordination
+     - History consistency
+   quality_attributes:
+     - Repository structure
+     - Branch organization
+     - Integration integrity
+     - Documentation standards
+     - System coherence
+   management_patterns:
+     - Version alignment
+     - Change propagation
+     - Dependency management
+     - Health verification
+     - Backup strategy
 
-3. Management Patterns
-   - Version control
-   - Change tracking
-   - Conflict handling
-   - Health monitoring
-   - Backup management
+3. Integration Patterns
+   cross_package:
+     - Dependency tracking
+     - Version synchronization
+     - Breaking change management
+     - Integration testing
+     - Conflict resolution
+   system_wide:
+     - Build coordination
+     - Release management
+     - Version control
+     - Documentation updates
+     - Health monitoring
 
 # Repository Metrics Framework
 repository_metrics:
-  collection_points:
-    - Size thresholds
-    - Performance benchmarks
-    - Operation timing
-  monitoring:
-    - Trend analysis
-    - Alert thresholds
-    - Health indicators
+  package_metrics:
+    collection_points:
+      - Package size tracking
+      - Version metrics
+      - Dependency stats
+      - Change frequency
+      - Integration metrics
+    thresholds:
+      size: "< 100MB per package"
+      changes: "< 100 per day"
+      dependencies: "< 20 direct deps"
+      integration: "< 4h between syncs"
+    monitoring:
+      - Package growth rate
+      - Version alignment
+      - Dependency health
+      - Integration status
+      - Breaking changes
+
+  monorepo_metrics:
+    collection_points:
+      - Total repository size
+      - Cross-package metrics
+      - Build performance
+      - System integration
+      - Global health
+    thresholds:
+      size: "< 10GB total"
+      build_time: "< 30min"
+      integration: "< 24h for system"
+      cross_package: "< 50 deps"
+    monitoring:
+      - System growth rate
+      - Build performance
+      - Integration health
+      - Dependency graphs
+      - Version alignment
+
   reporting:
-    - Metric dashboards
-    - Trend visualization
-    - Alert notifications
+    package_reports:
+      - Size trends
+      - Version status
+      - Dependency maps
+      - Integration metrics
+      - Health indicators
+    monorepo_reports:
+      - System metrics
+      - Build analytics
+      - Cross-package stats
+      - Health dashboard
+      - Alert summaries
+
   validation:
+    package_validation:
+      - Size compliance
+      - Version integrity
+      - Dependency health
+      - Integration status
+    monorepo_validation:
+      - System health
+      - Build performance
+      - Integration integrity
+      - Global compliance
     required: true
     blocking: true
 
@@ -305,13 +388,24 @@ commit_reception:
     Verification Chain: [Chain Status]
     Quality Context: [Quality Status]
     Validation History: [History Status]
+  MONOREPO CONTEXT:
+    Package: [Package Name]
+    Version: [Package Version]
+    Dependencies: [Affected Dependencies]
+    Cross-Package Impact: [Yes/No]
+    Integration Status: [Status]
   COMMIT TYPE: [Feature/Fix/Docs/Refactor]
   SCOPE: [Component/Module Name]
-  IMPACT: [Files Changed Count]
+  IMPACT:
+    Files Changed: [Count]
+    Packages Affected: [Count]
+    Breaking Changes: [Yes/No]
   VERIFICATION:
     Chain Integrity: [Status]
     Quality Preservation: [Status]
     Validation Status: [Status]
+    Package Validation: [Status]
+    Integration Validation: [Status]
   RETURN PATH: [Source Agent Return Details]
   """
   required_fields: [
@@ -327,12 +421,21 @@ commit_reception:
     "Chain Status",
     "Quality Status",
     "History Status",
+    "Package Name",
+    "Package Version",
+    "Affected Dependencies",
+    "Cross-Package Impact",
+    "Integration Status",
     "COMMIT TYPE",
     "Component/Module Name",
     "Files Changed Count",
+    "Packages Affected Count",
+    "Breaking Changes Status",
     "Chain Integrity",
     "Quality Preservation",
     "Validation Status",
+    "Package Validation Status",
+    "Integration Validation Status",
     "Source Agent Return Details"
   ]
 
@@ -502,6 +605,26 @@ error_handling:
       type: "branch_issue",
       severity: "medium",
       action: ["Document problem", "Suggest fix", "Monitor status"]
+    },
+    {
+      type: "package_dependency_error",
+      severity: "high",
+      action: ["Block integration", "Document dependency issues", "Request package update"]
+    },
+    {
+      type: "cross_package_conflict",
+      severity: "high",
+      action: ["Block merge", "Document cross-package impact", "Request coordination"]
+    },
+    {
+      type: "version_alignment_error",
+      severity: "medium",
+      action: ["Flag version mismatch", "Document version requirements", "Request synchronization"]
+    },
+    {
+      type: "integration_failure",
+      severity: "high",
+      action: ["Block system integration", "Document integration issues", "Request package fixes"]
     }
   ]
 

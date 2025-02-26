@@ -1,19 +1,50 @@
 # Debugger Mode Specific Instructions
 
 # Primary Responsibilities
-- Issue analysis
-- Root cause identification
-- Resolution validation
-- Regression testing
-- Performance profiling
-- Security verification
-- Prevention planning
-- Documentation maintenance
-- Version control integration
-- Fix tracking
+
+1. Implementation Support (CODE <-> DEBUG loop):
+   - Error Resolution:
+     * Issue analysis
+     * Root cause identification
+     * Fix implementation support
+     * Resolution validation
+   - Performance Optimization:
+     * Performance profiling
+     * Bottleneck identification
+     * Optimization guidance
+     * Metrics collection
+   - Quality Maintenance:
+     * Code quality analysis
+     * Test coverage support
+     * Standards compliance
+     * Prevention planning
+
+2. Evidence Management (QA/CODE REPORT support):
+   - Evidence Collection:
+     * Debug logs and analysis
+     * Resolution documentation
+     * Performance metrics
+     * Test results
+   - Evidence Preservation:
+     * Maintain debug history
+     * Track quality metrics
+     * Document improvements
+     * Version evidence
+
+3. Support Documentation:
+   - Technical Documentation:
+     * Issue analysis
+     * Resolution details
+     * Performance data
+     * Quality metrics
+   - Evidence Documentation:
+     * Debug evidence
+     * Test coverage
+     * Quality measurements
+     * Version history
 
 # Documentation Location
-/opt/mExpress/docs/debug/
+/opt/mExpress/docs/projects/${project_name}/debug/
 
 # Required Documents
 1. issue-analysis.md
@@ -116,39 +147,143 @@ project_structure_analysis:
 
 # Debug Session Management
 debug_session:
-  organization:
-    - Session boundaries
-    - Context preservation
-    - Resource cleanup
-  tracking:
-    - Active sessions
-    - Resource usage
-    - Context limits
-  cleanup:
-    - Session termination
-    - Resource release
-    - Context reset
-  validation:
-    required: true
-    blocking: true
+  package_session:
+    organization:
+      - Package boundaries
+      - API contracts
+      - Dependency context
+      - Version state
+      - Cross-package links
+    tracking:
+      - Package-specific issues
+      - API compatibility
+      - Dependency health
+      - Version alignment
+      - Integration status
+    cleanup:
+      - Package state reset
+      - API context clear
+      - Dependency cleanup
+      - Version state reset
+      - Integration cleanup
+    validation:
+      required: true
+      blocking: true
+
+  monorepo_session:
+    organization:
+      - Repository structure
+      - Build configuration
+      - Package organization
+      - Integration patterns
+      - Shared resources
+    tracking:
+      - System-wide issues
+      - Build problems
+      - Integration failures
+      - Cross-package conflicts
+      - Shared code issues
+    cleanup:
+      - System state reset
+      - Build context clear
+      - Integration cleanup
+      - Cross-package reset
+      - Shared resource cleanup
+    validation:
+      required: true
+      blocking: true
+
+  standard_session:
+    organization:
+      - Session boundaries
+      - Context preservation
+      - Resource cleanup
+    tracking:
+      - Active sessions
+      - Resource usage
+      - Context limits
+    cleanup:
+      - Session termination
+      - Resource release
+      - Context reset
+    validation:
+      required: true
+      blocking: true
 
 # Evidence Collection Framework
 evidence_framework:
-  collection_points:
-    - Issue reproduction
-    - Root cause analysis
-    - Fix validation
-  storage:
-    - Evidence location
-    - Retention policy
-    - Access control
-  validation:
-    - Evidence completeness
-    - Chain integrity
-    - Accessibility
+  support_evidence:
+    error_resolution:
+      collection_points:
+        - During issue analysis
+        - During root cause identification
+        - During fix implementation
+        - After resolution validation
+      evidence_types:
+        - Debug logs
+        - Analysis documentation
+        - Resolution steps
+        - Test results
+        - Prevention measures
+
+    performance_optimization:
+      collection_points:
+        - During profiling
+        - During bottleneck analysis
+        - During optimization
+        - After improvements
+      evidence_types:
+        - Performance metrics
+        - Bottleneck analysis
+        - Optimization steps
+        - Improvement results
+        - Validation data
+
+    quality_maintenance:
+      collection_points:
+        - During code analysis
+        - During test support
+        - During standards review
+        - After improvements
+      evidence_types:
+        - Quality metrics
+        - Test coverage data
+        - Standards compliance
+        - Improvement documentation
+        - Validation results
+
+  evidence_management:
+    storage:
+      location: "/opt/mExpress/docs/projects/${project_name}/debug/evidence/"
+      organization:
+        - By support type
+        - By collection point
+        - By evidence type
+      retention:
+        policy: "Keep latest 30 days"
+        exceptions: "Keep all critical evidence"
+
+    contribution:
+      destination: "QA/CODE REPORT"
+      package_preparation:
+        - Organize by type
+        - Include all evidence
+        - Maintain chronology
+        - Preserve context
+      validation:
+        - Package completeness
+        - Evidence integrity
+        - Context preservation
+        - Chain maintenance
+
   validation:
     required: true
     blocking: true
+    requirements:
+      - All evidence collected
+      - Properly organized
+      - Context preserved
+      - Chain maintained
 
 # Incremental Debug Process
 incremental_debugging:
@@ -357,9 +492,46 @@ debug_validation:
     - Control versions
 
   output_handling:
-    silent_execution: true
-    output_file: "/opt/mExpress/logs/debug-tests.log"
-    error_file: "/opt/mExpress/logs/debug-errors.log"
+    execution_mode: "silent"
+    output_structure:
+      # Package-specific outputs
+      package_tests:
+        base_path: "packages/[package]/tests/results/"
+        structure:
+          - unit/test.log
+          - integration/test.log
+          - e2e/test.log
+          - summary/coverage.log
+          - summary/metrics.log
+      # Project-specific outputs
+      project_tests:
+        base_path: "projects/[project]/tests/results/"
+        structure:
+          - unit/test.log
+          - integration/test.log
+          - e2e/test.log
+          - summary/coverage.log
+          - summary/metrics.log
+    format_rules:
+      - Use text-summary for test reports
+      - Minimize stack trace information
+      - Filter out test location data
+      - Exclude debug information
+      - Compress error context
+      - NEVER output to terminal/console
+      - ALWAYS redirect stderr to /dev/null
+    retention:
+      keep_latest: true
+      cleanup_old: true
+      organization:
+        - Follow package/project structure
+        - Maintain test category hierarchy
+        - Archive by test type
+        - Clean up by directory
+    log_size_limits:
+      - Per test type: Max 5MB
+      - Per results directory: Max 20MB
+      - Error logs: Max 1MB
 
 # Technical Vocabulary
 vocabulary_control:
@@ -421,25 +593,49 @@ error_handling:
     - Handle failures
 
   error_types:
+    # Package Debug Errors
+    package_errors:
+      - Package boundary violations
+      - API compatibility issues
+      - Package dependency conflicts
+      - Version mismatch problems
+      - Cross-package communication failures
+      - Package integration errors
+      - Package test failures
+      - Package build issues
+
+    # Monorepo Debug Errors
+    monorepo_errors:
+      - Repository structure issues
+      - Build configuration failures
+      - Package organization problems
+      - Integration pattern violations
+      - Shared code conflicts
+      - Version alignment errors
+      - Cross-package dependency issues
+      - System-wide integration failures
+
     # Standard Debug Errors
-    - Debug failures
-    - Test regressions
-    - Performance issues
-    - Security problems
-    - Documentation gaps
-    - Version control errors
-    - State corruption
-    - Mode switching failures
+    standard_errors:
+      - Debug failures
+      - Test regressions
+      - Performance issues
+      - Security problems
+      - Documentation gaps
+      - Version control errors
+      - State corruption
+      - Mode switching failures
 
     # Context Management Errors
-    - Context threshold violations
-    - Log loading context overflow
-    - Stack trace context limit reached
-    - Debug session context exceeded
-    - Context warning threshold (70%) reached
-    - Context critical threshold (85%) reached
-    - Debug data chunking failure
-    - Incremental loading failure
+    context_errors:
+      - Context threshold violations
+      - Log loading context overflow
+      - Stack trace context limit reached
+      - Debug session context exceeded
+      - Context warning threshold (70%) reached
+      - Context critical threshold (85%) reached
+      - Debug data chunking failure
+      - Incremental loading failure
 
 # State Management
 state_management:

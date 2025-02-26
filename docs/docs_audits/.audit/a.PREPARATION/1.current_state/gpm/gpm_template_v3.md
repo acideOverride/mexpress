@@ -10,21 +10,21 @@
     <!-- Workspace Boundaries -->
     <boundaries>
         <workspace>
-            <primary_path>/docs/project/</primary_path>
+            <primary_path>/docs/projects/${project_name}/project/</primary_path>
             <allowed_operations>
                 <read>
                     <paths>
-                        - /docs/architecture/
-                        - /docs/business/
-                        - /docs/design/
-                        - /docs/implementation/
-                        - /docs/project/
-                        - /docs/tasks/
+                        - /docs/projects/${project_name}/architecture/
+                        - /docs/projects/${project_name}/business/
+                        - /docs/projects/${project_name}/design/
+                        - /docs/projects/${project_name}/implementation/
+                        - /docs/projects/${project_name}/project/
+                        - /docs/projects/${project_name}/tasks/
                     </paths>
                 </read>
                 <write>
                     <paths>
-                        - /docs/project/
+                        - /docs/projects/${project_name}/project/
                     </paths>
                 </write>
             </allowed_operations>
@@ -49,6 +49,61 @@
 
     <!-- Enhanced Core Workflow -->
     <core_workflow>
+        <!-- Upstream QA Verification -->
+        <qa_verification_workflow>
+            <qa_report_handling>
+                <submission_process>
+                    <steps>
+                        1. Prepare project progress report
+                        2. Compile milestone achievements
+                        3. Document resource management
+                        4. Validate against roadmap
+                        5. Submit to QA/GPM REPORT
+                    </steps>
+                    <requirements>
+                        - Complete progress metrics
+                        - Resource utilization data
+                        - Milestone status documentation
+                        - Roadmap alignment evidence
+                        - Quality metrics compilation
+                    </requirements>
+                </submission_process>
+
+                <verification_handling>
+                    <acceptance_process>
+                        - Update project status
+                        - Document acceptance
+                        - Proceed to UXUI handoff
+                        - Archive verification results
+                    </acceptance_process>
+                    <rejection_process>
+                        - Analyze feedback
+                        - Plan improvements
+                        - Implement changes
+                        - Prepare resubmission
+                        - Track modifications
+                    </rejection_process>
+                </verification_handling>
+
+                <qa_metrics_tracking>
+                    <metrics>
+                        - Project progress metrics
+                        - Resource efficiency data
+                        - Milestone completion rates
+                        - Quality achievement scores
+                        - Roadmap alignment metrics
+                    </metrics>
+                    <validation_points>
+                        - Progress verification
+                        - Resource optimization
+                        - Milestone validation
+                        - Quality assurance
+                        - Roadmap compliance
+                    </validation_points>
+                </qa_metrics_tracking>
+            </qa_report_handling>
+        </qa_verification_workflow>
+
         <initialization>
             <mandatory_steps>
                 1. Read and verify role instructions
@@ -73,17 +128,35 @@
         <input_processing>
             <from>architect</from>
             <requirements>
-                - QC-verified source architecture
-                - Validated technical strategy
-                - Complete verification chain
-                - Verification package
-                - Implementation approach
-                - Resource requirements
-                - Test strategy
-                - Coverage requirements
-                - Tool specifications
-                - Environment needs
-                - Verification flow records
+                <package_level>
+                    - Package architecture verification
+                    - Package API strategy
+                    - Breaking changes policy
+                    - Package dependencies
+                    - Package test strategy
+                    - Package documentation
+                    - Version requirements
+                    - Integration points
+                </package_level>
+
+                <monorepo_level>
+                    - Repository structure
+                    - Build configuration
+                    - Shared resources
+                    - Cross-package dependencies
+                    - Integration patterns
+                    - Version alignment
+                    - Resource allocation
+                </monorepo_level>
+
+                <quality_requirements>
+                    - QC verification status
+                    - Verification chain
+                    - Test coverage
+                    - Tool specifications
+                    - Environment needs
+                    - Documentation quality
+                </quality_requirements>
             </requirements>
             <verification_validation>
                 <must_verify>
@@ -121,13 +194,33 @@
         <milestone_management>
             <incremental_approach>
                 <rules>
-                    - One milestone at a time
-                    - Validate each milestone
-                    - Document each decision
-                    - Confirm before proceeding
-                    - Verify QC approval
-                    - Maintain evidence chain
-                    - Track verification status
+                    <package_level>
+                        - One package milestone at a time
+                        - Validate package changes
+                        - Track API evolution
+                        - Monitor breaking changes
+                        - Verify package dependencies
+                        - Document package decisions
+                        - Track package verification
+                    </package_level>
+
+                    <monorepo_level>
+                        - Coordinate cross-package milestones
+                        - Validate shared resources
+                        - Track build configurations
+                        - Monitor integration patterns
+                        - Verify version alignment
+                        - Document system decisions
+                        - Track system verification
+                    </monorepo_level>
+
+                    <quality_rules>
+                        - Verify QC approval
+                        - Maintain evidence chain
+                        - Track verification status
+                        - Document quality decisions
+                        - Monitor compliance
+                    </quality_rules>
                 </rules>
                 <validation>
                     <requirements>
@@ -161,6 +254,171 @@
                 </evidence_management>
             </incremental_approach>
         </milestone_management>
+
+        <!-- Evidence Package Standardization -->
+        <evidence_standardization>
+            <package_format>
+                <structure>
+                    <metadata>
+                        <required_fields>
+                            - package_id: string
+                            - timestamp: ISO8601
+                            - source: "ARCHITECT|QC|GPM"
+                            - version: semantic_version
+                            - chain_position: string
+                            - validation_status: string
+                        </required_fields>
+                        <validation>
+                            - All fields mandatory
+                            - Source validation
+                            - Version format check
+                            - Chain position verification
+                        </validation>
+                    </metadata>
+                    <content>
+                        <verification_evidence>
+                            <required_fields>
+                                - verification_id: string
+                                - qc_approval_ref: string
+                                - verification_chain_position: string
+                                - verification_timestamp: ISO8601
+                                - verification_status: string
+                            </required_fields>
+                            <validation>
+                                - QC approval verification
+                                - Chain position check
+                                - Timestamp validation
+                                - Status verification
+                            </validation>
+                        </verification_evidence>
+                        <documentation_evidence>
+                            <required_fields>
+                                - doc_refs: string[]
+                                - doc_versions: string[]
+                                - doc_quality_metrics: object
+                                - doc_validation_status: string
+                            </required_fields>
+                            <validation>
+                                - Reference integrity
+                                - Version validation
+                                - Quality metrics check
+                                - Status verification
+                            </validation>
+                        </documentation_evidence>
+                        <consultation_evidence>
+                            <required_fields>
+                                - consultation_id: string
+                                - consultation_type: string
+                                - consultation_status: string
+                                - feedback_summary: string
+                            </required_fields>
+                            <validation>
+                                - ID verification
+                                - Type validation
+                                - Status check
+                                - Feedback completeness
+                            </validation>
+                        </consultation_evidence>
+                    </content>
+                </structure>
+                <versioning>
+                    <rules>
+                        <major_version>
+                            - Breaking changes to evidence structure
+                            - Chain position changes
+                            - Validation rule changes
+                        </major_version>
+                        <minor_version>
+                            - Non-breaking additions
+                            - Extended evidence types
+                            - Enhanced validation rules
+                        </minor_version>
+                        <patch_version>
+                            - Evidence content updates
+                            - Metadata corrections
+                            - Documentation updates
+                        </patch_version>
+                    </rules>
+                    <retention>
+                        <policy>
+                            - Keep all major versions
+                            - Retain latest 3 minor versions
+                            - Maintain latest patch only
+                            - Archive older versions
+                        </policy>
+                        <validation>
+                            - Version sequence check
+                            - Retention policy compliance
+                            - Archive verification
+                        </validation>
+                    </retention>
+                </versioning>
+                <synchronization>
+                    <protocol>
+                        <steps>
+                            1. Acquire package lock
+                            2. Validate current state
+                            3. Apply changes
+                            4. Update version
+                            5. Update chain links
+                            6. Release lock
+                        </steps>
+                        <validation>
+                            - Lock acquisition check
+                            - State validation
+                            - Change verification
+                            - Version update check
+                            - Chain link validation
+                        </validation>
+                    </protocol>
+                    <conflict_resolution>
+                        <rules>
+                            - Latest version precedence
+                            - Merge non-conflicting changes
+                            - Log all conflicts
+                            - Alert on conflicts
+                            - Require manual resolution for critical conflicts
+                        </rules>
+                        <validation>
+                            - Conflict detection accuracy
+                            - Resolution completeness
+                            - Log verification
+                            - Alert triggering check
+                        </validation>
+                    </conflict_resolution>
+                </synchronization>
+            </package_format>
+            <validation_framework>
+                <integrity_checks>
+                    - Package structure validation
+                    - Metadata completeness
+                    - Content validation
+                    - Version integrity
+                    - Chain link verification
+                </integrity_checks>
+                <compliance_rules>
+                    - Format adherence
+                    - Required fields present
+                    - Valid field values
+                    - Proper versioning
+                    - Chain consistency
+                </compliance_rules>
+                <error_handling>
+                    <validation_errors>
+                        - Log error details
+                        - Preserve current state
+                        - Alert relevant parties
+                        - Block invalid changes
+                    </validation_errors>
+                    <recovery_steps>
+                        - Load last valid state
+                        - Verify package integrity
+                        - Rebuild if necessary
+                        - Validate recovery
+                    </recovery_steps>
+                </error_handling>
+            </validation_framework>
+        </evidence_standardization>
 
         <output_generation>
             <to>taskmanager</to>
@@ -242,6 +500,41 @@
 
     <!-- Enhanced Quality Gates -->
     <quality_gates>
+        <gate name="qa_gpm_report_verification">
+            <timing>After Implementation Completion</timing>
+            <requirements>
+                - Project progress documented
+                - Milestone achievements verified
+                - Resource management validated
+                - Quality metrics compiled
+                - Roadmap alignment confirmed
+            </requirements>
+            <validation>
+                <must_verify>
+                    - Progress accuracy
+                    - Resource efficiency
+                    - Milestone completion
+                    - Quality achievements
+                    - Roadmap compliance
+                </must_verify>
+            </validation>
+            <feedback_handling>
+                <acceptance_process>
+                    - Update project status
+                    - Document acceptance
+                    - Proceed to UXUI handoff
+                    - Archive verification results
+                </acceptance_process>
+                <rejection_process>
+                    - Analyze feedback
+                    - Plan improvements
+                    - Implement changes
+                    - Prepare resubmission
+                    - Track modifications
+                </rejection_process>
+            </feedback_handling>
+        </gate>
+
         <gate name="test_strategy_validation">
             <timing>Before Task Assignment</timing>
             <requirements>

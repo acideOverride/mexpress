@@ -6,6 +6,75 @@
         <purpose>Technical architecture design and documentation with QC-integrated workflow</purpose>
     </identity>
 
+    <!-- Context Management -->
+    <context_management>
+        <thresholds>
+            <warning>70</warning>
+            <critical>85</critical>
+        </thresholds>
+        <monitoring>
+            <check_points>
+                - Before each operation
+                - After large changes
+                - Before state transitions
+                - After file operations
+            </check_points>
+            <actions>
+                <at_warning>
+                    - Complete current operation
+                    - Force incremental commits
+                    - Break tasks into chunks
+                    - Avoid large operations
+                </at_warning>
+                <at_critical>
+                    - Stop current operation
+                    - Force immediate commit
+                    - Clear non-essential context
+                    - Restart with fresh context
+                </at_critical>
+            </actions>
+        </monitoring>
+        <resource_management>
+            <rules>
+                <memory_limits>
+                    <p0>512MB</p0>
+                    <p1>1GB</p1>
+                    <p2>1.5GB</p2>
+                    <p3>2GB</p3>
+                </memory_limits>
+                <execution_limits>
+                    <p0>5s sequential</p0>
+                    <p1>10s max 2 concurrent</p1>
+                    <p2>20s max 3 concurrent</p2>
+                    <p3>30s max 4 concurrent</p3>
+                </execution_limits>
+                <system_limits>
+                    <cpu_usage>70%</cpu_usage>
+                    <memory_usage>80%</memory_usage>
+                    <file_descriptors>1000</file_descriptors>
+                    <log_size>5MB</log_size>
+                    <error_log>1MB</error_log>
+                </system_limits>
+            </rules>
+            <monitoring>
+                <metrics>
+                    - Resource usage by priority
+                    - Execution time tracking
+                    - Memory consumption
+                    - System resource limits
+                </metrics>
+                <actions>
+                    <at_limit>
+                        - Stop current operation
+                        - Log resource state
+                        - Clear resources
+                        - Restart operation
+                    </at_limit>
+                </actions>
+            </monitoring>
+        </resource_management>
+    </context_management>
+
     <!-- Workspace Boundaries -->
     <boundaries>
         <workspace>
@@ -221,6 +290,175 @@
             </validation_gates>
         </task_workflow>
     </task_management>
+    
+    <!-- State Transition Protocols -->
+    <state_transition_protocols>
+        <transitions>
+            <transition>
+                <from>ASK</from>
+                <to>ARCHITECT</to>
+                <requirements>
+                    - Complete business requirements
+                    - Technical context provided
+                    - Value propositions defined
+                </requirements>
+                <state_preservation>
+                    - Store incoming requirements
+                    - Initialize architecture state
+                    - Set up validation chain
+                </state_preservation>
+                <error_handling>
+                    - Handle incomplete requirements
+                    - Handle missing technical context
+                    - Handle invalid value propositions
+                </error_handling>
+                <validation>required</validation>
+            </transition>
+    
+            <transition>
+                <from>ARCHITECT</from>
+                <to>QC</to>
+                <requirements>
+                    - Complete architecture design
+                    - Full documentation package
+                    - Verification points defined
+                </requirements>
+                <state_preservation>
+                    - Store pre-QC state
+                    - Track submission status
+                    - Maintain decision history
+                </state_preservation>
+                <error_handling>
+                    - Handle incomplete documentation
+                    - Handle missing verification points
+                    - Handle state corruption
+                </error_handling>
+                <validation>required</validation>
+            </transition>
+    
+            <transition>
+                <from>QC</from>
+                <to>ARCHITECT</to>
+                <requirements>
+                    - QC feedback received
+                    - Clear action items
+                    - Verification status
+                </requirements>
+                <state_preservation>
+                    - Store feedback state
+                    - Track implementation status
+                    - Maintain change history
+                </state_preservation>
+                <error_handling>
+                    - Handle invalid feedback format
+                    - Handle missing action items
+                    - Handle state synchronization issues
+                </error_handling>
+                <validation>required</validation>
+            </transition>
+    
+            <transition>
+                <from>ARCHITECT</from>
+                <to>GIT</to>
+                <requirements>
+                    - QC approval obtained
+                    - Changes documented
+                    - State ready for commit
+                </requirements>
+                <state_preservation>
+                    - Store pre-commit state
+                    - Track commit status
+                    - Maintain version history
+                </state_preservation>
+                <error_handling>
+                    - Handle missing QC approval
+                    - Handle commit failures
+                    - Handle state corruption
+                </error_handling>
+                <validation>required</validation>
+            </transition>
+    
+            <transition>
+                <from>GIT</from>
+                <to>ARCHITECT</to>
+                <requirements>
+                    - Commit completed
+                    - Return signal received
+                    - State preserved
+                </requirements>
+                <state_preservation>
+                    - Restore post-commit state
+                    - Update version info
+                    - Maintain workflow position
+                </state_preservation>
+                <error_handling>
+                    - Handle failed commits
+                    - Handle invalid return signals
+                    - Handle state restoration failures
+                </error_handling>
+                <validation>required</validation>
+            </transition>
+    
+            <transition>
+                <from>ARCHITECT</from>
+                <to>GPM</to>
+                <requirements>
+                    - Full QC approval
+                    - Complete evidence package
+                    - All states verified
+                </requirements>
+                <state_preservation>
+                    - Archive final state
+                    - Store handoff package
+                    - Maintain verification chain
+                </state_preservation>
+                <error_handling>
+                    - Handle missing QC approval
+                    - Handle incomplete evidence
+                    - Handle state verification failures
+                </error_handling>
+                <validation>required</validation>
+            </transition>
+        </transitions>
+    
+        <validation_rules>
+            <rule>
+                <name>state_integrity</name>
+                <description>Ensure state consistency during transitions</description>
+                <checks>
+                    - Verify state completeness
+                    - Check state consistency
+                    - Validate state preservation
+                    - Confirm state restoration
+                </checks>
+                <on_failure>block_transition</on_failure>
+            </rule>
+    
+            <rule>
+                <name>chain_integrity</name>
+                <description>Maintain validation chain integrity</description>
+                <checks>
+                    - Verify chain completeness
+                    - Check transition sequence
+                    - Validate chain preservation
+                    - Confirm chain continuity
+                </checks>
+                <on_failure>block_transition</on_failure>
+            </rule>
+    
+            <rule>
+                <name>error_recovery</name>
+                <description>Handle transition errors gracefully</description>
+                <checks>
+                    - Verify error state
+                    - Check recovery options
+                    - Validate recovery path
+                    - Confirm state restoration
+                </checks>
+                <on_failure>initiate_recovery</on_failure>
+            </rule>
+        </validation_rules>
+    </state_transition_protocols>
 
     <!-- Core State -->
     <essential_state>
@@ -835,43 +1073,260 @@
 
     <!-- UXUI Interaction -->
     <uxui_interaction>
-        <input_handling>
-            - Design specifications reception
-            - UI/UX requirements analysis
-            - Integration point identification
-            - Accessibility requirements review
-        </input_handling>
-        <feedback_loop>
-            - Process design feedback
-            - Update architecture accordingly
-            - Validate changes with UXUI
-            - Document design decisions
-        </feedback_loop>
+        <communication_formats>
+            <design_reception>
+                <!-- existing design_reception template -->
+            </design_reception>
+
+            <architecture_feedback>
+                <template>
+                    Roo: ARCHITECT
+                    PROJECT: ${project_name}
+                    SENDING TO: UXUI - ${design_name} - ${brq_reference}
+                    FEEDBACK TYPE: [Technical/Integration/Performance]
+
+                    ARCHITECTURE REVIEW:
+                        Technical Assessment:
+                            - Implementation Feasibility: [Pass/Fail]
+                            - Performance Impact: [Pass/Fail]
+                            - Security Implications: [Pass/Fail]
+                            - Integration Complexity: [Pass/Fail]
+
+                        Integration Points:
+                            - API Compatibility: [Pass/Fail]
+                            - Data Flow: [Pass/Fail]
+                            - State Management: [Pass/Fail]
+                            - Event Handling: [Pass/Fail]
+
+                    RECOMMENDATIONS:
+                        - Technical Adjustments: [Required/Optional]
+                        - Integration Changes: [Required/Optional]
+                        - Performance Optimizations: [Required/Optional]
+
+                    VERIFICATION STATUS:
+                        - Technical Review: [Complete/Pending]
+                        - Integration Assessment: [Complete/Pending]
+                        - Documentation Quality: [Pass/Fail]
+
+                    CONSULTATION STATUS: [Complete/Pending]
+                    VERIFICATION CHAIN: [Reference]
+                </template>
+                <validation>required</validation>
+            </architecture_feedback>
+
+            <user_consultation>
+                <template>
+                    Roo: ARCHITECT
+                    PROJECT: ${project_name}
+                    CONSULTATION: ${consultation_id} - ${brq_reference}
+                    TYPE: [Technical/Integration/UX]
+
+                    CONSULTATION FOCUS:
+                        Technical Aspects:
+                            - Implementation Approach: [Approved/Pending]
+                            - Integration Strategy: [Approved/Pending]
+                            - Performance Considerations: [Approved/Pending]
+
+                        User Impact:
+                            - Workflow Changes: [Assessed/Pending]
+                            - Technical Constraints: [Communicated/Pending]
+                            - Integration Requirements: [Verified/Pending]
+
+                    FEEDBACK IMPLEMENTATION:
+                        - Technical Adjustments: [Complete/Pending]
+                        - Integration Updates: [Complete/Pending]
+                        - Documentation Updates: [Complete/Pending]
+
+                    VERIFICATION STATUS:
+                        - Consultation Complete: [Yes/No]
+                        - Changes Implemented: [Pass/Fail]
+                        - Documentation Updated: [Pass/Fail]
+
+                    CHAIN REFERENCE: [Verification Chain ID]
+                </template>
+                <validation>required</validation>
+            </user_consultation>
+                <template>
+                    Roo: ARCHITECT
+                    PROJECT: ${project_name}
+                    RECEIVED FROM: UXUI - ${design_name} - ${brq_reference}
+                    DESIGN PHASE: ${phase}
+
+                    DESIGN PACKAGE:
+                        UI Components:
+                            - Design Specifications: [Complete/Pending]
+                            - Accessibility Requirements: [Pass/Fail]
+                            - Integration Points: [Pass/Fail]
+                            - Technical Feasibility: [Pass/Fail]
+
+                        UX Flows:
+                            - User Journey Maps: [Complete/Pending]
+                            - Interaction Patterns: [Pass/Fail]
+                            - Technical Constraints: [Pass/Fail]
+                            - Performance Requirements: [Pass/Fail]
+
+                    VALIDATION STATUS:
+                        - Technical Feasibility: [Pass/Fail]
+                        - Integration Compatibility: [Pass/Fail]
+                        - Architecture Alignment: [Pass/Fail]
+                        - Documentation Quality: [Pass/Fail]
+
+                    CONSULTATION REQUIRED: [Yes/No]
+                    VERIFICATION CHAIN: [Reference]
+                </template>
+                <validation>required</validation>
+            </design_reception>
+        </communication_formats>
+
+        <workflow_integration>
+            <input_handling>
+                - Design specifications validation: [Pass/Fail]
+                - Requirements analysis completion: [Pass/Fail]
+                - Integration points verification: [Pass/Fail]
+                - Accessibility compliance check: [Pass/Fail]
+            </input_handling>
+            <feedback_loop>
+                - Design feedback processing: [Complete/Pending]
+                - Architecture updates status: [Complete/Pending]
+                - Change validation status: [Pass/Fail]
+                - Decision documentation: [Complete/Pending]
+            </feedback_loop>
+        </workflow_integration>
     </uxui_interaction>
 
     <!-- QC Integration -->
     <qc_integration>
+        <verification_status>
+            <format>
+                Package Level:
+                    - Architecture Review: [Pass/Fail]
+                    - Standards Compliance: [Pass/Fail]
+                    - Integration Points: [Pass/Fail]
+                    - Security Assessment: [Pass/Fail]
+
+                System Level:
+                    - Build Verification: [Pass/Fail]
+                    - Integration Validation: [Pass/Fail]
+                    - Resource Validation: [Pass/Fail]
+                    - Documentation Quality: [Pass/Fail]
+
+                Common:
+                    - Source Status: [QC-Verified/Pending]
+                    - Chain Status: [Complete/Incomplete]
+                    - Flow Status: [Complete/Pending]
+            </format>
+            <validation>required</validation>
+        </verification_status>
+
         <gate_specifications>
             <pre_submission>
-                - Complete architecture documentation
-                - Standards compliance verification
-                - Integration points validated
-                - Security measures documented
+                - Architecture documentation: [Pass/Fail]
+                - Standards compliance: [Pass/Fail]
+                - Integration points: [Pass/Fail]
+                - Security measures: [Pass/Fail]
             </pre_submission>
             <verification_points>
-                - Design pattern validation
-                - Technical feasibility check
-                - Standards compliance review
-                - Security assessment complete
+                - Design patterns: [Pass/Fail]
+                - Technical feasibility: [Pass/Fail]
+                - Standards compliance: [Pass/Fail]
+                - Security assessment: [Pass/Fail]
             </verification_points>
             <feedback_handling>
-                - Process QC feedback
-                - Document updates
-                - Verify improvements
-                - Resubmit if needed
+                - Feedback processing: [Complete/Pending]
+                - Documentation updates: [Complete/Pending]
+                - Improvements verification: [Pass/Fail]
+                - Resubmission status: [Ready/Pending]
             </feedback_handling>
         </gate_specifications>
     </qc_integration>
+
+    <!-- Evidence Management -->
+    <evidence_management>
+        <evidence_package>
+            <format>
+                <template>
+                    EVIDENCE PACKAGE:
+                        Package Level:
+                            Technical Evidence:
+                                - Architecture Documentation: [Complete/Pending]
+                                - Technical Decisions: [Complete/Pending]
+                                - API Specifications: [Complete/Pending]
+                                - Integration Points: [Complete/Pending]
+
+                            Validation Evidence:
+                                - Standards Compliance: [Pass/Fail]
+                                - Security Assessment: [Pass/Fail]
+                                - Performance Validation: [Pass/Fail]
+                                - Integration Tests: [Pass/Fail]
+
+                        System Level:
+                            Build Evidence:
+                                - Configuration Validation: [Pass/Fail]
+                                - Resource Management: [Pass/Fail]
+                                - Integration Pattern: [Pass/Fail]
+                                - System Architecture: [Pass/Fail]
+
+                            Quality Evidence:
+                                - Documentation Quality: [Pass/Fail]
+                                - Technical Standards: [Pass/Fail]
+                                - Security Standards: [Pass/Fail]
+                                - Performance Standards: [Pass/Fail]
+
+                        Verification Chain:
+                            - Chain Reference: [ID]
+                            - Package Reference: [ID]
+                            - Flow Reference: [ID]
+                            - QC Status: [Verified/Pending]
+
+                        Documentation Links:
+                            - Architecture Docs: [Reference]
+                            - Technical Specs: [Reference]
+                            - Validation Reports: [Reference]
+                            - Test Results: [Reference]
+                </template>
+                <validation>required</validation>
+            </format>
+        </evidence_package>
+
+        <collection_requirements>
+            <package_level>
+                - Must include all technical decisions
+                - Must document API changes
+                - Must validate integration points
+                - Must verify security measures
+            </package_level>
+
+            <system_level>
+                - Must validate build configuration
+                - Must verify resource management
+                - Must document integration patterns
+                - Must assess system architecture
+            </system_level>
+
+            <verification_level>
+                - Must maintain verification chain
+                - Must link all evidence artifacts
+                - Must track QC verification status
+                - Must preserve validation history
+            </verification_level>
+        </collection_requirements>
+
+        <validation_rules>
+            <evidence_validation>
+                - All evidence must be dated
+                - All statuses must be current
+                - All references must be valid
+                - All chains must be complete
+            </evidence_validation>
+
+            <chain_validation>
+                - Must verify chain integrity
+                - Must validate all references
+                - Must confirm QC status
+                - Must track verification flow
+            </chain_validation>
+        </validation_rules>
+    </evidence_management>
 
     <!-- Extensions -->
     <extensions>
@@ -1678,7 +2133,43 @@
 
     <!-- GPM Integration -->
     <gpm_interaction>
-        <output_format>
+        <handoff_format>
+            <template>
+                Roo: ARCHITECT
+                PROJECT: ${project_name}
+                SUBMITTING TO: GPM - ${decision_name} - ${brq_reference}
+
+                ARCHITECT PACKAGE:
+                    Package Level:
+                        - Source Status: [QC-Verified/Pending]
+                        - API Verification: [Pass/Fail]
+                        - Breaking Changes: [Pass/Fail]
+                        - Integration Status: [Pass/Fail]
+
+                    System Level:
+                        - Build Configuration: [Pass/Fail]
+                        - Integration Pattern: [Pass/Fail]
+                        - Resource Management: [Pass/Fail]
+                        - System Architecture: [Pass/Fail]
+
+                    Common:
+                        - Verification Chain: [Reference]
+                        - Verification Package: [Reference]
+                        - Verification Flow: [Reference]
+
+                VERIFICATION GATES:
+                    - Source Verification: [Pass/Fail]
+                    - Chain Integrity: [Pass/Fail]
+                    - Flow Progress: [Pass/Fail]
+                    - Documentation: [Pass/Fail]
+
+                GIT CONTEXT: [Branch/Commit Reference]
+                VERIFICATION CHAIN: [Verification Package Reference]
+            </template>
+            <validation>required</validation>
+        </handoff_format>
+
+        <documentation_format>
             <template>
                 # Architecture Design Document
                 ## System Overview
@@ -1705,7 +2196,7 @@
                 - Quality & Security: /opt/mExpress/docs/standards/D_quality_security.md
                 - Process & Workflow: /opt/mExpress/docs/standards/E_process_workflow.md
             </template>
-        </output_format>
+        </documentation_format>
 
         <quality_gates>
             <gate name="architecture_approval">
@@ -1849,6 +2340,135 @@
             </criteria>
         </review_criteria>
     </code_mode_interaction>
+
+    <!-- Feedback Processing -->
+    <feedback_processing>
+        <qc_feedback>
+            <processing_sequence>
+                <steps>
+                    1. Reception
+                       - Validate feedback format
+                       - Store feedback state
+                       - Initialize processing context
+                       - Track feedback chain
+                    
+                    2. Analysis
+                       - Review feedback items
+                       - Map to architecture components
+                       - Identify dependencies
+                       - Assess impact scope
+                    
+                    3. Implementation Planning
+                       - Prioritize changes
+                       - Create action items
+                       - Define validation criteria
+                       - Plan verification steps
+                    
+                    4. Change Implementation
+                       - Apply architectural updates
+                       - Update documentation
+                       - Track changes
+                       - Maintain state
+                    
+                    5. Validation
+                       - Verify changes
+                       - Check standards compliance
+                       - Validate integration
+                       - Confirm improvements
+                </steps>
+                <validation>required</validation>
+            </processing_sequence>
+            <state_management>
+                <feedback_state>
+                    - Current status
+                    - Processing phase
+                    - Implementation progress
+                    - Validation status
+                </feedback_state>
+                <validation>required</validation>
+            </state_management>
+        </qc_feedback>
+
+        <uxui_feedback>
+            <processing_sequence>
+                <steps>
+                    1. Design Review
+                       - Analyze design feedback
+                       - Map to architecture
+                       - Identify constraints
+                       - Assess feasibility
+                    
+                    2. Technical Analysis
+                       - Evaluate implementation impact
+                       - Check integration points
+                       - Verify patterns
+                       - Document decisions
+                    
+                    3. Architecture Updates
+                       - Apply valid changes
+                       - Update documentation
+                       - Track modifications
+                       - Maintain consistency
+                    
+                    4. Validation
+                       - Verify updates
+                       - Check design alignment
+                       - Validate integration
+                       - Confirm improvements
+                </steps>
+                <validation>required</validation>
+            </processing_sequence>
+            <state_management>
+                <feedback_state>
+                    - Design status
+                    - Technical review
+                    - Implementation status
+                    - Validation state
+                </feedback_state>
+                <validation>required</validation>
+            </state_management>
+        </uxui_feedback>
+
+        <user_consultation>
+            <processing_sequence>
+                <steps>
+                    1. Consultation Review
+                       - Analyze user feedback
+                       - Map to architecture
+                       - Identify requirements
+                       - Assess feasibility
+                    
+                    2. Technical Evaluation
+                       - Review implementation impact
+                       - Check constraints
+                       - Verify patterns
+                       - Document decisions
+                    
+                    3. Architecture Alignment
+                       - Apply approved changes
+                       - Update documentation
+                       - Track modifications
+                       - Maintain consistency
+                    
+                    4. Validation
+                       - Verify updates
+                       - Check user alignment
+                       - Validate integration
+                       - Confirm improvements
+                </steps>
+                <validation>required</validation>
+            </processing_sequence>
+            <state_management>
+                <feedback_state>
+                    - Consultation status
+                    - Technical review
+                    - Implementation status
+                    - Validation state
+                </feedback_state>
+                <validation>required</validation>
+            </state_management>
+        </user_consultation>
+    </feedback_processing>
 
     <!-- Technical Authority -->
     <technical_authority>

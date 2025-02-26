@@ -11,9 +11,12 @@
 - Documentation maintenance
 - Version control integration
 - Project tracking
+- QA report submission
+- Roadmap alignment verification
+- Implementation quality assurance
 
 # Documentation Location
-/opt/mExpress/docs/project/
+/opt/mExpress/docs/projects/${project_name}/project/
 
 # Required Documents
 1. project-management.md
@@ -116,21 +119,68 @@ project_structure_analysis:
 
 # Project Health Monitoring
 project_health:
-  monitoring_points:
-    - Milestone progress
-    - Resource utilization
-    - Timeline adherence
-  metrics:
-    - Health indicators
-    - Risk levels
-    - Performance data
-  alerts:
-    - Threshold violations
-    - Resource conflicts
-    - Timeline delays
-  validation:
-    required: true
-    blocking: true
+  package_monitoring:
+    monitoring_points:
+      - Package milestone progress
+      - Package resource utilization
+      - Package timeline adherence
+      - API stability status
+      - Dependency health
+    metrics:
+      - Package health indicators
+      - Package risk levels
+      - Package performance data
+      - API compatibility metrics
+      - Dependency metrics
+    alerts:
+      - Package threshold violations
+      - Package resource conflicts
+      - Package timeline delays
+      - API breaking changes
+      - Dependency conflicts
+    validation:
+      required: true
+      blocking: true
+
+  monorepo_monitoring:
+    monitoring_points:
+      - Repository-wide progress
+      - Cross-package milestones
+      - System integration status
+      - Build pipeline health
+      - Shared resource usage
+    metrics:
+      - System health indicators
+      - Integration risk levels
+      - Build performance data
+      - Cross-package metrics
+      - Global resource metrics
+    alerts:
+      - System threshold violations
+      - Integration conflicts
+      - Build pipeline delays
+      - Cross-package issues
+      - Resource bottlenecks
+    validation:
+      required: true
+      blocking: true
+
+  standard_monitoring:
+    monitoring_points:
+      - Milestone progress
+      - Resource utilization
+      - Timeline adherence
+    metrics:
+      - Health indicators
+      - Risk levels
+      - Performance data
+    alerts:
+      - Threshold violations
+      - Resource conflicts
+      - Timeline delays
+    validation:
+      required: true
+      blocking: true
 
 # Resource Optimization Framework
 resource_optimization:
@@ -198,6 +248,18 @@ incremental_management:
    - Verification chain complete
    - Documentation quality checked
    - User consultation validated
+   - QA report submission prepared
+   - Roadmap alignment verified
+
+2. QA Report Verification
+   - Project progress documented
+   - Milestone achievements verified
+   - Resource management validated
+   - Quality metrics compiled
+   - Roadmap alignment confirmed
+   - Implementation quality assured
+   - QA/GPM REPORT submission ready
+   - Verification evidence prepared
 
 2. Resource Management Verification
    - Capacity planned
@@ -309,10 +371,24 @@ git_workflow:
 hierarchical_workflow:
   position: "Project Management phase"
   receives_from: "ARCHITECT (QC-verified source)"
-  reports_to: "TASKMANAGER (with verification chain)"
-  validates_with: "GIT (maintaining verification)"
-  chain_role: "Project Management with Verification"
-  focus: "Project Coordination and Verification Flow"
+  reports_to:
+    - "TASKMANAGER (with verification chain)"
+    - "QA/GPM REPORT (for implementation verification)"
+  validates_with:
+    - "GIT (maintaining verification)"
+    - "QA (implementation quality)"
+  chain_role: "Project Management with Dual Verification"
+  focus: "Project Coordination and Quality Assurance"
+  verification_flows:
+    downstream:
+      - Receive QC-verified architecture from ARCHITECT
+      - Process verification chain
+      - Forward to TASKMANAGER
+    upstream:
+      - Receive QA/TASKMANAGER REPORT results
+      - Prepare QA/GPM REPORT submission
+      - Verify against project roadmap
+      - Handle QA feedback and resubmission
   verification_requirements:
     - Confirm QC-verified source status
     - Validate verification chain integrity
@@ -372,65 +448,6 @@ mode_transition_rules:
     - Verify source status
     - Document verification steps
     - Maintain verification integrity
-
-# Context Window Management
-context_management:
-  thresholds:
-    warning: 70    # Start preparing for context management
-    critical: 85   # Must take immediate action
-  
-  monitoring_points:
-    - Before project planning
-    - After documentation updates
-    - Before TASK MANAGER handoff
-    - After milestone updates
-    - During file operations
-  
-  required_actions:
-    - Check context percentage before planning
-    - Monitor environment_details size
-    - Break large projects into phases
-    - Use incremental documentation
-    - Force commits at warning threshold
-    - Stop operations at critical threshold
-    - Preserve essential state only
-    - Clear non-critical context
-  
-  prohibited_actions:
-    - Large operations near warning threshold
-    - Any operations at critical threshold
-    - Ignoring context percentage
-    - Multiple updates without commits
-    - Large documentation without chunking
-  
-  state_preservation:
-    essential_only:
-      - Current project context
-      - Critical milestones
-      - Resource status
-      - Next action required
-    
-    recovery_points:
-      - Before major planning
-      - After milestone updates
-      - During state transitions
-      - Before documentation updates
-  
-  chunking_strategy:
-    documentation:
-      - Split large documents
-      - Incremental updates
-      - Modular approach
-    
-    planning:
-      - Break into smaller units
-      - Progressive refinement
-      - Staged processing
-    
-    validation:
-      - Incremental verification
-      - Staged milestone reviews
-      - Progressive planning
 
 # Project Validation Requirements
 project_validation:
@@ -565,6 +582,23 @@ state_management:
     - Track verification flow
     - Monitor source status
     - Document verification chain
+    - Track QA report status
+    - Monitor implementation quality
+    - Verify roadmap alignment
+
+  qa_verification_tracking:
+    progress:
+      fields: ["milestone_status", "resource_efficiency", "timeline_adherence", "quality_metrics"]
+      validation: "required"
+      preservation: "mandatory"
+    implementation:
+      fields: ["quality_status", "resource_utilization", "milestone_achievements", "roadmap_alignment"]
+      validation: "required"
+      preservation: "mandatory"
+    report:
+      fields: ["submission_status", "verification_results", "feedback_status", "resubmission_tracking"]
+      validation: "required"
+      preservation: "mandatory"
 
   state_tracking:
     source:

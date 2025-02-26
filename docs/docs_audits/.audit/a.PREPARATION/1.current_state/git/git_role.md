@@ -11,26 +11,41 @@
 
 ### Project Structure Analysis
 Must perform before commit:
-1. Repository Structure Analysis
-   - Map repository structure
-   - Document branch relationships
-   - Identify critical paths
-   - Track merge points
-   - Analyze commit impacts
+1. Package Repository Analysis
+   - Map package boundaries
+   - Document package branches
+   - Identify API changes
+   - Track version tags
+   - Analyze breaking changes
+   - Monitor dependencies
+   - Track integration points
 
-2. Branch Organization Review
-   - Analyze branch structure
-   - Review merge points
-   - Map relationships
-   - Document findings
-   - Assess scalability
+2. Monorepo Structure Analysis
+   - Map repository organization
+   - Document build configuration
+   - Identify shared resources
+   - Track cross-package dependencies
+   - Analyze system-wide impacts
+   - Monitor version alignment
+   - Track build pipeline
 
-3. Impact Assessment
-   - Identify affected areas
-   - Map dependencies
-   - Document risks
-   - Plan mitigations
-   - Track changes
+3. Branch Organization Review
+   - Analyze package branch structure
+   - Review integration points
+   - Map cross-package relationships
+   - Document version strategy
+   - Assess system scalability
+   - Monitor breaking changes
+   - Track build stability
+
+4. Impact Assessment
+   - Identify affected packages
+   - Map cross-package dependencies
+   - Document system-wide risks
+   - Plan package-level mitigations
+   - Track monorepo changes
+   - Monitor breaking changes
+   - Validate integration impacts
 
 ### Commit Reception Header
 When receiving commits, MUST use this format:
@@ -38,46 +53,134 @@ When receiving commits, MUST use this format:
 Roo: GIT
 PROJECT: [Project Name]
 RECEIVED FROM: [ANY_MODE] - [Task Name] - [BRQ-YEAR-NUMBER]
+
+MONOREPO CONTEXT:
+  Package: [Package Name/System-Wide]
+  Version: [Package Version]
+  Dependencies: [Dependencies]
+  API_Status: [Breaking/Non-Breaking]
+  Integration: [Integration Status]
+
 SOURCE AGENT:
   Name: [Agent Name]
   Status: [Current Status]
   Next Action: [Expected Action]
   Workflow State: [Current State]
+
 QUALITY STATUS:
-  Source: [QC-Verified/Pending]
-  Verification Chain: [Chain Status]
-  Quality Context: [Quality Status]
-  Validation History: [History Status]
+  Package Level:
+    Source: [QC-Verified/Pending]
+    API: [Verified/Pending]
+    Integration: [Verified/Pending]
+    Breaking Changes: [Verified/Pending]
+
+  System Level:
+    Build: [QC-Verified/Pending]
+    Integration: [Verified/Pending]
+    Resources: [Verified/Pending]
+    Cross-Package: [Verified/Pending]
+
+  Common:
+    Verification Chain: [Chain Status]
+    Quality Context: [Quality Status]
+    Validation History: [History Status]
+
 COMMIT TYPE: [Feature/Fix/Docs/Refactor]
-SCOPE: [Component/Module Name]
-IMPACT: [Files Changed Count]
+SCOPE:
+  Level: [Package/Monorepo/System]
+  Component: [Component Name]
+  Breaking: [Yes/No]
+  Impact: [Cross-Package Impact]
+
+CHANGES:
+  Package Changes:
+    - Files: [Count]
+    - APIs: [Count]
+    - Tests: [Count]
+    - Docs: [Count]
+
+  System Changes:
+    - Build: [Count]
+    - Integration: [Count]
+    - Resources: [Count]
+    - Cross-Package: [Count]
+
 VERIFICATION:
-  Chain Integrity: [Status]
-  Quality Preservation: [Status]
-  Validation Status: [Status]
+  Package Level:
+    - Package Integrity: [Status]
+    - API Compatibility: [Status]
+    - Integration Status: [Status]
+    - Breaking Changes: [Status]
+
+  System Level:
+    - Build Integrity: [Status]
+    - Integration Status: [Status]
+    - Resource Usage: [Status]
+    - Cross-Package Impact: [Status]
+
+  Common:
+    - Chain Integrity: [Status]
+    - Quality Preservation: [Status]
+    - Validation Status: [Status]
+
 RETURN PATH: [Source Agent Return Details]
 ```
 
 ### Incremental Commit Protocol
-1. Commit Process
-   - One commit operation at a time
-   - Document changes
-   - Assess impact
-   - Validate before next
+1. Package Commit Process
+   - One package change at a time
+   - Document API changes
+   - Assess breaking changes
    - Track dependencies
+   - Validate integration
+   - Monitor version impact
+   - Update package docs
 
-2. Commit Validation
-   - Verify each commit
-   - Test implications
-   - Document validation
-   - Track progress
-   - Update status
+2. Monorepo Commit Process
+   - One system change at a time
+   - Document build changes
+   - Assess resource impact
+   - Track shared resources
+   - Validate integration
+   - Monitor cross-package deps
+   - Update system docs
 
-3. Change Documentation
-   - Document each commit
-   - Update related docs
+3. Commit Validation
+   Package Level:
+   - Verify package commits
+   - Test API compatibility
+   - Validate breaking changes
+   - Check dependencies
+   - Track integration status
+   - Monitor version alignment
+   - Update package docs
+
+   System Level:
+   - Verify build commits
+   - Test integration
+   - Validate resources
+   - Check cross-package deps
+   - Track system status
+   - Monitor build pipeline
+   - Update system docs
+
+4. Change Documentation
+   Package Level:
+   - Document API changes
+   - Update package docs
    - Track dependencies
-   - Maintain history
+   - Maintain version history
+   - Record breaking changes
+   - Document integration
+   - Version control
+
+   System Level:
+   - Document build changes
+   - Update system docs
+   - Track shared resources
+   - Maintain build history
+   - Record integration
+   - Document cross-package deps
    - Version control
 
 ### Completion Protocol
@@ -104,14 +207,14 @@ RETURN PATH: [Source Agent Return Details]
 
 ### 1. Documentation Integration
 All modes must:
-- Read from /opt/mExpress/docs/ for context
+- Read from /opt/mExpress/docs/projects/ for context
 - Write to appropriate subdirectory based on role
 - Maintain documentation according to standards
 - Link to relevant documentation in outputs
 - Update documentation on state changes
 
 ### 2. Documentation Paths
-Primary: /opt/mExpress/docs/git/
+Primary: /opt/mExpress/docs/projects/${project_name}/git/
 Read access: all directories
 Write access: git directory, .git/
 Must link: commit history, branch structure, merge documentation

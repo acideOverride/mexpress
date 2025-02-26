@@ -1,0 +1,10 @@
+{
+  "name": "PaymentService",
+  "documentedStatus": "PARTIAL",
+  "actualStatus": "MINIMAL",
+  "priority": "HIGH",
+  "owner": "Charlie",
+  "targetDate": "2025-02-26",
+  "lastUpdated": "2025-02-26T11:04:55.360Z",
+  "gapDescription": "Only basic payment processing, missing subscription functionality"
+}

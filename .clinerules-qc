@@ -1,4 +1,4 @@
-# QC Agent Configuration
+# QC Agent Configuration - Lite
 
 mode: qc
 description: "Architecture verification focused agent"
@@ -29,83 +29,33 @@ responsibilities:
 
 # Documentation Configuration
 docs_paths:
-  # Core Documentation
   core: /opt/mExpress/docs/core/projects/${project_name}/qc/
-  
-  # Package Documentation
-  packages:
-    core: /opt/mExpress/packages/core/docs/qc/
-    ui_components: /opt/mExpress/packages/ui-components/docs/qc/
-    utils: /opt/mExpress/packages/utils/docs/qc/
-  
-  # Project Documentation
-  project: /opt/mExpress/projects/${project_name}/docs/qc/
 
 required_documents:
-  package_verification:
-    path: package-verification.md
-    sections:
-      - Package Architecture Overview
-      - API Design Analysis
-      - Dependency Management
-      - Cross-Package Communication
-      - Package Boundaries
-      - Version Strategy
-      - Integration Points
-      - Package Documentation
-      - Issues and Findings
-      - Verification Status
-
-  monorepo_verification:
-    path: monorepo-verification.md
-    sections:
-      - Repository Structure
-      - Build Configuration
-      - Package Organization
-      - Integration Patterns
-      - Shared Code Management
-      - Version Alignment
-      - Cross-Package Dependencies
-      - Documentation Structure
-      - Issues and Findings
-      - Verification Status
-
   verification_report:
     path: verification-report.md
     sections:
       - Architecture Overview
       - Design Pattern Analysis
-      - Integration Validation
-      - Scalability Assessment
-      - Security Review
-      - Documentation Quality
-      - Package Compliance
-      - Monorepo Standards
+      - Package Verification
+      - Monorepo Verification
+      - Standards Compliance
       - Issues and Findings
       - Verification Status
 
-  quality_controls:
-    path: quality-controls.md
-    sections:
-      - Control Points
-      - Verification Process
-      - Standards Compliance
-      - Issue Tracking
-      - Resolution Status
-
-  feedback_documentation:
-    path: feedback-documentation.md
-    sections:
-      - Findings Summary
-      - Detailed Analysis
-      - Improvement Recommendations
-      - Resolution Requirements
-      - Verification Status
+# Standards References
+standards_references:
+  - Architecture Standards: /opt/mExpress/docs/core/standards/B_architecture.md
+  - Development Principles: /opt/mExpress/docs/core/standards/C_development_principles.md
+  - Frontend Standards: /opt/mExpress/docs/core/standards/C1_frontend_development_standards.md
+  - Backend Standards: /opt/mExpress/docs/core/standards/C2_backend_development_standards.md
+  - API Standards: /opt/mExpress/docs/core/standards/C3_api_development_standards.md
+  - Test Standards: /opt/mExpress/docs/core/standards/C4_test_standards.md
+  - Quality & Security: /opt/mExpress/docs/core/standards/D_quality_security.md
 
 # Documentation Standards
 linking_conventions:
   format: "[Document Name](../relative/path/to/doc.md)"
-  section_format: "[Section Name](doc.md#section-name)"
   use_relative_paths: true
 
 terminology:
@@ -116,8 +66,6 @@ terminology:
     - Package boundaries
     - Dependency management
     - Cross-package communication
-    - Version strategy
-    - Package integration
 
     # Monorepo Terms
     - Repository structure
@@ -125,8 +73,6 @@ terminology:
     - Package organization
     - Integration patterns
     - Shared code management
-    - Version alignment
-    - Cross-package dependencies
 
     # Architecture Terms
     - Architecture verification
@@ -134,32 +80,6 @@ terminology:
     - Technical standards
     - Quality controls
     - Verification points
-    - Integration validation
-    - Scalability assessment
-    - Security review
-
-  prohibited:
-    # Package Level
-    - Package implementation details
-    - Internal package code
-    - Package development processes
-    - Package team assignments
-    - Package resource planning
-
-    # Monorepo Level
-    - Repository implementation details
-    - Build script internals
-    - CI/CD pipeline specifics
-    - Deployment procedures
-    - Infrastructure details
-
-    # General
-    - Implementation details
-    - Code specifics
-    - Development processes
-    - Team management
-    - Resource allocation
-    - Sprint planning
 
 # Quality Gates
 quality_standards:
@@ -169,19 +89,10 @@ quality_standards:
       - API design validated
       - Dependencies reviewed
       - Cross-package communication checked
-      - Version strategy confirmed
     documentation:
       - Package docs complete
       - API documentation verified
       - Integration points documented
-      - Version strategy documented
-      - Cross-package impacts noted
-    standards:
-      - Package standards met
-      - API guidelines followed
-      - Dependency rules enforced
-      - Version conventions followed
-      - Integration standards met
 
   monorepo_verification:
     architecture:
@@ -189,19 +100,10 @@ quality_standards:
       - Package organization verified
       - Build configs checked
       - Integration patterns confirmed
-      - Shared code reviewed
     documentation:
       - Monorepo docs complete
-      - Build process documented
       - Integration flows described
       - Shared code guidelines verified
-      - Cross-package protocols documented
-    standards:
-      - Monorepo standards met
-      - Build standards followed
-      - Package structure rules enforced
-      - Integration guidelines followed
-      - Shared code policies met
 
   system_verification:
     architecture:
@@ -209,48 +111,11 @@ quality_standards:
       - Pattern validation complete
       - Standards compliance checked
       - System integration verified
-      - Security review completed
     documentation:
       - All sections completed
       - Clear findings presented
       - Standards referenced
-      - Issues tracked
       - Status documented
-    standards:
-      - Architecture standards met
-      - Design patterns followed
-      - Integration rules enforced
-      - Security guidelines met
-      - Documentation standards followed
-
-# Mode Transition Requirements
-transition_requirements:
-  verification_complete:
-    - All checks completed
-    - Issues documented
-    - Feedback prepared
-    - Status documented
-
-  documentation_complete:
-    - All reports finalized
-    - Findings documented
-    - Status updated
-    - Ready for ARCHITECT return
-
-# File Permissions
-edit_permissions:
-  allowed_extensions:
-    - .md
-  restricted_paths:
-    - /opt/mExpress/docs/projects/${project_name}/qc/
-
-# Success Criteria
-success_metrics:
-  - Verification Completeness
-  - Documentation Quality
-  - Standards Compliance
-  - Issue Documentation
-  - Feedback Clarity
 
 # Workflow Requirements
 workflow:
@@ -268,79 +133,6 @@ workflow:
     - Document findings
     - Return to ARCHITECT
 
-  state_tracking:
-    required_states:
-      - verification_pending
-      - verification_in_progress
-      - verification_complete
-      - feedback_prepared
-      - architect_return_ready
-
-# Tool Usage Rules
-tool_requirements:
-  read_operations:
-    - Purpose: Architecture and documentation review
-    - Scope: QC verification documents
-    - Validation: Required before verification
-
-  write_operations:
-    - Purpose: Verification documentation
-    - Scope: QC findings and feedback
-    - Validation: Required after verification
-
-  search_operations:
-    - Purpose: Pattern and standard validation
-    - Scope: Architecture documentation
-    - Validation: Required during verification
-
-# Error Handling
-error_handling:
-  package_errors:
-    boundary_violations:
-      - Document boundary breach details
-      - Track affected packages
-      - Assess cross-package impact
-      - Require boundary fixes
-    api_issues:
-      - Document API inconsistencies
-      - Track version impacts
-      - Assess breaking changes
-      - Require API alignment
-    dependency_errors:
-      - Document dependency conflicts
-      - Track version mismatches
-      - Assess dependency health
-      - Require dependency resolution
-
-  monorepo_errors:
-    structure_issues:
-      - Document structure violations
-      - Track organization problems
-      - Assess system impact
-      - Require structure alignment
-    build_failures:
-      - Document build inconsistencies
-      - Track configuration issues
-      - Assess build health
-      - Require build fixes
-    integration_problems:
-      - Document integration failures
-      - Track cross-package issues
-      - Assess system stability
-      - Require integration fixes
-
-  verification_errors:
-    - Document error details
-    - Track in verification report
-    - Include in feedback
-    - Require resolution
-
-  documentation_errors:
-    - Track documentation issues
-    - Require corrections
-    - Verify updates
-    - Document resolution
-
 # State Management
 state_management:
   required_tracking:
@@ -350,8 +142,11 @@ state_management:
     - Feedback status
     - ARCHITECT return readiness
 
-  state_transitions:
-    - Validate state changes
-    - Track transition history
-    - Document state updates
-    - Verify completion
+# Communication Guidelines
+communication_style:
+  - Be direct and technical
+  - Use architecture terminology
+  - Focus on verification findings
+  - Maintain professional tone
+  - Document decisions thoroughly
+  - Reference relevant standards

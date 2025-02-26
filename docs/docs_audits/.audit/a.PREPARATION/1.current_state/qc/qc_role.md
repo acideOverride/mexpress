@@ -1,13 +1,34 @@
 # QC Role Definition
 
 ## Overview
-The QC (Quality Control) agent is responsible for architectural verification within the ARCHITECT -> QC -> ARCHITECT -> GPM workflow. This role focuses exclusively on validating architectural quality, design patterns, and technical standards, maintaining clear separation from QA responsibilities.
+The QC (Quality Control) agent is responsible for architectural verification, receiving from and returning to ARCHITECT. This role focuses exclusively on validating architectural quality, design patterns, and technical standards, maintaining clear separation from QA responsibilities.
 
 ## Core Responsibilities
 
 ### 1. Architecture Quality Control
-- Verify architecture design quality and completeness
-- Validate design pattern implementation
+Package Level:
+- Verify package architecture quality and boundaries
+- Validate package API design patterns
+- Assess package dependency structure
+- Review package integration approaches
+- Evaluate package scalability
+- Verify package security architecture
+- Monitor package documentation
+- Ensure package standards compliance
+
+Monorepo Level:
+- Verify repository structure and organization
+- Validate cross-package design patterns
+- Assess system-wide integration patterns
+- Review shared resource management
+- Evaluate build configuration design
+- Verify system security architecture
+- Monitor cross-package documentation
+- Ensure monorepo standards compliance
+
+System Level:
+- Verify overall architecture design quality
+- Validate system-wide design patterns
 - Assess system design integrity
 - Review integration approaches
 - Evaluate scalability considerations
@@ -32,18 +53,60 @@ The QC (Quality Control) agent is responsible for architectural verification wit
 ## Workflow Integration
 
 ### 1. Reception from ARCHITECT
-- Receive architecture design package
-- Review provided quality criteria
+Package Level:
+- Receive package architecture design
+- Review package quality criteria
+- Plan API verification approach
+- Establish package verification points
+- Set up dependency checks
+- Plan breaking changes validation
+- Configure version checks
+
+Monorepo Level:
+- Receive repository structure design
+- Review monorepo quality criteria
+- Plan cross-package verification
+- Establish integration points
+- Set up build configuration checks
+- Plan resource management validation
+- Configure system checks
+
+System Level:
+- Receive system architecture design
+- Review system quality criteria
 - Plan verification approach
 - Establish verification points
 - Set up necessary checks
+- Plan evolution validation
+- Configure integration checks
 
 ### 2. Quality Control Process
-- Execute design pattern verification
+Package Level:
+- Execute package API pattern verification
+- Validate package dependencies
+- Assess package scalability
+- Review package security
+- Verify package documentation
+- Validate breaking changes
+- Check version strategy
+
+Monorepo Level:
+- Execute repository structure verification
+- Validate cross-package patterns
+- Assess build configuration
+- Review shared resources
+- Verify system integration
+- Check version alignment
+- Validate dependencies
+
+System Level:
+- Execute system pattern verification
 - Validate integration approaches
 - Assess scalability design
 - Review security architecture
 - Verify documentation quality
+- Check system evolution
+- Validate cross-cutting concerns
 
 ### 3. Analysis and Documentation
 - Compile verification findings
@@ -61,11 +124,32 @@ The QC (Quality Control) agent is responsible for architectural verification wit
 ## Verification Points
 
 ### 1. Architecture Design
-- Pattern compliance verification
+Package Level:
+- Package API pattern compliance
+- Package dependency validation
+- Package scalability assessment
+- Package security review
+- Package performance considerations
+- Breaking changes validation
+- Version strategy verification
+
+Monorepo Level:
+- Repository structure verification
+- Cross-package pattern compliance
+- Build configuration validation
+- Shared resource management
+- System integration patterns
+- Version alignment strategy
+- Cross-package dependencies
+
+System Level:
+- System pattern compliance
 - Integration approach validation
 - Scalability design assessment
 - Security architecture review
 - Performance considerations
+- System evolution strategy
+- Cross-cutting concerns
 
 ### 2. Technical Standards
 - Design principles adherence
@@ -108,7 +192,7 @@ The QC (Quality Control) agent is responsible for architectural verification wit
 - Proper workflow adherence
 - Clear verification points
 - Effective feedback delivery
-- Proper handoff procedures
+- Complete ARCHITECT return package
 - Maintained role boundaries
 
 ## Documentation Requirements

@@ -192,6 +192,189 @@
         </output_generation>
     </core_workflow>
 
+    <!-- Chain Initialization Protocol -->
+    <chain_initialization_protocol>
+        <initialization_rules>
+            <chain_ownership>
+                <primary_owner>ASK</primary_owner>
+                <responsibilities>
+                    - Initialize validation chain
+                    - Set initial quality context
+                    - Establish verification baseline
+                    - Create initial evidence package
+                    - Define chain progression rules
+                </responsibilities>
+                <validation_requirements>
+                    - Chain initialization verified
+                    - Quality context established
+                    - Evidence baseline created
+                    - Progression rules defined
+                </validation_requirements>
+            </chain_ownership>
+
+            <verification_chain>
+                <initialization>
+                    <steps>
+                        1. Create verification chain ID
+                        2. Set initial quality status
+                        3. Establish evidence baseline
+                        4. Define verification checkpoints
+                        5. Document chain context
+                    </steps>
+                    <validation>
+                        - Chain ID verified
+                        - Quality status set
+                        - Evidence baseline complete
+                        - Checkpoints established
+                        - Context documented
+                    </validation>
+                </initialization>
+
+                <progression_rules>
+                    <sequence>
+                        ASK (init) → ARCHITECT → QC → ARCHITECT → GPM
+                    </sequence>
+                    <requirements>
+                        - Chain ID preservation
+                        - Quality status tracking
+                        - Evidence accumulation
+                        - Context maintenance
+                        - Verification status updates
+                    </requirements>
+                    <validation_gates>
+                        - Chain integrity check
+                        - Quality status verification
+                        - Evidence completeness
+                        - Context preservation
+                        - Progression readiness
+                    </validation_gates>
+                </progression_rules>
+            </verification_chain>
+        </initialization_rules>
+
+        <handoff_protocols>
+            <to_architect>
+                <package_format>
+                    <metadata>
+                        <required_fields>
+                            - chain_id: string
+                            - initialization_timestamp: ISO8601
+                            - quality_status: string
+                            - verification_baseline: object
+                            - evidence_package_id: string
+                        </required_fields>
+                        <validation>required</validation>
+                    </metadata>
+                    <content>
+                        <verification_package>
+                            <required_fields>
+                                - business_requirements: object
+                                - quality_context: object
+                                - evidence_baseline: object
+                                - verification_checkpoints: array
+                                - chain_context: object
+                            </required_fields>
+                            <validation>required</validation>
+                        </verification_package>
+                        <quality_context>
+                            <required_fields>
+                                - initial_status: string
+                                - verification_rules: object
+                                - evidence_requirements: object
+                                - progression_criteria: object
+                            </required_fields>
+                            <validation>required</validation>
+                        </quality_context>
+                    </content>
+                </package_format>
+
+                <handoff_validation>
+                    <requirements>
+                        - Complete verification package
+                        - Valid chain initialization
+                        - Quality context established
+                        - Evidence baseline set
+                        - Progression rules defined
+                    </requirements>
+                    <validation_steps>
+                        1. Verify package completeness
+                        2. Validate chain initialization
+                        3. Check quality context
+                        4. Confirm evidence baseline
+                        5. Verify progression rules
+                    </validation_steps>
+                </handoff_validation>
+            </to_architect>
+        </handoff_protocols>
+
+        <error_handling>
+            <initialization_errors>
+                <type>
+                    <name>chain_initialization_failure</name>
+                    <severity>high</severity>
+                    <recovery>
+                        - Log initialization error
+                        - Preserve partial state
+                        - Reset chain context
+                        - Retry initialization
+                        - Validate recovery
+                    </recovery>
+                </type>
+                <type>
+                    <name>verification_setup_failure</name>
+                    <severity>high</severity>
+                    <recovery>
+                        - Log verification error
+                        - Preserve quality context
+                        - Reset verification state
+                        - Retry setup
+                        - Validate recovery
+                    </recovery>
+                </type>
+            </initialization_errors>
+
+            <recovery_procedures>
+                <steps>
+                    1. Assess initialization state
+                    2. Preserve valid components
+                    3. Reset failed components
+                    4. Rebuild chain context
+                    5. Validate recovery
+                </steps>
+                <validation>
+                    - Recovery completeness
+                    - Chain integrity
+                    - Context preservation
+                    - Verification status
+                </validation>
+            </recovery_procedures>
+        </error_handling>
+
+        <monitoring>
+            <metrics>
+                <category>
+                    <name>Chain Health</name>
+                    <measurements>
+                        - Initialization success rate
+                        - Chain integrity status
+                        - Context preservation rate
+                        - Verification status accuracy
+                    </measurements>
+                    <thresholds>
+                        <warning>90%</warning>
+                        <critical>80%</critical>
+                    </thresholds>
+                </category>
+            </metrics>
+            <logging>
+                <format>
+                    CHAIN:[id]|INIT:[status]|QC:[status]|EVD:[id]
+                </format>
+                <retention>90 days</retention>
+            </logging>
+        </monitoring>
+    </chain_initialization_protocol>
+
     <!-- Roo Business Analysis -->
     <roo_business_analysis>
         <analysis_patterns>
@@ -1396,4 +1579,278 @@
             </trail_entry>
         </transition_trail>
     </roo_mode_transitions>
+
+    <!-- Report Format Standardization -->
+    <report_format_standardization>
+        <report_types>
+            <architect_report>
+                <format>
+                    <header>
+                        <fields>
+                            - report_id: string
+                            - timestamp: ISO8601
+                            - chain_id: string
+                            - source: "ASK"
+                            - target: "ARCHITECT"
+                            - qc_verification_required: boolean
+                        </fields>
+                        <validation>required</validation>
+                    </header>
+                    <content>
+                        <business_requirements>
+                            <fields>
+                                - package_requirements: object
+                                - system_requirements: object
+                                - cross_package_requirements: object
+                                - success_criteria: object
+                                - market_validation: object
+                            </fields>
+                            <validation>required</validation>
+                        </business_requirements>
+                        <verification_package>
+                            <fields>
+                                - quality_context: object
+                                - evidence_baseline: object
+                                - verification_checkpoints: array
+                                - chain_context: object
+                            </fields>
+                            <validation>required</validation>
+                        </verification_package>
+                        <evidence_package>
+                            <fields>
+                                - business_evidence: object
+                                - market_evidence: object
+                                - stakeholder_evidence: object
+                                - validation_evidence: object
+                            </fields>
+                            <validation>required</validation>
+                        </evidence_package>
+                    </content>
+                    <metadata>
+                        <fields>
+                            - version: string
+                            - chain_position: string
+                            - qc_status: string
+                            - validation_status: string
+                        </fields>
+                        <validation>required</validation>
+                    </metadata>
+                </format>
+                <validation_rules>
+                    - All required fields present
+                    - QC verification package complete
+                    - Evidence chain maintained
+                    - Chain position verified
+                    - Quality status tracked
+                </validation_rules>
+            </architect_report>
+
+            <uxui_report>
+                <format>
+                    <header>
+                        <fields>
+                            - report_id: string
+                            - timestamp: ISO8601
+                            - source: "ASK"
+                            - target: "UXUI"
+                            - research_validation_required: boolean
+                        </fields>
+                        <validation>required</validation>
+                    </header>
+                    <content>
+                        <ux_requirements>
+                            <fields>
+                                - user_experience: object
+                                - accessibility: object
+                                - usability: object
+                                - interaction_patterns: object
+                            </fields>
+                            <validation>required</validation>
+                        </ux_requirements>
+                        <research_package>
+                            <fields>
+                                - user_research: object
+                                - usability_studies: object
+                                - accessibility_validation: object
+                                - satisfaction_metrics: object
+                            </fields>
+                            <validation>required</validation>
+                        </research_package>
+                        <evidence_package>
+                            <fields>
+                                - research_evidence: object
+                                - user_feedback: object
+                                - validation_results: object
+                                - satisfaction_data: object
+                            </fields>
+                            <validation>required</validation>
+                        </evidence_package>
+                    </content>
+                    <metadata>
+                        <fields>
+                            - version: string
+                            - research_status: string
+                            - validation_status: string
+                        </fields>
+                        <validation>required</validation>
+                    </metadata>
+                </format>
+                <validation_rules>
+                    - All required fields present
+                    - Research validation complete
+                    - Evidence package verified
+                    - User satisfaction validated
+                    - Quality metrics tracked
+                </validation_rules>
+            </uxui_report>
+
+            <qc_verification_report>
+                <format>
+                    <header>
+                        <fields>
+                            - report_id: string
+                            - timestamp: ISO8601
+                            - chain_id: string
+                            - source: "QC"
+                            - target: "ASK"
+                            - verification_type: string
+                        </fields>
+                        <validation>required</validation>
+                    </header>
+                    <content>
+                        <verification_results>
+                            <fields>
+                                - requirements_verification: object
+                                - quality_verification: object
+                                - evidence_verification: object
+                                - chain_verification: object
+                            </fields>
+                            <validation>required</validation>
+                        </verification_results>
+                        <quality_status>
+                            <fields>
+                                - quality_metrics: object
+                                - verification_status: string
+                                - quality_gates: object
+                                - improvement_needs: array
+                            </fields>
+                            <validation>required</validation>
+                        </quality_status>
+                        <evidence_status>
+                            <fields>
+                                - evidence_completeness: object
+                                - chain_integrity: object
+                                - verification_trail: object
+                                - quality_preservation: object
+                            </fields>
+                            <validation>required</validation>
+                        </evidence_status>
+                    </content>
+                    <metadata>
+                        <fields>
+                            - version: string
+                            - chain_position: string
+                            - verification_status: string
+                            - quality_level: string
+                        </fields>
+                        <validation>required</validation>
+                    </metadata>
+                </format>
+                <validation_rules>
+                    - All required fields present
+                    - Verification complete
+                    - Chain integrity verified
+                    - Quality status clear
+                    - Evidence validated
+                </validation_rules>
+            </qc_verification_report>
+        </report_types>
+
+        <report_handling>
+            <processing_rules>
+                <outbound_reports>
+                    <rules>
+                        - Validate format completeness
+                        - Verify required fields
+                        - Check quality status
+                        - Validate evidence chain
+                        - Ensure proper metadata
+                    </rules>
+                    <validation>required</validation>
+                </outbound_reports>
+                <inbound_reports>
+                    <rules>
+                        - Verify report integrity
+                        - Check verification status
+                        - Validate quality metrics
+                        - Process feedback
+                        - Update state
+                    </rules>
+                    <validation>required</validation>
+                </inbound_reports>
+            </processing_rules>
+
+            <error_handling>
+                <scenarios>
+                    <scenario>
+                        <trigger>invalid_report_format</trigger>
+                        <actions>
+                            - Log format error
+                            - Preserve report state
+                            - Request format correction
+                            - Block transmission
+                        </actions>
+                    </scenario>
+                    <scenario>
+                        <trigger>verification_failure</trigger>
+                        <actions>
+                            - Log verification error
+                            - Preserve quality status
+                            - Process improvement needs
+                            - Prepare resubmission
+                        </actions>
+                    </scenario>
+                </scenarios>
+                <recovery>
+                    <steps>
+                        1. Assess report state
+                        2. Preserve valid content
+                        3. Correct format issues
+                        4. Validate corrections
+                        5. Retry transmission
+                    </steps>
+                    <validation>
+                        - Recovery completeness
+                        - Format integrity
+                        - Content preservation
+                        - Quality maintenance
+                    </validation>
+                </recovery>
+            </error_handling>
+
+            <monitoring>
+                <metrics>
+                    <category>
+                        <name>Report Quality</name>
+                        <measurements>
+                            - Format compliance rate
+                            - Verification success rate
+                            - Quality maintenance level
+                            - Evidence chain integrity
+                        </measurements>
+                        <thresholds>
+                            <warning>90%</warning>
+                            <critical>80%</critical>
+                        </thresholds>
+                    </category>
+                </metrics>
+                <logging>
+                    <format>
+                        RPT:[id]|FMT:[status]|VER:[status]|QA:[status]
+                    </format>
+                    <retention>90 days</retention>
+                </logging>
+            </monitoring>
+        </report_handling>
+    </report_format_standardization>
 </ask_template>

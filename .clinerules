@@ -1,9 +1,19 @@
-# General Cline Rules v2.0
+# General Cline Rules - Lite v1.0
 
 # Core Configuration
 mode: "roo_core"
 description: "Core workflow and validation framework with monorepo support"
-version: "3.0.0"
+version: "3.0.0-lite"
+
+# Standards References
+standards_references:
+  - Architecture Standards: /opt/mExpress/docs/core/standards/B_architecture.md
+  - Development Principles: /opt/mExpress/docs/core/standards/C_development_principles.md
+  - Frontend Standards: /opt/mExpress/docs/core/standards/C1_frontend_development_standards.md
+  - Backend Standards: /opt/mExpress/docs/core/standards/C2_backend_development_standards.md
+  - API Standards: /opt/mExpress/docs/core/standards/C3_api_development_standards.md
+  - Test Standards: /opt/mExpress/docs/core/standards/C4_test_standards.md
+  - Quality & Security: /opt/mExpress/docs/core/standards/D_quality_security.md
 
 # Workflow Structure
 workflow:
@@ -11,495 +21,203 @@ workflow:
   downstream_flow:
     requirements:
       - Package-level input validation
-      - System-wide chain initialization
-      - Cross-package quality context
-      - Multi-level state preservation
-      - Monorepo context documentation
+      - Quality context initialization
+      - State preservation
+      - Documentation completeness
+      - Standards compliance
+
     validation:
-      - Package input completeness
-      - System-wide chain integrity
-      - Cross-package quality preservation
-      - Multi-level state consistency
-      - Monorepo context validation
+      - Input completeness
+      - Quality preservation
+      - State consistency
+      - Standards compliance verification
 
   upstream_flow:
     requirements:
-      - Package-level evidence collection
-      - System-wide quality verification
-      - Cross-package chain maintenance
-      - Multi-level state updates
-      - Monorepo context preservation
+      - Evidence collection
+      - Quality verification
+      - State updates
+      - Documentation maintenance
+      - Standards compliance verification
+
     validation:
-      - Package evidence completeness
-      - System-wide quality standards
-      - Cross-package chain integrity
-      - Multi-level state consistency
-      - Monorepo context validation
+      - Evidence completeness
+      - Quality standards verification
+      - State consistency
+      - Standards compliance
 
 # Chain Management
 validation_chain:
   requirements:
-    - Package-level chain initialization
-    - System-wide evidence collection
-    - Cross-package quality preservation
-    - Multi-level state management
-    - Monorepo documentation maintenance
-    - Integration point validation
-    - Dependency chain tracking
+    - Chain initialization
+    - Evidence collection
+    - Quality preservation
+    - State management
+    - Documentation maintenance
+    - Standards compliance
 
   verification_points:
-    package_level:
-      - Package requirements completeness
-      - Package research validation
-      - Package success criteria
-      - Package value alignment
-      - Integration readiness
-
-    system_level:
-      - System-wide requirements completeness
-      - Cross-package research validation
-      - System success criteria
-      - Portfolio value alignment
-      - Resource optimization
-
-    integration_level:
-      - Cross-package compatibility
-      - Shared resource utilization
-      - Integration point validation
-      - Dependency management
-      - System-wide consistency
-
-    quality:
-      - Framework compliance
-      - Standards adherence
-      - Documentation completeness
-      - Evidence preservation
-      - Cross-package quality
-
-    state:
-      - Package context preservation
-      - System context preservation
-      - Cross-package chain integrity
-      - Multi-level history maintenance
-      - Monorepo metrics tracking
+    - Requirements completeness
+    - Quality compliance
+    - Success criteria validation
+    - Standards adherence
+    - Value alignment
+    - Documentation completeness
 
 # Quality Framework
 quality_framework:
   standards:
-    package_level:
-      - Package quality context
-      - Package evidence collection
-      - Package chain preservation
-      - Package state management
-      - Package documentation
-
-    system_level:
-      - System-wide quality context
-      - Cross-package evidence collection
-      - Monorepo chain preservation
-      - Multi-level state management
-      - System documentation
-
-    integration_level:
-      - Cross-package quality standards
-      - Integration point validation
-      - Dependency management
-      - Resource optimization
-      - Shared context maintenance
+    - Quality context maintenance
+    - Evidence collection
+    - Chain preservation
+    - State management
+    - Documentation completeness
+    - Standards compliance
 
   validation:
-    requirements:
-      package_level:
-        - Package validation chain
-        - Package evidence preservation
-        - Package quality metrics
-        - Package state consistency
-
-      system_level:
-        - System-wide validation chain
-        - Cross-package evidence preservation
-        - System quality metrics
-        - Multi-level state consistency
-
-      integration_level:
-        - Integration validation chain
-        - Cross-package compatibility
-        - Integration metrics
-        - Resource utilization
-
-    evidence:
-      - Package collection points
-      - System-wide collection points
-      - Integration evidence points
-      - Cross-package dependencies
-      - Chain preservation at all levels
-      - Multi-level context maintenance
+    - Validation chain integrity
+    - Evidence preservation
+    - Quality metrics tracking
+    - State consistency
+    - Documentation completeness
+    - Standards compliance verification
 
 # State Management
 state_management:
   requirements:
-    package_level:
-      - Package state initialization
-      - Package context preservation
-      - Package chain maintenance
-      - Package history tracking
-      - Package metrics collection
-
-    system_level:
-      - System-wide state initialization
-      - Cross-package context preservation
-      - Monorepo chain maintenance
-      - Multi-level history tracking
-      - System metrics collection
-
-    integration_level:
-      - Integration state management
-      - Cross-package dependency tracking
-      - Resource state maintenance
-      - Shared context preservation
-      - Integration metrics collection
+    - State initialization
+    - Context preservation
+    - Chain maintenance
+    - History tracking
+    - Metrics collection
+    - Standards compliance
 
   validation:
-    package_level:
-      - Package state consistency
-      - Package context integrity
-      - Package chain preservation
-      - Package history maintenance
-      - Package metrics accuracy
-
-    system_level:
-      - System-wide state consistency
-      - Cross-package context integrity
-      - Monorepo chain preservation
-      - Multi-level history maintenance
-      - System metrics accuracy
-
-    integration_level:
-      - Integration state consistency
-      - Cross-package compatibility
-      - Resource state integrity
-      - Shared context maintenance
-      - Integration metrics accuracy
+    - State consistency
+    - Context integrity
+    - Chain preservation
+    - History maintenance
+    - Metrics accuracy
+    - Standards compliance verification
 
 # Mode Transitions
 mode_transitions:
   requirements:
-    package_level:
-      - Package validation chain complete
-      - Package quality context preserved
-      - Package state properly managed
-      - Package documentation complete
-      - Package evidence collected
-
-    system_level:
-      - System-wide validation chain complete
-      - Cross-package quality context preserved
-      - Multi-level state properly managed
-      - System documentation complete
-      - System-wide evidence collected
-
-    integration_level:
-      - Integration validation complete
-      - Cross-package context preserved
-      - Resource state managed
-      - Integration documentation complete
-      - Integration evidence collected
+    - Validation chain completion
+    - Quality context preservation
+    - State management
+    - Documentation completeness
+    - Evidence collection
+    - Standards compliance
 
   validation:
-    package_level:
-      - Package chain integrity
-      - Package context preservation
-      - Package state consistency
-      - Package documentation completeness
-      - Package evidence verification
-
-    system_level:
-      - System-wide chain integrity
-      - Cross-package context preservation
-      - Multi-level state consistency
-      - System documentation completeness
-      - System-wide evidence verification
-
-    integration_level:
-      - Integration chain integrity
-      - Cross-package compatibility
-      - Resource state consistency
-      - Integration documentation completeness
-      - Integration evidence verification
+    - Chain integrity
+    - Context preservation
+    - State consistency
+    - Documentation completeness
+    - Evidence verification
+    - Standards compliance verification
 
 # Documentation Standards
 documentation:
   requirements:
-    package_level:
-      - Package documentation coverage
-      - Package chain documentation
-      - Package evidence preservation
-      - Package state tracking
-      - Package quality context
-
-    system_level:
-      - System-wide documentation coverage
-      - Cross-package chain documentation
-      - System-wide evidence preservation
-      - Multi-level state tracking
-      - System quality context
-
-    integration_level:
-      - Integration documentation coverage
-      - Cross-package relationship documentation
-      - Integration evidence preservation
-      - Resource state tracking
-      - Integration quality context
+    - Documentation coverage
+    - Chain documentation
+    - Evidence preservation
+    - State tracking
+    - Quality context
+    - Standards compliance
 
   validation:
-    package_level:
-      - Package documentation completeness
-      - Package chain integrity
-      - Package evidence preservation
-      - Package state consistency
-      - Package context maintenance
-
-    system_level:
-      - System-wide documentation completeness
-      - Cross-package chain integrity
-      - System-wide evidence preservation
-      - Multi-level state consistency
-      - System context maintenance
-
-    integration_level:
-      - Integration documentation completeness
-      - Cross-package relationship integrity
-      - Integration evidence preservation
-      - Resource state consistency
-      - Integration context maintenance
+    - Documentation completeness
+    - Chain integrity
+    - Evidence preservation
+    - State consistency
+    - Context maintenance
+    - Standards compliance verification
 
 # Evidence Management
 evidence:
   collection_points:
-    package_level:
-      - During package validation
-      - After package transitions
-      - During package operations
-      - After package updates
-      - Package integration points
-
-    system_level:
-      - During system validation
-      - After cross-package transitions
-      - During system operations
-      - After system updates
-      - Cross-package integration points
-
-    integration_level:
-      - During integration validation
-      - After resource transitions
-      - During integration operations
-      - After dependency updates
-      - Shared resource points
+    - During validation
+    - After transitions
+    - During operations
+    - After updates
+    - At integration points
+    - Standards compliance checkpoints
 
   requirements:
-    package_level:
-      - Package evidence collection
-      - Package chain preservation
-      - Package context maintenance
-      - Package state tracking
-      - Integration evidence
-
-    system_level:
-      - System-wide evidence collection
-      - Cross-package chain preservation
-      - System context maintenance
-      - Multi-level state tracking
-      - Integration coordination
-
-    integration_level:
-      - Integration evidence collection
-      - Cross-package dependency tracking
-      - Resource context maintenance
-      - Integration state tracking
-      - Shared resource management
+    - Evidence collection
+    - Chain preservation
+    - Context maintenance
+    - State tracking
+    - Standards compliance verification
 
   validation:
-    package_level:
-      - Package evidence completeness
-      - Package chain integrity
-      - Package context preservation
-      - Package state consistency
-      - Integration validation
-
-    system_level:
-      - System-wide evidence completeness
-      - Cross-package chain integrity
-      - System context preservation
-      - Multi-level state consistency
-      - Integration coordination
-
-    integration_level:
-      - Integration evidence completeness
-      - Cross-package dependency integrity
-      - Resource context preservation
-      - Integration state consistency
-      - Shared resource validation
+    - Evidence completeness
+    - Chain integrity
+    - Context preservation
+    - State consistency
+    - Standards compliance verification
 
 # Quality Gates
 quality_gates:
   input_validation:
-    package_level:
-      - Package requirements completeness
-      - Package research validation
-      - Package success criteria
-      - Package value alignment
-      - Integration readiness
-
-    system_level:
-      - System-wide requirements completeness
-      - Cross-package research validation
-      - System success criteria
-      - Portfolio value alignment
-      - Resource optimization
-
-    integration_level:
-      - Integration requirements completeness
-      - Cross-package compatibility validation
-      - Integration success criteria
-      - Resource value alignment
-      - Dependency optimization
+    - Requirements completeness
+    - Research validation
+    - Success criteria verification
+    - Value alignment
+    - Standards compliance verification
 
   quality_verification:
-    package_level:
-      - Package framework compliance
-      - Package standards adherence
-      - Package documentation completeness
-      - Package evidence preservation
-      - Integration quality
-
-    system_level:
-      - System-wide framework compliance
-      - Cross-package standards adherence
-      - System documentation completeness
-      - System evidence preservation
-      - Integration coordination
-
-    integration_level:
-      - Integration framework compliance
-      - Cross-package compatibility
-      - Integration documentation completeness
-      - Integration evidence preservation
-      - Resource optimization
+    - Framework compliance
+    - Standards adherence
+    - Documentation completeness
+    - Evidence preservation
+    - Standards compliance verification
 
   state_validation:
-    package_level:
-      - Package context preservation
-      - Package chain integrity
-      - Package history maintenance
-      - Package metrics tracking
-      - Integration state
-
-    system_level:
-      - System-wide context preservation
-      - Cross-package chain integrity
-      - Multi-level history maintenance
-      - System metrics tracking
-      - Integration coordination
-
-    integration_level:
-      - Integration context preservation
-      - Cross-package state integrity
-      - Resource history maintenance
-      - Integration metrics tracking
-      - Dependency state
+    - Context preservation
+    - Chain integrity
+    - History maintenance
+    - Metrics tracking
+    - Standards compliance verification
 
 # Success Criteria
 success_metrics:
   validation:
-    package_level:
-      - Package chain completeness
-      - Package evidence preservation
-      - Package quality maintenance
-      - Package state consistency
-      - Package documentation coverage
-
-    system_level:
-      - System-wide chain completeness
-      - Cross-package evidence preservation
-      - System quality maintenance
-      - Multi-level state consistency
-      - System documentation coverage
-
-    integration_level:
-      - Integration chain completeness
-      - Cross-package evidence preservation
-      - Integration quality maintenance
-      - Resource state consistency
-      - Integration documentation coverage
+    - Chain completeness
+    - Evidence preservation
+    - Quality maintenance
+    - State consistency
+    - Documentation coverage
+    - Standards compliance
 
   requirements:
-    package_level:
-      - Package validation chain complete
-      - Package evidence preserved
-      - Package quality maintained
-      - Package state consistent
-      - Package documentation complete
-
-    system_level:
-      - System-wide validation chain complete
-      - Cross-package evidence preserved
-      - System quality maintained
-      - Multi-level state consistent
-      - System documentation complete
-
-    integration_level:
-      - Integration validation chain complete
-      - Cross-package evidence preserved
-      - Integration quality maintained
-      - Resource state consistent
-      - Integration documentation complete
+    - Validation chain complete
+    - Evidence preserved
+    - Quality maintained
+    - State consistent
+    - Documentation complete
+    - Standards compliance verified
 
 # Error Handling
 error_handling:
   requirements:
-    package_level:
-      - Package error documentation
-      - Package chain preservation
-      - Package state recovery
-      - Package evidence collection
-      - Package context maintenance
-
-    system_level:
-      - System-wide error documentation
-      - Cross-package chain preservation
-      - Multi-level state recovery
-      - System evidence collection
-      - System context maintenance
-
-    integration_level:
-      - Integration error documentation
-      - Cross-package dependency preservation
-      - Resource state recovery
-      - Integration evidence collection
-      - Integration context maintenance
+    - Error documentation
+    - Chain preservation
+    - State recovery
+    - Evidence collection
+    - Context maintenance
+    - Standards compliance verification
 
   validation:
-    package_level:
-      - Package error resolution
-      - Package chain integrity
-      - Package state consistency
-      - Package evidence completeness
-      - Package context preservation
-
-    system_level:
-      - System-wide error resolution
-      - Cross-package chain integrity
-      - Multi-level state consistency
-      - System evidence completeness
-      - System context preservation
-
-    integration_level:
-      - Integration error resolution
-      - Cross-package dependency integrity
-      - Resource state consistency
-      - Integration evidence completeness
-      - Integration context preservation
+    - Error resolution
+    - Chain integrity
+    - State consistency
+    - Evidence completeness
+    - Context preservation
+    - Standards compliance verification
 
 # File Permissions
 edit_permissions:

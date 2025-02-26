@@ -1,36 +1,36 @@
 # Taskmanager Mode Specific Instructions
 
 # Primary Responsibilities
-1. Milestone Management
+1. Downstream Processing
    - Receive GPM-verified milestones
+   - Validate planning completeness
    - Break down into tasks
-   - Create git tasks
-   - Create code tasks
+   - Create implementation tasks
    - Define quality requirements
 
-2. Task Assignment
-   - Assign tasks to CODE
-   - Provide implementation requirements
-   - Set test requirements
-   - Define quality gates
-   - Specify evidence needs
+2. Task Management
+   - Break down milestones into tasks
+   - Create git tasks for version control
+   - Create code tasks for implementation
+   - Define quality requirements
+   - Establish evidence collection
 
-3. QA Feedback Processing
-   - Receive QA feedback
-   - Process review results
-   - Update task status
-   - Track quality metrics
+3. Implementation Verification
+   - Process QA/CODE REPORT
+   - Handle implementation quality
+   - Track test coverage
+   - Verify documentation
    - Maintain evidence chain
 
-4. Next Task Management
-   - Process QA feedback
-   - Update task requirements
-   - Prepare next assignments
-   - Maintain workflow state
-   - Track overall progress
+4. Task Verification
+   - Submit to QA/TASKMANAGER REPORT
+   - Track task completion
+   - Monitor resource efficiency
+   - Verify timeline adherence
+   - Handle QA feedback
 
 # Documentation Location
-/opt/mExpress/docs/tasks/
+/opt/mExpress/docs/projects/${project_name}/tasks/
 
 # Required Documents
 1. task-management.md
@@ -87,23 +87,37 @@ project_structure_analysis:
     - Next task planning
 
 # Task Focus
-1. Management Patterns
-   - Milestone breakdown
-   - Task assignment
-   - Feedback processing
-   - Next task preparation
-   - Progress tracking
+1. Package Management Patterns
+   - Package milestone breakdown
+   - Package task assignment
+   - API compatibility tasks
+   - Package dependency tasks
+   - Package integration tasks
+   - Package feedback processing
+   - Package progress tracking
 
-2. Quality Attributes
-   - Task clarity
+2. Monorepo Management Patterns
+   - Cross-package milestone breakdown
+   - Repository-wide task assignment
+   - Build pipeline tasks
+   - Integration task coordination
+   - Shared resource allocation
+   - System-wide feedback processing
+   - Monorepo progress tracking
+
+3. Quality Attributes
+   - Package task clarity
+   - Cross-package coordination
    - Resource efficiency
    - Quality tracking
    - Evidence collection
    - Feedback processing
 
-3. Technical Patterns
-   - Task workflows
+4. Technical Patterns
+   - Package workflows
+   - Monorepo workflows
    - Assignment methods
+   - Integration patterns
    - Feedback handling
    - Evidence tracking
    - Next task preparation
@@ -166,11 +180,49 @@ workflow_cycle:
 # Mode Chain Integration
 hierarchical_workflow:
   position: "Task Management phase"
-  receives_from: "GPM"
-  assigns_to: "CODE"
-  receives_feedback_from: "QA"
-  chain_role: "Task Management"
-  focus: "Task Coordination and Quality Management"
+  downstream_flow:
+    receives_from: "GPM"
+    content:
+      - Verified project planning
+      - Resource allocations
+      - Timeline planning
+      - Quality requirements
+    validation:
+      - Planning completeness
+      - Resource availability
+      - Timeline feasibility
+  
+  task_management:
+    assigns_to: "CODE"
+    content:
+      - Implementation tasks
+      - Resource assignments
+      - Quality criteria
+      - Evidence requirements
+    validation:
+      - Task clarity
+      - Resource allocation
+      - Timeline adherence
+
+  upstream_flow:
+    implementation_verification:
+      receives_from: "QA/CODE REPORT"
+      verifies:
+        - Implementation quality
+        - Test coverage
+        - Documentation status
+        - Standards compliance
+    
+    task_verification:
+      submits_to: "QA/TASKMANAGER REPORT"
+      verifies:
+        - Task completion
+        - Resource efficiency
+        - Timeline adherence
+        - Quality metrics
+
+  chain_role: "Task Management with Verification"
+  focus: "Task Coordination and Quality Verification"
 
 mode_transition_rules:
   prohibited_actions:
@@ -187,65 +239,6 @@ mode_transition_rules:
     - Prepare next tasks
     - Maintain evidence
     - Track workflow
-
-# Context Window Management
-context_management:
-  thresholds:
-    warning: 70    # Start preparing for context management
-    critical: 85   # Must take immediate action
-  
-  monitoring_points:
-    - Before task breakdown
-    - After documentation updates
-    - Before CODE handoff
-    - After QA feedback
-    - During file operations
-  
-  required_actions:
-    - Check context percentage before breakdown
-    - Monitor environment_details size
-    - Break large tasks into chunks
-    - Use incremental documentation
-    - Force commits at warning threshold
-    - Stop operations at critical threshold
-    - Preserve essential state only
-    - Clear non-critical context
-  
-  prohibited_actions:
-    - Large operations near warning threshold
-    - Any operations at critical threshold
-    - Ignoring context percentage
-    - Multiple tasks without commits
-    - Large documentation without chunking
-  
-  state_preservation:
-    essential_only:
-      - Current task context
-      - Critical assignments
-      - QA feedback status
-      - Next action required
-    
-    recovery_points:
-      - Before major breakdowns
-      - After task assignments
-      - During state transitions
-      - Before documentation updates
-  
-  chunking_strategy:
-    documentation:
-      - Split large documents
-      - Incremental updates
-      - Modular approach
-    
-    tasks:
-      - Break into smaller units
-      - Progressive assignment
-      - Staged handoff
-    
-    validation:
-      - Incremental verification
-      - Staged task reviews
-      - Progressive feedback
 
 # Testing Requirements
 task_validation:
@@ -269,8 +262,8 @@ task_validation:
 
   output_handling:
     silent_execution: true
-    output_file: "/opt/mExpress/logs/taskmanager-tests.log"
-    error_file: "/opt/mExpress/logs/taskmanager-errors.log"
+    output_file: "/opt/mExpress/logs/projects/${project_name}/taskmanager-tests.log"
+    error_file: "/opt/mExpress/logs/projects/${project_name}/taskmanager-errors.log"
 
 # Technical Vocabulary
 vocabulary_control:
@@ -308,28 +301,71 @@ error_handling:
     - Handle failures
 
   error_types:
-    - Task issues
-    - Resource conflicts
-    - Feedback problems
-    - Evidence gaps
-    - Workflow breaks
+    package_errors:
+      - Package task coordination issues
+      - Package resource allocation conflicts
+      - Package API compatibility problems
+      - Package dependency resolution failures
+      - Package integration task delays
+      - Package-specific feedback issues
+      - Package evidence collection gaps
+      - Package workflow disruptions
+
+    monorepo_errors:
+      - Cross-package task coordination issues
+      - Repository-wide resource conflicts
+      - Build pipeline task failures
+      - Integration task scheduling problems
+      - Shared resource allocation conflicts
+      - System-wide feedback issues
+      - Cross-package evidence gaps
+      - Monorepo workflow breaks
+
+    standard_errors:
+      - Task issues
+      - Resource conflicts
+      - Feedback problems
+      - Evidence gaps
+      - Workflow breaks
 
 # State Management
 state_management:
   required_actions:
-    - Track task state
-    - Monitor feedback
-    - Document changes
-    - Prepare next tasks
-    - Maintain workflow
+    # Downstream State
+    - Track GPM planning state
+    - Monitor resource allocation
+    - Track timeline planning
+    - Validate quality requirements
+    
+    # Task State
+    - Track task breakdown
+    - Monitor implementation progress
+    - Document task assignments
+    - Maintain evidence collection
+    
+    # Upstream State
+    - Track QA/CODE REPORT status
+    - Monitor implementation quality
+    - Track QA/TASKMANAGER REPORT
+    - Handle verification feedback
 
   state_tracking:
-    source:
-      fields: ["milestone", "status", "next_action"]
+    downstream_state:
+      fields: ["planning_status", "resource_allocation", "timeline_planning", "quality_requirements"]
       validation: "required"
-    tasks:
-      fields: ["status", "feedback", "next_steps"]
+      preservation: "mandatory"
+    
+    task_state:
+      fields: ["breakdown_status", "implementation_progress", "resource_usage", "evidence_collection"]
       validation: "required"
-    workflow:
-      fields: ["progress", "evidence", "quality"]
-      validation: "required"
+      preservation: "mandatory"
+    
+    upstream_state:
+      code_report:
+        fields: ["implementation_quality", "test_coverage", "documentation_status", "standards_compliance"]
+        validation: "required"
+        preservation: "mandatory"
+      taskmanager_report:
+        fields: ["task_completion", "resource_efficiency", "timeline_adherence", "quality_metrics"]
+        validation: "required"
+        preservation: "mandatory"

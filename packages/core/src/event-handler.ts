@@ -44,3 +44,26 @@ class CustomEventHandler implements EventHandler {
       return this.emitter.emit(event, ...args);
     } catch (error) {
       this.errorHandler(error as Error);
+      return false;
+    }
+  }
+
+  removeListener(event: string, listener: (...args: any[]) => void): void {
+    try {
+      this.emitter.removeListener(event, listener);
+    } catch (error) {
+      this.errorHandler(error as Error);
+    }
+  }
+
+  removeAllListeners(event?: string): void {
+    try {
+      this.emitter.removeAllListeners(event);
+    } catch (error) {
+      this.errorHandler(error as Error);
+    }
+  }
+}
+
+// Export singleton instance
+export const eventHandler = new CustomEventHandler();

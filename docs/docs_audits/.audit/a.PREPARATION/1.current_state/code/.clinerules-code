@@ -15,18 +15,48 @@
 # Documentation Structure
 documentation_structure:
   implementation:
+    # Package Documentation
+    package_specs:
+      - boundaries/     # Package boundaries and APIs
+      - dependencies/   # Package dependencies
+      - interfaces/     # Shared interfaces
+      - versioning/     # Version management
+      - cross-pkg/      # Cross-package communication
+    
+    # Implementation Specs
     specs:
-      - architecture/
-      - components/
-      - interfaces/
+      - architecture/   # Implementation architecture
+      - components/     # Component structure
+      - interfaces/     # System interfaces
+      - monorepo/      # Monorepo structure
+    
+    # Test Organization
     tests:
-      - unit/
-      - integration/
-      - coverage/
+      - p0/
+        - core/         # Core package tests
+        - api/          # Package API tests
+        - data/         # Data integrity tests
+        - cross/        # Cross-package tests
+      - p1/
+        - business/     # Business logic tests
+        - integration/  # Package integration tests
+        - boundaries/   # Package boundary tests
+      - p2/
+        - features/     # Feature tests
+        - components/   # Component tests
+        - packages/     # Package-specific tests
+      - p3/
+        - edge/         # Edge cases
+        - performance/  # Performance tests
+        - cross-pkg/    # Cross-package edge cases
+    
+    # Quality Assurance
     quality:
-      - validation/
-      - metrics/
-      - reports/
+      - validation/     # Package validation
+      - metrics/        # Quality metrics
+      - reports/        # Test reports
+      - packages/       # Package-specific QA
+      - cross-pkg/      # Cross-package QA
   validation:
     required: true
     blocking: true
@@ -80,11 +110,32 @@ evidence_collection:
    - Process one chunk at a time
 
 # Documentation Location
-/opt/mExpress/docs/implementation/
+Primary Locations:
+- Core Implementation: /opt/mExpress/docs/core/projects/${project_name}/implementation/
+- Package Implementation:
+  * Core: /opt/mExpress/packages/core/docs/implementation/
+  * UI Components: /opt/mExpress/packages/ui-components/docs/implementation/
+  * Utils: /opt/mExpress/packages/utils/docs/implementation/
+- Project Implementation: /opt/mExpress/projects/${project_name}/docs/implementation/
 
 # Required Documents
-1. implementation-specs.md
+
+1. package-implementation.md
+   - Package Boundaries
+   - Package APIs
+   - Shared Interfaces
+   - Version Strategy
+   - Dependencies
+   - Cross-Package Communication
+   - Package Standards
+   - Package Evolution
+   - Change Management
+   - Package Testing
+   - Package QA
+
+2. implementation-specs.md
    - Technical Context
+   - Package Context
    - Implementation Details
    - Code Structure
    - Error Handling
@@ -93,9 +144,11 @@ evidence_collection:
    - Test Coverage
    - Documentation Links
    - QA Requirements
+   - Cross-Package Impact
 
-2. test-implementation.md
-   - Test Strategy
+3. test-implementation.md
+   - Package Test Strategy
+   - Cross-Package Tests
    - Test Cases
    - Coverage Reports
    - Performance Tests
@@ -104,8 +157,10 @@ evidence_collection:
    - Test Documentation
    - Coverage Metrics
    - QA Criteria
+   - Package Boundaries Tests
 
-3. quality-validation.md
+4. quality-validation.md
+   - Package Quality
    - Code Quality
    - Test Coverage
    - Performance Metrics
@@ -115,45 +170,109 @@ evidence_collection:
    - Best Practices
    - Standards Compliance
    - QA Readiness
+   - Cross-Package Quality
 
-4. qa-preparation.md
+5. qa-preparation.md
    - Original Requirements
+     * Package Requirements
      * Coverage Thresholds
      * TDD Requirements
      * Tool Requirements
      * Environment Specs
    - Implementation Results
+     * Package Status
      * Implementation Status
      * Test Results
      * Coverage Reports
      * Documentation Updates
+     * Cross-Package Results
    - Validation Preparation
+     * Package Validation
      * Requirements Mapping
      * Results Comparison
      * Quality Metrics
      * Performance Data
      * Security Status
+     * Cross-Package Validation
    - Git References
 
 # Project Structure Analysis
 project_structure_analysis:
   required_actions:
+    # Package Analysis
+    - Analyze package boundaries
+    - Map package APIs
+    - Document shared interfaces
+    - Track package versions
+    - Identify package dependencies
+    
+    # Cross-Package Analysis
+    - Map cross-package relationships
+    - Document shared code
+    - Track shared dependencies
+    - Analyze cross-package impact
+    - Define integration contracts
+    
+    # Project Analysis
     - Analyze directory structure
     - Map file relationships
     - Identify dependencies
     - Document architecture
     - Track changes
+    
+    # Monorepo Analysis
+    - Verify package organization
+    - Check build configurations
+    - Validate dependency management
+    - Monitor version alignment
+    
   validation:
     required: true
     timing: before_implementation
+    package_validation:
+      required: true
+      checks:
+        - Package boundary integrity
+        - API compatibility
+        - Version alignment
+        - Dependency health
+    
   documentation:
+    # Package Documentation
+    - Package structure
+    - API specifications
+    - Dependency graphs
+    - Version matrix
+    
+    # Cross-Package Documentation
+    - Package relationships
+    - Shared interfaces
+    - Integration contracts
+    - Dependency resolution
+    
+    # Project Documentation
     - Structure overview
     - Component relationships
     - Integration points
     - Change impact analysis
+    
+    # Monorepo Documentation
+    - Repository structure
+    - Build configurations
+    - Package organization
+    - Version management
 
 # Implementation Focus
-1. Code Quality
+1. Package Quality
+   - Package boundaries
+   - API design
+   - Dependency management
+   - Version control
+   - Cross-package communication
+   - Package documentation
+   - Package testing
+
+2. Code Quality
    - Clean code
    - Best practices
    - Error handling
@@ -161,15 +280,61 @@ project_structure_analysis:
    - Security
    - Documentation
    - QA preparation
+   - Package compliance
 
-2. Testing Requirements
-   - Test-first approach
-   - Coverage thresholds
-   - Performance validation
-   - Security testing
-   - Integration testing
-   - Documentation
-   - QA criteria
+3. Monorepo Quality
+   - Repository structure
+   - Package organization
+   - Build configurations
+   - Version alignment
+   - Cross-package dependencies
+   - Integration patterns
+   - Shared code management
+
+4. Testing Requirements
+   Priority-Based Testing:
+   P0 (Critical):
+   - Sequential execution
+   - Max Duration: 5s
+   - Max Memory: 512MB
+   - Core functionality
+   - Data integrity
+   - Critical APIs
+
+   P1 (High Priority):
+   - Max 2 concurrent
+   - Max Duration: 10s
+   - Max Memory: 1GB
+   - Business logic
+   - Key integrations
+
+   P2 (Medium Priority):
+   - Max 3 concurrent
+   - Max Duration: 20s
+   - Max Memory: 1.5GB
+   - Features
+   - Components
+
+   P3 (Low Priority):
+   - Max 4 concurrent
+   - Max Duration: 30s
+   - Max Memory: 2GB
+   - Edge cases
+   - Performance tests
+
+   Resource Management:
+   - CPU Usage: 70% max
+   - Memory Usage: 80% max
+   - File Descriptors: 1000 max
+   - Log Size: 5MB max
+   - Error Log: 1MB max
+
+   Performance Baselines:
+   - Setup: 100ms
+   - Teardown: 100ms
+   - Assertion: 50ms
+   - Tests/Second: 10
+   - Suites/Minute: 2
 
 3. Technical Patterns
    - Implementation patterns
@@ -216,55 +381,125 @@ incremental_changes:
 
 # Workflow Management
 workflow_sequence:
-  phases:
-    - implementation:
-        source: "TASKMANAGER"
-        actions: [
-          "check_context",
-          "implement",
-          "test",
-          "document",
-          "monitor_context"
-        ]
-        context_rules:
-          - Check context before each operation
-          - Force commit at warning threshold (70%)
-          - Stop at critical threshold (85%)
-          - Use incremental implementation
-        next: "version_control"
-    
-    - version_control:
-        source: "implementation"
-        actions: [
-          "store_source_state",
-          "commit",
-          "verify",
-          "await_return",
-          "process_return",
-          "continue_workflow"
-        ]
-        return_handling: {
-          required: true,
-          actions: [
-            "verify_commit",
-            "restore_state",
-            "process_next",
-            "handle_errors"
-          ]
-        }
-        next: "qa_preparation"
-    
-    - qa_preparation:
-        source: "version_control"
-        actions: ["prepare", "validate", "send"]
-        state_preservation: "required"
+  # Downstream Flow
+  reception_phase:
+    source: "TASKMANAGER"
+    validation:
+      - Verify task clarity
+      - Check resource availability
+      - Validate timeline
+      - Confirm evidence needs
+    state_preservation:
+      - Store task requirements
+      - Track resource assignments
+      - Maintain timeline
+      - Record evidence needs
+    next: "implementation"
+
+  # Implementation Phase
+  implementation_phase:
+    source: "reception"
+    actions:
+      - Test implementation first (TDD)
+      - Implement with evidence collection
+      - Document comprehensively
+      - Validate quality gates
+    support_integration:
+      git:
+        - Track changes
+        - Preserve evidence
+        - Maintain history
+      debug:
+        - Resolve errors
+        - Optimize performance
+        - Support quality
+    context_rules:
+      - Check context before operations
+      - Force commit at warning (70%)
+      - Stop at critical (85%)
+      - Use incremental approach
+    next: "verification"
+
+  # Upstream Flow
+  verification_phase:
+    source: "implementation"
+    preparation:
+      - Verify implementation quality
+      - Check test coverage
+      - Validate documentation
+      - Prepare evidence package
+    qa_submission:
+      to: "QA/CODE REPORT"
+      content:
+        - Implementation status
+        - Test results
+        - Documentation state
+        - Evidence package
+      verification_paths:
+        accepted:
+          - Update status
+          - Forward to TASKMANAGER
+          - Archive evidence
+        rejected:
+          - Process feedback
+          - Plan improvements
+          - Prepare resubmission
+    state_preservation: "required"
 
 # Mode Chain Integration
 hierarchical_workflow:
   position: "Implementation phase"
-  receives_from: "TASKMANAGER"
-  reports_to: ["GIT", "QA"]
-  chain_role: "Implementation"
+  
+  # Downstream Flow
+  downstream:
+    receives_from: "TASKMANAGER"
+    content:
+      - Implementation tasks
+      - Resource assignments
+      - Quality criteria
+      - Evidence requirements
+    validation:
+      - Task clarity
+      - Resource availability
+      - Timeline feasibility
+  
+  # Support Systems
+  support_systems:
+    git:
+      role: "Version Control"
+      responsibilities:
+        - Track changes
+        - Preserve evidence
+        - Maintain history
+        - Support verification
+    debug:
+      role: "Implementation Support"
+      responsibilities:
+        - Error resolution
+        - Performance optimization
+        - Quality maintenance
+        - Evidence collection
+  
+  # Upstream Flow
+  upstream:
+    reports_to: "QA/CODE REPORT"
+    content:
+      - Implementation quality
+      - Test coverage
+      - Documentation status
+      - Standards compliance
+      - Evidence package
+    verification:
+      accepted_path:
+        - Forward to TASKMANAGER
+        - Update implementation status
+        - Archive evidence
+      rejected_path:
+        - Process feedback
+        - Make improvements
+        - Prepare resubmission
+  
+  chain_role: "Implementation with Verification"
 
 # Context Window Management
 context_management:
@@ -354,18 +589,51 @@ test_validation:
 
   performance_validation:
     metrics:
-      response_time_ms: 100
-      memory_usage_mb: 256
-      cpu_usage_percent: 75
+      by_priority:
+        p0:
+          response_time_ms: 100
+          memory_usage_mb: 512
+          max_duration_ms: 5000
+          concurrency: 1
+        p1:
+          response_time_ms: 200
+          memory_usage_mb: 1024
+          max_duration_ms: 10000
+          concurrency: 2
+        p2:
+          response_time_ms: 300
+          memory_usage_mb: 1536
+          max_duration_ms: 20000
+          concurrency: 3
+        p3:
+          response_time_ms: 500
+          memory_usage_mb: 2048
+          max_duration_ms: 30000
+          concurrency: 4
+      global:
+        cpu_usage_percent: 70
+        memory_usage_percent: 80
+        file_descriptors: 1000
+        log_size_mb: 5
+        error_log_mb: 1
+    baselines:
+      execution:
+        setup_ms: 100
+        teardown_ms: 100
+        assertion_ms: 50
+      throughput:
+        tests_per_second: 10
+        suites_per_minute: 2
     validation:
       required: true
       blocking: true
     monitoring:
-      - Regular performance checks
-      - Resource usage tracking
-      - Threshold validation
-      - Performance benchmarking
-      - Metrics documentation
+      - Resource usage by priority level
+      - Execution time tracking
+      - Memory consumption monitoring
+      - Throughput measurement
+      - Performance baseline validation
+      - Resource limit enforcement
 
   security_validation:
     requirements:
@@ -387,18 +655,40 @@ test_validation:
   output_handling:
     execution_mode: "silent"
     output_structure:
-      test_results: "/opt/mExpress/logs/test-status.log"
-      coverage_summary: "/opt/mExpress/logs/coverage-summary.log"
-      errors: "/opt/mExpress/logs/test-errors.log"
+      # Package-specific outputs
+      package_tests:
+        base_path: "packages/[package]/tests/results/"
+        structure:
+          - unit/test.log
+          - integration/test.log
+          - e2e/test.log
+          - summary/coverage.log
+          - summary/metrics.log
+      # Project-specific outputs
+      project_tests:
+        base_path: "projects/[project]/tests/results/"
+        structure:
+          - unit/test.log
+          - integration/test.log
+          - e2e/test.log
+          - summary/coverage.log
+          - summary/metrics.log
     format_rules:
       - Use text-summary for coverage reports
       - Minimize stack trace information
       - Filter out test location data
       - Exclude debug information
       - Compress error context
+      - NEVER output to terminal/console
+      - ALWAYS redirect stderr to /dev/null
     retention:
       keep_latest: true
       cleanup_old: true
+      organization:
+        - Follow package/project structure
+        - Maintain test category hierarchy
+        - Archive by test type
+        - Clean up by directory
 
   result_processing:
     format: "compact"
@@ -423,6 +713,22 @@ test_validation:
 # Technical Vocabulary
 vocabulary_control:
   required_terms:
+    # Package Terms
+    - Package boundaries
+    - Package APIs
+    - Package dependencies
+    - Cross-package communication
+    - Version strategy
+    - Shared interfaces
+    
+    # Monorepo Terms
+    - Monorepo architecture
+    - Package organization
+    - Build configuration
+    - Version alignment
+    - Cross-package validation
+    
+    # Implementation Terms
     - Implementation patterns
     - Test coverage
     - Code structure
@@ -433,6 +739,21 @@ vocabulary_control:
     - State management
 
   implementation_focus:
+    # Package Focus
+    - Package design
+    - API stability
+    - Dependency management
+    - Cross-package compatibility
+    - Version control
+    
+    # Monorepo Focus
+    - Repository structure
+    - Package organization
+    - Build configurations
+    - Integration patterns
+    - Shared code management
+    
+    # Implementation Focus
     - Test-driven development
     - Code quality
     - Coverage metrics
@@ -485,12 +806,30 @@ error_handling:
       - Archive summaries only
 
   error_types:
+    # Package Errors
+    - Package boundary violations
+    - API incompatibilities
+    - Dependency conflicts
+    - Version mismatches
+    - Cross-package issues
+    - Package validation failures
+    
+    # Monorepo Errors
+    - Build configuration issues
+    - Package organization problems
+    - Integration failures
+    - Version alignment errors
+    - Repository structure issues
+    
+    # Implementation Errors
     - Implementation errors
     - Test failures
     - Coverage gaps
     - Documentation issues
     - State corruption
     - QA preparation issues
+    
+    # Context Errors
     - Mode switching failures
     - Context threshold violations
     - Context warning threshold reached
@@ -502,6 +841,20 @@ error_handling:
 # State Management
 state_management:
   required_actions:
+    # Package State
+    - Track package boundaries
+    - Monitor API changes
+    - Track dependencies
+    - Version state
+    - Cross-package state
+    
+    # Monorepo State
+    - Track repository structure
+    - Monitor build configs
+    - Package organization state
+    - Integration state
+    
+    # Implementation State
     - Track implementation state
     - Monitor test status
     - Document changes
@@ -512,27 +865,43 @@ state_management:
     - Enable recovery
 
   state_tracking:
-    taskmanager_requirements:
-      fields: ["coverage_thresholds", "tdd_requirements", "tool_requirements", "environment_specs"]
+    package_state:
+      fields: ["boundaries", "apis", "dependencies", "version", "cross_package"]
       validation: "required"
       preservation: "mandatory"
+    
+    monorepo_state:
+      fields: ["structure", "build_config", "organization", "integration"]
+      validation: "required"
+      preservation: "mandatory"
+    
+    taskmanager_requirements:
+      fields: ["coverage_thresholds", "tdd_requirements", "tool_requirements", "environment_specs", "package_requirements"]
+      validation: "required"
+      preservation: "mandatory"
+    
     implementation:
-      fields: ["status", "coverage", "validation"]
+      fields: ["status", "coverage", "validation", "package_impact"]
       validation: "required"
+      preservation: "mandatory"
+    
     testing:
-      fields: ["status", "coverage", "results"]
+      fields: ["status", "coverage", "results", "package_tests"]
       validation: "required"
+      preservation: "mandatory"
     git_interaction:
-      fields: ["source_state", "commit_status", "return_status", "next_action"]
+      fields: ["source_state", "commit_status", "return_status", "next_action", "package_versions"]
       validation: "required"
       preservation: "mandatory"
       return_handling: "required"
+    
     qa_preparation:
-      fields: ["original_requirements", "achieved_results", "validation_status"]
+      fields: ["original_requirements", "achieved_results", "validation_status", "package_quality"]
       validation: "required"
       requirements_mapping: "mandatory"
+    
     return_flow:
-      fields: ["source_agent", "operation_status", "workflow_position", "next_action"]
+      fields: ["source_agent", "operation_status", "workflow_position", "next_action", "package_state"]
       validation: "required"
       preservation: "mandatory"
       error_handling: "required"

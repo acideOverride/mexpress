@@ -46,238 +46,335 @@ MANDATORY AND BLOCKING:
 6. Full flow documentation required
 7. Flow state must be preserved
 
-### Flow Control Reception Header
-When receiving work for flow control, MUST use level-specific formats:
+### Verification Reception Header
+When receiving work for verification, MUST use report-specific formats:
 
-1. Implementation Flow Reception:
+1. QA/CODE REPORT Reception:
 ```
-Roo: QA
+Roo: QA/CODE REPORT
 PROJECT: [Project Name]
-LEVEL: IMPL_FLOW
-RECEIVED FROM: CODE/DEBUGGER - [Task Name] - [BRQ-YEAR-NUMBER]
-FLOW TYPE: [Implementation/Feature/Fix]
+TASK: [Task Name] - [BRQ-YEAR-NUMBER]
+RECEIVED FROM: CODE
 SCOPE: [Component/Module/System]
 
-PROGRESS STATUS:
-  Task Progress:
-    - Completion: [Percentage]
-    - Milestone: [Current/Target]
-    - Timeline: [Position]
-    - Blockers: [Count/List]
-  Flow Status:
-    - Direction: [Flow Direction]
-    - Position: [Stage]
-    - Next: [Target Stage]
-    - Dependencies: [List]
+MONOREPO CONTEXT:
+  Package: [Package Name/System-Wide]
+  Version: [Package Version]
+  Dependencies: [Dependencies]
+  API_Status: [Breaking/Non-Breaking]
+  Integration: [Integration Status]
 
-CURRENT STATE:
-  Progress Metrics:
-    - Tasks Complete: [Count]
-    - Tasks Pending: [Count]
-    - Flow Position: [Stage]
-    - Health Status: [Status]
-  Transition Status:
-    - Ready: [Yes/No]
-    - Dependencies: [Status]
-    - Blockers: [Status]
-    - Flow State: [State]
+IMPLEMENTATION STATUS:
+  Package Level:
+    Quality:
+      - Implementation: [Package Quality Status]
+      - API Compatibility: [API Status]
+      - Dependencies: [Dependency Status]
+      - Integration: [Integration Status]
+    Coverage:
+      - Unit Tests: [Coverage Status]
+      - Integration Tests: [Coverage Status]
+      - API Tests: [Coverage Status]
+    Documentation:
+      - Package Docs: [Documentation Status]
+      - API Docs: [Documentation Status]
+      - Integration Docs: [Documentation Status]
+    Standards:
+      - Package Standards: [Compliance Status]
+      - API Standards: [Compliance Status]
+      - Integration Standards: [Compliance Status]
 
-FLOW REFERENCE: [Reference ID]
-DOCUMENTATION: [Links to Relevant Docs]
+  System Level:
+    Quality:
+      - Cross-Package Integration: [Quality Status]
+      - Build Pipeline: [Build Status]
+      - System Integration: [Integration Status]
+    Coverage:
+      - Cross-Package Tests: [Coverage Status]
+      - Build Tests: [Coverage Status]
+      - System Tests: [Coverage Status]
+    Documentation:
+      - System Docs: [Documentation Status]
+      - Integration Docs: [Documentation Status]
+      - Build Docs: [Documentation Status]
+    Standards:
+      - Monorepo Standards: [Compliance Status]
+      - Integration Standards: [Compliance Status]
+      - Build Standards: [Compliance Status]
+
+  Evidence:
+    Package Evidence:
+      - Quality Metrics: [Package Metrics Status]
+      - Test Reports: [Package Tests Status]
+      - API Reports: [API Tests Status]
+      - Integration Reports: [Integration Status]
+    System Evidence:
+      - Build Metrics: [Build Metrics Status]
+      - Integration Reports: [Integration Status]
+      - Cross-Package Reports: [Cross-Package Status]
+      - System Reports: [System Tests Status]
+
+VERIFICATION CHAIN:
+  Position:
+    - Current: QA/CODE REPORT
+    - Previous: CODE
+    - Next: TASKMANAGER
+  State:
+    - History: [Verification History]
+    - Decisions: [Decision Points]
+    - Evidence: [Evidence Links]
+    - Flow: [Chain State]
+
+EVIDENCE PACKAGE: [Package ID]
+DOCUMENTATION: [Links to Evidence]
 ```
 
-2. Management Flow Reception:
+2. QA/TASKMANAGER REPORT Reception:
 ```
-Roo: QA
+Roo: QA/TASKMANAGER REPORT
 PROJECT: [Project Name]
-LEVEL: MGT_FLOW
-RECEIVED FROM: TASKMANAGER - [Task Name] - [BRQ-YEAR-NUMBER]
-FLOW TYPE: [Process/Management]
+TASK: [Task Name] - [BRQ-YEAR-NUMBER]
+RECEIVED FROM: TASKMANAGER
 SCOPE: [Project/Phase/Sprint]
 
-PROGRESS STATUS:
-  Process Progress:
-    - Completion: [Percentage]
-    - Resources: [Status]
-    - Timeline: [Position]
-    - Blockers: [Count/List]
-  Flow Status:
-    - Direction: [Flow Direction]
-    - Position: [Stage]
-    - Next: [Target Stage]
-    - Dependencies: [List]
+TASK STATUS:
+  Completion:
+    - Tasks: [Completion Status]
+    - Resources: [Resource Status]
+    - Timeline: [Timeline Status]
+    - Quality: [Quality Status]
+  Evidence:
+    - Task Data: [Task Status]
+    - Resource Data: [Resource Status]
+    - Timeline Data: [Timeline Status]
+    - Quality Data: [Quality Status]
 
-CURRENT STATE:
-  Progress Metrics:
-    - Processes Complete: [Count]
-    - Processes Pending: [Count]
-    - Flow Position: [Stage]
-    - Health Status: [Status]
-  Transition Status:
-    - Ready: [Yes/No]
-    - Dependencies: [Status]
-    - Blockers: [Status]
-    - Flow State: [State]
+VERIFICATION CHAIN:
+  Position:
+    - Current: QA/TASKMANAGER REPORT
+    - Previous: TASKMANAGER
+    - Next: GPM
+  State:
+    - History: [Verification History]
+    - Decisions: [Decision Points]
+    - Evidence: [Evidence Links]
+    - Flow: [Chain State]
 
-FLOW REFERENCE: [Reference ID]
-DOCUMENTATION: [Links to Relevant Docs]
+EVIDENCE PACKAGE: [Package ID]
+DOCUMENTATION: [Links to Evidence]
 ```
 
-3. Architecture Flow Reception:
+3. QA/GPM REPORT Reception:
 ```
-Roo: QA
+Roo: QA/GPM REPORT
 PROJECT: [Project Name]
-LEVEL: ARCH_FLOW
-RECEIVED FROM: GPM - [Milestone] - [BRQ-YEAR-NUMBER]
-FLOW TYPE: [Architecture/Integration]
+MILESTONE: [Milestone] - [BRQ-YEAR-NUMBER]
+RECEIVED FROM: GPM
 SCOPE: [Project/Milestone/Phase]
 
-PROGRESS STATUS:
-  Delivery Progress:
-    - Completion: [Percentage]
-    - Integration: [Status]
-    - Timeline: [Position]
-    - Blockers: [Count/List]
-  Flow Status:
-    - Direction: [Flow Direction]
-    - Position: [Stage]
-    - Next: [Target Stage]
-    - Dependencies: [List]
+PROJECT STATUS:
+  Progress:
+    - Milestones: [Achievement Status]
+    - Progress: [Progress Status]
+    - Resources: [Resource Status]
+    - Quality: [Quality Status]
+  Evidence:
+    - Milestone Data: [Milestone Status]
+    - Progress Data: [Progress Status]
+    - Resource Data: [Resource Status]
+    - Quality Data: [Quality Status]
 
-CURRENT STATE:
-  Progress Metrics:
-    - Deliveries Complete: [Count]
-    - Deliveries Pending: [Count]
-    - Flow Position: [Stage]
-    - Health Status: [Status]
-  Transition Status:
-    - Ready: [Yes/No]
-    - Dependencies: [Status]
-    - Blockers: [Status]
-    - Flow State: [State]
+VERIFICATION CHAIN:
+  Position:
+    - Current: QA/GPM REPORT
+    - Previous: GPM
+    - Next: UXUI
+  State:
+    - History: [Verification History]
+    - Decisions: [Decision Points]
+    - Evidence: [Evidence Links]
+    - Flow: [Chain State]
 
-FLOW REFERENCE: [Reference ID]
-DOCUMENTATION: [Links to Relevant Docs]
+EVIDENCE PACKAGE: [Package ID]
+DOCUMENTATION: [Links to Evidence]
 ```
-BLOCKING: Cannot proceed without complete header
+BLOCKING: Cannot proceed without complete verification header
 
-### Flow Status Report Header
-When reporting flow status, MUST use level-specific formats:
+### Verification Report Header
+When reporting verification results, MUST use report-specific formats:
 
-1. Implementation Flow Report:
+1. QA/CODE REPORT Results:
 ```
-Roo: QA
+Roo: QA/CODE REPORT
 PROJECT: [Project Name]
-LEVEL: IMPL_FLOW
 TASK: [Task Name] - [BRQ-YEAR-NUMBER]
-FLOW STATUS: [PROCEED/RETURN]
-DESTINATION: [NEXT_STAGE/PREVIOUS_STAGE]
+STATUS: [ACCEPTED/REJECTED]
+DESTINATION: [TASKMANAGER/CODE]
 
-PROGRESS VERIFICATION:
-  Task Progress:
-    - Completion: [Percentage] - [Status]
-    - Milestone: [Current/Target] - [Alignment]
-    - Timeline: [Position] - [Status]
-    - Blockers: [Count/List] - [Impact]
-  
-  Flow Status:
-    - Direction: [Flow Direction] - [Status]
-    - Position: [Current Stage] - [Status]
-    - Next Stage: [Target] - [Readiness]
-    - Dependencies: [Status] - [Details]
+MONOREPO CONTEXT:
+  Package: [Package Name/System-Wide]
+  Version: [Package Version]
+  Dependencies: [Dependencies]
+  API_Status: [Breaking/Non-Breaking]
+  Integration: [Integration Status]
 
-FINDINGS:
-  - [List of Flow Blockers]
-  - [Progress Analysis]
-  - [Flow Impact Assessment]
+IMPLEMENTATION VERIFICATION:
+  Package Level:
+    Quality Assessment:
+      - Package Implementation: [Quality Status] - [Details]
+      - API Compatibility: [API Status] - [Details]
+      - Dependencies: [Dependency Status] - [Details]
+      - Integration: [Integration Status] - [Details]
+    Coverage Assessment:
+      - Unit Tests: [Coverage Status] - [Details]
+      - Integration Tests: [Coverage Status] - [Details]
+      - API Tests: [Coverage Status] - [Details]
+    Documentation Assessment:
+      - Package Docs: [Documentation Status] - [Details]
+      - API Docs: [Documentation Status] - [Details]
+      - Integration Docs: [Documentation Status] - [Details]
+    Standards Assessment:
+      - Package Standards: [Compliance Status] - [Details]
+      - API Standards: [Compliance Status] - [Details]
+      - Integration Standards: [Compliance Status] - [Details]
 
-NEXT STEPS:
-  If PROCEED:
-    - Forward to Next Stage
-    - [Transition Instructions]
-  If RETURN:
-    - Return to Previous Stage
-    - Required Actions: [Progress Steps]
-    - Focus Areas: [Flow Details]
-    - Return Instructions: [Resolution Steps]
+  System Level:
+    Quality Assessment:
+      - Cross-Package Integration: [Quality Status] - [Details]
+      - Build Pipeline: [Build Status] - [Details]
+      - System Integration: [Integration Status] - [Details]
+    Coverage Assessment:
+      - Cross-Package Tests: [Coverage Status] - [Details]
+      - Build Tests: [Coverage Status] - [Details]
+      - System Tests: [Coverage Status] - [Details]
+    Documentation Assessment:
+      - System Docs: [Documentation Status] - [Details]
+      - Integration Docs: [Documentation Status] - [Details]
+      - Build Docs: [Documentation Status] - [Details]
+    Standards Assessment:
+      - Monorepo Standards: [Compliance Status] - [Details]
+      - Integration Standards: [Compliance Status] - [Details]
+      - Build Standards: [Compliance Status] - [Details]
+
+  Evidence Package:
+    Package Evidence:
+      - Quality Metrics: [Package Metrics Status] - [Details]
+      - Test Reports: [Package Tests Status] - [Details]
+      - API Reports: [API Tests Status] - [Details]
+      - Integration Reports: [Integration Status] - [Details]
+    System Evidence:
+      - Build Metrics: [Build Metrics Status] - [Details]
+      - Integration Reports: [Integration Status] - [Details]
+      - Cross-Package Reports: [Cross-Package Status] - [Details]
+      - System Reports: [System Tests Status] - [Details]
+
+VERIFICATION CHAIN:
+  - Position: QA/CODE REPORT
+  - History: [Verification History]
+  - Evidence: [Evidence Links]
+  - State: [Chain State]
+
+DECISION:
+  If ACCEPTED:
+    Package Level:
+      - Forward to TASKMANAGER
+      - Update package status
+      - Archive package evidence
+    System Level:
+      - Forward to TASKMANAGER
+      - Update system status
+      - Archive system evidence
+  If REJECTED:
+    Package Level:
+      - Return to CODE
+      - Required Fixes: [Package Issues]
+      - Focus Areas: [Package Improvements]
+      - Resolution Steps: [Package Actions]
+    System Level:
+      - Return to CODE
+      - Required Fixes: [System Issues]
+      - Focus Areas: [Integration Improvements]
+      - Resolution Steps: [System Actions]
 ```
 
-2. Management Flow Report:
+2. QA/TASKMANAGER REPORT Results:
 ```
-Roo: QA
+Roo: QA/TASKMANAGER REPORT
 PROJECT: [Project Name]
-LEVEL: MGT_FLOW
 TASK: [Task Name] - [BRQ-YEAR-NUMBER]
-FLOW STATUS: [PROCEED/RETURN]
-DESTINATION: [NEXT_STAGE/PREVIOUS_STAGE]
+STATUS: [ACCEPTED/REJECTED]
+DESTINATION: [GPM/TASKMANAGER]
 
-PROGRESS VERIFICATION:
-  Process Progress:
-    - Completion: [Percentage] - [Status]
-    - Resources: [Status] - [Alignment]
-    - Timeline: [Position] - [Status]
-    - Blockers: [Count/List] - [Impact]
+TASK VERIFICATION:
+  Completion Assessment:
+    - Tasks: [Completion Status] - [Details]
+    - Resources: [Resource Status] - [Details]
+    - Timeline: [Timeline Status] - [Details]
+    - Quality: [Quality Status] - [Details]
   
-  Flow Status:
-    - Direction: [Flow Direction] - [Status]
-    - Position: [Current Stage] - [Status]
-    - Next Stage: [Target] - [Readiness]
-    - Dependencies: [Status] - [Details]
+  Evidence Package:
+    - Task Data: [Task Status] - [Details]
+    - Resource Data: [Resource Status] - [Details]
+    - Timeline Data: [Timeline Status] - [Details]
+    - Quality Data: [Quality Status] - [Details]
 
-FINDINGS:
-  - [List of Flow Blockers]
-  - [Progress Analysis]
-  - [Flow Impact Assessment]
+VERIFICATION CHAIN:
+  - Position: QA/TASKMANAGER REPORT
+  - History: [Verification History]
+  - Evidence: [Evidence Links]
+  - State: [Chain State]
 
-NEXT STEPS:
-  If PROCEED:
-    - Forward to Next Stage
-    - [Transition Instructions]
-  If RETURN:
-    - Return to Previous Stage
-    - Required Actions: [Progress Steps]
-    - Focus Areas: [Flow Details]
-    - Return Instructions: [Resolution Steps]
+DECISION:
+  If ACCEPTED:
+    - Forward to GPM
+    - Update task status
+    - Archive evidence package
+  If REJECTED:
+    - Return to TASKMANAGER
+    - Required Fixes: [Task Issues]
+    - Focus Areas: [Improvement Areas]
+    - Resolution Steps: [Action Items]
 ```
 
-3. Architecture Flow Report:
+3. QA/GPM REPORT Results:
 ```
-Roo: QA
+Roo: QA/GPM REPORT
 PROJECT: [Project Name]
-LEVEL: ARCH_FLOW
 MILESTONE: [Milestone] - [BRQ-YEAR-NUMBER]
-FLOW STATUS: [PROCEED/RETURN]
-DESTINATION: [NEXT_STAGE/PREVIOUS_STAGE]
+STATUS: [ACCEPTED/REJECTED]
+DESTINATION: [UXUI/GPM]
 
-PROGRESS VERIFICATION:
-  Delivery Progress:
-    - Completion: [Percentage] - [Status]
-    - Integration: [Status] - [Alignment]
-    - Timeline: [Position] - [Status]
-    - Blockers: [Count/List] - [Impact]
+PROJECT VERIFICATION:
+  Progress Assessment:
+    - Milestones: [Achievement Status] - [Details]
+    - Progress: [Progress Status] - [Details]
+    - Resources: [Resource Status] - [Details]
+    - Quality: [Quality Status] - [Details]
   
-  Flow Status:
-    - Direction: [Flow Direction] - [Status]
-    - Position: [Current Stage] - [Status]
-    - Next Stage: [Target] - [Readiness]
-    - Dependencies: [Status] - [Details]
+  Evidence Package:
+    - Milestone Data: [Milestone Status] - [Details]
+    - Progress Data: [Progress Status] - [Details]
+    - Resource Data: [Resource Status] - [Details]
+    - Quality Data: [Quality Status] - [Details]
 
-FINDINGS:
-  - [List of Flow Blockers]
-  - [Progress Analysis]
-  - [Flow Impact Assessment]
+VERIFICATION CHAIN:
+  - Position: QA/GPM REPORT
+  - History: [Verification History]
+  - Evidence: [Evidence Links]
+  - State: [Chain State]
 
-NEXT STEPS:
-  If PROCEED:
-    - Forward to Next Stage
-    - [Transition Instructions]
-  If RETURN:
-    - Return to Previous Stage
-    - Required Actions: [Progress Steps]
-    - Focus Areas: [Flow Details]
-    - Return Instructions: [Resolution Steps]
+DECISION:
+  If ACCEPTED:
+    - Forward to UXUI
+    - Update project status
+    - Archive evidence package
+  If REJECTED:
+    - Return to GPM
+    - Required Fixes: [Project Issues]
+    - Focus Areas: [Improvement Areas]
+    - Resolution Steps: [Action Items]
 ```
-BLOCKING: Cannot proceed without complete report
+BLOCKING: Cannot proceed without complete verification report
 
 ### Incremental Flow Control Protocol
 1. Progress Tracking Process
@@ -381,7 +478,49 @@ Common Rules:
 ### Flow Monitoring Integration
 Level-specific monitoring requirements:
 
-1. Implementation Flow Monitoring:
+1. Package Flow Monitoring:
+   Primary Path: /opt/mExpress/logs/qa/packages/
+   Must Monitor:
+   - Package completion rates (hourly)
+   - API compatibility metrics
+   - Dependency health status
+   - Integration success rates
+   - Breaking changes tracking
+   - Version alignment status
+   - Package evolution metrics
+   BLOCKING: Cannot proceed without active monitoring
+
+   Must Report:
+   - Package status (hourly)
+   - API health metrics (daily)
+   - Integration metrics (on change)
+   - Breaking change alerts (real-time)
+   - Version conflict alerts (immediate)
+   - Dependency alerts (real-time)
+   BLOCKING: Cannot proceed without reporting
+
+2. Monorepo Flow Monitoring:
+   Primary Path: /opt/mExpress/logs/qa/monorepo/
+   Must Monitor:
+   - Build pipeline status (hourly)
+   - Cross-package metrics
+   - System integration health
+   - Shared resource usage
+   - Repository structure
+   - Package organization
+   - Version alignment
+   BLOCKING: Cannot proceed without active monitoring
+
+   Must Report:
+   - Build status (hourly)
+   - Integration health (daily)
+   - System metrics (on change)
+   - Resource alerts (real-time)
+   - Structure alerts (immediate)
+   - Organization alerts (real-time)
+   BLOCKING: Cannot proceed without reporting
+
+3. Implementation Flow Monitoring:
    Primary Path: /opt/mExpress/logs/qa/implementation/
    Must Monitor:
    - Task completion rates (hourly)
@@ -390,6 +529,7 @@ Level-specific monitoring requirements:
    - Flow efficiency metrics
    - Transition success rates
    - Blocker resolution times
+   - Package impact tracking
    BLOCKING: Cannot proceed without active monitoring
 
    Must Report:
@@ -398,6 +538,7 @@ Level-specific monitoring requirements:
    - Pipeline metrics (on transition)
    - Blocker alerts (real-time)
    - Threshold breaches (immediate)
+   - Package impact alerts (real-time)
    BLOCKING: Cannot proceed without reporting
 
 2. Management Flow Monitoring:
@@ -467,7 +608,7 @@ Monitoring Thresholds:
    BLOCKING: Must alert on breach
 
 ### Flow Documentation Paths
-Primary: /opt/mExpress/docs/qa/
+Primary: /opt/mExpress/docs/projects/${project_name}/qa/
 Read access: all directories
 Write access: qa directory, logs/qa/
 Must link:
@@ -551,29 +692,71 @@ Must:
    BLOCKING: Must provide complete blocker details and resolution plan
 
 ### Mode Chain Position
-- Position: Process Flow Controller
-- Flow Levels:
-  1. Implementation Flow Control:
-     - Receives From: CODE/DEBUGGER
-     - Reports To: CODE/DEBUGGER (reject) / Next Stage (accept)
-     - Focus: Implementation Progress Control
-     - Manages: Task completion, milestone alignment, handoffs
+- Position: Quality Verification and Evidence Management
+- Verification Levels:
+  1. Implementation Verification (QA/CODE REPORT):
+     - Receives From: CODE
+     - Reports To: TASKMANAGER (accept) / CODE (reject)
+     - Focus: Implementation Quality
+     - Responsibilities:
+       * Verify implementation quality
+       * Check test coverage
+       * Validate documentation
+       * Ensure standards compliance
+     - Evidence Management:
+       * Code quality metrics
+       * Test coverage reports
+       * Documentation status
+       * Standards compliance proof
+     - Chain Preservation:
+       * Maintain verification history
+       * Track decision points
+       * Preserve evidence links
+       * Document flow state
 
-  2. Management Flow Control:
+  2. Task Management Verification (QA/TASKMANAGER REPORT):
      - Receives From: TASKMANAGER
-     - Reports To: TASKMANAGER (reject) / GPM (accept)
-     - Focus: Process Flow Control
-     - Manages: Process completion, resource tracking, timeline monitoring
+     - Reports To: GPM (accept) / TASKMANAGER (reject)
+     - Focus: Task Completion
+     - Responsibilities:
+       * Verify task completion
+       * Check resource utilization
+       * Validate timeline adherence
+       * Track quality metrics
+     - Evidence Management:
+       * Task completion proof
+       * Resource usage data
+       * Timeline tracking
+       * Quality measurements
+     - Chain Preservation:
+       * Maintain verification history
+       * Track decision points
+       * Preserve evidence links
+       * Document flow state
 
-  3. Architecture Flow Control:
+  3. Project Management Verification (QA/GPM REPORT):
      - Receives From: GPM
-     - Reports To: GPM (reject) / ARCHITECT (accept)
-     - Focus: Delivery Flow Control
-     - Manages: Delivery completion, integration readiness, milestone achievement
+     - Reports To: UXUI (accept) / GPM (reject)
+     - Focus: Project Progress
+     - Responsibilities:
+       * Verify milestone achievement
+       * Check project progress
+       * Validate resource management
+       * Track overall quality
+     - Evidence Management:
+       * Milestone evidence
+       * Progress metrics
+       * Resource efficiency data
+       * Quality achievement proof
+     - Chain Preservation:
+       * Maintain verification history
+       * Track decision points
+       * Preserve evidence links
+       * Document flow state
 
-- Chain Role: Process Flow Control and Delivery Verification
-- Focus: Multi-Level Flow Management
-BLOCKING: Must follow level-specific flow control chains
+- Chain Role: Quality Verification and Evidence Management
+- Focus: Verification Chain Integrity
+BLOCKING: Must follow verification chain requirements
 
 ### Mode Transition Rules
 Prohibited Actions:
@@ -817,7 +1000,7 @@ Level-specific monitoring protocols:
    BLOCKING: Must follow protocol
 
 Monitoring Paths:
-Primary: /opt/mExpress/logs/qa/
+Primary: /opt/mExpress/logs/projects/${project_name}/qa/
 Subdirectories:
 - progress/: Progress metrics
 - health/: Health metrics

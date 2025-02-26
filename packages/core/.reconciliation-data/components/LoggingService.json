@@ -1,0 +1,11 @@
+{
+  "name": "LoggingService",
+  "documentedStatus": "MISSING",
+  "actualStatus": "PARTIAL",
+  "gapDescription": "Component implemented but not documented",
+  "priority": "MEDIUM",
+  "owner": "Unassigned",
+  "targetDate": "2025-02-26",
+  "status": "NOT_STARTED",
+  "lastUpdated": "2025-02-26T11:04:55.374Z"
+}

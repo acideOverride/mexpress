@@ -1,0 +1,10 @@
+{
+  "name": "AuthService",
+  "documentedStatus": "COMPLETE",
+  "actualStatus": "PARTIAL",
+  "priority": "CRITICAL",
+  "owner": "Alice",
+  "targetDate": "2025-02-26",
+  "lastUpdated": "2025-02-26T11:04:55.321Z",
+  "gapDescription": "Missing 2FA implementation"
+}

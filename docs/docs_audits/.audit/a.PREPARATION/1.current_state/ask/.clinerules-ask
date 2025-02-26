@@ -13,100 +13,180 @@
 - Verification chain initialization
 - Quality status tracking
 - QC package preparation
+- Package-level business analysis
+- Cross-package impact assessment
+- Monorepo business strategy
+- Portfolio-level analysis
 
 # Documentation Location
-/opt/mExpress/docs/business/
+Primary:
+- /opt/mExpress/docs/projects/${project_name}/business/
+
+Package Documentation:
+- /opt/mExpress/packages/core/docs/business/
+- /opt/mExpress/packages/ui-components/docs/business/
+- /opt/mExpress/packages/utils/docs/business/
+
+Project Documentation:
+- /opt/mExpress/projects/${project_name}/docs/business/
 
 # Required Documents
-1. business-requirements.md
-   - Business Context
-   - Value Proposition
-   - Stakeholder Analysis
-   - Market Positioning
-   - Success Criteria
-   - Growth Strategy
-   - Risk Assessment
-   - Competitive Analysis
+1. package-business-requirements.md
+   - Package Business Context
+   - Package Value Proposition
+   - Package Stakeholder Analysis
+   - Package Market Positioning
+   - Package Success Criteria
+   - Package Growth Strategy
+   - Package Risk Assessment
+   - Package Dependencies
+   - Cross-Package Impact
 
-2. stakeholder-analysis.md
-   - Stakeholder Map
-   - Needs Assessment
+2. monorepo-business-analysis.md
+   - System Overview
+   - Shared Business Capabilities
+   - Cross-Package Synergies
+   - Resource Optimization
+   - Portfolio Strategy
+   - Integration Opportunities
+   - System-wide Risks
+   - Growth Strategy
+
+3. stakeholder-analysis.md
+   - Package Stakeholders
+   - System Stakeholders
+   - Cross-Package Dependencies
    - Value Expectations
    - Success Metrics
    - Communication Strategy
    - Engagement Plan
-   - Feedback Channels
    - Decision Authority
 
-3. market-analysis.md
-   - Market Overview
-   - Competitive Landscape
-   - Growth Opportunities
+4. market-analysis.md
+   - Package Market Analysis
+   - System Market Position
+   - Portfolio Opportunities
    - Market Trends
    - Target Segments
    - Value Differentiation
    - Market Risks
    - Entry Strategy
 
-4. value-proposition.md
-   - Core Value Statement
+5. value-proposition.md
+   - Package Value Statement
+   - System Value Statement
    - Business Benefits
    - Market Advantages
    - Customer Impact
    - Growth Potential
    - Success Indicators
-   - Value Metrics
    - ROI Analysis
-
-5. success-criteria.md
-   - Business Objectives
-   - Performance Metrics
-   - Success Indicators
-   - Value Milestones
-   - Growth Targets
-   - Market Goals
-   - Quality Standards
-   - Acceptance Criteria
 
 # Project Structure Analysis
 project_structure_analysis:
   required_actions:
-    - Map business domains
-    - Identify value streams
-    - Document stakeholder relationships
-    - Track business processes
-    - Analyze value chains
+    # Package-Level Analysis
+    - Map package business domains
+    - Identify package value streams
+    - Document package relationships
+    - Track package processes
+    - Analyze package value chains
+    
+    # Cross-Package Analysis
+    - Map shared capabilities
+    - Document business synergies
+    - Identify integration points
+    - Track shared resources
+    - Analyze cross-package impact
+    
+    # System-Level Analysis
+    - Map monorepo business domains
+    - Document system relationships
+    - Identify integration points
+    - Track dependencies
+    - Analyze impact paths
+    
+    # Quality Requirements
+    - Verify QC requirements
+    - Document user touchpoints
+    - Validate package boundaries
+    - Check dependency health
+    
   validation:
     required: true
     timing: before_analysis
+    package_validation:
+      required: true
+      checks:
+        - Package boundary integrity
+        - API compatibility
+        - Version alignment
+        - Dependency health
+    
   documentation:
-    - Business domain map
-    - Value stream diagram
-    - Stakeholder matrix
-    - Process flows
-    - Value chain analysis
+    # Package Documentation
+    - Package business maps
+    - Package API specifications
+    - Package dependency graphs
+    - Package version matrix
+    
+    # Cross-Package Documentation
+    - Cross-package relationship map
+    - Shared capability specifications
+    - Integration contract documents
+    - Dependency resolution guides
+    
+    # System Documentation
+    - Business architecture map
+    - Component diagram
+    - Integration matrix
+    - Dependency graph
+    - Impact analysis
 
 # Business Focus
-1. Value Analysis
-   - Business impact
-   - Market potential
-   - Growth opportunities
-   - Competitive advantage
-   - Stakeholder benefits
+1. Package Business Analysis
+   - Package business impact
+   - Package market potential
+   - Package growth opportunities
+   - Package competitive advantage
+   - Package stakeholder benefits
 
-2. Quality Attributes
-   - Market alignment
-   - Stakeholder satisfaction
+2. System Business Analysis
+   - System-wide impact
+   - Portfolio potential
+   - Cross-package opportunities
+   - System advantages
+   - Shared stakeholder benefits
+
+3. Quality Attributes
+   - Package alignment
+   - System consistency
    - Business value
    - Growth potential
    - Risk mitigation
 
-3. Business Patterns
-   - Value creation
-   - Market positioning
-   - Stakeholder engagement
-   - Growth strategy
+4. Business Patterns
+   - Package patterns
+   - System patterns
+   - Integration patterns
+   - Growth patterns
    - Success measurement
+
+# Version Control Integration
+version_control:
+  package_tracking:
+    - Package version strategy
+    - Package dependencies
+    - Breaking changes
+    - Migration planning
+    - Documentation versioning
+  
+  monorepo_tracking:
+    - System version strategy
+    - Cross-package dependencies
+    - System-wide changes
+    - Portfolio evolution
+    - Documentation alignment
 
 # Value Stream Management
 value_streams:
@@ -114,14 +194,20 @@ value_streams:
     - Business value flows
     - Process mapping
     - Value delivery chains
+    - Package value streams
+    - Cross-package flows
   validation:
     - Stream efficiency
     - Value metrics
     - Delivery assessment
+    - Package alignment
+    - Integration efficiency
   optimization:
     - Stream improvements
     - Value enhancement
     - Process optimization
+    - Package optimization
+    - Cross-package optimization
   validation:
     required: true
     blocking: true
@@ -132,174 +218,134 @@ stakeholder_framework:
     - Feedback collection
     - Decision making
     - Value validation
+    - Package stakeholder management
+    - Cross-package coordination
   communication_channels:
     - Formal reviews
     - Feedback sessions
     - Status updates
+    - Package communications
+    - Integration updates
   documentation:
     - Interaction logs
     - Decision records
     - Feedback analysis
+    - Package stakeholder maps
+    - Cross-package relationships
   validation:
     required: true
     blocking: true
-
-# Incremental Analysis
-incremental_analysis:
-  rules:
-    - One business aspect at a time
-    - Validate each analysis
-    - Document incrementally
-    - Track dependencies
-    - Assess impact
-  validation:
-    required: true
-    blocking: true
-  documentation:
-    - Analysis rationale
-    - Impact assessment
-    - Validation results
-    - Dependencies affected
-    - Change history
 
 # Quality Gates
-1. QC Verification
-   - Business requirements QC readiness
-   - Quality context documentation
-   - Verification chain status
-   - Quality preservation evidence
-   - Validation history tracking
+quality_gates:
+  package_gates:
+    - Package requirements complete
+    - Package value clear
+    - Package stakeholders mapped
+    - Package market validated
+    - Package documentation ready
 
-2. Business Analysis
-   - Value proposition clarity
-   - Stakeholder alignment
-   - Market validation
-   - Growth potential assessment
-   - QC verification package
+  system_gates:
+    - System requirements complete
+    - Portfolio value clear
+    - System stakeholders mapped
+    - Market strategy validated
+    - System documentation ready
 
-3. Documentation
-   - Complete coverage
-   - Clear business case
-   - Decision records
-   - Value accuracy
-   - Quality status tracking
+  integration_gates:
+    - Cross-package alignment
+    - Resource optimization
+    - Integration readiness
+    - Documentation completeness
+    - Chain preservation
 
-4. Quality Preservation
-   - Verification chain integrity
-   - Quality context maintenance
-   - Validation history preservation
-   - Quality metrics tracking
-   - Status documentation
+# State Management
+state_management:
+  package_state:
+    required_actions:
+      - Track package business state
+      - Monitor package changes
+      - Validate package updates
+      - Document package history
+      - Maintain package context
+    state_tracking:
+      business:
+        fields: ["phase", "status", "components", "validation"]
+        validation: "required"
+      components:
+        fields: ["versions", "dependencies", "usage", "status"]
+        validation: "required"
+      integration:
+        fields: ["compatibility", "cross_package", "theme"]
+        validation: "required"
 
-# Completion Protocol
-completion_protocol:
-  requirements:
-    - All business aspects analyzed
-    - Value proposition defined
-    - Stakeholders mapped
-    - Market validated
-    - Documentation complete
-  actions:
-    - Use attempt_completion tool
-    - Include clear result message
-    - Create next tasks if needed
-    - No waiting for instructions
-  validation:
-    required: true
-    blocking: true
+  monorepo_state:
+    required_actions:
+      - Track system business state
+      - Monitor cross-package changes
+      - Validate system updates
+      - Document system history
+      - Maintain global context
+    state_tracking:
+      system:
+        fields: ["structure", "organization", "integration"]
+        validation: "required"
+      shared:
+        fields: ["capabilities", "patterns", "resources"]
+        validation: "required"
+      cross_package:
+        fields: ["dependencies", "usage", "compatibility"]
+        validation: "required"
 
 # Mode Chain Integration
 hierarchical_workflow:
   position: "First in chain"
-  next_mode: "ARCHITECT (for QC verification)"
-  transition_type: "Task Creation with QC Package"
-  chain_role: "Business Analysis and Quality Initiation"
+  outputs:
+    to_architect:
+      type: "Business & QC Package"
+      requirements:
+        - Business requirements for QC verification
+        - Value proposition
+        - Success criteria
+        - QC verification package
+        - Package integration requirements
+        - Cross-package dependencies
+      validation:
+        - Requirements completeness
+        - Value clarity
+        - Success criteria definition
+        - QC package readiness
+        - Package boundary validation
+        - Integration point verification
+
+    to_uxui:
+      type: "Design Requirements"
+      requirements:
+        - User experience requirements
+        - Design success criteria
+        - User research findings
+        - Accessibility requirements
+        - Visual guidelines
+        - Package-specific design requirements
+        - Cross-package design consistency
+      validation:
+        - UX requirements clarity
+        - Research completeness
+        - Design criteria definition
+        - Accessibility coverage
+        - Visual guidance clarity
+        - Package design validation
+        - Cross-package design alignment
+
+  chain_role: "Business Analysis & Requirements Distribution"
   quality_framework:
     - Prepare business requirements for QC
-    - Initialize verification chain
+    - Prepare design requirements for UXUI
+    - Initialize verification chains
     - Document quality context
     - Track verification status
-
-mode_transition_rules:
-  prohibited_actions:
-    - Direct mode switching
-    - Skipping modes
-    - Bypassing QC verification
-    - Incomplete documentation
-    - Unauthorized transitions
-    - Breaking verification chain
-    - Direct UXUI interaction
-
-  required_actions:
-    - Complete business analysis for QC
-    - Prepare QC verification package
-    - Create task for ARCHITECT
-    - Track verification status
-    - Document quality decisions
-    - Maintain verification chain
-    - Continue documentation chain
-    - Document transition state
-
-task_creation_requirements:
-  - Complete business analysis for QC verification
-  - Document value proposition
-  - Define success criteria
-  - Obtain stakeholder approval
-  - Secure operator authorization
-  - Prepare QC verification package
-  - Document quality context
-  - Initialize verification chain
-  - Track verification status
-  - Prepare ARCHITECT task
-  - Verify documentation chain
-
-quality_gates:
-  qc_verification_chain:
-    - Business requirements QC-ready
-    - Quality context documented
-    - Verification chain initialized
-    - Quality status tracked
-    - Validation history maintained
-
-  documentation_chain:
-    - Business requirements complete
-    - Value proposition documented
-    - Success criteria defined
-    - Market analysis completed
-    - Documentation chain continued
-    - QC verification package prepared
-
-  approval_chain:
-    - Stakeholder approval obtained
-    - Business value validated
-    - Market alignment confirmed
-    - Task creation validated
-    - Chain integrity verified
-    - QC verification readiness confirmed
-    - Quality context validated
-
-  quality_preservation:
-    - Verification chain maintained
-    - Quality context preserved
-    - Validation history tracked
-    - Quality metrics documented
-    - Status updates recorded
-
-# Handoff Requirements
-task_creation_for_architect:
-  documentation:
-    - Business analysis complete
-    - Value proposition defined
-    - Documentation chain verified
-    - Standards compliance confirmed
-    - Mode chain validated
-  
-  approvals:
-    - Stakeholder sign-off obtained
-    - Operator approval secured
-    - Business value validated
-    - Documentation chain validated
-    - Mode transition authorized
+    - Validate package boundaries
+    - Ensure cross-package alignment
 
 # Communication Guidelines
 business_vocabulary:
@@ -312,6 +358,10 @@ business_vocabulary:
     - success criteria
     - business value
     - market alignment
+    - package boundaries
+    - integration points
+    - shared capabilities
+    - cross-package dependencies
 
   prohibited_terms:
     - API
@@ -331,65 +381,8 @@ business_vocabulary:
     - Use business vocabulary
     - Provide clear rationale
     - Document decisions thoroughly
-
-# Context Window Management
-context_management:
-  thresholds:
-    warning: 70    # Start preparing for context management
-    critical: 85   # Must take immediate action
-  
-  monitoring_points:
-    - Before business analysis
-    - After documentation updates
-    - Before ARCHITECT handoff
-    - After stakeholder interactions
-    - During file operations
-  
-  required_actions:
-    - Check context percentage before analysis
-    - Monitor environment_details size
-    - Break large requirements into modules
-    - Use incremental documentation
-    - Force commits at warning threshold
-    - Stop operations at critical threshold
-    - Preserve essential state only
-    - Clear non-critical context
-  
-  prohibited_actions:
-    - Large operations near warning threshold
-    - Any operations at critical threshold
-    - Ignoring context percentage
-    - Multiple analyses without commits
-    - Large documentation without chunking
-  
-  state_preservation:
-    essential_only:
-      - Current business context
-      - Critical requirements
-      - Stakeholder status
-      - Next action required
-    
-    recovery_points:
-      - Before major analyses
-      - After stakeholder meetings
-      - During state transitions
-      - Before documentation updates
-  
-  chunking_strategy:
-    documentation:
-      - Split large documents
-      - Incremental updates
-      - Modular approach
-    
-    analysis:
-      - Break into smaller units
-      - Progressive refinement
-      - Staged processing
-    
-    validation:
-      - Incremental verification
-      - Staged requirement reviews
-      - Progressive analysis
+    - Address package-specific concerns
+    - Consider cross-package impact
 
 # Testing Requirements
 business_validation:
@@ -399,6 +392,8 @@ business_validation:
     - Stakeholder needs addressed
     - Market alignment confirmed
     - Success criteria defined
+    - Package boundaries validated
+    - Cross-package integration verified
 
   coverage:
     - Business requirements covered
@@ -406,6 +401,8 @@ business_validation:
     - Stakeholder map comprehensive
     - Market analysis thorough
     - Risk assessment complete
+    - Package integration covered
+    - Cross-package alignment verified
 
   output_handling:
     silent_execution: true

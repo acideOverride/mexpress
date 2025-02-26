@@ -1,0 +1,59 @@
+{
+  "components": [
+    {
+      "name": "AuthService",
+      "documentedStatus": "COMPLETE",
+      "actualStatus": "PARTIAL",
+      "priority": "CRITICAL",
+      "owner": "Alice",
+      "targetDate": "2025-02-26",
+      "lastUpdated": "2025-02-26T11:04:55.321Z",
+      "gapDescription": "Missing 2FA implementation"
+    },
+    {
+      "name": "UserService",
+      "documentedStatus": "COMPLETE",
+      "actualStatus": "COMPLETE",
+      "priority": "HIGH",
+      "owner": "Bob",
+      "targetDate": "2025-02-26",
+      "lastUpdated": "2025-02-26T11:04:55.358Z",
+      "gapDescription": "Complete implementation with all required functions"
+    },
+    {
+      "name": "PaymentService",
+      "documentedStatus": "PARTIAL",
+      "actualStatus": "MINIMAL",
+      "priority": "HIGH",
+      "owner": "Charlie",
+      "targetDate": "2025-02-26",
+      "lastUpdated": "2025-02-26T11:04:55.360Z",
+      "gapDescription": "Only basic payment processing, missing subscription functionality"
+    },
+    {
+      "name": "LoggingService",
+      "documentedStatus": "MISSING",
+      "actualStatus": "PARTIAL",
+      "gapDescription": "Component implemented but not documented",
+      "priority": "MEDIUM",
+      "owner": "Unassigned",
+      "targetDate": "2025-02-26",
+      "status": "NOT_STARTED",
+      "lastUpdated": "2025-02-26T11:04:55.374Z"
+    }
+  ],
+  "lastUpdated": "2025-02-26T11:04:55.376Z",
+  "progress": {
+    "total": 4,
+    "verified": 0,
+    "reconciled": 0,
+    "percentage": 0
+  },
+  "metadata": {
+    "project": "mExpress",
+    "sprint": "reconciliation-sprint",
+    "startDate": "2025-02-26T10:49:48.119Z",
+    "endDate": "2025-03-12T10:49:48.120Z",
+    "version": "1.0.0"
+  }
+}

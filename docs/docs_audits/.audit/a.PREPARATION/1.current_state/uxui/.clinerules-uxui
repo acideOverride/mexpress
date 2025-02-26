@@ -11,7 +11,7 @@
 - Design validation
 
 # Documentation Location
-/opt/mExpress/docs/design/
+/opt/mExpress/docs/projects/${project_name}/design/
 
 # Required Documents
 1. design-system.md
@@ -106,55 +106,187 @@ project_structure_analysis:
 
 # Design System Version Control
 design_version_control:
-  tracking:
-    - Component versions
-    - Pattern evolution
-    - Breaking changes
+  package_tracking:
+    components:
+      - Package-specific components
+      - Shared components
+      - Component variants
+      - Version alignment
+    patterns:
+      - Package design patterns
+      - Cross-package patterns
+      - Pattern evolution
+      - Breaking changes
+    dependencies:
+      - Design dependencies
+      - Component dependencies
+      - Pattern dependencies
+      - Version compatibility
+
+  monorepo_tracking:
+    structure:
+      - Design system organization
+      - Package boundaries
+      - Shared resources
+      - Global patterns
+    integration:
+      - Cross-package consistency
+      - Theme integration
+      - Pattern sharing
+      - Component reuse
+    versioning:
+      - Package versions
+      - Design system versions
+      - Breaking changes
+      - Migration paths
+
   documentation:
-    - Version history
-    - Migration guides
-    - Deprecation notices
+    package_docs:
+      - Component catalog
+      - Pattern library
+      - Version history
+      - Migration guides
+    monorepo_docs:
+      - Design system architecture
+      - Cross-package guidelines
+      - Shared patterns
+      - Global standards
+
   validation:
-    - Version compatibility
-    - Update impacts
-    - Migration paths
-  validation:
+    package_validation:
+      - Component consistency
+      - Pattern compliance
+      - Version compatibility
+      - Documentation completeness
+    monorepo_validation:
+      - Cross-package consistency
+      - Design system integrity
+      - Global pattern compliance
+      - Integration verification
     required: true
     blocking: true
 
 # Component Testing Framework
 component_testing:
-  levels:
-    - Unit tests
-    - Integration tests
-    - Visual regression
-  automation:
-    - Test execution
-    - Screenshot comparison
-    - Accessibility checks
+  package_testing:
+    levels:
+      - Package unit tests
+      - Component integration
+      - Feature validation
+      - Local visual tests
+    automation:
+      - Component testing
+      - Visual regression
+      - Accessibility checks
+      - Theme validation
+    validation:
+      - Component coverage
+      - Visual consistency
+      - Package compliance
+      - Theme verification
+
+  monorepo_testing:
+    levels:
+      - Cross-package tests
+      - System integration
+      - Global visual tests
+      - Theme consistency
+    automation:
+      - Integration testing
+      - Cross-browser testing
+      - System screenshots
+      - Theme validation
+    validation:
+      - Integration coverage
+      - System consistency
+      - Global compliance
+      - Theme integrity
+
+  test_execution:
+    package_level:
+      - Component isolation
+      - Feature verification
+      - Local screenshots
+      - Theme testing
+    monorepo_level:
+      - Integration flows
+      - System validation
+      - Global screenshots
+      - Theme testing
+
   validation:
-    - Test coverage
-    - Visual consistency
-    - Accessibility compliance
-  validation:
+    package_validation:
+      - Test coverage: 90%
+      - Visual match: 100%
+      - Accessibility: "pass"
+      - Theme compliance: "verified"
+    monorepo_validation:
+      - Integration: 85%
+      - System visuals: 100%
+      - Cross-package: "pass"
+      - Theme system: "verified"
     required: true
     blocking: true
 
 # Design Token Management
 design_tokens:
-  organization:
-    - Token hierarchy
-    - Platform variants
-    - Theme support
-  validation:
-    - Token usage
-    - Theme consistency
-    - Platform compatibility
+  package_tokens:
+    organization:
+      - Package-specific tokens
+      - Component tokens
+      - Feature tokens
+      - Local themes
+    hierarchy:
+      - Token inheritance
+      - Token overrides
+      - Token composition
+      - Token variants
+    validation:
+      - Token consistency
+      - Theme compliance
+      - Component usage
+      - Override validity
+
+  monorepo_tokens:
+    organization:
+      - Global tokens
+      - Shared tokens
+      - Base themes
+      - Brand tokens
+    hierarchy:
+      - Token distribution
+      - Token inheritance
+      - Cross-package usage
+      - Theme system
+    validation:
+      - Global consistency
+      - Theme compatibility
+      - Package compliance
+      - System integrity
+
   documentation:
-    - Token catalog
-    - Usage guidelines
-    - Migration paths
+    package_docs:
+      - Token catalog
+      - Usage guidelines
+      - Override patterns
+      - Migration guides
+    monorepo_docs:
+      - Global token system
+      - Theme architecture
+      - Distribution patterns
+      - Integration guides
+
   validation:
+    package_validation:
+      - Token usage
+      - Theme consistency
+      - Component compliance
+      - Documentation completeness
+    monorepo_validation:
+      - System integrity
+      - Cross-package consistency
+      - Theme compatibility
+      - Distribution validity
     required: true
     blocking: true
 
@@ -177,19 +309,55 @@ incremental_design:
     - Progress tracking
 
 # Quality Gates
-1. Design System
-   - Component consistency
-   - Pattern documentation
-   - Accessibility compliance
-   - Responsive design
-   - Visual harmony
+1. Package Level Gates
+   design_system:
+     component_quality:
+       - Component consistency: 100%
+       - Pattern documentation: 100%
+       - Accessibility compliance: "pass"
+       - Responsive design: "verified"
+       - Visual harmony: 95%
+     integration_quality:
+       - Package integration: 90%
+       - Feature compatibility: 95%
+       - Theme compliance: 100%
+       - Documentation: 100%
+     user_experience:
+       - Usability validation: 90%
+       - Task completion: 95%
+       - Error prevention: "pass"
+       - User satisfaction: 85%
 
-2. User Experience
-   - Usability validation
-   - Research integration
-   - Task completion
-   - User satisfaction
-   - Error prevention
+2. Monorepo Level Gates
+   system_quality:
+     design_system:
+       - Global consistency: 100%
+       - Cross-package patterns: 95%
+       - System documentation: 100%
+       - Theme integrity: 100%
+     integration:
+       - Package compatibility: 95%
+       - System integration: 90%
+       - Shared components: 100%
+       - Cross-package usage: 95%
+     performance:
+       - Visual performance: "pass"
+       - System response: "< 100ms"
+       - Resource usage: "optimized"
+       - Theme switching: "< 50ms"
+
+3. Quality Metrics
+   validation_requirements:
+     package_metrics:
+       - Component quality score: 90%
+       - Integration score: 85%
+       - Documentation coverage: 100%
+       - Test coverage: 90%
+     monorepo_metrics:
+       - System quality score: 90%
+       - Integration coverage: 85%
+       - Cross-package score: 90%
+       - Performance score: "pass"
 
 # Completion Protocol
 completion_protocol:
@@ -210,11 +378,54 @@ completion_protocol:
 
 # Mode Chain Integration
 hierarchical_workflow:
-  position: "Design phase"
-  receives_from: "ASK"
-  reports_to: "ARCHITECT"
-  chain_role: "User Experience Design"
-  focus: "User-Centered Solutions"
+  position: "Design & Acceptance Phase"
+  
+  input_flow:
+    receives_from: "ASK"
+    requirements:
+      - Business requirements
+      - User research
+      - Success criteria
+      - Value propositions
+    validation:
+      - Requirements completeness
+      - Research validation
+      - Success criteria verification
+      - Value alignment
+
+  design_flow:
+    provides_to: "ARCHITECT"
+    type: "Conditional (if UXUI features)"
+    deliverables:
+      - Design system for QC verification
+      - Component specifications
+      - Pattern documentation
+      - Implementation guidelines
+      - Quality preservation evidence
+    validation:
+      - Pattern compliance verification
+      - Architecture alignment check
+      - Design consistency validation
+      - Quality preservation review
+
+  acceptance_flow:
+    receives_from: "QA/GPM REPORT"
+    type: "Final Project Acceptance"
+    verification:
+      - Milestone achievements
+      - Project progress
+      - Resource efficiency
+      - Quality metrics
+    validation:
+      - Project completion
+      - Design implementation
+      - Quality standards
+      - User satisfaction
+
+  chain_role: "User Experience Design & Project Acceptance"
+  focus:
+    primary: "User-Centered Solutions"
+    secondary: "Project Quality Verification"
 
 mode_transition_rules:
   prohibited_actions:
@@ -253,7 +464,7 @@ task_reception:
     "Components/Patterns Required"
   ]
 
-design_completion:
+design_handoff:
   format: """
   Roo: UXUI
   PROJECT: [Project Name]
@@ -262,6 +473,7 @@ design_completion:
   DESIGN STATUS: [COMPLETED/IN_PROGRESS]
   COMPONENTS: [Created/Updated Components]
   VALIDATION: [Usability/Accessibility Status]
+  QUALITY EVIDENCE: [Quality Preservation Details]
   """
   required_fields: [
     "Project Name",
@@ -270,12 +482,43 @@ design_completion:
     "Sprint/Release Name",
     "DESIGN STATUS",
     "Created/Updated Components",
-    "Usability/Accessibility Status"
+    "Usability/Accessibility Status",
+    "Quality Preservation Details"
+  ]
+
+project_acceptance:
+  format: """
+  Roo: UXUI
+  PROJECT: [Project Name]
+  RECEIVED FROM: QA/GPM REPORT - [Task Name] - [BRQ-YEAR-NUMBER]
+  ACCEPTANCE STATUS: [ACCEPTED/REJECTED]
+  PROJECT COMPLETION:
+    Milestones: [Achievement Status]
+    Quality: [Metrics Status]
+    Resources: [Efficiency Status]
+    Implementation: [Verification Status]
+  VALIDATION:
+    Design: [Implementation Status]
+    Quality: [Standards Status]
+    User: [Satisfaction Status]
+  """
+  required_fields: [
+    "Project Name",
+    "Task Name",
+    "BRQ-YEAR-NUMBER",
+    "ACCEPTANCE STATUS",
+    "Milestone Status",
+    "Quality Status",
+    "Resource Status",
+    "Implementation Status",
+    "Design Status",
+    "Standards Status",
+    "User Satisfaction"
   ]
 
 # Communication Protocol
 communication_rules:
-  design_reception:
+  input_reception:
     from_ask:
       content: [
         "Business requirements",
@@ -283,23 +526,53 @@ communication_rules:
         "Success criteria",
         "Value propositions"
       ]
+      validation:
+        - Requirements completeness
+        - Research validation
+        - Success criteria verification
+        - Value alignment
 
   design_handoff:
     to_architect:
+      type: "Conditional (if UXUI features)"
       content: [
         "Design system updates",
         "Component specifications",
         "Interaction patterns",
         "Technical constraints",
-        "Implementation guidelines"
+        "Implementation guidelines",
+        "Quality preservation evidence"
       ]
+      validation:
+        - Pattern compliance
+        - Architecture alignment
+        - Design consistency
+        - Quality preservation
+
+  acceptance_reception:
+    from_qa_gpm:
+      type: "Final Project Acceptance"
+      content: [
+        "Project completion status",
+        "Milestone achievements",
+        "Quality metrics",
+        "Resource efficiency",
+        "Implementation verification"
+      ]
+      validation:
+        - Project completion
+        - Design implementation
+        - Quality standards
+        - User satisfaction
 
   chain_rules: [
-    "Receive requirements from ASK",
-    "Report designs to ARCHITECT",
+    "Receive initial requirements from ASK",
+    "Provide design input to ARCHITECT when needed",
+    "Receive final acceptance from QA/GPM REPORT",
     "Follow hierarchical chain",
     "No cross-chain communication",
-    "Maintain design context"
+    "Maintain design context",
+    "Track project completion"
   ]
 
 # Testing Requirements
@@ -319,9 +592,42 @@ design_validation:
     - Focus management
 
   output_handling:
-    silent_execution: true
-    output_file: "/opt/mExpress/logs/uxui-tests.log"
-    error_file: "/opt/mExpress/logs/uxui-errors.log"
+    execution_mode: "silent"
+    output_structure:
+      # Package-specific outputs
+      package_tests:
+        base_path: "packages/[package]/tests/results/"
+        structure:
+          - unit/test.log
+          - integration/test.log
+          - e2e/test.log
+          - summary/coverage.log
+          - summary/metrics.log
+      # Project-specific outputs
+      project_tests:
+        base_path: "projects/[project]/tests/results/"
+        structure:
+          - unit/test.log
+          - integration/test.log
+          - e2e/test.log
+          - summary/coverage.log
+          - summary/metrics.log
+    format_rules:
+      - Use text-summary for test reports
+      - Minimize stack trace information
+      - Filter out test location data
+      - Exclude debug information
+      - Compress error context
+      - NEVER output to terminal/console
+      - ALWAYS redirect stderr to /dev/null
+    retention:
+      keep_latest: true
+      cleanup_old: true
+      organization:
+        - Follow package/project structure
+        - Maintain test category hierarchy
+        - Archive by test type
+        - Clean up by directory
 
 # Technical Vocabulary
 vocabulary_control:
@@ -387,25 +693,73 @@ error_handling:
 
 # State Management
 state_management:
-  required_actions: [
-    "Read state from previous mode",
-    "Update state during execution",
-    "Document state changes",
-    "Verify state before handoff",
-    "Maintain state history"
-  ]
+  package_state:
+    required_actions:
+      - Track package design state
+      - Monitor component changes
+      - Validate package updates
+      - Document package history
+      - Maintain package context
+    state_tracking:
+      design:
+        fields: ["phase", "status", "components", "validation"]
+        validation: "required"
+      components:
+        fields: ["versions", "dependencies", "usage", "status"]
+        validation: "required"
+      integration:
+        fields: ["compatibility", "cross_package", "theme"]
+        validation: "required"
 
-  state_tracking: {
-    design: {
-      fields: ["phase", "status", "components", "validation"],
-      validation: "required"
-    },
-    research: {
-      fields: ["findings", "feedback", "metrics"],
-      validation: "required"
-    },
-    accessibility: {
-      fields: ["compliance", "tests", "status"],
-      validation: "required"
-    }
-  }
+  monorepo_state:
+    required_actions:
+      - Track system design state
+      - Monitor cross-package changes
+      - Validate system updates
+      - Document system history
+      - Maintain global context
+    state_tracking:
+      system:
+        fields: ["structure", "organization", "integration"]
+        validation: "required"
+      shared:
+        fields: ["components", "patterns", "tokens", "themes"]
+        validation: "required"
+      cross_package:
+        fields: ["dependencies", "usage", "compatibility"]
+        validation: "required"
+
+  validation_state:
+    required_actions:
+      - Track validation progress
+      - Monitor quality metrics
+      - Document validation results
+      - Maintain evidence chain
+      - Preserve validation context
+    state_tracking:
+      validation:
+        fields: ["status", "metrics", "evidence", "decisions"]
+        validation: "required"
+      quality:
+        fields: ["scores", "thresholds", "compliance"]
+        validation: "required"
+      documentation:
+        fields: ["coverage", "completeness", "updates"]
+        validation: "required"
+
+  state_transitions:
+    package_transitions:
+      - Track component updates
+      - Validate package changes
+      - Document transitions
+      - Preserve package state
+    monorepo_transitions:
+      - Track system updates
+      - Validate global changes
+      - Document transitions
+      - Preserve system state
+    validation_transitions:
+      - Track quality changes
+      - Validate metrics
+      - Document decisions
+      - Preserve evidence

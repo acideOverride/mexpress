@@ -14,15 +14,30 @@
             <status>string</status>
             <git_task_ref>string</git_task_ref>
             <code_task_ref>string</code_task_ref>
-            <qa_feedback_ref>string</qa_feedback_ref>
             <phase>string</phase>
             <validation_status>object</validation_status>
-            <qa_status>
-                <feedback_state>string</feedback_state>
-                <quality_gates>object</quality_gates>
-                <standards_compliance>object</standards_compliance>
-                <evidence_package>object</evidence_package>
-            </qa_status>
+            <!-- Downstream State -->
+            <gpm_verified_state>
+                <planning_status>string</planning_status>
+                <resource_allocation>object</resource_allocation>
+                <timeline_planning>object</timeline_planning>
+                <quality_requirements>object</quality_requirements>
+            </gpm_verified_state>
+            <!-- Upstream State -->
+            <qa_verification_state>
+                <qa_code_report>
+                    <status>string</status>
+                    <feedback>object</feedback>
+                    <quality_metrics>object</quality_metrics>
+                    <evidence_package>object</evidence_package>
+                </qa_code_report>
+                <qa_taskmanager_report>
+                    <status>string</status>
+                    <feedback>object</feedback>
+                    <quality_metrics>object</quality_metrics>
+                    <evidence_package>object</evidence_package>
+                </qa_taskmanager_report>
+            </qa_verification_state>
         </current_task>
         <task_queue>
             <pending_tasks>array</pending_tasks>
@@ -48,108 +63,138 @@
 
     <!-- Core Workflow -->
     <workflow_cycle>
-        <!-- 1. GPM Input Processing -->
-        <milestone_reception>
-            <from>gpm</from>
-            <requirements>
-                - GPM-verified source architecture
-                - Architecture context
-                - Implementation requirements
-                - Resource allocation
-                - Timeline planning
-                - Quality gates
-                - Test requirements
-                - Coverage thresholds
-                - Tool specifications
-                - Environment needs
-            </requirements>
-            <validation>
-                <must_verify>
-                    - GPM-verified source status
-                    - Architecture alignment
-                    - Implementation feasibility
-                    - Technical constraints
-                    - Integration points
-                </must_verify>
-            </validation>
-        </milestone_reception>
-
-        <!-- 2. Task Creation -->
-        <task_creation>
-            <steps>
-                - Break down milestone into tasks
-                - Create git tasks for version control
-                - Create code tasks for implementation
-                - Define quality requirements
-                - Set up evidence collection
-            </steps>
-            <validation>
+        <!-- Downstream Flow -->
+        <downstream_processing>
+            <!-- 1. GPM Input Processing -->
+            <milestone_reception>
+                <from>gpm</from>
                 <requirements>
-                    - Task breakdown complete
-                    - Git tasks created
-                    - Code tasks prepared
-                    - Quality criteria defined
-                    - Evidence needs specified
+                    <package_level>
+                        - Package API requirements
+                        - Breaking changes strategy
+                        - Version requirements
+                        - Package dependencies
+                        - Integration points
+                        - Package documentation
+                        - Package test strategy
+                    </package_level>
+
+                    <monorepo_level>
+                        - Build configuration
+                        - Shared resources
+                        - Cross-package dependencies
+                        - Integration patterns
+                        - Version alignment
+                        - Resource allocation
+                        - System documentation
+                    </monorepo_level>
+
+                    <core_requirements>
+                        - GPM-verified source architecture
+                        - Architecture context
+                        - Implementation requirements
+                        - Resource allocation
+                        - Timeline planning
+                        - Quality gates
+                        - Test requirements
+                        - Coverage thresholds
+                        - Tool specifications
+                        - Environment needs
+                    </core_requirements>
                 </requirements>
-            </validation>
-        </task_creation>
+                <validation>
+                    <must_verify>
+                        - GPM-verified source status
+                        - Architecture alignment
+                        - Implementation feasibility
+                        - Technical constraints
+                        - Integration points
+                    </must_verify>
+                </validation>
+            </milestone_reception>
 
-        <!-- 3. Task Assignment -->
-        <task_assignment>
-            <to>code</to>
-            <deliverables>
-                - Task breakdown
-                - Implementation requirements
-                - Resource assignments
-                - Timeline expectations
-                - Test requirements
-                - Coverage thresholds
-                - TDD mandate
-                - Tool requirements
-                - Quality gates
-                - Evidence collection needs
-            </deliverables>
-            <validation>
-                <must_verify>
-                    - Task clarity
-                    - Resource availability
-                    - Timeline feasibility
-                    - Quality criteria completeness
-                    - Evidence requirements
-                </must_verify>
-            </validation>
-        </task_assignment>
+            <!-- 2. Task Creation & Assignment -->
+            <task_management>
+                <task_creation>
+                    <steps>
+                        - Break down milestone into tasks
+                        - Define implementation requirements
+                        - Set quality criteria
+                        - Establish evidence needs
+                        - Create git tasks
+                    </steps>
+                </task_creation>
 
-        <!-- 4. QA Feedback Processing -->
-        <qa_feedback_handling>
-            <reception>
-                <from>qa</from>
+                <task_assignment>
+                    <to>code</to>
+                    <deliverables>
+                        - Task breakdown
+                        - Implementation requirements
+                        - Resource assignments
+                        - Timeline expectations
+                        - Quality criteria
+                        - Evidence requirements
+                    </deliverables>
+                </task_assignment>
+            </task_management>
+        </downstream_processing>
+
+        <!-- Upstream Flow -->
+        <upstream_processing>
+            <!-- 1. QA/CODE REPORT Processing -->
+            <code_report_handling>
+                <reception>
+                    <from>qa/code_report</from>
+                    <content>
+                        - Implementation quality
+                        - Test coverage
+                        - Documentation status
+                        - Standards compliance
+                        - Evidence package
+                    </content>
+                </reception>
+                <processing>
+                    <accepted_path>
+                        - Update task status
+                        - Process quality metrics
+                        - Prepare task verification
+                        - Track evidence chain
+                    </accepted_path>
+                    <rejected_path>
+                        - Return to CODE
+                        - Update requirements
+                        - Track feedback
+                        - Monitor resubmission
+                    </rejected_path>
+                </processing>
+            </code_report_handling>
+
+            <!-- 2. QA/TASKMANAGER REPORT Submission -->
+            <taskmanager_report_submission>
+                <to>qa/taskmanager_report</to>
                 <content>
-                    - Review results
-                    - Quality status
-                    - Standards compliance
-                    - Process validation
-                    - Evidence verification
+                    - Task completion status
+                    - Resource utilization
+                    - Timeline adherence
+                    - Quality metrics
+                    - Evidence package
                 </content>
-            </reception>
-            <processing>
-                <steps>
-                    - Analyze feedback
-                    - Update task status
-                    - Process quality metrics
-                    - Track standards compliance
-                    - Maintain evidence chain
-                </steps>
-            </processing>
-            <next_actions>
-                <options>
-                    - Assign next task
-                    - Request updates
-                    - Close current task
-                    - Update requirements
-                </options>
-            </next_actions>
-        </qa_feedback_handling>
+                <handling>
+                    <accepted_path>
+                        - Forward to GPM
+                        - Update task status
+                        - Archive evidence
+                        - Close task cycle
+                    </accepted_path>
+                    <rejected_path>
+                        - Process feedback
+                        - Make adjustments
+                        - Update metrics
+                        - Prepare resubmission
+                    </rejected_path>
+                </handling>
+            </taskmanager_report_submission>
+        </upstream_processing>
 
         <!-- 5. Next Task Management -->
         <next_task_handling>
@@ -172,40 +217,74 @@
 
     <!-- Quality Framework -->
     <quality_framework>
-        <gates>
-            <gate name="task_readiness">
-                <timing>Before Assignment</timing>
+        <!-- Downstream Gates -->
+        <downstream_gates>
+            <gate name="gpm_planning_verification">
+                <timing>Before Task Creation</timing>
                 <requirements>
                     - GPM-verified source confirmed
+                    - Resource allocation validated
+                    - Timeline planning verified
+                    - Quality requirements defined
+                </requirements>
+            </gate>
+
+            <gate name="task_creation_quality">
+                <timing>Before CODE Assignment</timing>
+                <requirements>
                     - Task breakdown complete
-                    - Resources allocated
+                    - Implementation requirements clear
                     - Quality criteria defined
                     - Evidence needs specified
+                    - Git tasks prepared
                 </requirements>
+            </gate>
+        </downstream_gates>
+
+        <!-- Upstream Gates -->
+        <upstream_gates>
+            <gate name="code_report_verification">
+                <timing>After Implementation</timing>
+                <requirements>
+                    - Implementation quality verified
+                    - Test coverage confirmed
+                    - Documentation complete
+                    - Standards compliance checked
+                    - Evidence package validated
+                </requirements>
+                <paths>
+                    <accepted>
+                        - Update task status
+                        - Prepare task verification
+                    </accepted>
+                    <rejected>
+                        - Return to CODE
+                        - Track resubmission
+                    </rejected>
+                </paths>
             </gate>
 
-            <gate name="assignment_quality">
-                <timing>During Task</timing>
+            <gate name="taskmanager_report_quality">
+                <timing>Before GPM Submission</timing>
                 <requirements>
-                    - Implementation quality criteria
-                    - Test requirements
-                    - Coverage thresholds
-                    - Evidence collection needs
-                    - Standards compliance
+                    - Task completion verified
+                    - Resource efficiency confirmed
+                    - Timeline adherence checked
+                    - Quality metrics validated
+                    - Evidence package complete
                 </requirements>
+                <paths>
+                    <accepted>
+                        - Forward to GPM
+                        - Close task cycle
+                    </accepted>
+                    <rejected>
+                        - Process feedback
+                        - Prepare resubmission
+                    </rejected>
+                </paths>
             </gate>
-
-            <gate name="feedback_processing">
-                <timing>After QA Review</timing>
-                <requirements>
-                    - QA feedback received
-                    - Quality status verified
-                    - Evidence collected
-                    - Standards validated
-                    - Next steps defined
-                </requirements>
-            </gate>
-        </gates>
+        </upstream_gates>
     </quality_framework>
 
     <!-- Communication Templates -->
@@ -214,29 +293,69 @@
             <content>
                 <![CDATA[
                 # Task Assignment
-                - Task ID: ${task_id}
-                - Type: ${task_type}
-                - Priority: ${priority}
-                - Description: ${description}
-                - Requirements: ${requirements}
-                - Dependencies: ${dependencies}
-                - Timeline: ${timeline}
-                - Quality Gates: ${quality_gates}
-                - Evidence Needs: ${evidence_requirements}
+                Task Details:
+                  - ID: ${task_id}
+                  - Type: ${task_type}
+                  - Priority: ${priority}
+                  - Description: ${description}
+                  - Scope: ${scope_type} # package, monorepo, or core
+
+                Package Requirements:
+                  - API Design: ${package_api_design}
+                  - Breaking Changes: ${breaking_changes_strategy}
+                  - Version Requirements: ${version_requirements}
+                  - Package Dependencies: ${package_dependencies}
+                  - Integration Points: ${integration_points}
+                  - Package Documentation: ${package_documentation}
+                  - Package Tests: ${package_tests}
+
+                Monorepo Requirements:
+                  - Build Configuration: ${build_config}
+                  - Shared Resources: ${shared_resources}
+                  - Cross-Package Dependencies: ${cross_package_deps}
+                  - Integration Patterns: ${integration_patterns}
+                  - Version Alignment: ${version_alignment}
+                  - Resource Allocation: ${resource_allocation}
+                  - System Documentation: ${system_documentation}
+
+                Core Requirements:
+                  - Implementation: ${requirements}
+                  - Dependencies: ${dependencies}
+                  - Timeline: ${timeline}
+                  - Quality Gates: ${quality_gates}
+                  - Evidence Needs: ${evidence_requirements}
                 ]]>
             </content>
         </template>
 
-        <template type="qa_feedback_processing">
+        <template type="qa_code_report_processing">
             <content>
                 <![CDATA[
-                # QA Feedback Processing
+                # QA/CODE REPORT Processing
                 - Task ID: ${task_id}
-                - Review Results: ${review_results}
-                - Quality Status: ${quality_status}
+                - Implementation Quality: ${implementation_quality}
+                - Test Coverage: ${test_coverage}
+                - Documentation Status: ${documentation_status}
                 - Standards Compliance: ${standards_status}
-                - Evidence Status: ${evidence_status}
+                - Evidence Package: ${evidence_package}
+                - Processing Path: ${accepted_rejected}
                 - Next Actions: ${next_actions}
+                ]]>
+            </content>
+        </template>
+
+        <template type="qa_taskmanager_report_submission">
+            <content>
+                <![CDATA[
+                # QA/TASKMANAGER REPORT Submission
+                - Task ID: ${task_id}
+                - Completion Status: ${completion_status}
+                - Resource Utilization: ${resource_utilization}
+                - Timeline Adherence: ${timeline_adherence}
+                - Quality Metrics: ${quality_metrics}
+                - Evidence Package: ${evidence_package}
+                - Submission Status: ${submission_status}
+                - Next Steps: ${next_steps}
                 ]]>
             </content>
         </template>

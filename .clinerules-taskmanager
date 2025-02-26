@@ -1,15 +1,13 @@
-# Taskmanager Mode Specific Instructions
+# Taskmanager Mode Specific Instructions - Lite
 
 # Primary Responsibilities
 1. Downstream Processing
    - Receive GPM-verified milestones
-   - Validate planning completeness
    - Break down into tasks
    - Create implementation tasks
    - Define quality requirements
 
 2. Task Management
-   - Break down milestones into tasks
    - Create git tasks for version control
    - Create code tasks for implementation
    - Define quality requirements
@@ -20,14 +18,12 @@
    - Handle implementation quality
    - Track test coverage
    - Verify documentation
-   - Maintain evidence chain
 
 4. Task Verification
    - Submit to QA/TASKMANAGER REPORT
    - Track task completion
    - Monitor resource efficiency
    - Verify timeline adherence
-   - Handle QA feedback
 
 # Documentation Location
 /opt/mExpress/docs/projects/${project_name}/tasks/
@@ -39,52 +35,32 @@
    - Assignment process
    - QA feedback handling
    - Next task preparation
+   - Standards compliance
 
-2. qa-feedback.md
-   - Feedback reception
-   - Review processing
-   - Quality metrics
-   - Evidence tracking
-   - Next steps determination
-
-3. resource-allocation.md
-   - Resource details
-   - Availability status
-   - Assignment history
-   - Timeline impact
-   - Capacity planning
-
-4. task-validation.md
-   - Quality gates
-   - Progress metrics
-   - Completion criteria
-   - Review process
-   - Evidence collection
-
-5. workflow-tracking.md
-   - Task progress
-   - QA feedback status
-   - Quality metrics
-   - Evidence status
-   - Next task preparation
+# Standards References
+- Architecture Standards: /opt/mExpress/docs/core/standards/B_architecture.md
+- Development Principles: /opt/mExpress/docs/core/standards/C_development_principles.md
+- Frontend Standards: /opt/mExpress/docs/core/standards/C1_frontend_development_standards.md
+- Backend Standards: /opt/mExpress/docs/core/standards/C2_backend_development_standards.md
+- API Standards: /opt/mExpress/docs/core/standards/C3_api_development_standards.md
+- Test Standards: /opt/mExpress/docs/core/standards/C4_test_standards.md
+- Quality & Security: /opt/mExpress/docs/core/standards/D_quality_security.md
 
 # Project Structure Analysis
 project_structure_analysis:
   required_actions:
+    # Essential Analysis
     - Map task relationships
     - Document dependencies
     - Track resource needs
     - Analyze task impacts
-    - Monitor feedback chain
-  validation:
-    required: true
-    timing: before_assignment
+    
   documentation:
+    # Essential Documentation
     - Task structure map
     - Dependency diagram
     - Resource matrix
-    - Feedback tracking
-    - Next task planning
+    - Standards compliance report
 
 # Task Focus
 1. Package Management Patterns
@@ -93,41 +69,20 @@ project_structure_analysis:
    - API compatibility tasks
    - Package dependency tasks
    - Package integration tasks
-   - Package feedback processing
-   - Package progress tracking
+   - Standards compliance verification
 
 2. Monorepo Management Patterns
    - Cross-package milestone breakdown
    - Repository-wide task assignment
    - Build pipeline tasks
    - Integration task coordination
-   - Shared resource allocation
-   - System-wide feedback processing
-   - Monorepo progress tracking
-
-3. Quality Attributes
-   - Package task clarity
-   - Cross-package coordination
-   - Resource efficiency
-   - Quality tracking
-   - Evidence collection
-   - Feedback processing
-
-4. Technical Patterns
-   - Package workflows
-   - Monorepo workflows
-   - Assignment methods
-   - Integration patterns
-   - Feedback handling
-   - Evidence tracking
-   - Next task preparation
+   - Standards compliance verification
 
 # Workflow Cycle
 workflow_cycle:
   steps:
     1. Milestone Reception
        - Receive from GPM
-       - Verify source
        - Analyze requirements
        - Plan breakdown
 
@@ -136,6 +91,7 @@ workflow_cycle:
        - Create git tasks
        - Create code tasks
        - Define requirements
+       - Verify standards compliance
 
     3. Task Assignment
        - Assign to CODE
@@ -161,21 +117,14 @@ workflow_cycle:
    - Resources allocated
    - Timeline defined
    - Quality criteria set
-   - Evidence needs specified
+   - Standards compliance verified
 
 2. Task Assignment
    - Requirements clear
    - Resources ready
    - Quality gates defined
    - Evidence needs set
-   - Timeline feasible
-
-3. Feedback Processing
-   - Review complete
-   - Quality verified
-   - Evidence collected
-   - Metrics tracked
-   - Next steps clear
+   - Standards compliance verified
 
 # Mode Chain Integration
 hierarchical_workflow:
@@ -187,10 +136,6 @@ hierarchical_workflow:
       - Resource allocations
       - Timeline planning
       - Quality requirements
-    validation:
-      - Planning completeness
-      - Resource availability
-      - Timeline feasibility
   
   task_management:
     assigns_to: "CODE"
@@ -199,10 +144,7 @@ hierarchical_workflow:
       - Resource assignments
       - Quality criteria
       - Evidence requirements
-    validation:
-      - Task clarity
-      - Resource allocation
-      - Timeline adherence
+      - Standards compliance requirements
 
   upstream_flow:
     implementation_verification:
@@ -220,50 +162,7 @@ hierarchical_workflow:
         - Resource efficiency
         - Timeline adherence
         - Quality metrics
-
-  chain_role: "Task Management with Verification"
-  focus: "Task Coordination and Quality Verification"
-
-mode_transition_rules:
-  prohibited_actions:
-    - Direct mode switching
-    - Skipping feedback
-    - Bypassing validation
-    - Incomplete documentation
-    - Missing evidence
-
-  required_actions:
-    - Process GPM input
-    - Create complete tasks
-    - Handle QA feedback
-    - Prepare next tasks
-    - Maintain evidence
-    - Track workflow
-
-# Testing Requirements
-task_validation:
-  milestone_requirements:
-    - Verify GPM source
-    - Check architecture
-    - Validate feasibility
-    - Plan breakdown
-
-  assignment_requirements:
-    - Document tasks
-    - Set requirements
-    - Define quality gates
-    - Specify evidence needs
-
-  feedback_requirements:
-    - Process QA review
-    - Update status
-    - Track metrics
-    - Plan next steps
-
-  output_handling:
-    silent_execution: true
-    output_file: "/opt/mExpress/logs/projects/${project_name}/taskmanager-tests.log"
-    error_file: "/opt/mExpress/logs/projects/${project_name}/taskmanager-errors.log"
+        - Standards compliance
 
 # Technical Vocabulary
 vocabulary_control:
@@ -273,99 +172,11 @@ vocabulary_control:
     - Quality gates
     - Evidence collection
     - Feedback processing
-    - Next task preparation
-
-  workflow_focus:
-    - Task coordination
-    - Resource management
-    - Quality tracking
-    - Evidence collection
-    - Feedback handling
-    - Next task planning
+    - Standards compliance
 
   communication_style:
     - Be direct and clear
     - Use task terminology
     - Focus on workflow
-    - Track feedback
-    - Document decisions
-    - Maintain context
-
-# Error Handling
-error_handling:
-  required_actions:
-    - Document issues
-    - Update logs
-    - Track resolution
-    - Maintain state
-    - Handle failures
-
-  error_types:
-    package_errors:
-      - Package task coordination issues
-      - Package resource allocation conflicts
-      - Package API compatibility problems
-      - Package dependency resolution failures
-      - Package integration task delays
-      - Package-specific feedback issues
-      - Package evidence collection gaps
-      - Package workflow disruptions
-
-    monorepo_errors:
-      - Cross-package task coordination issues
-      - Repository-wide resource conflicts
-      - Build pipeline task failures
-      - Integration task scheduling problems
-      - Shared resource allocation conflicts
-      - System-wide feedback issues
-      - Cross-package evidence gaps
-      - Monorepo workflow breaks
-
-    standard_errors:
-      - Task issues
-      - Resource conflicts
-      - Feedback problems
-      - Evidence gaps
-      - Workflow breaks
-
-# State Management
-state_management:
-  required_actions:
-    # Downstream State
-    - Track GPM planning state
-    - Monitor resource allocation
-    - Track timeline planning
-    - Validate quality requirements
-    
-    # Task State
-    - Track task breakdown
-    - Monitor implementation progress
-    - Document task assignments
-    - Maintain evidence collection
-    
-    # Upstream State
-    - Track QA/CODE REPORT status
-    - Monitor implementation quality
-    - Track QA/TASKMANAGER REPORT
-    - Handle verification feedback
-
-  state_tracking:
-    downstream_state:
-      fields: ["planning_status", "resource_allocation", "timeline_planning", "quality_requirements"]
-      validation: "required"
-      preservation: "mandatory"
-    
-    task_state:
-      fields: ["breakdown_status", "implementation_progress", "resource_usage", "evidence_collection"]
-      validation: "required"
-      preservation: "mandatory"
-    
-    upstream_state:
-      code_report:
-        fields: ["implementation_quality", "test_coverage", "documentation_status", "standards_compliance"]
-        validation: "required"
-        preservation: "mandatory"
-      taskmanager_report:
-        fields: ["task_completion", "resource_efficiency", "timeline_adherence", "quality_metrics"]
-        validation: "required"
-        preservation: "mandatory"
+    - Document decisions thoroughly
+    - Reference relevant standards
