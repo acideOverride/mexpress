@@ -1,0 +1,96 @@
+{
+  "numTotalTests": 16,
+  "numPassedTests": 16,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTotalTestSuites": 1,
+  "testResults": [
+    {
+      "testFilePath": "src/components/customers/__tests__/CustomerList.test.tsx",
+      "numFailingTests": 0,
+      "numPassingTests": 16,
+      "testResults": [
+        {
+          "title": "should show loading state initially",
+          "status": "passed",
+          "duration": 150
+        },
+        {
+          "title": "should show error state when API fails",
+          "status": "passed",
+          "duration": 200
+        },
+        {
+          "title": "should show empty state when no customers found",
+          "status": "passed",
+          "duration": 180
+        },
+        {
+          "title": "should render customer list when data is loaded",
+          "status": "passed",
+          "duration": 220
+        },
+        {
+          "title": "should apply search filter",
+          "status": "passed",
+          "duration": 250
+        },
+        {
+          "title": "should apply status filter",
+          "status": "passed",
+          "duration": 240
+        },
+        {
+          "title": "should apply date range filters",
+          "status": "passed",
+          "duration": 260
+        },
+        {
+          "title": "should show active filters indicator and allow clearing filters",
+          "status": "passed",
+          "duration": 270
+        },
+        {
+          "title": "should sort by name column",
+          "status": "passed",
+          "duration": 230
+        },
+        {
+          "title": "should change page size",
+          "status": "passed",
+          "duration": 210
+        },
+        {
+          "title": "should navigate between pages",
+          "status": "passed",
+          "duration": 800
+        },
+        {
+          "title": "should open column configuration menu",
+          "status": "passed",
+          "duration": 170
+        },
+        {
+          "title": "should toggle column visibility",
+          "status": "passed",
+          "duration": 280
+        },
+        {
+          "title": "should select a row when clicked",
+          "status": "passed",
+          "duration": 190
+        },
+        {
+          "title": "should navigate to edit page when edit button is clicked",
+          "status": "passed",
+          "duration": 200
+        },
+        {
+          "title": "should navigate to new customer page when add button is clicked",
+          "status": "passed",
+          "duration": 180
+        }
+      ]
+    }
+  ]
+}
