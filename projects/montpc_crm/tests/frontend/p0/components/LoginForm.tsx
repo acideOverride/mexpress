@@ -30,6 +30,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({
       onError?.(new Error(error.message));
     }
   }, [error, onError]);
+  
+  // Additional handler for form errors
+  const handleError = (err: Error) => {
+    if (onError) {
+      onError(err);
+    }
+  };
 
   const validateForm = (): boolean => {
     const errors: FormErrors = {};
@@ -79,7 +86,12 @@ export const LoginForm: React.FC<LoginFormProps> = ({
       await login(formData.email, formData.password);
       onSuccess?.();
     } catch (err) {
-      // Error is handled by AuthContext and useEffect above
+      // Handle error explicitly
+      if (err instanceof Error) {
+        handleError(err);
+      } else {
+        handleError(new Error('Unknown login error'));
+      }
     }
   };
 
@@ -96,7 +108,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           required
         />
         {formErrors.email && (
-          <p className="error">{formErrors.email}</p>
+          <p data-testid="email-error" className="error">{formErrors.email}</p>
         )}
       </div>
 
@@ -111,7 +123,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           required
         />
         {formErrors.password && (
-          <p className="error">{formErrors.password}</p>
+          <p data-testid="password-error" className="error">{formErrors.password}</p>
         )}
       </div>
 

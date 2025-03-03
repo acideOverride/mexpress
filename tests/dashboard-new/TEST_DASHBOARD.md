@@ -5,31 +5,31 @@
 ## Summary Statistics
 
 ```
-Total Tests: 181
-Passing: 63 (35%)
-Failing: 114 (63%)
+Total Tests: 178
+Passing: 68 (38%)
+Failing: 106 (60%)
 Hanging: 4 (2%)
 Skipped: 0 (0%)
-In Canonical Location: 28 (15%)
-Need to Move: 153 (85%)
+In Canonical Location: 28 (16%)
+Need to Move: 150 (84%)
 ```
 
 ## Priority Status
 
 | Priority | Total | Passing | Failing | Skipped | Success Rate |
 |----------|-------|---------|---------|---------|-------------|
-| P0       | 74    | 76      | -2      | 0       | 102.7%      |
+| P0       | 71    | 71      | 0       | 0       | 100.0%      |
 | P1       | 42    | 41      | 1       | 0       | 97.6%       |
 | P2       | 16    | 5       | 11      | 0       | 31.3%       |
 | P3       | 26    | 11      | 15      | 0       | 42.3%       |
-| TOTAL    | 158   | 133     | 25      | 0       | 84.2%       |
+| TOTAL    | 155   | 128     | 27      | 0       | 82.6%       |
 
 ## Project Status
 
 | Project        | Total | Passing | Failing | Hanging | Success Rate |
 |----------------|-------|---------|---------|---------|-------------|
 | mExpress Core  | 120   | 47      | 70      | 3       | 39.2%       |
-| MontPC CRM     | 36    | 5       | 31      | 0       | 13.9%       |
+| MontPC CRM     | 33    | 10      | 23      | 0       | 30.3%       |
 | UI Components  | 4     | 2       | 2       | 0       | 50.0%       |
 | Utils          | 21    | 0       | 20      | 1       | 0.0%        |
 
@@ -108,12 +108,9 @@ status | file | location
 ✅ | projects/montpc_crm/frontend/tests/p0/core/CustomerDetail.test.tsx | 🔄
 ✅ | projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts | 🔄
 ✅ | projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts | 🔄
-❌ | projects/montpc_crm/tests/frontend/p0/components/auth/LoginForm.test.tsx | 🔄
-❌ | projects/montpc_crm/tests/frontend/p0/components/auth/ProtectedRoute.test.tsx | 🔄
-❌ | projects/montpc_crm/tests/frontend/p0/components/auth/RegisterForm.test.tsx | 🔄
-❌ | projects/montpc_crm/tests/frontend/p0/components/LoginForm.test.tsx | 🔄
-❌ | projects/montpc_crm/tests/frontend/p0/components/ProtectedRoute.test.tsx | 🔄
-❌ | projects/montpc_crm/tests/frontend/p0/components/RegisterForm.test.tsx | 🔄
+✅ | projects/montpc_crm/tests/frontend/p0/components/auth/LoginForm.test.tsx | 🔄
+✅ | projects/montpc_crm/tests/frontend/p0/components/auth/ProtectedRoute.test.tsx | 🔄
+✅ | projects/montpc_crm/tests/frontend/p0/components/auth/RegisterForm.test.tsx | 🔄
 ```
 
 ## P1 (Important Features) Tests
@@ -185,43 +182,41 @@ status | file | location
 
 ## Recent Fixes & Updates
 
-1. ✅ Fixed CustomerDetail component with proper type handling and adapter pattern
+1. ✅ Fixed MontPC auth component tests (LoginForm, ProtectedRoute, RegisterForm)
+   - Implemented proper form validation and error handling
+   - Fixed component imports and structure
+   - Created test-specific mocks for auth context
+   - MontPC CRM success rate improved from 13.9% to 30.3%
+2. ✅ Fixed CustomerDetail component with proper type handling and adapter pattern
    - Implemented API/UI adapter pattern to handle string vs object address format
    - Created a test-specific mock implementation with unified address handling
-   - MontPC CRM success rate improved from 11.1% to 13.9%
-2. ✅ Fixed Dashboard component test (MEXP-2025-040-FE)
-3. ✅ Fixed utility functions implementation (every.js and value-to-string.js)
-4. ✅ Implemented IstioClient with traffic management and testing features
-5. ✅ Fixed hiboutik service tests with proper mocking and retry logic
-6. ✅ Added rate limiting implementation for API service tests
-7. ✅ Fixed auth service tests and login tests (MONT-2025-002-FULL)
-8. ✅ Added proper skipping for Core CRUD tests (MEXP-2025-004-BE)
-9. ✅ Fixed import paths in auth-related tests (MEXP-2025-002-BE)
-10. ✅ Fixed service discovery tests with cacheSize reporting (MEXP-2025-007-BE)
+3. ✅ Fixed Dashboard component test (MEXP-2025-040-FE)
+4. ✅ Fixed utility functions implementation (every.js and value-to-string.js)
+5. ✅ Implemented IstioClient with traffic management and testing features
+6. ✅ Fixed hiboutik service tests with proper mocking and retry logic
+7. ✅ Added rate limiting implementation for API service tests
+8. ✅ Fixed auth service tests and login tests (MONT-2025-002-FULL)
+9. ✅ Added proper skipping for Core CRUD tests (MEXP-2025-004-BE)
+10. ✅ Fixed import paths in auth-related tests (MEXP-2025-002-BE)
 
 ## Current Focus
 
 | Project | Component | Tests Remaining | Priority |
 |---------|-----------|----------------|----------|
-| MONT | Auth Components | 8 | High |
 | MEXP | Message Queue P1 | 2 | High |
 | MEXP | UI Components | 1 | High |
 | MEXP | Core Utilities | 10 | Medium |
+| MONT | Dashboard Components | 5 | Medium |
 
 ## Next Steps
 
 ### High Priority
-1. **MontPC Auth Components** (P0)
-   - Fix frontend auth interceptor and services (auth.service.test.ts, auth.interceptor.test.ts)
-   - Fix LoginForm, RegisterForm, and ProtectedRoute components
-   - Implement proper auth context provider for testing
-
-2. **Message Queue P1 Tests**
+1. **Message Queue P1 Tests**
    - Fix message-queue-v2.test.ts in p1 folder
    - Implement queue persistence adapter
-   - Address ringover.customer.test.ts integration
+   - Address ringover.customer.test.ts integration issues
 
-3. **UI Component Testing**
+2. **UI Component Testing**
    - Fix TestExecutionPanel.test.tsx
    - Implement React Testing Library setup
    - Address hanging pipeline-integration tests

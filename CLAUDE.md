@@ -127,14 +127,21 @@ fix(tests): fix [test-name] in [location]
 ### Testing Phase Workflow
 
 1. Fix a failing test from TEST_DASHBOARD.md
-2. Run the test to confirm it passes
-3. Update TEST_DASHBOARD.md with the new status
+2. Run the test repeatedly until you CONFIRM it passes
+   - CRUCIAL: Never assume a fix works without verifying via test execution
+   - Fix any additional issues that emerge until all tests pass
+   - Test execution is THE ONLY way to verify a fix works
+3. Only after confirming test success, update TEST_DASHBOARD.md with the new status
 4. Run update-all.js to refresh the dashboard
 5. Commit the changes immediately
 6. Push to the remote repository
 7. Move to the next test
 
-IMPORTANT: Do not accumulate multiple test fixes before committing. This makes it difficult to track progress and increases the risk of losing work.
+IMPORTANT: 
+- NEVER commit changes before verifying tests are passing
+- ALWAYS run tests to verify fixes work before updating dashboard or committing
+- Do not accumulate multiple test fixes before committing. This makes it difficult to track progress and increases the risk of losing work
+- Follow the strict sequence: Fix → Test → Verify Pass → Update Dashboard → Commit
 
 ## Handoff Context
 This section tracks the current work status for continuity between sessions.

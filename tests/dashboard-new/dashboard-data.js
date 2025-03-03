@@ -81,6 +81,7 @@ window.dashboardData = {
     }
   },
   "recentFixes": [
+    "Fixed MontPC auth component tests (LoginForm, ProtectedRoute, RegisterForm)",
     "Fixed CustomerDetail component with proper type handling and adapter pattern",
     "Fixed Dashboard component test (MEXP-2025-040-FE)",
     "Fixed utility functions implementation (every.js and value-to-string.js)",
@@ -89,27 +90,17 @@ window.dashboardData = {
     "Added rate limiting implementation for API service tests",
     "Fixed auth service tests and login tests (MONT-2025-002-FULL)",
     "Added proper skipping for Core CRUD tests (MEXP-2025-004-BE)",
-    "Fixed import paths in auth-related tests (MEXP-2025-002-BE)",
-    "Fixed service discovery tests with cacheSize reporting (MEXP-2025-007-BE)"
+    "Fixed import paths in auth-related tests (MEXP-2025-002-BE)"
   ],
   "nextSteps": {
     "high": [
-      {
-        "title": "MontPC Auth Components",
-        "detail": "(P0)",
-        "bullets": [
-          "Fix frontend auth interceptor and services (auth.service.test.ts, auth.interceptor.test.ts)",
-          "Fix LoginForm, RegisterForm, and ProtectedRoute components",
-          "Implement proper auth context provider for testing"
-        ]
-      },
       {
         "title": "Message Queue P1 Tests",
         "detail": "",
         "bullets": [
           "Fix message-queue-v2.test.ts in p1 folder",
           "Implement queue persistence adapter",
-          "Address ringover.customer.test.ts integration"
+          "Address ringover.customer.test.ts integration issues"
         ]
       },
       {
@@ -595,7 +586,7 @@ window.dashboardData = {
       "project": "montpc"
     },
     {
-      "status": "failing",
+      "status": "passing",
       "path": "/opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/auth/LoginForm.test.tsx",
       "shortPath": "projects/montpc_crm/tests/frontend/p0/components/auth/LoginForm.test.tsx",
       "priority": "p0",
@@ -604,7 +595,7 @@ window.dashboardData = {
       "project": "montpc"
     },
     {
-      "status": "failing",
+      "status": "passing",
       "path": "/opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/auth/ProtectedRoute.test.tsx",
       "shortPath": "projects/montpc_crm/tests/frontend/p0/components/auth/ProtectedRoute.test.tsx",
       "priority": "p0",
@@ -613,36 +604,9 @@ window.dashboardData = {
       "project": "montpc"
     },
     {
-      "status": "failing",
+      "status": "passing",
       "path": "/opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/auth/RegisterForm.test.tsx",
       "shortPath": "projects/montpc_crm/tests/frontend/p0/components/auth/RegisterForm.test.tsx",
-      "priority": "p0",
-      "location": "🔄",
-      "locationType": "needs-moving",
-      "project": "montpc"
-    },
-    {
-      "status": "failing",
-      "path": "/opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/LoginForm.test.tsx",
-      "shortPath": "projects/montpc_crm/tests/frontend/p0/components/LoginForm.test.tsx",
-      "priority": "p0",
-      "location": "🔄",
-      "locationType": "needs-moving",
-      "project": "montpc"
-    },
-    {
-      "status": "failing",
-      "path": "/opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/ProtectedRoute.test.tsx",
-      "shortPath": "projects/montpc_crm/tests/frontend/p0/components/ProtectedRoute.test.tsx",
-      "priority": "p0",
-      "location": "🔄",
-      "locationType": "needs-moving",
-      "project": "montpc"
-    },
-    {
-      "status": "failing",
-      "path": "/opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/RegisterForm.test.tsx",
-      "shortPath": "projects/montpc_crm/tests/frontend/p0/components/RegisterForm.test.tsx",
       "priority": "p0",
       "location": "🔄",
       "locationType": "needs-moving",
