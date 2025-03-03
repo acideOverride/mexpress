@@ -29,10 +29,8 @@ module.exports = {
     // Fix product services
     '^../product.service$': '<rootDir>/tests/p0/product.service',
     '^../catalog-event.service$': '<rootDir>/tests/p1/catalog-event.service',
-    // Extra fixes for special cases
-    '^../../../../src/git-workflow-automation/src/core/(.*)$': '<rootDir>/src/core/$1',
-    // Fix event system pathing
-    '^../../../../src/git-workflow-automation/src/core/event-system/(.*)$': '<rootDir>/src/core/event-system/$1'
+    // Direct path mappings 
+    // All git-workflow-automation references have been removed
   },
   verbose: true,
   silent: false

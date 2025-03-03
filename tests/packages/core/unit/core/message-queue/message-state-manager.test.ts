@@ -1,6 +1,6 @@
-import { EventHandler } from '../../../../src/core/event-system/event-handler';
-import { MessageStateManager } from '../../../../src/core/message-queue/message-state-manager';
-import { QueuedMessage, MessageStatus } from '../../../../src/core/message-queue/types';
+import { EventHandler } from '@mexpress/core/core/event-system/event-handler';
+import { MessageStateManager } from '@mexpress/core/core/message-queue/message-state-manager';
+import { QueuedMessage, MessageStatus } from '@mexpress/core/core/message-queue/types';
 
 describe('MessageStateManager', () => {
     let stateManager: MessageStateManager;

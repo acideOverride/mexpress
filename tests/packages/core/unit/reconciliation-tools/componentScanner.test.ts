@@ -20,14 +20,28 @@ describe('ComponentScanner', () => {
   test('should scan for a component and find matching files', async () => {
     // Mock directory structure
     (fs.existsSync as jest.Mock).mockReturnValue(true);
-    (fs.readdirSync as jest.Mock).mockReturnValue([
-      { name: 'component.ts', isDirectory: () => false, isFile: () => true },
-      { name: 'subdir', isDirectory: () => true, isFile: () => false }
+    
+    // Mock the first call to readdirSync - main directory
+    (fs.readdirSync as jest.Mock).mockImplementationOnce((dir, options) => [
+      { 
+        name: 'component.ts', 
+        isDirectory: () => false, 
+        isFile: () => true 
+      },
+      { 
+        name: 'subdir', 
+        isDirectory: () => true, 
+        isFile: () => false 
+      }
     ]);
     
-    // When checking subdirectory
-    (fs.readdirSync as jest.Mock).mockReturnValueOnce([
-      { name: 'component.test.ts', isDirectory: () => false, isFile: () => true }
+    // Mock the second call to readdirSync - subdirectory
+    (fs.readdirSync as jest.Mock).mockImplementationOnce((dir, options) => [
+      { 
+        name: 'component.test.ts', 
+        isDirectory: () => false, 
+        isFile: () => true 
+      }
     ]);
     
     // Mock file contents

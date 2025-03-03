@@ -46,7 +46,7 @@ class MockEventHandler {
 // Mock implementation of persistence manager
 class MockPersistenceManager {
     private messages = new Map<string, QueuedMessage>();
-    private queueState = { priorities: [], messageCount: 0, lastUpdated: Date.now() };
+    private queueState = { priorities: [] as number[], messageCount: 0, lastUpdated: Date.now() };
     private closed = false;
 
     constructor() {
@@ -58,7 +58,15 @@ class MockPersistenceManager {
     }
 
     updateQueueState(state: Partial<typeof this.queueState>): void {
-        this.queueState = { ...this.queueState, ...state, lastUpdated: Date.now() };
+        // Handle priorities specifically to ensure correct typing
+        const priorities = state.priorities ? state.priorities as number[] : this.queueState.priorities;
+        
+        this.queueState = { 
+            ...this.queueState, 
+            ...state, 
+            priorities,
+            lastUpdated: Date.now() 
+        };
     }
 
     removeMessage(messageId: string): void {
@@ -164,7 +172,7 @@ describe('Queue Persistence', () => {
         persistenceManager.updateMessage('recover-1', message1);
         persistenceManager.updateMessage('recover-2', message2);
         persistenceManager.updateQueueState({
-            priorities: [1, 2],
+            priorities: [1, 2] as number[],
             messageCount: 2
         });
         

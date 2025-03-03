@@ -1,7 +1,7 @@
-import { EventHandler } from '../../../../src/git-workflow-automation/src/core/event-system/event-handler';
-import { MessageQueue } from '../../../../src/git-workflow-automation/src/core/message-queue/message-queue-v2';
-import { QueuedMessage } from '../../../../src/git-workflow-automation/src/core/message-queue/types';
-import { QueuePersistenceManager } from '../../../../src/git-workflow-automation/src/core/message-queue/queue-persistence-manager';
+import { EventHandler } from '../../../../src/core/event-system/event-handler';
+import { MessageQueue } from '../../../../src/core/message-queue/message-queue-v2';
+import { QueuedMessage } from '../../../../src/core/message-queue/types';
+import { QueuePersistenceManager } from '../../../../src/core/message-queue/queue-persistence-manager';
 import * as fs from 'fs';
 import * as path from 'path';
 

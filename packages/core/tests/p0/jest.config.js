@@ -30,9 +30,9 @@ module.exports = {
     moduleNameMapper: {
         // Core module path aliases
         '^@mexpress/core/(.*)$': '<rootDir>/../../src/$1',
-        // Fix relative paths for git-workflow-automation structure
-        '^../../../../src/core/event-system/(.*)$': '<rootDir>/../../src/git-workflow-automation/src/core/event-system/$1',
-        '^../../../../src/core/message-queue/(.*)$': '<rootDir>/../../src/git-workflow-automation/src/core/message-queue/$1',
+        // Direct path mappings to main implementation
+        '^../../../../src/core/event-system/(.*)$': '<rootDir>/../../src/core/event-system/$1',
+        '^../../../../src/core/message-queue/(.*)$': '<rootDir>/../../src/core/message-queue/$1',
         // Fix API import paths
         '^../../../src/api/(.*)$': '<rootDir>/../../src/api/$1',
         // Fix service import paths
