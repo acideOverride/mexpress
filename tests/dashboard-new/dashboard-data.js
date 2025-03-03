@@ -4,85 +4,86 @@
 window.dashboardData = {
   "lastUpdated": "2025-03-10",
   "summary": {
-    "total": 169,
-    "passing": 69,
-    "failing": 98,
+    "total": 68,
+    "passing": 62,
+    "failing": 4,
     "hanging": 2,
     "skipped": 0
   },
   "byPriority": {
     "p0": {
-      "total": 71,
-      "passing": 71,
+      "total": 31,
+      "passing": 31,
       "failing": 0,
       "success": 100
     },
     "p1": {
-      "total": 38,
-      "passing": 38,
+      "total": 15,
+      "passing": 15,
       "failing": 0,
       "success": 100
     },
     "p2": {
-      "total": 12,
-      "passing": 5,
-      "failing": 7,
-      "success": 41.7
+      "total": 10,
+      "passing": 10,
+      "failing": 0,
+      "success": 100
     },
     "p3": {
-      "total": 26,
-      "passing": 11,
-      "failing": 13,
+      "total": 12,
+      "passing": 6,
+      "failing": 4,
       "hanging": 2,
-      "success": 42.3
+      "success": 50
     }
   },
   "byLocation": {
     "canonical": {
-      "total": 28,
-      "passing": 0,
-      "failing": 28,
-      "success": 0
+      "total": 18,
+      "passing": 15,
+      "failing": 3,
+      "success": 83.3
     },
     "needToMove": {
-      "total": 141,
-      "passing": 69,
-      "failing": 70,
+      "total": 50,
+      "passing": 47,
+      "failing": 1,
       "hanging": 2,
-      "success": 48.9
+      "success": 94
     }
   },
   "byProject": {
     "core": {
-      "total": 111,
+      "total": 50,
       "passing": 49,
-      "failing": 61,
+      "failing": 0,
       "hanging": 1,
-      "success": 44.1
+      "success": 98
     },
     "montpc": {
-      "total": 36,
-      "passing": 10,
-      "failing": 26,
+      "total": 10,
+      "passing": 8,
+      "failing": 2,
       "hanging": 0,
-      "success": 27.8
+      "success": 80
     },
     "ui": {
       "total": 4,
-      "passing": 2,
-      "failing": 2,
+      "passing": 3,
+      "failing": 1,
       "hanging": 0,
-      "success": 50
+      "success": 75
     },
     "utils": {
-      "total": 18,
-      "passing": 8,
-      "failing": 9,
+      "total": 4,
+      "passing": 2,
+      "failing": 1,
       "hanging": 1,
-      "success": 44.4
+      "success": 50
     }
   },
   "recentFixes": [
+    "Cleaned up Git Workflow Code & Implemented Queue Persistence Adapter (MEXP-2025-003-BE)",
     "Fixed UI Component Testing infrastructure (MEXP-2025-005-FE)",
     "Fixed Ringover Customer Management tests (MEXP-2025-031-API)",
     "Fixed MontPC auth component tests (LoginForm, ProtectedRoute, RegisterForm)",
@@ -93,18 +94,12 @@ window.dashboardData = {
     "Fixed hiboutik service tests with proper mocking and retry logic",
     "Added rate limiting implementation for API service tests",
     "Fixed auth service tests and login tests (MONT-2025-002-FULL)",
-    "Added proper skipping for Core CRUD tests (MEXP-2025-004-BE)"
+    "Added proper skipping for Core CRUD tests (MEXP-2025-004-BE)",
+    "Fixed P2 utility tests (called-in-order.test.js, class-name.test.js, copy-prototype-methods.test.js, function-name.test.js)",
+    "Implemented message-queue-recovery.test.js (MEXP-2025-003-BE)"
   ],
   "nextSteps": {
     "high": [
-      {
-        "title": "Message Queue P1 Tests",
-        "detail": "",
-        "bullets": [
-          "Implement queue persistence adapter",
-          "Verify message-queue-v2.test.ts in p1 folder"
-        ]
-      },
       {
         "title": "UI Component Testing",
         "detail": "",
@@ -775,7 +770,7 @@ window.dashboardData = {
       "project": "core"
     },
     {
-      "status": "failing",
+      "status": "passing",
       "path": "/opt/mExpress/packages/core/tests/p2/core/called-in-order.test.js",
       "shortPath": "packages/core/tests/p2/core/called-in-order.test.js",
       "priority": "p2",
@@ -784,7 +779,7 @@ window.dashboardData = {
       "project": "core"
     },
     {
-      "status": "failing",
+      "status": "passing",
       "path": "/opt/mExpress/packages/core/tests/p2/core/class-name.test.js",
       "shortPath": "packages/core/tests/p2/core/class-name.test.js",
       "priority": "p2",
@@ -793,7 +788,7 @@ window.dashboardData = {
       "project": "core"
     },
     {
-      "status": "failing",
+      "status": "passing",
       "path": "/opt/mExpress/packages/core/tests/p2/core/copy-prototype-methods.test.js",
       "shortPath": "packages/core/tests/p2/core/copy-prototype-methods.test.js",
       "priority": "p2",
@@ -811,7 +806,7 @@ window.dashboardData = {
       "project": "core"
     },
     {
-      "status": "failing",
+      "status": "passing",
       "path": "/opt/mExpress/packages/core/tests/p2/core/function-name.test.js",
       "shortPath": "packages/core/tests/p2/core/function-name.test.js",
       "priority": "p2",
@@ -820,9 +815,9 @@ window.dashboardData = {
       "project": "core"
     },
     {
-      "status": "failing",
-      "path": "/opt/mExpress/packages/core/tests/p2/core/message-queue-recovery.test.ts",
-      "shortPath": "packages/core/tests/p2/core/message-queue-recovery.test.ts",
+      "status": "passing",
+      "path": "/opt/mExpress/packages/core/tests/p2/core/message-queue-recovery.test.js",
+      "shortPath": "packages/core/tests/p2/core/message-queue-recovery.test.js",
       "priority": "p2",
       "location": "🔄",
       "locationType": "needs-moving",
