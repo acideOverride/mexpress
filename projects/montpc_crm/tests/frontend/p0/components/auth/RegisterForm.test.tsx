@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { RegisterForm } from '../RegisterForm';
 import { useAuth } from '../AuthContext';
-import { AuthError } from '../../../types/auth';
+import { AuthError } from '../../types/auth';
 
 jest.mock('../AuthContext', () => ({
     useAuth: jest.fn()

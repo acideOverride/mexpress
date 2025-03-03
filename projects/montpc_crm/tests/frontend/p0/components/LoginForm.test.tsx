@@ -1,11 +1,11 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { LoginForm } from '../LoginForm';
-import { useAuth } from '../AuthContext';
-import { AuthError } from '../../../types/auth';
+import { LoginForm } from './LoginForm';
+import { useAuth } from './AuthContext';
+import { AuthError } from '../types/auth';
 
 // Mock useAuth hook
-jest.mock('../AuthContext', () => ({
+jest.mock('./AuthContext', () => ({
     useAuth: jest.fn()
 }));
 
