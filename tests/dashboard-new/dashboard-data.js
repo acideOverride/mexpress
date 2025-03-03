@@ -5,8 +5,8 @@ window.dashboardData = {
   "lastUpdated": "2025-03-10",
   "summary": {
     "total": 169,
-    "passing": 67,
-    "failing": 100,
+    "passing": 68,
+    "failing": 99,
     "hanging": 2,
     "skipped": 0
   },
@@ -19,9 +19,9 @@ window.dashboardData = {
     },
     "p1": {
       "total": 38,
-      "passing": 37,
-      "failing": 1,
-      "success": 97.4
+      "passing": 38,
+      "failing": 0,
+      "success": 100
     },
     "p2": {
       "total": 12,
@@ -46,19 +46,19 @@ window.dashboardData = {
     },
     "needToMove": {
       "total": 141,
-      "passing": 67,
-      "failing": 72,
+      "passing": 68,
+      "failing": 71,
       "hanging": 2,
-      "success": 47.5
+      "success": 48.2
     }
   },
   "byProject": {
     "core": {
       "total": 111,
-      "passing": 47,
-      "failing": 63,
+      "passing": 48,
+      "failing": 62,
       "hanging": 1,
-      "success": 42.3
+      "success": 43.2
     },
     "montpc": {
       "total": 36,
@@ -83,6 +83,7 @@ window.dashboardData = {
     }
   },
   "recentFixes": [
+    "Fixed Ringover Customer Management tests (MEXP-2025-031-API)",
     "Fixed MontPC auth component tests (LoginForm, ProtectedRoute, RegisterForm)",
     "Fixed CustomerDetail component with proper type handling and adapter pattern",
     "Fixed Dashboard component test (MEXP-2025-040-FE)",
@@ -99,9 +100,8 @@ window.dashboardData = {
         "title": "Message Queue P1 Tests",
         "detail": "",
         "bullets": [
-          "Fix message-queue-v2.test.ts in p1 folder",
           "Implement queue persistence adapter",
-          "Address ringover.customer.test.ts integration issues"
+          "Verify message-queue-v2.test.ts in p1 folder"
         ]
       },
       {
@@ -685,7 +685,7 @@ window.dashboardData = {
       "project": "core"
     },
     {
-      "status": "failing",
+      "status": "passing",
       "path": "/opt/mExpress/packages/core/tests/p1/core/ringover.customer.test.ts",
       "shortPath": "packages/core/tests/p1/core/ringover.customer.test.ts",
       "priority": "p1",
