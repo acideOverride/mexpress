@@ -1,0 +1,111 @@
+import { HiboutikService, HiboutikCustomer } from './hiboutik.service';
+import { RingoverService, RingoverCall } from './ringover.service';
+
+export interface CustomerCallRecord {
+  customerId: string;
+  customerName: string;
+  callId: string;
+  callTime: Date;
+  duration: number;
+  status: string;
+  recording: string;
+}
+
+export class SyncService {
+  constructor(
+    private hiboutikService: HiboutikService,
+    private ringoverService: RingoverService
+  ) {}
+
+  /**
+   * Get call history for a specific customer
+   */
+  async getCustomerCallHistory(customerId: string): Promise<CustomerCallRecord[]> {
+    try {
+      // Get customer details
+      const customer = await this.hiboutikService.getCustomerById(customerId);
+      
+      try {
+        // Get all recent calls
+        const calls = await this.ringoverService.getRecentCalls();
+        
+        // Filter and map calls for this customer
+        return this.matchCustomerCalls(customer, calls);
+      } catch (ringoverError) {
+        // Wrap Ringover service errors
+        if (ringoverError instanceof Error) {
+          throw new Error(`Failed to fetch call history: ${ringoverError.message}`);
+        }
+        throw ringoverError;
+      }
+    } catch (error) {
+      // Re-throw unknown errors
+      throw error;
+    }
+  }
+
+  /**
+   * Sync customer from Hiboutik to Ringover
+   */
+  async syncCustomer(hiboutikId: string): Promise<void> {
+    try {
+      // Get Hiboutik customer
+      const hiboutikCustomer = await this.hiboutikService.getCustomerById(hiboutikId);
+      
+      // Prepare Ringover customer data
+      const ringoverCustomer = {
+        firstName: hiboutikCustomer.firstName,
+        lastName: hiboutikCustomer.lastName,
+        email: hiboutikCustomer.email,
+        phone: hiboutikCustomer.phone,
+        hiboutikId: hiboutikCustomer.id
+      };
+
+      // Check if customer exists in Ringover
+      const existingCustomer = await this.ringoverService.getCustomerByPhone(hiboutikCustomer.phone);
+
+      if (existingCustomer) {
+        // Update existing customer
+        await this.ringoverService.updateCustomer(existingCustomer.id, ringoverCustomer);
+      } else {
+        // Create new customer
+        await this.ringoverService.createCustomer(ringoverCustomer);
+      }
+    } catch (error) {
+      // Re-throw all errors as they're already properly handled by the services
+      throw error;
+    }
+  }
+
+  /**
+   * Match customer with their calls
+   */
+  private matchCustomerCalls(customer: HiboutikCustomer, calls: RingoverCall[]): CustomerCallRecord[] {
+    // Normalize phone numbers for comparison
+    const customerPhone = this.normalizePhoneNumber(customer.phone);
+    
+    // Filter calls where customer is either caller or recipient
+    return calls
+      .filter(call => 
+        this.normalizePhoneNumber(call.callerNumber) === customerPhone ||
+        this.normalizePhoneNumber(call.recipientNumber) === customerPhone
+      )
+      .map(call => ({
+        customerId: customer.id!,
+        customerName: `${customer.firstName} ${customer.lastName}`,
+        callId: call.id,
+        callTime: call.timestamp,
+        duration: call.durationSeconds,
+        status: call.status,
+        recording: call.recordingUrl
+      }));
+  }
+
+  /**
+   * Normalize phone number for comparison
+   */
+  private normalizePhoneNumber(phone: string): string {
+    // Remove all non-digit characters
+    return phone.replace(/\D/g, '');
+  }
+}

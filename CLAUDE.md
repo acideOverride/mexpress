@@ -12,6 +12,8 @@
 
 IMPORTANT: Always redirect test output to /dev/null to prevent Claude from hanging with large outputs. Use the exit code to determine pass/fail status.
 
+### Code standards
+
 ### Test Standards
 - All tests must strictly follow the organization and structure defined in `/docs/common/standards/C4_test_standards.md`
 - When creating new test files, ALWAYS use the centralized directory structure in `/tests`

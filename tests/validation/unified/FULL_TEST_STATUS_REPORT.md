@@ -2,7 +2,6 @@
 
 List of all test files found in the codebase:
 
-- ❓ /opt/mExpress/packages/core/dist/tests/p1/core/merge.spec.js
 - ❓ /opt/mExpress/packages/core/tests/integration/external-integration.update.test.ts
 - ❓ /opt/mExpress/packages/core/tests/p0/api/connection-timeout.test.ts
 - ❓ /opt/mExpress/packages/core/tests/p0/core/customer-management.test.ts
@@ -80,8 +79,10 @@ List of all test files found in the codebase:
 - ❓ /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/dashboard/QuickSearch.test.tsx
 - ❓ /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/dashboard/RecentCalls.test.tsx
 - ❓ /opt/mExpress/projects/montpc_crm/tests/p1/services/external-integration.project.test.ts
+- ❓ /opt/mExpress/tests/packages/core/integration/core/external-integration.update.test.ts
 - ❓ /opt/mExpress/tests/packages/core/integration/infrastructure/container-orchestrator-integration.test.ts
 - ❓ /opt/mExpress/tests/packages/core/integration/infrastructure/external-integration.core.test.ts
+- ❓ /opt/mExpress/tests/packages/core/integration/infrastructure/external-integration.update.test.ts
 - ❓ /opt/mExpress/tests/packages/core/integration/infrastructure/pipeline-integration.test.ts
 - ❓ /opt/mExpress/tests/packages/core/unit/core/message-queue/message-state-manager.test.ts
 - ❓ /opt/mExpress/tests/packages/core/unit/frontend/components/TestExecutionPanel.test.tsx
