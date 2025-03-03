@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mExpress Test Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-header">
+            <div>
+                <h1 class="dashboard-title">mExpress Test Dashboard</h1>
+                <p class="dashboard-meta">Last updated: <span id="last-updated">loading...</span></p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button id="theme-toggle" class="theme-toggle">
+                    <span id="theme-icon">🌙</span>
+                </button>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search tests...">
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-controls">
+            <div class="dashboard-tab active" data-tab="overview">Overview</div>
+            <div class="dashboard-tab" data-tab="projects">By Project</div>
+            <div class="dashboard-tab" data-tab="priority">By Priority</div>
+            <div class="dashboard-tab" data-tab="location">By Location</div>
+            <div class="dashboard-tab" data-tab="brq">By BRQ</div>
+            <div class="dashboard-tab" data-tab="details">Test Details</div>
+        </div>
+
+        <!-- Overview Tab -->
+        <div class="tab-content active" id="overview-tab">
+            <div class="dashboard-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Test Status Summary</h2>
+                        <span class="card-subtitle">All projects and priorities</span>
+                    </div>
+                    <div class="stats-grid" id="summary-stats">
+                        <!-- Summary stats will be loaded here -->
+                        <div class="stat-card">
+                            <div class="stat-value" style="color: var(--color-primary);">-</div>
+                            <div class="stat-label">Total Tests</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" style="color: var(--color-success);">-</div>
+                            <div class="stat-label">Passing Tests</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" style="color: var(--color-danger);">-</div>
+                            <div class="stat-label">Failing Tests</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" style="color: var(--color-warning);">-</div>
+                            <div class="stat-label">Hanging Tests</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Fixes & Updates -->
+                <div class="card" id="recent-fixes-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Recent Fixes & Updates</h2>
+                        <span class="card-subtitle">Latest resolved issues</span>
+                    </div>
+                    <div style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem;" id="recent-fixes-content">
+                        <!-- Recent fixes will be loaded here -->
+                        <div class="loading-placeholder">Loading recent fixes...</div>
+                    </div>
+                </div>
+
+                <!-- Next Priority Steps -->
+                <div class="card" id="next-steps-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Next Priority Steps</h2>
+                        <span class="card-subtitle">Upcoming tasks by priority</span>
+                    </div>
+                    <div style="font-size: 0.85rem; padding: 0.5rem;" id="next-steps-content">
+                        <!-- Next steps will be loaded here -->
+                        <div class="loading-placeholder">Loading next steps...</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Test Status By Priority</h2>
+                        <span class="card-subtitle">Critical → Low importance</span>
+                    </div>
+                    <div id="priority-progress">
+                        <!-- Priority progress bars will be loaded here -->
+                        <div class="loading-placeholder">Loading priority stats...</div>
+                    </div>
+                </div>
+
+                <div class="card grid-full">
+                    <div class="card-header">
+                        <h2 class="card-title">BRQ Completion Status</h2>
+                        <span class="card-subtitle">Business Requirement Query status</span>
+                    </div>
+                    <div class="stats-grid" id="brq-stats">
+                        <!-- BRQ stats will be loaded here -->
+                        <div class="loading-placeholder">Loading BRQ stats...</div>
+                    </div>
+                    <div style="margin-top: 1rem;" id="brq-completion">
+                        <!-- BRQ completion progress will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Project Test Status</h2>
+                        <span class="card-subtitle">All project status</span>
+                    </div>
+                    <ul class="status-list" id="project-status">
+                        <!-- Project status will be loaded here -->
+                        <div class="loading-placeholder">Loading project status...</div>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Test Location Status</h2>
+                        <span class="card-subtitle">Test file organization</span>
+                    </div>
+                    <div style="margin-top: 1rem;" id="location-status">
+                        <!-- Location status will be loaded here -->
+                        <div class="loading-placeholder">Loading location status...</div>
+                    </div>
+                    <table class="data-table" id="location-table">
+                        <thead>
+                            <tr>
+                                <th>Location Type</th>
+                                <th>Count</th>
+                                <th>Passing</th>
+                                <th>Failing</th>
+                                <th>Pass Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="location-table-body">
+                            <!-- Location table will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Tab -->
+        <div class="tab-content" id="projects-tab">
+            <div class="dashboard-content">
+                <div class="card grid-full">
+                    <div class="card-header">
+                        <h2 class="card-title">Project Test Status</h2>
+                        <div class="filter-bar">
+                            <button class="filter-button active" data-filter="all">All</button>
+                            <button class="filter-button" data-filter="core">Core</button>
+                            <button class="filter-button" data-filter="montpc">MontPC</button>
+                            <button class="filter-button" data-filter="ui">UI</button>
+                            <button class="filter-button" data-filter="utils">Utils</button>
+                        </div>
+                    </div>
+                    <table class="data-table" id="projects-table">
+                        <thead>
+                            <tr>
+                                <th>Project</th>
+                                <th>Total</th>
+                                <th>Passing</th>
+                                <th>Failing</th>
+                                <th>Hanging</th>
+                                <th>Success Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projects-table-body">
+                            <!-- Project details will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Priority Tab -->
+        <div class="tab-content" id="priority-tab">
+            <div class="dashboard-content">
+                <div class="card grid-full">
+                    <div class="card-header">
+                        <h2 class="card-title">Tests By Priority</h2>
+                        <div class="filter-bar">
+                            <button class="filter-button active" data-filter="all">All</button>
+                            <button class="filter-button" data-filter="p0">P0</button>
+                            <button class="filter-button" data-filter="p1">P1</button>
+                            <button class="filter-button" data-filter="p2">P2</button>
+                            <button class="filter-button" data-filter="p3">P3</button>
+                        </div>
+                    </div>
+                    <table class="data-table" id="priority-table">
+                        <thead>
+                            <tr>
+                                <th>Priority</th>
+                                <th>Total</th>
+                                <th>Passing</th>
+                                <th>Failing</th>
+                                <th>Hanging</th>
+                                <th>Success Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="priority-table-body">
+                            <!-- Priority details will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location Tab -->
+        <div class="tab-content" id="location-tab">
+            <div class="dashboard-content">
+                <div class="card grid-full">
+                    <div class="card-header">
+                        <h2 class="card-title">Test File Locations</h2>
+                    </div>
+                    <table class="data-table" id="location-detail-table">
+                        <thead>
+                            <tr>
+                                <th>Location Type</th>
+                                <th>Total</th>
+                                <th>Passing</th>
+                                <th>Failing</th>
+                                <th>Hanging</th>
+                                <th>Pass Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="location-detail-table-body">
+                            <!-- Location details will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- BRQ Tab -->
+        <div class="tab-content" id="brq-tab">
+            <div class="dashboard-content">
+                <div class="card grid-full">
+                    <div class="card-header">
+                        <h2 class="card-title">Business Requirement Query (BRQ) Status</h2>
+                        <div class="filter-bar">
+                            <button class="filter-button active" data-filter="all">All</button>
+                            <button class="filter-button" data-filter="complete">Completed</button>
+                            <button class="filter-button" data-filter="in-progress">In Progress</button>
+                            <button class="filter-button" data-filter="not-started">Not Started</button>
+                        </div>
+                    </div>
+                    <table class="data-table" id="brq-table">
+                        <thead>
+                            <tr>
+                                <th>BRQ ID</th>
+                                <th>Description</th>
+                                <th>Milestone</th>
+                                <th>Test Count</th>
+                                <th>Status</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody id="brq-table-body">
+                            <!-- BRQ details will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Details Tab -->
+        <div class="tab-content" id="details-tab">
+            <div class="dashboard-content">
+                <div class="card grid-full">
+                    <div class="card-header">
+                        <h2 class="card-title">Test Details</h2>
+                        <div class="filter-bar">
+                            <button class="filter-button active" data-filter="all">All</button>
+                            <button class="filter-button" data-filter="passing">Passing</button>
+                            <button class="filter-button" data-filter="failing">Failing</button>
+                            <button class="filter-button" data-filter="hanging">Hanging</button>
+                            <span style="margin: 0 10px; color: #666;">|</span>
+                            <button class="filter-button" data-filter-priority="p0">P0</button>
+                            <button class="filter-button" data-filter-priority="p1">P1</button>
+                            <button class="filter-button" data-filter-priority="p2">P2</button>
+                            <button class="filter-button" data-filter-priority="p3">P3</button>
+                        </div>
+                    </div>
+                    <table class="data-table" id="tests-table">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Priority</th>
+                                <th>Test Path</th>
+                                <th>Location</th>
+                                <th>Project</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tests-table-body">
+                            <!-- Test details will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard-data.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
