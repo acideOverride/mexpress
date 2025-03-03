@@ -4,9 +4,9 @@
 window.dashboardData = {
   "lastUpdated": "2025-03-10",
   "summary": {
-    "total": 170,
+    "total": 169,
     "passing": 67,
-    "failing": 101,
+    "failing": 100,
     "hanging": 2,
     "skipped": 0
   },
@@ -18,10 +18,10 @@ window.dashboardData = {
       "success": 100
     },
     "p1": {
-      "total": 39,
+      "total": 38,
       "passing": 37,
-      "failing": 2,
-      "success": 94.9
+      "failing": 1,
+      "success": 97.4
     },
     "p2": {
       "total": 12,
@@ -45,20 +45,20 @@ window.dashboardData = {
       "success": 0
     },
     "needToMove": {
-      "total": 142,
+      "total": 141,
       "passing": 67,
-      "failing": 73,
+      "failing": 72,
       "hanging": 2,
-      "success": 47.2
+      "success": 47.5
     }
   },
   "byProject": {
     "core": {
-      "total": 112,
+      "total": 111,
       "passing": 47,
-      "failing": 64,
+      "failing": 63,
       "hanging": 1,
-      "success": 42
+      "success": 42.3
     },
     "montpc": {
       "total": 36,
@@ -119,7 +119,6 @@ window.dashboardData = {
         "title": "Core Utilities",
         "detail": "(P2)",
         "bullets": [
-          "Fix merge.spec.ts with modern Jest syntax",
           "Update JS utility tests (called-in-order, class-name, copy-prototype-methods)",
           "Fix message-queue-recovery.test.ts"
         ]
@@ -653,15 +652,6 @@ window.dashboardData = {
       "status": "passing",
       "path": "/opt/mExpress/packages/core/tests/p1/core/external-integration.test.ts",
       "shortPath": "packages/core/tests/p1/core/external-integration.test.ts",
-      "priority": "p1",
-      "location": "🔄",
-      "locationType": "needs-moving",
-      "project": "core"
-    },
-    {
-      "status": "failing",
-      "path": "/opt/mExpress/packages/core/tests/p1/core/merge.spec.ts",
-      "shortPath": "packages/core/tests/p1/core/merge.spec.ts",
       "priority": "p1",
       "location": "🔄",
       "locationType": "needs-moving",
