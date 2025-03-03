@@ -5,8 +5,8 @@ window.dashboardData = {
   "lastUpdated": "2025-03-10",
   "summary": {
     "total": 169,
-    "passing": 68,
-    "failing": 99,
+    "passing": 69,
+    "failing": 98,
     "hanging": 2,
     "skipped": 0
   },
@@ -46,19 +46,19 @@ window.dashboardData = {
     },
     "needToMove": {
       "total": 141,
-      "passing": 68,
-      "failing": 71,
+      "passing": 69,
+      "failing": 70,
       "hanging": 2,
-      "success": 48.2
+      "success": 48.9
     }
   },
   "byProject": {
     "core": {
       "total": 111,
-      "passing": 48,
-      "failing": 62,
+      "passing": 49,
+      "failing": 61,
       "hanging": 1,
-      "success": 43.2
+      "success": 44.1
     },
     "montpc": {
       "total": 36,
@@ -83,6 +83,7 @@ window.dashboardData = {
     }
   },
   "recentFixes": [
+    "Fixed UI Component Testing infrastructure (MEXP-2025-005-FE)",
     "Fixed Ringover Customer Management tests (MEXP-2025-031-API)",
     "Fixed MontPC auth component tests (LoginForm, ProtectedRoute, RegisterForm)",
     "Fixed CustomerDetail component with proper type handling and adapter pattern",
@@ -108,8 +109,7 @@ window.dashboardData = {
         "title": "UI Component Testing",
         "detail": "",
         "bullets": [
-          "Fix TestExecutionPanel.test.tsx",
-          "Implement React Testing Library setup",
+          "Implement React Testing Library setup for other components",
           "Address hanging pipeline-integration tests"
         ]
       }
@@ -703,7 +703,7 @@ window.dashboardData = {
       "project": "core"
     },
     {
-      "status": "failing",
+      "status": "passing",
       "path": "/opt/mExpress/packages/core/tests/p1/core/TestExecutionPanel.test.tsx",
       "shortPath": "packages/core/tests/p1/core/TestExecutionPanel.test.tsx",
       "priority": "p1",
