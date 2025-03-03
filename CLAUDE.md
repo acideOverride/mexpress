@@ -103,10 +103,43 @@ IMPORTANT: Always redirect test output to /dev/null to prevent Claude from hangi
 For comprehensive standards, refer to the detailed documentation in:
 `/docs/core/standards/`
 
+## Version Control Guidelines
+
+### Committing Changes
+
+- ALWAYS commit after each successful test fix
+- Create a detailed commit message that explains:
+  - Which test was fixed
+  - What the issue was
+  - How it was resolved
+  - Which BRQ it relates to
+
+### Commit Message Format
+
+```
+fix(tests): fix [test-name] in [location]
+
+- Problem: [brief description of the issue]
+- Solution: [what was changed to fix it]
+- BRQ: [related BRQ id]
+```
+
+### Testing Phase Workflow
+
+1. Fix a failing test from TEST_DASHBOARD.md
+2. Run the test to confirm it passes
+3. Update TEST_DASHBOARD.md with the new status
+4. Run update-all.js to refresh the dashboard
+5. Commit the changes immediately
+6. Push to the remote repository
+7. Move to the next test
+
+IMPORTANT: Do not accumulate multiple test fixes before committing. This makes it difficult to track progress and increases the risk of losing work.
+
 ## Handoff Context
 This section tracks the current work status for continuity between sessions.
 
-### Current Status (Updated: 2025-03-02)
+### Current Status (Updated: 2025-03-03)
 - Completed fixing auth service tests:
   - Fixed auth.service.test.ts in central tests directory
   - Fixed login.test.tsx with mock implementation 
