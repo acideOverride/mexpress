@@ -1,0 +1,18 @@
+{
+  "result": [
+    {
+      "scriptId": "0",
+      "url": "/test-bench.js",
+      "functions": [
+        {
+          "functionName": "benchTest",
+          "isBlockCoverage": true,
+          "ranges": [
+            { "startOffset": 0, "endOffset": 100, "count": 2 },
+            { "startOffset": 20, "endOffset": 80, "count": 1 }
+          ]
+        }
+      ]
+    }
+  ]
+}

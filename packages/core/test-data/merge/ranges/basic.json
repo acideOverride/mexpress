@@ -1,0 +1,59 @@
+[
+  {
+    "name": "basic merge",
+    "status": "run",
+    "inputs": [
+      {
+        "result": [
+          {
+            "scriptId": "1",
+            "url": "/basic.js",
+            "functions": [
+              {
+                "functionName": "test",
+                "isBlockCoverage": true,
+                "ranges": [
+                  { "startOffset": 0, "endOffset": 10, "count": 1 }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "result": [
+          {
+            "scriptId": "2",
+            "url": "/basic.js",
+            "functions": [
+              {
+                "functionName": "test",
+                "isBlockCoverage": true,
+                "ranges": [
+                  { "startOffset": 5, "endOffset": 15, "count": 2 }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "expected": {
+      "result": [
+        {
+          "scriptId": "0",
+          "url": "/basic.js",
+          "functions": [
+            {
+              "functionName": "test",
+              "isBlockCoverage": true,
+              "ranges": [
+                { "startOffset": 0, "endOffset": 15, "count": 2 }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

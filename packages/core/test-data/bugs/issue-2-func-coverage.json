@@ -1,0 +1,17 @@
+{
+  "result": [
+    {
+      "scriptId": "456",
+      "url": "/block.js",
+      "functions": [
+        {
+          "functionName": "blockCoverageFunc",
+          "isBlockCoverage": false,
+          "ranges": [
+            { "startOffset": 0, "endOffset": 100, "count": 2 }
+          ]
+        }
+      ]
+    }
+  ]
+}
