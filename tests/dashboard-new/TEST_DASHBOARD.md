@@ -1,102 +1,103 @@
 # mExpress Test Dashboard
 
-**Last Updated**: March 10, 2025
+**Last Updated**: March 3, 2025
 
 ## Summary Statistics
 
 ```
-Total Tests: 68
-Passing: 62 (91.2%)
-Failing: 4 (5.9%)
-Hanging: 2 (2.9%)
+Total Tests: 104
+Passing: 34 (32.7%)
+Failing: 67 (64.4%)
+Hanging: 3 (2.9%)
 Skipped: 0 (0%)
-In Canonical Location: 18 (26.5%)
-Need to Move: 50 (73.5%)
+In Canonical Location: 25 (24.0%)
+Need to Move: 79 (76.0%)
 ```
 
 ## Priority Status
 
 | Priority | Total | Passing | Failing | Hanging | Success Rate |
 |----------|-------|---------|---------|---------|-------------|
-| P0       | 31    | 31      | 0       | 0       | 100.0%      |
-| P1       | 15    | 15      | 0       | 0       | 100.0%      |
-| P2       | 10    | 10      | 0       | 0       | 100.0%      |
-| P3       | 12    | 6       | 4       | 2       | 50.0%       |
-| TOTAL    | 68    | 62      | 4       | 2       | 91.2%       |
+| P0       | 25    | 21      | 4       | 0       | 84.0%       |
+| P1       | 21    | 8       | 13      | 0       | 38.1%       |
+| P2       | 16    | 5       | 11      | 0       | 31.3%       |
+| P3       | 17    | 0       | 14      | 3       | 0.0%        |
+| Unclassified | 25 | 0      | 25      | 0       | 0.0%        |
+| TOTAL    | 104   | 34      | 67      | 3       | 32.7%       |
 
 ## Project Status
 
 | Project        | Total | Passing | Failing | Hanging | Success Rate |
 |----------------|-------|---------|---------|---------|-------------|
-| mExpress Core  | 50    | 49      | 0       | 1       | 98.0%       |
-| MontPC CRM     | 10    | 8       | 2       | 0       | 80.0%       |
-| UI Components  | 4     | 3       | 1       | 0       | 75.0%       |
-| Utils          | 4     | 2       | 1       | 1       | 50.0%       |
+| mExpress Core  | 65    | 34      | 28      | 3       | 52.3%       |
+| MontPC CRM     | 14    | 0       | 14      | 0       | 0.0%        |
+| UI Components  | 2     | 0       | 2       | 0       | 0.0%        |
+| Utils          | 8     | 0       | 8       | 0       | 0.0%        |
+| Unclassified   | 15    | 0       | 15      | 0       | 0.0%        |
 
 ## BRQ Status
 
 ### Completed BRQs (100%)
 | BRQ ID              | Description                      | Tests | Priority | Success Rate |
 |---------------------|----------------------------------|-------|----------|-------------|
-| MEXP-2025-001-API   | API Integration Phase            | 3     | P0       | 100%        |
-| MEXP-2025-006-API   | Customer CRUD API                | 3     | P0       | 100%        |
-| MEXP-2025-008-BE    | Customer Management System       | 2     | P0       | 100%        |
-| MEXP-2025-003-BE    | Message Queue System             | 5     | P0       | 100%        |
-| MEXP-2025-002-BE    | Authentication & Security        | 4     | P0       | 100%        |
-| MEXP-2025-027-BE    | Product Catalog                  | 3     | P1       | 100%        |
-| MEXP-2025-037-FULL  | MVP Implementation               | 3     | P3       | 100%        |
-| MEXP-2025-005-FE    | UI Architecture                  | 1     | P1       | 100%        |
-| MONT-2025-001-FULL  | Customer Service Implementation  | 1     | P0       | 100%        |
-| MEXP-2025-030-API   | External API Integrations        | 3     | P1       | 100%        |
-| MEXP-2025-031-API   | Ringover Customer Management     | 3     | P1       | 100%        |
-| MEXP-2025-007-BE    | Service Integration Architecture | 9     | P0       | 100%        |
-| MEXP-2025-004-BE    | Core CRUD Functionality*         | 3     | P0       | 100%*       |
-| MEXP-2025-024-INFRA | MVP Readiness                    | 1     | P3       | 100%        |
-| MEXP-2025-025-INFRA-A | Infrastructure Simplification Pt.1**  | N/A   | P3       | 100%**      |
-| MONT-2025-002-FULL  | Auth Service & Frontend          | 2     | P1       | 100%        |
-| MEXP-2025-002-FE    | Frontend Component Research      | 1     | P1       | 100%        |
-| MONT-2025-032-API   | External Integrations            | 1     | P2       | 100%        |
-| MEXP-2025-040-FE    | Dashboard Design                 | 1     | P2       | 100%        |
-| MEXP-2025-018-FE    | Frontend Test Architecture       | 1     | P2       | 100%        |
 
-_* All tests are skipped with appropriate documentation due to MongoDB replica set requirement_  
-_** Infrastructure complexity tests removed per architectural simplification decision_
+### In Progress BRQs (partial completion)
+| BRQ ID              | Description                      | Tests | Priority | Success Rate |
+|---------------------|----------------------------------|-------|----------|-------------|
+| MEXP-2025-001-API   | API Integration Phase            | 3     | P0       | 33.3%       |
+| MEXP-2025-002-BE    | Authentication & Security        | 4     | P0       | 75.0%       |
+| MEXP-2025-003-BE    | Message Queue System             | 5     | P0       | 80.0%       |
+| MEXP-2025-007-BE    | Service Integration Architecture | 9     | P0       | 66.7%       |
+| MEXP-2025-008-BE    | Customer Management System       | 2     | P0       | 100.0%      |
+| MONT-2025-001-FULL  | Customer Service Implementation  | 2     | P0       | 0.0%        |
 
 ### Not Started BRQs (0%)
 | BRQ ID              | Description                  | Tests | Priority | Success Rate |
 |---------------------|------------------------------|-------|----------|-------------|
-| MEXP-2025-025-INFRA-B | Infrastructure Simplification Pt.2| 3     | P3       | 0%          |
+| MEXP-2025-002-FE    | Frontend Component Research  | 2     | P1       | 0%          |
+| MEXP-2025-004-BE    | Core CRUD Functionality      | 3     | P0       | 0%          |
+| MEXP-2025-005-FE    | UI Architecture              | 1     | P1       | 0%          |
+| MEXP-2025-006-API   | Customer CRUD API            | 3     | P0       | 0%          |
+| MEXP-2025-018-FE    | Frontend Test Architecture   | 1     | P2       | 0%          |
+| MEXP-2025-024-INFRA | MVP Readiness                | 3     | P3       | 0%          |
+| MEXP-2025-025-INFRA | Infrastructure Simplification| 3     | P3       | 0%          |
+| MEXP-2025-027-BE    | Product Catalog              | 3     | P1       | 0%          |
+| MEXP-2025-030-API   | External API Integrations    | 3     | P1       | 0%          |
+| MEXP-2025-031-API   | Ringover Customer Management | 3     | P1       | 0%          |
+| MEXP-2025-037-FULL  | MVP Implementation           | 3     | P3       | 0%          |
+| MEXP-2025-040-FE    | Dashboard Design             | 1     | P2       | 0%          |
+| MONT-2025-002-FULL  | Auth Service & Frontend      | 5     | P1       | 0%          |
 | MONT-2025-007-FULL  | Emergency Recovery           | 0     | P1       | N/A         |
+| MONT-2025-032-API   | External Integrations        | 1     | P2       | 0%          |
 
 ## Test Locations
 
 | Location Type | Count | Passing | Failing | Hanging | Success Rate |
 |---------------|-------|---------|---------|---------|-------------|
-| Canonical (📍) | 18    | 15      | 3       | 0       | 83.3%       |
-| Need to Move (🔄) | 50   | 47      | 1       | 2       | 94.0%       |
+| Canonical (📍) | 25    | 0       | 25      | 0       | 0.0%        |
+| Need to Move (🔄) | 79   | 34      | 42      | 3       | 43.0%       |
 
 ## P0 (Critical Path) Tests
 
 ```
 status | file | location
 -------|------|----------
+✅ | packages/core/tests/integration/external-integration.update.test.ts | 🔄
 ✅ | packages/core/tests/p0/api/connection-timeout.test.ts | 🔄
 ✅ | packages/core/tests/p0/core/customer-management.test.ts | 🔄
-✅ | packages/core/tests/p0/core/event-handler.test.ts | 🔄
+❌ | packages/core/tests/p0/core/event-handler.test.ts | 🔄
 ✅ | packages/core/tests/p0/core/every.test.js | 🔄
 ✅ | packages/core/tests/p0/core/git-workflow.test.ts | 🔄
 ✅ | packages/core/tests/p0/core/istio-client.additional.test.ts | 🔄
 ✅ | packages/core/tests/p0/core/istio-client.test.ts | 🔄
-✅ | packages/core/tests/p0/core/login.test.ts | 🔄
+✅ | packages/core/tests/p0/core/login.api.test.ts | 🔄
 ✅ | packages/core/tests/p0/core/message-delivery-confirmation.test.ts | 🔄
 ✅ | packages/core/tests/p0/core/message-queue-v2.test.ts | 🔄
-✅ | packages/core/tests/p0/core/message-state-manager.test.ts | 🔄
 ✅ | packages/core/tests/p0/core/security.test.ts | 🔄
 ✅ | packages/core/tests/p0/core/service-discovery.test.ts | 🔄
 ✅ | packages/core/tests/p0/core/time-provider.test.ts | 🔄
 ✅ | packages/core/tests/p0/core/transaction-rollback.test.ts | 🔄
 ✅ | packages/core/tests/p0/core/value-to-string.test.js | 🔄
-✅ | packages/core/tests/p0/hiboutik.service.test.ts | 🔄
 ✅ | packages/core/tests/p0/services/customer.service.test.ts | 🔄
 ✅ | packages/core/tests/p0/services/debug-hiboutik.test.ts | 🔄
 ✅ | packages/core/tests/p0/services/hiboutik.auth.test.ts | 🔄
@@ -104,13 +105,8 @@ status | file | location
 ✅ | packages/core/tests/p0/services/product.service.test.ts | 🔄
 ✅ | packages/core/tests/p0/services/ringover.service.test.ts | 🔄
 ✅ | packages/core/tests/p0/sync.service.test.ts | 🔄
-✅ | projects/montpc_crm/frontend/tests/p0/components/dashboard.test.tsx | 🔄
-✅ | projects/montpc_crm/frontend/tests/p0/core/CustomerDetail.test.tsx | 🔄
-✅ | projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts | 🔄
-✅ | projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts | 🔄
-✅ | projects/montpc_crm/tests/frontend/p0/components/auth/LoginForm.test.tsx | 🔄
-✅ | projects/montpc_crm/tests/frontend/p0/components/auth/ProtectedRoute.test.tsx | 🔄
-✅ | projects/montpc_crm/tests/frontend/p0/components/auth/RegisterForm.test.tsx | 🔄
+❌ | projects/montpc_crm/frontend/tests/p0/components/dashboard.test.tsx | 🔄
+❌ | projects/montpc_crm/frontend/tests/p0/core/CustomerDetail.test.tsx | 🔄
 ```
 
 ## P1 (Important Features) Tests
@@ -122,17 +118,23 @@ status | file | location
 ✅ | packages/core/tests/p1/auth/permissions.test.ts | 🔄
 ✅ | packages/core/tests/p1/auth/token-refresh.test.ts | 🔄
 ✅ | packages/core/tests/p1/core/concurrent-modification.test.ts | 🔄
-✅ | packages/core/tests/p1/core/external-integration.test.ts | 🔄
-✅ | packages/core/tests/p1/core/message-state-manager.test.ts | 🔄
 ✅ | packages/core/tests/p1/core/pipeline.test.ts | 🔄
 ✅ | packages/core/tests/p1/core/queue-persistence.test.ts | 🔄
-✅ | packages/core/tests/p1/core/ringover.customer.test.ts | 🔄
-✅ | packages/core/tests/p1/core/sync.customer.test.ts | 🔄
-✅ | packages/core/tests/p1/core/TestExecutionPanel.test.tsx | 🔄
-✅ | packages/core/tests/p1/core/time-provider.test.ts | 🔄
+❌ | packages/core/tests/p1/frontend/components/styling-consistency.test.tsx | 🔄
+✅ | packages/core/tests/p1/frontend/component-tests.test.js | 🔄
+❌ | packages/core/tests/p1/services/catalog-event.service.test.ts | 🔄
 ✅ | packages/core/tests/p1/services/category-events.test.ts | 🔄
-✅ | packages/core/tests/p1/services/customer.service.test.ts | 🔄
+❌ | packages/core/tests/p1/services/cross-service-auth.test.ts | 🔄
 ✅ | packages/core/tests/p1/services/customer-validation.service.test.ts | 🔄
+✅ | packages/core/tests/p1/services/product-events.test.ts | 🔄
+✅ | packages/core/tests/p1/services/ringover.customer.test.ts | 🔄
+✅ | packages/core/tests/p1/services/service-deployment.test.ts | 🔄
+✅ | packages/core/tests/p1/services/service-mesh.test.ts | 🔄
+✅ | packages/core/tests/p1/services/sync.customer.test.ts | 🔄
+❌ | projects/montpc_crm/frontend/tests/p1/auth/login.ui.test.tsx | 🔄
+❌ | projects/montpc_crm/frontend/tests/p1/features/CustomerRoutes.test.tsx | 🔄
+❌ | projects/montpc_crm/tests/frontend/p0/components/auth/LoginForm.test.tsx | 🔄
+❌ | projects/montpc_crm/tests/frontend/p0/components/auth/ProtectedRoute.test.tsx | 🔄
 ```
 
 ## P2 (Secondary Features) Tests
@@ -146,10 +148,16 @@ status | file | location
 ✅ | packages/core/tests/p2/core/called-in-order.test.js | 🔄
 ✅ | packages/core/tests/p2/core/class-name.test.js | 🔄
 ✅ | packages/core/tests/p2/core/copy-prototype-methods.test.js | 🔄
-✅ | packages/core/tests/p2/core/customer.test.ts | 🔄
+✅ | packages/core/tests/p2/core/customer.unit.test.ts | 🔄
 ✅ | packages/core/tests/p2/core/function-name.test.js | 🔄
 ✅ | packages/core/tests/p2/core/message-queue-recovery.test.js | 🔄
+❌ | packages/core/tests/p2/core/order-by-first-call.test.js | 🔄
 ✅ | packages/core/tests/p2/core/product.test.ts | 🔄
+❌ | packages/core/tests/p2/core/type-of.test.js | 🔄
+❌ | packages/core/tests/p2/frontend/components/mobile/responsive-layout.test.tsx | 🔄
+✅ | packages/core/tests/p2/services/data-consistency.test.ts | 🔄
+❌ | projects/montpc_crm/tests/frontend/p0/components/auth/RegisterForm.test.tsx | 🔄
+❌ | projects/montpc_crm/tests/frontend/p2/components/dashboard/ActionShortcuts.test.tsx | 🔄
 ```
 
 ## P3 (Performance & Stress) Tests
@@ -161,145 +169,130 @@ status | file | location
 ✅ | packages/core/tests/p3/api/simplified-rate-limit.test.ts | 🔄
 ❌ | packages/core/tests/p3/api/stress-tests.test.ts | 🔄
 ❓ | packages/core/tests/p3/auth/performance.test.ts | 🔄
-❌ | packages/core/tests/p3/core/category-events.test.ts | 🔄
-✅ | packages/core/tests/p3/core/customer-management.test.ts | 🔄
 ❌ | packages/core/tests/p3/core/message-queue-stress.test.ts | 🔄
-❌ | packages/core/tests/p3/core/product-events.test.ts | 🔄
+❌ | packages/core/tests/p3/frontend/accessibility/component-accessibility.test.tsx | 🔄
 ❓ | packages/core/tests/p3/infrastructure/database-performance.test.ts | 🔄
-❌ | packages/core/tests/p3/infrastructure/istio-client.test.ts | 🔄
-✅ | packages/core/tests/integration/external-integration.test.ts | 🔄
-✅ | packages/core/tests/integration/external-integration.update.test.ts | 🔄
+❌ | packages/core/tests/p3/models/customer.integration.test.ts | 🔄
+❓ | packages/core/tests/p3/services/load-balancer.test.ts | 🔄
+✅ | packages/core/tests/unit/validation/customerValidation.test.ts | 🔄
+```
+
+## Canonical Location Tests (Non-P Structure)
+
+```
+status | file | location
+-------|------|----------
+❌ | tests/packages/core/integration/infrastructure/container-orchestrator-integration.test.ts | 📍
+❌ | tests/packages/core/integration/infrastructure/external-integration.core.test.ts | 📍
+❌ | tests/packages/core/integration/infrastructure/pipeline-integration.test.ts | 📍
+❌ | tests/packages/core/unit/core/message-queue/message-state-manager.test.ts | 📍
+❌ | tests/packages/core/unit/frontend/components/TestExecutionPanel.test.tsx | 📍
+❌ | tests/packages/core/unit/reconciliation-tools/componentScanner.test.ts | 📍
+❌ | tests/packages/core/unit/reconciliation-tools/matrixTracker.test.ts | 📍
+❌ | tests/packages/utils/unit/lib/monitoring/monitoring.system.test.ts | 📍
+❌ | tests/packages/utils/unit/lib/resilience/circuit-breaker.test.ts | 📍
+❌ | tests/packages/utils/unit/lib/resilience/rate-limiter.resilience.test.ts | 📍
+❌ | tests/packages/utils/unit/lib/resilience/retry-strategy.error.test.ts | 📍
+❌ | tests/packages/utils/unit/lib/resilience/retry-strategy.test.ts | 📍
+❌ | tests/packages/utils/unit/utils/logger.test.ts | 📍
+❌ | tests/packages/utils/unit/utils/moduleCheck.test.ts | 📍
+❌ | tests/packages/utils/unit/utils/monitoring.collector.test.ts | 📍
+❌ | tests/packages/utils/unit/utils/rate-limiter.utils.test.ts | 📍
+❌ | tests/projects/montpc_crm/frontend/unit/api/interceptors/auth.interceptor.test.ts | 📍
+❌ | tests/projects/montpc_crm/frontend/unit/api/interceptors/error.interceptor.test.ts | 📍
+❌ | tests/projects/montpc_crm/frontend/unit/api/interceptors/index.test.ts | 📍
+❌ | tests/projects/montpc_crm/frontend/unit/api/services/auth.service.test.ts | 📍
+❌ | tests/projects/montpc_crm/frontend/unit/api/services/customers.service.test.ts | 📍
+❌ | tests/projects/montpc_crm/frontend/unit/api/services/products.service.test.ts | 📍
+❌ | tests/projects/montpc_crm/frontend/unit/components/customers/CustomerList.test.tsx | 📍
+❌ | tests/projects/montpc_crm/frontend/unit/components.test.tsx | 📍
+❌ | tests/projects/montpc_crm/frontend/unit/hooks/useDebounce.test.ts | 📍
 ```
 
 ## Recent Fixes & Updates
 
-1. ✅ Cleaned up Git Workflow Code & Implemented Queue Persistence Adapter (MEXP-2025-003-BE)
-   - Removed duplicated git-workflow-automation directory completely
-   - Updated imports to use main implementation
-   - Fixed test files to reference main implementation
-   - Created enhanced adapter with storage provider abstraction
-   - Added support for file-based and in-memory persistence
-   - Implemented compression, encryption, and backup capabilities
-   - Added comprehensive error handling and retry logic
-   - Verified compatibility with message queue system
-
-2. ✅ Fixed UI Component Testing infrastructure (MEXP-2025-005-FE)
-   - Created React Testing Library setup with proper JSX type definitions
-   - Implemented simplified TestExecutionPanel component
-   - Set up Jest config to properly handle React/JSX tests
-   - All P1 tests now passing (100% success rate)
-   - Overall success rate improved to 40.8%
-
-3. ✅ Fixed Ringover Customer Management tests (MEXP-2025-031-API)
-   - Created proper test implementation of RingoverService
-   - Implemented customer management functions with proper error handling
-   - Updated dashboard statistics for accurate reporting
-
-4. 🧹 Removed unnecessary utility test files
-   - Deleted deprecated.test.js, global.test.js, index.spec.js, index.test.js, and merge.spec.ts
-   - These files tested utility libraries not critical to any BRQ
-   - Improved P2 success rate from 31.3% to 41.7%
-   - Updated dashboard statistics for accurate reporting
-
-5. 🧹 Cleaned up duplicate test files to improve organization
-   - Removed redundant failing message-queue-v2.test.ts in P1
-   - Removed duplicate event-handler.test.ts test (kept P0 version)
-   - Deleted hanging pipeline-integration.test.ts tests
-   - Improved overall success rate by removing duplicate failures
-
-6. ✅ Fixed MontPC auth component tests (LoginForm, ProtectedRoute, RegisterForm)
-   - Implemented proper form validation and error handling
-   - Fixed component imports and structure
-   - Created test-specific mocks for auth context
-   - MontPC CRM success rate improved from 13.9% to 30.3%
-7. ✅ Fixed CustomerDetail component with proper type handling and adapter pattern
-   - Implemented API/UI adapter pattern to handle string vs object address format
-   - Created a test-specific mock implementation with unified address handling
-8. ✅ Fixed Dashboard component test (MEXP-2025-040-FE)
-9. ✅ Fixed utility functions implementation (every.js and value-to-string.js)
-10. ✅ Implemented IstioClient with traffic management and testing features
-11. ✅ Fixed hiboutik service tests with proper mocking and retry logic
-12. ✅ Added rate limiting implementation for API service tests
-13. ✅ Fixed auth service tests and login tests (MONT-2025-002-FULL)
-14. ✅ Added proper skipping for Core CRUD tests (MEXP-2025-004-BE)
-15. ✅ Fixed P2 utility tests (called-in-order.test.js, class-name.test.js, copy-prototype-methods.test.js, function-name.test.js)
-16. ✅ Implemented message-queue-recovery.test.js (MEXP-2025-003-BE)
+1. ✅ Initial setup of test dashboard with accurate status reporting
+   - Added comprehensive test stats by priority, project, and location
+   - Established BRQ mapping for all identified business requirements
+   - Created canonical vs. non-canonical location tracking
+   - Implemented dynamic dashboard data generation
 
 ## Next Steps
 
 ### High Priority
-1. **UI Component Testing**
-   - Implement React Testing Library setup for other components
-   - Address hanging pipeline-integration tests
+1. **P0 Critical Tests**
+   - Fix event-handler.test.ts in P0 priority
+   - Address failing MontPC frontend dashboard tests
+   - Fix customer detail component test
 
 ### Medium Priority
-1. **P3 Performance Tests**
-   - Fix stress-tests.test.ts
-   - Address hanging auth/performance.test.ts
-   - Fix database-performance.test.ts timing issues
+1. **Service Integration**
+   - Fix catalog-event.service.test.ts
+   - Fix cross-service-auth.test.ts
+   - Address styling-consistency.test.tsx
 
-2. **Event System**
-   - Fix category-events.test.ts and product-events.test.ts
-   - Fix message-queue-stress.test.ts
-   - Create event adapter implementation
+2. **Frontend Authentication**
+   - Fix MontPC authentication component tests
+   - Implement proper mocking for auth context
+   - Address LoginForm, ProtectedRoute and RegisterForm components
 
 ### Low Priority
-1. **Infrastructure Tests**
-   - Fix istio-client.test.ts in P3
-   - Address remaining P2 utility tests
-   - Optimize test performance for CI pipeline
+1. **Performance Tests**
+   - Address P3 stress tests
+   - Fix hanging performance tests
+   - Implement database performance optimizations
 
 ## Raw Test Data
 
 ```json
 {
-  "lastUpdated": "2025-03-10",
+  "lastUpdated": "2025-03-03",
   "summary": {
-    "total": 68,
-    "passing": 62,
-    "failing": 4,
-    "hanging": 2,
+    "total": 104,
+    "passing": 34,
+    "failing": 67,
+    "hanging": 3,
     "skipped": 0
   },
   "byPriority": {
-    "p0": {"total": 31, "passing": 31, "failing": 0, "success": 100.0},
-    "p1": {"total": 15, "passing": 15, "failing": 0, "success": 100.0},
-    "p2": {"total": 10, "passing": 10, "failing": 0, "success": 100.0},
-    "p3": {"total": 12, "passing": 6, "failing": 4, "hanging": 2, "success": 50.0}
+    "p0": {"total": 25, "passing": 21, "failing": 4, "success": 84.0},
+    "p1": {"total": 21, "passing": 8, "failing": 13, "success": 38.1},
+    "p2": {"total": 16, "passing": 5, "failing": 11, "success": 31.3},
+    "p3": {"total": 17, "passing": 0, "failing": 14, "hanging": 3, "success": 0.0},
+    "unclassified": {"total": 25, "passing": 0, "failing": 25, "success": 0.0}
   },
   "byLocation": {
-    "canonical": {"total": 18, "passing": 15, "failing": 3, "success": 83.3},
-    "needToMove": {"total": 50, "passing": 47, "failing": 1, "hanging": 2, "success": 94.0}
+    "canonical": {"total": 25, "passing": 0, "failing": 25, "success": 0.0},
+    "needToMove": {"total": 79, "passing": 34, "failing": 42, "hanging": 3, "success": 43.0}
   },
   "byProject": {
-    "core": {"total": 50, "passing": 49, "failing": 0, "hanging": 1, "success": 98.0},
-    "montpc": {"total": 10, "passing": 8, "failing": 2, "hanging": 0, "success": 80.0},
-    "ui": {"total": 4, "passing": 3, "failing": 1, "hanging": 0, "success": 75.0},
-    "utils": {"total": 4, "passing": 2, "failing": 1, "hanging": 1, "success": 50.0}
+    "core": {"total": 65, "passing": 34, "failing": 28, "hanging": 3, "success": 52.3},
+    "montpc": {"total": 14, "passing": 0, "failing": 14, "success": 0.0},
+    "ui": {"total": 2, "passing": 0, "failing": 2, "success": 0.0},
+    "utils": {"total": 8, "passing": 0, "failing": 8, "success": 0.0},
+    "unclassified": {"total": 15, "passing": 0, "failing": 15, "success": 0.0}
   },
   "brqs": [
-    {"id": "MEXP-2025-001-API", "name": "API Integration Phase", "tests": 3, "priority": "P0", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-006-API", "name": "Customer CRUD API", "tests": 3, "priority": "P0", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-008-BE", "name": "Customer Management System", "tests": 2, "priority": "P0", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-003-BE", "name": "Message Queue System", "tests": 5, "priority": "P0", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-002-BE", "name": "Authentication & Security", "tests": 4, "priority": "P0", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-027-BE", "name": "Product Catalog", "tests": 3, "priority": "P1", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-037-FULL", "name": "MVP Implementation", "tests": 3, "priority": "P3", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-005-FE", "name": "UI Architecture", "tests": 1, "priority": "P1", "status": "complete", "progress": 100},
-    {"id": "MONT-2025-001-FULL", "name": "Customer Service Implementation", "tests": 1, "priority": "P0", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-030-API", "name": "External API Integrations", "tests": 3, "priority": "P1", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-031-API", "name": "Ringover Customer Management", "tests": 3, "priority": "P1", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-007-BE", "name": "Service Integration Architecture", "tests": 9, "priority": "P0", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-004-BE", "name": "Core CRUD Functionality", "tests": 3, "priority": "P0", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-024-INFRA", "name": "MVP Readiness", "tests": 1, "priority": "P3", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-025-INFRA-A", "name": "Infrastructure Simplification Pt.1", "tests": "N/A", "priority": "P3", "status": "complete", "progress": 100},
-    {"id": "MONT-2025-002-FULL", "name": "Auth Service & Frontend", "tests": 2, "priority": "P1", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-002-FE", "name": "Frontend Component Research", "tests": 1, "priority": "P1", "status": "complete", "progress": 100},
-    {"id": "MONT-2025-032-API", "name": "External Integrations", "tests": 1, "priority": "P2", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-040-FE", "name": "Dashboard Design", "tests": 1, "priority": "P2", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-018-FE", "name": "Frontend Test Architecture", "tests": 1, "priority": "P2", "status": "complete", "progress": 100},
-    {"id": "MEXP-2025-025-INFRA-B", "name": "Infrastructure Simplification Pt.2", "tests": 3, "priority": "P3", "status": "not-started", "progress": 0},
-    {"id": "MONT-2025-007-FULL", "name": "Emergency Recovery", "tests": 0, "priority": "P1", "status": "not-started", "progress": 0}
+    {"id": "MEXP-2025-001-API", "name": "API Integration Phase", "tests": 3, "priority": "P0", "status": "in-progress", "progress": 33.3},
+    {"id": "MEXP-2025-002-BE", "name": "Authentication & Security", "tests": 4, "priority": "P0", "status": "in-progress", "progress": 75.0},
+    {"id": "MEXP-2025-003-BE", "name": "Message Queue System", "tests": 5, "priority": "P0", "status": "in-progress", "progress": 80.0},
+    {"id": "MEXP-2025-004-BE", "name": "Core CRUD Functionality", "tests": 3, "priority": "P0", "status": "not-started", "progress": 0},
+    {"id": "MEXP-2025-005-FE", "name": "UI Architecture", "tests": 1, "priority": "P1", "status": "not-started", "progress": 0},
+    {"id": "MEXP-2025-006-API", "name": "Customer CRUD API", "tests": 3, "priority": "P0", "status": "not-started", "progress": 0},
+    {"id": "MEXP-2025-007-BE", "name": "Service Integration Architecture", "tests": 9, "priority": "P0", "status": "in-progress", "progress": 66.7},
+    {"id": "MEXP-2025-008-BE", "name": "Customer Management System", "tests": 2, "priority": "P0", "status": "in-progress", "progress": 100.0},
+    {"id": "MEXP-2025-018-FE", "name": "Frontend Test Architecture", "tests": 1, "priority": "P2", "status": "not-started", "progress": 0},
+    {"id": "MEXP-2025-024-INFRA", "name": "MVP Readiness", "tests": 3, "priority": "P3", "status": "not-started", "progress": 0},
+    {"id": "MEXP-2025-025-INFRA", "name": "Infrastructure Simplification", "tests": 3, "priority": "P3", "status": "not-started", "progress": 0},
+    {"id": "MEXP-2025-027-BE", "name": "Product Catalog", "tests": 3, "priority": "P1", "status": "not-started", "progress": 0},
+    {"id": "MEXP-2025-030-API", "name": "External API Integrations", "tests": 3, "priority": "P1", "status": "not-started", "progress": 0},
+    {"id": "MEXP-2025-031-API", "name": "Ringover Customer Management", "tests": 3, "priority": "P1", "status": "not-started", "progress": 0},
+    {"id": "MEXP-2025-037-FULL", "name": "MVP Implementation", "tests": 3, "priority": "P3", "status": "not-started", "progress": 0},
+    {"id": "MEXP-2025-040-FE", "name": "Dashboard Design", "tests": 1, "priority": "P2", "status": "not-started", "progress": 0},
+    {"id": "MONT-2025-001-FULL", "name": "Customer Service Implementation", "tests": 2, "priority": "P0", "status": "in-progress", "progress": 0},
+    {"id": "MONT-2025-002-FULL", "name": "Auth Service & Frontend", "tests": 5, "priority": "P1", "status": "not-started", "progress": 0},
+    {"id": "MONT-2025-007-FULL", "name": "Emergency Recovery", "tests": 0, "priority": "P1", "status": "not-started", "progress": 0},
+    {"id": "MONT-2025-032-API", "name": "External Integrations", "tests": 1, "priority": "P2", "status": "not-started", "progress": 0}
   ]
 }
 ```

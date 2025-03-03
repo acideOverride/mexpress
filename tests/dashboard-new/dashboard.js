@@ -597,7 +597,8 @@ function renderPriorityTab(priorityData) {
         { key: 'p0', label: 'P0 (Critical)' },
         { key: 'p1', label: 'P1 (Important)' },
         { key: 'p2', label: 'P2 (Secondary)' },
-        { key: 'p3', label: 'P3 (Performance)' }
+        { key: 'p3', label: 'P3 (Performance)' },
+        { key: 'unclassified', label: 'Unclassified (Canonical)' }
     ];
     
     priorities.forEach(priority => {
@@ -742,7 +743,7 @@ function renderTestDetails(tests) {
         html += `
             <tr data-test-status="${test.status}" data-test-priority="${test.priority}">
                 <td><span class="status-badge ${statusClass}">${statusIcon} ${test.status}</span></td>
-                <td><span class="priority-indicator priority-${test.priority}"></span>${test.priority.toUpperCase()}</td>
+                <td><span class="priority-indicator priority-${test.priority}"></span>${test.priority === 'unclassified' ? 'N/A' : test.priority.toUpperCase()}</td>
                 <td title="${test.path}">${test.shortPath}</td>
                 <td>${test.location}</td>
                 <td>${test.project}</td>

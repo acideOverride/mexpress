@@ -184,6 +184,7 @@ function extractAllTests(mdContent) {
   const tests = [];
   const priorities = ['p0', 'p1', 'p2', 'p3'];
   
+  // Process priority-based tests
   priorities.forEach(priority => {
     const levelName = priority === 'p0' ? 'Critical Path' : 
                    priority === 'p1' ? 'Important Features' :
@@ -231,6 +232,47 @@ function extractAllTests(mdContent) {
       });
     }
   });
+  
+  // Process canonical location tests (non-P structure)
+  const canonicalTestsMatch = mdContent.match(/## Canonical Location Tests \(Non-P Structure\)\n\n```\nstatus \| file \| location\n----.*\n([\s\S]+?)\n```/);
+  
+  if (canonicalTestsMatch && canonicalTestsMatch[1]) {
+    const testLines = canonicalTestsMatch[1].trim().split('\n');
+    
+    testLines.forEach(line => {
+      const parts = line.split('|').map(part => part.trim());
+      if (parts.length >= 3) {
+        const [status, path, location] = parts;
+        
+        let testStatus = 'unknown';
+        if (status.includes('✅')) testStatus = 'passing';
+        else if (status.includes('❌')) testStatus = 'failing';
+        else if (status.includes('❓')) testStatus = 'hanging';
+        
+        if (path) {
+          // Determine project based on path
+          let project = 'unknown';
+          if (path.includes('/packages/core/')) project = 'core';
+          else if (path.includes('/packages/utils/')) project = 'utils';
+          else if (path.includes('/packages/ui-components/')) project = 'ui';
+          else if (path.includes('/projects/montpc_crm/')) project = 'montpc';
+          
+          // Determine location type - should always be canonical for this section
+          let locationType = 'canonical';
+          
+          tests.push({
+            status: testStatus,
+            path: path,
+            shortPath: path.replace('/opt/mExpress/', ''),
+            priority: 'unclassified',
+            location: location,
+            locationType: locationType,
+            project: project
+          });
+        }
+      }
+    });
+  }
   
   return tests;
 }

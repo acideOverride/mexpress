@@ -344,6 +344,10 @@ body {
     background-color: var(--color-success);
 }
 
+.priority-unclassified {
+    background-color: #a0aec0; /* Gray color for unclassified tests */
+}
+
 .theme-toggle {
     background: none;
     border: none;
