@@ -1,21 +1,21 @@
-import { Pipeline } from '../../lib/pipeline';
-import { ContainerOrchestrator } from '../../lib/container-orchestrator';
-import { ServiceMesh } from '../../lib/service-mesh';
-import { ContainerRuntime } from '../../lib/container-runtime';
-import { ServiceDeployment } from '../../lib/service-deployment';
-import { OrchestratorConfig } from '../../types/orchestrator-config';
-import { RuntimeConfigOptions } from '../../types/runtime-config';
-import { DeploymentConfigOptions, ServicePort } from '../../types/deployment-config';
-import { ServiceMeshConfigOptions } from '../../types/service-mesh-config';
+import { Pipeline } from '../../../src/lib/pipeline';
+import { ContainerOrchestrator } from '../../../src/lib/container-orchestrator';
+import { ServiceMesh } from '../../../src/lib/service-mesh';
+import { ContainerRuntime } from '../../../src/lib/container-runtime';
+import { ServiceDeployment } from '../../../src/lib/service-deployment';
+import { OrchestratorConfig } from '../../../src/types/orchestrator-config';
+import { RuntimeConfigOptions } from '../../../src/types/runtime-config';
+import { DeploymentConfigOptions, ServicePort } from '../../../src/types/deployment-config';
+import { ServiceMeshConfigOptions } from '../../../src/types/service-mesh-config';
 import {
   IContainerOrchestrator,
   IServiceMesh,
   IContainerRuntime,
   IServiceDeployment
-} from '../../types/integration-test-types';
+} from '../../../src/types/integration-test-types';
 
 // Extend PipelineConfigOptions for testing
-declare module '../../types/pipeline-config' {
+declare module '../../../src/types/pipeline-config' {
   interface PipelineConfigOptions {
     infrastructure?: {
       orchestrator: IContainerOrchestrator;
@@ -46,7 +46,7 @@ describe('Pipeline Integration', () => {
       initialize: jest.fn().mockResolvedValue(undefined),
       listResources: jest.fn().mockResolvedValue([]),
       validateDeployment: jest.fn().mockResolvedValue({ valid: true, errorRate: 0 })
-    };
+    } as jest.Mocked<IContainerOrchestrator>;
 
     serviceMesh = {
       initialize: jest.fn().mockResolvedValue(undefined),

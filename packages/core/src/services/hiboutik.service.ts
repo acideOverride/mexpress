@@ -50,10 +50,42 @@ export class HiboutikService {
    */
   async getCustomers(): Promise<HiboutikCustomer[]> {
     await this.rateLimiter.acquire();
-    try {
+    return this.withRetry(async () => {
       const response = await this.client.get('/customers');
       return this.mapCustomers(response.data);
+    });
+  }
+  
+  /**
+   * Execute a function with retry logic
+   * @param fn Function to execute
+   * @param attemptsMade Current attempt count
+   */
+  private async withRetry<T>(fn: () => Promise<T>, attemptsMade = 0): Promise<T> {
+    try {
+      return await fn();
     } catch (error) {
+      // Determine if this is a retryable error (5xx)
+      const isRetryable = axios.isAxiosError(error) && 
+                          error.response?.status &&
+                          error.response.status >= 500 &&
+                          error.response.status < 600;
+      
+      // If it's retryable and we haven't exceeded max retries
+      if (isRetryable && attemptsMade < this.maxRetries) {
+        // Wait before retry
+        await new Promise(resolve => setTimeout(resolve, this.retryDelay));
+        
+        // Retry with incrementing counter
+        return this.withRetry(fn, attemptsMade + 1);
+      }
+      
+      // If max retries exceeded
+      if (isRetryable && attemptsMade >= this.maxRetries) {
+        throw new Error('Max retries exceeded');
+      }
+      
+      // Not a retryable error
       throw this.handleError(error);
     }
   }
@@ -63,12 +95,10 @@ export class HiboutikService {
    */
   async getCustomerById(id: string): Promise<HiboutikCustomer> {
     await this.rateLimiter.acquire();
-    try {
+    return this.withRetry(async () => {
       const response = await this.client.get(`/customers/${id}`);
       return this.mapCustomer(response.data);
-    } catch (error) {
-      throw this.handleError(error);
-    }
+    });
   }
 
   /**
@@ -76,12 +106,10 @@ export class HiboutikService {
    */
   async createCustomer(customer: HiboutikCustomer): Promise<HiboutikCustomer> {
     await this.rateLimiter.acquire();
-    try {
+    return this.withRetry(async () => {
       const response = await this.client.post('/customers', this.mapCustomerToApi(customer));
       return this.mapCustomer(response.data);
-    } catch (error) {
-      throw this.handleError(error);
-    }
+    });
   }
 
   /**
@@ -89,12 +117,10 @@ export class HiboutikService {
    */
   async updateCustomer(id: string, customer: HiboutikCustomer): Promise<HiboutikCustomer> {
     await this.rateLimiter.acquire();
-    try {
+    return this.withRetry(async () => {
       const response = await this.client.put(`/customers/${id}`, this.mapCustomerToApi(customer));
       return this.mapCustomer(response.data);
-    } catch (error) {
-      throw this.handleError(error);
-    }
+    });
   }
 
   /**

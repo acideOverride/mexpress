@@ -1,6 +1,6 @@
-import { SyncService } from '../sync.service';
-import { HiboutikService, HiboutikCustomer } from '../hiboutik.service';
-import { RingoverService, RingoverCustomer } from '../ringover.service';
+import { SyncService } from '../../../src/services/sync.service';
+import { HiboutikService, HiboutikCustomer } from '../../../src/services/hiboutik.service';
+import { RingoverService, RingoverCustomer } from '../../../src/services/ringover.service';
 import { jest } from '@jest/globals';
 
 describe('SyncService - Customer Synchronization', () => {

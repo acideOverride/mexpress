@@ -1,0 +1,13 @@
+PASS packages/core/tests/p2/api/edge-cases.test.ts (24.102 s)
+  API Client Edge Cases Tests
+    ✓ should handle HTTP error status codes properly (16 ms)
+    ✓ should handle malformed JSON responses (3 ms)
+    ✓ should handle network errors that are not timeouts (27 ms)
+    ✓ should handle empty response bodies (3 ms)
+    ✓ should handle unexpected content types (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        24.356 s
+Ran all test suites matching /packages\/core\/tests\/p2\/api/i.

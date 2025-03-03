@@ -7,10 +7,15 @@
   ],
   "scripts": {
     "build": "lerna run build --stream",
-    "test": "lerna run test --stream",
-    "test:p0": "lerna run test:p0 --stream",
-    "test:p1": "lerna run test:p1 --stream",
-    "test:p2": "lerna run test:p2 --stream",
+    "test": "jest --config tests/jest.config.js",
+    "test:packages": "jest --config tests/jest.packages.config.js",
+    "test:projects": "jest --config tests/jest.projects.config.js",
+    "test:core": "jest --config tests/packages/core/jest.config.js",
+    "test:ui": "jest --config tests/packages/ui-components/jest.config.js",
+    "test:utils": "jest --config tests/packages/utils/jest.config.js",
+    "test:montpc:frontend": "jest --config tests/projects/montpc_crm/frontend/jest.config.js",
+    "test:unit": "jest --testPathPattern=\"unit/\" --config tests/jest.config.js",
+    "test:integration": "jest --testPathPattern=\"integration/\" --config tests/jest.config.js",
     "lint": "lerna run lint --stream",
     "clean": "lerna clean",
     "bootstrap": "lerna bootstrap",
@@ -18,7 +23,12 @@
     "publish": "lerna publish"
   },
   "devDependencies": {
+    "@sinonjs/referee-sinon": "^12.0.0",
+    "@testing-library/jest-dom": "^6.6.3",
     "@types/commander": "^2.12.5",
+    "axios-mock-adapter": "^2.1.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-junit": "^16.0.0",
     "lerna": "^7.0.0",
     "typescript": "^5.0.0"
   },

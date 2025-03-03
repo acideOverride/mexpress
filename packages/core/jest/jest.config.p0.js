@@ -48,10 +48,11 @@ module.exports = {
     }
   },
 
-  // Use minimal reporter with P0 path
+  // Use simplified reporter for cleaner test results
   reporters: [
-    ['./jest.minimal-reporter.js', {
-      outputFile: 'src/__tests__/results/p0/unit/[name].test.json'
+    'default',
+    ['./jest.simplified.reporter.js', {
+      outputMode: 'minimal'
     }]
   ]
 };

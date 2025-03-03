@@ -1,0 +1,25 @@
+FAIL packages/core/tests/p0/core/message-state-manager.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/message-state-manager.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-state-manager.test.ts[0m:[93m2[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/message-state-manager' or its corresponding type declarations.
+
+    [7m2[0m import { MessageStateManager } from '../../../../src/core/message-queue/message-state-manager';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-state-manager.test.ts[0m:[93m3[0m:[93m46[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m3[0m import { QueuedMessage, MessageStatus } from '../../../../src/core/message-queue/types';
+    [7m [0m [91m                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-state-manager.test.ts[0m:[93m136[0m:[93m49[0m - [91merror[0m[90m TS7006: [0mParameter 'r' implicitly has an 'any' type.
+
+    [7m136[0m             const successCount = results.filter(r => r.success).length;
+    [7m   [0m [91m                                                ~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        13.893 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p0\/core\/message-state-manager.test.ts/i.

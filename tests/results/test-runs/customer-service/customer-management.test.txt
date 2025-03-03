@@ -1,0 +1,52 @@
+  console.log
+    Incrementing counter customer_create_total with tags: {"status":"success"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+  console.log
+    Incrementing counter customer_create_total with tags: {"status":"error"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+  console.log
+    Incrementing counter customer_search_total with tags: {"status":"success"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+  console.log
+    Incrementing counter customer_search_total with tags: {"status":"success"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+  console.log
+    Incrementing counter customer_search_total with tags: {"status":"success"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+  console.log
+    Incrementing counter customer_search_total with tags: {"status":"error"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+PASS packages/core/tests/p0/core/customer-management.test.ts (7.023 s)
+  Customer Management Testing
+    customer creation
+      ✓ should successfully create customer with valid data (81 ms)
+      ✓ should fail customer creation with invalid email (3 ms)
+      ✓ should fail customer creation with missing required fields (3 ms)
+      ✓ should handle network errors during customer creation (9 ms)
+    customer search
+      ✓ should find customer by exact email (5 ms)
+      ✓ should find customers by partial name match (3 ms)
+      ✓ should handle no results found (5 ms)
+      ✓ should handle invalid search criteria (2 ms)
+      ✓ should handle network errors during search (4 ms)
+    data validation
+      ✓ should validate phone number format (2 ms)
+      ✓ should validate postal code format (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        7.259 s, estimated 51 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p0\/core\/customer-management.test.ts/i.

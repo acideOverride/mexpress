@@ -8,5 +8,12 @@
   "dependencies": {
     "@mexpress/core": "1.0.0",
     "@mexpress/utils": "1.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
+    "identity-obj-proxy": "^3.0.0",
+    "ts-node": "^10.9.2"
   }
 }

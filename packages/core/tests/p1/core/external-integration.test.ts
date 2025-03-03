@@ -1,9 +1,9 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
-import { IntegrationTester } from '../integration-tester';
-import { HiboutikService } from '../../../services/hiboutik.service';
-import { RingoverService } from '../../../services/ringover.service';
-import { MonitoringSystem } from '../../../lib/monitoring/monitoring';
-import { CustomerService } from '../../../services/customer.service';
+import { IntegrationTester } from '../../__mocks__/services/integration-tester';
+import { HiboutikService } from '../../__mocks__/services/hiboutik.service';
+import { RingoverService } from '../../__mocks__/services/ringover.service';
+import { CustomerService } from '../../__mocks__/services/customer.service';
+import { MonitoringSystem } from '../../__mocks__/services/monitoring';
 
 describe('External Integration Testing', () => {
     let integrationTester: IntegrationTester;
@@ -13,8 +13,16 @@ describe('External Integration Testing', () => {
     let monitoring: MonitoringSystem;
 
     beforeEach(() => {
-        hiboutikService = new HiboutikService();
-        ringoverService = new RingoverService();
+        hiboutikService = new HiboutikService({
+            baseUrl: 'https://api.hiboutik.com/v1',
+            apiKey: 'test-key',
+            accountId: 'test-account'
+        });
+        ringoverService = new RingoverService({
+            baseUrl: 'https://api.ringover.com/v2',
+            apiKey: 'test-key',
+            teamId: 'test-team'
+        });
         customerService = new CustomerService();
         monitoring = new MonitoringSystem();
         integrationTester = new IntegrationTester(

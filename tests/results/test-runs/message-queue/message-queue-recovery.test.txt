@@ -1,0 +1,25 @@
+FAIL packages/core/tests/p2/core/message-queue-recovery.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p2/core/message-queue-recovery.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/git-workflow-automation/src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p2/core/message-queue-recovery.test.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/message-queue-v2' or its corresponding type declarations.
+
+    [7m2[0m import { MessageQueue } from '../../../../src/git-workflow-automation/src/core/message-queue/message-queue-v2';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p2/core/message-queue-recovery.test.ts[0m:[93m3[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m3[0m import { QueuedMessage } from '../../../../src/git-workflow-automation/src/core/message-queue/types';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p2/core/message-queue-recovery.test.ts[0m:[93m4[0m:[93m41[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/queue-persistence-manager' or its corresponding type declarations.
+
+    [7m4[0m import { QueuePersistenceManager } from '../../../../src/git-workflow-automation/src/core/message-queue/queue-persistence-manager';
+    [7m [0m [91m                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        12.738 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p2\/core\/message-queue-recovery.test.ts/i.

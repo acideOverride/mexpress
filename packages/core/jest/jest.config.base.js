@@ -2,19 +2,19 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  
+
   // Common settings
   verbose: false,          // Minimize console output
   silent: true,           // Further reduce noise
   maxWorkers: '50%',      // Limit CPU usage
-  
+
   // Timeouts
   testTimeout: 30000,     // 30s default timeout
-  
+
   // Error Handling
   bail: 0,               // Don't stop on failure
   maxConcurrency: 5,     // Limit concurrent tests
-  
+
   // Coverage settings
   coverageDirectory: 'coverage',
   coverageReporters: ['json-summary', 'text'],
@@ -42,9 +42,7 @@ module.exports = {
   moduleDirectories: ['node_modules', 'src'],
 
   // Setup files
-  setupFilesAfterEnv: [
-    '<rootDir>/tests/helpers/utils/assertions.ts'  // Load custom matchers
-  ],
+  setupFilesAfterEnv: [],
 
   // Global settings
   globals: {
@@ -59,17 +57,12 @@ module.exports = {
   detectLeaks: true,        // Memory leak detection
 
   // Output settings
-  reporters: [
-    'default',
-    ['../jest/jest.minimal-reporter.js', {
-      outputFile: 'src/__tests__/results/test-results.json'
-    }]
-  ],
+  reporters: ['default'],
 
   // Error formatting
   errorOnDeprecated: true,
   prettierPath: null,       // Disable prettier in tests
-  
+
   // Test environment setup
   testEnvironmentOptions: {
     url: 'http://localhost'

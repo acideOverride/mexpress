@@ -78,10 +78,41 @@ This monorepo uses Lerna for package management. Each package has its own:
 
 ### Testing Strategy
 
-Tests are organized by priority levels:
-- P0: Critical functionality
-- P1: High priority features
-- P2: Medium priority features
+We use a centralized test directory structure:
+
+```
+/tests
+  /packages
+    /core
+      /unit
+        /services
+        /models
+        /utils
+      /integration
+      /e2e
+    /ui-components
+      /unit
+        /components
+      /integration
+    /utils
+      /unit
+        /lib
+  /projects
+    /montpc_crm
+      /frontend
+        /unit
+          /components
+          /services
+        /integration
+      /backend
+        /unit
+        /integration
+    /mexpress
+      /unit
+      /integration
+```
+
+For detailed test standards, see [Test Standards](/docs/common/standards/C4_test_standards.md)
 
 ### Contributing
 

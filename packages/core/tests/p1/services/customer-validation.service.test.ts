@@ -1,13 +1,24 @@
-import { CustomerValidationService, CustomerInput } from '../customer-validation.service';
-import { CustomerModel } from '../../../models/customer';
-import { Model } from 'mongoose';
-
-// Mock the entire CustomerModel
-jest.mock('../../../models/customer', () => ({
+// First, mock the modules that will be imported by the service
+jest.mock('../../../src/models/customer', () => ({
   CustomerModel: {
     findOne: jest.fn()
   }
 }));
+
+jest.mock('../../../src/lib/resilience/retry-strategy', () => {
+  return {
+    RetryStrategy: jest.fn().mockImplementation(() => {
+      return {
+        execute: jest.fn(operation => operation())
+      };
+    })
+  };
+});
+
+// Now import the service
+import { CustomerValidationService, CustomerInput } from '../../../src/services/validation/customer-validation.service';
+import { CustomerModel } from '../../../src/models/customer';
+import { Model } from 'mongoose';
 
 describe('CustomerValidationService', () => {
   let validationService: CustomerValidationService;

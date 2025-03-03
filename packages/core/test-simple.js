@@ -1,0 +1,6 @@
+// Simple test to verify functionality
+describe('Basic test', () => {
+  test('should pass', () => {
+    expect(1 + 1).toBe(2);
+  });
+});

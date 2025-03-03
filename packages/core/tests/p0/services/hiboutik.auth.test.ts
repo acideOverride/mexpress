@@ -1,4 +1,4 @@
-import { HiboutikService, HiboutikConfig } from '../hiboutik.service';
+import { HiboutikService, HiboutikConfig } from '../../../src/services/hiboutik.service';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 

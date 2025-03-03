@@ -101,6 +101,48 @@ export class AuthService {
         user.refreshToken = undefined;
         await user.save();
     }
+    
+    /**
+     * Invalidate all sessions for a user by clearing their refresh token
+     * This effectively logs them out from all devices
+     * @param userId User ID
+     */
+    async invalidateAllSessions(userId: string): Promise<boolean> {
+        const user = await UserModel.findById(userId);
+        if (!user) {
+            throw new AuthError('User not found', 'USER_NOT_FOUND');
+        }
+
+        // Clear refresh token to invalidate all sessions
+        user.refreshToken = undefined;
+        
+        // Update session metadata if it exists
+        if (user.sessions && Array.isArray(user.sessions)) {
+            user.sessions = [];
+        }
+        
+        await user.save();
+        return true;
+    }
+    
+    /**
+     * Get the number of active sessions for a user
+     * @param userId User ID
+     */
+    async getSessionCount(userId: string): Promise<number> {
+        const user = await UserModel.findById(userId);
+        if (!user) {
+            throw new AuthError('User not found', 'USER_NOT_FOUND');
+        }
+        
+        // If sessions array exists, return its length
+        if (user.sessions && Array.isArray(user.sessions)) {
+            return user.sessions.length;
+        }
+        
+        // If no sessions array but has refresh token, count as 1 session
+        return user.refreshToken ? 1 : 0;
+    }
 
     async validateToken(token: string): Promise<{ valid: boolean; userId?: string; error?: string }> {
         try {

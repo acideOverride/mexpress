@@ -1,0 +1,17 @@
+FAIL packages/core/tests/p1/services/service-mesh.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/service-mesh.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/service-mesh' or its corresponding type declarations.
+
+    [7m1[0m import { ServiceMesh } from '../../lib/service-mesh';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/service-mesh.test.ts[0m:[93m2[0m:[93m71[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/service-mesh-config' or its corresponding type declarations.
+
+    [7m2[0m import { ServiceMeshProxy, ServiceMeshRoute, ServiceMeshPolicy } from '../../types/service-mesh-config';
+    [7m [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        14.112 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p1\/services\/service-mesh.test.ts/i.

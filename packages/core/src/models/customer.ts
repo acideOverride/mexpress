@@ -1,6 +1,7 @@
 /**
  * Customer model and DTO definitions
  */
+import mongoose, { Document, Schema, Model } from 'mongoose';
 
 /**
  * Valid customer status values
@@ -27,7 +28,8 @@ export interface Address {
  */
 export interface Customer {
     id: string;
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     phone?: string;
     address?: Address;
@@ -41,7 +43,8 @@ export interface Customer {
  * Data transfer object for creating a new customer
  */
 export interface CreateCustomerDto {
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     phone?: string;
     address?: Address;
@@ -53,7 +56,8 @@ export interface CreateCustomerDto {
  * Data transfer object for updating an existing customer
  */
 export interface UpdateCustomerDto {
-    name?: string;
+    firstName?: string;
+    lastName?: string;
     email?: string;
     phone?: string;
     address?: {
@@ -65,3 +69,32 @@ export interface UpdateCustomerDto {
     status?: CustomerStatus;
     notes?: string;
 }
+
+/**
+ * Customer schema for MongoDB
+ */
+const customerSchema = new Schema({
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    phone: { type: String },
+    address: {
+        street: String,
+        city: String,
+        state: String,
+        zip: String
+    },
+    status: { 
+        type: String, 
+        enum: Object.values(CustomerStatus),
+        default: CustomerStatus.ACTIVE
+    },
+    notes: String,
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now }
+});
+
+// Define static methods for mock implementation
+export const CustomerModel = {
+    findOne: jest.fn()
+} as unknown as Model<Customer & Document>;

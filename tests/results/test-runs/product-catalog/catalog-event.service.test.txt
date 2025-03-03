@@ -1,0 +1,21 @@
+FAIL packages/core/tests/p1/services/catalog-event.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/catalog-event.service.test.ts[0m:[93m1[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../catalog-event.service' or its corresponding type declarations.
+
+    [7m1[0m import { CatalogEventService } from '../catalog-event.service';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/catalog-event.service.test.ts[0m:[93m2[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/product' or its corresponding type declarations.
+
+    [7m2[0m import { Product } from '../../models/product';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/catalog-event.service.test.ts[0m:[93m3[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/category' or its corresponding type declarations.
+
+    [7m3[0m import { Category } from '../../models/category';
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        12.457 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p1\/services\/catalog-event.service.test.ts/i.

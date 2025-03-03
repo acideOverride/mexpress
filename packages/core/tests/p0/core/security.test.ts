@@ -1,6 +1,7 @@
-import { ServiceMeshConfig } from '../../lib/config';
-import { SecurityConfig } from '../../lib/security';
+import { ServiceMeshConfig } from '../../../../../packages/utils/src/lib/config';
+import { SecurityConfig } from '../../../../../packages/utils/src/lib/security';
 
+// BRQ: MEXP-2025-002-BE - Authentication & Security
 describe('SecurityConfig', () => {
     let config: ServiceMeshConfig;
     let securityConfig: SecurityConfig;

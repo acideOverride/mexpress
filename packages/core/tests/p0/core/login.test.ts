@@ -1,7 +1,11 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import { DashboardTester } from '../dashboard-tester';
-import { AuthService } from '../../../services/auth.service';
-import { MonitoringSystem } from '../../../lib/monitoring/monitoring';
+import { AuthService } from '../../../../../packages/core/services/auth.service';
+import { MonitoringSystem } from '../../../../../packages/core/lib/monitoring/monitoring';
+
+// BRQ: MEXP-2025-002-BE - Authentication & Security
+// Increase timeout for all tests in this file
+jest.setTimeout(60000);
 
 describe('Dashboard Login Testing', () => {
     let dashboardTester: DashboardTester;

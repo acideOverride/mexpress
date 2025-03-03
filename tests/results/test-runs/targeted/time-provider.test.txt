@@ -1,0 +1,13 @@
+FAIL packages/core/tests/p0/core/time-provider.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/time-provider.test.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/time/time-provider' or its corresponding type declarations.
+
+    [7m1[0m import { TestTimeProvider } from '../../../../src/core/time/time-provider';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        21.275 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p0\/core\/time-provider.test.ts/i.

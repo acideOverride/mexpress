@@ -1,6 +1,6 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import { CustomerTester } from '../customer-tester';
-import { CustomerService } from '../../../services/customer.service';
+import { CustomerService } from '../customer.service';
 import { MonitoringSystem } from '../../../lib/monitoring/monitoring';
 
 describe('Customer Management Testing', () => {
@@ -88,7 +88,7 @@ describe('Customer Management Testing', () => {
 
         it('should handle network errors during customer creation', async () => {
             // Arrange
-            jest.spyOn(customerService, 'createCustomer').mockRejectedValue(new Error('Network error'));
+            jest.spyOn(customerService, 'create').mockRejectedValue(new Error('Network error'));
             const customerData = {
                 firstName: 'John',
                 lastName: 'Doe',
@@ -176,7 +176,7 @@ describe('Customer Management Testing', () => {
 
         it('should handle network errors during search', async () => {
             // Arrange
-            jest.spyOn(customerService, 'searchCustomers').mockRejectedValue(new Error('Network error'));
+            jest.spyOn(customerService, 'search').mockRejectedValue(new Error('Network error'));
             const searchCriteria = {
                 email: 'john.doe@example.com'
             };

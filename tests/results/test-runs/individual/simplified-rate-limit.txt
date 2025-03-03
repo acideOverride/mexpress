@@ -1,0 +1,9 @@
+PASS packages/core/tests/p3/api/simplified-rate-limit.test.ts (19.485 s)
+  SimplifiedRateLimiter Tests
+    ✓ should handle rate limiting with retry logic (49 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        19.708 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p3\/api\/simplified-rate-limit.test.ts/i.

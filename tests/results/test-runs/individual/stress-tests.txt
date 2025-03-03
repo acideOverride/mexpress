@@ -1,0 +1,16 @@
+  console.log
+    Throughput: 877.19 requests per second
+
+      at Object.<anonymous> (tests/p3/api/stress-tests.test.ts:100:13)
+
+PASS packages/core/tests/p3/api/stress-tests.test.ts (20.721 s)
+  API Client Stress Tests
+    ✓ should handle high volume of concurrent requests efficiently (593 ms)
+    ✓ should handle rate limiting with exponential backoff under load (5062 ms)
+    ✓ should maintain memory usage within acceptable limits during sustained load (183 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        21.019 s, estimated 35 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p3\/api\/stress-tests.test.ts/i.

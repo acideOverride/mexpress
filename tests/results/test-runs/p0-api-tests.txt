@@ -1,0 +1,8 @@
+● Validation Error:
+
+  Module @testing-library/jest-dom/extend-expect in the setupFilesAfterEnv option was not found.
+         <rootDir> is: /opt/mExpress/tests/packages/ui-components
+
+  Configuration Documentation:
+  https://jestjs.io/docs/configuration
+

@@ -1,5 +1,4 @@
-import { ServiceMeshConfig } from '../../lib/config';
-import { IstioClient } from '../../lib/istio-client';
+import { IstioClient, ServiceMeshConfig } from '../../lib/istio-client';
 
 describe('IstioClient Additional Tests', () => {
     let config: ServiceMeshConfig;

@@ -1,0 +1,352 @@
+FAIL packages/core/tests/p0/core/message-delivery-confirmation.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/git-workflow-automation/src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/message-queue-v2' or its corresponding type declarations.
+
+    [7m2[0m import { MessageQueue } from '../../../../src/git-workflow-automation/src/core/message-queue/message-queue-v2';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m3[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/message-state-manager' or its corresponding type declarations.
+
+    [7m3[0m import { MessageStateManager } from '../../../../src/git-workflow-automation/src/core/message-queue/message-state-manager';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m4[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m4[0m import { QueuedMessage } from '../../../../src/git-workflow-automation/src/core/message-queue/types';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m65[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 'message' implicitly has an 'any' type.
+
+    [7m65[0m         messageQueue.on('message-processed', (message) => {
+    [7m  [0m [91m                                              ~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m94[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+    [7m94[0m         messageQueue.on('message-processed', (data) => {
+    [7m  [0m [91m                                              ~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m154[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+    [7m154[0m         messageQueue.on('message-processed', (data) => {
+    [7m   [0m [91m                                              ~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m220[0m:[93m43[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+    [7m220[0m         delayedQueue.on('message-retry', (data) => {
+    [7m   [0m [91m                                          ~~~~[0m
+
+FAIL packages/core/tests/p0/core/event-handler.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/event-handler.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p0/core/service-discovery.test.ts (48.603 s)
+  ServiceDiscovery
+    Registration and Discovery
+      ✓ should register a service successfully (245 ms)
+      ✓ should deregister a service successfully (30 ms)
+      ✓ should discover all services (22 ms)
+    Health and Status
+      ✓ should update service heartbeat (49 ms)
+      ✕ should update service status (40 ms)
+      ✓ should mark services as unhealthy after heartbeat timeout (154 ms)
+    Caching
+      ✕ should cache service instances (19 ms)
+      ✓ should invalidate cache when service is updated (20 ms)
+    Metadata and Statistics
+      ✓ should return valid statistics (32 ms)
+
+  ● ServiceDiscovery › Health and Status › should update service status
+
+    TypeError: Cannot read properties of undefined (reading 'status')
+
+      140 |       expect(result).toBe(true);
+      141 |       
+    > 142 |       const afterUpdate = (await serviceDiscovery.discoverService('test-service-4'))[0].status;
+          |                                                                                         ^
+      143 |       expect(afterUpdate).toBe('unhealthy');
+      144 |     });
+      145 |     
+
+      at Object.<anonymous> (tests/p0/core/service-discovery.test.ts:142:89)
+
+  ● ServiceDiscovery › Caching › should cache service instances
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 0
+    Received array:  []
+
+      204 |       // Second call should return cached results
+      205 |       const services2 = await serviceDiscovery.discoverService('test-service-6');
+    > 206 |       expect(services2).toHaveLength(1); // Still returns the cached service
+          |                         ^
+      207 |       
+      208 |       // Wait for cache to expire
+      209 |       await new Promise(resolve => setTimeout(resolve, 150));
+
+      at Object.<anonymous> (tests/p0/core/service-discovery.test.ts:206:25)
+
+  console.log
+    Incrementing counter customer_create_total with tags: {"status":"success"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+  console.log
+    Incrementing counter customer_create_total with tags: {"status":"error"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+  console.log
+    Incrementing counter customer_search_total with tags: {"status":"success"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+  console.log
+    Incrementing counter customer_search_total with tags: {"status":"success"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+FAIL packages/core/tests/p0/core/message-state-manager.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/message-state-manager.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-state-manager.test.ts[0m:[93m2[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/message-state-manager' or its corresponding type declarations.
+
+    [7m2[0m import { MessageStateManager } from '../../../../src/core/message-queue/message-state-manager';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-state-manager.test.ts[0m:[93m3[0m:[93m46[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m3[0m import { QueuedMessage, MessageStatus } from '../../../../src/core/message-queue/types';
+    [7m [0m [91m                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-state-manager.test.ts[0m:[93m136[0m:[93m49[0m - [91merror[0m[90m TS7006: [0mParameter 'r' implicitly has an 'any' type.
+
+    [7m136[0m             const successCount = results.filter(r => r.success).length;
+    [7m   [0m [91m                                                ~[0m
+
+  console.log
+    Incrementing counter customer_search_total with tags: {"status":"success"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+  console.log
+    Incrementing counter customer_search_total with tags: {"status":"error"}
+
+      at MonitoringSystem.incrementCounter (lib/monitoring/monitoring.ts:4:17)
+
+PASS packages/core/tests/p0/core/customer-management.test.ts (50.711 s)
+  Customer Management Testing
+    customer creation
+      ✓ should successfully create customer with valid data (305 ms)
+      ✓ should fail customer creation with invalid email (3 ms)
+      ✓ should fail customer creation with missing required fields (3 ms)
+      ✓ should handle network errors during customer creation (13 ms)
+    customer search
+      ✓ should find customer by exact email (5 ms)
+      ✓ should find customers by partial name match (9 ms)
+      ✓ should handle no results found (3 ms)
+      ✓ should handle invalid search criteria (1 ms)
+      ✓ should handle network errors during search (3 ms)
+    data validation
+      ✓ should validate phone number format (30 ms)
+      ✓ should validate postal code format (2 ms)
+
+FAIL packages/core/tests/p0/core/login.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/login.test.ts[0m:[93m2[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '../dashboard-tester' or its corresponding type declarations.
+
+    [7m2[0m import { DashboardTester } from '../dashboard-tester';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/login.test.ts[0m:[93m136[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'error' does not exist in type '{ valid: boolean; sessionId?: string | undefined; }'.
+
+    [7m136[0m                 error: 'Token expired'
+    [7m   [0m [91m                ~~~~~[0m
+
+PASS packages/core/tests/p0/api/connection-timeout.test.ts
+  API Client Connection Timeout Tests
+    ✓ should handle connection timeout and retry with exponential backoff (14 ms)
+    ✓ should eventually fail after maximum retries (65 ms)
+    ✓ should complete requests within the timeout period when API is responsive (8 ms)
+
+FAIL packages/core/tests/p0/services/product.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/services/product.service.test.ts[0m:[93m1[0m:[93m32[0m - [91merror[0m[90m TS2307: [0mCannot find module '../product.service' or its corresponding type declarations.
+
+    [7m1[0m import { ProductService } from '../product.service';
+    [7m [0m [91m                               ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/services/product.service.test.ts[0m:[93m2[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/product' or its corresponding type declarations.
+
+    [7m2[0m import { Product, IProduct } from '../../models/product';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p0/core/git-workflow.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/git-workflow.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/git-workflow' or its corresponding type declarations.
+
+    [7m1[0m import { GitWorkflow } from '../../lib/git-workflow';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/git-workflow.test.ts[0m:[93m2[0m:[93m54[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/git-workflow-config' or its corresponding type declarations.
+
+    [7m2[0m import { WorkflowConfigOptions, CommitMessage } from '../../types/git-workflow-config';
+    [7m [0m [91m                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p0/core/message-queue-v2.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/message-queue-v2.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-queue-v2.test.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/message-queue-v2' or its corresponding type declarations.
+
+    [7m2[0m import { MessageQueue } from '../../../../src/core/message-queue/message-queue-v2';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-queue-v2.test.ts[0m:[93m3[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m3[0m import { QueuedMessage } from '../../../../src/core/message-queue/types';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p0/services/customer.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/services/customer.service.test.ts[0m:[93m1[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '../customer.service' or its corresponding type declarations.
+
+    [7m1[0m import { CustomerService } from '../customer.service';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/services/customer.service.test.ts[0m:[93m2[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/customer' or its corresponding type declarations.
+
+    [7m2[0m import { Customer, ICustomer } from '../../models/customer';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p0/core/security.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/security.test.ts[0m:[93m1[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/config' or its corresponding type declarations.
+
+    [7m1[0m import { ServiceMeshConfig } from '../../lib/config';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/security.test.ts[0m:[93m2[0m:[93m32[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/security' or its corresponding type declarations.
+
+    [7m2[0m import { SecurityConfig } from '../../lib/security';
+    [7m [0m [91m                               ~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p0/core/time-provider.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/time-provider.test.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/time/time-provider' or its corresponding type declarations.
+
+    [7m1[0m import { TestTimeProvider } from '../../../../src/core/time/time-provider';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p0/core/istio-client.additional.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/istio-client.additional.test.ts[0m:[93m1[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/config' or its corresponding type declarations.
+
+    [7m1[0m import { ServiceMeshConfig } from '../../lib/config';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/istio-client.additional.test.ts[0m:[93m2[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/istio-client' or its corresponding type declarations.
+
+    [7m2[0m import { IstioClient } from '../../lib/istio-client';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p0/services/hiboutik.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/services/hiboutik.service.test.ts[0m:[93m1[0m:[93m67[0m - [91merror[0m[90m TS2307: [0mCannot find module '../hiboutik.service' or its corresponding type declarations.
+
+    [7m1[0m import { HiboutikService, HiboutikConfig, HiboutikCustomer } from '../hiboutik.service';
+    [7m [0m [91m                                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/services/hiboutik.service.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p0/core/istio-client.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/istio-client.test.ts[0m:[93m1[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/config' or its corresponding type declarations.
+
+    [7m1[0m import { ServiceMeshConfig } from '../../lib/config';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/istio-client.test.ts[0m:[93m2[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/istio-client' or its corresponding type declarations.
+
+    [7m2[0m import { IstioClient } from '../../lib/istio-client';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p0/services/debug-hiboutik.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/services/debug-hiboutik.test.ts[0m:[93m2[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m2[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/services/debug-hiboutik.test.ts[0m:[93m58[0m:[93m37[0m - [91merror[0m[90m TS7006: [0mParameter 'config' implicitly has an 'any' type.
+
+    [7m58[0m     mockAxios.onGet('/test').reply((config) => {
+    [7m  [0m [91m                                    ~~~~~~[0m
+
+FAIL packages/core/tests/p0/services/ringover.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/services/ringover.service.test.ts[0m:[93m1[0m:[93m49[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m1[0m import { RingoverService, RingoverConfig } from '../ringover.service';
+    [7m [0m [91m                                                ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/services/ringover.service.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/services/ringover.service.test.ts[0m:[93m32[0m:[93m40[0m - [91merror[0m[90m TS7006: [0mParameter 'config' implicitly has an 'any' type.
+
+    [7m32[0m       mockAxios.onGet('/calls').reply((config) => {
+    [7m  [0m [91m                                       ~~~~~~[0m
+
+FAIL packages/core/tests/p0/services/hiboutik.auth.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/services/hiboutik.auth.test.ts[0m:[93m1[0m:[93m49[0m - [91merror[0m[90m TS2307: [0mCannot find module '../hiboutik.service' or its corresponding type declarations.
+
+    [7m1[0m import { HiboutikService, HiboutikConfig } from '../hiboutik.service';
+    [7m [0m [91m                                                ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/services/hiboutik.auth.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/services/hiboutik.auth.test.ts[0m:[93m37[0m:[93m42[0m - [91merror[0m[90m TS7006: [0mParameter 'config' implicitly has an 'any' type.
+
+    [7m37[0m     mockAxios.onGet('/customers').reply((config) => {
+    [7m  [0m [91m                                         ~~~~~~[0m
+
+FAIL packages/core/tests/p0/core/transaction-rollback.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/transaction-rollback.test.ts[0m:[93m34[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'client' does not exist on type 'Connection'.
+
+    [7m34[0m     const uri = mongoose.connection.client.s.url;
+    [7m  [0m [91m                                    ~~~~~~[0m
+    [96mpackages/core/tests/p0/core/transaction-rollback.test.ts[0m:[93m40[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'useNewUrlParser' does not exist in type 'ConnectOptions'.
+
+    [7m40[0m         useNewUrlParser: true,
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~[0m
+
+      [96mpackages/core/src/core/database/db-connection.ts[0m:[93m8[0m:[93m3[0m
+        [7m8[0m   options?: mongoose.ConnectOptions;
+        [7m [0m [96m  ~~~~~~~[0m
+        The expected type comes from property 'options' which is declared here on type 'DbConnectionOptions'
+
+A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+Test Suites: 18 failed, 2 passed, 20 total
+Tests:       2 failed, 21 passed, 23 total
+Snapshots:   0 total
+Time:        60.264 s
+Ran all test suites matching /packages\/core\/tests\/p0/i.

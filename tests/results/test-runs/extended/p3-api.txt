@@ -1,0 +1,67 @@
+PASS packages/core/tests/p3/api/simplified-rate-limit.test.ts (22.217 s)
+  SimplifiedRateLimiter Tests
+    ✓ should handle rate limiting with retry logic (40 ms)
+
+  console.log
+    Small batch (10): 8ms, 0.80ms per request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:77:13)
+
+  console.log
+    Medium batch (50): 7ms, 0.14ms per request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:78:13)
+
+  console.log
+    Large batch (100): 2ms, 0.02ms per request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:79:13)
+
+  console.log
+    Handled 100 requests (80 successes, 20 failures) in 1ms
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:125:13)
+
+  console.log
+    Average time per request: 0.01ms
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:126:13)
+
+  console.log
+    Peak memory usage: ~100KB
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:206:13)
+
+  console.log
+    Throughput: 1010.10 requests per second
+
+      at Object.<anonymous> (tests/p3/api/stress-tests.test.ts:100:13)
+
+  console.log
+    Final memory usage: ~100KB
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:207:13)
+
+  console.log
+    Memory efficiency: 0.1000 KB/request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:208:13)
+
+PASS packages/core/tests/p3/api/basic-stress.test.ts (24.464 s)
+  API Client Basic Stress Tests
+    ✓ should handle increasing loads without performance degradation (643 ms)
+    ✓ should handle error conditions gracefully under load (30 ms)
+    ✓ should maintain reasonable memory usage during sustained load (549 ms)
+
+PASS packages/core/tests/p3/api/stress-tests.test.ts (30.276 s)
+  API Client Stress Tests
+    ✓ should handle high volume of concurrent requests efficiently (490 ms)
+    ✓ should handle rate limiting with exponential backoff under load (5043 ms)
+    ✓ should maintain memory usage within acceptable limits during sustained load (459 ms)
+
+A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+Test Suites: 3 passed, 3 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        32.803 s
+Ran all test suites matching /packages\/core\/tests\/p3\/api/i.

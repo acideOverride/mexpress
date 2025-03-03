@@ -1,4 +1,4 @@
-import { Pipeline } from '../../lib/pipeline';
+import { Pipeline } from '@mexpress/utils/src/lib/pipeline';
 import { PipelineConfigOptions, StageExecutionResult } from '../../types/pipeline-config';
 
 describe('Pipeline', () => {

@@ -1,6 +1,6 @@
 import { SyncService } from '../sync.service';
-import { HiboutikService, HiboutikCustomer } from '../hiboutik.service';
-import { RingoverService, RingoverCall } from '../ringover.service';
+import { HiboutikService, HiboutikCustomer } from '../../__mocks__/services/hiboutik.service';
+import { RingoverService, RingoverCall } from '../../__mocks__/services/ringover.service';
 import { jest } from '@jest/globals';
 
 describe('SyncService', () => {

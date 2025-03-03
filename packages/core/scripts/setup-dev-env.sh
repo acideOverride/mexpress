@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # mExpress Local Development Setup Script
-# BRQ-2025-025
+# MEXP-2025-025-INFRA
 
 # Exit on error
 set -e

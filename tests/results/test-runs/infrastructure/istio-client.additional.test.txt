@@ -1,0 +1,17 @@
+FAIL packages/core/tests/p0/core/istio-client.additional.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/istio-client.additional.test.ts[0m:[93m1[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/config' or its corresponding type declarations.
+
+    [7m1[0m import { ServiceMeshConfig } from '../../lib/config';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/istio-client.additional.test.ts[0m:[93m2[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/istio-client' or its corresponding type declarations.
+
+    [7m2[0m import { IstioClient } from '../../lib/istio-client';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        14.621 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p0\/core\/istio-client.additional.test.ts/i.

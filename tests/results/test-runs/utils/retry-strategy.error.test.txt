@@ -1,0 +1,8 @@
+No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In /opt/mExpress/packages/core
+  556 files checked.
+  testMatch: **/*.test.ts, **/*.test.tsx, **/*.spec.ts, **/*.spec.tsx - 95 matches
+  testPathIgnorePatterns: /node_modules/ - 556 matches
+  testRegex:  - 0 matches
+Pattern: /opt/mExpress/tests/packages/utils/unit/lib/resilience/retry-strategy.error.test.ts - 0 matches

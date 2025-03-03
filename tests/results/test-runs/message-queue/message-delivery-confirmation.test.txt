@@ -1,0 +1,41 @@
+FAIL packages/core/tests/p0/core/message-delivery-confirmation.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/git-workflow-automation/src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/message-queue-v2' or its corresponding type declarations.
+
+    [7m2[0m import { MessageQueue } from '../../../../src/git-workflow-automation/src/core/message-queue/message-queue-v2';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m3[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/message-state-manager' or its corresponding type declarations.
+
+    [7m3[0m import { MessageStateManager } from '../../../../src/git-workflow-automation/src/core/message-queue/message-state-manager';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m4[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m4[0m import { QueuedMessage } from '../../../../src/git-workflow-automation/src/core/message-queue/types';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m65[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 'message' implicitly has an 'any' type.
+
+    [7m65[0m         messageQueue.on('message-processed', (message) => {
+    [7m  [0m [91m                                              ~~~~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m94[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+    [7m94[0m         messageQueue.on('message-processed', (data) => {
+    [7m  [0m [91m                                              ~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m154[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+    [7m154[0m         messageQueue.on('message-processed', (data) => {
+    [7m   [0m [91m                                              ~~~~[0m
+    [96mpackages/core/tests/p0/core/message-delivery-confirmation.test.ts[0m:[93m220[0m:[93m43[0m - [91merror[0m[90m TS7006: [0mParameter 'data' implicitly has an 'any' type.
+
+    [7m220[0m         delayedQueue.on('message-retry', (data) => {
+    [7m   [0m [91m                                          ~~~~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        12.807 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p0\/core\/message-delivery-confirmation.test.ts/i.

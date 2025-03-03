@@ -1,0 +1,11 @@
+PASS packages/core/tests/p0/api/connection-timeout.test.ts (16.021 s)
+  API Client Connection Timeout Tests
+    ✓ should handle connection timeout and retry with exponential backoff (20 ms)
+    ✓ should eventually fail after maximum retries (38 ms)
+    ✓ should complete requests within the timeout period when API is responsive (4 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        16.512 s
+Ran all test suites matching /packages\/core\/tests\/p0\/api/i.

@@ -1,0 +1,1714 @@
+FAIL packages/core/tests/p1/core/external-integration.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/external-integration.test.ts[0m:[93m2[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../integration-tester' or its corresponding type declarations.
+
+    [7m2[0m import { IntegrationTester } from '../integration-tester';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/external-integration.test.ts[0m:[93m3[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../services/hiboutik.service' or its corresponding type declarations.
+
+    [7m3[0m import { HiboutikService } from '../../../services/hiboutik.service';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/external-integration.test.ts[0m:[93m4[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../services/ringover.service' or its corresponding type declarations.
+
+    [7m4[0m import { RingoverService } from '../../../services/ringover.service';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/core/queue-persistence.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/queue-persistence.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/git-workflow-automation/src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/queue-persistence.test.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/message-queue-v2' or its corresponding type declarations.
+
+    [7m2[0m import { MessageQueue } from '../../../../src/git-workflow-automation/src/core/message-queue/message-queue-v2';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/queue-persistence.test.ts[0m:[93m3[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m3[0m import { QueuedMessage } from '../../../../src/git-workflow-automation/src/core/message-queue/types';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/queue-persistence.test.ts[0m:[93m4[0m:[93m41[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/queue-persistence-manager' or its corresponding type declarations.
+
+    [7m4[0m import { QueuePersistenceManager } from '../../../../src/git-workflow-automation/src/core/message-queue/queue-persistence-manager';
+    [7m [0m [91m                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/core/merge.spec.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m1[0m:[93m18[0m - [91merror[0m[90m TS2307: [0mCannot find module 'chai' or its corresponding type declarations.
+
+    [7m1[0m import chai from "chai";
+    [7m [0m [91m                 ~~~~~~[0m
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m4[0m:[93m106[0m - [91merror[0m[90m TS2307: [0mCannot find module '../lib' or its corresponding type declarations.
+
+    [7m4[0m import { FunctionCov, mergeFunctionCovs, mergeProcessCovs, mergeScriptCovs, ProcessCov, ScriptCov } from "../lib";
+    [7m [0m [91m                                                                                                         ~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m23[0m:[93m6[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+      Overload 1 of 3, '(path: PathOrFileDescriptor, options?: { encoding?: null | undefined; flag?: string | undefined; } | null | undefined): Buffer<ArrayBufferLike>', gave the following error.
+        Type 'string' is not assignable to type 'null | undefined'.
+      Overload 2 of 3, '(path: PathOrFileDescriptor, options: { encoding: BufferEncoding; flag?: string | undefined; } | BufferEncoding): string', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding'. Did you mean '"utf-8"'?
+      Overload 3 of 3, '(path: PathOrFileDescriptor, options?: BufferEncoding | (ObjectEncodingOptions & { flag?: string | undefined; }) | null | undefined): string | Buffer<...>', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding | null | undefined'. Did you mean '"utf-8"'?
+
+    [7m23[0m     {encoding: "UTF-8"},
+    [7m  [0m [91m     ~~~~~~~~[0m
+
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m188[0m:[93m62[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+      Overload 1 of 3, '(path: PathOrFileDescriptor, options?: { encoding?: null | undefined; flag?: string | undefined; } | null | undefined): Buffer<ArrayBufferLike>', gave the following error.
+        Type 'string' is not assignable to type 'null | undefined'.
+      Overload 2 of 3, '(path: PathOrFileDescriptor, options: { encoding: BufferEncoding; flag?: string | undefined; } | BufferEncoding): string', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding'. Did you mean '"utf-8"'?
+      Overload 3 of 3, '(path: PathOrFileDescriptor, options?: BufferEncoding | (ObjectEncodingOptions & { flag?: string | undefined; }) | null | undefined): string | Buffer<...>', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding | null | undefined'. Did you mean '"utf-8"'?
+
+    [7m188[0m         const content: string = fs.readFileSync(sourceFile, {encoding: "UTF-8"});
+    [7m   [0m [91m                                                             ~~~~~~~~[0m
+
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m230[0m:[93m38[0m - [91merror[0m[90m TS2503: [0mCannot find namespace 'Mocha'.
+
+    [7m230[0m       async function testBench(this: Mocha.Context) {
+    [7m   [0m [91m                                     ~~~~~[0m
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m237[0m:[93m103[0m - [91merror[0m[90m TS2345: [0mArgument of type '"UTF-8"' is not assignable to parameter of type 'BufferEncoding | undefined'.
+
+    [7m237[0m           inputPromises.push(fs.promises.readFile(resolved).then(buffer => JSON.parse(buffer.toString("UTF-8"))));
+    [7m   [0m [91m                                                                                                      ~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m241[0m:[93m83[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+      Overload 1 of 3, '(path: PathLike | FileHandle, options?: ({ encoding?: null | undefined; flag?: OpenMode | undefined; } & Abortable) | null | undefined): Promise<...>', gave the following error.
+        Type 'string' is not assignable to type 'null | undefined'.
+      Overload 2 of 3, '(path: PathLike | FileHandle, options: BufferEncoding | ({ encoding: BufferEncoding; flag?: OpenMode | undefined; } & Abortable)): Promise<...>', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding'. Did you mean '"utf-8"'?
+      Overload 3 of 3, '(path: PathLike | FileHandle, options?: BufferEncoding | (ObjectEncodingOptions & Abortable & { flag?: OpenMode | undefined; }) | null | undefined): Promise<...>', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding | null | undefined'. Did you mean '"utf-8"'?
+
+    [7m241[0m         const expectedContent: string = await fs.promises.readFile(expectedPath, {encoding: "UTF-8"}) as string;
+    [7m   [0m [91m                                                                                  ~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/core/event-handler.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/event-handler.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/infrastructure/container-orchestrator-integration.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator-integration.test.ts[0m:[93m1[0m:[93m39[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-orchestrator' or its corresponding type declarations.
+
+    [7m1[0m import { ContainerOrchestrator } from '../../lib/container-orchestrator';
+    [7m [0m [91m                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator-integration.test.ts[0m:[93m2[0m:[93m52[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/service-mesh-config' or its corresponding type declarations.
+
+    [7m2[0m import { ServiceMeshProxy, ServiceMeshRoute } from '../../types/service-mesh-config';
+    [7m [0m [91m                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/cross-service-auth.test.ts (44.132 s)
+  CrossServiceAuth
+    Service Registration
+      ✓ should register a service successfully (126 ms)
+      ✓ should retrieve a registered service by ID (3 ms)
+      ✓ should update a service successfully (18 ms)
+      ✓ should deregister a service successfully (28 ms)
+    Token Management
+      ✓ should issue a token for a service (24 ms)
+      ✓ should validate a token successfully (4 ms)
+      ✓ should validate a token against an expected audience (4 ms)
+      ✕ should revoke a token successfully (74 ms)
+      ✕ should revoke all tokens for a service (48 ms)
+      ✓ should automatically invalidate tokens when key rotates (178 ms)
+    Authorization Policies
+      ✓ should register a policy successfully (4 ms)
+      ✓ should retrieve a policy by ID (14 ms)
+      ✓ should update a policy successfully (28 ms)
+      ✓ should delete a policy successfully (4 ms)
+      ✓ should check authorization successfully (104 ms)
+      ✓ should support regex service selectors (8 ms)
+      ✓ should support conditional rules (4 ms)
+    Stats and Metrics
+      ✕ should return valid statistics (43 ms)
+
+  ● CrossServiceAuth › Token Management › should revoke a token successfully
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      170 |       // Token should be invalid after revocation
+      171 |       const validation2 = crossServiceAuth.validateToken(token!.token);
+    > 172 |       expect(validation2.valid).toBe(false);
+          |                                 ^
+      173 |     });
+      174 |     
+      175 |     test('should revoke all tokens for a service', () => {
+
+      at Object.<anonymous> (tests/p1/services/cross-service-auth.test.ts:172:33)
+
+  ● CrossServiceAuth › Token Management › should revoke all tokens for a service
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 1
+
+      185 |       // Revoke all tokens
+      186 |       const count = crossServiceAuth.revokeAllServiceTokens(serviceId);
+    > 187 |       expect(count).toBe(3);
+          |                     ^
+      188 |       
+      189 |       // All tokens should be invalid
+      190 |       expect(crossServiceAuth.validateToken(token1!.token).valid).toBe(false);
+
+      at Object.<anonymous> (tests/p1/services/cross-service-auth.test.ts:187:21)
+
+  ● CrossServiceAuth › Stats and Metrics › should return valid statistics
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 0
+
+      541 |       
+      542 |       expect(stats.services).toBe(2);
+    > 543 |       expect(stats.activeTokens).toBe(2);
+          |                                  ^
+      544 |       expect(stats.policies).toBe(1);
+      545 |       expect(stats.keyAge).toBeGreaterThanOrEqual(0);
+      546 |     });
+
+      at Object.<anonymous> (tests/p1/services/cross-service-auth.test.ts:543:34)
+
+FAIL packages/core/tests/p1/infrastructure/pipeline-integration.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/pipeline' or its corresponding type declarations.
+
+    [7m1[0m import { Pipeline } from '../../lib/pipeline';
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m2[0m:[93m39[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-orchestrator' or its corresponding type declarations.
+
+    [7m2[0m import { ContainerOrchestrator } from '../../lib/container-orchestrator';
+    [7m [0m [91m                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m3[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/service-mesh' or its corresponding type declarations.
+
+    [7m3[0m import { ServiceMesh } from '../../lib/service-mesh';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m4[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-runtime' or its corresponding type declarations.
+
+    [7m4[0m import { ContainerRuntime } from '../../lib/container-runtime';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m5[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/service-deployment' or its corresponding type declarations.
+
+    [7m5[0m import { ServiceDeployment } from '../../lib/service-deployment';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m6[0m:[93m36[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/orchestrator-config' or its corresponding type declarations.
+
+    [7m6[0m import { OrchestratorConfig } from '../../types/orchestrator-config';
+    [7m [0m [91m                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m7[0m:[93m38[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/runtime-config' or its corresponding type declarations.
+
+    [7m7[0m import { RuntimeConfigOptions } from '../../types/runtime-config';
+    [7m [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m8[0m:[93m54[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/deployment-config' or its corresponding type declarations.
+
+    [7m8[0m import { DeploymentConfigOptions, ServicePort } from '../../types/deployment-config';
+    [7m [0m [91m                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m9[0m:[93m42[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/service-mesh-config' or its corresponding type declarations.
+
+    [7m9[0m import { ServiceMeshConfigOptions } from '../../types/service-mesh-config';
+    [7m [0m [91m                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/integration-test-types' or its corresponding type declarations.
+
+    [7m15[0m } from '../../types/integration-test-types';
+    [7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m18[0m:[93m16[0m - [91merror[0m[90m TS2664: [0mInvalid module name in augmentation, module '../../types/pipeline-config' cannot be found.
+
+    [7m18[0m declare module '../../types/pipeline-config' {
+    [7m  [0m [91m               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/core/pipeline.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/pipeline.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/pipeline' or its corresponding type declarations.
+
+    [7m1[0m import { Pipeline } from '../../lib/pipeline';
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/pipeline.test.ts[0m:[93m2[0m:[93m61[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/pipeline-config' or its corresponding type declarations.
+
+    [7m2[0m import { PipelineConfigOptions, StageExecutionResult } from '../../types/pipeline-config';
+    [7m [0m [91m                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/catalog-event.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/catalog-event.service.test.ts[0m:[93m1[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../catalog-event.service' or its corresponding type declarations.
+
+    [7m1[0m import { CatalogEventService } from '../catalog-event.service';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/catalog-event.service.test.ts[0m:[93m2[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/product' or its corresponding type declarations.
+
+    [7m2[0m import { Product } from '../../models/product';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/catalog-event.service.test.ts[0m:[93m3[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/category' or its corresponding type declarations.
+
+    [7m3[0m import { Category } from '../../models/category';
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/service-mesh.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/service-mesh.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/service-mesh' or its corresponding type declarations.
+
+    [7m1[0m import { ServiceMesh } from '../../lib/service-mesh';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/service-mesh.test.ts[0m:[93m2[0m:[93m71[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/service-mesh-config' or its corresponding type declarations.
+
+    [7m2[0m import { ServiceMeshProxy, ServiceMeshRoute, ServiceMeshPolicy } from '../../types/service-mesh-config';
+    [7m [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/frontend/components/styling-consistency.test.tsx
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS7016: [0mCould not find a declaration file for module 'react'. '/opt/mExpress/node_modules/react/index.js' implicitly has an 'any' type.
+      Try `npm i --save-dev @types/react` if it exists or add a new declaration (.d.ts) file containing `declare module 'react';`
+
+    [7m1[0m import React from 'react';
+    [7m [0m [91m                  ~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m2[0m:[93m32[0m - [91merror[0m[90m TS2307: [0mCannot find module '@testing-library/react' or its corresponding type declarations.
+
+    [7m2[0m import { render, screen } from '@testing-library/react';
+    [7m [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m3[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module 'styled-components' or its corresponding type declarations.
+
+    [7m3[0m import { ThemeProvider } from 'styled-components';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m5[0m:[93m24[0m - [91merror[0m[90m TS6142: [0mModule '../../../../src/frontend/src/components/common/Button' was resolved to '/opt/mExpress/packages/core/src/frontend/src/components/common/Button.tsx', but '--jsx' is not set.
+
+    [7m5[0m import { Button } from '../../../../src/frontend/src/components/common/Button';
+    [7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS6142: [0mModule '../../../../src/frontend/src/components/common/Input' was resolved to '/opt/mExpress/packages/core/src/frontend/src/components/common/Input.tsx', but '--jsx' is not set.
+
+    [7m6[0m import { Input } from '../../../../src/frontend/src/components/common/Input';
+    [7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m7[0m:[93m22[0m - [91merror[0m[90m TS6142: [0mModule '../../../../src/frontend/src/components/common/Card' was resolved to '/opt/mExpress/packages/core/src/frontend/src/components/common/Card.tsx', but '--jsx' is not set.
+
+    [7m7[0m import { Card } from '../../../../src/frontend/src/components/common/Card';
+    [7m [0m [91m                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m16[0m:[93m19[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m16[0m     return render(<ThemeProvider theme={defaultTheme}>{ui}</ThemeProvider>);
+    [7m  [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m21[0m:[93m7[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m21[0m       <>
+    [7m  [0m [91m      ~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m22[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m22[0m         <Button variant="primary" data-testid="primary-button">Primary Button</Button>
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m23[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m23[0m         <Button variant="secondary" data-testid="secondary-button">Secondary Button</Button>
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m24[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m24[0m         <Button variant="tertiary" data-testid="tertiary-button">Tertiary Button</Button>
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m61[0m:[93m7[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m61[0m       <>
+    [7m  [0m [91m      ~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m62[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m62[0m         <Input type="text" placeholder="Regular input" data-testid="regular-input" />
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m63[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m63[0m         <Input type="text" placeholder="Disabled input" disabled data-testid="disabled-input" />
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m64[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m64[0m         <Input type="text" placeholder="Error input" error data-testid="error-input" />
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m100[0m:[93m7[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m100[0m       <>
+    [7m   [0m [91m      ~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m101[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m101[0m         <Card data-testid="default-card">Default Card</Card>
+    [7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m102[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m102[0m         <Card variant="elevated" data-testid="elevated-card">Elevated Card</Card>
+    [7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m103[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m103[0m         <Card variant="outlined" data-testid="outlined-card">Outlined Card</Card>
+    [7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/core/message-state-manager.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/message-state-manager.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/message-state-manager.test.ts[0m:[93m2[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/message-state-manager' or its corresponding type declarations.
+
+    [7m2[0m import { MessageStateManager } from '../../../../src/core/message-queue/message-state-manager';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/message-state-manager.test.ts[0m:[93m3[0m:[93m46[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m3[0m import { QueuedMessage, MessageStatus } from '../../../../src/core/message-queue/types';
+    [7m [0m [91m                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/message-state-manager.test.ts[0m:[93m136[0m:[93m49[0m - [91merror[0m[90m TS7006: [0mParameter 'r' implicitly has an 'any' type.
+
+    [7m136[0m             const successCount = results.filter(r => r.success).length;
+    [7m   [0m [91m                                                ~[0m
+
+PASS packages/core/tests/p1/api/retry-logic.test.ts
+  API Client Retry Logic Tests
+    ✓ should respect configured retry count setting (82 ms)
+    ✓ should not retry on non-timeout errors by default (24 ms)
+    ✓ should use exponential backoff delay between retries (27 ms)
+
+FAIL packages/core/tests/p1/services/product.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/product.service.test.ts[0m:[93m1[0m:[93m32[0m - [91merror[0m[90m TS2307: [0mCannot find module '../product.service' or its corresponding type declarations.
+
+    [7m1[0m import { ProductService } from '../product.service';
+    [7m [0m [91m                               ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/product.service.test.ts[0m:[93m2[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/product' or its corresponding type declarations.
+
+    [7m2[0m import { Product, IProduct } from '../../models/product';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/core/message-queue-v2.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/message-queue-v2.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/message-queue-v2.test.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/message-queue-v2' or its corresponding type declarations.
+
+    [7m2[0m import { MessageQueue } from '../../../../src/core/message-queue/message-queue-v2';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/message-queue-v2.test.ts[0m:[93m3[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m3[0m import { QueuedMessage } from '../../../../src/core/message-queue/types';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/infrastructure/git-workflow.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/git-workflow.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/git-workflow' or its corresponding type declarations.
+
+    [7m1[0m import { GitWorkflow } from '../../lib/git-workflow';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/git-workflow.test.ts[0m:[93m2[0m:[93m54[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/git-workflow-config' or its corresponding type declarations.
+
+    [7m2[0m import { WorkflowConfigOptions, CommitMessage } from '../../types/git-workflow-config';
+    [7m [0m [91m                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/customer.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/customer.service.test.ts[0m:[93m1[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '../customer.service' or its corresponding type declarations.
+
+    [7m1[0m import { CustomerService } from '../customer.service';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/customer.service.test.ts[0m:[93m2[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/customer' or its corresponding type declarations.
+
+    [7m2[0m import { Customer, ICustomer } from '../../models/customer';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+PASS packages/core/tests/p1/auth/permissions.test.ts
+  Auth Permissions Tests
+    ✓ should correctly validate role hierarchy (15 ms)
+    ✓ should correctly determine user permissions based on roles (6 ms)
+
+FAIL packages/core/tests/p1/services/customer-validation.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/customer-validation.service.test.ts[0m:[93m1[0m:[93m58[0m - [91merror[0m[90m TS2307: [0mCannot find module '../customer-validation.service' or its corresponding type declarations.
+
+    [7m1[0m import { CustomerValidationService, CustomerInput } from '../customer-validation.service';
+    [7m [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/customer-validation.service.test.ts[0m:[93m2[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../models/customer' or its corresponding type declarations.
+
+    [7m2[0m import { CustomerModel } from '../../../models/customer';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/core/high-availability.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/high-availability.test.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/high-availability' or its corresponding type declarations.
+
+    [7m1[0m import { HighAvailability } from '../../lib/high-availability';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/high-availability.test.ts[0m:[93m2[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/ha-config' or its corresponding type declarations.
+
+    [7m2[0m import { HAConfigOptions } from '../../types/ha-config';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/core/time-provider.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/time-provider.test.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/time/time-provider' or its corresponding type declarations.
+
+    [7m1[0m import { TestTimeProvider } from '../../../../src/core/time/time-provider';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/hiboutik.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/hiboutik.service.test.ts[0m:[93m1[0m:[93m67[0m - [91merror[0m[90m TS2307: [0mCannot find module '../hiboutik.service' or its corresponding type declarations.
+
+    [7m1[0m import { HiboutikService, HiboutikConfig, HiboutikCustomer } from '../hiboutik.service';
+    [7m [0m [91m                                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/hiboutik.service.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/service-deployment.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/service-deployment.test.ts[0m:[93m1[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/service-deployment' or its corresponding type declarations.
+
+    [7m1[0m import { ServiceDeployment } from '../../lib/service-deployment';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/service-deployment.test.ts[0m:[93m2[0m:[93m54[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/deployment-config' or its corresponding type declarations.
+
+    [7m2[0m import { DeploymentConfigOptions, ServicePort } from '../../types/deployment-config';
+    [7m [0m [91m                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/infrastructure/container-orchestrator.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator.test.ts[0m:[93m1[0m:[93m39[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-orchestrator' or its corresponding type declarations.
+
+    [7m1[0m import { ContainerOrchestrator } from '../../lib/container-orchestrator';
+    [7m [0m [91m                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator.test.ts[0m:[93m2[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/kubernetes-config' or its corresponding type declarations.
+
+    [7m2[0m import { KubernetesConfig } from '../../lib/kubernetes-config';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator.test.ts[0m:[93m3[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-runtime' or its corresponding type declarations.
+
+    [7m3[0m import { ContainerRuntime } from '../../lib/container-runtime';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator.test.ts[0m:[93m4[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/service-deployment' or its corresponding type declarations.
+
+    [7m4[0m import { ServiceDeployment } from '../../lib/service-deployment';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator.test.ts[0m:[93m5[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/high-availability' or its corresponding type declarations.
+
+    [7m5[0m import { HighAvailability } from '../../lib/high-availability';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/sync.customer.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/sync.customer.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sync.service' or its corresponding type declarations.
+
+    [7m1[0m import { SyncService } from '../sync.service';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/sync.customer.test.ts[0m:[93m2[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../hiboutik.service' or its corresponding type declarations.
+
+    [7m2[0m import { HiboutikService, HiboutikCustomer } from '../hiboutik.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/sync.customer.test.ts[0m:[93m3[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m3[0m import { RingoverService, RingoverCustomer } from '../ringover.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/infrastructure/kubernetes-config.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/kubernetes-config.test.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/kubernetes-config' or its corresponding type declarations.
+
+    [7m1[0m import { KubernetesConfig } from '../../lib/kubernetes-config';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/kubernetes-config.test.ts[0m:[93m2[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/cluster-config' or its corresponding type declarations.
+
+    [7m2[0m import { ClusterConfig } from '../../types/cluster-config';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/ringover.customer.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/ringover.customer.test.ts[0m:[93m1[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m1[0m import { RingoverService, RingoverCustomer } from '../ringover.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/ringover.customer.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/core/sync.customer.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/sync.customer.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sync.service' or its corresponding type declarations.
+
+    [7m1[0m import { SyncService } from '../sync.service';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/sync.customer.test.ts[0m:[93m2[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../hiboutik.service' or its corresponding type declarations.
+
+    [7m2[0m import { HiboutikService, HiboutikCustomer } from '../hiboutik.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/sync.customer.test.ts[0m:[93m3[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m3[0m import { RingoverService, RingoverCustomer } from '../ringover.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/core/ringover.customer.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/ringover.customer.test.ts[0m:[93m1[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m1[0m import { RingoverService, RingoverCustomer } from '../ringover.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/ringover.customer.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/ringover.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/ringover.service.test.ts[0m:[93m1[0m:[93m49[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m1[0m import { RingoverService, RingoverConfig } from '../ringover.service';
+    [7m [0m [91m                                                ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/ringover.service.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/ringover.service.test.ts[0m:[93m32[0m:[93m40[0m - [91merror[0m[90m TS7006: [0mParameter 'config' implicitly has an 'any' type.
+
+    [7m32[0m       mockAxios.onGet('/calls').reply((config) => {
+    [7m  [0m [91m                                       ~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/sync.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/sync.service.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sync.service' or its corresponding type declarations.
+
+    [7m1[0m import { SyncService } from '../sync.service';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/sync.service.test.ts[0m:[93m2[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../hiboutik.service' or its corresponding type declarations.
+
+    [7m2[0m import { HiboutikService, HiboutikCustomer } from '../hiboutik.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/sync.service.test.ts[0m:[93m3[0m:[93m47[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m3[0m import { RingoverService, RingoverCall } from '../ringover.service';
+    [7m [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/infrastructure/container-runtime.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/container-runtime.test.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-runtime' or its corresponding type declarations.
+
+    [7m1[0m import { ContainerRuntime } from '../../lib/container-runtime';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-runtime.test.ts[0m:[93m2[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/runtime-config' or its corresponding type declarations.
+
+    [7m2[0m import { RuntimeConfig } from '../../types/runtime-config';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/debug-hiboutik.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/debug-hiboutik.test.ts[0m:[93m2[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m2[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/debug-hiboutik.test.ts[0m:[93m58[0m:[93m37[0m - [91merror[0m[90m TS7006: [0mParameter 'config' implicitly has an 'any' type.
+
+    [7m58[0m     mockAxios.onGet('/test').reply((config) => {
+    [7m  [0m [91m                                    ~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/product-events.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/product-events.test.ts[0m:[93m1[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/product' or its corresponding type declarations.
+
+    [7m1[0m import { Product } from '../../models/product';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/product-events.test.ts[0m:[93m3[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/product' or its corresponding type declarations.
+
+    [7m3[0m import { productEvents } from '../../models/product';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/services/category-events.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/category-events.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/category' or its corresponding type declarations.
+
+    [7m1[0m import { Category } from '../../models/category';
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/category-events.test.ts[0m:[93m3[0m:[93m32[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/category' or its corresponding type declarations.
+
+    [7m3[0m import { categoryEvents } from '../../models/category';
+    [7m [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL packages/core/tests/p1/core/TestExecutionPanel.test.tsx
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS7016: [0mCould not find a declaration file for module 'react'. '/opt/mExpress/node_modules/react/index.js' implicitly has an 'any' type.
+      Try `npm i --save-dev @types/react` if it exists or add a new declaration (.d.ts) file containing `declare module 'react';`
+
+    [7m1[0m import React from 'react';
+    [7m [0m [91m                  ~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m3[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@testing-library/react' or its corresponding type declarations.
+
+    [7m3[0m import { render } from '@testing-library/react';
+    [7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m4[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '@testing-library/react' or its corresponding type declarations.
+
+    [7m4[0m import * as testingLibrary from '@testing-library/react';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m5[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@testing-library/user-event' or its corresponding type declarations.
+
+    [7m5[0m import userEvent from '@testing-library/user-event';
+    [7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m6[0m:[93m36[0m - [91merror[0m[90m TS2307: [0mCannot find module '../TestExecutionPanel' or its corresponding type declarations.
+
+    [7m6[0m import { TestExecutionPanel } from '../TestExecutionPanel';
+    [7m [0m [91m                                   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m7[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../services/test.service' or its corresponding type declarations.
+
+    [7m7[0m import { TestService } from '../../../services/test.service';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m26[0m:[93m16[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m26[0m         render(<TestExecutionPanel testService={mockTestService as TestService} />);
+    [7m  [0m [91m               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+PASS packages/core/tests/p1/auth/token-refresh.test.ts
+  Auth Token Refresh Tests
+    ✓ should refresh token within 200ms time limit (19 ms)
+
+FAIL packages/core/tests/p1/core/concurrent-modification.test.ts (58.946 s)
+  Concurrent Modification
+    ✕ should handle optimistic locking for concurrent updates (921 ms)
+    ✕ should throw ConcurrencyError when optimistic locking retries exhausted (533 ms)
+    ✕ should handle pessimistic locking for concurrent updates (90 ms)
+    ✕ should throw LockTimeoutError when pessimistic lock cannot be acquired (414 ms)
+    ✕ should use different locking strategies based on options (877 ms)
+
+  ● Concurrent Modification › should handle optimistic locking for concurrent updates
+
+    expect(received).resolves.toBeDefined()
+
+    Received promise rejected instead of resolved
+    Rejected to value: [MongoServerError: Updating the path '__v' would create a conflict at '__v']
+
+      89 |     
+      90 |     // Both updates should succeed due to retry mechanism
+    > 91 |     await expect(Promise.all(updatePromises)).resolves.toBeDefined();
+         |           ^
+      92 |     
+      93 |     // Check final document state - both updates should be applied
+      94 |     const updatedProduct = await ProductModel.findById(product._id);
+
+      at expect (../../node_modules/expect/build/index.js:113:15)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:91:11)
+
+  ● Concurrent Modification › should throw ConcurrencyError when optimistic locking retries exhausted
+
+    MongoServerError: Updating the path '__v' would create a conflict at '__v'
+
+      119 |         
+      120 |         // Update the document with version check
+    > 121 |         const updated = await model.findOneAndUpdate(
+          |                         ^
+      122 |           { _id: id, __v: originalVersion },
+      123 |           { $set: doc.toObject(), $inc: { __v: 1 } },
+      124 |           { new: true }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOneAndUpdateOperation.executeCommand (../../node_modules/mongodb/src/operations/command.ts:179:12)
+      at FindOneAndUpdateOperation.execute (../../node_modules/mongodb/src/operations/find_and_modify.ts:216:20)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at Collection.findOneAndUpdate (../../node_modules/mongodb/src/collection.ts:997:12)
+      at model.Query._findOneAndUpdate (../../node_modules/mongoose/lib/query.js:3477:13)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at ConcurrencyManager.withOptimisticLock (src/core/database/concurrency-manager.ts:121:25)
+          at async Promise.all (index 0)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:139:21)
+
+  ● Concurrent Modification › should handle pessimistic locking for concurrent updates
+
+    MongoServerError: Transaction numbers are only allowed on a replica set member or mongos
+
+      182 |       return await this.transactionManager.runTransaction(async (session) => {
+      183 |         // Find document with lock
+    > 184 |         const doc = await model.findById(id).session(session);
+          |                     ^
+      185 |         if (!doc) {
+      186 |           throw new Error(`Document not found: ${id}`);
+      187 |         }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOperation.execute (../../node_modules/mongodb/src/operations/find.ts:130:12)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at FindCursor._initialize (../../node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+      at FindCursor.cursorInit (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+      at FindCursor.fetchBatch (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+      at FindCursor.next (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+      at Collection.findOne (../../node_modules/mongodb/src/collection.ts:525:17)
+      at model.Query._findOne (../../node_modules/mongoose/lib/query.js:2661:15)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at src/core/database/concurrency-manager.ts:184:21
+      at src/core/database/transaction-manager.ts:49:16
+      at TransactionManager.runTransaction (src/core/database/transaction-manager.ts:48:16)
+      at ConcurrencyManager.withPessimisticLock (src/core/database/concurrency-manager.ts:182:14)
+          at async Promise.all (index 0)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:195:21)
+
+  ● Concurrent Modification › should throw LockTimeoutError when pessimistic lock cannot be acquired
+
+    MongoServerError: Transaction numbers are only allowed on a replica set member or mongos
+
+      182 |       return await this.transactionManager.runTransaction(async (session) => {
+      183 |         // Find document with lock
+    > 184 |         const doc = await model.findById(id).session(session);
+          |                     ^
+      185 |         if (!doc) {
+      186 |           throw new Error(`Document not found: ${id}`);
+      187 |         }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOperation.execute (../../node_modules/mongodb/src/operations/find.ts:130:12)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at FindCursor._initialize (../../node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+      at FindCursor.cursorInit (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+      at FindCursor.fetchBatch (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+      at FindCursor.next (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+      at Collection.findOne (../../node_modules/mongodb/src/collection.ts:525:17)
+      at model.Query._findOne (../../node_modules/mongoose/lib/query.js:2661:15)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at src/core/database/concurrency-manager.ts:184:21
+      at src/core/database/transaction-manager.ts:49:16
+      at TransactionManager.runTransaction (src/core/database/transaction-manager.ts:48:16)
+      at ConcurrencyManager.withPessimisticLock (src/core/database/concurrency-manager.ts:182:14)
+
+  ● Concurrent Modification › should throw LockTimeoutError when pessimistic lock cannot be acquired
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected pattern: /Failed to acquire lock.*within/
+    Received message: "Transaction numbers are only allowed on a replica set member or mongos"
+
+          182 |       return await this.transactionManager.runTransaction(async (session) => {
+          183 |         // Find document with lock
+        > 184 |         const doc = await model.findById(id).session(session);
+              |                     ^
+          185 |         if (!doc) {
+          186 |           throw new Error(`Document not found: ${id}`);
+          187 |         }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOperation.execute (../../node_modules/mongodb/src/operations/find.ts:130:12)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at FindCursor._initialize (../../node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+      at FindCursor.cursorInit (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+      at FindCursor.fetchBatch (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+      at FindCursor.next (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+      at Collection.findOne (../../node_modules/mongodb/src/collection.ts:525:17)
+      at model.Query._findOne (../../node_modules/mongoose/lib/query.js:2661:15)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at src/core/database/concurrency-manager.ts:184:21
+      at src/core/database/transaction-manager.ts:49:16
+      at TransactionManager.runTransaction (src/core/database/transaction-manager.ts:48:16)
+      at ConcurrencyManager.withPessimisticLock (src/core/database/concurrency-manager.ts:182:14)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:244:5)
+      at Object.toThrow (../../node_modules/expect/build/index.js:218:22)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:244:41)
+
+  ● Concurrent Modification › should use different locking strategies based on options
+
+    MongoServerError: Updating the path '__v' would create a conflict at '__v'
+
+      119 |         
+      120 |         // Update the document with version check
+    > 121 |         const updated = await model.findOneAndUpdate(
+          |                         ^
+      122 |           { _id: id, __v: originalVersion },
+      123 |           { $set: doc.toObject(), $inc: { __v: 1 } },
+      124 |           { new: true }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOneAndUpdateOperation.executeCommand (../../node_modules/mongodb/src/operations/command.ts:179:12)
+      at FindOneAndUpdateOperation.execute (../../node_modules/mongodb/src/operations/find_and_modify.ts:216:20)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at Collection.findOneAndUpdate (../../node_modules/mongodb/src/collection.ts:997:12)
+      at model.Query._findOneAndUpdate (../../node_modules/mongoose/lib/query.js:3477:13)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at ConcurrencyManager.withOptimisticLock (src/core/database/concurrency-manager.ts:121:25)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:259:5)
+
+A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+Summary of all failing tests
+FAIL tests/p1/core/external-integration.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/external-integration.test.ts[0m:[93m2[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../integration-tester' or its corresponding type declarations.
+
+    [7m2[0m import { IntegrationTester } from '../integration-tester';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/external-integration.test.ts[0m:[93m3[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../services/hiboutik.service' or its corresponding type declarations.
+
+    [7m3[0m import { HiboutikService } from '../../../services/hiboutik.service';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/external-integration.test.ts[0m:[93m4[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../services/ringover.service' or its corresponding type declarations.
+
+    [7m4[0m import { RingoverService } from '../../../services/ringover.service';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/core/queue-persistence.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/queue-persistence.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/git-workflow-automation/src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/queue-persistence.test.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/message-queue-v2' or its corresponding type declarations.
+
+    [7m2[0m import { MessageQueue } from '../../../../src/git-workflow-automation/src/core/message-queue/message-queue-v2';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/queue-persistence.test.ts[0m:[93m3[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m3[0m import { QueuedMessage } from '../../../../src/git-workflow-automation/src/core/message-queue/types';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/queue-persistence.test.ts[0m:[93m4[0m:[93m41[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/git-workflow-automation/src/core/message-queue/queue-persistence-manager' or its corresponding type declarations.
+
+    [7m4[0m import { QueuePersistenceManager } from '../../../../src/git-workflow-automation/src/core/message-queue/queue-persistence-manager';
+    [7m [0m [91m                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/core/merge.spec.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m1[0m:[93m18[0m - [91merror[0m[90m TS2307: [0mCannot find module 'chai' or its corresponding type declarations.
+
+    [7m1[0m import chai from "chai";
+    [7m [0m [91m                 ~~~~~~[0m
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m4[0m:[93m106[0m - [91merror[0m[90m TS2307: [0mCannot find module '../lib' or its corresponding type declarations.
+
+    [7m4[0m import { FunctionCov, mergeFunctionCovs, mergeProcessCovs, mergeScriptCovs, ProcessCov, ScriptCov } from "../lib";
+    [7m [0m [91m                                                                                                         ~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m23[0m:[93m6[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+      Overload 1 of 3, '(path: PathOrFileDescriptor, options?: { encoding?: null | undefined; flag?: string | undefined; } | null | undefined): Buffer<ArrayBufferLike>', gave the following error.
+        Type 'string' is not assignable to type 'null | undefined'.
+      Overload 2 of 3, '(path: PathOrFileDescriptor, options: { encoding: BufferEncoding; flag?: string | undefined; } | BufferEncoding): string', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding'. Did you mean '"utf-8"'?
+      Overload 3 of 3, '(path: PathOrFileDescriptor, options?: BufferEncoding | (ObjectEncodingOptions & { flag?: string | undefined; }) | null | undefined): string | Buffer<...>', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding | null | undefined'. Did you mean '"utf-8"'?
+
+    [7m23[0m     {encoding: "UTF-8"},
+    [7m  [0m [91m     ~~~~~~~~[0m
+
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m188[0m:[93m62[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+      Overload 1 of 3, '(path: PathOrFileDescriptor, options?: { encoding?: null | undefined; flag?: string | undefined; } | null | undefined): Buffer<ArrayBufferLike>', gave the following error.
+        Type 'string' is not assignable to type 'null | undefined'.
+      Overload 2 of 3, '(path: PathOrFileDescriptor, options: { encoding: BufferEncoding; flag?: string | undefined; } | BufferEncoding): string', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding'. Did you mean '"utf-8"'?
+      Overload 3 of 3, '(path: PathOrFileDescriptor, options?: BufferEncoding | (ObjectEncodingOptions & { flag?: string | undefined; }) | null | undefined): string | Buffer<...>', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding | null | undefined'. Did you mean '"utf-8"'?
+
+    [7m188[0m         const content: string = fs.readFileSync(sourceFile, {encoding: "UTF-8"});
+    [7m   [0m [91m                                                             ~~~~~~~~[0m
+
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m230[0m:[93m38[0m - [91merror[0m[90m TS2503: [0mCannot find namespace 'Mocha'.
+
+    [7m230[0m       async function testBench(this: Mocha.Context) {
+    [7m   [0m [91m                                     ~~~~~[0m
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m237[0m:[93m103[0m - [91merror[0m[90m TS2345: [0mArgument of type '"UTF-8"' is not assignable to parameter of type 'BufferEncoding | undefined'.
+
+    [7m237[0m           inputPromises.push(fs.promises.readFile(resolved).then(buffer => JSON.parse(buffer.toString("UTF-8"))));
+    [7m   [0m [91m                                                                                                      ~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/merge.spec.ts[0m:[93m241[0m:[93m83[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+      Overload 1 of 3, '(path: PathLike | FileHandle, options?: ({ encoding?: null | undefined; flag?: OpenMode | undefined; } & Abortable) | null | undefined): Promise<...>', gave the following error.
+        Type 'string' is not assignable to type 'null | undefined'.
+      Overload 2 of 3, '(path: PathLike | FileHandle, options: BufferEncoding | ({ encoding: BufferEncoding; flag?: OpenMode | undefined; } & Abortable)): Promise<...>', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding'. Did you mean '"utf-8"'?
+      Overload 3 of 3, '(path: PathLike | FileHandle, options?: BufferEncoding | (ObjectEncodingOptions & Abortable & { flag?: OpenMode | undefined; }) | null | undefined): Promise<...>', gave the following error.
+        Type '"UTF-8"' is not assignable to type 'BufferEncoding | null | undefined'. Did you mean '"utf-8"'?
+
+    [7m241[0m         const expectedContent: string = await fs.promises.readFile(expectedPath, {encoding: "UTF-8"}) as string;
+    [7m   [0m [91m                                                                                  ~~~~~~~~[0m
+
+FAIL tests/p1/core/event-handler.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/event-handler.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/infrastructure/container-orchestrator-integration.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator-integration.test.ts[0m:[93m1[0m:[93m39[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-orchestrator' or its corresponding type declarations.
+
+    [7m1[0m import { ContainerOrchestrator } from '../../lib/container-orchestrator';
+    [7m [0m [91m                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator-integration.test.ts[0m:[93m2[0m:[93m52[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/service-mesh-config' or its corresponding type declarations.
+
+    [7m2[0m import { ServiceMeshProxy, ServiceMeshRoute } from '../../types/service-mesh-config';
+    [7m [0m [91m                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/cross-service-auth.test.ts (44.132 s)
+  ● CrossServiceAuth › Token Management › should revoke a token successfully
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      170 |       // Token should be invalid after revocation
+      171 |       const validation2 = crossServiceAuth.validateToken(token!.token);
+    > 172 |       expect(validation2.valid).toBe(false);
+          |                                 ^
+      173 |     });
+      174 |     
+      175 |     test('should revoke all tokens for a service', () => {
+
+      at Object.<anonymous> (tests/p1/services/cross-service-auth.test.ts:172:33)
+
+  ● CrossServiceAuth › Token Management › should revoke all tokens for a service
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 1
+
+      185 |       // Revoke all tokens
+      186 |       const count = crossServiceAuth.revokeAllServiceTokens(serviceId);
+    > 187 |       expect(count).toBe(3);
+          |                     ^
+      188 |       
+      189 |       // All tokens should be invalid
+      190 |       expect(crossServiceAuth.validateToken(token1!.token).valid).toBe(false);
+
+      at Object.<anonymous> (tests/p1/services/cross-service-auth.test.ts:187:21)
+
+  ● CrossServiceAuth › Stats and Metrics › should return valid statistics
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 0
+
+      541 |       
+      542 |       expect(stats.services).toBe(2);
+    > 543 |       expect(stats.activeTokens).toBe(2);
+          |                                  ^
+      544 |       expect(stats.policies).toBe(1);
+      545 |       expect(stats.keyAge).toBeGreaterThanOrEqual(0);
+      546 |     });
+
+      at Object.<anonymous> (tests/p1/services/cross-service-auth.test.ts:543:34)
+
+FAIL tests/p1/infrastructure/pipeline-integration.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/pipeline' or its corresponding type declarations.
+
+    [7m1[0m import { Pipeline } from '../../lib/pipeline';
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m2[0m:[93m39[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-orchestrator' or its corresponding type declarations.
+
+    [7m2[0m import { ContainerOrchestrator } from '../../lib/container-orchestrator';
+    [7m [0m [91m                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m3[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/service-mesh' or its corresponding type declarations.
+
+    [7m3[0m import { ServiceMesh } from '../../lib/service-mesh';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m4[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-runtime' or its corresponding type declarations.
+
+    [7m4[0m import { ContainerRuntime } from '../../lib/container-runtime';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m5[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/service-deployment' or its corresponding type declarations.
+
+    [7m5[0m import { ServiceDeployment } from '../../lib/service-deployment';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m6[0m:[93m36[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/orchestrator-config' or its corresponding type declarations.
+
+    [7m6[0m import { OrchestratorConfig } from '../../types/orchestrator-config';
+    [7m [0m [91m                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m7[0m:[93m38[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/runtime-config' or its corresponding type declarations.
+
+    [7m7[0m import { RuntimeConfigOptions } from '../../types/runtime-config';
+    [7m [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m8[0m:[93m54[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/deployment-config' or its corresponding type declarations.
+
+    [7m8[0m import { DeploymentConfigOptions, ServicePort } from '../../types/deployment-config';
+    [7m [0m [91m                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m9[0m:[93m42[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/service-mesh-config' or its corresponding type declarations.
+
+    [7m9[0m import { ServiceMeshConfigOptions } from '../../types/service-mesh-config';
+    [7m [0m [91m                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/integration-test-types' or its corresponding type declarations.
+
+    [7m15[0m } from '../../types/integration-test-types';
+    [7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/pipeline-integration.test.ts[0m:[93m18[0m:[93m16[0m - [91merror[0m[90m TS2664: [0mInvalid module name in augmentation, module '../../types/pipeline-config' cannot be found.
+
+    [7m18[0m declare module '../../types/pipeline-config' {
+    [7m  [0m [91m               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/core/pipeline.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/pipeline.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/pipeline' or its corresponding type declarations.
+
+    [7m1[0m import { Pipeline } from '../../lib/pipeline';
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/pipeline.test.ts[0m:[93m2[0m:[93m61[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/pipeline-config' or its corresponding type declarations.
+
+    [7m2[0m import { PipelineConfigOptions, StageExecutionResult } from '../../types/pipeline-config';
+    [7m [0m [91m                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/catalog-event.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/catalog-event.service.test.ts[0m:[93m1[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../catalog-event.service' or its corresponding type declarations.
+
+    [7m1[0m import { CatalogEventService } from '../catalog-event.service';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/catalog-event.service.test.ts[0m:[93m2[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/product' or its corresponding type declarations.
+
+    [7m2[0m import { Product } from '../../models/product';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/catalog-event.service.test.ts[0m:[93m3[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/category' or its corresponding type declarations.
+
+    [7m3[0m import { Category } from '../../models/category';
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/service-mesh.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/service-mesh.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/service-mesh' or its corresponding type declarations.
+
+    [7m1[0m import { ServiceMesh } from '../../lib/service-mesh';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/service-mesh.test.ts[0m:[93m2[0m:[93m71[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/service-mesh-config' or its corresponding type declarations.
+
+    [7m2[0m import { ServiceMeshProxy, ServiceMeshRoute, ServiceMeshPolicy } from '../../types/service-mesh-config';
+    [7m [0m [91m                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/frontend/components/styling-consistency.test.tsx
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS7016: [0mCould not find a declaration file for module 'react'. '/opt/mExpress/node_modules/react/index.js' implicitly has an 'any' type.
+      Try `npm i --save-dev @types/react` if it exists or add a new declaration (.d.ts) file containing `declare module 'react';`
+
+    [7m1[0m import React from 'react';
+    [7m [0m [91m                  ~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m2[0m:[93m32[0m - [91merror[0m[90m TS2307: [0mCannot find module '@testing-library/react' or its corresponding type declarations.
+
+    [7m2[0m import { render, screen } from '@testing-library/react';
+    [7m [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m3[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module 'styled-components' or its corresponding type declarations.
+
+    [7m3[0m import { ThemeProvider } from 'styled-components';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m5[0m:[93m24[0m - [91merror[0m[90m TS6142: [0mModule '../../../../src/frontend/src/components/common/Button' was resolved to '/opt/mExpress/packages/core/src/frontend/src/components/common/Button.tsx', but '--jsx' is not set.
+
+    [7m5[0m import { Button } from '../../../../src/frontend/src/components/common/Button';
+    [7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS6142: [0mModule '../../../../src/frontend/src/components/common/Input' was resolved to '/opt/mExpress/packages/core/src/frontend/src/components/common/Input.tsx', but '--jsx' is not set.
+
+    [7m6[0m import { Input } from '../../../../src/frontend/src/components/common/Input';
+    [7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m7[0m:[93m22[0m - [91merror[0m[90m TS6142: [0mModule '../../../../src/frontend/src/components/common/Card' was resolved to '/opt/mExpress/packages/core/src/frontend/src/components/common/Card.tsx', but '--jsx' is not set.
+
+    [7m7[0m import { Card } from '../../../../src/frontend/src/components/common/Card';
+    [7m [0m [91m                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m16[0m:[93m19[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m16[0m     return render(<ThemeProvider theme={defaultTheme}>{ui}</ThemeProvider>);
+    [7m  [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m21[0m:[93m7[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m21[0m       <>
+    [7m  [0m [91m      ~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m22[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m22[0m         <Button variant="primary" data-testid="primary-button">Primary Button</Button>
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m23[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m23[0m         <Button variant="secondary" data-testid="secondary-button">Secondary Button</Button>
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m24[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m24[0m         <Button variant="tertiary" data-testid="tertiary-button">Tertiary Button</Button>
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m61[0m:[93m7[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m61[0m       <>
+    [7m  [0m [91m      ~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m62[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m62[0m         <Input type="text" placeholder="Regular input" data-testid="regular-input" />
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m63[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m63[0m         <Input type="text" placeholder="Disabled input" disabled data-testid="disabled-input" />
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m64[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m64[0m         <Input type="text" placeholder="Error input" error data-testid="error-input" />
+    [7m  [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m100[0m:[93m7[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m100[0m       <>
+    [7m   [0m [91m      ~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m101[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m101[0m         <Card data-testid="default-card">Default Card</Card>
+    [7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m102[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m102[0m         <Card variant="elevated" data-testid="elevated-card">Elevated Card</Card>
+    [7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/frontend/components/styling-consistency.test.tsx[0m:[93m103[0m:[93m9[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m103[0m         <Card variant="outlined" data-testid="outlined-card">Outlined Card</Card>
+    [7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/core/message-state-manager.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/message-state-manager.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/message-state-manager.test.ts[0m:[93m2[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/message-state-manager' or its corresponding type declarations.
+
+    [7m2[0m import { MessageStateManager } from '../../../../src/core/message-queue/message-state-manager';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/message-state-manager.test.ts[0m:[93m3[0m:[93m46[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m3[0m import { QueuedMessage, MessageStatus } from '../../../../src/core/message-queue/types';
+    [7m [0m [91m                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/message-state-manager.test.ts[0m:[93m136[0m:[93m49[0m - [91merror[0m[90m TS7006: [0mParameter 'r' implicitly has an 'any' type.
+
+    [7m136[0m             const successCount = results.filter(r => r.success).length;
+    [7m   [0m [91m                                                ~[0m
+
+FAIL tests/p1/services/product.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/product.service.test.ts[0m:[93m1[0m:[93m32[0m - [91merror[0m[90m TS2307: [0mCannot find module '../product.service' or its corresponding type declarations.
+
+    [7m1[0m import { ProductService } from '../product.service';
+    [7m [0m [91m                               ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/product.service.test.ts[0m:[93m2[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/product' or its corresponding type declarations.
+
+    [7m2[0m import { Product, IProduct } from '../../models/product';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/core/message-queue-v2.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/message-queue-v2.test.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/event-system/event-handler' or its corresponding type declarations.
+
+    [7m1[0m import { EventHandler } from '../../../../src/core/event-system/event-handler';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/message-queue-v2.test.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/message-queue-v2' or its corresponding type declarations.
+
+    [7m2[0m import { MessageQueue } from '../../../../src/core/message-queue/message-queue-v2';
+    [7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/message-queue-v2.test.ts[0m:[93m3[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/message-queue/types' or its corresponding type declarations.
+
+    [7m3[0m import { QueuedMessage } from '../../../../src/core/message-queue/types';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/infrastructure/git-workflow.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/git-workflow.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/git-workflow' or its corresponding type declarations.
+
+    [7m1[0m import { GitWorkflow } from '../../lib/git-workflow';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/git-workflow.test.ts[0m:[93m2[0m:[93m54[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/git-workflow-config' or its corresponding type declarations.
+
+    [7m2[0m import { WorkflowConfigOptions, CommitMessage } from '../../types/git-workflow-config';
+    [7m [0m [91m                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/customer.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/customer.service.test.ts[0m:[93m1[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '../customer.service' or its corresponding type declarations.
+
+    [7m1[0m import { CustomerService } from '../customer.service';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/customer.service.test.ts[0m:[93m2[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/customer' or its corresponding type declarations.
+
+    [7m2[0m import { Customer, ICustomer } from '../../models/customer';
+    [7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/customer-validation.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/customer-validation.service.test.ts[0m:[93m1[0m:[93m58[0m - [91merror[0m[90m TS2307: [0mCannot find module '../customer-validation.service' or its corresponding type declarations.
+
+    [7m1[0m import { CustomerValidationService, CustomerInput } from '../customer-validation.service';
+    [7m [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/customer-validation.service.test.ts[0m:[93m2[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../models/customer' or its corresponding type declarations.
+
+    [7m2[0m import { CustomerModel } from '../../../models/customer';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/core/high-availability.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/high-availability.test.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/high-availability' or its corresponding type declarations.
+
+    [7m1[0m import { HighAvailability } from '../../lib/high-availability';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/high-availability.test.ts[0m:[93m2[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/ha-config' or its corresponding type declarations.
+
+    [7m2[0m import { HAConfigOptions } from '../../types/ha-config';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/core/time-provider.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/time-provider.test.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../../src/core/time/time-provider' or its corresponding type declarations.
+
+    [7m1[0m import { TestTimeProvider } from '../../../../src/core/time/time-provider';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/hiboutik.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/hiboutik.service.test.ts[0m:[93m1[0m:[93m67[0m - [91merror[0m[90m TS2307: [0mCannot find module '../hiboutik.service' or its corresponding type declarations.
+
+    [7m1[0m import { HiboutikService, HiboutikConfig, HiboutikCustomer } from '../hiboutik.service';
+    [7m [0m [91m                                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/hiboutik.service.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/service-deployment.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/service-deployment.test.ts[0m:[93m1[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/service-deployment' or its corresponding type declarations.
+
+    [7m1[0m import { ServiceDeployment } from '../../lib/service-deployment';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/service-deployment.test.ts[0m:[93m2[0m:[93m54[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/deployment-config' or its corresponding type declarations.
+
+    [7m2[0m import { DeploymentConfigOptions, ServicePort } from '../../types/deployment-config';
+    [7m [0m [91m                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/infrastructure/container-orchestrator.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator.test.ts[0m:[93m1[0m:[93m39[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-orchestrator' or its corresponding type declarations.
+
+    [7m1[0m import { ContainerOrchestrator } from '../../lib/container-orchestrator';
+    [7m [0m [91m                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator.test.ts[0m:[93m2[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/kubernetes-config' or its corresponding type declarations.
+
+    [7m2[0m import { KubernetesConfig } from '../../lib/kubernetes-config';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator.test.ts[0m:[93m3[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-runtime' or its corresponding type declarations.
+
+    [7m3[0m import { ContainerRuntime } from '../../lib/container-runtime';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator.test.ts[0m:[93m4[0m:[93m35[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/service-deployment' or its corresponding type declarations.
+
+    [7m4[0m import { ServiceDeployment } from '../../lib/service-deployment';
+    [7m [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-orchestrator.test.ts[0m:[93m5[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/high-availability' or its corresponding type declarations.
+
+    [7m5[0m import { HighAvailability } from '../../lib/high-availability';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/sync.customer.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/sync.customer.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sync.service' or its corresponding type declarations.
+
+    [7m1[0m import { SyncService } from '../sync.service';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/sync.customer.test.ts[0m:[93m2[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../hiboutik.service' or its corresponding type declarations.
+
+    [7m2[0m import { HiboutikService, HiboutikCustomer } from '../hiboutik.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/sync.customer.test.ts[0m:[93m3[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m3[0m import { RingoverService, RingoverCustomer } from '../ringover.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/infrastructure/kubernetes-config.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/kubernetes-config.test.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/kubernetes-config' or its corresponding type declarations.
+
+    [7m1[0m import { KubernetesConfig } from '../../lib/kubernetes-config';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/kubernetes-config.test.ts[0m:[93m2[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/cluster-config' or its corresponding type declarations.
+
+    [7m2[0m import { ClusterConfig } from '../../types/cluster-config';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/ringover.customer.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/ringover.customer.test.ts[0m:[93m1[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m1[0m import { RingoverService, RingoverCustomer } from '../ringover.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/ringover.customer.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/core/sync.customer.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/sync.customer.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sync.service' or its corresponding type declarations.
+
+    [7m1[0m import { SyncService } from '../sync.service';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/sync.customer.test.ts[0m:[93m2[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../hiboutik.service' or its corresponding type declarations.
+
+    [7m2[0m import { HiboutikService, HiboutikCustomer } from '../hiboutik.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/sync.customer.test.ts[0m:[93m3[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m3[0m import { RingoverService, RingoverCustomer } from '../ringover.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/core/ringover.customer.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/ringover.customer.test.ts[0m:[93m1[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m1[0m import { RingoverService, RingoverCustomer } from '../ringover.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/ringover.customer.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/ringover.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/ringover.service.test.ts[0m:[93m1[0m:[93m49[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m1[0m import { RingoverService, RingoverConfig } from '../ringover.service';
+    [7m [0m [91m                                                ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/ringover.service.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/ringover.service.test.ts[0m:[93m32[0m:[93m40[0m - [91merror[0m[90m TS7006: [0mParameter 'config' implicitly has an 'any' type.
+
+    [7m32[0m       mockAxios.onGet('/calls').reply((config) => {
+    [7m  [0m [91m                                       ~~~~~~[0m
+
+FAIL tests/p1/services/sync.service.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/sync.service.test.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../sync.service' or its corresponding type declarations.
+
+    [7m1[0m import { SyncService } from '../sync.service';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/sync.service.test.ts[0m:[93m2[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../hiboutik.service' or its corresponding type declarations.
+
+    [7m2[0m import { HiboutikService, HiboutikCustomer } from '../hiboutik.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/sync.service.test.ts[0m:[93m3[0m:[93m47[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m3[0m import { RingoverService, RingoverCall } from '../ringover.service';
+    [7m [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/infrastructure/container-runtime.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/infrastructure/container-runtime.test.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../lib/container-runtime' or its corresponding type declarations.
+
+    [7m1[0m import { ContainerRuntime } from '../../lib/container-runtime';
+    [7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/infrastructure/container-runtime.test.ts[0m:[93m2[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../types/runtime-config' or its corresponding type declarations.
+
+    [7m2[0m import { RuntimeConfig } from '../../types/runtime-config';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/debug-hiboutik.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/debug-hiboutik.test.ts[0m:[93m2[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m2[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/debug-hiboutik.test.ts[0m:[93m58[0m:[93m37[0m - [91merror[0m[90m TS7006: [0mParameter 'config' implicitly has an 'any' type.
+
+    [7m58[0m     mockAxios.onGet('/test').reply((config) => {
+    [7m  [0m [91m                                    ~~~~~~[0m
+
+FAIL tests/p1/services/product-events.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/product-events.test.ts[0m:[93m1[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/product' or its corresponding type declarations.
+
+    [7m1[0m import { Product } from '../../models/product';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/product-events.test.ts[0m:[93m3[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/product' or its corresponding type declarations.
+
+    [7m3[0m import { productEvents } from '../../models/product';
+    [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/services/category-events.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/category-events.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/category' or its corresponding type declarations.
+
+    [7m1[0m import { Category } from '../../models/category';
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/category-events.test.ts[0m:[93m3[0m:[93m32[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../models/category' or its corresponding type declarations.
+
+    [7m3[0m import { categoryEvents } from '../../models/category';
+    [7m [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/core/TestExecutionPanel.test.tsx
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m1[0m:[93m19[0m - [91merror[0m[90m TS7016: [0mCould not find a declaration file for module 'react'. '/opt/mExpress/node_modules/react/index.js' implicitly has an 'any' type.
+      Try `npm i --save-dev @types/react` if it exists or add a new declaration (.d.ts) file containing `declare module 'react';`
+
+    [7m1[0m import React from 'react';
+    [7m [0m [91m                  ~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m3[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@testing-library/react' or its corresponding type declarations.
+
+    [7m3[0m import { render } from '@testing-library/react';
+    [7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m4[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '@testing-library/react' or its corresponding type declarations.
+
+    [7m4[0m import * as testingLibrary from '@testing-library/react';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m5[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@testing-library/user-event' or its corresponding type declarations.
+
+    [7m5[0m import userEvent from '@testing-library/user-event';
+    [7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m6[0m:[93m36[0m - [91merror[0m[90m TS2307: [0mCannot find module '../TestExecutionPanel' or its corresponding type declarations.
+
+    [7m6[0m import { TestExecutionPanel } from '../TestExecutionPanel';
+    [7m [0m [91m                                   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m7[0m:[93m29[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../services/test.service' or its corresponding type declarations.
+
+    [7m7[0m import { TestService } from '../../../services/test.service';
+    [7m [0m [91m                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/core/TestExecutionPanel.test.tsx[0m:[93m26[0m:[93m16[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m26[0m         render(<TestExecutionPanel testService={mockTestService as TestService} />);
+    [7m  [0m [91m               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL tests/p1/core/concurrent-modification.test.ts (58.946 s)
+  ● Concurrent Modification › should handle optimistic locking for concurrent updates
+
+    expect(received).resolves.toBeDefined()
+
+    Received promise rejected instead of resolved
+    Rejected to value: [MongoServerError: Updating the path '__v' would create a conflict at '__v']
+
+      89 |     
+      90 |     // Both updates should succeed due to retry mechanism
+    > 91 |     await expect(Promise.all(updatePromises)).resolves.toBeDefined();
+         |           ^
+      92 |     
+      93 |     // Check final document state - both updates should be applied
+      94 |     const updatedProduct = await ProductModel.findById(product._id);
+
+      at expect (../../node_modules/expect/build/index.js:113:15)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:91:11)
+
+  ● Concurrent Modification › should throw ConcurrencyError when optimistic locking retries exhausted
+
+    MongoServerError: Updating the path '__v' would create a conflict at '__v'
+
+      119 |         
+      120 |         // Update the document with version check
+    > 121 |         const updated = await model.findOneAndUpdate(
+          |                         ^
+      122 |           { _id: id, __v: originalVersion },
+      123 |           { $set: doc.toObject(), $inc: { __v: 1 } },
+      124 |           { new: true }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOneAndUpdateOperation.executeCommand (../../node_modules/mongodb/src/operations/command.ts:179:12)
+      at FindOneAndUpdateOperation.execute (../../node_modules/mongodb/src/operations/find_and_modify.ts:216:20)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at Collection.findOneAndUpdate (../../node_modules/mongodb/src/collection.ts:997:12)
+      at model.Query._findOneAndUpdate (../../node_modules/mongoose/lib/query.js:3477:13)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at ConcurrencyManager.withOptimisticLock (src/core/database/concurrency-manager.ts:121:25)
+          at async Promise.all (index 0)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:139:21)
+
+  ● Concurrent Modification › should handle pessimistic locking for concurrent updates
+
+    MongoServerError: Transaction numbers are only allowed on a replica set member or mongos
+
+      182 |       return await this.transactionManager.runTransaction(async (session) => {
+      183 |         // Find document with lock
+    > 184 |         const doc = await model.findById(id).session(session);
+          |                     ^
+      185 |         if (!doc) {
+      186 |           throw new Error(`Document not found: ${id}`);
+      187 |         }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOperation.execute (../../node_modules/mongodb/src/operations/find.ts:130:12)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at FindCursor._initialize (../../node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+      at FindCursor.cursorInit (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+      at FindCursor.fetchBatch (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+      at FindCursor.next (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+      at Collection.findOne (../../node_modules/mongodb/src/collection.ts:525:17)
+      at model.Query._findOne (../../node_modules/mongoose/lib/query.js:2661:15)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at src/core/database/concurrency-manager.ts:184:21
+      at src/core/database/transaction-manager.ts:49:16
+      at TransactionManager.runTransaction (src/core/database/transaction-manager.ts:48:16)
+      at ConcurrencyManager.withPessimisticLock (src/core/database/concurrency-manager.ts:182:14)
+          at async Promise.all (index 0)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:195:21)
+
+  ● Concurrent Modification › should throw LockTimeoutError when pessimistic lock cannot be acquired
+
+    MongoServerError: Transaction numbers are only allowed on a replica set member or mongos
+
+      182 |       return await this.transactionManager.runTransaction(async (session) => {
+      183 |         // Find document with lock
+    > 184 |         const doc = await model.findById(id).session(session);
+          |                     ^
+      185 |         if (!doc) {
+      186 |           throw new Error(`Document not found: ${id}`);
+      187 |         }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOperation.execute (../../node_modules/mongodb/src/operations/find.ts:130:12)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at FindCursor._initialize (../../node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+      at FindCursor.cursorInit (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+      at FindCursor.fetchBatch (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+      at FindCursor.next (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+      at Collection.findOne (../../node_modules/mongodb/src/collection.ts:525:17)
+      at model.Query._findOne (../../node_modules/mongoose/lib/query.js:2661:15)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at src/core/database/concurrency-manager.ts:184:21
+      at src/core/database/transaction-manager.ts:49:16
+      at TransactionManager.runTransaction (src/core/database/transaction-manager.ts:48:16)
+      at ConcurrencyManager.withPessimisticLock (src/core/database/concurrency-manager.ts:182:14)
+
+  ● Concurrent Modification › should throw LockTimeoutError when pessimistic lock cannot be acquired
+
+    expect(received).rejects.toThrow(expected)
+
+    Expected pattern: /Failed to acquire lock.*within/
+    Received message: "Transaction numbers are only allowed on a replica set member or mongos"
+
+          182 |       return await this.transactionManager.runTransaction(async (session) => {
+          183 |         // Find document with lock
+        > 184 |         const doc = await model.findById(id).session(session);
+              |                     ^
+          185 |         if (!doc) {
+          186 |           throw new Error(`Document not found: ${id}`);
+          187 |         }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOperation.execute (../../node_modules/mongodb/src/operations/find.ts:130:12)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at FindCursor._initialize (../../node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+      at FindCursor.cursorInit (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+      at FindCursor.fetchBatch (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+      at FindCursor.next (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+      at Collection.findOne (../../node_modules/mongodb/src/collection.ts:525:17)
+      at model.Query._findOne (../../node_modules/mongoose/lib/query.js:2661:15)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at src/core/database/concurrency-manager.ts:184:21
+      at src/core/database/transaction-manager.ts:49:16
+      at TransactionManager.runTransaction (src/core/database/transaction-manager.ts:48:16)
+      at ConcurrencyManager.withPessimisticLock (src/core/database/concurrency-manager.ts:182:14)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:244:5)
+      at Object.toThrow (../../node_modules/expect/build/index.js:218:22)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:244:41)
+
+  ● Concurrent Modification › should use different locking strategies based on options
+
+    MongoServerError: Updating the path '__v' would create a conflict at '__v'
+
+      119 |         
+      120 |         // Update the document with version check
+    > 121 |         const updated = await model.findOneAndUpdate(
+          |                         ^
+      122 |           { _id: id, __v: originalVersion },
+      123 |           { $set: doc.toObject(), $inc: { __v: 1 } },
+      124 |           { new: true }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOneAndUpdateOperation.executeCommand (../../node_modules/mongodb/src/operations/command.ts:179:12)
+      at FindOneAndUpdateOperation.execute (../../node_modules/mongodb/src/operations/find_and_modify.ts:216:20)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at Collection.findOneAndUpdate (../../node_modules/mongodb/src/collection.ts:997:12)
+      at model.Query._findOneAndUpdate (../../node_modules/mongoose/lib/query.js:3477:13)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at ConcurrencyManager.withOptimisticLock (src/core/database/concurrency-manager.ts:121:25)
+      at Object.<anonymous> (tests/p1/core/concurrent-modification.test.ts:259:5)
+
+
+Test Suites: 35 failed, 3 passed, 38 total
+Tests:       8 failed, 21 passed, 29 total
+Snapshots:   0 total
+Time:        61.911 s
+Ran all test suites matching /packages\/core\/tests\/p1/i.

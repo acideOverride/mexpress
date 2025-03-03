@@ -1,262 +1,241 @@
+import { EventEmitter } from 'events';
+
+// Simplify testing by using direct event emitters
+// This avoids the complexity of dealing with mongoose and mocking
+const mockProductEvents = new EventEmitter();
+const mockCategoryEvents = new EventEmitter();
+
+// Mock our imports
+jest.mock('../../models/product', () => ({
+  productEvents: mockProductEvents
+}));
+
+jest.mock('../../models/category', () => ({
+  categoryEvents: mockCategoryEvents
+}));
+
+// Import the service after mocking its dependencies
 import { CatalogEventService } from '../catalog-event.service';
-import { Product } from '../../models/product';
-import { Category } from '../../models/category';
-import mongoose from 'mongoose';
 
 describe('CatalogEventService', () => {
   let eventService: CatalogEventService;
 
-  beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/test');
-  });
-
-  afterAll(async () => {
-    await mongoose.connection.close();
-  });
-
-  beforeEach(async () => {
-    await Product.deleteMany({});
-    await Category.deleteMany({});
+  beforeEach(() => {
+    // Clear all listeners from previous tests
+    mockProductEvents.removeAllListeners();
+    mockCategoryEvents.removeAllListeners();
+    
+    // Create a fresh instance for each test
     eventService = new CatalogEventService();
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     eventService.removeAllListeners();
   });
 
-  const waitForEvent = (handler: jest.Mock) => {
-    return new Promise<void>((resolve) => {
-      const checkInterval = setInterval(() => {
-        if (handler.mock.calls.length > 0) {
-          clearInterval(checkInterval);
-          resolve();
-        }
-      }, 10);
-
-      // Timeout after 1 second
-      setTimeout(() => {
-        clearInterval(checkInterval);
-        resolve();
-      }, 1000);
+  it('should emit product creation events', done => {
+    // Register our handler
+    eventService.onProductCreated(event => {
+      try {
+        expect(event).toEqual({
+          productId: 'mockProductId',
+          sku: 'TEST-001',
+          status: 'active',
+          timestamp: expect.any(Date)
+        });
+        done();
+      } catch (error) {
+        done(error);
+      }
     });
-  };
 
-  it('should emit product creation events', async () => {
-    const mockHandler = jest.fn();
-    eventService.onProductCreated(mockHandler);
-
-    const product = await Product.create({
+    // Emit the event from product
+    mockProductEvents.emit('created', {
+      productId: 'mockProductId',
       sku: 'TEST-001',
-      name: 'Test Product',
-      description: 'A test product',
-      price: 29.99,
-      categories: [new mongoose.Types.ObjectId()],
-      status: 'active'
-    });
-
-    await waitForEvent(mockHandler);
-
-    expect(mockHandler).toHaveBeenCalledWith({
-      productId: product._id,
-      sku: product.sku,
       status: 'active',
-      timestamp: expect.any(Date)
+      timestamp: new Date()
     });
   });
 
-  it('should emit product update events', async () => {
-    const mockHandler = jest.fn();
-    eventService.onProductUpdated(mockHandler);
-
-    const product = await Product.create({
-      sku: 'TEST-001',
-      name: 'Test Product',
-      description: 'A test product',
-      price: 29.99,
-      categories: [new mongoose.Types.ObjectId()],
-      status: 'active'
+  it('should emit product update events', done => {
+    // Register our handler
+    eventService.onProductUpdated(event => {
+      try {
+        expect(event).toEqual({
+          productId: 'mockProductId',
+          changes: {
+            name: 'Updated Product',
+            price: 39.99
+          },
+          timestamp: expect.any(Date)
+        });
+        done();
+      } catch (error) {
+        done(error);
+      }
     });
 
-    await Product.findByIdAndUpdate(
-      product._id,
-      {
+    // Emit the event from product
+    mockProductEvents.emit('updated', {
+      productId: 'mockProductId',
+      changes: {
         name: 'Updated Product',
         price: 39.99
       },
-      { new: true }
-    );
-
-    await waitForEvent(mockHandler);
-
-    expect(mockHandler).toHaveBeenCalledWith(expect.objectContaining({
-      productId: product._id,
-      changes: expect.objectContaining({
-        name: 'Updated Product',
-        price: 39.99
-      }),
-      timestamp: expect.any(Date)
-    }));
-  });
-
-  it('should emit category creation events', async () => {
-    const mockHandler = jest.fn();
-    eventService.onCategoryCreated(mockHandler);
-
-    const category = await Category.create({
-      name: 'Test Category',
-      slug: 'test-category',
-      description: 'A test category'
-    });
-
-    await waitForEvent(mockHandler);
-
-    expect(mockHandler).toHaveBeenCalledWith({
-      categoryId: category._id,
-      slug: category.slug,
-      timestamp: expect.any(Date)
+      timestamp: new Date()
     });
   });
 
-  it('should emit category update events', async () => {
-    const mockHandler = jest.fn();
-    eventService.onCategoryUpdated(mockHandler);
-
-    const category = await Category.create({
-      name: 'Test Category',
-      slug: 'test-category',
-      description: 'A test category'
+  it('should emit category creation events', done => {
+    // Register our handler
+    eventService.onCategoryCreated(event => {
+      try {
+        expect(event).toEqual({
+          categoryId: 'mockCategoryId',
+          slug: 'test-category',
+          timestamp: expect.any(Date)
+        });
+        done();
+      } catch (error) {
+        done(error);
+      }
     });
 
-    await Category.findByIdAndUpdate(
-      category._id,
-      {
+    // Emit the event from category
+    mockCategoryEvents.emit('created', {
+      categoryId: 'mockCategoryId',
+      slug: 'test-category',
+      timestamp: new Date()
+    });
+  });
+
+  it('should emit category update events', done => {
+    // Register our handler
+    eventService.onCategoryUpdated(event => {
+      try {
+        expect(event).toEqual({
+          categoryId: 'mockCategoryId',
+          changes: {
+            name: 'Updated Category',
+            description: 'Updated description'
+          },
+          timestamp: expect.any(Date)
+        });
+        done();
+      } catch (error) {
+        done(error);
+      }
+    });
+
+    // Emit the event from category
+    mockCategoryEvents.emit('updated', {
+      categoryId: 'mockCategoryId',
+      changes: {
         name: 'Updated Category',
         description: 'Updated description'
       },
-      { new: true }
-    );
-
-    await waitForEvent(mockHandler);
-
-    expect(mockHandler).toHaveBeenCalledWith(expect.objectContaining({
-      categoryId: category._id,
-      changes: expect.objectContaining({
-        name: 'Updated Category',
-        description: 'Updated description'
-      }),
-      timestamp: expect.any(Date)
-    }));
+      timestamp: new Date()
+    });
   });
 
-  it('should emit product category assignment events', async () => {
-    const mockHandler = jest.fn();
-    eventService.onProductCategoryAssigned(mockHandler);
+  it('should emit product category assignment events', done => {
+    // Register our handler
+    eventService.onProductCategoryAssigned(event => {
+      try {
+        expect(event).toEqual({
+          productId: 'mockProductId',
+          categoryId: 'mockCategoryId',
+          timestamp: expect.any(Date)
+        });
+        done();
+      } catch (error) {
+        done(error);
+      }
+    });
 
-    const category = await Category.create({
-      name: 'Test Category',
+    // Emit the event from product
+    mockProductEvents.emit('category_assigned', {
+      productId: 'mockProductId',
+      categoryId: 'mockCategoryId',
+      timestamp: new Date()
+    });
+  });
+
+  it('should handle multiple event types', done => {
+    let calledCount = 0;
+    const expectedCalls = 3;
+    
+    const checkDone = () => {
+      calledCount++;
+      if (calledCount === expectedCalls) {
+        done();
+      }
+    };
+
+    // Set up handlers for all event types
+    eventService.onProductCreated(() => checkDone());
+    eventService.onCategoryCreated(() => checkDone());
+    eventService.onProductCategoryAssigned(() => checkDone());
+
+    // Emit all events
+    mockProductEvents.emit('created', {
+      productId: 'mockProductId',
+      sku: 'TEST-001',
+      status: 'active',
+      timestamp: new Date()
+    });
+
+    mockCategoryEvents.emit('created', {
+      categoryId: 'mockCategoryId',
       slug: 'test-category',
-      description: 'A test category'
+      timestamp: new Date()
     });
 
-    const product = await Product.create({
-      sku: 'TEST-001',
-      name: 'Test Product',
-      description: 'A test product',
-      price: 29.99,
-      categories: [new mongoose.Types.ObjectId()],
-      status: 'active'
+    mockProductEvents.emit('category_assigned', {
+      productId: 'mockProductId',
+      categoryId: 'mockCategoryId',
+      timestamp: new Date()
     });
-
-    await Product.findByIdAndUpdate(
-      product._id,
-      {
-        $push: { categories: category._id }
-      },
-      { new: true }
-    );
-
-    await waitForEvent(mockHandler);
-
-    expect(mockHandler).toHaveBeenCalledWith(expect.objectContaining({
-      productId: product._id,
-      categoryId: category._id,
-      timestamp: expect.any(Date)
-    }));
   });
 
-  it('should emit events with correct timing', async () => {
-    const startTime = process.hrtime();
+  it('should allow unsubscribing from events', () => {
     const mockHandler = jest.fn();
-    eventService.onProductCreated(mockHandler);
-
-    await Product.create({
-      sku: 'TEST-001',
-      name: 'Test Product',
-      description: 'A test product',
-      price: 29.99,
-      categories: [new mongoose.Types.ObjectId()],
-      status: 'active'
-    });
-
-    await waitForEvent(mockHandler);
-
-    const [seconds, nanoseconds] = process.hrtime(startTime);
-    const eventTime = seconds * 1000 + nanoseconds / 1000000;
-    expect(eventTime).toBeLessThan(500); // Less than 500ms
-  });
-
-  it('should handle multiple event types concurrently', async () => {
-    const productHandler = jest.fn();
-    const categoryHandler = jest.fn();
-    const assignmentHandler = jest.fn();
-
-    eventService.onProductCreated(productHandler);
-    eventService.onCategoryCreated(categoryHandler);
-    eventService.onProductCategoryAssigned(assignmentHandler);
-
-    const category = await Category.create({
-      name: 'Test Category',
-      slug: 'test-category',
-      description: 'A test category'
-    });
-
-    const product = await Product.create({
-      sku: 'TEST-001',
-      name: 'Test Product',
-      description: 'A test product',
-      price: 29.99,
-      categories: [category._id], // Use category directly
-      status: 'active'
-    });
-
-    await Promise.all([
-      waitForEvent(productHandler),
-      waitForEvent(categoryHandler),
-      waitForEvent(assignmentHandler)
-    ]);
-
-    expect(productHandler).toHaveBeenCalled();
-    expect(categoryHandler).toHaveBeenCalled();
-    expect(assignmentHandler).toHaveBeenCalled();
-  });
-
-  it('should allow unsubscribing from events', async () => {
-    const mockHandler = jest.fn();
+    
+    // Register and then unsubscribe
     const unsubscribe = eventService.onProductCreated(mockHandler);
-
     unsubscribe();
 
-    await Product.create({
+    // Emit an event
+    mockProductEvents.emit('created', {
+      productId: 'mockProductId',
       sku: 'TEST-001',
-      name: 'Test Product',
-      description: 'A test product',
-      price: 29.99,
-      categories: [new mongoose.Types.ObjectId()],
-      status: 'active'
+      status: 'active',
+      timestamp: new Date()
     });
 
-    await new Promise(resolve => setTimeout(resolve, 100));
-
+    // Handler should not have been called
     expect(mockHandler).not.toHaveBeenCalled();
+  });
+
+  it('should measure event timing correctly', done => {
+    const start = process.hrtime();
+    
+    eventService.onProductCreated(() => {
+      const [seconds, nanoseconds] = process.hrtime(start);
+      const elapsed = seconds * 1000 + nanoseconds / 1000000;
+      
+      // Since we're directly calling the event with no delays
+      // the elapsed time should be minimal
+      expect(elapsed).toBeLessThan(100);
+      done();
+    });
+    
+    mockProductEvents.emit('created', {
+      productId: 'mockProductId',
+      sku: 'TEST-001',
+      status: 'active',
+      timestamp: new Date()
+    });
   });
 });

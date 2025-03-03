@@ -1,0 +1,11 @@
+PASS packages/core/tests/p1/api/retry-logic.test.ts (13.377 s)
+  API Client Retry Logic Tests
+    ✓ should respect configured retry count setting (19 ms)
+    ✓ should not retry on non-timeout errors by default (4 ms)
+    ✓ should use exponential backoff delay between retries (6 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        13.641 s
+Ran all test suites matching /packages\/core\/tests\/p1\/api/i.

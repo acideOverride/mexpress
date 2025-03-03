@@ -1,0 +1,60 @@
+# mExpress project shortcuts
+alias mexp='cd /opt/mExpress'
+alias mb='npm run build'
+alias mt='npm run test'
+alias mt0='npm run test:p0'
+alias mt1='npm run test:p1'
+alias ml='npm run lint'
+
+# Run single test
+mtest() {
+  npx jest --config packages/core/jest.config.js "$1"
+}
+
+# Run simplified test
+mstest() {
+  npx jest --config packages/core/jest.simplified.config.js "$1"
+}
+
+# Quick directory navigation
+alias core='cd /opt/mExpress/packages/core'
+alias ui='cd /opt/mExpress/packages/ui-components'
+alias docs='cd /opt/mExpress/docs'
+alias tests='cd /opt/mExpress/tests'
+
+# Node.js development helpers
+alias ni='npm install'
+alias nid='npm install --save-dev'
+alias nrs='npm run start'
+alias nrb='npm run build'
+alias nrd='npm run dev'
+alias npx='npx'
+
+# Quick check for Node.js memory usage
+nodestats() {
+  node -e 'console.log(process.memoryUsage())'
+}
+
+# Search mExpress codebase
+msearch() {
+  if [ -z "$1" ]; then
+    echo "Usage: msearch <search_term> [file_pattern]"
+    return 1
+  fi
+  
+  local pattern=${2:-"*.{ts,tsx,js,jsx,json,md}"}
+  cd /opt/mExpress && grep -r --include="$pattern" "$1" .
+}
+
+# Find files by name
+mfind() {
+  if [ -z "$1" ]; then
+    echo "Usage: mfind <filename_pattern>"
+    return 1
+  fi
+  
+  cd /opt/mExpress && find . -name "$1" | grep -v "node_modules" | grep -v ".git"
+}
+
+# Source this in your .bashrc with:
+# [ -f ~/.mexpress_profile ] && . ~/.mexpress_profile

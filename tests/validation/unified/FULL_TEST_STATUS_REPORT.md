@@ -1,0 +1,219 @@
+# Full Test Status Report
+
+Legend:
+- ✅ - Test passes
+- ❌ - Test fails
+- ❓ - Test hangs/times out
+- ⏩ - Test skipped (node_modules or dist)
+- 📍 - Test is in canonical location
+- 🔄 - Test should be moved to canonical location
+
+Combined icons:
+- ✅📍 - Passing test in canonical location (ideal)
+- ✅🔄 - Passing test that needs to be moved
+- ❌📍 - Failing test in canonical location
+- ❌🔄 - Failing test that needs to be moved
+- ❓📍 - Hanging test in canonical location
+- ❓🔄 - Hanging test that needs to be moved
+
+## Summary Statistics
+
+```
+Total tests: 181
+Passing: 55 (30%)
+Failing: 122 (67%)
+Hanging/Timeout: 4 (2%)
+Skipped: 0
+In canonical location: 28 (15%)
+Need to move: 153 (84%)
+```
+
+## P0 (Critical Path) Tests
+
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/api/connection-timeout.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/core/customer-management.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/core/event-handler.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p0/core/every.test.js
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/core/git-workflow.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p0/core/istio-client.additional.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p0/core/istio-client.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/core/login.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/core/message-delivery-confirmation.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/core/message-queue-v2.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/core/message-state-manager.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/core/security.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/core/service-discovery.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/core/time-provider.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/core/transaction-rollback.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p0/core/value-to-string.test.js
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/hiboutik.service.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/services/customer.service.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/services/debug-hiboutik.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p0/services/hiboutik.auth.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/services/product.service.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/services/ringover.service.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p0/sync.service.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/tests/p0/components/dashboard.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/tests/p0/core/CustomerDetail.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/auth/LoginForm.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/auth/ProtectedRoute.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/auth/RegisterForm.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/LoginForm.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/ProtectedRoute.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/RegisterForm.test.tsx
+## P1 (Important Features) Tests
+
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/api/retry-logic.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/auth/permissions.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/auth/token-refresh.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/core/concurrent-modification.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/core/event-handler.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/core/external-integration.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p1/core/merge.spec.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p1/core/message-queue-v2.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/core/message-state-manager.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/core/pipeline.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/core/queue-persistence.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p1/core/ringover.customer.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/core/sync.customer.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p1/core/TestExecutionPanel.test.tsx
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/core/time-provider.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p1/frontend/components/styling-consistency.test.tsx
+- ❌🔄 /opt/mExpress/packages/core/tests/p1/frontend/component-tests.test.js
+- ❌🔄 /opt/mExpress/packages/core/tests/p1/frontend/component-tests.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/infrastructure/git-workflow.test.ts
+- ❓🔄 /opt/mExpress/packages/core/tests/p1/infrastructure/pipeline-integration.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p1/services/catalog-event.service.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/category-events.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/customer.service.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/debug-hiboutik.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/hiboutik.service.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/product-events.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/product.service.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/ringover.customer.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p1/services/ringover.service.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/service-deployment.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/sync.customer.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p1/services/sync.service.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/tests/p1/auth/login.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/tests/p1/features/CustomerRoutes.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p1/api/services/customers.service.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p1/api/services/products.service.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/p1/services/auth.service.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/p1/services/external-integration.test.ts
+## P2 (Secondary Features) Tests
+
+- ✅🔄 /opt/mExpress/packages/core/tests/p2/api/edge-cases.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p2/auth/multi-login.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p2/core/bulk-operations.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/core/called-in-order.test.js
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/core/class-name.test.js
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/core/copy-prototype-methods.test.js
+- ✅🔄 /opt/mExpress/packages/core/tests/p2/core/customer.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/core/deprecated.test.js
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/core/function-name.test.js
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/core/global.test.js
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/core/index.spec.js
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/core/index.test.js
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/core/message-queue-recovery.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/core/order-by-first-call.test.js
+- ✅🔄 /opt/mExpress/packages/core/tests/p2/core/product.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/core/type-of.test.js
+- ❌🔄 /opt/mExpress/packages/core/tests/p2/frontend/components/mobile/responsive-layout.test.tsx
+- ✅🔄 /opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/ActionShortcuts.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/ActivityFeed.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/CustomerDetails/CustomerDetails.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/CustomerDetails.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/CustomerList/CustomerList.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/CustomerList.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/dashboard/ActionShortcuts.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/dashboard/ActivityFeed.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/dashboard/Dashboard.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/dashboard/MetricsDisplay.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/dashboard/QuickSearch.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/dashboard/RecentCalls.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/Dashboard.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/MetricsDisplay.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/QuickSearch.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/RecentCalls.test.tsx
+## P3 (Performance & Stress) Tests
+
+- ✅🔄 /opt/mExpress/packages/core/tests/p3/api/basic-stress.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p3/api/simplified-rate-limit.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p3/api/stress-tests.test.ts
+- ❓🔄 /opt/mExpress/packages/core/tests/p3/auth/performance.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p3/core/category-events.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/p3/core/customer-management.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p3/core/message-queue-stress.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p3/core/product-events.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p3/frontend/accessibility/component-accessibility.test.tsx
+- ❓🔄 /opt/mExpress/packages/core/tests/p3/infrastructure/database-performance.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p3/infrastructure/istio-client.additional.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p3/infrastructure/istio-client.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p3/infrastructure/security.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p3/models/customer.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/p3/models/product.test.ts
+- ❌🔄 /opt/mExpress/packages/utils/tests-new/p3/utils/logger.test.ts
+- ❌🔄 /opt/mExpress/packages/utils/tests-new/p3/utils/moduleCheck.test.ts
+- ❌🔄 /opt/mExpress/packages/utils/tests-new/p3/utils/monitoring.test.ts
+- ❌🔄 /opt/mExpress/packages/utils/tests-new/p3/utils/rate-limiter.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p3/api/interceptors/error.interceptor.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p3/api/interceptors/index.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/tests/frontend/p3/hooks/useDebounce.test.ts
+- ❌🔄 /opt/mExpress/packages/core/src/frontend/src/components/dashboard/__tests__/TestExecutionPanel.test.tsx
+- ❌🔄 /opt/mExpress/packages/core/src/reconciliation-tools/__tests__/componentScanner.test.ts
+- ❌🔄 /opt/mExpress/packages/core/src/reconciliation-tools/__tests__/matrixTracker.test.ts
+- ✅🔄 /opt/mExpress/packages/core/src/services/validation/__tests__/customer-validation.service.test.ts
+- ❌🔄 /opt/mExpress/packages/core/tests/integration/container-orchestrator-integration.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/integration/external-integration.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/integration/external-integration.update.test.ts
+- ❓🔄 /opt/mExpress/packages/core/tests/integration/pipeline-integration.test.ts
+- ✅🔄 /opt/mExpress/packages/core/tests/unit/validation/customerValidation.test.ts
+- ❌🔄 /opt/mExpress/packages/utils/src/lib/monitoring/__tests__/monitoring.test.ts
+- ❌🔄 /opt/mExpress/packages/utils/src/lib/resilience/__tests__/circuit-breaker.test.ts
+- ❌🔄 /opt/mExpress/packages/utils/src/lib/resilience/__tests__/rate-limiter.test.ts
+- ❌🔄 /opt/mExpress/packages/utils/src/lib/resilience/__tests__/retry-strategy.error.test.ts
+- ❌🔄 /opt/mExpress/packages/utils/src/lib/resilience/__tests__/retry-strategy.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/src/api/interceptors/__tests__/auth.interceptor.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/src/api/interceptors/__tests__/error.interceptor.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/src/api/interceptors/__tests__/index.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/src/api/services/__tests__/auth.service.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/src/api/services/__tests__/customers.service.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/src/api/services/__tests__/products.service.test.ts
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/src/components/customers/__tests__/CustomerList.test.tsx
+- ❌🔄 /opt/mExpress/projects/montpc_crm/frontend/src/hooks/__tests__/useDebounce.test.ts
+- ❌📍 /opt/mExpress/tests/packages/core/integration/infrastructure/container-orchestrator-integration.test.ts
+- ❌📍 /opt/mExpress/tests/packages/core/integration/infrastructure/external-integration.test.ts
+- ❌📍 /opt/mExpress/tests/packages/core/integration/infrastructure/pipeline-integration.test.ts
+- ❌📍 /opt/mExpress/tests/packages/core/unit/core/message-queue/message-queue-recovery.test.ts
+- ❌📍 /opt/mExpress/tests/packages/core/unit/core/message-queue/message-queue-v2.test.ts
+- ❌📍 /opt/mExpress/tests/packages/core/unit/core/message-queue/message-state-manager.test.ts
+- ❌📍 /opt/mExpress/tests/packages/core/unit/frontend/components/TestExecutionPanel.test.tsx
+- ❌📍 /opt/mExpress/tests/packages/core/unit/reconciliation-tools/componentScanner.test.ts
+- ❌📍 /opt/mExpress/tests/packages/core/unit/reconciliation-tools/matrixTracker.test.ts
+- ❌📍 /opt/mExpress/tests/packages/core/unit/services/customer-validation.service.test.ts
+- ❌📍 /opt/mExpress/tests/packages/utils/unit/lib/monitoring/monitoring.test.ts
+- ❌📍 /opt/mExpress/tests/packages/utils/unit/lib/resilience/circuit-breaker.test.ts
+- ❌📍 /opt/mExpress/tests/packages/utils/unit/lib/resilience/rate-limiter.test.ts
+- ❌📍 /opt/mExpress/tests/packages/utils/unit/lib/resilience/retry-strategy.error.test.ts
+- ❌📍 /opt/mExpress/tests/packages/utils/unit/lib/resilience/retry-strategy.test.ts
+- ❌📍 /opt/mExpress/tests/packages/utils/unit/utils/logger.test.ts
+- ❌📍 /opt/mExpress/tests/packages/utils/unit/utils/moduleCheck.test.ts
+- ❌📍 /opt/mExpress/tests/packages/utils/unit/utils/monitoring.test.ts
+- ❌📍 /opt/mExpress/tests/packages/utils/unit/utils/rate-limiter.test.ts
+- ❌📍 /opt/mExpress/tests/projects/montpc_crm/frontend/unit/api/interceptors/auth.interceptor.test.ts
+- ❌📍 /opt/mExpress/tests/projects/montpc_crm/frontend/unit/api/interceptors/error.interceptor.test.ts
+- ❌📍 /opt/mExpress/tests/projects/montpc_crm/frontend/unit/api/interceptors/index.test.ts
+- ❌📍 /opt/mExpress/tests/projects/montpc_crm/frontend/unit/api/services/auth.service.test.ts
+- ❌📍 /opt/mExpress/tests/projects/montpc_crm/frontend/unit/api/services/customers.service.test.ts
+- ❌📍 /opt/mExpress/tests/projects/montpc_crm/frontend/unit/api/services/products.service.test.ts
+- ❌📍 /opt/mExpress/tests/projects/montpc_crm/frontend/unit/components/customers/CustomerList.test.tsx
+- ❌📍 /opt/mExpress/tests/projects/montpc_crm/frontend/unit/components.test.js
+- ❌📍 /opt/mExpress/tests/projects/montpc_crm/frontend/unit/components.test.tsx

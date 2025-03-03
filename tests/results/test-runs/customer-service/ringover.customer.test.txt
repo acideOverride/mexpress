@@ -1,0 +1,17 @@
+FAIL packages/core/tests/p1/services/ringover.customer.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p1/services/ringover.customer.test.ts[0m:[93m1[0m:[93m51[0m - [91merror[0m[90m TS2307: [0mCannot find module '../ringover.service' or its corresponding type declarations.
+
+    [7m1[0m import { RingoverService, RingoverCustomer } from '../ringover.service';
+    [7m [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mpackages/core/tests/p1/services/ringover.customer.test.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module 'axios-mock-adapter' or its corresponding type declarations.
+
+    [7m3[0m import MockAdapter from 'axios-mock-adapter';
+    [7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        11.732 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p1\/services\/ringover.customer.test.ts/i.

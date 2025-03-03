@@ -1,0 +1,5 @@
+{"name":"Core P0 Tests","result":"FAIL","output":"/opt/mExpress/tests/results/baseline/packages/core/p0.log"}
+{"name":"Core P1 Tests","result":"FAIL","output":"/opt/mExpress/tests/results/baseline/packages/core/p1.log"}
+{"name":"Core P2 Tests","result":"FAIL","output":"/opt/mExpress/tests/results/baseline/packages/core/p2.log"}
+{"name":"Utils Tests","result":"FAIL","output":"/opt/mExpress/tests/results/baseline/packages/utils/utils.log"}
+{"name":"MontPC Frontend Tests","result":"FAIL","output":"/opt/mExpress/tests/results/baseline/projects/montpc_crm/frontend/frontend.log"}

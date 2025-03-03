@@ -1,0 +1,82 @@
+  console.log
+    Throughput: 1086.96 requests per second
+
+      at Object.<anonymous> (tests/p3/api/stress-tests.test.ts:100:13)
+
+  console.log
+    Small batch (10): 2ms, 0.20ms per request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:77:13)
+
+  console.log
+    Medium batch (50): 5ms, 0.10ms per request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:78:13)
+
+  console.log
+    Large batch (100): 2ms, 0.02ms per request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:79:13)
+
+  console.log
+    Handled 100 requests (80 successes, 20 failures) in 1ms
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:125:13)
+
+  console.log
+    Average time per request: 0.01ms
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:126:13)
+
+PASS packages/core/tests/p3/api/simplified-rate-limit.test.ts (30.381 s)
+  SimplifiedRateLimiter Tests
+    ✓ should handle rate limiting with retry logic (23 ms)
+
+  console.log
+    Peak memory usage: ~100KB
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:206:13)
+
+  console.log
+    Final memory usage: ~100KB
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:207:13)
+
+  console.log
+    Memory efficiency: 0.1000 KB/request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:208:13)
+
+PASS packages/core/tests/p3/api/basic-stress.test.ts (30.27 s)
+  API Client Basic Stress Tests
+    ✓ should handle increasing loads without performance degradation (161 ms)
+    ✓ should handle error conditions gracefully under load (11 ms)
+    ✓ should maintain reasonable memory usage during sustained load (420 ms)
+
+FAIL packages/core/tests/p3/api/stress-tests.test.ts (34.542 s)
+  API Client Stress Tests
+    ✓ should handle high volume of concurrent requests efficiently (347 ms)
+    ✕ should handle rate limiting with exponential backoff under load (5004 ms)
+    ✓ should maintain memory usage within acceptable limits during sustained load (214 ms)
+
+  ● API Client Stress Tests › should handle rate limiting with exponential backoff under load
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      101 |   });
+      102 |
+    > 103 |   it('should handle rate limiting with exponential backoff under load', async () => {
+          |     ^
+      104 |     // Increase test timeout for this test
+      105 |     jest.setTimeout(10000);
+      106 |     
+
+      at tests/p3/api/stress-tests.test.ts:103:5
+      at Object.<anonymous> (tests/p3/api/stress-tests.test.ts:19:9)
+
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       1 failed, 6 passed, 7 total
+Snapshots:   0 total
+Time:        35.685 s
+Ran all test suites matching /packages\/core\/tests\/p3\/api/i.

@@ -20,13 +20,8 @@ describe('Debug Axios Mock Adapter', () => {
       await axios.get('/test');
       fail('Should have thrown error');
     } catch (error: any) {
-      // Debug error object structure
-      console.log('Error type:', error.constructor.name);
-      console.log('Is Axios Error:', axios.isAxiosError(error));
-      console.log('Error response status:', error.response?.status);
-      console.log('Error response data:', error.response?.data);
-      console.log('Error message:', error.message);
-      console.log('Error code:', error.code);
+      // Verify error is an axios error
+      expect(axios.isAxiosError(error)).toBe(true);
       
       // Verify error properties
       expect(error.response.status).toBe(401);
@@ -42,12 +37,10 @@ describe('Debug Axios Mock Adapter', () => {
       await axios.get('/test');
       fail('Should have thrown error');
     } catch (error: any) {
-      // Debug error object structure
-      console.log('Network Error type:', error.constructor.name);
-      console.log('Is Axios Error:', axios.isAxiosError(error));
-      console.log('Error response:', error.response);
-      console.log('Error message:', error.message);
-      console.log('Error code:', error.code);
+      // Verify network error properties
+      expect(axios.isAxiosError(error)).toBe(true);
+      expect(error.response).toBeUndefined();
+      expect(error.message).toContain('Network Error');
     }
   });
 
@@ -67,9 +60,10 @@ describe('Debug Axios Mock Adapter', () => {
       }
     });
 
-    // Debug request config
-    console.log('Request headers:', capturedConfig.headers);
-    console.log('Request method:', capturedConfig.method);
-    console.log('Request url:', capturedConfig.url);
+    // Verify request config
+    expect(capturedConfig.headers.Authorization).toBe('Bearer test');
+    expect(capturedConfig.headers['Content-Type']).toBe('application/json');
+    expect(capturedConfig.method).toBe('get');
+    expect(capturedConfig.url).toBe('/test');
   });
 });

@@ -1,0 +1,13 @@
+FAIL packages/core/tests/p3/models/product.test.ts
+  ● Test suite failed to run
+
+    [96mpackages/core/tests/p3/models/product.test.ts[0m:[93m2[0m:[93m53[0m - [91merror[0m[90m TS2307: [0mCannot find module '../product' or its corresponding type declarations.
+
+    [7m2[0m import { Product, IProduct, IProductDocument } from '../product';
+    [7m [0m [91m                                                    ~~~~~~~~~~~~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        11.681 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p3\/models\/product.test.ts/i.

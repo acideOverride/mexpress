@@ -1,0 +1,220 @@
+FAIL packages/core/tests/p3/infrastructure/database-performance.test.ts (37.292 s)
+  Database Performance
+    Transaction Performance
+      ✕ should complete simple transactions within performance threshold (120 ms)
+      ✕ should complete complex transactions within performance threshold (88 ms)
+      ✕ should handle concurrent transactions efficiently (96 ms)
+    Concurrency Performance
+      ✕ should perform optimistic locking operations within threshold (570 ms)
+      ✕ should perform pessimistic locking operations within threshold (23 ms)
+      ✕ should handle concurrent locks efficiently (136 ms)
+    Bulk Operation Performance
+      ✕ should perform bulk inserts at required rate (1703 ms)
+      ✕ should perform bulk updates at required rate (4988 ms)
+      ✕ should perform bulk deletes at required rate (4884 ms)
+      ✕ should perform bulk upserts at required rate (2695 ms)
+
+  ● Database Performance › Transaction Performance › should complete simple transactions within performance threshold
+
+    MongoServerError: Transaction numbers are only allowed on a replica set member or mongos
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at InsertOneOperation.executeCommand (../../node_modules/mongodb/src/operations/command.ts:179:12)
+      at InsertOneOperation.execute (../../node_modules/mongodb/src/operations/insert.ts:54:12)
+      at InsertOneOperation.execute (../../node_modules/mongodb/src/operations/insert.ts:84:17)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at Collection.insertOne (../../node_modules/mongodb/src/collection.ts:285:12)
+
+  ● Database Performance › Transaction Performance › should complete complex transactions within performance threshold
+
+    MongoBulkWriteError: Transaction numbers are only allowed on a replica set member or mongos
+
+      at executeCommands (../../node_modules/mongodb/src/bulk/common.ts:578:15)
+      at BulkWriteShimOperation.execute (../../node_modules/mongodb/src/bulk/common.ts:882:12)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at OrderedBulkOperation.execute (../../node_modules/mongodb/src/bulk/common.ts:1211:12)
+      at BulkWriteOperation.execute (../../node_modules/mongodb/src/operations/bulk_write.ts:60:12)
+      at InsertManyOperation.execute (../../node_modules/mongodb/src/operations/insert.ts:147:19)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at Collection.insertMany (../../node_modules/mongodb/src/collection.ts:307:12)
+
+  ● Database Performance › Transaction Performance › should handle concurrent transactions efficiently
+
+    MongoServerError: Transaction numbers are only allowed on a replica set member or mongos
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at InsertOneOperation.executeCommand (../../node_modules/mongodb/src/operations/command.ts:179:12)
+      at InsertOneOperation.execute (../../node_modules/mongodb/src/operations/insert.ts:54:12)
+      at InsertOneOperation.execute (../../node_modules/mongodb/src/operations/insert.ts:84:17)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at Collection.insertOne (../../node_modules/mongodb/src/collection.ts:285:12)
+
+  ● Database Performance › Concurrency Performance › should perform optimistic locking operations within threshold
+
+    MongoServerError: Updating the path '__v' would create a conflict at '__v'
+
+      119 |         
+      120 |         // Update the document with version check
+    > 121 |         const updated = await model.findOneAndUpdate(
+          |                         ^
+      122 |           { _id: id, __v: originalVersion },
+      123 |           { $set: doc.toObject(), $inc: { __v: 1 } },
+      124 |           { new: true }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOneAndUpdateOperation.executeCommand (../../node_modules/mongodb/src/operations/command.ts:179:12)
+      at FindOneAndUpdateOperation.execute (../../node_modules/mongodb/src/operations/find_and_modify.ts:216:20)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at Collection.findOneAndUpdate (../../node_modules/mongodb/src/collection.ts:997:12)
+      at model.Query._findOneAndUpdate (../../node_modules/mongoose/lib/query.js:3477:13)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at ConcurrencyManager.withOptimisticLock (src/core/database/concurrency-manager.ts:121:25)
+      at Object.<anonymous> (tests/p3/infrastructure/database-performance.test.ts:272:9)
+
+  ● Database Performance › Concurrency Performance › should perform pessimistic locking operations within threshold
+
+    MongoServerError: Transaction numbers are only allowed on a replica set member or mongos
+
+      182 |       return await this.transactionManager.runTransaction(async (session) => {
+      183 |         // Find document with lock
+    > 184 |         const doc = await model.findById(id).session(session);
+          |                     ^
+      185 |         if (!doc) {
+      186 |           throw new Error(`Document not found: ${id}`);
+      187 |         }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOperation.execute (../../node_modules/mongodb/src/operations/find.ts:130:12)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at FindCursor._initialize (../../node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+      at FindCursor.cursorInit (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+      at FindCursor.fetchBatch (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+      at FindCursor.next (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+      at Collection.findOne (../../node_modules/mongodb/src/collection.ts:525:17)
+      at model.Query._findOne (../../node_modules/mongoose/lib/query.js:2661:15)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at src/core/database/concurrency-manager.ts:184:21
+      at src/core/database/transaction-manager.ts:49:16
+      at TransactionManager.runTransaction (src/core/database/transaction-manager.ts:48:16)
+      at ConcurrencyManager.withPessimisticLock (src/core/database/concurrency-manager.ts:182:14)
+      at Object.<anonymous> (tests/p3/infrastructure/database-performance.test.ts:319:9)
+
+  ● Database Performance › Concurrency Performance › should handle concurrent locks efficiently
+
+    MongoServerError: Transaction numbers are only allowed on a replica set member or mongos
+
+      182 |       return await this.transactionManager.runTransaction(async (session) => {
+      183 |         // Find document with lock
+    > 184 |         const doc = await model.findById(id).session(session);
+          |                     ^
+      185 |         if (!doc) {
+      186 |           throw new Error(`Document not found: ${id}`);
+      187 |         }
+
+      at Connection.sendCommand (../../node_modules/mongodb/src/cmap/connection.ts:550:17)
+      at Connection.command (../../node_modules/mongodb/src/cmap/connection.ts:624:22)
+      at Server.command (../../node_modules/mongodb/src/sdam/server.ts:337:21)
+      at FindOperation.execute (../../node_modules/mongodb/src/operations/find.ts:130:12)
+      at tryOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:283:14)
+      at executeOperation (../../node_modules/mongodb/src/operations/execute_operation.ts:115:12)
+      at FindCursor._initialize (../../node_modules/mongodb/src/cursor/find_cursor.ts:92:22)
+      at FindCursor.cursorInit (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:944:21)
+      at FindCursor.fetchBatch (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:982:7)
+      at FindCursor.next (../../node_modules/mongodb/src/cursor/abstract_cursor.ts:612:9)
+      at Collection.findOne (../../node_modules/mongodb/src/collection.ts:525:17)
+      at model.Query._findOne (../../node_modules/mongoose/lib/query.js:2661:15)
+      at model.Query.exec (../../node_modules/mongoose/lib/query.js:4456:63)
+      at src/core/database/concurrency-manager.ts:184:21
+      at src/core/database/transaction-manager.ts:49:16
+      at TransactionManager.runTransaction (src/core/database/transaction-manager.ts:48:16)
+      at ConcurrencyManager.withPessimisticLock (src/core/database/concurrency-manager.ts:182:14)
+          at async Promise.all (index 1)
+      at Object.<anonymous> (tests/p3/infrastructure/database-performance.test.ts:396:7)
+
+  ● Database Performance › Bulk Operation Performance › should perform bulk inserts at required rate
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 5000
+    Received: 0
+
+      453 |       // Verify database state
+      454 |       const count = await PerformanceModel.countDocuments();
+    > 455 |       expect(count).toBe(docsToInsert);
+          |                     ^
+      456 |       expect(result.success).toBe(true);
+      457 |       expect(result.processedCount).toBe(docsToInsert);
+      458 |       expect(result.errorCount).toBe(0);
+
+      at Object.<anonymous> (tests/p3/infrastructure/database-performance.test.ts:455:21)
+
+  ● Database Performance › Bulk Operation Performance › should perform bulk updates at required rate
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 5000
+    Received: 2500
+
+      521 |       const inactiveCount = await PerformanceModel.countDocuments({ status: 'inactive' });
+      522 |       
+    > 523 |       expect(activeCount).toBe(docsToCreate); // All documents should now be active
+          |                           ^
+      524 |       expect(inactiveCount).toBe(0);
+      525 |       expect(result.success).toBe(true);
+      526 |       expect(result.processedCount).toBe(updates.length);
+
+      at Object.<anonymous> (tests/p3/infrastructure/database-performance.test.ts:523:27)
+
+  ● Database Performance › Bulk Operation Performance › should perform bulk deletes at required rate
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2500
+    Received: 5000
+
+      583 |       // Verify database state
+      584 |       const remainingCount = await PerformanceModel.countDocuments();
+    > 585 |       expect(remainingCount).toBe(docsToCreate - expectedDeletions);
+          |                              ^
+      586 |       expect(result.success).toBe(true);
+      587 |       expect(result.processedCount).toBe(expectedDeletions);
+      588 |       expect(result.errorCount).toBe(0);
+
+      at Object.<anonymous> (tests/p3/infrastructure/database-performance.test.ts:585:30)
+
+  ● Database Performance › Bulk Operation Performance › should perform bulk upserts at required rate
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 5000
+    Received: 2500
+
+      676 |       const newCount = await PerformanceModel.countDocuments({ tags: 'new' });
+      677 |       
+    > 678 |       expect(totalCount).toBe(existingDocsCount + newDocsCount);
+          |                          ^
+      679 |       expect(updatedCount).toBe(existingDocsCount);
+      680 |       expect(newCount).toBe(newDocsCount);
+      681 |       expect(result.success).toBe(true);
+
+      at Object.<anonymous> (tests/p3/infrastructure/database-performance.test.ts:678:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       10 failed, 10 total
+Snapshots:   0 total
+Time:        37.451 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p3\/infrastructure\/database-performance.test.ts/i.

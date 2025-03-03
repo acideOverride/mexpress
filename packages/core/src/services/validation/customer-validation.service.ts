@@ -124,14 +124,23 @@ export class CustomerValidationService {
 
   private isValidPhone(phone: string): boolean {
     const normalized = this.normalizePhone(phone);
-    return /^\+[1-9]\d{1,14}$/.test(normalized);
+    // Must be in E.164 format with at least 8 digits total (including country code)
+    return /^\+[1-9]\d{7,14}$/.test(normalized);
   }
 
   private normalizePhone(phone: string): string {
     let normalized = phone.replace(/\s+/g, '');
+    
+    // Add + if missing
     if (!normalized.startsWith('+')) {
       normalized = '+' + normalized;
     }
+    
+    // Must be at least 8 characters (plus the + sign)
+    if (normalized.length < 8) {
+      return normalized; // Return as is, will fail validation
+    }
+    
     return normalized;
   }
 

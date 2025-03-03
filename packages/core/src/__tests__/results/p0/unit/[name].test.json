@@ -1,0 +1,25 @@
+{
+  "suite": "",
+  "stats": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0,
+    "duration": 1
+  },
+  "tests": [],
+  "performance": {
+    "memory": {
+      "start": 13634912,
+      "end": 13650608,
+      "used": 15696,
+      "peak": null
+    },
+    "cpu": {
+      "usage": 4.19,
+      "cores": 6
+    },
+    "duration": 1,
+    "averageTestDuration": null,
+    "slowestTests": []
+  }
+}

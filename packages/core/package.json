@@ -8,6 +8,13 @@
     "build": "tsc",
     "build:reconciliation": "tsc -p src/reconciliation-tools/tsconfig.json",
     "test": "jest",
+    "test:p0": "tests/run-p0-tests.sh",
+    "test:p1": "tests/run-p1-tests.sh",
+    "test:p2": "tests/run-p2-tests.sh", 
+    "test:p3": "tests/run-p3-tests.sh",
+    "test:integration": "tests/run-integration-tests.sh",
+    "test:verify-mapping": "tests/run-verify-milestone-mapping.sh",
+    "test:all": "npm run test:p0 && npm run test:p1 && npm run test:p2 && npm run test:p3",
     "reconciliation": "node dist/reconciliation-tools/cli.js"
   },
   "bin": {
@@ -26,10 +33,12 @@
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.9",
     "bcrypt": "^5.1.1",
     "chalk": "^4.1.2",
     "commander": "^11.1.0",
+    "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.1",
     "uuid": "^11.1.0"

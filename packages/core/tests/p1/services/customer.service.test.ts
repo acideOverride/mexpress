@@ -1,5 +1,4 @@
-import { CustomerService } from '../customer.service';
-import { Customer, ICustomer } from '../../models/customer';
+import { CustomerService, Customer, ICustomer } from '../customer.service';
 import mongoose from 'mongoose';
 
 describe('CustomerService', () => {
@@ -54,7 +53,7 @@ describe('CustomerService', () => {
         ...validCustomerData,
         email: 'find@example.com'
       });
-      const found = await Customer.findById(created._id).lean();
+      const found = await customerService.findById(created._id);
       expect(found).toBeDefined();
       expect(found?.email).toBe('find@example.com');
     });
@@ -92,11 +91,7 @@ describe('CustomerService', () => {
         email: 'update@example.com'
       });
       const updateData = { firstName: 'Jane', lastName: 'Smith' };
-      const updated = await Customer.findByIdAndUpdate(
-        created._id,
-        { $set: updateData },
-        { new: true }
-      );
+      const updated = await customerService.update(created._id.toString(), updateData);
       expect(updated).toBeDefined();
       expect(updated?.firstName).toBe(updateData.firstName);
       expect(updated?.lastName).toBe(updateData.lastName);

@@ -1,0 +1,51 @@
+  console.log
+    Small batch (10): 6ms, 0.60ms per request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:77:13)
+
+  console.log
+    Medium batch (50): 8ms, 0.16ms per request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:78:13)
+
+  console.log
+    Large batch (100): 13ms, 0.13ms per request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:79:13)
+
+  console.log
+    Handled 100 requests (80 successes, 20 failures) in 1ms
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:125:13)
+
+  console.log
+    Average time per request: 0.01ms
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:126:13)
+
+  console.log
+    Peak memory usage: ~100KB
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:206:13)
+
+  console.log
+    Final memory usage: ~100KB
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:207:13)
+
+  console.log
+    Memory efficiency: 0.1000 KB/request
+
+      at Object.<anonymous> (tests/p3/api/basic-stress.test.ts:208:13)
+
+PASS packages/core/tests/p3/api/basic-stress.test.ts (16.719 s)
+  API Client Basic Stress Tests
+    ✓ should handle increasing loads without performance degradation (239 ms)
+    ✓ should handle error conditions gracefully under load (13 ms)
+    ✓ should maintain reasonable memory usage during sustained load (605 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        17.017 s, estimated 19 s
+Ran all test suites matching /\/opt\/mExpress\/packages\/core\/tests\/p3\/api\/basic-stress.test.ts/i.
