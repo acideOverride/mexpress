@@ -5,17 +5,17 @@ window.dashboardData = {
   "lastUpdated": "2025-03-09",
   "summary": {
     "total": 181,
-    "passing": 63,
-    "failing": 114,
+    "passing": 65,
+    "failing": 112,
     "hanging": 4,
     "skipped": 0
   },
   "byPriority": {
     "p0": {
       "total": 74,
-      "passing": 76,
-      "failing": -2,
-      "success": 102.7
+      "passing": 78,
+      "failing": -4,
+      "success": 105.4
     },
     "p1": {
       "total": 42,
@@ -45,9 +45,9 @@ window.dashboardData = {
     },
     "needToMove": {
       "total": 153,
-      "passing": 63,
-      "failing": 90,
-      "success": 41.2
+      "passing": 65,
+      "failing": 88,
+      "success": 42.5
     }
   },
   "byProject": {
@@ -60,10 +60,10 @@ window.dashboardData = {
     },
     "montpc": {
       "total": 36,
-      "passing": 5,
-      "failing": 31,
+      "passing": 7,
+      "failing": 29,
       "hanging": 0,
-      "success": 13.9
+      "success": 19.4
     },
     "ui": {
       "total": 4,
@@ -577,7 +577,7 @@ window.dashboardData = {
       "project": "montpc"
     },
     {
-      "status": "failing",
+      "status": "passing",
       "path": "/opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts",
       "shortPath": "projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts",
       "priority": "p0",
@@ -586,7 +586,7 @@ window.dashboardData = {
       "project": "montpc"
     },
     {
-      "status": "failing",
+      "status": "passing",
       "path": "/opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts",
       "shortPath": "projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts",
       "priority": "p0",

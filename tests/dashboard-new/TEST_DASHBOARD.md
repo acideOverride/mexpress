@@ -106,8 +106,8 @@ status | file | location
 ✅ | packages/core/tests/p0/sync.service.test.ts | 🔄
 ✅ | projects/montpc_crm/frontend/tests/p0/components/dashboard.test.tsx | 🔄
 ✅ | projects/montpc_crm/frontend/tests/p0/core/CustomerDetail.test.tsx | 🔄
-❌ | projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts | 🔄
-❌ | projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts | 🔄
+✅ | projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts | 🔄
+✅ | projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts | 🔄
 ❌ | projects/montpc_crm/tests/frontend/p0/components/auth/LoginForm.test.tsx | 🔄
 ❌ | projects/montpc_crm/tests/frontend/p0/components/auth/ProtectedRoute.test.tsx | 🔄
 ❌ | projects/montpc_crm/tests/frontend/p0/components/auth/RegisterForm.test.tsx | 🔄
@@ -255,24 +255,24 @@ status | file | location
   "lastUpdated": "2025-03-09",
   "summary": {
     "total": 181,
-    "passing": 63,
-    "failing": 114,
+    "passing": 65,
+    "failing": 112,
     "hanging": 4,
     "skipped": 0
   },
   "byPriority": {
-    "p0": {"total": 74, "passing": 76, "failing": -2, "success": 102.7},
+    "p0": {"total": 74, "passing": 78, "failing": -4, "success": 105.4},
     "p1": {"total": 42, "passing": 41, "failing": 1, "success": 97.6},
     "p2": {"total": 16, "passing": 5, "failing": 11, "success": 31.3},
     "p3": {"total": 26, "passing": 11, "failing": 15, "success": 42.3}
   },
   "byLocation": {
     "canonical": {"total": 28, "passing": 0, "failing": 28, "success": 0},
-    "needToMove": {"total": 153, "passing": 63, "failing": 90, "success": 41.2}
+    "needToMove": {"total": 153, "passing": 65, "failing": 88, "success": 42.5}
   },
   "byProject": {
     "core": {"total": 120, "passing": 47, "failing": 70, "hanging": 3, "success": 39.2},
-    "montpc": {"total": 36, "passing": 5, "failing": 31, "hanging": 0, "success": 13.9},
+    "montpc": {"total": 36, "passing": 7, "failing": 29, "hanging": 0, "success": 19.4},
     "ui": {"total": 4, "passing": 2, "failing": 2, "hanging": 0, "success": 50.0},
     "utils": {"total": 21, "passing": 0, "failing": 20, "hanging": 1, "success": 0.0}
   },

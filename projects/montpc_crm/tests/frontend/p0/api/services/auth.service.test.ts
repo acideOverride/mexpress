@@ -1,4 +1,4 @@
-import { authService } from '../auth.service';
+import { authService } from './auth.service';
 import axios from 'axios';
 
 jest.mock('axios');

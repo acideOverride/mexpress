@@ -5,7 +5,7 @@ import axios, {
   InternalAxiosRequestConfig, 
   AxiosHeaders
 } from 'axios';
-import { localStorageMock } from '../../../setupTests';
+import { localStorageMock } from '../../setupTests';
 
 interface MockInterceptor<T> {
   use(onFulfilled?: ((value: T) => T | Promise<T>) | null, onRejected?: ((error: any) => any) | null): number;
