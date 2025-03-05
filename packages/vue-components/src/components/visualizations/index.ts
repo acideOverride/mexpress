@@ -5,11 +5,13 @@ import BaseChart from './charts/BaseChart.vue';
 import BarChart from './charts/BarChart.vue';
 import LineChart from './charts/LineChart.vue';
 import PieChart from './charts/PieChart.vue';
+import AreaChart from './charts/AreaChart.vue';
 
 // Example components
 import BarChartExample from './charts/BarChartExample.vue';
 import LineChartExample from './charts/LineChartExample.vue';
 import PieChartExample from './charts/PieChartExample.vue';
+import AreaChartExample from './charts/AreaChartExample.vue';
 
 // Export utilities
 export * from './utils';
@@ -21,10 +23,12 @@ export {
   BarChart,
   LineChart,
   PieChart,
+  AreaChart,
   // Examples
   BarChartExample,
   LineChartExample,
-  PieChartExample
+  PieChartExample,
+  AreaChartExample
 };
 
 // Default export for Vue plugin
@@ -35,5 +39,6 @@ export default {
     app.component('MBarChart', BarChart);
     app.component('MLineChart', LineChart);
     app.component('MPieChart', PieChart);
+    app.component('MAreaChart', AreaChart);
   }
 };
