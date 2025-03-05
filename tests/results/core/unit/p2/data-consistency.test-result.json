@@ -1,0 +1,197 @@
+[
+  {
+    "testId": "da7176c0-6ea8fd67",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should register a node successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 5,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-fa007696",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should update node status",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-70f89dcf",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should update node metrics",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-60e569eb",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should set and get value with eventual consistency",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 131,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-73471d60",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should delete a value successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 317,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-954919e1",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should set and get value with strong consistency",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 178,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-cbbde4d5",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should fail when not enough nodes available",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 14,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-ac34ad4c",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should set and get value with causal consistency",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 260,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-c5fa9656",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should set and get value with read-your-writes consistency",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 35,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-1ce61177",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should handle node failures gracefully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 407,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-162a7f1a",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should handle all nodes down",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 11,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-a0b8aa23",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should handle unknown consistency level",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 238,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "da7176c0-ee701cc5",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts",
+    "testName": "should return valid statistics",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:18.396Z",
+    "duration": 10,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

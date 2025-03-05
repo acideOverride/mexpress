@@ -1,0 +1,92 @@
+[
+  {
+    "testId": "de0a6b8b-69d000c7",
+    "testPath": "/opt/mExpress/projects/montpc_crm/tests/p1/services/external-integration.project.test.ts",
+    "testName": "should successfully sync customers with external system",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:38.948Z",
+    "duration": 24,
+    "metadata": {
+      "priority": "p1",
+      "project": "unknown",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "de0a6b8b-1607570e",
+    "testPath": "/opt/mExpress/projects/montpc_crm/tests/p1/services/external-integration.project.test.ts",
+    "testName": "should handle API errors during customer sync",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:38.948Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p1",
+      "project": "unknown",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "de0a6b8b-c4e2b9f3",
+    "testPath": "/opt/mExpress/projects/montpc_crm/tests/p1/services/external-integration.project.test.ts",
+    "testName": "should fetch products from external system",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:38.948Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "unknown",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "de0a6b8b-6efccd10",
+    "testPath": "/opt/mExpress/projects/montpc_crm/tests/p1/services/external-integration.project.test.ts",
+    "testName": "should handle errors when fetching products",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:38.948Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "unknown",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "de0a6b8b-ec7af72e",
+    "testPath": "/opt/mExpress/projects/montpc_crm/tests/p1/services/external-integration.project.test.ts",
+    "testName": "should create a ticket in the external system",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:38.948Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "unknown",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "de0a6b8b-9f8c32f7",
+    "testPath": "/opt/mExpress/projects/montpc_crm/tests/p1/services/external-integration.project.test.ts",
+    "testName": "should handle validation errors from external ticket system",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:38.948Z",
+    "duration": 7,
+    "metadata": {
+      "priority": "p1",
+      "project": "unknown",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

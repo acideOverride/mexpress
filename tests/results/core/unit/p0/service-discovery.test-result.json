@@ -1,0 +1,137 @@
+[
+  {
+    "testId": "8cd115b4-a2f59db0",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/service-discovery.test.ts",
+    "testName": "should register a service successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:29.744Z",
+    "duration": 24,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "8cd115b4-150aea64",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/service-discovery.test.ts",
+    "testName": "should deregister a service successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:29.744Z",
+    "duration": 13,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "8cd115b4-221de340",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/service-discovery.test.ts",
+    "testName": "should discover all services",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:29.744Z",
+    "duration": 21,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "8cd115b4-3fea8fc5",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/service-discovery.test.ts",
+    "testName": "should update service heartbeat",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:29.744Z",
+    "duration": 26,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "8cd115b4-7c790f1d",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/service-discovery.test.ts",
+    "testName": "should update service status",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:29.744Z",
+    "duration": 13,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "8cd115b4-c916c120",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/service-discovery.test.ts",
+    "testName": "should mark services as unhealthy after heartbeat timeout",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:29.744Z",
+    "duration": 165,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "8cd115b4-c745009e",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/service-discovery.test.ts",
+    "testName": "should cache service instances",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:29.744Z",
+    "duration": 14,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "8cd115b4-393e6e8c",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/service-discovery.test.ts",
+    "testName": "should invalidate cache when service is updated",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:29.744Z",
+    "duration": 14,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "8cd115b4-ee701cc5",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/service-discovery.test.ts",
+    "testName": "should return valid statistics",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:29.744Z",
+    "duration": 14,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

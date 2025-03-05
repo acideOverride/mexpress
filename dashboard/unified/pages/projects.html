@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mExpress Dashboard - PROJECTS</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  <link rel="stylesheet" href="../assets/dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="dashboard-title">
+        <div class="dashboard-logo">m</div>
+        <div class="dashboard-header-content">
+          <h1>mExpress Dashboard Hub</h1>
+          <div class="meta">
+            <span id="last-updated">Last updated: 2025-03-03</span>
+            <span id="version">Version: 1.0.0</span>
+          </div>
+        </div>
+        <div class="dashboard-actions">
+          <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" class="moon-icon"></path>
+              <circle cx="12" cy="12" r="5" class="sun-icon-circle"></circle>
+              <line x1="12" y1="1" x2="12" y2="3" class="sun-icon-ray"></line>
+              <line x1="12" y1="21" x2="12" y2="23" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" class="sun-icon-ray"></line>
+              <line x1="1" y1="12" x2="3" y2="12" class="sun-icon-ray"></line>
+              <line x1="21" y1="12" x2="23" y2="12" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" class="sun-icon-ray"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="overview">Overview</div>
+      <div class="tab" data-tab="dashboards">Dashboards</div>
+      <div class="tab" data-tab="projects">Projects</div>
+      <div class="tab" data-tab="reports">Reports</div>
+    </div>
+    
+    <main class="main-content">
+      <div class="tab-content active" id="page-content">
+        <h1>Project Overview</h1>
+<h2>Project Summary</h2>
+<ul>
+<li><strong>Total Projects</strong>: {{Object.keys(projects).length}}</li>
+<li><strong>Active Projects</strong>: 2</li>
+<li><strong>Planning Phase</strong>: 2</li>
+<li><strong>Maintenance Mode</strong>: 0</li>
+</ul>
+<h2>Active Projects</h2>
+<p>{{#if status === &#39;active&#39;}}</p>
+<h3>mExpress</h3>
+<ul>
+<li><strong>Description</strong>: Core platform for business applications</li>
+<li><strong>Status</strong>: active</li>
+<li><strong>Milestone Progress</strong>: 80%</li>
+<li><strong>Test Progress</strong>: 52.3%</li>
+<li><strong>Key Milestones</strong>:<ul>
+<li>Core Infrastructure</li>
+<li>Authentication &amp; Security</li>
+<li>API Integration</li>
+</ul>
+</li>
+</ul>
+<p>{{/if}}</p>
+<p>{{#if status === &#39;active&#39;}}</p>
+<h3>MontPC CRM</h3>
+<ul>
+<li><strong>Description</strong>: Customer management for PC repair</li>
+<li><strong>Status</strong>: active</li>
+<li><strong>Milestone Progress</strong>: 30%</li>
+<li><strong>Test Progress</strong>: 0%</li>
+<li><strong>Key Milestones</strong>:<ul>
+<li>Core Infrastructure</li>
+<li>Authentication &amp; Security</li>
+<li>API Integration</li>
+</ul>
+</li>
+</ul>
+<p>{{/if}}</p>
+<p>{{#if status === &#39;active&#39;}}</p>
+<h3>Giandra Photos</h3>
+<ul>
+<li><strong>Description</strong>: Photo management and selling platform</li>
+<li><strong>Status</strong>: planning</li>
+<li><strong>Milestone Progress</strong>: 5%</li>
+<li><strong>Test Progress</strong>: 0%</li>
+<li><strong>Key Milestones</strong>:<ul>
+<li>Core Infrastructure</li>
+<li>Authentication &amp; Security</li>
+<li>API Integration</li>
+</ul>
+</li>
+</ul>
+<p>{{/if}}</p>
+<p>{{#if status === &#39;active&#39;}}</p>
+<h3>Jerome Bikes</h3>
+<ul>
+<li><strong>Description</strong>: Bike rental and reservation system</li>
+<li><strong>Status</strong>: planning</li>
+<li><strong>Milestone Progress</strong>: 2%</li>
+<li><strong>Test Progress</strong>: 0%</li>
+<li><strong>Key Milestones</strong>:<ul>
+<li>Core Infrastructure</li>
+<li>Authentication &amp; Security</li>
+<li>API Integration</li>
+</ul>
+</li>
+</ul>
+<p>{{/if}}</p>
+<h2>Planning Phase</h2>
+<p>{{#if status === &#39;planning&#39;}}</p>
+<h3>mExpress</h3>
+<ul>
+<li><strong>Description</strong>: Core platform for business applications</li>
+<li><strong>Status</strong>: active</li>
+<li><strong>Milestone Progress</strong>: 80%</li>
+<li><strong>Test Progress</strong>: 52.3%</li>
+<li><strong>Planned Start</strong>: Q3 2025</li>
+</ul>
+<p>{{/if}}</p>
+<p>{{#if status === &#39;planning&#39;}}</p>
+<h3>MontPC CRM</h3>
+<ul>
+<li><strong>Description</strong>: Customer management for PC repair</li>
+<li><strong>Status</strong>: active</li>
+<li><strong>Milestone Progress</strong>: 30%</li>
+<li><strong>Test Progress</strong>: 0%</li>
+<li><strong>Planned Start</strong>: Q3 2025</li>
+</ul>
+<p>{{/if}}</p>
+<p>{{#if status === &#39;planning&#39;}}</p>
+<h3>Giandra Photos</h3>
+<ul>
+<li><strong>Description</strong>: Photo management and selling platform</li>
+<li><strong>Status</strong>: planning</li>
+<li><strong>Milestone Progress</strong>: 5%</li>
+<li><strong>Test Progress</strong>: 0%</li>
+<li><strong>Planned Start</strong>: Q3 2025</li>
+</ul>
+<p>{{/if}}</p>
+<p>{{#if status === &#39;planning&#39;}}</p>
+<h3>Jerome Bikes</h3>
+<ul>
+<li><strong>Description</strong>: Bike rental and reservation system</li>
+<li><strong>Status</strong>: planning</li>
+<li><strong>Milestone Progress</strong>: 2%</li>
+<li><strong>Test Progress</strong>: 0%</li>
+<li><strong>Planned Start</strong>: Q3 2025</li>
+</ul>
+<p>{{/if}}</p>
+<h2>Project Roadmap</h2>
+<h3>mExpress (Core Platform)</h3>
+<ul>
+<li><strong>Q1 2025</strong>: Core infrastructure, authentication, messaging</li>
+<li><strong>Q2 2025</strong>: Service architecture, API integrations</li>
+<li><strong>Q3 2025</strong>: Dashboard implementation, monitoring</li>
+<li><strong>Q4 2025</strong>: Scalability enhancements, security audit</li>
+</ul>
+<h3>MontPC CRM</h3>
+<ul>
+<li><strong>Q3 2025</strong>: Initial implementation</li>
+<li><strong>Q4 2025</strong>: Customer portal, support tickets, reporting</li>
+</ul>
+<h3>Giandra Photos</h3>
+<ul>
+<li><strong>Q4 2025</strong>: Planning and initial design</li>
+<li><strong>Q1 2026</strong>: Platform development start</li>
+</ul>
+<h3>Jerome Bikes</h3>
+<ul>
+<li><strong>Q4 2025</strong>: Requirements gathering and design</li>
+<li><strong>Q1 2026</strong>: Initial development start</li>
+</ul>
+<h2>Project Dependencies</h2>
+<ul>
+<li>All client projects depend on mExpress core platform</li>
+<li>Giandra Photos will use the authentication services from mExpress</li>
+<li>Jerome Bikes will leverage the API integration framework from mExpress</li>
+<li>MontPC CRM is the first client implementation of the platform</li>
+</ul>
+
+      </div>
+    </main>
+    
+    <footer>
+      <p>mExpress Unified Dashboard &copy; 2025 | Generated from template files in the /templates directory</p>
+      <p>Last updated: <span id="footer-last-updated">2025-03-03</span></p>
+    </footer>
+  </div>
+  
+  <!-- Dashboard data and scripts -->
+  <script src="../generated/dashboard-data.js"></script>
+  <script src="../assets/dashboard.js"></script>
+</body>
+</html>

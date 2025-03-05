@@ -1,0 +1,32 @@
+[
+  {
+    "testId": "9db8eae3-5fa49def",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/auth/multi-login.test.ts",
+    "testName": "should replace existing session when user logs in from new device",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:06.469Z",
+    "duration": 4,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9db8eae3-269252e1",
+    "testPath": "/opt/mExpress/packages/core/tests/p2/auth/multi-login.test.ts",
+    "testName": "should maintain multiple sessions when configuration allows it",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:06.469Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p2",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

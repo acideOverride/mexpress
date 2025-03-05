@@ -1,0 +1,182 @@
+[
+  {
+    "testId": "d2ceee76-aa1c591b",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should create valid service mesh configuration",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 8,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "d2ceee76-35b72abb",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should throw error for invalid configuration",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 78,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "d2ceee76-a50e12ee",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should configure proxy with circuit breaker",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "d2ceee76-2556328c",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should validate proxy configuration",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "d2ceee76-629aa904",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should configure route with load balancer",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "d2ceee76-c6f76c6d",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should validate route configuration",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "d2ceee76-66ae3ad0",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should configure rate limit policy",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "d2ceee76-9a7fad4b",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should validate policy configuration",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 5,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "d2ceee76-9690b843",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should configure metrics collection",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 4,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "d2ceee76-45fa36f1",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should validate metrics configuration",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 4,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "d2ceee76-a66952f0",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should configure service discovery",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "d2ceee76-3379f084",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts",
+    "testName": "should validate discovery configuration",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:57.167Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

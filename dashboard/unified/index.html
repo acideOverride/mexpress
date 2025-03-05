@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mExpress Dashboard Hub</title>
+  <!-- Use Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  <link rel="stylesheet" href="assets/dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="dashboard-title">
+        <div class="dashboard-logo">m</div>
+        <div class="dashboard-header-content">
+          <h1>mExpress Dashboard Hub</h1>
+          <div class="meta">
+            <span id="last-updated">Last updated: Loading...</span>
+            <span id="version">Version: 1.0.0</span>
+          </div>
+        </div>
+        <div class="dashboard-actions">
+          <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" class="moon-icon"></path>
+              <circle cx="12" cy="12" r="5" class="sun-icon-circle"></circle>
+              <line x1="12" y1="1" x2="12" y2="3" class="sun-icon-ray"></line>
+              <line x1="12" y1="21" x2="12" y2="23" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" class="sun-icon-ray"></line>
+              <line x1="1" y1="12" x2="3" y2="12" class="sun-icon-ray"></line>
+              <line x1="21" y1="12" x2="23" y2="12" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" class="sun-icon-ray"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="overview">Overview</div>
+      <div class="tab" data-tab="dashboards">Dashboards</div>
+      <div class="tab" data-tab="projects">Projects</div>
+      <div class="tab" data-tab="reports">Reports</div>
+    </div>
+    
+    <main class="main-content">
+      <!-- Overview Tab -->
+      <div class="tab-content active" id="overview">
+        <h2>mExpress Platform Status</h2>
+        <div class="dashboard-content">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Dashboard Hub</h2>
+              <p class="card-subtitle">Centralized access to all project dashboards</p>
+            </div>
+            <p>Welcome to the mExpress Dashboard Hub. This central dashboard provides access to all project metrics, reports, and status information in one place.</p>
+            <div class="metrics">
+              <div class="metric-card success">
+                <div class="metric-value" id="milestone-completion">0%</div>
+                <div class="metric-label">Milestones Completed</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-fill-success" id="milestone-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              <div class="metric-card warning">
+                <div class="metric-value" id="tasks-completed">0/0</div>
+                <div class="metric-label">Tasks Completed</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-fill-warning" id="task-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              <div class="metric-card danger">
+                <div class="metric-value" id="tests-passing">0%</div>
+                <div class="metric-label">Tests Passing</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-fill-danger" id="test-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-value" id="brq-completion">0%</div>
+                <div class="metric-label">BRQs Completed</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-fill-primary" id="brq-progress" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h2>Cross-Project Overview</h2>
+        <div class="cross-project">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Project Progress</h3>
+            </div>
+            <div class="chart">
+              <canvas id="project-progress-chart" width="400" height="250"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Test Status</h3>
+            </div>
+            <div class="chart">
+              <canvas id="test-status-chart" width="400" height="250"></canvas>
+            </div>
+          </div>
+        </div>
+        
+        <h2>Current Sprint: <span id="current-sprint-name">Loading...</span></h2>
+        <div class="metrics">
+          <div class="metric-card">
+            <div class="metric-value" id="sprint-progress">0%</div>
+            <div class="metric-label">Sprint Progress</div>
+            <div class="progress-bar">
+              <div class="progress-fill progress-fill-primary" id="sprint-progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="sprint-tasks-completed">0/0</div>
+            <div class="metric-label">Tasks Completed</div>
+            <div class="progress-bar">
+              <div class="progress-fill progress-fill-primary" id="sprint-tasks-progress" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="sprint-tests-passing">0/0</div>
+            <div class="metric-label">Tests Passing</div>
+            <div class="progress-bar">
+              <div class="progress-fill progress-fill-primary" id="sprint-tests-progress" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <h2>Recent Updates</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="recent-updates">
+              <tr>
+                <td colspan="4">Loading updates...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Dashboards Tab -->
+      <div class="tab-content" id="dashboards">
+        <h2>Available Dashboards</h2>
+        <div class="dashboard-content">
+          <div class="dashboard-grid">
+            <div class="dashboard-card">
+              <div class="dashboard-card-header">
+                <h3 class="dashboard-card-title">Test Dashboard</h3>
+              </div>
+              <p>Complete overview of test status, priorities, and BRQ mapping.</p>
+              <div class="dashboard-card-actions">
+                <a href="pages/tests.html" class="button">Open Dashboard</a>
+              </div>
+            </div>
+            
+            <div class="dashboard-card">
+              <div class="dashboard-card-header">
+                <h3 class="dashboard-card-title">Milestone Tracker</h3>
+              </div>
+              <p>Track project milestones, quarterly goals, and progress.</p>
+              <div class="dashboard-card-actions">
+                <a href="pages/milestones.html" class="button">Open Dashboard</a>
+              </div>
+            </div>
+            
+            <div class="dashboard-card">
+              <div class="dashboard-card-header">
+                <h3 class="dashboard-card-title">Task Tracker</h3>
+              </div>
+              <p>Monitor current and upcoming sprint tasks and assignments.</p>
+              <div class="dashboard-card-actions">
+                <a href="pages/tasks.html" class="button">Open Dashboard</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Projects Tab -->
+      <div class="tab-content" id="projects">
+        <h2>Active Projects</h2>
+        <div class="dashboard-grid">
+          <div class="project-card">
+            <div class="project-card-header">
+              <div>
+                <div class="project-card-title mexpress-color">mExpress</div>
+                <div class="project-card-description">Core platform for business applications</div>
+              </div>
+              <div class="project-status status-active">Active</div>
+            </div>
+            <div class="project-metrics">
+              <div class="metric">
+                <div class="metric-value" id="mexpress-milestone-progress">0%</div>
+                <div class="metric-label">Milestones</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" id="mexpress-test-progress">0%</div>
+                <div class="metric-label">Tests</div>
+              </div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill mexpress-bg" id="mexpress-progress" style="width: 0%"></div>
+            </div>
+          </div>
+          
+          <div class="project-card">
+            <div class="project-card-header">
+              <div>
+                <div class="project-card-title montpc-color">MontPC CRM</div>
+                <div class="project-card-description">Customer management for PC repair</div>
+              </div>
+              <div class="project-status status-active">Active</div>
+            </div>
+            <div class="project-metrics">
+              <div class="metric">
+                <div class="metric-value" id="montpc-milestone-progress">0%</div>
+                <div class="metric-label">Milestones</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" id="montpc-test-progress">0%</div>
+                <div class="metric-label">Tests</div>
+              </div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill montpc-bg" id="montpc-progress" style="width: 0%"></div>
+            </div>
+          </div>
+          
+          <div class="project-card">
+            <div class="project-card-header">
+              <div>
+                <div class="project-card-title giandra-color">Giandra Photos</div>
+                <div class="project-card-description">Photo management and selling platform</div>
+              </div>
+              <div class="project-status status-planning">Planning</div>
+            </div>
+            <div class="project-metrics">
+              <div class="metric">
+                <div class="metric-value" id="giandra-milestone-progress">0%</div>
+                <div class="metric-label">Milestones</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" id="giandra-test-progress">0%</div>
+                <div class="metric-label">Tests</div>
+              </div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill giandra-bg" id="giandra-progress" style="width: 5%"></div>
+            </div>
+          </div>
+          
+          <div class="project-card">
+            <div class="project-card-header">
+              <div>
+                <div class="project-card-title jerome-color">Jerome Bikes</div>
+                <div class="project-card-description">Bike rental and reservation system</div>
+              </div>
+              <div class="project-status status-planning">Planning</div>
+            </div>
+            <div class="project-metrics">
+              <div class="metric">
+                <div class="metric-value" id="jerome-milestone-progress">0%</div>
+                <div class="metric-label">Milestones</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" id="jerome-test-progress">0%</div>
+                <div class="metric-label">Tests</div>
+              </div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill jerome-bg" id="jerome-progress" style="width: 2%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Reports Tab -->
+      <div class="tab-content" id="reports">
+        <h2>Available Reports</h2>
+        <div class="dashboard-content">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Test Reports</h2>
+              <span class="card-subtitle">Test quality and coverage analysis</span>
+            </div>
+            <ul class="report-list">
+              <li><a href="#">Test Status Summary Report</a> - Overall test status across all projects</li>
+              <li><a href="#">Test Coverage Report</a> - Code coverage analysis by component</li>
+              <li><a href="#">Test Performance Report</a> - Test execution performance metrics</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Milestone Reports</h2>
+              <span class="card-subtitle">Project milestone tracking</span>
+            </div>
+            <ul class="report-list">
+              <li><a href="#">Q1 2025 Milestone Report</a> - Completion status of Q1 milestones</li>
+              <li><a href="#">Q2 2025 Milestone Report</a> - Progress tracking for current quarter</li>
+              <li><a href="#">2025 Roadmap Report</a> - Full year milestone planning</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>mExpress Unified Dashboard &copy; 2025 | Generated from template files in the /templates directory</p>
+      <p>Last updated: <span id="footer-last-updated">Loading...</span></p>
+    </footer>
+  </div>
+  
+  <!-- Dashboard data and scripts -->
+  <script src="generated/dashboard-data.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Dark mode toggle
+      const darkModeToggle = document.getElementById('dark-mode-toggle');
+      const htmlElement = document.documentElement;
+      
+      // Check for saved theme preference or use system preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        htmlElement.classList.add('dark-mode');
+      }
+      
+      // Toggle dark mode on button click
+      darkModeToggle.addEventListener('click', function() {
+        if (htmlElement.classList.contains('dark-mode')) {
+          htmlElement.classList.remove('dark-mode');
+          localStorage.setItem('theme', 'light');
+        } else {
+          htmlElement.classList.add('dark-mode');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+      
+      // Tab switching
+      const tabs = document.querySelectorAll('.tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.getAttribute('data-tab');
+          
+          // Update active tab
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          
+          // Update active content
+          tabContents.forEach(content => {
+            content.classList.remove('active');
+            if (content.id === tabId) {
+              content.classList.add('active');
+            }
+          });
+        });
+      });
+      
+      // Load dashboard data if available
+      if (window.dashboardData) {
+        updateDashboard();
+      }
+    });
+    
+    // Dashboard data update function
+    function updateDashboard() {
+      const data = window.dashboardData;
+      
+      // Update last updated times
+      if (data.lastUpdated) {
+        document.getElementById('last-updated').textContent = `Last updated: ${data.lastUpdated}`;
+        document.getElementById('footer-last-updated').textContent = data.lastUpdated;
+      }
+      
+      // Update milestone metrics
+      if (data.milestones && data.milestones.summary) {
+        const milestoneCompletion = data.milestones.summary.total > 0 ? 
+          Math.round((data.milestones.summary.completed / data.milestones.summary.total) * 100) : 0;
+        document.getElementById('milestone-completion').textContent = `${milestoneCompletion}%`;
+        document.getElementById('milestone-progress').style.width = `${milestoneCompletion}%`;
+      }
+      
+      // Update task metrics
+      if (data.tasks && data.tasks.summary) {
+        const tasksCompleted = data.tasks.summary.completedTasks || 0;
+        const tasksTotal = (data.tasks.summary.completedTasks || 0) + 
+                          (data.tasks.summary.inProgressTasks || 0) + 
+                          (data.tasks.summary.pendingTasks || 0);
+        document.getElementById('tasks-completed').textContent = `${tasksCompleted}/${tasksTotal}`;
+        
+        const taskProgress = tasksTotal > 0 ? Math.round((tasksCompleted / tasksTotal) * 100) : 0;
+        document.getElementById('task-progress').style.width = `${taskProgress}%`;
+      }
+      
+      // Update test metrics
+      if (data.tests && data.tests.summary) {
+        const testsPassing = data.tests.summary.passing || 0;
+        const testsTotal = data.tests.summary.total || 0;
+        const testPassingPercent = testsTotal > 0 ? Math.round((testsPassing / testsTotal) * 100) : 0;
+        
+        document.getElementById('tests-passing').textContent = `${testPassingPercent}%`;
+        document.getElementById('test-progress').style.width = `${testPassingPercent}%`;
+      }
+      
+      // Update BRQ metrics
+      if (data.tests && data.tests.brqs) {
+        const brqTotal = data.tests.brqs.length || 0;
+        const brqCompleted = data.tests.brqs.filter(brq => brq.progress === 100).length || 0;
+        const brqCompletion = brqTotal > 0 ? Math.round((brqCompleted / brqTotal) * 100) : 0;
+        
+        document.getElementById('brq-completion').textContent = `${brqCompletion}%`;
+        document.getElementById('brq-progress').style.width = `${brqCompletion}%`;
+      }
+      
+      // Update sprint information
+      if (data.tasks && data.tasks.currentSprint) {
+        const sprint = data.tasks.currentSprint;
+        document.getElementById('current-sprint-name').textContent = sprint.name || "No active sprint";
+        
+        // Calculate sprint progress
+        const sprintTotal = (sprint.completed || 0) + (sprint.inProgress || 0) + (sprint.pending || 0);
+        const sprintProgress = sprintTotal > 0 ? Math.round((sprint.completed / sprintTotal) * 100) : 0;
+        
+        document.getElementById('sprint-progress').textContent = `${sprintProgress}%`;
+        document.getElementById('sprint-progress-bar').style.width = `${sprintProgress}%`;
+        
+        // Sprint tasks
+        document.getElementById('sprint-tasks-completed').textContent = `${sprint.completed || 0}/${sprintTotal}`;
+        document.getElementById('sprint-tasks-progress').style.width = `${sprintProgress}%`;
+        
+        // Sprint tests
+        const sprintTestsTotal = sprint.testsTotal || 0;
+        const sprintTestsPassing = sprint.testsPassing || 0;
+        const sprintTestProgress = sprintTestsTotal > 0 ? Math.round((sprintTestsPassing / sprintTestsTotal) * 100) : 0;
+        
+        document.getElementById('sprint-tests-passing').textContent = `${sprintTestsPassing}/${sprintTestsTotal}`;
+        document.getElementById('sprint-tests-progress').style.width = `${sprintTestProgress}%`;
+      }
+      
+      // Update project metrics
+      updateProjectMetrics('mexpress', 80, 52.3);
+      updateProjectMetrics('montpc', 30, 0);
+      updateProjectMetrics('giandra', 5, 0);
+      updateProjectMetrics('jerome', 2, 0);
+      
+      // Create charts if Chart.js is available
+      if (window.Chart) {
+        createProjectProgressChart();
+        createTestStatusChart();
+      }
+    }
+    
+    // Update project metrics
+    function updateProjectMetrics(projectId, milestoneProgress, testProgress) {
+      const milestoneElement = document.getElementById(`${projectId}-milestone-progress`);
+      const testElement = document.getElementById(`${projectId}-test-progress`);
+      const progressElement = document.getElementById(`${projectId}-progress`);
+      
+      if (milestoneElement) milestoneElement.textContent = `${milestoneProgress}%`;
+      if (testElement) testElement.textContent = `${testProgress}%`;
+      if (progressElement) progressElement.style.width = `${milestoneProgress}%`;
+    }
+    
+    // Create project progress chart
+    function createProjectProgressChart() {
+      const chartElement = document.getElementById('project-progress-chart');
+      if (!chartElement) return;
+      
+      const ctx = chartElement.getContext('2d');
+      
+      // Chart data
+      const data = {
+        labels: ['mExpress', 'MontPC CRM', 'Giandra Photos', 'Jerome Bikes'],
+        datasets: [
+          {
+            label: 'Completed',
+            data: [80, 30, 5, 2],
+            backgroundColor: 'rgba(16, 185, 129, 0.7)'
+          },
+          {
+            label: 'In Progress',
+            data: [15, 40, 10, 5],
+            backgroundColor: 'rgba(245, 158, 11, 0.7)'
+          },
+          {
+            label: 'Planned',
+            data: [5, 30, 85, 93],
+            backgroundColor: 'rgba(79, 70, 229, 0.7)'
+          }
+        ]
+      };
+      
+      // Chart config
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {
+          plugins: {
+            title: {
+              display: false
+            },
+            legend: {
+              position: 'bottom'
+            }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              stacked: true,
+              max: 100,
+              title: {
+                display: true,
+                text: 'Percentage (%)'
+              }
+            }
+          }
+        },
+      };
+      
+      // Create the chart
+      if (window.projectProgressChart) {
+        window.projectProgressChart.destroy();
+      }
+      
+      window.projectProgressChart = new Chart(ctx, config);
+    }
+    
+    // Create test status chart
+    function createTestStatusChart() {
+      const chartElement = document.getElementById('test-status-chart');
+      if (!chartElement) return;
+      
+      const ctx = chartElement.getContext('2d');
+      
+      // Chart data
+      const data = {
+        labels: ['mExpress', 'MontPC CRM', 'Giandra Photos', 'Jerome Bikes'],
+        datasets: [
+          {
+            label: 'Passing',
+            data: [52.3, 0, 0, 0],
+            backgroundColor: 'rgba(16, 185, 129, 0.7)'
+          },
+          {
+            label: 'Failing',
+            data: [43.1, 100, 0, 0],
+            backgroundColor: 'rgba(239, 68, 68, 0.7)'
+          },
+          {
+            label: 'Hanging',
+            data: [4.6, 0, 0, 0],
+            backgroundColor: 'rgba(245, 158, 11, 0.7)'
+          }
+        ]
+      };
+      
+      // Chart config
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {
+          plugins: {
+            title: {
+              display: false
+            },
+            legend: {
+              position: 'bottom'
+            }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              stacked: true,
+              max: 100,
+              title: {
+                display: true,
+                text: 'Percentage (%)'
+              }
+            }
+          }
+        },
+      };
+      
+      // Create the chart
+      if (window.testStatusChart) {
+        window.testStatusChart.destroy();
+      }
+      
+      window.testStatusChart = new Chart(ctx, config);
+    }
+  </script>
+</body>
+</html>

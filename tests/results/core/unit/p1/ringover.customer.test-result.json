@@ -1,0 +1,77 @@
+[
+  {
+    "testId": "63c1f250-5461482c",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/ringover.customer.test.ts",
+    "testName": "should create a customer",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:25:06.433Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "63c1f250-433aa348",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/ringover.customer.test.ts",
+    "testName": "should get customer by id",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:25:06.433Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "63c1f250-788f11fa",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/ringover.customer.test.ts",
+    "testName": "should update customer",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:25:06.433Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "63c1f250-69dade32",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/ringover.customer.test.ts",
+    "testName": "should get customer by phone",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:25:06.433Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "63c1f250-36bb68b7",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/ringover.customer.test.ts",
+    "testName": "should return null when customer not found by phone",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:25:06.433Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

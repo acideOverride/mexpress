@@ -1,0 +1,806 @@
+/* Blueprint design system */
+:root {
+  --blueprint-bg: #182d4c;
+  --blueprint-light: #214b82;
+  --blueprint-text: #e9f1fb;
+  --blueprint-grid: rgba(52, 152, 219, 0.15);
+  --blueprint-outline: rgba(52, 152, 219, 0.5);
+  --blueprint-component: rgba(52, 152, 219, 0.2);
+  --blueprint-highlight: rgba(52, 152, 219, 0.4);
+  --blueprint-line: rgba(52, 152, 219, 0.8);
+  --blueprint-accent: #3498db;
+  --complete-color: #2ecc71;
+  --in-progress-color: #f39c12;
+  --not-started-color: #e74c3c;
+  --planned-color: #9b59b6;
+}
+
+/* Main layout */
+.blueprint-container {
+  position: relative;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.blueprint-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: var(--blueprint-bg);
+  color: var(--blueprint-text);
+  border-bottom: 1px solid var(--blueprint-outline);
+  z-index: 10;
+}
+
+.blueprint-title {
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.blueprint-title-icon {
+  font-size: 20px;
+}
+
+.blueprint-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.blueprint-main {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: calc(100vh - 220px);
+}
+
+.blueprint-sidebar {
+  background: var(--blueprint-light);
+  color: var(--blueprint-text);
+  padding: 20px;
+  border-right: 1px solid var(--blueprint-outline);
+}
+
+.blueprint-content {
+  background: var(--blueprint-bg);
+  color: var(--blueprint-text);
+  position: relative;
+  overflow: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10; /* Ensure content is above any invisible layers */
+}
+
+/* Make sure sub-tabs and sub-tab-content are visible and clickable */
+.sub-tabs {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.sub-tab {
+  position: relative;
+  z-index: 30;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.sub-tab-content {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* Blueprint grid background */
+.blueprint-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: 30px 30px;
+  background-image:
+    linear-gradient(to right, var(--blueprint-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--blueprint-grid) 1px, transparent 1px);
+  z-index: 0;
+}
+
+/* Blueprint components */
+.project-selector {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 3px;
+}
+
+.project-option {
+  flex: 1;
+  padding: 8px 12px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.2s;
+  font-size: 13px;
+}
+
+.project-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.project-option.active {
+  background: var(--blueprint-accent);
+  color: white;
+}
+
+.sidebar-section {
+  margin-bottom: 25px;
+}
+
+.sidebar-title {
+  font-size: 13px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.sidebar-stat {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.sidebar-stat-value {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.sidebar-stat-label {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.status-legend {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+/* Visual architecture diagram */
+.architecture-diagram {
+  position: relative;
+  z-index: 5;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.diagram-layer {
+  position: relative;
+  padding: 15px;
+  border: 1px solid var(--blueprint-outline);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s;
+}
+
+.diagram-layer:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.layer-title {
+  position: absolute;
+  top: -12px;
+  left: 15px;
+  background: var(--blueprint-accent);
+  padding: 3px 10px;
+  border-radius: 15px;
+  font-weight: 500;
+  font-size: 13px;
+  z-index: 1;
+}
+
+.component-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.component-box {
+  position: relative;
+  width: 170px;
+  height: 100px;
+  border: 1.5px solid var(--blueprint-outline);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background: var(--blueprint-component);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.component-box:hover {
+  background: var(--blueprint-highlight);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.component-title {
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 6px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.component-status {
+  font-size: 14px;
+}
+
+.component-desc {
+  font-size: 12px;
+  opacity: 0.7;
+  flex-grow: 1;
+  z-index: 2;
+}
+
+.component-progress {
+  height: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 10px;
+  z-index: 2;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  transition: width 0.5s;
+}
+
+/* Complated status */
+.complete .progress-bar-fill {
+  background: var(--complete-color);
+  width: 100%;
+}
+
+.component-box.complete::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent var(--complete-color) transparent transparent;
+}
+
+/* In progress status */
+.in-progress .progress-bar-fill {
+  background: var(--in-progress-color);
+  width: 50%;
+}
+
+.component-box.in-progress::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent var(--in-progress-color) transparent transparent;
+}
+
+/* Not started status */
+.not-started .progress-bar-fill {
+  background: var(--not-started-color);
+  width: 0%;
+}
+
+/* Service connections */
+.connections {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.connection {
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.connection-dependency {
+  stroke: var(--complete-color);
+  stroke-width: 2px;
+  stroke-dasharray: none;
+  animation: dash 30s linear infinite;
+}
+
+.connection-layer {
+  stroke: var(--blueprint-line);
+  stroke-width: 1px;
+  stroke-dasharray: 4;
+  animation: dash 30s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+/* BRQ Section */
+.brq-banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.brq-card {
+  flex: 1;
+  min-width: 250px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.brq-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+}
+
+.brq-card.complete::before {
+  background: var(--complete-color);
+}
+
+.brq-card.in-progress::before {
+  background: var(--in-progress-color);
+}
+
+.brq-card.not-started::before {
+  background: var(--not-started-color);
+}
+
+.brq-id {
+  font-family: monospace;
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 5px;
+}
+
+.brq-name {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.brq-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.brq-meta {
+  display: flex;
+  gap: 10px;
+}
+
+.brq-tag {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.brq-progress {
+  height: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* Roadmap visualization */
+.roadmap {
+  position: relative;
+  margin-top: 30px;
+  padding-left: 20px;
+}
+
+.roadmap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 9px;
+  width: 2px;
+  height: 100%;
+  background: var(--blueprint-outline);
+  z-index: 1;
+}
+
+.roadmap-phase {
+  position: relative;
+  padding: 0 0 30px 20px;
+}
+
+.phase-marker {
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--blueprint-accent);
+  z-index: 2;
+}
+
+.phase-complete .phase-marker {
+  background: var(--complete-color);
+}
+
+.phase-in-progress .phase-marker {
+  background: var(--in-progress-color);
+}
+
+.phase-planned .phase-marker {
+  background: var(--planned-color);
+}
+
+.phase-title {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.phase-items {
+  margin: 0;
+  padding-left: 25px;
+  list-style-type: none;
+}
+
+.phase-items li {
+  position: relative;
+  padding: 4px 0;
+  font-size: 14px;
+}
+
+.phase-items li::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--blueprint-accent);
+}
+
+/* Project overview section */
+.overview-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.overview-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.overview-title {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.overview-stats {
+  display: flex;
+  gap: 15px;
+}
+
+.overview-stat {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.overview-stat-value {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.overview-stat-label {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.chart-container {
+  margin-top: 15px;
+  height: 200px;
+}
+
+/* Component detail modal */
+.component-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.component-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--blueprint-bg);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  color: var(--blueprint-text);
+  border: 1px solid var(--blueprint-outline);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--blueprint-outline);
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--blueprint-text);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-section {
+  margin-bottom: 20px;
+}
+
+.modal-subtitle {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-subtitle-icon {
+  font-size: 16px;
+}
+
+.modal-brqs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.modal-brq {
+  padding: 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 4px solid var(--blueprint-accent);
+}
+
+.modal-brq.complete {
+  border-left-color: var(--complete-color);
+}
+
+.modal-brq.in-progress {
+  border-left-color: var(--in-progress-color);
+}
+
+.modal-brq.not-started {
+  border-left-color: var(--not-started-color);
+}
+
+/* Media queries */
+@media (max-width: 992px) {
+  .blueprint-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  
+  .blueprint-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--blueprint-outline);
+  }
+  
+  .overview-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .brq-banner {
+    flex-direction: column;
+  }
+}
+
+/* Toggle switch for dark/light mode */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .switch-slider {
+  background-color: var(--blueprint-accent);
+}
+
+input:checked + .switch-slider:before {
+  transform: translateX(26px);
+}
+
+/* Component test status pills */
+.test-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  margin-right: 5px;
+}
+
+.test-passing {
+  color: var(--complete-color);
+}
+
+.test-failing {
+  color: var(--not-started-color);
+}
+
+/* Dependency lines between components */
+.component-dependencies {
+  margin-top: 20px;
+}
+
+.dependency-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.dependency-arrow {
+  color: var(--blueprint-accent);
+}
+
+/* BRQ Filter section */
+.brq-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.brq-filter {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--blueprint-outline);
+  color: var(--blueprint-text);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.brq-filter:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.brq-filter.active {
+  background: var(--blueprint-accent);
+  border-color: var(--blueprint-accent);
+}

@@ -1,0 +1,167 @@
+[
+  {
+    "testId": "6dc2a33e-0dffa879",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/login.api.test.ts",
+    "testName": "should successfully login with valid credentials",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:54.486Z",
+    "duration": 6,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "6dc2a33e-93abe906",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/login.api.test.ts",
+    "testName": "should fail login with invalid credentials",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:54.486Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "6dc2a33e-89c35517",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/login.api.test.ts",
+    "testName": "should handle network errors during login",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:54.486Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "6dc2a33e-7df6b2bc",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/login.api.test.ts",
+    "testName": "should record metrics for successful login",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:54.486Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "6dc2a33e-56c97099",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/login.api.test.ts",
+    "testName": "should record metrics for failed login",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:54.486Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "6dc2a33e-44e5c57a",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/login.api.test.ts",
+    "testName": "should validate token after successful login",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:54.486Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "6dc2a33e-a4eb84bd",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/login.api.test.ts",
+    "testName": "should reject invalid token",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:54.486Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "6dc2a33e-61ecadfb",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/login.api.test.ts",
+    "testName": "should handle expired token",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:54.486Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "6dc2a33e-2b201854",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/login.api.test.ts",
+    "testName": "should block login after too many failed attempts",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:54.486Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "6dc2a33e-5bf97bf4",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/login.api.test.ts",
+    "testName": "should validate password complexity",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:54.486Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "6dc2a33e-357800e3",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/login.api.test.ts",
+    "testName": "should prevent concurrent login sessions",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:54.486Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

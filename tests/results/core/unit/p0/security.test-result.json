@@ -1,0 +1,107 @@
+[
+  {
+    "testId": "b04227c1-ecc0e3f1",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/security.test.ts",
+    "testName": "should enable mTLS when configured",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:40.093Z",
+    "duration": 5,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "b04227c1-57fb594f",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/security.test.ts",
+    "testName": "should throw error when mTLS is not enabled in config",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:40.093Z",
+    "duration": 26,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "b04227c1-5d16332c",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/security.test.ts",
+    "testName": "should configure authorization policies",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:40.093Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "b04227c1-d232282d",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/security.test.ts",
+    "testName": "should throw error when authorization is not enabled",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:40.093Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "b04227c1-bc6c4d77",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/security.test.ts",
+    "testName": "should validate authorization config default policy",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:40.093Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "b04227c1-429220b0",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/security.test.ts",
+    "testName": "should validate authorization rules exist",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:40.093Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "b04227c1-5c78d0ec",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/security.test.ts",
+    "testName": "should configure multiple authorization rules",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:40.093Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

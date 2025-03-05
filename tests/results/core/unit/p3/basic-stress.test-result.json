@@ -1,0 +1,47 @@
+[
+  {
+    "testId": "312ac4d1-4656b76f",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/api/basic-stress.test.ts",
+    "testName": "should handle increasing loads without performance degradation",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:49.528Z",
+    "duration": 7,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "312ac4d1-6c547547",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/api/basic-stress.test.ts",
+    "testName": "should handle error conditions gracefully under load",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:49.528Z",
+    "duration": 7,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "312ac4d1-93c3ba65",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/api/basic-stress.test.ts",
+    "testName": "should maintain reasonable memory usage during sustained load",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:49.528Z",
+    "duration": 280,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

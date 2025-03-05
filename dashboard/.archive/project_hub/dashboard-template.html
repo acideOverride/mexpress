@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mExpress Project Hub</title>
+  <!-- Use Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  <link rel="stylesheet" href="dashboard.css">
+  <!-- All data is loaded dynamically from dashboard-data.js -->
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="dashboard-title">
+        <div class="dashboard-logo">m</div>
+        <div>
+          <h1>mExpress Project Hub</h1>
+          <div class="meta">
+            <span id="last-updated">Last updated: Loading...</span>
+            <span id="version">Version: 1.0.0</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="overview">Overview</div>
+      <div class="tab" data-tab="projects">Projects</div>
+      <div class="tab" data-tab="milestones">Milestones</div>
+      <div class="tab" data-tab="tasks">Active Tasks</div>
+      <div class="tab" data-tab="tests">Test Status</div>
+      <div class="tab" data-tab="checklist">Architecture Checklist</div>
+    </div>
+    
+    <!-- Overview Tab -->
+    <div class="tab-content active" id="overview">
+      <h2>Platform Status</h2>
+      <div class="metrics">
+        <div class="metric-card success">
+          <div class="metric-value" id="milestone-completion">0%</div>
+          <div class="metric-label">Milestones Completed</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-success" id="milestone-progress" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="metric-card warning">
+          <div class="metric-value" id="tasks-completed">0/0</div>
+          <div class="metric-label">Tasks Completed</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-warning" id="task-progress" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="metric-card danger">
+          <div class="metric-value" id="tests-passing">0%</div>
+          <div class="metric-label">Tests Passing</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-danger" id="test-progress" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" id="brq-completion">0%</div>
+          <div class="metric-label">BRQs Completed</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-primary" id="brq-progress" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+      
+      <h2>Cross-Project Overview</h2>
+      <div class="cross-project">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Project Progress</h3>
+          </div>
+          <div class="chart">
+            <canvas id="project-progress-chart" width="400" height="250"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Test Status</h3>
+          </div>
+          <div class="chart">
+            <canvas id="test-status-chart" width="400" height="250"></canvas>
+          </div>
+        </div>
+      </div>
+      
+      <h2>Current Sprint: <span id="current-sprint-name">Loading...</span></h2>
+      <div class="metrics">
+        <div class="metric-card">
+          <div class="metric-value" id="sprint-progress">0%</div>
+          <div class="metric-label">Sprint Progress</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-primary" id="sprint-progress-bar" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" id="sprint-tasks-completed">0/0</div>
+          <div class="metric-label">Tasks Completed</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-primary" id="sprint-tasks-progress" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" id="sprint-tests-passing">0/0</div>
+          <div class="metric-label">Tests Passing</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-primary" id="sprint-tests-progress" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+      
+      <h2>Recent Updates</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Description</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="recent-updates">
+            <tr>
+              <td colspan="4">Loading updates...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Projects Tab -->
+    <div class="tab-content" id="projects">
+      <h2>Active Projects</h2>
+      <div class="dashboard-grid">
+        <div class="project-card">
+          <div class="project-card-header">
+            <div>
+              <div class="project-card-title mexpress-color">mExpress</div>
+              <div class="project-card-description">Core platform for business applications</div>
+            </div>
+            <div class="project-status status-active">Active</div>
+          </div>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-value" id="mexpress-milestone-progress">0%</div>
+              <div class="metric-label">Milestones</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" id="mexpress-test-progress">0%</div>
+              <div class="metric-label">Tests</div>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill mexpress-bg" id="mexpress-progress" style="width: 0%"></div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-card-header">
+            <div>
+              <div class="project-card-title montpc-color">MontPC CRM</div>
+              <div class="project-card-description">Customer management for PC repair</div>
+            </div>
+            <div class="project-status status-active">Active</div>
+          </div>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-value" id="montpc-milestone-progress">0%</div>
+              <div class="metric-label">Milestones</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" id="montpc-test-progress">0%</div>
+              <div class="metric-label">Tests</div>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill montpc-bg" id="montpc-progress" style="width: 0%"></div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-card-header">
+            <div>
+              <div class="project-card-title giandra-color">Giandra Photos</div>
+              <div class="project-card-description">Photo management and selling platform</div>
+            </div>
+            <div class="project-status status-planning">Planning</div>
+          </div>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-value" id="giandra-milestone-progress">0%</div>
+              <div class="metric-label">Milestones</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" id="giandra-test-progress">0%</div>
+              <div class="metric-label">Tests</div>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill giandra-bg" id="giandra-progress" style="width: 5%"></div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-card-header">
+            <div>
+              <div class="project-card-title jerome-color">Jerome Bikes</div>
+              <div class="project-card-description">Bike rental and reservation system</div>
+            </div>
+            <div class="project-status status-planning">Planning</div>
+          </div>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-value" id="jerome-milestone-progress">0%</div>
+              <div class="metric-label">Milestones</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" id="jerome-test-progress">0%</div>
+              <div class="metric-label">Tests</div>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill jerome-bg" id="jerome-progress" style="width: 2%"></div>
+          </div>
+        </div>
+      </div>
+      
+      <h2>Project Health</h2>
+      <div class="chart">
+        <div class="chart-placeholder">Project health metrics will appear here</div>
+      </div>
+      
+      <h2>Resource Allocation</h2>
+      <div class="chart">
+        <div class="chart-placeholder">Resource allocation visualization will appear here</div>
+      </div>
+    </div>
+    
+    <!-- Milestones Tab -->
+    <div class="tab-content" id="milestones">
+      <h2>Milestones</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Milestone</th>
+              <th>Project</th>
+              <th>Timeline</th>
+              <th>Progress</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="milestone-list">
+            <tr>
+              <td colspan="5">Loading milestones...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <h2>BRQ Status</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>BRQ ID</th>
+              <th>Description</th>
+              <th>Milestone</th>
+              <th>Progress</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="brq-list">
+            <tr>
+              <td colspan="5">Loading BRQs...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Tasks Tab -->
+    <div class="tab-content" id="tasks">
+      <h2>Current Sprint Tasks</h2>
+      <div class="task-list" id="current-tasks">
+        <div class="task-card">
+          <div class="task-header">
+            <h3 class="task-title">Loading tasks...</h3>
+            <span class="status status-in-progress">In Progress</span>
+          </div>
+          <div class="task-meta">
+            <div>Assignee: -</div>
+            <div>BRQ: -</div>
+          </div>
+          <div class="task-description">
+            <p>Loading task details...</p>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-warning" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+      
+      <h2>Upcoming Tasks</h2>
+      <div class="task-list" id="upcoming-tasks">
+        <div class="task-card">
+          <div class="task-header">
+            <h3 class="task-title">Loading tasks...</h3>
+            <span class="status status-planned">Planned</span>
+          </div>
+          <div class="task-meta">
+            <div>Milestone: -</div>
+            <div>BRQ: -</div>
+          </div>
+          <div class="task-description">
+            <p>Loading task details...</p>
+          </div>
+        </div>
+      </div>
+      
+      <h2>Blocked Tasks</h2>
+      <div class="task-list" id="blocked-tasks">
+        <div class="task-card">
+          <div class="task-header">
+            <h3 class="task-title">No blocked tasks</h3>
+            <span class="status status-planned">N/A</span>
+          </div>
+          <div class="task-description">
+            <p>There are currently no blocked tasks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Tests Tab -->
+    <div class="tab-content" id="tests">
+      <h2>Test Status Overview</h2>
+      <div class="metrics">
+        <div class="metric-card">
+          <div class="metric-value" id="p0-tests">0%</div>
+          <div class="metric-label">P0 (Critical) Tests</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-danger" id="p0-progress" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" id="p1-tests">0%</div>
+          <div class="metric-label">P1 (Important) Tests</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-warning" id="p1-progress" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" id="p2-tests">0%</div>
+          <div class="metric-label">P2 (Secondary) Tests</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-primary" id="p2-progress" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" id="p3-tests">0%</div>
+          <div class="metric-label">P3 (Performance) Tests</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-secondary" id="p3-progress" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cross-project">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Test Status by Project</h3>
+          </div>
+          <div class="chart">
+            <canvas id="test-project-chart" width="400" height="250"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Tests by Priority</h3>
+          </div>
+          <div class="chart">
+            <canvas id="test-priority-chart" width="400" height="250"></canvas>
+          </div>
+        </div>
+      </div>
+      
+      <h2>Recent Test Fixes</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Test</th>
+              <th>Status</th>
+              <th>Fixed Date</th>
+              <th>BRQ</th>
+            </tr>
+          </thead>
+          <tbody id="test-fixes">
+            <tr>
+              <td colspan="4">Loading test fixes...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <h2 class="section-toggle" onclick="toggleSection('brq-section')">
+        Test Status by BRQ <span class="toggle-icon">−</span>
+      </h2>
+      <div id="brq-section" class="collapsible-section">
+        <div class="filter-container" style="margin-bottom: 1rem;">
+          <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+            <input type="text" id="brq-filter" placeholder="Search BRQ..." onkeyup="filterBrqTests()" style="flex-grow: 1; min-width: 200px; padding: 0.5rem; border-radius: var(--radius); border: 1px solid var(--color-border);">
+            <div class="sort-buttons" style="display: flex; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--color-border);">
+              <button onclick="sortBrqTable('asc')" title="Sort ascending" style="padding: 0.5rem 0.75rem; border: none; background: var(--color-card); cursor: pointer;">↑</button>
+              <button onclick="sortBrqTable('desc')" title="Sort descending" style="padding: 0.5rem 0.75rem; border: none; background: var(--color-card); cursor: pointer; border-left: 1px solid var(--color-border);">↓</button>
+            </div>
+          </div>
+          <div class="filter-buttons" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+            <button class="filter-btn active" data-value="all" onclick="filterByStatus(this)">All</button>
+            <button class="filter-btn" data-value="0" onclick="filterByStatus(this)">0%</button>
+            <button class="filter-btn" data-value="1-50" onclick="filterByStatus(this)">1-50%</button>
+            <button class="filter-btn" data-value="51-99" onclick="filterByStatus(this)">51-99%</button>
+            <button class="filter-btn" data-value="100" onclick="filterByStatus(this)">100%</button>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table id="brq-tests-table">
+            <thead>
+              <tr>
+                <th onclick="sortBrqTable('brq')">BRQ</th>
+                <th onclick="sortBrqTable('tests')">Tests</th>
+                <th onclick="sortBrqTable('passing')">Passing</th>
+                <th onclick="sortBrqTable('status')">Status</th>
+              </tr>
+            </thead>
+            <tbody id="brq-tests">
+              <tr>
+                <td colspan="4">Loading BRQ test status...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <h2 class="section-toggle" onclick="toggleSection('tests-section')">
+        All Tests <span class="toggle-icon">−</span>
+      </h2>
+      <div id="tests-section" class="collapsible-section">
+        <div class="filter-container" style="margin-bottom: 1rem;">
+          <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+            <input type="text" id="test-filter" placeholder="Search tests..." onkeyup="filterTests()" style="flex-grow: 1; min-width: 200px; padding: 0.5rem; border-radius: var(--radius); border: 1px solid var(--color-border);">
+            <div class="sort-buttons" style="display: flex; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--color-border);">
+              <button onclick="sortTestsTable('name')" title="Sort by name" style="padding: 0.5rem 0.75rem; border: none; background: var(--color-card); cursor: pointer;">A-Z</button>
+              <button onclick="sortTestsTable('priority')" title="Sort by priority" style="padding: 0.5rem 0.75rem; border: none; background: var(--color-card); cursor: pointer; border-left: 1px solid var(--color-border);">P0-P3</button>
+            </div>
+          </div>
+          
+          <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem;">
+            <div>
+              <label style="display: block; font-size: 0.75rem; color: var(--color-text-light); margin-bottom: 0.25rem;">Priority:</label>
+              <div class="filter-buttons" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <button class="filter-btn active" data-type="priority" data-value="all" onclick="filterByOption(this)">All</button>
+                <button class="filter-btn priority-p0" data-type="priority" data-value="P0" onclick="filterByOption(this)">P0</button>
+                <button class="filter-btn priority-p1" data-type="priority" data-value="P1" onclick="filterByOption(this)">P1</button>
+                <button class="filter-btn priority-p2" data-type="priority" data-value="P2" onclick="filterByOption(this)">P2</button>
+                <button class="filter-btn priority-p3" data-type="priority" data-value="P3" onclick="filterByOption(this)">P3</button>
+              </div>
+            </div>
+            
+            <div>
+              <label style="display: block; font-size: 0.75rem; color: var(--color-text-light); margin-bottom: 0.25rem;">Project:</label>
+              <div class="filter-buttons" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <button class="filter-btn active" data-type="project" data-value="all" onclick="filterByOption(this)">All</button>
+                <button class="filter-btn mexpress-color" data-type="project" data-value="mExpress" onclick="filterByOption(this)">mExpress</button>
+                <button class="filter-btn montpc-color" data-type="project" data-value="MontPC" onclick="filterByOption(this)">MontPC</button>
+              </div>
+            </div>
+            
+            <div>
+              <label style="display: block; font-size: 0.75rem; color: var(--color-text-light); margin-bottom: 0.25rem;">Status:</label>
+              <div class="filter-buttons" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <button class="filter-btn active" data-type="status" data-value="all" onclick="filterByOption(this)">All</button>
+                <button class="filter-btn success" data-type="status" data-value="passing" onclick="filterByOption(this)">Passing</button>
+                <button class="filter-btn danger" data-type="status" data-value="failing" onclick="filterByOption(this)">Failing</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table id="tests-table">
+            <thead>
+              <tr>
+                <th onclick="sortTestsTable('name')">Test</th>
+                <th onclick="sortTestsTable('priority')">Priority</th>
+                <th onclick="sortTestsTable('project')">Project</th>
+                <th onclick="sortTestsTable('brq')">BRQ</th>
+                <th onclick="sortTestsTable('status')">Status</th>
+              </tr>
+            </thead>
+            <tbody id="all-tests">
+              <tr>
+                <td colspan="5">Loading tests...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Architecture Checklist Tab -->
+    <div class="tab-content" id="checklist">
+      <div class="checklist-header">
+        <h2>Architecture Achievement Checklist</h2>
+        
+        <div class="checklist-controls">
+          <div class="filter-container">
+            <label for="project-filter">Project:</label>
+            <select id="project-filter" onchange="filterChecklist()">
+              <option value="all">All Projects</option>
+              <option value="mexpress" selected>mExpress</option>
+              <option value="montpc">MontPC CRM</option>
+              <option value="giandra">Giandra Photos</option>
+              <option value="jerome">Jerome Bikes</option>
+            </select>
+          </div>
+          
+          <div class="filter-container">
+            <label for="component-filter">Component:</label>
+            <select id="component-filter" onchange="filterChecklist()">
+              <option value="all" selected>All Components</option>
+              <option value="api">API Layer</option>
+              <option value="service">Service Layer</option>
+              <option value="data">Data Layer</option>
+              <option value="infrastructure">Infrastructure</option>
+              <option value="ui">UI Components</option>
+              <option value="integration">Integrations</option>
+              <option value="security">Security</option>
+              <option value="performance">Performance</option>
+              <option value="resilience">Resilience</option>
+              <option value="observability">Observability</option>
+            </select>
+          </div>
+          
+          <div class="filter-container">
+            <label for="status-filter">Status:</label>
+            <select id="status-filter" onchange="filterChecklist()">
+              <option value="all" selected>All Status</option>
+              <option value="completed">Completed</option>
+              <option value="in-progress">In Progress</option>
+              <option value="planned">Planned</option>
+              <option value="not-started">Not Started</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="checklist-progress-overview">
+        <div class="metrics">
+          <div class="metric-card success">
+            <div class="metric-value" id="checklist-completion">0%</div>
+            <div class="metric-label">Overall Completion</div>
+            <div class="progress-bar">
+              <div class="progress-fill progress-fill-success" id="checklist-progress" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="components-completed">0/0</div>
+            <div class="metric-label">Components Completed</div>
+            <div class="progress-bar">
+              <div class="progress-fill progress-fill-primary" id="components-progress" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="metric-card warning">
+            <div class="metric-value" id="components-in-progress">0</div>
+            <div class="metric-label">Components In Progress</div>
+          </div>
+          <div class="metric-card danger">
+            <div class="metric-value" id="components-not-started">0</div>
+            <div class="metric-label">Components Not Started</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- API Layer Section -->
+      <div class="checklist-section" data-component="api">
+        <h3>1. API Layer <span class="section-progress">0%</span></h3>
+        <div class="checklist-items">
+          <div class="checklist-item" data-status="completed" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox completed">✓</span>
+              </div>
+              <div class="checklist-title">Customer API</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+                  </div>
+                  <span>100%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>CRUD operations for customer management. Includes endpoints for list, create, read, update, and delete operations.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-006-API</span>
+                <span class="meta-item">Tests: 3/3</span>
+                <span class="meta-item">Last Updated: March 1, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="in-progress" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox in-progress">◑</span>
+              </div>
+              <div class="checklist-title">Product API</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-warning" style="width: 65%"></div>
+                  </div>
+                  <span>65%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Catalog and inventory management. Implementation of core operations complete, advanced search and filtering in progress.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-027-BE</span>
+                <span class="meta-item">Tests: 3/3</span>
+                <span class="meta-item">Last Updated: February 25, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="completed" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox completed">✓</span>
+              </div>
+              <div class="checklist-title">Integration API</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+                  </div>
+                  <span>100%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>External system connectors. Implementation includes Ringover API and Hiboutik API integrations.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-001-API, MEXP-2025-030-API</span>
+                <span class="meta-item">Tests: 6/6</span>
+                <span class="meta-item">Last Updated: February 28, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="completed" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox completed">✓</span>
+              </div>
+              <div class="checklist-title">Authentication API</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+                  </div>
+                  <span>100%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Identity and access management. Implementation includes JWT token-based authentication with refresh token rotation.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-002-BE</span>
+                <span class="meta-item">Tests: 4/4</span>
+                <span class="meta-item">Last Updated: March 2, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="not-started" data-project="montpc">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox not-started">○</span>
+              </div>
+              <div class="checklist-title">Repair API</div>
+              <div class="checklist-project">
+                <span class="badge badge-secondary">MontPC CRM</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-danger" style="width: 0%"></div>
+                  </div>
+                  <span>0%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Repair ticket management specific to MontPC CRM. Planning phase with requirements analysis.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MONT-2025-032-API</span>
+                <span class="meta-item">Tests: 0/1</span>
+                <span class="meta-item">Last Updated: February 15, 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Service Layer Section -->
+      <div class="checklist-section" data-component="service">
+        <h3>2. Service Layer <span class="section-progress">60%</span></h3>
+        <div class="checklist-items">
+          <div class="checklist-item" data-status="completed" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox completed">✓</span>
+              </div>
+              <div class="checklist-title">Customer Service</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+                  </div>
+                  <span>100%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Customer data management and validation. Completed implementation with validation rules and business logic.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-008-BE</span>
+                <span class="meta-item">Tests: 2/2</span>
+                <span class="meta-item">Last Updated: February 25, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="completed" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox completed">✓</span>
+              </div>
+              <div class="checklist-title">Auth Service</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+                  </div>
+                  <span>100%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Authentication, authorization, token management. Implemented with role-based access control and proper security measures.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-002-BE</span>
+                <span class="meta-item">Tests: 4/4</span>
+                <span class="meta-item">Last Updated: March 2, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="completed" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox completed">✓</span>
+              </div>
+              <div class="checklist-title">Message Queue</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+                  </div>
+                  <span>100%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Reliable async communication between services. Implemented with persistence and delivery guarantees.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-003-BE</span>
+                <span class="meta-item">Tests: 5/5</span>
+                <span class="meta-item">Last Updated: March 1, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="in-progress" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox in-progress">◑</span>
+              </div>
+              <div class="checklist-title">Integration Service</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-warning" style="width: 75%"></div>
+                  </div>
+                  <span>75%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Third-party system adapters. Implementation progressing with Ringover and Hiboutik integrations.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-030-API, MEXP-2025-031-API</span>
+                <span class="meta-item">Tests: 6/6</span>
+                <span class="meta-item">Last Updated: February 20, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="not-started" data-project="montpc">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox not-started">○</span>
+              </div>
+              <div class="checklist-title">Repair Service</div>
+              <div class="checklist-project">
+                <span class="badge badge-secondary">MontPC CRM</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-danger" style="width: 0%"></div>
+                  </div>
+                  <span>0%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Repair tracking and management for MontPC. Planning phase with initial requirement analysis.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MONT-2025-007-FULL</span>
+                <span class="meta-item">Tests: 0/0</span>
+                <span class="meta-item">Last Updated: N/A</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Add more checklist sections for other components -->
+      <div class="checklist-section" data-component="infrastructure">
+        <h3>3. Infrastructure <span class="section-progress">52%</span></h3>
+        <div class="checklist-items">
+          <div class="checklist-item" data-status="in-progress" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox in-progress">◑</span>
+              </div>
+              <div class="checklist-title">Service Mesh</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-warning" style="width: 70%"></div>
+                  </div>
+                  <span>70%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Service discovery, communication, load balancing. Implementation progressing with service discovery implemented but mesh configuration incomplete.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-007-BE</span>
+                <span class="meta-item">Tests: 1/2</span>
+                <span class="meta-item">Last Updated: March 3, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="in-progress" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox in-progress">◑</span>
+              </div>
+              <div class="checklist-title">Deployment Manager</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-warning" style="width: 85%"></div>
+                  </div>
+                  <span>85%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Container orchestration and scaling. Implementation progressing with deployment configuration near completion.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-007-BE</span>
+                <span class="meta-item">Tests: 0/1</span>
+                <span class="meta-item">Last Updated: March 3, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="completed" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox completed">✓</span>
+              </div>
+              <div class="checklist-title">Rate Limiter</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+                  </div>
+                  <span>100%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>API throttling and quota management. Implementation complete with token bucket algorithm.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-001-API</span>
+                <span class="meta-item">Tests: 1/1</span>
+                <span class="meta-item">Last Updated: February 28, 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- UI Components Section -->
+      <div class="checklist-section" data-component="ui">
+        <h3>4. UI Components <span class="section-progress">35%</span></h3>
+        <div class="checklist-items">
+          <div class="checklist-item" data-status="in-progress" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox in-progress">◑</span>
+              </div>
+              <div class="checklist-title">Customer Management</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-warning" style="width: 60%"></div>
+                  </div>
+                  <span>60%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Customer profile and interaction tracking. Implementation progressing with core components developed.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-005-FE</span>
+                <span class="meta-item">Tests: 1/1</span>
+                <span class="meta-item">Last Updated: March 1, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="planned" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox planned">□</span>
+              </div>
+              <div class="checklist-title">Dashboard</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-primary" style="width: 10%"></div>
+                  </div>
+                  <span>10%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Analytics and KPI visualization. Initial planning phase with design mockups.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-040-FE</span>
+                <span class="meta-item">Tests: 0/1</span>
+                <span class="meta-item">Last Updated: February 15, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="completed" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox completed">✓</span>
+              </div>
+              <div class="checklist-title">Authentication</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+                  </div>
+                  <span>100%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Login, registration, account management. Implementation complete with proper security measures.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-002-BE</span>
+                <span class="meta-item">Tests: 4/4</span>
+                <span class="meta-item">Last Updated: March 2, 2025</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checklist-item" data-status="in-progress" data-project="mexpress">
+            <div class="checklist-item-header">
+              <div class="checklist-status">
+                <span class="checklist-checkbox in-progress">◑</span>
+              </div>
+              <div class="checklist-title">Product Catalog</div>
+              <div class="checklist-project">
+                <span class="badge badge-primary">mExpress</span>
+              </div>
+              <div class="checklist-metrics">
+                <div class="checklist-item-progress">
+                  <div class="progress-bar small">
+                    <div class="progress-fill progress-fill-warning" style="width: 55%"></div>
+                  </div>
+                  <span>55%</span>
+                </div>
+              </div>
+            </div>
+            <div class="checklist-item-details">
+              <p>Product browsing and search interface. Implementation progressing with basic browsing complete.</p>
+              <div class="checklist-item-meta">
+                <span class="meta-item">BRQ: MEXP-2025-027-BE</span>
+                <span class="meta-item">Tests: 3/3</span>
+                <span class="meta-item">Last Updated: February 25, 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="loaded-message" id="checklist-loaded-message">
+        <p>All architecture checklist items loaded. Use the filters above to narrow down your view.</p>
+      </div>
+    </div>
+    
+    <footer>
+      <p>mExpress Project Hub &copy; 2025 | Generated from ARCHITECTURE.md, MILESTONES_TRACKER_MASTER.md, and TASK_TRACKER_MASTER.md</p>
+      <p>Synchronized with test results from TEST_DASHBOARD.md</p>
+    </footer>
+  </div>
+  
+  <!-- Template for dashboard data -->
+  <script>
+    // This will be replaced with actual data by the update script
+    window.dashboardData = {
+      lastUpdated: "Loading...",
+      milestones: {
+        total: 0,
+        completed: 0,
+        inProgress: 0,
+        planned: 0
+      },
+      tasks: {
+        total: 0,
+        completed: 0,
+        inProgress: 0,
+        pending: 0
+      },
+      tests: {
+        total: 0,
+        passing: 0,
+        failing: 0,
+        hanging: 0
+      },
+      brqs: {
+        total: 0,
+        completed: 0,
+        inProgress: 0,
+        notStarted: 0
+      },
+      currentSprint: {
+        name: "Loading...",
+        progress: 0,
+        tasks: []
+      },
+      allMilestones: [],
+      allBrqs: [],
+      allTasks: [],
+      testsByPriority: {
+        p0: { total: 0, passing: 0 },
+        p1: { total: 0, passing: 0 },
+        p2: { total: 0, passing: 0 },
+        p3: { total: 0, passing: 0 }
+      },
+      recentUpdates: [],
+      recentTestFixes: []
+    };
+  </script>
+  
+  <!-- Dashboard loading script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tab switching
+      const tabs = document.querySelectorAll('.tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.getAttribute('data-tab');
+          
+          // Update active tab
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          
+          // Update active content
+          tabContents.forEach(content => {
+            content.classList.remove('active');
+            if (content.id === tabId) {
+              content.classList.add('active');
+            }
+          });
+        });
+      });
+      
+      // Initialize checklist functionality
+      initChecklist();
+      
+      // Load dashboard data
+      updateDashboard();
+    });
+    
+    // Function to initialize checklist functionality
+    function initChecklist() {
+      // Toggle checklist item details on header click
+      const checklistItems = document.querySelectorAll('.checklist-item-header');
+      checklistItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const details = item.parentElement.querySelector('.checklist-item-details');
+          if (details.style.display === 'none' || details.style.display === '') {
+            details.style.display = 'block';
+          } else {
+            details.style.display = 'none';
+          }
+        });
+      });
+      
+      // Initialize checklist metrics
+      updateChecklistMetrics();
+    }
+    
+    // Function to filter checklist items
+    function filterChecklist() {
+      const projectFilter = document.getElementById('project-filter').value;
+      const componentFilter = document.getElementById('component-filter').value;
+      const statusFilter = document.getElementById('status-filter').value;
+      
+      // Get all checklist items
+      const items = document.querySelectorAll('.checklist-item');
+      let visibleCount = 0;
+      
+      items.forEach(item => {
+        const project = item.getAttribute('data-project');
+        const status = item.getAttribute('data-status');
+        const component = item.closest('.checklist-section').getAttribute('data-component');
+        
+        // Apply filters
+        const projectMatch = projectFilter === 'all' || project === projectFilter;
+        const componentMatch = componentFilter === 'all' || component === componentFilter;
+        const statusMatch = statusFilter === 'all' || status === statusFilter;
+        
+        // Show or hide based on filter match
+        if (projectMatch && componentMatch && statusMatch) {
+          item.style.display = 'block';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      // Show/hide sections based on visible items
+      document.querySelectorAll('.checklist-section').forEach(section => {
+        const visibleItems = section.querySelectorAll('.checklist-item[style="display: block;"]');
+        section.style.display = visibleItems.length > 0 ? 'block' : 'none';
+      });
+      
+      // Update message based on filter results
+      const message = document.getElementById('checklist-loaded-message');
+      if (visibleCount === 0) {
+        message.innerHTML = '<p>No items match your filter criteria. Try adjusting your filters.</p>';
+        message.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        message.style.color = 'var(--color-danger)';
+      } else {
+        message.innerHTML = `<p>Showing ${visibleCount} architecture items that match your filters.</p>`;
+        message.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        message.style.color = 'var(--color-success)';
+      }
+    }
+    
+    // Function to update checklist metrics
+    function updateChecklistMetrics() {
+      // Count items by status
+      const totalItems = document.querySelectorAll('.checklist-item').length;
+      const completedItems = document.querySelectorAll('.checklist-item[data-status="completed"]').length;
+      const inProgressItems = document.querySelectorAll('.checklist-item[data-status="in-progress"]').length;
+      const plannedItems = document.querySelectorAll('.checklist-item[data-status="planned"]').length;
+      const notStartedItems = document.querySelectorAll('.checklist-item[data-status="not-started"]').length;
+      
+      // Update component metrics
+      document.getElementById('components-completed').textContent = `${completedItems}/${totalItems}`;
+      document.getElementById('components-in-progress').textContent = inProgressItems;
+      document.getElementById('components-not-started').textContent = notStartedItems + plannedItems;
+      
+      // Calculate completion percentage
+      const completionPercentage = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+      document.getElementById('checklist-completion').textContent = `${completionPercentage}%`;
+      document.getElementById('checklist-progress').style.width = `${completionPercentage}%`;
+      
+      // Calculate component progress
+      const componentsProgress = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+      document.getElementById('components-progress').style.width = `${componentsProgress}%`;
+      
+      // Update section progress
+      document.querySelectorAll('.checklist-section').forEach(section => {
+        const sectionItems = section.querySelectorAll('.checklist-item').length;
+        const sectionCompleted = section.querySelectorAll('.checklist-item[data-status="completed"]').length;
+        const sectionProgress = sectionItems > 0 ? Math.round((sectionCompleted / sectionItems) * 100) : 0;
+        
+        const progressElement = section.querySelector('.section-progress');
+        if (progressElement) {
+          progressElement.textContent = `${sectionProgress}%`;
+          
+          // Color code the progress
+          if (sectionProgress >= 80) {
+            progressElement.style.backgroundColor = 'var(--color-success)';
+          } else if (sectionProgress >= 50) {
+            progressElement.style.backgroundColor = 'var(--color-primary)';
+          } else if (sectionProgress >= 20) {
+            progressElement.style.backgroundColor = 'var(--color-warning)';
+          } else {
+            progressElement.style.backgroundColor = 'var(--color-danger)';
+          }
+        }
+      });
+    }
+    
+    function updateDashboard() {
+      const data = window.dashboardData;
+      
+      // Create the project progress chart
+      createProjectProgressChart();
+      
+      // Create the test status chart
+      createTestStatusChart();
+      
+      // Create test priority chart
+      createTestPriorityChart();
+      
+      // Create test project chart
+      createTestProjectChart();
+      
+      // Update last updated
+      document.getElementById('last-updated').textContent = `Last updated: ${data.lastUpdated}`;
+      
+      // Update metrics
+      const milestoneCompletion = data.milestones.total > 0 ? Math.round(data.milestones.completed / data.milestones.total * 100) : 0;
+      document.getElementById('milestone-completion').textContent = `${milestoneCompletion}%`;
+      document.getElementById('milestone-progress').style.width = `${milestoneCompletion}%`;
+      
+      const tasksTotal = data.tasks.total;
+      const tasksCompleted = data.tasks.completed;
+      document.getElementById('tasks-completed').textContent = `${tasksCompleted}/${tasksTotal}`;
+      const taskProgress = tasksTotal > 0 ? Math.round(tasksCompleted / tasksTotal * 100) : 0;
+      document.getElementById('task-progress').style.width = `${taskProgress}%`;
+      
+      const testsPassing = data.tests.total > 0 ? Math.round(data.tests.passing / data.tests.total * 100) : 0;
+      document.getElementById('tests-passing').textContent = `${testsPassing}%`;
+      document.getElementById('test-progress').style.width = `${testsPassing}%`;
+      
+      const brqCompletion = data.brqs.total > 0 ? Math.round(data.brqs.completed / data.brqs.total * 100) : 0;
+      document.getElementById('brq-completion').textContent = `${brqCompletion}%`;
+      document.getElementById('brq-progress').style.width = `${brqCompletion}%`;
+      
+      // Current Sprint
+      document.getElementById('current-sprint-name').textContent = data.currentSprint.name;
+      document.getElementById('sprint-progress').textContent = `${data.currentSprint.progress}%`;
+      document.getElementById('sprint-progress-bar').style.width = `${data.currentSprint.progress}%`;
+      
+      const sprintTasksTotal = data.currentSprint.tasks.length;
+      const sprintTasksCompleted = data.currentSprint.tasks.filter(t => t.status === 'completed').length;
+      document.getElementById('sprint-tasks-completed').textContent = `${sprintTasksCompleted}/${sprintTasksTotal}`;
+      const sprintTasksProgress = sprintTasksTotal > 0 ? Math.round(sprintTasksCompleted / sprintTasksTotal * 100) : 0;
+      document.getElementById('sprint-tasks-progress').style.width = `${sprintTasksProgress}%`;
+      
+      // Find the BRQ for the current sprint
+      const currentSprintBrq = data.currentSprint.tasks.length > 0 ? data.currentSprint.tasks[0].brq : null;
+      const brqData = currentSprintBrq ? data.allBrqs.find(b => b.id === currentSprintBrq) : null;
+      
+      if (brqData) {
+        document.getElementById('sprint-tests-passing').textContent = `${brqData.progress}%`;
+        document.getElementById('sprint-tests-progress').style.width = `${brqData.progress}%`;
+      } else {
+        document.getElementById('sprint-tests-passing').textContent = '0%';
+        document.getElementById('sprint-tests-progress').style.width = '0%';
+      }
+      
+      // Project-specific metrics
+      updateProjectMetrics('mexpress', 80, testsPassing);
+      updateProjectMetrics('montpc', 30, 0);
+      updateProjectMetrics('giandra', 0, 0);
+      updateProjectMetrics('jerome', 0, 0);
+      
+      // Priority test progress
+      updatePriorityTests('p0', data.testsByPriority.p0);
+      updatePriorityTests('p1', data.testsByPriority.p1);
+      updatePriorityTests('p2', data.testsByPriority.p2);
+      updatePriorityTests('p3', data.testsByPriority.p3);
+      
+      // Update lists
+      updateMilestoneList(data.allMilestones);
+      updateBrqList(data.allBrqs);
+      updateCurrentTasks(data.currentSprint);
+      updateUpcomingTasks(data.allTasks.filter(task => task.status === 'pending'));
+      updateRecentUpdates(data.recentUpdates);
+      updateTestFixes(data.recentTestFixes);
+      updateBrqTests(data.allBrqs);
+      updateTests(data);
+      
+      // Initialize section toggling
+      initSectionToggling();
+    }
+    
+    // Initialize section toggling
+    function initSectionToggling() {
+      document.querySelectorAll('.section-toggle').forEach(toggle => {
+        const sectionId = toggle.getAttribute('onclick').match(/toggleSection\(['"](.*)['"]\)/)[1];
+        const section = document.getElementById(sectionId);
+        
+        // Set initial max-height to allow CSS transitions
+        section.style.maxHeight = section.scrollHeight + 'px';
+      });
+    }
+    
+    // Toggle section visibility
+    function toggleSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      const toggle = document.querySelector(`[onclick*="${sectionId}"]`);
+      const icon = toggle.querySelector('.toggle-icon');
+      
+      if (section.classList.contains('collapsed')) {
+        // Expand
+        section.classList.remove('collapsed');
+        section.style.maxHeight = section.scrollHeight + 'px';
+        icon.textContent = '−';
+      } else {
+        // Collapse
+        section.classList.add('collapsed');
+        section.style.maxHeight = '0';
+        icon.textContent = '+';
+      }
+    }
+    }
+    
+    function updateProjectMetrics(projectId, milestoneProgress, testProgress) {
+      document.getElementById(`${projectId}-milestone-progress`).textContent = `${milestoneProgress}%`;
+      document.getElementById(`${projectId}-test-progress`).textContent = `${testProgress}%`;
+      document.getElementById(`${projectId}-progress`).style.width = `${milestoneProgress}%`;
+    }
+    
+    function updatePriorityTests(priority, data) {
+      const success = data.total > 0 ? Math.round(data.passing / data.total * 100) : 0;
+      document.getElementById(`${priority}-tests`).textContent = `${success}%`;
+      document.getElementById(`${priority}-progress`).style.width = `${success}%`;
+    }
+    
+    function updateMilestoneList(milestones) {
+      const container = document.getElementById('milestone-list');
+      if (!milestones || milestones.length === 0) {
+        container.innerHTML = '<tr><td colspan="5">No milestones found</td></tr>';
+        return;
+      }
+      
+      container.innerHTML = milestones.map(milestone => `
+        <tr>
+          <td>${milestone.name}</td>
+          <td>mExpress</td>
+          <td>${milestone.quarter || '-'}</td>
+          <td>
+            <div class="progress-bar">
+              <div class="progress-fill progress-fill-primary" style="width: ${milestone.progress}%"></div>
+            </div>
+            ${milestone.progress}%
+          </td>
+          <td>
+            <span class="status status-${milestone.status}">
+              ${capitalizeFirstLetter(milestone.status)}
+            </span>
+          </td>
+        </tr>
+      `).join('');
+    }
+    
+    function updateBrqList(brqs) {
+      const container = document.getElementById('brq-list');
+      if (!brqs || brqs.length === 0) {
+        container.innerHTML = '<tr><td colspan="5">No BRQs found</td></tr>';
+        return;
+      }
+      
+      container.innerHTML = brqs.map(brq => `
+        <tr>
+          <td>
+            <span class="badge badge-primary">${brq.id}</span>
+          </td>
+          <td>${brq.name}</td>
+          <td>${brq.milestone || '-'}</td>
+          <td>
+            <div class="progress-bar">
+              <div class="progress-fill progress-fill-primary" style="width: ${brq.progress}%"></div>
+            </div>
+            ${brq.progress}%
+          </td>
+          <td>
+            <span class="status status-${brq.status}">
+              ${capitalizeFirstLetter(brq.status)}
+            </span>
+          </td>
+        </tr>
+      `).join('');
+    }
+    
+    function updateCurrentTasks(sprint) {
+      const container = document.getElementById('current-tasks');
+      if (!sprint || !sprint.tasks || sprint.tasks.length === 0) {
+        container.innerHTML = '<div class="task-card"><div class="task-header"><h3 class="task-title">No tasks found</h3></div></div>';
+        return;
+      }
+      
+      container.innerHTML = sprint.tasks
+        .filter(task => task.status === 'in-progress' || task.status === 'completed')
+        .map(task => `
+          <div class="task-card ${task.status}">
+            <div class="task-header">
+              <h3 class="task-title">${task.name}</h3>
+              <span class="status status-${task.status}">
+                ${capitalizeFirstLetter(task.status)}
+              </span>
+            </div>
+            <div class="task-meta">
+              <div>Assignee: ${task.assignee || 'Unassigned'}</div>
+              <div>BRQ: ${task.brq || '-'}</div>
+              <div>Project: mExpress</div>
+              <div class="priority-label priority-p0">
+                <span class="priority-dot"></span> P0
+              </div>
+            </div>
+            <div class="task-description">
+              <p>${task.description || 'No description available'}</p>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill ${task.status === 'completed' ? 'progress-fill-success' : 'progress-fill-warning'}" style="width: ${task.progress || 0}%"></div>
+            </div>
+          </div>
+        `).join('');
+    }
+    
+    function updateUpcomingTasks(tasks) {
+      const container = document.getElementById('upcoming-tasks');
+      if (!tasks || tasks.length === 0) {
+        container.innerHTML = '<div class="task-card"><div class="task-header"><h3 class="task-title">No upcoming tasks</h3></div></div>';
+        return;
+      }
+      
+      container.innerHTML = tasks.slice(0, 4).map(task => `
+        <div class="task-card planned">
+          <div class="task-header">
+            <h3 class="task-title">${task.name}</h3>
+            <span class="status status-planned">Planned</span>
+          </div>
+          <div class="task-meta">
+            <div>Milestone: ${task.milestone || '-'}</div>
+            <div>BRQ: ${task.brq || '-'}</div>
+            <div>Project: mExpress</div>
+            <div class="priority-label priority-p1">
+              <span class="priority-dot"></span> P1
+            </div>
+          </div>
+          <div class="task-description">
+            <p>${task.description || 'No description available'}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function updateRecentUpdates(updates) {
+      const container = document.getElementById('recent-updates');
+      if (!updates || updates.length === 0) {
+        container.innerHTML = '<tr><td colspan="4">No recent updates</td></tr>';
+        return;
+      }
+      
+      container.innerHTML = updates.map(update => `
+        <tr>
+          <td>${update.date}</td>
+          <td>${update.type}</td>
+          <td>${update.description}</td>
+          <td>
+            <span class="status status-${update.status}">
+              ${capitalizeFirstLetter(update.status)}
+            </span>
+          </td>
+        </tr>
+      `).join('');
+    }
+    
+    function updateTestFixes(fixes) {
+      const container = document.getElementById('test-fixes');
+      if (!fixes || fixes.length === 0) {
+        container.innerHTML = '<tr><td colspan="4">No recent test fixes</td></tr>';
+        return;
+      }
+      
+      container.innerHTML = fixes.map(fix => `
+        <tr>
+          <td>${fix.test}</td>
+          <td>
+            <span class="status status-completed">Fixed</span>
+          </td>
+          <td>${fix.date}</td>
+          <td>${fix.brq || '-'}</td>
+        </tr>
+      `).join('');
+    }
+    
+    function updateBrqTests(brqs) {
+      const container = document.getElementById('brq-tests');
+      if (!brqs || brqs.length === 0) {
+        container.innerHTML = '<tr><td colspan="4">No BRQs found</td></tr>';
+        return;
+      }
+      
+      container.innerHTML = brqs.map(brq => `
+        <tr data-brq="${brq.id}" data-progress="${brq.progress || 0}">
+          <td><span class="badge badge-primary">${brq.id}</span></td>
+          <td>${brq.tests || 0}</td>
+          <td>${Math.round(brq.progress || 0)}%</td>
+          <td>
+            <div class="progress-bar">
+              <div class="progress-fill progress-fill-${getProgressColorClass(brq.progress)}" style="width: ${brq.progress || 0}%"></div>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+    
+    function updateTests(data) {
+      const container = document.getElementById('all-tests');
+      
+      // Use data from dashboard-data.js
+      const tests = window.dashboardData?.allTests || [];
+      
+      if (tests.length === 0) {
+        container.innerHTML = '<tr><td colspan="5">No tests found</td></tr>';
+        return;
+      }
+      
+      // Generate HTML for each test
+      const testsHtml = tests.map(test => `
+        <tr data-test="${test.name}" data-priority="${test.priority}" data-project="${test.project}" data-brq="${test.brq}" data-status="${test.status}">
+          <td>${test.name}</td>
+          <td><span class="priority-label priority-${test.priority.toLowerCase()}"><span class="priority-dot"></span>${test.priority}</span></td>
+          <td>${test.project}</td>
+          <td>${test.brq}</td>
+          <td><span class="status status-${test.status === 'passing' ? 'completed' : 'failed'}">${test.status}</span></td>
+        </tr>
+      `).join('');
+      
+      container.innerHTML = testsHtml;
+    }
+    
+    function getProgressColorClass(progress) {
+      if (progress >= 80) return 'success';
+      if (progress >= 50) return 'primary';
+      if (progress >= 20) return 'warning';
+      return 'danger';
+    }
+    
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    
+    // Filter by status button
+    function filterByStatus(button) {
+      // Update active state for buttons
+      document.querySelectorAll('.filter-buttons .filter-btn').forEach(btn => {
+        if (btn.dataset.type === undefined) {
+          btn.classList.remove('active');
+        }
+      });
+      button.classList.add('active');
+      
+      // Filter the rows
+      const statusFilter = button.getAttribute('data-value');
+      const filterText = document.getElementById('brq-filter').value.toLowerCase();
+      filterBrqTests(statusFilter, filterText);
+    }
+    
+    // Filtering for BRQ tests
+    function filterBrqTests(statusFilter, filterText) {
+      // Get filter values if not provided
+      if (statusFilter === undefined) {
+        statusFilter = document.querySelector('.filter-buttons .filter-btn.active').getAttribute('data-value');
+      }
+      if (filterText === undefined) {
+        filterText = document.getElementById('brq-filter').value.toLowerCase();
+      }
+      
+      const rows = document.querySelectorAll('#brq-tests tr[data-brq]');
+      
+      rows.forEach(row => {
+        const brqId = row.getAttribute('data-brq').toLowerCase();
+        const progress = parseFloat(row.getAttribute('data-progress') || 0);
+        
+        // Apply BRQ text filter
+        const matchesText = brqId.includes(filterText);
+        
+        // Apply status filter
+        let matchesStatus = true;
+        if (statusFilter === '0') {
+          matchesStatus = progress === 0;
+        } else if (statusFilter === '1-50') {
+          matchesStatus = progress > 0 && progress <= 50;
+        } else if (statusFilter === '51-99') {
+          matchesStatus = progress > 50 && progress < 100;
+        } else if (statusFilter === '100') {
+          matchesStatus = progress === 100;
+        }
+        
+        row.style.display = matchesText && matchesStatus ? '' : 'none';
+      });
+    }
+    
+    // Sorting for BRQ table
+    function sortBrqTable(sortType) {
+      const table = document.getElementById('brq-tests-table');
+      const tbody = document.getElementById('brq-tests');
+      const rows = Array.from(tbody.querySelectorAll('tr[data-brq]'));
+      
+      if (rows.length === 0) return;
+      
+      const sortedRows = rows.sort((a, b) => {
+        if (sortType === 'brq') {
+          const aId = a.getAttribute('data-brq');
+          const bId = b.getAttribute('data-brq');
+          return aId.localeCompare(bId);
+        } else if (sortType === 'tests') {
+          const aTests = parseInt(a.cells[1].textContent);
+          const bTests = parseInt(b.cells[1].textContent);
+          return aTests - bTests;
+        } else if (sortType === 'passing') {
+          const aProgress = parseFloat(a.getAttribute('data-progress') || 0);
+          const bProgress = parseFloat(b.getAttribute('data-progress') || 0);
+          return aProgress - bProgress;
+        } else if (sortType === 'asc') {
+          const aProgress = parseFloat(a.getAttribute('data-progress') || 0);
+          const bProgress = parseFloat(b.getAttribute('data-progress') || 0);
+          return aProgress - bProgress;
+        } else if (sortType === 'desc') {
+          const aProgress = parseFloat(a.getAttribute('data-progress') || 0);
+          const bProgress = parseFloat(b.getAttribute('data-progress') || 0);
+          return bProgress - aProgress;
+        }
+        return 0;
+      });
+      
+      // Clear the table and re-add sorted rows
+      while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+      }
+      
+      sortedRows.forEach(row => tbody.appendChild(row));
+    }
+    
+    // Filter by option for all tests
+    function filterByOption(button) {
+      // Update active state for buttons in the same group
+      const filterType = button.getAttribute('data-type');
+      document.querySelectorAll(`.filter-buttons .filter-btn[data-type="${filterType}"]`).forEach(btn => {
+        btn.classList.remove('active');
+      });
+      button.classList.add('active');
+      
+      // Call filter function with current filters
+      filterTests();
+    }
+    
+    // Filtering for all tests
+    function filterTests() {
+      const filterText = document.getElementById('test-filter').value.toLowerCase();
+      const priorityFilter = document.querySelector('.filter-btn[data-type="priority"].active').getAttribute('data-value');
+      const projectFilter = document.querySelector('.filter-btn[data-type="project"].active').getAttribute('data-value');
+      const statusFilter = document.querySelector('.filter-btn[data-type="status"].active').getAttribute('data-value');
+      const rows = document.querySelectorAll('#all-tests tr[data-test]');
+      
+      rows.forEach(row => {
+        const testName = row.getAttribute('data-test').toLowerCase();
+        const priority = row.getAttribute('data-priority');
+        const project = row.getAttribute('data-project');
+        const status = row.getAttribute('data-status');
+        
+        // Apply filters
+        const matchesText = testName.includes(filterText);
+        const matchesPriority = priorityFilter === 'all' || priority === priorityFilter;
+        const matchesProject = projectFilter === 'all' || project === projectFilter;
+        const matchesStatus = statusFilter === 'all' || status === statusFilter;
+        
+        row.style.display = matchesText && matchesPriority && matchesProject && matchesStatus ? '' : 'none';
+      });
+    }
+    
+    // Sorting for tests table
+    function sortTestsTable(column) {
+      const tbody = document.getElementById('all-tests');
+      const rows = Array.from(tbody.querySelectorAll('tr[data-test]'));
+      
+      if (rows.length === 0) return;
+      
+      const sortedRows = rows.sort((a, b) => {
+        if (column === 'name') {
+          return a.getAttribute('data-test').localeCompare(b.getAttribute('data-test'));
+        } else if (column === 'priority') {
+          // Custom sort for priority (P0, P1, P2, P3)
+          const priorityOrder = { 'P0': 0, 'P1': 1, 'P2': 2, 'P3': 3 };
+          const aPriority = priorityOrder[a.getAttribute('data-priority')];
+          const bPriority = priorityOrder[b.getAttribute('data-priority')];
+          return aPriority - bPriority;
+        } else if (column === 'project') {
+          return a.getAttribute('data-project').localeCompare(b.getAttribute('data-project'));
+        } else if (column === 'brq') {
+          return a.getAttribute('data-brq').localeCompare(b.getAttribute('data-brq'));
+        } else if (column === 'status') {
+          // Sort passing first, then failing
+          const aStatus = a.getAttribute('data-status');
+          const bStatus = b.getAttribute('data-status');
+          return aStatus === bStatus ? 0 : (aStatus === 'passing' ? -1 : 1);
+        }
+        return 0;
+      });
+      
+      // Clear the table and re-add sorted rows
+      while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+      }
+      
+      sortedRows.forEach(row => tbody.appendChild(row));
+    }
+    
+    // Function to create project progress chart
+    function createProjectProgressChart() {
+      const ctx = document.getElementById('project-progress-chart').getContext('2d');
+      
+      // Chart data
+      const data = {
+        labels: ['mExpress', 'MontPC CRM', 'Giandra Photos', 'Jerome Bikes'],
+        datasets: [
+          {
+            label: 'Completed',
+            data: [80, 30, 5, 2],
+            backgroundColor: 'rgba(16, 185, 129, 0.7)'
+          },
+          {
+            label: 'In Progress',
+            data: [15, 40, 10, 5],
+            backgroundColor: 'rgba(245, 158, 11, 0.7)'
+          },
+          {
+            label: 'Planned',
+            data: [5, 30, 85, 93],
+            backgroundColor: 'rgba(79, 70, 229, 0.7)'
+          }
+        ]
+      };
+      
+      // Chart config
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {
+          plugins: {
+            title: {
+              display: false
+            },
+            legend: {
+              position: 'bottom'
+            }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              stacked: true,
+              max: 100,
+              title: {
+                display: true,
+                text: 'Percentage (%)'
+              }
+            }
+          }
+        },
+      };
+      
+      // Create the chart
+      if (window.projectProgressChart) {
+        window.projectProgressChart.destroy();
+      }
+      window.projectProgressChart = new Chart(ctx, config);
+    }
+    
+    // Function to create test status chart
+    function createTestStatusChart() {
+      const ctx = document.getElementById('test-status-chart').getContext('2d');
+      
+      // Chart data
+      const data = {
+        labels: ['mExpress', 'MontPC CRM', 'Giandra Photos', 'Jerome Bikes'],
+        datasets: [
+          {
+            label: 'Passing',
+            data: [52.3, 0, 0, 0],
+            backgroundColor: 'rgba(16, 185, 129, 0.7)'
+          },
+          {
+            label: 'Failing',
+            data: [43.1, 100, 0, 0],
+            backgroundColor: 'rgba(239, 68, 68, 0.7)'
+          },
+          {
+            label: 'Hanging',
+            data: [4.6, 0, 0, 0],
+            backgroundColor: 'rgba(245, 158, 11, 0.7)'
+          }
+        ]
+      };
+      
+      // Chart config
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {
+          plugins: {
+            title: {
+              display: false
+            },
+            legend: {
+              position: 'bottom'
+            }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              stacked: true,
+              max: 100,
+              title: {
+                display: true,
+                text: 'Percentage (%)'
+              }
+            }
+          }
+        },
+      };
+      
+      // Create the chart
+      if (window.testStatusChart) {
+        window.testStatusChart.destroy();
+      }
+      window.testStatusChart = new Chart(ctx, config);
+    }
+    
+    // Function to create test priority chart
+    function createTestPriorityChart() {
+      const ctx = document.getElementById('test-priority-chart').getContext('2d');
+      
+      // Get data from the dashboard data
+      const p0Success = window.dashboardData.testsByPriority.p0.success || 0;
+      const p1Success = window.dashboardData.testsByPriority.p1.success || 0;
+      const p2Success = window.dashboardData.testsByPriority.p2.success || 0;
+      const p3Success = window.dashboardData.testsByPriority.p3.success || 0;
+      
+      // Chart data
+      const data = {
+        labels: ['P0 (Critical)', 'P1 (Important)', 'P2 (Secondary)', 'P3 (Performance)'],
+        datasets: [
+          {
+            label: 'Test Success Rate',
+            data: [p0Success, p1Success, p2Success, p3Success],
+            backgroundColor: [
+              'rgba(239, 68, 68, 0.7)',  // Red for critical
+              'rgba(245, 158, 11, 0.7)', // Orange for important
+              'rgba(79, 70, 229, 0.7)',  // Blue for secondary
+              'rgba(16, 185, 129, 0.7)'  // Green for performance
+            ],
+            borderColor: [
+              'rgb(239, 68, 68)',
+              'rgb(245, 158, 11)',
+              'rgb(79, 70, 229)',
+              'rgb(16, 185, 129)'
+            ],
+            borderWidth: 1
+          }
+        ]
+      };
+      
+      // Chart config
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              title: {
+                display: true,
+                text: 'Success Rate (%)'
+              }
+            }
+          }
+        },
+      };
+      
+      // Create the chart
+      if (window.testPriorityChart) {
+        window.testPriorityChart.destroy();
+      }
+      window.testPriorityChart = new Chart(ctx, config);
+    }
+    
+    // Function to create test project chart
+    function createTestProjectChart() {
+      const ctx = document.getElementById('test-project-chart').getContext('2d');
+      
+      // Chart data based on byProject data
+      const projects = window.dashboardData.byProject || {};
+      
+      const projectNames = Object.keys(projects).filter(name => name !== 'unclassified');
+      const passingRates = projectNames.map(name => {
+        const project = projects[name];
+        return project.total > 0 ? (project.passing / project.total) * 100 : 0;
+      });
+      const failingRates = projectNames.map(name => {
+        const project = projects[name];
+        return project.total > 0 ? (project.failing / project.total) * 100 : 0;
+      });
+      const hangingRates = projectNames.map(name => {
+        const project = projects[name];
+        return project.total > 0 ? ((project.hanging || 0) / project.total) * 100 : 0;
+      });
+      
+      // Format project names for display
+      const displayNames = projectNames.map(name => {
+        if (name === 'core') return 'mExpress Core';
+        if (name === 'montpc') return 'MontPC CRM';
+        if (name === 'ui') return 'UI Components';
+        if (name === 'utils') return 'Utils';
+        return name.charAt(0).toUpperCase() + name.slice(1);
+      });
+      
+      // Chart data
+      const data = {
+        labels: displayNames,
+        datasets: [
+          {
+            label: 'Passing',
+            data: passingRates,
+            backgroundColor: 'rgba(16, 185, 129, 0.7)'
+          },
+          {
+            label: 'Failing',
+            data: failingRates,
+            backgroundColor: 'rgba(239, 68, 68, 0.7)'
+          },
+          {
+            label: 'Hanging',
+            data: hangingRates,
+            backgroundColor: 'rgba(245, 158, 11, 0.7)'
+          }
+        ]
+      };
+      
+      // Chart config
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {
+          plugins: {
+            title: {
+              display: false
+            },
+            legend: {
+              position: 'bottom'
+            }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              stacked: true,
+              max: 100,
+              title: {
+                display: true,
+                text: 'Percentage (%)'
+              }
+            }
+          }
+        },
+      };
+      
+      // Create the chart
+      if (window.testProjectChart) {
+        window.testProjectChart.destroy();
+      }
+      window.testProjectChart = new Chart(ctx, config);
+    }
+  </script>
+  
+  <!-- This will be replaced with actual data by the update script -->
+  <script src="dashboard-data.js"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+[
+  {
+    "testId": "129812bf-a2f59db0",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should register a service successfully",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:22:58.971Z",
+    "duration": 45,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"unknown\"\u001b[39m\nReceived: \u001b[31m\"degraded\"\u001b[39m\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:47:46)\n    at Promise.then.completed (/opt/mExpress/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/opt/mExpress/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/opt/mExpress/node_modules/jest-circus/build/run.js:316:40)\n    at _runTest (/opt/mExpress/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:126:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at run (/opt/mExpress/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/opt/mExpress/node_modules/jest-runner/build/runTest.js:444:34)",
+      "stack": "at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:47:46)\n    at Promise.then.completed (/opt/mExpress/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/opt/mExpress/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/opt/mExpress/node_modules/jest-circus/build/run.js:316:40)\n    at _runTest (/opt/mExpress/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:126:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at run (/opt/mExpress/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n",
+      "failureType": "assertion",
+      "expected": "\u001b[39m\u001b[2m) // Object.is equality\u001b[22m",
+      "actual": "\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m"
+    }
+  },
+  {
+    "testId": "129812bf-150aea64",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should deregister a service successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:22:58.973Z",
+    "duration": 153,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "129812bf-b87ea46d",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should set a service to drain mode",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:22:58.973Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "129812bf-113f01a4",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should add a load balancer rule successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:22:58.973Z",
+    "duration": 12,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "129812bf-c5bfa4a3",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should remove a rule successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:22:58.973Z",
+    "duration": 22,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "129812bf-da2e0fce",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should add a traffic split rule successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:22:58.973Z",
+    "duration": 16,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "129812bf-f2fe897d",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should reject traffic split rule with invalid percentages",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:22:58.973Z",
+    "duration": 110,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "129812bf-fa6c49ee",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should remove a traffic split rule successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:22:58.973Z",
+    "duration": 7,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "129812bf-de74e22b",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should route requests successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:22:58.973Z",
+    "duration": 19,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "129812bf-6c27b92f",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should route based on matching rule",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:22:58.973Z",
+    "duration": 4,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"routing-service-1\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:262:34)",
+      "stack": "",
+      "failureType": "assertion",
+      "expected": "\u001b[39m\u001b[2m) // Object.is equality\u001b[22m",
+      "actual": "\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m"
+    }
+  },
+  {
+    "testId": "129812bf-8c170a4e",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should handle sticky sessions",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:22:58.973Z",
+    "duration": 19,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"routing-service-\u001b[7m2\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"routing-service-\u001b[7m3\u001b[27m\"\u001b[39m\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:305:35)",
+      "stack": "",
+      "failureType": "assertion",
+      "expected": "\u001b[39m\u001b[2m) // Object.is equality\u001b[22m",
+      "actual": "\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m"
+    }
+  },
+  {
+    "testId": "129812bf-84d413bc",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should route using round-robin algorithm",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:22:58.974Z",
+    "duration": 4,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m1\u001b[39m\nReceived:   \u001b[31m1\u001b[39m\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:356:31)",
+      "stack": "",
+      "failureType": "assertion",
+      "expected": "\u001b[39m\u001b[2m)\u001b[22m",
+      "actual": "\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m"
+    }
+  },
+  {
+    "testId": "129812bf-c29f386e",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should route using least-connections algorithm",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:22:58.974Z",
+    "duration": 1370,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "129812bf-948bae63",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should route using weighted algorithm",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:22:58.974Z",
+    "duration": 5002,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: thrown: \"Exceeded timeout of 5000 ms for a test.\nAdd a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout.\"\n    at /opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:415:5\n    at _dispatchDescribe (/opt/mExpress/node_modules/jest-circus/build/index.js:91:26)\n    at describe (/opt/mExpress/node_modules/jest-circus/build/index.js:55:5)\n    at /opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:309:3\n    at _dispatchDescribe (/opt/mExpress/node_modules/jest-circus/build/index.js:91:26)\n    at describe (/opt/mExpress/node_modules/jest-circus/build/index.js:55:5)\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:12:1)\n    at Runtime._execModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:1439:24)\n    at Runtime._loadModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:1022:12)\n    at Runtime.requireModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:882:12)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:77:13)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/opt/mExpress/node_modules/jest-runner/build/runTest.js:444:34)",
+      "stack": "at /opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:415:5\n    at _dispatchDescribe (/opt/mExpress/node_modules/jest-circus/build/index.js:91:26)\n    at describe (/opt/mExpress/node_modules/jest-circus/build/index.js:55:5)\n    at /opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:309:3\n    at _dispatchDescribe (/opt/mExpress/node_modules/jest-circus/build/index.js:91:26)\n    at describe (/opt/mExpress/node_modules/jest-circus/build/index.js:55:5)\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:12:1)\n    at Runtime._execModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:1439:24)\n    at Runtime._loadModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:1022:12)\n    at Runtime.requireModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:882:12)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:77:13)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n",
+      "failureType": "exception",
+      "expected": "",
+      "actual": ""
+    }
+  },
+  {
+    "testId": "129812bf-fdf8af76",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should route only to healthy services",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:22:58.974Z",
+    "duration": 189,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:500:38)",
+      "stack": "",
+      "failureType": "assertion",
+      "expected": "\u001b[39m\u001b[2m)\u001b[22m",
+      "actual": "\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m"
+    }
+  },
+  {
+    "testId": "129812bf-24556d1d",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should failover to degraded services when no healthy ones available",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:22:58.974Z",
+    "duration": 25,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m500\u001b[39m\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:563:35)",
+      "stack": "",
+      "failureType": "assertion",
+      "expected": "\u001b[39m\u001b[2m) // Object.is equality\u001b[22m",
+      "actual": "\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m"
+    }
+  },
+  {
+    "testId": "129812bf-d559fc0d",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts",
+    "testName": "should track request statistics",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:22:58.974Z",
+    "duration": 174,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m5\u001b[39m\nReceived: \u001b[31m8\u001b[39m\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts:595:36)",
+      "stack": "",
+      "failureType": "assertion",
+      "expected": "\u001b[39m\u001b[2m) // Object.is equality\u001b[22m",
+      "actual": "\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m"
+    }
+  }
+]

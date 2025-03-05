@@ -1,6 +1,6 @@
 // MEXP-2025-007-BE Integration Architecture
 import { ServiceDeployment } from '@mexpress/utils/src/lib/service-deployment';
-import { DeploymentConfigOptions, ServicePort } from '@mexpress/utils/src/types/deployment-config';
+import { DeploymentConfigOptions, ServicePort, HealthCheck } from '@mexpress/utils/src/types/deployment-config';
 
 describe('ServiceDeployment', () => {
   describe('Configuration Setup', () => {

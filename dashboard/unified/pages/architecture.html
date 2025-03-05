@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mExpress Dashboard - Architecture Blueprint</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="stylesheet" href="../assets/dashboard.css">
+  <link rel="stylesheet" href="../assets/architecture.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="dashboard-title">
+        <div class="dashboard-logo">m</div>
+        <div class="dashboard-header-content">
+          <h1>mExpress Dashboard Hub</h1>
+          <div class="meta">
+            <span id="last-updated">Last updated: Loading...</span>
+            <span id="version">Version: 1.0.0</span>
+          </div>
+        </div>
+        <div class="dashboard-actions">
+          <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" class="moon-icon"></path>
+              <circle cx="12" cy="12" r="5" class="sun-icon-circle"></circle>
+              <line x1="12" y1="1" x2="12" y2="3" class="sun-icon-ray"></line>
+              <line x1="12" y1="21" x2="12" y2="23" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" class="sun-icon-ray"></line>
+              <line x1="1" y1="12" x2="3" y2="12" class="sun-icon-ray"></line>
+              <line x1="21" y1="12" x2="23" y2="12" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" class="sun-icon-ray"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <div class="tabs">
+      <div class="tab" data-tab="overview">Overview</div>
+      <div class="tab active" data-tab="architecture">Architecture</div>
+      <div class="tab" data-tab="dashboards">Dashboards</div>
+      <div class="tab" data-tab="projects">Projects</div>
+      <div class="tab" data-tab="reports">Reports</div>
+    </div>
+    
+    <main class="main-content">
+      <div class="tab-content active" id="architecture">
+        <!-- Architecture Blueprint Container -->
+        <div class="blueprint-container">
+          <!-- Blueprint Header -->
+          <div class="blueprint-header">
+            <div class="blueprint-title">
+              <span class="blueprint-title-icon">🏗️</span>
+              <span>Architecture Blueprint</span>
+            </div>
+            <div class="blueprint-controls">
+              <label class="theme-switch">
+                <input type="checkbox" id="blueprint-view-toggle" checked>
+                <span class="switch-slider"></span>
+              </label>
+              <span id="view-mode-label">Blueprint View</span>
+              <a href="architecture-detailed.html" style="margin-left: 10px; padding: 5px 10px; border-radius: 4px; background-color: var(--blueprint-accent); color: white; text-decoration: none;">Detailed View</a>
+            </div>
+          </div>
+          
+          <!-- Blueprint Main Content -->
+          <div class="blueprint-main">
+            <!-- Sidebar with project selection and stats -->
+            <div class="blueprint-sidebar">
+              <!-- Project Selector -->
+              <div class="project-selector">
+                <div class="project-option" data-project="all">All</div>
+                <div class="project-option active" data-project="montpc">MontPC</div>
+                <div class="project-option" data-project="mexpress">mExpress</div>
+                <div class="project-option" data-project="giandra">Giandra</div>
+              </div>
+              
+              <!-- Project Stats -->
+              <div class="sidebar-section">
+                <div class="sidebar-title">Project Status</div>
+                <div class="sidebar-stat">
+                  <div class="sidebar-stat-value">64%</div>
+                  <div class="sidebar-stat-label">Overall Completion</div>
+                  <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 64%; background: var(--blueprint-accent);"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Component Stats -->
+              <div class="sidebar-section">
+                <div class="sidebar-title">Component Status</div>
+                <div class="sidebar-stat">
+                  <div class="sidebar-stat-value">16/25</div>
+                  <div class="sidebar-stat-label">Components Completed</div>
+                  <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 64%; background: var(--complete-color);"></div>
+                  </div>
+                </div>
+                
+                <div class="status-legend">
+                  <div class="legend-item">
+                    <div class="legend-color" style="background: var(--complete-color);"></div>
+                    <span>Complete (16)</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background: var(--in-progress-color);"></div>
+                    <span>In Progress (5)</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background: var(--planned-color);"></div>
+                    <span>Planned (1)</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background: var(--not-started-color);"></div>
+                    <span>Not Started (3)</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- BRQ Stats -->
+              <div class="sidebar-section">
+                <div class="sidebar-title">Business Requirements</div>
+                <div class="sidebar-stat">
+                  <div class="sidebar-stat-value">9/15</div>
+                  <div class="sidebar-stat-label">BRQs Completed</div>
+                  <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 60%; background: var(--blueprint-accent);"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Test Stats -->
+              <div class="sidebar-section">
+                <div class="sidebar-title">Test Status</div>
+                <div class="sidebar-stat">
+                  <div class="sidebar-stat-value">63/92</div>
+                  <div class="sidebar-stat-label">Tests Passing</div>
+                  <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 68%; background: var(--in-progress-color);"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Project Phase -->
+              <div class="sidebar-section">
+                <div class="sidebar-title">Project Phase</div>
+                <div class="sidebar-stat">
+                  <div class="sidebar-stat-value">Phase 2/4</div>
+                  <div class="sidebar-stat-label">Service Management</div>
+                  <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 50%; background: var(--planned-color);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Blueprint Content with layers and components -->
+            <div class="blueprint-content">
+              <!-- Background grid pattern -->
+              <div class="blueprint-grid"></div>
+              
+              <!-- Project Overview Section -->
+              <div class="overview-container">
+                <div class="overview-card">
+                  <div class="overview-header">
+                    <div class="overview-title">Component Status</div>
+                  </div>
+                  <div class="overview-stats">
+                    <div class="overview-stat">
+                      <div class="overview-stat-value">64%</div>
+                      <div class="overview-stat-label">Complete</div>
+                    </div>
+                    <div class="overview-stat">
+                      <div class="overview-stat-value">20%</div>
+                      <div class="overview-stat-label">In Progress</div>
+                    </div>
+                    <div class="overview-stat">
+                      <div class="overview-stat-value">16%</div>
+                      <div class="overview-stat-label">Not Started</div>
+                    </div>
+                  </div>
+                  <div class="chart-container">
+                    <canvas id="component-status-chart"></canvas>
+                  </div>
+                </div>
+                
+                <div class="overview-card">
+                  <div class="overview-header">
+                    <div class="overview-title">BRQ Progress</div>
+                  </div>
+                  <div class="overview-stats">
+                    <div class="overview-stat">
+                      <div class="overview-stat-value">9</div>
+                      <div class="overview-stat-label">Completed</div>
+                    </div>
+                    <div class="overview-stat">
+                      <div class="overview-stat-value">2</div>
+                      <div class="overview-stat-label">In Progress</div>
+                    </div>
+                    <div class="overview-stat">
+                      <div class="overview-stat-value">4</div>
+                      <div class="overview-stat-label">Planned</div>
+                    </div>
+                  </div>
+                  <div class="chart-container">
+                    <canvas id="brq-progress-chart"></canvas>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Active BRQs in focus section -->
+              <div class="brq-filters">
+                <div class="brq-filter active" data-filter="all">All BRQs</div>
+                <div class="brq-filter" data-filter="current">Current</div>
+                <div class="brq-filter" data-filter="completed">Completed</div>
+                <div class="brq-filter" data-filter="planned">Planned</div>
+              </div>
+              
+              <!-- Current Focus BRQs -->
+              <div class="brq-banner" id="current-brqs">
+                <div class="brq-card in-progress" data-brq="MEXP-2025-007-BE">
+                  <div class="brq-id">MEXP-2025-007-BE</div>
+                  <div class="brq-name">Service Integration Architecture</div>
+                  <div class="brq-details">
+                    <div>Tests: 7/9</div>
+                    <div class="brq-meta">
+                      <div class="brq-tag">P1</div>
+                      <div class="brq-tag">ServiceArchitecture</div>
+                    </div>
+                  </div>
+                  <div class="brq-progress">
+                    <div class="progress-bar-fill" style="width: 78%; background: var(--in-progress-color);"></div>
+                  </div>
+                </div>
+                
+                <div class="brq-card in-progress" data-brq="MEXP-2025-024-INFRA">
+                  <div class="brq-id">MEXP-2025-024-INFRA</div>
+                  <div class="brq-name">MVP Readiness</div>
+                  <div class="brq-details">
+                    <div>Tests: 1/2</div>
+                    <div class="brq-meta">
+                      <div class="brq-tag">P0</div>
+                      <div class="brq-tag">Infrastructure</div>
+                    </div>
+                  </div>
+                  <div class="brq-progress">
+                    <div class="progress-bar-fill" style="width: 50%; background: var(--in-progress-color);"></div>
+                  </div>
+                </div>
+                
+                <div class="brq-card complete" data-brq="MONT-2025-001-FULL">
+                  <div class="brq-id">MONT-2025-001-FULL</div>
+                  <div class="brq-name">Customer Service Implementation</div>
+                  <div class="brq-details">
+                    <div>Tests: 1/1</div>
+                    <div class="brq-meta">
+                      <div class="brq-tag">P1</div>
+                      <div class="brq-tag">CustomerService</div>
+                    </div>
+                  </div>
+                  <div class="brq-progress">
+                    <div class="progress-bar-fill" style="width: 100%; background: var(--complete-color);"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Architecture Diagram -->
+              <div class="architecture-diagram">
+                <!-- API Layer -->
+                <div class="diagram-layer" id="api-layer">
+                  <div class="layer-title">API Layer</div>
+                  <div class="component-group">
+                    <div class="component-box complete" data-component="Customer API" data-status="complete">
+                      <div class="component-title">
+                        <span>Customer API</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">CRUD operations for customer management</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box not-started" data-component="Repair Ticket API" data-status="not-started">
+                      <div class="component-title">
+                        <span>Repair Ticket API</span>
+                        <span class="component-status">🔴</span>
+                      </div>
+                      <div class="component-desc">Service request intake, tracking, and management</div>
+                      <div class="component-progress not-started">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box complete" data-component="Integration API" data-status="complete">
+                      <div class="component-title">
+                        <span>Integration API</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">External system connectors (Hiboutik, Ringover)</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box complete" data-component="Authentication API" data-status="complete">
+                      <div class="component-title">
+                        <span>Authentication API</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">Identity and access management</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box not-started" data-component="Product API" data-status="not-started">
+                      <div class="component-title">
+                        <span>Product API</span>
+                        <span class="component-status">🔴</span>
+                      </div>
+                      <div class="component-desc">Catalog and inventory management</div>
+                      <div class="component-progress not-started">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Service Layer -->
+                <div class="diagram-layer" id="service-layer">
+                  <div class="layer-title">Service Layer</div>
+                  <div class="component-group">
+                    <div class="component-box complete" data-component="Customer Service" data-status="complete">
+                      <div class="component-title">
+                        <span>Customer Service</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">Customer data management and validation</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box complete" data-component="Auth Service" data-status="complete">
+                      <div class="component-title">
+                        <span>Auth Service</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">Authentication, authorization, token management</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box not-started" data-component="Repair Service" data-status="not-started">
+                      <div class="component-title">
+                        <span>Repair Service</span>
+                        <span class="component-status">🔴</span>
+                      </div>
+                      <div class="component-desc">Repair workflow, status management, and notifications</div>
+                      <div class="component-progress not-started">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box in-progress" data-component="Integration Service" data-status="in-progress">
+                      <div class="component-title">
+                        <span>Integration Svc</span>
+                        <span class="component-status">🟡</span>
+                      </div>
+                      <div class="component-desc">Third-party system adapters</div>
+                      <div class="component-progress in-progress">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box not-started" data-component="Product Service" data-status="not-started">
+                      <div class="component-title">
+                        <span>Product Service</span>
+                        <span class="component-status">🔴</span>
+                      </div>
+                      <div class="component-desc">Product catalog and inventory management</div>
+                      <div class="component-progress not-started">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box complete" data-component="Message Queue" data-status="complete">
+                      <div class="component-title">
+                        <span>Message Queue</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">Reliable async communication between services</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Data Layer -->
+                <div class="diagram-layer" id="data-layer">
+                  <div class="layer-title">Data Layer</div>
+                  <div class="component-group">
+                    <div class="component-box complete" data-component="Customer Repository" data-status="complete">
+                      <div class="component-title">
+                        <span>Customer Repo</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">Customer data storage and retrieval</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box not-started" data-component="Repair Ticket Repository" data-status="not-started">
+                      <div class="component-title">
+                        <span>Repair Repo</span>
+                        <span class="component-status">🔴</span>
+                      </div>
+                      <div class="component-desc">Repair history and status tracking</div>
+                      <div class="component-progress not-started">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box not-started" data-component="Product Repository" data-status="not-started">
+                      <div class="component-title">
+                        <span>Product Repo</span>
+                        <span class="component-status">🔴</span>
+                      </div>
+                      <div class="component-desc">Product catalog and inventory</div>
+                      <div class="component-progress not-started">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box complete" data-component="Transaction Manager" data-status="complete">
+                      <div class="component-title">
+                        <span>Transaction Mgr</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">ACID transaction support for critical operations</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box complete" data-component="Data Consistency Service" data-status="complete">
+                      <div class="component-title">
+                        <span>Data Consistency</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">Cross-service data validation</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Infrastructure Layer -->
+                <div class="diagram-layer" id="infrastructure-layer">
+                  <div class="layer-title">Infrastructure</div>
+                  <div class="component-group">
+                    <div class="component-box complete" data-component="Service Discovery" data-status="complete">
+                      <div class="component-title">
+                        <span>Service Discovery</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">Dynamic service location and load balancing</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box complete" data-component="Rate Limiter" data-status="complete">
+                      <div class="component-title">
+                        <span>Rate Limiter</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">API throttling and quota management</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box complete" data-component="Circuit Breaker" data-status="complete">
+                      <div class="component-title">
+                        <span>Circuit Breaker</span>
+                        <span class="component-status">🟢</span>
+                      </div>
+                      <div class="component-desc">Fault tolerance for service communication</div>
+                      <div class="component-progress complete">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box in-progress" data-component="High Availability Manager" data-status="in-progress">
+                      <div class="component-title">
+                        <span>HA Manager</span>
+                        <span class="component-status">🟡</span>
+                      </div>
+                      <div class="component-desc">Service replication and failover</div>
+                      <div class="component-progress in-progress">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="component-box in-progress" data-component="Monitoring System" data-status="in-progress">
+                      <div class="component-title">
+                        <span>Monitoring</span>
+                        <span class="component-status">🟡</span>
+                      </div>
+                      <div class="component-desc">Performance metrics and health checks</div>
+                      <div class="component-progress in-progress">
+                        <div class="progress-bar-fill"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Development Roadmap -->
+                <div class="roadmap">
+                  <div class="roadmap-phase phase-complete">
+                    <div class="phase-marker"></div>
+                    <div class="phase-title">Phase 1: Core Foundation (Completed)</div>
+                    <ul class="phase-items">
+                      <li>Basic customer management</li>
+                      <li>Authentication system</li>
+                      <li>Message queue infrastructure</li>
+                      <li>Initial external integrations</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="roadmap-phase phase-in-progress">
+                    <div class="phase-marker"></div>
+                    <div class="phase-title">Phase 2: Service Management (Current)</div>
+                    <ul class="phase-items">
+                      <li>Repair ticket management system</li>
+                      <li>Service workflow implementation</li>
+                      <li>Enhanced integration capabilities</li>
+                      <li>Infrastructure stability improvements</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="roadmap-phase phase-planned">
+                    <div class="phase-marker"></div>
+                    <div class="phase-title">Phase 3: Customer Experience (Next)</div>
+                    <ul class="phase-items">
+                      <li>Customer portal implementation</li>
+                      <li>Notification system enhancement</li>
+                      <li>Mobile-responsive interfaces</li>
+                      <li>Self-service capabilities</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="roadmap-phase phase-planned">
+                    <div class="phase-marker"></div>
+                    <div class="phase-title">Phase 4: Advanced Features (Future)</div>
+                    <ul class="phase-items">
+                      <li>Business intelligence dashboard</li>
+                      <li>Inventory optimization</li>
+                      <li>Automated scheduling system</li>
+                      <li>Predictive maintenance recommendations</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- SVG Connections for components -->
+              <svg class="connections" id="connections-svg">
+                <!-- Dynamic connections will be drawn here -->
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <!-- Component Detail Modal -->
+    <div class="component-modal" id="component-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title" id="component-modal-title">Component Details</div>
+          <button class="modal-close" id="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-section">
+            <div class="modal-subtitle">
+              <span class="modal-subtitle-icon">📝</span>
+              <span>Description</span>
+            </div>
+            <p id="component-description">Component description will appear here.</p>
+          </div>
+          
+          <div class="modal-section">
+            <div class="modal-subtitle">
+              <span class="modal-subtitle-icon">🧪</span>
+              <span>Test Status</span>
+            </div>
+            <div id="component-test-status">
+              <div class="test-status">
+                <span class="test-passing">✓ 4 passing</span>
+              </div>
+              <div class="test-status">
+                <span class="test-failing">✗ 1 failing</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal-section">
+            <div class="modal-subtitle">
+              <span class="modal-subtitle-icon">🔄</span>
+              <span>Dependencies</span>
+            </div>
+            <div class="component-dependencies" id="component-dependencies">
+              <div class="dependency-item">
+                <span class="dependency-arrow">→</span>
+                <span>Authentication Service</span>
+              </div>
+              <div class="dependency-item">
+                <span class="dependency-arrow">→</span>
+                <span>Message Queue</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal-section">
+            <div class="modal-subtitle">
+              <span class="modal-subtitle-icon">📋</span>
+              <span>Related BRQs</span>
+            </div>
+            <div class="modal-brqs" id="component-brqs">
+              <div class="modal-brq complete">
+                <div class="brq-id">MEXP-2025-002-BE</div>
+                <div class="brq-name">Authentication & Security</div>
+                <div class="brq-progress">
+                  <div class="progress-bar-fill" style="width: 100%; background: var(--complete-color);"></div>
+                </div>
+              </div>
+              
+              <div class="modal-brq in-progress">
+                <div class="brq-id">MEXP-2025-024-INFRA</div>
+                <div class="brq-name">MVP Readiness</div>
+                <div class="brq-progress">
+                  <div class="progress-bar-fill" style="width: 50%; background: var(--in-progress-color);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <p>mExpress Unified Dashboard &copy; 2025 | Generated from template files in the /templates directory</p>
+      <p>Last updated: <span id="footer-last-updated">Loading...</span></p>
+    </footer>
+  </div>
+  
+  <!-- Dashboard data and scripts -->
+  <script src="../generated/dashboard-data.js"></script>
+  <script>
+    // Load component connections data
+    fetch('../generated/component-connections.json')
+      .then(response => response.json())
+      .then(data => {
+        window.componentConnections = data;
+      })
+      .catch(error => {
+        console.error('Error loading component connections:', error);
+        window.componentConnections = [];
+      });
+  </script>
+  <script src="../assets/dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize charts
+      initCharts();
+      
+      // Setup project selector
+      setupProjectSelector();
+      
+      // Setup component modal
+      setupComponentModal();
+      
+      // Setup BRQ filters
+      setupBRQFilters();
+      
+      // Initialize blueprint view toggle
+      setupBlueprintToggle();
+      
+      // Initialize SVG connections
+      drawComponentConnections();
+      
+      // Update last updated
+      const timestamp = window.dashboardData?.lastUpdated || '2025-03-04';
+      document.getElementById('last-updated').textContent = `Last updated: ${timestamp}`;
+      document.getElementById('footer-last-updated').textContent = timestamp;
+    });
+    
+    function initCharts() {
+      // Component Status Chart
+      const componentCtx = document.getElementById('component-status-chart');
+      if (componentCtx) {
+        new Chart(componentCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Complete', 'In Progress', 'Not Started'],
+            datasets: [{
+              data: [16, 5, 4],
+              backgroundColor: [
+                getComputedStyle(document.documentElement).getPropertyValue('--complete-color'),
+                getComputedStyle(document.documentElement).getPropertyValue('--in-progress-color'),
+                getComputedStyle(document.documentElement).getPropertyValue('--not-started-color')
+              ],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  color: getComputedStyle(document.documentElement).getPropertyValue('--blueprint-text')
+                }
+              }
+            }
+          }
+        });
+      }
+      
+      // BRQ Progress Chart
+      const brqCtx = document.getElementById('brq-progress-chart');
+      if (brqCtx) {
+        new Chart(brqCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Completed', 'In Progress', 'Planned'],
+            datasets: [{
+              data: [9, 2, 4],
+              backgroundColor: [
+                getComputedStyle(document.documentElement).getPropertyValue('--complete-color'),
+                getComputedStyle(document.documentElement).getPropertyValue('--in-progress-color'),
+                getComputedStyle(document.documentElement).getPropertyValue('--planned-color')
+              ],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              }
+            },
+            scales: {
+              x: {
+                grid: {
+                  color: 'rgba(255, 255, 255, 0.1)'
+                },
+                ticks: {
+                  color: getComputedStyle(document.documentElement).getPropertyValue('--blueprint-text')
+                }
+              },
+              y: {
+                grid: {
+                  display: false
+                },
+                ticks: {
+                  color: getComputedStyle(document.documentElement).getPropertyValue('--blueprint-text')
+                }
+              }
+            }
+          }
+        });
+      }
+    }
+    
+    function setupProjectSelector() {
+      const projectOptions = document.querySelectorAll('.project-option');
+      
+      projectOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          // Update active state
+          projectOptions.forEach(opt => opt.classList.remove('active'));
+          option.classList.add('active');
+          
+          // Get selected project
+          const project = option.getAttribute('data-project');
+          
+          // Update component visibility based on project
+          filterComponentsByProject(project);
+        });
+      });
+    }
+    
+    function filterComponentsByProject(project) {
+      // For now, just log the selected project
+      console.log(`Filtering components for project: ${project}`);
+      
+      // In a real implementation, you would filter components based on project
+      if (project === 'all') {
+        document.querySelectorAll('.component-box').forEach(comp => {
+          comp.style.display = '';
+        });
+      } else {
+        // This is a placeholder - you would use actual project data attributes
+        document.querySelectorAll('.component-box').forEach(comp => {
+          if (comp.getAttribute('data-project') === project || !comp.hasAttribute('data-project')) {
+            comp.style.display = '';
+          } else {
+            comp.style.display = 'none';
+          }
+        });
+      }
+    }
+    
+    function setupComponentModal() {
+      const componentBoxes = document.querySelectorAll('.component-box');
+      const modal = document.getElementById('component-modal');
+      const closeBtn = document.getElementById('modal-close');
+      
+      componentBoxes.forEach(box => {
+        box.addEventListener('click', () => {
+          const componentName = box.getAttribute('data-component');
+          const componentStatus = box.getAttribute('data-status');
+          
+          // Update modal content
+          document.getElementById('component-modal-title').textContent = componentName;
+          document.getElementById('component-description').textContent = box.querySelector('.component-desc').textContent;
+          
+          // Show the modal
+          modal.classList.add('active');
+        });
+      });
+      
+      // Close modal on close button click
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          modal.classList.remove('active');
+        });
+      }
+      
+      // Close modal on outside click
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+    }
+    
+    function setupBRQFilters() {
+      const brqFilters = document.querySelectorAll('.brq-filter');
+      
+      brqFilters.forEach(filter => {
+        filter.addEventListener('click', () => {
+          // Update active state
+          brqFilters.forEach(f => f.classList.remove('active'));
+          filter.classList.add('active');
+          
+          // Get selected filter
+          const filterValue = filter.getAttribute('data-filter');
+          
+          // Filter BRQs
+          filterBRQs(filterValue);
+        });
+      });
+    }
+    
+    function filterBRQs(filter) {
+      // For now, just log the selected filter
+      console.log(`Filtering BRQs by: ${filter}`);
+      
+      // In a real implementation, you would filter BRQs based on the filter value
+      // This is just a placeholder to show the concept
+      const brqCards = document.querySelectorAll('.brq-card');
+      
+      if (filter === 'all') {
+        brqCards.forEach(card => {
+          card.style.display = '';
+        });
+      } else if (filter === 'current') {
+        brqCards.forEach(card => {
+          if (card.classList.contains('in-progress')) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      } else if (filter === 'completed') {
+        brqCards.forEach(card => {
+          if (card.classList.contains('complete')) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      } else if (filter === 'planned') {
+        brqCards.forEach(card => {
+          if (card.classList.contains('not-started')) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    }
+    
+    function setupBlueprintToggle() {
+      const toggle = document.getElementById('blueprint-view-toggle');
+      const label = document.getElementById('view-mode-label');
+      const container = document.querySelector('.blueprint-container');
+      
+      if (toggle && label && container) {
+        toggle.addEventListener('change', () => {
+          if (toggle.checked) {
+            label.textContent = 'Blueprint View';
+            container.style.background = '';
+            document.querySelectorAll('.diagram-layer').forEach(layer => {
+              layer.style.background = '';
+            });
+          } else {
+            label.textContent = 'Standard View';
+            container.style.background = 'white';
+            document.querySelectorAll('.diagram-layer').forEach(layer => {
+              layer.style.background = '#f8f9fa';
+            });
+          }
+        });
+      }
+    }
+    
+    function drawComponentConnections() {
+      // This function would use D3.js to draw SVG lines between components
+      // that have dependencies on each other.
+      // For now, this is just a placeholder to show the concept
+      
+      const svg = document.getElementById('connections-svg');
+      
+      if (svg && window.d3) {
+        // Clear existing connections
+        d3.select(svg).selectAll('*').remove();
+        
+        // Example connections (simplified)
+        // In a real implementation, you would derive these from component data
+        const connections = [
+          { source: 'Customer API', target: 'Customer Service' },
+          { source: 'Authentication API', target: 'Auth Service' },
+          { source: 'Integration API', target: 'Integration Service' },
+          { source: 'Customer Service', target: 'Customer Repository' },
+          { source: 'Auth Service', target: 'Data Consistency Service' },
+          { source: 'Message Queue', target: 'Service Discovery' }
+        ];
+        
+        // Draw each connection
+        connections.forEach(conn => {
+          const sourceElem = document.querySelector(`[data-component="${conn.source}"]`);
+          const targetElem = document.querySelector(`[data-component="${conn.target}"]`);
+          
+          if (sourceElem && targetElem) {
+            // Get element positions
+            const sourceRect = sourceElem.getBoundingClientRect();
+            const targetRect = targetElem.getBoundingClientRect();
+            const svgRect = svg.getBoundingClientRect();
+            
+            // Calculate source and target coordinates
+            const sourceX = sourceRect.left + sourceRect.width / 2 - svgRect.left;
+            const sourceY = sourceRect.top + sourceRect.height - svgRect.top;
+            const targetX = targetRect.left + targetRect.width / 2 - svgRect.left;
+            const targetY = targetRect.top - svgRect.top;
+            
+            // Create the SVG path
+            d3.select(svg)
+              .append('path')
+              .attr('class', 'connection')
+              .attr('d', `M${sourceX},${sourceY} C${sourceX},${sourceY + 20} ${targetX},${targetY - 20} ${targetX},${targetY}`);
+          }
+        });
+      }
+    }
+    
+    // On window resize, redraw the connections
+    window.addEventListener('resize', drawComponentConnections);
+  </script>
+</body>
+</html>

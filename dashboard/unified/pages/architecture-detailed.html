@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mExpress Dashboard - Architecture Blueprint (Detailed)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="stylesheet" href="../assets/dashboard.css">
+  <link rel="stylesheet" href="../assets/architecture.css">
+  <style>
+    /* Additional styles for detailed view */
+    .sub-tabs {
+      display: flex;
+      background-color: var(--blueprint-bg);
+      border-bottom: 1px solid var(--blueprint-border);
+      margin-bottom: 1rem;
+    }
+    
+    .sub-tab {
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      color: var(--blueprint-text);
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .sub-tab:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .sub-tab.active {
+      border-bottom: 3px solid var(--blueprint-accent);
+      color: var(--blueprint-accent);
+    }
+    
+    .sub-tab-content {
+      display: none;
+      padding: 1rem;
+    }
+    
+    .sub-tab-content.active {
+      display: block;
+    }
+    
+    .detail-card {
+      background-color: var(--blueprint-card-bg);
+      border: 1px solid var(--blueprint-border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      transition: all 0.2s ease;
+    }
+    
+    .detail-card:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .detail-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid var(--blueprint-border);
+      padding-bottom: 0.5rem;
+    }
+    
+    .detail-card-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--blueprint-heading);
+    }
+    
+    .detail-card-status {
+      font-size: 0.9rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      background-color: var(--not-started-color);
+    }
+    
+    .detail-card-status.complete {
+      background-color: var(--complete-color);
+    }
+    
+    .detail-card-status.in-progress {
+      background-color: var(--in-progress-color);
+    }
+    
+    .detail-card-status.planned {
+      background-color: var(--planned-color);
+    }
+    
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    
+    .detail-section {
+      margin-bottom: 1.5rem;
+    }
+    
+    .detail-section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--blueprint-heading);
+      border-bottom: 1px solid var(--blueprint-border);
+      padding-bottom: 0.5rem;
+    }
+    
+    .detail-property {
+      display: flex;
+      margin-bottom: 0.5rem;
+    }
+    
+    .detail-property-name {
+      font-weight: 500;
+      min-width: 120px;
+      color: var(--blueprint-text-secondary);
+    }
+    
+    .detail-property-value {
+      flex: 1;
+    }
+    
+    .detail-list {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+    
+    .detail-list li {
+      margin-bottom: 0.25rem;
+    }
+    
+    .component-filter {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .filter-button {
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      background-color: var(--blueprint-card-bg);
+      border: 1px solid var(--blueprint-border);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .filter-button:hover {
+      background-color: var(--blueprint-bg-hover);
+    }
+    
+    .filter-button.active {
+      background-color: var(--blueprint-accent);
+      color: white;
+      border-color: var(--blueprint-accent);
+    }
+    
+    .search-box {
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      background-color: var(--blueprint-card-bg);
+      border: 1px solid var(--blueprint-border);
+      margin-bottom: 1rem;
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    .connections-diagram {
+      width: 100%;
+      height: 600px;
+      background-color: var(--blueprint-card-bg);
+      border: 1px solid var(--blueprint-border);
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+    
+    .dependency-diagram {
+      overflow: auto;
+      max-height: 600px;
+    }
+    
+    .dependency-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    .dependency-item {
+      padding: 0.5rem;
+      border-bottom: 1px solid var(--blueprint-border);
+    }
+    
+    .dependency-arrow {
+      color: var(--blueprint-accent);
+      margin: 0 0.5rem;
+    }
+    
+    .progress-pill {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      background-color: var(--blueprint-bg-hover);
+    }
+    
+    .progress-pill.p0 {
+      background-color: #ef4444;
+      color: white;
+    }
+    
+    .progress-pill.p1 {
+      background-color: #f59e0b;
+      color: white;
+    }
+    
+    .progress-pill.p2 {
+      background-color: #10b981;
+      color: white;
+    }
+    
+    .progress-pill.p3 {
+      background-color: #3b82f6;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="dashboard-title">
+        <div class="dashboard-logo">m</div>
+        <div class="dashboard-header-content">
+          <h1>mExpress Dashboard Hub</h1>
+          <div class="meta">
+            <span id="last-updated">Last updated: Loading...</span>
+            <span id="version">Version: 1.0.0</span>
+          </div>
+        </div>
+        <div class="dashboard-actions">
+          <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" class="moon-icon"></path>
+              <circle cx="12" cy="12" r="5" class="sun-icon-circle"></circle>
+              <line x1="12" y1="1" x2="12" y2="3" class="sun-icon-ray"></line>
+              <line x1="12" y1="21" x2="12" y2="23" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" class="sun-icon-ray"></line>
+              <line x1="1" y1="12" x2="3" y2="12" class="sun-icon-ray"></line>
+              <line x1="21" y1="12" x2="23" y2="12" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" class="sun-icon-ray"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <div class="tabs">
+      <div class="tab" data-tab="overview" data-href="../index.html">Overview</div>
+      <div class="tab active" data-tab="architecture">Architecture</div>
+      <div class="tab" data-tab="dashboards" data-href="index.html">Dashboards</div>
+      <div class="tab" data-tab="projects" data-href="projects.html">Projects</div>
+      <div class="tab" data-tab="reports" data-href="tests.html">Reports</div>
+    </div>
+    
+    <main class="main-content">
+      <div class="tab-content active" id="architecture">
+        <!-- Architecture Blueprint Container -->
+        <div class="blueprint-container">
+          <!-- Blueprint Header -->
+          <div class="blueprint-header">
+            <div class="blueprint-title">
+              <span class="blueprint-title-icon">🏗️</span>
+              <span>Architecture Blueprint</span>
+            </div>
+            <div class="blueprint-controls">
+              <label class="theme-switch">
+                <input type="checkbox" id="blueprint-view-toggle" checked>
+                <span class="switch-slider"></span>
+              </label>
+              <span id="view-mode-label">Blueprint View</span>
+              <a href="architecture.html" class="filter-button">Switch to Simple View</a>
+            </div>
+          </div>
+          
+          <!-- Blueprint Main Content -->
+          <div class="blueprint-main">
+            <!-- Sidebar with project selection and stats -->
+            <div class="blueprint-sidebar">
+              <!-- Project Selector with direct click handlers -->
+              <div class="project-selector">
+                <button onclick="switchProject('all')" class="project-option" id="project-all" data-project="all" style="flex: 1; padding: 8px 12px; text-align: center; cursor: pointer; border-radius: 3px; transition: all 0.2s; border: none; background: none; color: white; font-size: 13px;">All</button>
+                
+                <button onclick="switchProject('montpc')" class="project-option active" id="project-montpc" data-project="montpc" style="flex: 1; padding: 8px 12px; text-align: center; cursor: pointer; border-radius: 3px; transition: all 0.2s; border: none; background: var(--blueprint-accent); color: white; font-size: 13px;">MontPC</button>
+                
+                <button onclick="switchProject('mexpress')" class="project-option" id="project-mexpress" data-project="mexpress" style="flex: 1; padding: 8px 12px; text-align: center; cursor: pointer; border-radius: 3px; transition: all 0.2s; border: none; background: none; color: white; font-size: 13px;">mExpress</button>
+                
+                <button onclick="switchProject('giandra')" class="project-option" id="project-giandra" data-project="giandra" style="flex: 1; padding: 8px 12px; text-align: center; cursor: pointer; border-radius: 3px; transition: all 0.2s; border: none; background: none; color: white; font-size: 13px;">Giandra</button>
+              </div>
+              
+              <script>
+                // Project switching functionality
+                function switchProject(projectId) {
+                  console.log('Switching to project:', projectId);
+                  
+                  // Update project selector UI
+                  document.querySelectorAll('.project-option').forEach(function(option) {
+                    option.style.background = 'none';
+                  });
+                  document.getElementById('project-' + projectId).style.background = 'var(--blueprint-accent)';
+                  
+                  // Update project data based on selected project
+                  updateProjectData(projectId);
+                }
+                
+                function updateProjectData(projectId) {
+                  // Sample data for each project - in a real app, this would come from your data source
+                  const projectData = {
+                    'all': {
+                      completion: '64%',
+                      components: '16/25',
+                      complete: '16',
+                      inProgress: '5',
+                      planned: '1',
+                      notStarted: '3',
+                      brqs: '9/15',
+                      tests: '63/92',
+                      phase: 'Phase 2/4',
+                      phaseName: 'Service Management'
+                    },
+                    'montpc': {
+                      completion: '80%',
+                      components: '12/15',
+                      complete: '12',
+                      inProgress: '2',
+                      planned: '1',
+                      notStarted: '0',
+                      brqs: '7/9',
+                      tests: '42/52',
+                      phase: 'Phase 3/4',
+                      phaseName: 'Customer Experience'
+                    },
+                    'mexpress': {
+                      completion: '45%',
+                      components: '9/20',
+                      complete: '9',
+                      inProgress: '6',
+                      planned: '3',
+                      notStarted: '2',
+                      brqs: '6/12',
+                      tests: '38/78',
+                      phase: 'Phase 2/4',
+                      phaseName: 'Service Management'
+                    },
+                    'giandra': {
+                      completion: '25%',
+                      components: '5/20',
+                      complete: '5',
+                      inProgress: '3',
+                      planned: '0',
+                      notStarted: '12',
+                      brqs: '3/12',
+                      tests: '15/42',
+                      phase: 'Phase 1/4',
+                      phaseName: 'Core Foundation'
+                    }
+                  };
+                  
+                  // Get the data for the selected project
+                  const data = projectData[projectId];
+                  
+                  // Update sidebar metrics
+                  document.getElementById('overall-completion').textContent = data.completion;
+                  document.getElementById('components-completed').textContent = data.components;
+                  document.getElementById('complete-count').textContent = `Complete (${data.complete})`;
+                  document.getElementById('in-progress-count').textContent = `In Progress (${data.inProgress})`;
+                  document.getElementById('planned-count').textContent = `Planned (${data.planned})`;
+                  document.getElementById('not-started-count').textContent = `Not Started (${data.notStarted})`;
+                  document.getElementById('brqs-completed').textContent = data.brqs;
+                  document.getElementById('tests-passing').textContent = data.tests;
+                  document.getElementById('current-phase').textContent = data.phase;
+                  document.getElementById('phase-name').textContent = data.phaseName;
+                  
+                  // Update progress bars
+                  const completionPct = parseInt(data.completion);
+                  document.querySelector('.sidebar-section:nth-of-type(1) .progress-bar-fill').style.width = data.completion;
+                  
+                  const componentsPct = parseInt(data.components.split('/')[0]) / parseInt(data.components.split('/')[1]) * 100;
+                  document.querySelector('.sidebar-section:nth-of-type(2) .progress-bar-fill').style.width = componentsPct + '%';
+                  
+                  const brqsPct = parseInt(data.brqs.split('/')[0]) / parseInt(data.brqs.split('/')[1]) * 100;
+                  document.querySelector('.sidebar-section:nth-of-type(3) .progress-bar-fill').style.width = brqsPct + '%';
+                  
+                  const testsPct = parseInt(data.tests.split('/')[0]) / parseInt(data.tests.split('/')[1]) * 100;
+                  document.querySelector('.sidebar-section:nth-of-type(4) .progress-bar-fill').style.width = testsPct + '%';
+                  
+                  // Update phase progress based on phase number
+                  const phasePct = parseInt(data.phase.split('/')[0]) / parseInt(data.phase.split('/')[1]) * 100;
+                  document.querySelector('.sidebar-section:nth-of-type(5) .progress-bar-fill').style.width = phasePct + '%';
+                  
+                  // Update charts if they exist
+                  if (window.componentStatusChart) {
+                    window.componentStatusChart.data.datasets[0].data = [
+                      parseInt(data.complete),
+                      parseInt(data.inProgress),
+                      parseInt(data.notStarted)
+                    ];
+                    window.componentStatusChart.update();
+                  }
+                  
+                  if (window.brqProgressChart) {
+                    window.brqProgressChart.data.datasets[0].data = [
+                      parseInt(data.brqs.split('/')[0]),
+                      parseInt(data.inProgress),
+                      parseInt(data.planned)
+                    ];
+                    window.brqProgressChart.update();
+                  }
+                  
+                  // Also update cards in the main area if needed
+                  updateProjectCards(projectId);
+                }
+                
+                function updateProjectCards(projectId) {
+                  // In a real application, you would update component and BRQ cards based on the selected project
+                  // For this demo, we'll just show/hide based on data attribute
+                  
+                  if (projectId === 'all') {
+                    // Show all cards
+                    document.querySelectorAll('[data-project]').forEach(function(card) {
+                      card.style.display = '';
+                    });
+                  } else {
+                    // Show only cards for the selected project
+                    document.querySelectorAll('[data-project]').forEach(function(card) {
+                      if (card.getAttribute('data-project') === projectId) {
+                        card.style.display = '';
+                      } else {
+                        card.style.display = 'none';
+                      }
+                    });
+                  }
+                }
+              </script>
+              
+              <!-- Project Stats -->
+              <div class="sidebar-section">
+                <div class="sidebar-title">Project Status</div>
+                <div class="sidebar-stat">
+                  <div class="sidebar-stat-value" id="overall-completion">64%</div>
+                  <div class="sidebar-stat-label">Overall Completion</div>
+                  <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 64%; background: var(--blueprint-accent);"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Component Stats -->
+              <div class="sidebar-section">
+                <div class="sidebar-title">Component Status</div>
+                <div class="sidebar-stat">
+                  <div class="sidebar-stat-value" id="components-completed">16/25</div>
+                  <div class="sidebar-stat-label">Components Completed</div>
+                  <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 64%; background: var(--complete-color);"></div>
+                  </div>
+                </div>
+                
+                <div class="status-legend">
+                  <div class="legend-item">
+                    <div class="legend-color" style="background: var(--complete-color);"></div>
+                    <span id="complete-count">Complete (16)</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background: var(--in-progress-color);"></div>
+                    <span id="in-progress-count">In Progress (5)</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background: var(--planned-color);"></div>
+                    <span id="planned-count">Planned (1)</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background: var(--not-started-color);"></div>
+                    <span id="not-started-count">Not Started (3)</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- BRQ Stats -->
+              <div class="sidebar-section">
+                <div class="sidebar-title">Business Requirements</div>
+                <div class="sidebar-stat">
+                  <div class="sidebar-stat-value" id="brqs-completed">9/15</div>
+                  <div class="sidebar-stat-label">BRQs Completed</div>
+                  <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 60%; background: var(--blueprint-accent);"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Test Stats -->
+              <div class="sidebar-section">
+                <div class="sidebar-title">Test Status</div>
+                <div class="sidebar-stat">
+                  <div class="sidebar-stat-value" id="tests-passing">63/92</div>
+                  <div class="sidebar-stat-label">Tests Passing</div>
+                  <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 68%; background: var(--in-progress-color);"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Project Phase -->
+              <div class="sidebar-section">
+                <div class="sidebar-title">Project Phase</div>
+                <div class="sidebar-stat">
+                  <div class="sidebar-stat-value" id="current-phase">Phase 2/4</div>
+                  <div class="sidebar-stat-label" id="phase-name">Service Management</div>
+                  <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 50%; background: var(--planned-color);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Blueprint Content with sub-tabs -->
+            <div class="blueprint-content">
+              <!-- Sub tabs for detailed views - with improved styling -->
+              <div class="sub-tabs" id="sub-tabs-container" style="z-index:1000; position:relative; display:flex; gap:4px; border-bottom: 1px solid var(--blueprint-outline); margin-bottom: 1rem;">
+                <!-- Direct inline onclick handlers with improved styling -->
+                <button onclick="activateTab('overview');" id="tab-overview" class="sub-tab active" data-subtab="overview" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid var(--blueprint-accent); font-weight: 500; transition: all 0.2s ease;">Overview</button>
+                
+                <button onclick="activateTab('components');" id="tab-components" class="sub-tab" data-subtab="components" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Components</button>
+                
+                <button onclick="activateTab('brqs');" id="tab-brqs" class="sub-tab" data-subtab="brqs" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">BRQs</button>
+                
+                <button onclick="activateTab('connections');" id="tab-connections" class="sub-tab" data-subtab="connections" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Connections</button>
+                
+                <button onclick="activateTab('roadmap');" id="tab-roadmap" class="sub-tab" data-subtab="roadmap" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Roadmap</button>
+              </div>
+              
+              <script>
+                function activateTab(tabId) {
+                  // First, reset all tabs and hide all content
+                  document.querySelectorAll('.sub-tab').forEach(function(tab) {
+                    tab.style.borderBottom = '3px solid transparent';
+                    tab.style.color = 'var(--blueprint-text)';
+                  });
+                  
+                  document.getElementById('overview-tab').style.display = 'none';
+                  document.getElementById('components-tab').style.display = 'none';
+                  document.getElementById('brqs-tab').style.display = 'none';
+                  document.getElementById('connections-tab').style.display = 'none';
+                  document.getElementById('roadmap-tab').style.display = 'none';
+                  
+                  // Then activate the selected tab and show its content
+                  document.getElementById('tab-' + tabId).style.borderBottom = '3px solid var(--blueprint-accent)';
+                  document.getElementById('tab-' + tabId).style.color = 'var(--blueprint-accent)';
+                  document.getElementById(tabId + '-tab').style.display = 'block';
+                  
+                  // Handle connections tab specially
+                  if (tabId === 'connections' && typeof window.initializeConnectionsDiagram === 'function') {
+                    setTimeout(function() { window.initializeConnectionsDiagram(); }, 100);
+                  }
+                }
+              </script>
+              
+              <!-- Overview Tab Content -->
+              <div class="sub-tab-content active" id="overview-tab">
+                <!-- Background grid pattern -->
+                <div class="blueprint-grid"></div>
+                
+                <!-- Project Overview Section -->
+                <div class="overview-container">
+                  <div class="overview-card">
+                    <div class="overview-header">
+                      <div class="overview-title">Component Status</div>
+                    </div>
+                    <div class="overview-stats">
+                      <div class="overview-stat">
+                        <div class="overview-stat-value" id="complete-percent">64%</div>
+                        <div class="overview-stat-label">Complete</div>
+                      </div>
+                      <div class="overview-stat">
+                        <div class="overview-stat-value" id="in-progress-percent">20%</div>
+                        <div class="overview-stat-label">In Progress</div>
+                      </div>
+                      <div class="overview-stat">
+                        <div class="overview-stat-value" id="not-started-percent">16%</div>
+                        <div class="overview-stat-label">Not Started</div>
+                      </div>
+                    </div>
+                    <div class="chart-container">
+                      <canvas id="component-status-chart"></canvas>
+                    </div>
+                  </div>
+                  
+                  <div class="overview-card">
+                    <div class="overview-header">
+                      <div class="overview-title">BRQ Progress</div>
+                    </div>
+                    <div class="overview-stats">
+                      <div class="overview-stat">
+                        <div class="overview-stat-value" id="brq-complete-count">9</div>
+                        <div class="overview-stat-label">Completed</div>
+                      </div>
+                      <div class="overview-stat">
+                        <div class="overview-stat-value" id="brq-in-progress-count">2</div>
+                        <div class="overview-stat-label">In Progress</div>
+                      </div>
+                      <div class="overview-stat">
+                        <div class="overview-stat-value" id="brq-planned-count">4</div>
+                        <div class="overview-stat-label">Planned</div>
+                      </div>
+                    </div>
+                    <div class="chart-container">
+                      <canvas id="brq-progress-chart"></canvas>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Active BRQs in focus section -->
+                <div class="brq-filters">
+                  <div class="brq-filter active" data-filter="all">All BRQs</div>
+                  <div class="brq-filter" data-filter="current">Current</div>
+                  <div class="brq-filter" data-filter="completed">Completed</div>
+                  <div class="brq-filter" data-filter="planned">Planned</div>
+                </div>
+                
+                <!-- Current Focus BRQs -->
+                <div class="brq-banner" id="current-brqs">
+                  <!-- BRQ cards will be dynamically loaded here -->
+                </div>
+              </div>
+              
+              <!-- Components Tab Content -->
+              <div class="sub-tab-content" id="components-tab">
+                <div class="component-filter">
+                  <div class="filter-button active" data-status="all">All</div>
+                  <div class="filter-button" data-status="complete">Complete</div>
+                  <div class="filter-button" data-status="in-progress">In Progress</div>
+                  <div class="filter-button" data-status="planned">Planned</div>
+                  <div class="filter-button" data-status="not-started">Not Started</div>
+                </div>
+                
+                <div class="component-filter">
+                  <div class="filter-button active" data-layer="all">All Layers</div>
+                  <div class="filter-button" data-layer="api">API Layer</div>
+                  <div class="filter-button" data-layer="service">Service Layer</div>
+                  <div class="filter-button" data-layer="data">Data Layer</div>
+                  <div class="filter-button" data-layer="infrastructure">Infrastructure</div>
+                  <div class="filter-button" data-layer="ui">UI</div>
+                </div>
+                
+                <input type="text" class="search-box" placeholder="Search components..." id="component-search">
+                
+                <div class="detail-grid" id="components-grid">
+                  <!-- Component cards will be dynamically loaded here -->
+                </div>
+              </div>
+              
+              <!-- BRQs Tab Content -->
+              <div class="sub-tab-content" id="brqs-tab">
+                <div class="component-filter">
+                  <div class="filter-button active" data-status="all">All</div>
+                  <div class="filter-button" data-status="complete">Complete</div>
+                  <div class="filter-button" data-status="in-progress">In Progress</div>
+                  <div class="filter-button" data-status="planned">Planned</div>
+                  <div class="filter-button" data-status="not-started">Not Started</div>
+                </div>
+                
+                <div class="component-filter">
+                  <div class="filter-button active" data-priority="all">All Priorities</div>
+                  <div class="filter-button p0" data-priority="P0">P0</div>
+                  <div class="filter-button p1" data-priority="P1">P1</div>
+                  <div class="filter-button p2" data-priority="P2">P2</div>
+                  <div class="filter-button p3" data-priority="P3">P3</div>
+                </div>
+                
+                <input type="text" class="search-box" placeholder="Search BRQs..." id="brq-search">
+                
+                <div class="detail-grid" id="brqs-grid">
+                  <!-- BRQ cards will be dynamically loaded here -->
+                </div>
+              </div>
+              
+              <!-- Connections Tab Content -->
+              <div class="sub-tab-content" id="connections-tab">
+                <div class="component-filter">
+                  <div class="filter-button active" data-connection="all">All Connections</div>
+                  <div class="filter-button" data-connection="dependency">Dependencies</div>
+                  <div class="filter-button" data-connection="layer">Layer Connections</div>
+                  <div class="filter-button" data-connection="brq">BRQ-Based</div>
+                </div>
+                
+                <div class="connections-diagram" id="connections-diagram">
+                  <!-- D3.js visualization will be rendered here -->
+                </div>
+                
+                <div class="detail-section dependency-diagram">
+                  <div class="detail-section-title">Component Dependencies</div>
+                  <ul class="dependency-list" id="dependency-list">
+                    <!-- Dependency items will be dynamically loaded here -->
+                  </ul>
+                </div>
+              </div>
+              
+              <!-- Roadmap Tab Content -->
+              <div class="sub-tab-content" id="roadmap-tab">
+                <!-- Development Roadmap -->
+                <div class="roadmap">
+                  <div class="roadmap-phase phase-complete">
+                    <div class="phase-marker"></div>
+                    <div class="phase-title">Phase 1: Core Foundation (Completed)</div>
+                    <ul class="phase-items">
+                      <li>Basic customer management</li>
+                      <li>Authentication system</li>
+                      <li>Message queue infrastructure</li>
+                      <li>Initial external integrations</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="roadmap-phase phase-in-progress">
+                    <div class="phase-marker"></div>
+                    <div class="phase-title">Phase 2: Service Management (Current)</div>
+                    <ul class="phase-items">
+                      <li>Repair ticket management system</li>
+                      <li>Service workflow implementation</li>
+                      <li>Enhanced integration capabilities</li>
+                      <li>Infrastructure stability improvements</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="roadmap-phase phase-planned">
+                    <div class="phase-marker"></div>
+                    <div class="phase-title">Phase 3: Customer Experience (Next)</div>
+                    <ul class="phase-items">
+                      <li>Customer portal implementation</li>
+                      <li>Notification system enhancement</li>
+                      <li>Mobile-responsive interfaces</li>
+                      <li>Self-service capabilities</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="roadmap-phase phase-planned">
+                    <div class="phase-marker"></div>
+                    <div class="phase-title">Phase 4: Advanced Features (Future)</div>
+                    <ul class="phase-items">
+                      <li>Business intelligence dashboard</li>
+                      <li>Inventory optimization</li>
+                      <li>Automated scheduling system</li>
+                      <li>Predictive maintenance recommendations</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="detail-section">
+                  <div class="detail-section-title">Phase-BRQ Mapping</div>
+                  <div class="detail-grid" id="phase-brq-grid">
+                    <!-- Phase-BRQ cards will be dynamically loaded here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>mExpress Unified Dashboard &copy; 2025 | Generated from template files in the /templates directory</p>
+      <p>Last updated: <span id="footer-last-updated">Loading...</span></p>
+    </footer>
+  </div>
+  
+  <!-- Dashboard data and scripts -->
+  <script src="../generated/dashboard-data.js"></script>
+  <script>
+    // Load component connections data
+    fetch('../generated/component-connections.json')
+      .then(response => response.json())
+      .then(data => {
+        window.componentConnections = data;
+        console.log('Component connections loaded:', data.length);
+      })
+      .catch(error => {
+        console.error('Error loading component connections:', error);
+        window.componentConnections = [];
+      });
+  </script>
+  <script src="../assets/dashboard.js"></script>
+  <script>
+    // Make sure initializeConnectionsDiagram is globally accessible
+    window.initializeConnectionsDiagram = function(projectFilter) {
+      console.log('Global initializeConnectionsDiagram called');
+      if (!window.d3) {
+        console.error('D3.js not loaded');
+        return;
+      }
+      
+      const diagramContainer = document.getElementById('connections-diagram');
+      const dependencyList = document.getElementById('dependency-list');
+      
+      if (!diagramContainer || !dependencyList) {
+        console.error('Required DOM elements not found');
+        return;
+      }
+      
+      // Clear existing diagram and list
+      diagramContainer.innerHTML = '';
+      dependencyList.innerHTML = '';
+      
+      // Get connections data
+      let connections = window.dashboardData?.architecture?.connections || window.componentConnections || [];
+      console.log(`Using ${connections.length} connections`);
+      
+      // Filter connections by project if needed
+      if (projectFilter && projectFilter !== 'all') {
+        // This is a placeholder - in a real implementation you'd filter based on project data
+        connections = connections.slice(0, 3); // Just show fewer connections for demo
+      }
+      
+      // Filter connections by type based on selected filter
+      const connectionFilter = document.querySelector('#connections-tab .filter-button.active');
+      const connectionType = connectionFilter ? connectionFilter.getAttribute('data-connection') : 'all';
+      
+      if (connectionType !== 'all') {
+        connections = connections.filter(conn => conn.type === connectionType);
+      }
+      
+      // Create SVG container
+      const width = diagramContainer.clientWidth;
+      const height = 600;
+      
+      const svg = d3.select(diagramContainer)
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .append('g')
+        .attr('transform', 'translate(0, 0)');
+      
+      // Extract unique nodes from connections
+      const nodeMap = new Map();
+      connections.forEach(conn => {
+        if (!nodeMap.has(conn.source)) {
+          nodeMap.set(conn.source, { id: conn.source, name: conn.source });
+        }
+        if (!nodeMap.has(conn.target)) {
+          nodeMap.set(conn.target, { id: conn.target, name: conn.target });
+        }
+      });
+      
+      const nodes = Array.from(nodeMap.values());
+      console.log(`Created ${nodes.length} nodes from connections`);
+      
+      // Create force simulation
+      const simulation = d3.forceSimulation(nodes)
+        .force('link', d3.forceLink(connections).id(d => d.id).distance(150))
+        .force('charge', d3.forceManyBody().strength(-200))
+        .force('center', d3.forceCenter(width / 2, height / 2))
+        .force('collision', d3.forceCollide().radius(50));
+      
+      // Create links
+      const link = svg.append('g')
+        .selectAll('line')
+        .data(connections)
+        .enter()
+        .append('line')
+        .attr('stroke', d => d.type === 'dependency' ? '#f59e0b' : 
+                         d.type === 'layer' ? '#3b82f6' : '#10b981')
+        .attr('stroke-width', d => d.type === 'dependency' ? 2 : 1)
+        .attr('stroke-dasharray', d => d.type === 'layer' ? '5,5' : null);
+      
+      // Create nodes
+      const node = svg.append('g')
+        .selectAll('g')
+        .data(nodes)
+        .enter()
+        .append('g')
+        .call(d3.drag()
+          .on('start', dragstarted)
+          .on('drag', dragged)
+          .on('end', dragended));
+      
+      // Node background circles
+      node.append('circle')
+        .attr('r', 30)
+        .attr('fill', 'var(--blueprint-card-bg)')
+        .attr('stroke', 'var(--blueprint-border)')
+        .attr('stroke-width', 1);
+      
+      // Node text
+      node.append('text')
+        .text(d => d.name)
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'middle')
+        .attr('fill', 'var(--blueprint-text)')
+        .attr('font-size', '10px')
+        .each(function(d) {
+          // Wrap text if too long
+          const text = d3.select(this);
+          const words = d.name.split(/\s+/);
+          text.text(''); // Clear text
+          
+          let lineNumber = 0;
+          let lineHeight = 1.1;
+          
+          words.forEach(word => {
+            text.append('tspan')
+              .attr('x', 0)
+              .attr('y', 0)
+              .attr('dy', `${lineNumber * lineHeight}em`)
+              .text(word);
+            
+            lineNumber++;
+          });
+          
+          // Center the wrapped text
+          const numLines = words.length;
+          text.selectAll('tspan')
+            .attr('dy', (d, i) => `${i * lineHeight - (numLines - 1) * lineHeight / 2}em`);
+        });
+      
+      // Update simulation on each tick
+      simulation.on('tick', () => {
+        link
+          .attr('x1', d => d.source.x)
+          .attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x)
+          .attr('y2', d => d.target.y);
+        
+        node.attr('transform', d => `translate(${d.x}, ${d.y})`);
+      });
+      
+      // Populate dependency list
+      connections.forEach(conn => {
+        const item = document.createElement('li');
+        item.className = 'dependency-item';
+        item.innerHTML = `
+          <strong>${conn.source}</strong>
+          <span class="dependency-arrow">→</span>
+          <strong>${conn.target}</strong>
+          <span>(${conn.type}${conn.brq ? ` via ${conn.brq}` : ''})</span>
+        `;
+        dependencyList.appendChild(item);
+      });
+      
+      // Drag functions
+      function dragstarted(event, d) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      }
+      
+      function dragged(event, d) {
+        d.fx = event.x;
+        d.fy = event.y;
+      }
+      
+      function dragended(event, d) {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      }
+      
+      console.log('Connections diagram initialized');
+    };
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM content loaded - initializing dashboard');
+      
+      // Initialize charts
+      initCharts();
+      
+      // Setup project selector
+      setupProjectSelector();
+      
+      // Initialize blueprint view toggle
+      setupBlueprintToggle();
+      
+      // Load detailed data from dashboard-data.js
+      loadDetailedData();
+      
+      // Tab navigation is set up in the window.onload function
+      
+      // Update last updated
+      const timestamp = window.dashboardData?.lastUpdated || '2025-03-04';
+      document.getElementById('last-updated').textContent = `Last updated: ${timestamp}`;
+      document.getElementById('footer-last-updated').textContent = timestamp;
+    });
+    
+    function initCharts() {
+      // Component Status Chart
+      const componentCtx = document.getElementById('component-status-chart');
+      if (componentCtx) {
+        const config = {
+          type: 'doughnut',
+          data: {
+            labels: ['Complete', 'In Progress', 'Not Started'],
+            datasets: [{
+              data: [64, 20, 16],
+              backgroundColor: [
+                getComputedStyle(document.documentElement).getPropertyValue('--complete-color'),
+                getComputedStyle(document.documentElement).getPropertyValue('--in-progress-color'),
+                getComputedStyle(document.documentElement).getPropertyValue('--not-started-color')
+              ],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  color: getComputedStyle(document.documentElement).getPropertyValue('--blueprint-text')
+                }
+              }
+            }
+          }
+        };
+        
+        if (window.componentStatusChart) {
+          window.componentStatusChart.destroy();
+        }
+        window.componentStatusChart = new Chart(componentCtx, config);
+      }
+      
+      // BRQ Progress Chart
+      const brqCtx = document.getElementById('brq-progress-chart');
+      if (brqCtx) {
+        const config = {
+          type: 'bar',
+          data: {
+            labels: ['Completed', 'In Progress', 'Planned'],
+            datasets: [{
+              data: [9, 2, 4],
+              backgroundColor: [
+                getComputedStyle(document.documentElement).getPropertyValue('--complete-color'),
+                getComputedStyle(document.documentElement).getPropertyValue('--in-progress-color'),
+                getComputedStyle(document.documentElement).getPropertyValue('--planned-color')
+              ],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              }
+            },
+            scales: {
+              x: {
+                grid: {
+                  color: 'rgba(255, 255, 255, 0.1)'
+                },
+                ticks: {
+                  color: getComputedStyle(document.documentElement).getPropertyValue('--blueprint-text')
+                }
+              },
+              y: {
+                grid: {
+                  display: false
+                },
+                ticks: {
+                  color: getComputedStyle(document.documentElement).getPropertyValue('--blueprint-text')
+                }
+              }
+            }
+          }
+        };
+        
+        if (window.brqProgressChart) {
+          window.brqProgressChart.destroy();
+        }
+        window.brqProgressChart = new Chart(brqCtx, config);
+      }
+    }
+    
+    function setupProjectSelector() {
+      const projectOptions = document.querySelectorAll('.project-option');
+      
+      projectOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          // Update active state
+          projectOptions.forEach(opt => opt.classList.remove('active'));
+          option.classList.add('active');
+          
+          // Get selected project
+          const project = option.getAttribute('data-project');
+          
+          // Filter components and BRQs by project
+          filterByProject(project);
+        });
+      });
+    }
+    
+    function filterByProject(project) {
+      // Filter components
+      const componentCards = document.querySelectorAll('#components-grid .detail-card');
+      componentCards.forEach(card => {
+        const cardProject = card.getAttribute('data-project');
+        if (project === 'all' || cardProject === project) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Filter BRQs
+      const brqCards = document.querySelectorAll('#brqs-grid .detail-card');
+      brqCards.forEach(card => {
+        const cardProject = card.getAttribute('data-project');
+        if (project === 'all' || cardProject === project) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Re-initialize connections diagram if visible
+      if (document.getElementById('connections-tab').classList.contains('active')) {
+        initializeConnectionsDiagram(project);
+      }
+    }
+    
+    function setupBlueprintToggle() {
+      const toggle = document.getElementById('blueprint-view-toggle');
+      const label = document.getElementById('view-mode-label');
+      const container = document.querySelector('.blueprint-container');
+      
+      if (toggle && label && container) {
+        toggle.addEventListener('change', () => {
+          if (toggle.checked) {
+            label.textContent = 'Blueprint View';
+            container.style.background = '';
+            document.querySelectorAll('.diagram-layer').forEach(layer => {
+              layer.style.background = '';
+            });
+          } else {
+            label.textContent = 'Standard View';
+            container.style.background = 'white';
+            document.querySelectorAll('.diagram-layer').forEach(layer => {
+              layer.style.background = '#f8f9fa';
+            });
+          }
+        });
+      }
+    }
+    
+    function loadDetailedData() {
+      if (!window.dashboardData || !window.dashboardData.architecture) {
+        console.error('Architecture data not loaded');
+        return;
+      }
+      
+      const archData = window.dashboardData.architecture;
+      
+      // Update basic metrics in sidebar
+      updateBasicMetrics(archData);
+      
+      // Load components data
+      if (archData.detailedComponents) {
+        loadComponentsData(archData.detailedComponents);
+      }
+      
+      // Load BRQs data
+      if (archData.detailedBRQs) {
+        loadBRQsData(archData.detailedBRQs);
+      }
+      
+      // Load current BRQs in focus
+      loadCurrentBRQs(archData);
+      
+      // Initialize component and BRQ filters
+      setupComponentFilters();
+      setupBRQFilters();
+      
+      // Set up search functionality
+      setupSearch();
+    }
+    
+    function updateBasicMetrics(archData) {
+      // Update sidebar metrics
+      document.getElementById('overall-completion').textContent = `${archData.overallCompletion || 0}%`;
+      
+      const componentStatus = archData.componentStatus || {};
+      document.getElementById('components-completed').textContent = 
+        `${componentStatus.complete || 0}/${componentStatus.total || 0}`;
+      document.getElementById('complete-count').textContent = 
+        `Complete (${componentStatus.complete || 0})`;
+      document.getElementById('in-progress-count').textContent = 
+        `In Progress (${componentStatus.inProgress || 0})`;
+      document.getElementById('planned-count').textContent = 
+        `Planned (${componentStatus.planned || 0})`;
+      document.getElementById('not-started-count').textContent = 
+        `Not Started (${componentStatus.notStarted || 0})`;
+      
+      const brqStatus = archData.brqStatus || {};
+      document.getElementById('brqs-completed').textContent = 
+        `${brqStatus.complete || 0}/${brqStatus.total || 0}`;
+      
+      const testStatus = archData.testStatus || {};
+      document.getElementById('tests-passing').textContent = 
+        `${testStatus.passing || 0}/${testStatus.total || 0}`;
+      
+      const phaseInfo = archData.phaseInfo || {};
+      document.getElementById('current-phase').textContent = 
+        `Phase ${phaseInfo.currentPhase || 0}/${phaseInfo.totalPhases || 0}`;
+      document.getElementById('phase-name').textContent = 
+        phaseInfo.phaseName || '';
+      
+      // Update overview metrics
+      const componentPercentages = archData.chartData?.componentPercentages || {};
+      document.getElementById('complete-percent').textContent = 
+        `${componentPercentages.complete || 0}%`;
+      document.getElementById('in-progress-percent').textContent = 
+        `${componentPercentages.inProgress || 0}%`;
+      document.getElementById('not-started-percent').textContent = 
+        `${componentPercentages.notStarted || 0}%`;
+      
+      const brqCounts = archData.chartData?.brqCounts || {};
+      document.getElementById('brq-complete-count').textContent = 
+        brqCounts.completed || 0;
+      document.getElementById('brq-in-progress-count').textContent = 
+        brqCounts.inProgress || 0;
+      document.getElementById('brq-planned-count').textContent = 
+        brqCounts.planned || 0;
+      
+      // Update chart data
+      if (window.componentStatusChart && componentPercentages) {
+        window.componentStatusChart.data.datasets[0].data = [
+          componentPercentages.complete || 0,
+          componentPercentages.inProgress || 0,
+          componentPercentages.notStarted || 0
+        ];
+        window.componentStatusChart.update();
+      }
+      
+      if (window.brqProgressChart && brqCounts) {
+        window.brqProgressChart.data.datasets[0].data = [
+          brqCounts.completed || 0,
+          brqCounts.inProgress || 0,
+          brqCounts.planned || 0
+        ];
+        window.brqProgressChart.update();
+      }
+    }
+    
+    function loadComponentsData(components) {
+      const componentsGrid = document.getElementById('components-grid');
+      componentsGrid.innerHTML = '';
+      
+      // Convert object to array for easier iteration
+      const componentArray = Object.values(components);
+      
+      // Sort components by status (complete first, then in-progress, etc.)
+      componentArray.sort((a, b) => {
+        const statusOrder = { 'complete': 0, 'in-progress': 1, 'planned': 2, 'not-started': 3 };
+        return statusOrder[a.status] - statusOrder[b.status];
+      });
+      
+      componentArray.forEach(component => {
+        const card = document.createElement('div');
+        card.className = `detail-card component-card ${component.status}`;
+        card.setAttribute('data-id', component.id);
+        card.setAttribute('data-status', component.status);
+        card.setAttribute('data-layer', component.layer);
+        card.setAttribute('data-project', component.project || 'all');
+        
+        // Status label text
+        let statusText = 'Not Started';
+        if (component.status === 'complete') statusText = 'Complete';
+        else if (component.status === 'in-progress') statusText = 'In Progress';
+        else if (component.status === 'planned') statusText = 'Planned';
+        
+        card.innerHTML = `
+          <div class="detail-card-header">
+            <div class="detail-card-title">${component.name}</div>
+            <div class="detail-card-status ${component.status}">${statusText}</div>
+          </div>
+          <div class="detail-property">
+            <div class="detail-property-name">Layer:</div>
+            <div class="detail-property-value">${component.section || component.layer}</div>
+          </div>
+          <div class="detail-property">
+            <div class="detail-property-name">Description:</div>
+            <div class="detail-property-value">${component.description}</div>
+          </div>
+          ${component.relatedBRQs && component.relatedBRQs.length > 0 ? `
+            <div class="detail-property">
+              <div class="detail-property-name">Related BRQs:</div>
+              <div class="detail-property-value">${component.relatedBRQs.join(', ')}</div>
+            </div>
+          ` : ''}
+        `;
+        
+        componentsGrid.appendChild(card);
+      });
+    }
+    
+    function loadBRQsData(brqs) {
+      const brqsGrid = document.getElementById('brqs-grid');
+      brqsGrid.innerHTML = '';
+      
+      // Convert object to array for easier iteration
+      const brqArray = Object.values(brqs);
+      
+      // Sort BRQs by status and priority
+      brqArray.sort((a, b) => {
+        const statusOrder = { 'complete': 0, 'in-progress': 1, 'planned': 2, 'not-started': 3 };
+        const priorityOrder = { 'P0': 0, 'P1': 1, 'P2': 2, 'P3': 3 };
+        
+        if (statusOrder[a.status] !== statusOrder[b.status]) {
+          return statusOrder[a.status] - statusOrder[b.status];
+        }
+        return priorityOrder[a.priority] - priorityOrder[b.priority];
+      });
+      
+      brqArray.forEach(brq => {
+        const card = document.createElement('div');
+        card.className = `detail-card brq-card ${brq.status}`;
+        card.setAttribute('data-id', brq.id);
+        card.setAttribute('data-status', brq.status);
+        card.setAttribute('data-priority', brq.priority);
+        card.setAttribute('data-project', brq.id.split('-')[0].toLowerCase());
+        
+        // Status label text
+        let statusText = 'Not Started';
+        if (brq.status === 'complete') statusText = 'Complete';
+        else if (brq.status === 'in-progress') statusText = 'In Progress';
+        else if (brq.status === 'planned') statusText = 'Planned';
+        
+        const testProgress = brq.tests && brq.tests.total > 0 ? 
+          Math.round((brq.tests.passing / brq.tests.total) * 100) : 0;
+          
+        card.innerHTML = `
+          <div class="detail-card-header">
+            <div class="detail-card-title">${brq.id}</div>
+            <div class="detail-card-status ${brq.status}">${statusText}</div>
+          </div>
+          <div class="detail-property">
+            <div class="detail-property-name">Name:</div>
+            <div class="detail-property-value">${brq.name}</div>
+          </div>
+          <div class="detail-property">
+            <div class="detail-property-name">Priority:</div>
+            <div class="detail-property-value"><span class="progress-pill ${brq.priority.toLowerCase()}">${brq.priority}</span></div>
+          </div>
+          <div class="detail-property">
+            <div class="detail-property-name">Component:</div>
+            <div class="detail-property-value">${brq.component || 'N/A'}</div>
+          </div>
+          <div class="detail-property">
+            <div class="detail-property-name">Tests:</div>
+            <div class="detail-property-value">${brq.tests ? `${brq.tests.passing}/${brq.tests.total} (${testProgress}%)` : 'N/A'}</div>
+          </div>
+          ${brq.dependencies && brq.dependencies.length > 0 ? `
+            <div class="detail-property">
+              <div class="detail-property-name">Dependencies:</div>
+              <div class="detail-property-value">${brq.dependencies.join(', ')}</div>
+            </div>
+          ` : ''}
+          ${brq.features && brq.features.length > 0 ? `
+            <div class="detail-property">
+              <div class="detail-property-name">Features:</div>
+              <div class="detail-property-value">
+                <ul class="detail-list">
+                  ${brq.features.slice(0, 3).map(feature => `<li>${feature}</li>`).join('')}
+                  ${brq.features.length > 3 ? `<li>+ ${brq.features.length - 3} more...</li>` : ''}
+                </ul>
+              </div>
+            </div>
+          ` : ''}
+        `;
+        
+        brqsGrid.appendChild(card);
+      });
+    }
+    
+    function loadCurrentBRQs(archData) {
+      const currentBRQs = document.getElementById('current-brqs');
+      currentBRQs.innerHTML = '';
+      
+      // Get active BRQs (in-progress or highest priority planned)
+      let activeBRQs = [];
+      
+      if (archData.detailedBRQs) {
+        const brqArray = Object.values(archData.detailedBRQs);
+        
+        // Get in-progress BRQs
+        const inProgressBRQs = brqArray.filter(brq => brq.status === 'in-progress');
+        activeBRQs = [...inProgressBRQs];
+        
+        // If we have less than 3 in-progress BRQs, add some completed ones
+        if (activeBRQs.length < 3) {
+          const completedBRQs = brqArray
+            .filter(brq => brq.status === 'complete')
+            .sort((a, b) => {
+              const priorityOrder = { 'P0': 0, 'P1': 1, 'P2': 2, 'P3': 3 };
+              return priorityOrder[a.priority] - priorityOrder[b.priority];
+            })
+            .slice(0, 3 - activeBRQs.length);
+          
+          activeBRQs = [...activeBRQs, ...completedBRQs];
+        }
+        
+        // If we still have less than 3 BRQs, add some planned ones
+        if (activeBRQs.length < 3) {
+          const plannedBRQs = brqArray
+            .filter(brq => brq.status === 'planned')
+            .sort((a, b) => {
+              const priorityOrder = { 'P0': 0, 'P1': 1, 'P2': 2, 'P3': 3 };
+              return priorityOrder[a.priority] - priorityOrder[b.priority];
+            })
+            .slice(0, 3 - activeBRQs.length);
+          
+          activeBRQs = [...activeBRQs, ...plannedBRQs];
+        }
+      }
+      
+      // If we don't have any BRQs from the detailed data, use default ones
+      if (activeBRQs.length === 0) {
+        activeBRQs = [
+          {
+            id: 'MEXP-2025-007-BE',
+            name: 'Service Integration Architecture',
+            status: 'in-progress',
+            tests: { passing: 7, total: 9 },
+            priority: 'P1',
+            completion: 78
+          },
+          {
+            id: 'MEXP-2025-024-INFRA',
+            name: 'MVP Readiness',
+            status: 'in-progress',
+            tests: { passing: 1, total: 2 },
+            priority: 'P0',
+            completion: 50
+          },
+          {
+            id: 'MONT-2025-001-FULL',
+            name: 'Customer Service Implementation',
+            status: 'complete',
+            tests: { passing: 1, total: 1 },
+            priority: 'P1',
+            completion: 100
+          }
+        ];
+      }
+      
+      // Render active BRQs
+      activeBRQs.forEach(brq => {
+        const brqCard = document.createElement('div');
+        brqCard.className = `brq-card ${brq.status}`;
+        brqCard.setAttribute('data-brq', brq.id);
+        
+        const testProgress = brq.tests && brq.tests.total > 0 ? 
+          `${brq.tests.passing}/${brq.tests.total}` : '0/0';
+        
+        const completion = brq.completion || 0;
+        
+        brqCard.innerHTML = `
+          <div class="brq-id">${brq.id}</div>
+          <div class="brq-name">${brq.name}</div>
+          <div class="brq-details">
+            <div>Tests: ${testProgress}</div>
+            <div class="brq-meta">
+              <div class="brq-tag">${brq.priority}</div>
+              <div class="brq-tag">${brq.component?.split(',')[0] || 'General'}</div>
+            </div>
+          </div>
+          <div class="brq-progress">
+            <div class="progress-bar-fill" style="width: ${completion}%; background: var(--${brq.status}-color);"></div>
+          </div>
+        `;
+        
+        currentBRQs.appendChild(brqCard);
+      });
+    }
+    
+    function setupComponentFilters() {
+      // Status filters
+      const statusFilters = document.querySelectorAll('#components-tab .filter-button[data-status]');
+      statusFilters.forEach(filter => {
+        filter.addEventListener('click', () => {
+          statusFilters.forEach(f => f.classList.remove('active'));
+          filter.classList.add('active');
+          
+          const status = filter.getAttribute('data-status');
+          filterComponentsByStatus(status);
+        });
+      });
+      
+      // Layer filters
+      const layerFilters = document.querySelectorAll('#components-tab .filter-button[data-layer]');
+      layerFilters.forEach(filter => {
+        filter.addEventListener('click', () => {
+          layerFilters.forEach(f => f.classList.remove('active'));
+          filter.classList.add('active');
+          
+          const layer = filter.getAttribute('data-layer');
+          filterComponentsByLayer(layer);
+        });
+      });
+    }
+    
+    function filterComponentsByStatus(status) {
+      const componentCards = document.querySelectorAll('#components-grid .detail-card');
+      componentCards.forEach(card => {
+        if (status === 'all' || card.getAttribute('data-status') === status) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    function filterComponentsByLayer(layer) {
+      const componentCards = document.querySelectorAll('#components-grid .detail-card');
+      componentCards.forEach(card => {
+        if (layer === 'all' || card.getAttribute('data-layer') === layer) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    function setupBRQFilters() {
+      // Status filters
+      const statusFilters = document.querySelectorAll('#brqs-tab .filter-button[data-status]');
+      statusFilters.forEach(filter => {
+        filter.addEventListener('click', () => {
+          statusFilters.forEach(f => f.classList.remove('active'));
+          filter.classList.add('active');
+          
+          const status = filter.getAttribute('data-status');
+          filterBRQsByStatus(status);
+        });
+      });
+      
+      // Priority filters
+      const priorityFilters = document.querySelectorAll('#brqs-tab .filter-button[data-priority]');
+      priorityFilters.forEach(filter => {
+        filter.addEventListener('click', () => {
+          priorityFilters.forEach(f => f.classList.remove('active'));
+          filter.classList.add('active');
+          
+          const priority = filter.getAttribute('data-priority');
+          filterBRQsByPriority(priority);
+        });
+      });
+      
+      // Overview BRQ filters
+      const brqFilters = document.querySelectorAll('.brq-filter');
+      brqFilters.forEach(filter => {
+        filter.addEventListener('click', () => {
+          brqFilters.forEach(f => f.classList.remove('active'));
+          filter.classList.add('active');
+          
+          const filterValue = filter.getAttribute('data-filter');
+          filterOverviewBRQs(filterValue);
+        });
+      });
+    }
+    
+    function filterBRQsByStatus(status) {
+      const brqCards = document.querySelectorAll('#brqs-grid .detail-card');
+      brqCards.forEach(card => {
+        if (status === 'all' || card.getAttribute('data-status') === status) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    function filterBRQsByPriority(priority) {
+      const brqCards = document.querySelectorAll('#brqs-grid .detail-card');
+      brqCards.forEach(card => {
+        if (priority === 'all' || card.getAttribute('data-priority') === priority) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    function filterOverviewBRQs(filter) {
+      const brqCards = document.querySelectorAll('.brq-card');
+      
+      brqCards.forEach(card => {
+        const status = card.classList.contains('complete') ? 'completed' : 
+                       card.classList.contains('in-progress') ? 'current' :
+                       'planned';
+                       
+        if (filter === 'all' || status === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    function setupSearch() {
+      // Component search
+      const componentSearch = document.getElementById('component-search');
+      if (componentSearch) {
+        componentSearch.addEventListener('input', () => {
+          const searchTerm = componentSearch.value.toLowerCase();
+          searchComponents(searchTerm);
+        });
+      }
+      
+      // BRQ search
+      const brqSearch = document.getElementById('brq-search');
+      if (brqSearch) {
+        brqSearch.addEventListener('input', () => {
+          const searchTerm = brqSearch.value.toLowerCase();
+          searchBRQs(searchTerm);
+        });
+      }
+    }
+    
+    function searchComponents(term) {
+      const componentCards = document.querySelectorAll('#components-grid .detail-card');
+      componentCards.forEach(card => {
+        const cardText = card.textContent.toLowerCase();
+        if (cardText.includes(term)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    function searchBRQs(term) {
+      const brqCards = document.querySelectorAll('#brqs-grid .detail-card');
+      brqCards.forEach(card => {
+        const cardText = card.textContent.toLowerCase();
+        if (cardText.includes(term)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    function initializeConnectionsDiagram(projectFilter) {
+      if (!window.d3) {
+        console.error('D3.js not loaded');
+        return;
+      }
+      
+      const diagramContainer = document.getElementById('connections-diagram');
+      const dependencyList = document.getElementById('dependency-list');
+      
+      // Clear existing diagram and list
+      diagramContainer.innerHTML = '';
+      dependencyList.innerHTML = '';
+      
+      // Get connections data
+      let connections = window.dashboardData?.architecture?.connections || window.componentConnections || [];
+      
+      // Filter connections by project if needed
+      if (projectFilter && projectFilter !== 'all') {
+        // This is a placeholder - in a real implementation you'd filter based on project data
+        connections = connections.slice(0, 3); // Just show fewer connections for demo
+      }
+      
+      // Filter connections by type based on selected filter
+      const connectionFilter = document.querySelector('#connections-tab .filter-button.active');
+      const connectionType = connectionFilter ? connectionFilter.getAttribute('data-connection') : 'all';
+      
+      if (connectionType !== 'all') {
+        connections = connections.filter(conn => conn.type === connectionType);
+      }
+      
+      // Create SVG container
+      const width = diagramContainer.clientWidth;
+      const height = 600;
+      
+      const svg = d3.select(diagramContainer)
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .append('g')
+        .attr('transform', 'translate(0, 0)');
+      
+      // Extract unique nodes from connections
+      const nodeMap = new Map();
+      connections.forEach(conn => {
+        if (!nodeMap.has(conn.source)) {
+          nodeMap.set(conn.source, { id: conn.source, name: conn.source });
+        }
+        if (!nodeMap.has(conn.target)) {
+          nodeMap.set(conn.target, { id: conn.target, name: conn.target });
+        }
+      });
+      
+      const nodes = Array.from(nodeMap.values());
+      
+      // Create force simulation
+      const simulation = d3.forceSimulation(nodes)
+        .force('link', d3.forceLink(connections).id(d => d.id).distance(150))
+        .force('charge', d3.forceManyBody().strength(-200))
+        .force('center', d3.forceCenter(width / 2, height / 2))
+        .force('collision', d3.forceCollide().radius(50));
+      
+      // Create links
+      const link = svg.append('g')
+        .selectAll('line')
+        .data(connections)
+        .enter()
+        .append('line')
+        .attr('stroke', d => d.type === 'dependency' ? '#f59e0b' : 
+                         d.type === 'layer' ? '#3b82f6' : '#10b981')
+        .attr('stroke-width', d => d.type === 'dependency' ? 2 : 1)
+        .attr('stroke-dasharray', d => d.type === 'layer' ? '5,5' : null);
+      
+      // Create nodes
+      const node = svg.append('g')
+        .selectAll('g')
+        .data(nodes)
+        .enter()
+        .append('g')
+        .call(d3.drag()
+          .on('start', dragstarted)
+          .on('drag', dragged)
+          .on('end', dragended));
+      
+      // Node background circles
+      node.append('circle')
+        .attr('r', 30)
+        .attr('fill', 'var(--blueprint-card-bg)')
+        .attr('stroke', 'var(--blueprint-border)')
+        .attr('stroke-width', 1);
+      
+      // Node text
+      node.append('text')
+        .text(d => d.name)
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'middle')
+        .attr('fill', 'var(--blueprint-text)')
+        .attr('font-size', '10px')
+        .each(function(d) {
+          // Wrap text if too long
+          const text = d3.select(this);
+          const words = d.name.split(/\s+/);
+          text.text(''); // Clear text
+          
+          let lineNumber = 0;
+          let lineHeight = 1.1;
+          
+          words.forEach(word => {
+            text.append('tspan')
+              .attr('x', 0)
+              .attr('y', 0)
+              .attr('dy', `${lineNumber * lineHeight}em`)
+              .text(word);
+            
+            lineNumber++;
+          });
+          
+          // Center the wrapped text
+          const numLines = words.length;
+          text.selectAll('tspan')
+            .attr('dy', (d, i) => `${i * lineHeight - (numLines - 1) * lineHeight / 2}em`);
+        });
+      
+      // Update simulation on each tick
+      simulation.on('tick', () => {
+        link
+          .attr('x1', d => d.source.x)
+          .attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x)
+          .attr('y2', d => d.target.y);
+        
+        node.attr('transform', d => `translate(${d.x}, ${d.y})`);
+      });
+      
+      // Populate dependency list
+      connections.forEach(conn => {
+        const item = document.createElement('li');
+        item.className = 'dependency-item';
+        item.innerHTML = `
+          <strong>${conn.source}</strong>
+          <span class="dependency-arrow">→</span>
+          <strong>${conn.target}</strong>
+          <span>(${conn.type}${conn.brq ? ` via ${conn.brq}` : ''})</span>
+        `;
+        dependencyList.appendChild(item);
+      });
+      
+      // Drag functions
+      function dragstarted(event, d) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      }
+      
+      function dragged(event, d) {
+        d.fx = event.x;
+        d.fy = event.y;
+      }
+      
+      function dragended(event, d) {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      }
+      
+      // Add connection type filters
+      document.querySelectorAll('#connections-tab .filter-button[data-connection]').forEach(filter => {
+        filter.addEventListener('click', () => {
+          document.querySelectorAll('#connections-tab .filter-button[data-connection]').forEach(f => {
+            f.classList.remove('active');
+          });
+          filter.classList.add('active');
+          
+          initializeConnectionsDiagram(projectFilter);
+        });
+      });
+    }
+    
+    // Apply default filters
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set up connections filter
+      document.querySelectorAll('#connections-tab .filter-button[data-connection]').forEach(filter => {
+        filter.addEventListener('click', () => {
+          document.querySelectorAll('#connections-tab .filter-button[data-connection]').forEach(f => {
+            f.classList.remove('active');
+          });
+          filter.classList.add('active');
+        });
+      });
+    });
+  </script>
+  <!-- Try direct script loading fix -->
+  <script src="../assets/js/tab-fix.js"></script>
+</body>
+</html>

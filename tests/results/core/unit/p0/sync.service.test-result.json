@@ -1,0 +1,62 @@
+[
+  {
+    "testId": "ab28f57d-019d8ce2",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/sync.service.test.ts",
+    "testName": "should sync customer call history",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:25:14.150Z",
+    "duration": 4,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "ab28f57d-eb2ae6e1",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/sync.service.test.ts",
+    "testName": "should handle customer not found",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:25:14.151Z",
+    "duration": 25,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "ab28f57d-b43dfe05",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/sync.service.test.ts",
+    "testName": "should handle call service errors",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:25:14.151Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "ab28f57d-c874aa8c",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/sync.service.test.ts",
+    "testName": "should sync customer from Hiboutik to Ringover",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:25:14.151Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

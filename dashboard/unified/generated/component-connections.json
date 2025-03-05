@@ -1,0 +1,32 @@
+[
+  {
+    "source": "Customer API",
+    "target": "Customer Service",
+    "type": "dependency"
+  },
+  {
+    "source": "Authentication API",
+    "target": "Auth Service",
+    "type": "dependency"
+  },
+  {
+    "source": "Integration API",
+    "target": "Integration Service",
+    "type": "dependency"
+  },
+  {
+    "source": "Customer Service",
+    "target": "Customer Repository",
+    "type": "dependency"
+  },
+  {
+    "source": "Auth Service",
+    "target": "Data Consistency Service",
+    "type": "dependency"
+  },
+  {
+    "source": "Message Queue",
+    "target": "Service Discovery",
+    "type": "layer"
+  }
+]

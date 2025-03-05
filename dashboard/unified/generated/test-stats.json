@@ -1,0 +1,23 @@
+{
+  "summary": {
+    "total": 0,
+    "pass": 0,
+    "fail": 0,
+    "timeout": 0,
+    "skip": 0,
+    "canonical": 0,
+    "nonCanonical": 0
+  },
+  "components": {
+  },
+  "testTypes": {
+  },
+  "errorTypes": {
+  },
+  "duration": {
+    "fast": 0,
+    "normal": 0,
+    "slow": 0
+  },
+  "testDate": "2025-03-04 00:11:10"
+}

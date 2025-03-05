@@ -1,0 +1,182 @@
+[
+  {
+    "testId": "caadc7dd-1ee282d9",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should validate a correct customer input",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 6,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "caadc7dd-d012422c",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should reject invalid first name",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "caadc7dd-c40f4214",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should reject invalid last name",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "caadc7dd-92ffbf5f",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should reject invalid email",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "caadc7dd-bbfddded",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should reject invalid phone number",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "caadc7dd-f00521ba",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should normalize phone number with country code",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "caadc7dd-9983803d",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should detect duplicate email",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "caadc7dd-960fac2c",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should detect duplicate phone",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "caadc7dd-b1a3f971",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should detect duplicate name combination",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "caadc7dd-9f9e022c",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should return no duplicates when customer is unique",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "caadc7dd-79403f06",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should validate correct external IDs",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "caadc7dd-d804aaae",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts",
+    "testName": "should handle missing external IDs",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:28.448Z",
+    "duration": 1,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

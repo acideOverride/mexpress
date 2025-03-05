@@ -1,0 +1,197 @@
+[
+  {
+    "testId": "9ad1b929-f17273f8",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should set auth headers correctly",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.512Z",
+    "duration": 12,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-c35e202e",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should handle auth errors",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 216,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-1221af61",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should get customers",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 4,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-433aa348",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should get customer by id",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-632cce49",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should create customer",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-788f11fa",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should update customer",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-005fc7ce",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should handle network errors",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 5,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-76077f14",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should handle rate limiting",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 4,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-a290691f",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should handle server errors",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-49755a7b",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should retry on temporary errors",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 2010,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-8b79019d",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should fail after max retries",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 3040,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-76efe048",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should respect rate limits",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 6,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9ad1b929-2c06aff1",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/hiboutik.service.test.ts",
+    "testName": "should queue requests when approaching rate limit",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:23.513Z",
+    "duration": 608,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

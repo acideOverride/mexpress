@@ -1,0 +1,92 @@
+[
+  {
+    "testId": "9669bbe5-8ebce695",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-deployment.test.ts",
+    "testName": "should create valid deployment configuration",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:44.185Z",
+    "duration": 4,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9669bbe5-35b72abb",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-deployment.test.ts",
+    "testName": "should throw error for invalid configuration",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:44.186Z",
+    "duration": 27,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9669bbe5-a75767d5",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-deployment.test.ts",
+    "testName": "should configure health check",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:44.186Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9669bbe5-e05f225e",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-deployment.test.ts",
+    "testName": "should validate health check configuration",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:44.186Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9669bbe5-9bcbae06",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-deployment.test.ts",
+    "testName": "should configure resource limits",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:44.186Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "9669bbe5-c29c60f0",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/service-deployment.test.ts",
+    "testName": "should validate resource configuration",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:44.186Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

@@ -1,0 +1,96 @@
+[
+  {
+    "testId": "a9b8c7d6-e5f4g3h2",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/message-queue-v2.test.ts",
+    "testName": "Message Queue - MEXP-2025-003-BE: should enqueue messages correctly",
+    "status": "pass",
+    "timestamp": "2025-03-03T15:14:22.123Z",
+    "duration": 145,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "brqId": "MEXP-2025-003-BE",
+      "type": "unit",
+      "location": "canonical",
+      "component": "core"
+    }
+  },
+  {
+    "testId": "i1j2k3l4-m5n6o7p8",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/message-queue-v2.test.ts",
+    "testName": "Message Queue - MEXP-2025-003-BE: should process messages in FIFO order",
+    "status": "pass",
+    "timestamp": "2025-03-03T15:14:22.278Z",
+    "duration": 132,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "brqId": "MEXP-2025-003-BE",
+      "type": "unit",
+      "location": "canonical",
+      "component": "core"
+    }
+  },
+  {
+    "testId": "q9r8s7t6-u5v4w3x2",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/message-queue-v2.test.ts",
+    "testName": "Message Queue - MEXP-2025-003-BE: should handle message delivery failure gracefully",
+    "status": "fail",
+    "timestamp": "2025-03-03T15:14:22.415Z",
+    "duration": 203,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "brqId": "MEXP-2025-003-BE",
+      "type": "unit",
+      "location": "canonical",
+      "component": "core"
+    },
+    "error": {
+      "message": "Expected: Delivery failure processed successfully\nReceived: Error: Connection refused",
+      "stack": "at Object.<anonymous> (/opt/mExpress/packages/core/tests/p0/core/message-queue-v2.test.ts:89:10)\n    at Promise.then.completed (/opt/mExpress/node_modules/jest-circus/build/utils.js:333:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/opt/mExpress/node_modules/jest-circus/build/utils.js:259:10)\n    at _callCircusTest (/opt/mExpress/node_modules/jest-circus/build/run.js:276:40)",
+      "failureType": "assertion",
+      "expected": "Delivery failure processed successfully",
+      "actual": "Error: Connection refused"
+    }
+  },
+  {
+    "testId": "y1z2a3b4-c5d6e7f8",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/message-queue-v2.test.ts",
+    "testName": "Message Queue - MEXP-2025-003-BE: should persist queue state",
+    "status": "pass",
+    "timestamp": "2025-03-03T15:14:22.625Z",
+    "duration": 178,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "brqId": "MEXP-2025-003-BE",
+      "type": "unit",
+      "location": "canonical",
+      "component": "core"
+    }
+  },
+  {
+    "testId": "g9h8i7j6-k5l4m3n2",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/core/message-queue-v2.test.ts",
+    "testName": "Message Queue - MEXP-2025-003-BE: should handle high throughput",
+    "status": "fail",
+    "timestamp": "2025-03-03T15:14:22.810Z",
+    "duration": 5021,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "brqId": "MEXP-2025-003-BE",
+      "type": "unit",
+      "location": "canonical",
+      "component": "core"
+    },
+    "error": {
+      "message": "Error: Timeout - Test exceeded 5000ms",
+      "stack": "at Object.<anonymous> (/opt/mExpress/packages/core/tests/p0/core/message-queue-v2.test.ts:112:10)\n    at Promise.then.completed (/opt/mExpress/node_modules/jest-circus/build/utils.js:333:28)",
+      "failureType": "timeout",
+      "expected": "Test to complete within 5000ms",
+      "actual": "Test ran for 5021ms"
+    }
+  }
+]

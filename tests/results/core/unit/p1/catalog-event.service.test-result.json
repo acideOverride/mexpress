@@ -1,0 +1,122 @@
+[
+  {
+    "testId": "c05bf490-80389b88",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/catalog-event.service.test.ts",
+    "testName": "should emit product creation events",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:07.777Z",
+    "duration": 9,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "c05bf490-3ca5ff1a",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/catalog-event.service.test.ts",
+    "testName": "should emit product update events",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:07.777Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "c05bf490-47c48930",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/catalog-event.service.test.ts",
+    "testName": "should emit category creation events",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:07.777Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "c05bf490-cca1ea0f",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/catalog-event.service.test.ts",
+    "testName": "should emit category update events",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:07.777Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "c05bf490-a82d4601",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/catalog-event.service.test.ts",
+    "testName": "should emit product category assignment events",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:07.777Z",
+    "duration": 8,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "c05bf490-07ebf0f4",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/catalog-event.service.test.ts",
+    "testName": "should handle multiple event types",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:07.777Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "c05bf490-50c498d8",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/catalog-event.service.test.ts",
+    "testName": "should allow unsubscribing from events",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:07.778Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "c05bf490-e64409e9",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/catalog-event.service.test.ts",
+    "testName": "should measure event timing correctly",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:07.778Z",
+    "duration": 5,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

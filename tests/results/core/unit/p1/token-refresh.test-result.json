@@ -1,0 +1,17 @@
+[
+  {
+    "testId": "1abcb5af-7aa10e32",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/auth/token-refresh.test.ts",
+    "testName": "should refresh token within 200ms time limit",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:25:21.513Z",
+    "duration": 5,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "testId": "a1b2c3d4-e5f6g7h8",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/customer.service.test.ts",
+    "testName": "Customer Service - MEXP-2025-008-BE: should create a new customer",
+    "status": "pass",
+    "timestamp": "2025-03-03T15:12:34.567Z",
+    "duration": 124,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "brqId": "MEXP-2025-008-BE",
+      "type": "unit",
+      "location": "canonical",
+      "component": "services"
+    }
+  },
+  {
+    "testId": "i9j0k1l2-m3n4o5p6",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/customer.service.test.ts",
+    "testName": "Customer Service - MEXP-2025-008-BE: should update customer details",
+    "status": "pass",
+    "timestamp": "2025-03-03T15:12:34.695Z",
+    "duration": 87,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "brqId": "MEXP-2025-008-BE",
+      "type": "unit",
+      "location": "canonical",
+      "component": "services"
+    }
+  },
+  {
+    "testId": "q7r8s9t0-u1v2w3x4",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/services/customer.service.test.ts",
+    "testName": "Customer Service - MEXP-2025-008-BE: should delete customer",
+    "status": "pass",
+    "timestamp": "2025-03-03T15:12:34.802Z",
+    "duration": 95,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "brqId": "MEXP-2025-008-BE",
+      "type": "unit",
+      "location": "canonical",
+      "component": "services" 
+    }
+  }
+]

@@ -1,0 +1,53 @@
+[
+  {
+    "testId": "ed13be5f-c2bc7b94",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/api/stress-tests.test.ts",
+    "testName": "should handle high volume of concurrent requests efficiently",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:48.441Z",
+    "duration": 169,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "ed13be5f-161e5f29",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/api/stress-tests.test.ts",
+    "testName": "should handle rate limiting with exponential backoff under load",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:23:48.441Z",
+    "duration": 5004,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: thrown: \"Exceeded timeout of 5000 ms for a test.\nAdd a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout.\"\n    at /opt/mExpress/packages/core/tests/p3/api/stress-tests.test.ts:103:5\n    at _dispatchDescribe (/opt/mExpress/node_modules/jest-circus/build/index.js:91:26)\n    at describe (/opt/mExpress/node_modules/jest-circus/build/index.js:55:5)\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/api/stress-tests.test.ts:19:9)\n    at Runtime._execModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:1439:24)\n    at Runtime._loadModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:1022:12)\n    at Runtime.requireModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:882:12)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:77:13)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/opt/mExpress/node_modules/jest-runner/build/runTest.js:444:34)",
+      "stack": "at /opt/mExpress/packages/core/tests/p3/api/stress-tests.test.ts:103:5\n    at _dispatchDescribe (/opt/mExpress/node_modules/jest-circus/build/index.js:91:26)\n    at describe (/opt/mExpress/node_modules/jest-circus/build/index.js:55:5)\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p3/api/stress-tests.test.ts:19:9)\n    at Runtime._execModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:1439:24)\n    at Runtime._loadModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:1022:12)\n    at Runtime.requireModule (/opt/mExpress/node_modules/jest-runtime/build/index.js:882:12)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:77:13)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n",
+      "failureType": "exception",
+      "expected": "",
+      "actual": ""
+    }
+  },
+  {
+    "testId": "ed13be5f-2ae41b0c",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/api/stress-tests.test.ts",
+    "testName": "should maintain memory usage within acceptable limits during sustained load",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:48.441Z",
+    "duration": 63,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

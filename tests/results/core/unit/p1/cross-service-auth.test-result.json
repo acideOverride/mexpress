@@ -1,0 +1,290 @@
+[
+  {
+    "testId": "21fd5d27-a2f59db0",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should register a service successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.739Z",
+    "duration": 11,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-ab8dd64f",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should retrieve a registered service by ID",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.739Z",
+    "duration": 10,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-cc918fc4",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should update a service successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.739Z",
+    "duration": 5,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-150aea64",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should deregister a service successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.739Z",
+    "duration": 3,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-7f3acfe9",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should issue a token for a service",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.760Z",
+    "duration": 7,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-ff136a14",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should validate a token successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.760Z",
+    "duration": 10,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-34c1bd1a",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should validate a token against an expected audience",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.760Z",
+    "duration": 7,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-947ac2c1",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should revoke a token successfully",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:23:01.760Z",
+    "duration": 6,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts:172:33)\n    at Promise.then.completed (/opt/mExpress/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/opt/mExpress/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/opt/mExpress/node_modules/jest-circus/build/run.js:316:40)\n    at _runTest (/opt/mExpress/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:126:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at run (/opt/mExpress/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/opt/mExpress/node_modules/jest-runner/build/runTest.js:444:34)",
+      "stack": "at Object.<anonymous> (/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts:172:33)\n    at Promise.then.completed (/opt/mExpress/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/opt/mExpress/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/opt/mExpress/node_modules/jest-circus/build/run.js:316:40)\n    at _runTest (/opt/mExpress/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:126:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at run (/opt/mExpress/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n",
+      "failureType": "assertion",
+      "expected": "\u001b[39m\u001b[2m) // Object.is equality\u001b[22m",
+      "actual": "\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m"
+    }
+  },
+  {
+    "testId": "21fd5d27-ed66a478",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should revoke all tokens for a service",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:23:01.760Z",
+    "duration": 122,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts:187:21)\n    at Promise.then.completed (/opt/mExpress/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/opt/mExpress/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/opt/mExpress/node_modules/jest-circus/build/run.js:316:40)\n    at _runTest (/opt/mExpress/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:126:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at run (/opt/mExpress/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/opt/mExpress/node_modules/jest-runner/build/runTest.js:444:34)",
+      "stack": "at Object.<anonymous> (/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts:187:21)\n    at Promise.then.completed (/opt/mExpress/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/opt/mExpress/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/opt/mExpress/node_modules/jest-circus/build/run.js:316:40)\n    at _runTest (/opt/mExpress/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:126:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at run (/opt/mExpress/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n",
+      "failureType": "assertion",
+      "expected": "\u001b[39m\u001b[2m) // Object.is equality\u001b[22m",
+      "actual": "\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m"
+    }
+  },
+  {
+    "testId": "21fd5d27-7f6336d2",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should automatically invalidate tokens when key rotates",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.760Z",
+    "duration": 167,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-f1804fc2",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should register a policy successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.760Z",
+    "duration": 26,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-4abf5fef",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should retrieve a policy by ID",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.760Z",
+    "duration": 12,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-0b0db4e7",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should update a policy successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.760Z",
+    "duration": 25,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-e0ef6554",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should delete a policy successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.760Z",
+    "duration": 44,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-2afecf6c",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should check authorization successfully",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.760Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-97c1de8a",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should support regex service selectors",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.761Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-cd1e10a9",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should support conditional rules",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:23:01.761Z",
+    "duration": 5,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "21fd5d27-ee701cc5",
+    "testPath": "/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts",
+    "testName": "should return valid statistics",
+    "status": "fail",
+    "timestamp": "2025-03-03T22:23:01.761Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p1",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": {
+      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m0\u001b[39m\n    at Object.<anonymous> (/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts:543:34)\n    at Promise.then.completed (/opt/mExpress/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/opt/mExpress/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/opt/mExpress/node_modules/jest-circus/build/run.js:316:40)\n    at _runTest (/opt/mExpress/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:126:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at run (/opt/mExpress/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/opt/mExpress/node_modules/jest-runner/build/runTest.js:444:34)",
+      "stack": "at Object.<anonymous> (/opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts:543:34)\n    at Promise.then.completed (/opt/mExpress/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/opt/mExpress/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/opt/mExpress/node_modules/jest-circus/build/run.js:316:40)\n    at _runTest (/opt/mExpress/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:126:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at _runTestsForDescribeBlock (/opt/mExpress/node_modules/jest-circus/build/run.js:121:9)\n    at run (/opt/mExpress/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/opt/mExpress/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/opt/mExpress/node_modules/jest-runner/build/runTest.js:367:16)\n",
+      "failureType": "assertion",
+      "expected": "\u001b[39m\u001b[2m) // Object.is equality\u001b[22m",
+      "actual": "\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m"
+    }
+  }
+]

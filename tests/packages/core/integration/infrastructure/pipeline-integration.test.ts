@@ -1,21 +1,21 @@
-import { Pipeline } from '../../lib/pipeline';
+import { Pipeline } from '@mexpress/core/src/lib/pipeline';
 import { ContainerOrchestrator } from '../../lib/container-orchestrator';
 import { ServiceMesh } from '../../lib/service-mesh';
 import { ContainerRuntime } from '../../lib/container-runtime';
 import { ServiceDeployment } from '../../lib/service-deployment';
-import { OrchestratorConfig } from '../../types/orchestrator-config';
-import { RuntimeConfigOptions } from '../../types/runtime-config';
-import { DeploymentConfigOptions, ServicePort } from '../../types/deployment-config';
-import { ServiceMeshConfigOptions } from '../../types/service-mesh-config';
+import { OrchestratorConfig } from '@mexpress/utils/src/types/orchestrator-config';
+import { RuntimeConfigOptions } from '@mexpress/utils/src/types/runtime-config';
+import { DeploymentConfigOptions, ServicePort } from '@mexpress/utils/src/types/deployment-config';
+import { ServiceMeshConfigOptions } from '@mexpress/utils/src/types/service-mesh-config';
 import {
   IContainerOrchestrator,
   IServiceMesh,
   IContainerRuntime,
   IServiceDeployment
-} from '../../types/integration-test-types';
+} from '@mexpress/core/src/types/integration-test-types';
 
 // Extend PipelineConfigOptions for testing
-declare module '../../types/pipeline-config' {
+declare module '@mexpress/core/src/types/pipeline-config' {
   interface PipelineConfigOptions {
     infrastructure?: {
       orchestrator: IContainerOrchestrator;

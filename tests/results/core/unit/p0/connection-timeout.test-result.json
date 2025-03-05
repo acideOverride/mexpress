@@ -1,0 +1,47 @@
+[
+  {
+    "testId": "2aa8b409-9c22b5fe",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/api/connection-timeout.test.ts",
+    "testName": "should handle connection timeout and retry with exponential backoff",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:08.846Z",
+    "duration": 6,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "2aa8b409-4dc00f3f",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/api/connection-timeout.test.ts",
+    "testName": "should eventually fail after maximum retries",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:08.846Z",
+    "duration": 34,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  },
+  {
+    "testId": "2aa8b409-d501338e",
+    "testPath": "/opt/mExpress/packages/core/tests/p0/api/connection-timeout.test.ts",
+    "testName": "should complete requests within the timeout period when API is responsive",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:24:08.846Z",
+    "duration": 2,
+    "metadata": {
+      "priority": "p0",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

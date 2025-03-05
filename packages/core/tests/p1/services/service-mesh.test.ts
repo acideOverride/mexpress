@@ -1,6 +1,6 @@
 // MEXP-2025-007-BE Integration Architecture
 import { ServiceMesh } from '@mexpress/utils/src/lib/service-mesh';
-import { ServiceMeshProxy, ServiceMeshRoute, ServiceMeshPolicy } from '@mexpress/utils/src/types/service-mesh-config';
+import { ServiceMeshProxy, ServiceMeshRoute, ServiceMeshPolicy, ServiceMeshMetrics } from '@mexpress/utils/src/types/service-mesh-config';
 
 describe('ServiceMesh', () => {
   describe('Configuration Setup', () => {

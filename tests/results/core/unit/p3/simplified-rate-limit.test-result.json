@@ -1,0 +1,17 @@
+[
+  {
+    "testId": "6603da65-5a2c241e",
+    "testPath": "/opt/mExpress/packages/core/tests/p3/api/simplified-rate-limit.test.ts",
+    "testName": "should handle rate limiting with retry logic",
+    "status": "pass",
+    "timestamp": "2025-03-03T22:25:17.883Z",
+    "duration": 51,
+    "metadata": {
+      "priority": "p3",
+      "project": "core",
+      "type": "unit",
+      "location": "canonical"
+    },
+    "error": null
+  }
+]

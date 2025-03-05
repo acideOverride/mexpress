@@ -1,5 +1,5 @@
 import { ContainerOrchestrator } from '../../lib/container-orchestrator';
-import { ServiceMeshProxy, ServiceMeshRoute } from '../../types/service-mesh-config';
+import { ServiceMeshProxy, ServiceMeshRoute } from '@mexpress/utils/src/types/service-mesh-config';
 
 describe('ContainerOrchestrator Integration', () => {
   let orchestrator: ContainerOrchestrator;
