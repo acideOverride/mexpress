@@ -83,7 +83,7 @@ It serves as the operational guide for day-to-day implementation work.
 6. **TASK-MEXP-065**: Design D3.js visualization components
    - **Milestone**: MS-MEXP-015
    - **Assignee**: TBD
-   - **Status**: 🚧 In Progress (75%)
+   - **Status**: 🚧 In Progress (90%)
    - **Due Date**: 2025-03-16
    - **Description**: Create reusable D3.js chart components integrated with Vue
    - **Acceptance Criteria**: Bar, line, and pie charts working with sample data, responsive design
@@ -98,7 +98,9 @@ It serves as the operational guide for day-to-day implementation work.
      - Implemented test infrastructure for visualization components
      - Implemented LineChart component with curve options, time/linear scales, and crosshair
      - Created LineChartExample with interactive controls and multiple series
-     - TODO: Implement PieChart and AreaChart components (TASK-MEXP-096, TASK-MEXP-097)
+     - Implemented PieChart/DonutChart component with segment interactivity and labeling options
+     - Created PieChartExample with interactive controls for chart type and styling
+     - TODO: Implement AreaChart component (TASK-MEXP-097)
 
 ### Medium Priority (Next Sprint)
 7. **TASK-MEXP-066**: Design MegaSearch API
@@ -241,7 +243,8 @@ It serves as the operational guide for day-to-day implementation work.
 2. **TASK-MEXP-096**: Implement PieChart visualization component
    - Priority: Medium
    - Estimated effort: 2 days
-   - Suggested approach: Create PieChart component using D3.js with Vue integration
+   - Status: ✅ Completed (2025-03-14)
+   - Implementation: Created PieChart/DonutChart with segment interactivity, labeling options, and corner radius
    
 3. **TASK-MEXP-097**: Implement AreaChart visualization component
    - Priority: Medium
