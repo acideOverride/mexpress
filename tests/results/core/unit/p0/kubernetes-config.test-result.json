@@ -1,0 +1,53 @@
+{
+  "testFilePath": "/opt/mExpress/packages/core/tests/p0/infrastructure/kubernetes-config.test.ts",
+  "testResults": [
+    {
+      "title": "should create valid single node configuration",
+      "status": "passed",
+      "duration": 9
+    },
+    {
+      "title": "should create valid high availability configuration",
+      "status": "passed",
+      "duration": 5
+    },
+    {
+      "title": "should throw error for invalid configuration",
+      "status": "passed",
+      "duration": 48
+    },
+    {
+      "title": "should configure default resources",
+      "status": "passed",
+      "duration": 15
+    },
+    {
+      "title": "should configure network with default values",
+      "status": "passed",
+      "duration": 1
+    },
+    {
+      "title": "should configure network with custom values",
+      "status": "passed",
+      "duration": 2
+    },
+    {
+      "title": "should configure security with default values",
+      "status": "passed",
+      "duration": 4
+    },
+    {
+      "title": "should configure security with custom values",
+      "status": "passed",
+      "duration": 3
+    }
+  ],
+  "success": true,
+  "totalTests": 8,
+  "passingTests": 8,
+  "failingTests": 0,
+  "pendingTests": 0,
+  "testRuntime": 4259,
+  "testDate": "2025-03-05",
+  "testBrq": "MEXP-2025-024-INFRA"
+}
