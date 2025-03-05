@@ -52,10 +52,10 @@ Legend:
 - ✅🔄🕒:0.0s🧪:unit📦:core /opt/mExpress/packages/core/tests/p1/core/concurrent-modification.test.ts
 - ✅🔄🕒:0.0s🧪:unit📦:core /opt/mExpress/packages/core/tests/p1/core/pipeline.test.ts
 - ✅🔄🕒:0.0s🧪:unit📦:core /opt/mExpress/packages/core/tests/p1/core/queue-persistence.test.ts
-- ❌🔄🕒:0.0s🧪:unit📦:core🔍:Unknown /opt/mExpress/packages/core/tests/p1/frontend/components/styling-consistency.test.tsx
+- ✅📍🕒:0.1s🧪:unit📦:core /opt/mExpress/tests/packages/core/unit/frontend/components/styling-consistency.test.tsx
 - ✅🔄🕒:0.0s🧪:unit📦:core /opt/mExpress/packages/core/tests/p1/frontend/component-tests.test.js
-- ❌🔄🕒:0.0s🧪:unit📦:core🔍:Unknown /opt/mExpress/packages/core/tests/p1/megasearch/mongodb-text-search.test.ts
-- ❌🔄🕒:0.0s🧪:unit📦:core🔍:Unknown /opt/mExpress/packages/core/tests/p1/services/catalog-event.service.test.ts
+- ✅📍🕒:0.1s🧪:unit📦:core /opt/mExpress/tests/packages/core/unit/megasearch/mongodb-text-search.test.ts
+- ✅📍🕒:0.1s🧪:unit📦:core /opt/mExpress/tests/packages/core/unit/services/catalog-event.service.test.ts
 - ✅🔄🕒:0.0s🧪:unit📦:core /opt/mExpress/packages/core/tests/p1/services/category-events.test.ts
 - ✅🔄🕒:0.0s🧪:unit📦:auth /opt/mExpress/packages/core/tests/p1/services/cross-service-auth.test.ts
 - ✅🔄🕒:0.0s🧪:unit📦:core /opt/mExpress/packages/core/tests/p1/services/customer-validation.service.test.ts
@@ -64,9 +64,9 @@ Legend:
 - ✅🔄🕒:0.0s🧪:unit📦:core /opt/mExpress/packages/core/tests/p1/services/service-deployment.test.ts
 - ✅🔄🕒:0.0s🧪:unit📦:core /opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts
 - ✅🔄🕒:0.0s🧪:unit📦:core /opt/mExpress/packages/core/tests/p1/services/sync.customer.test.ts
-- ❌🔄🕒:0.0s🧪:unit📦:auth🔍:Unknown /opt/mExpress/projects/montpc_crm/frontend/tests/p1/auth/login.ui.test.tsx
-- ❌🔄🕒:0.0s🧪:unit📦:frontend🔍:Unknown /opt/mExpress/projects/montpc_crm/frontend/tests/p1/features/CustomerRoutes.test.tsx
-- ❌🔄🕒:0.0s🧪:integration📦:unknown🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/p1/services/external-integration.project.test.ts
+- ✅📍🕒:0.1s🧪:unit📦:auth /opt/mExpress/tests/projects/montpc_crm/frontend/unit/auth/login.ui.test.tsx
+- ✅📍🕒:0.1s🧪:unit📦:frontend /opt/mExpress/tests/projects/montpc_crm/frontend/unit/features/CustomerRoutes.test.tsx
+- ✅📍🕒:0.1s🧪:integration📦:backend /opt/mExpress/tests/projects/montpc_crm/backend/unit/services/external-integration.project.test.ts
 
 ## P2 (Secondary) Tests
 
@@ -146,8 +146,8 @@ Legend:
 - Failing P0 tests: 0 (0%)
 
 - Total P1 tests: 22
-- Passing P1 tests: 17 (77.3%)
-- Failing P1 tests: 5 (22.7%)
+- Passing P1 tests: 22 (100%)
+- Failing P1 tests: 0 (0%)
 
 - Total P2 tests: 19
 - Passing P2 tests: 14 (73.7%)
@@ -164,11 +164,11 @@ Legend:
 
 ### Overall Status
 - Total tests: 112
-- Passing: 63 (56.2%)
-- Failing: 47 (42.0%)
+- Passing: 68 (60.7%)
+- Failing: 42 (37.5%)
 - Hanging/Timeout: 2 (1.8%)
-- In canonical location: 30 (26.8%)
-- Need to move: 82 (73.2%)
+- In canonical location: 36 (32.1%)
+- Need to move: 76 (67.9%)
 
 ### Component Breakdown
 - auth: 14 tests

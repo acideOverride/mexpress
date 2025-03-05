@@ -1,5 +1,4 @@
 // MONT-2025-002-FULL Auth Service & Frontend
-// @ts-nocheck
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
