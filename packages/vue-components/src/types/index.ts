@@ -1,0 +1,104 @@
+// Common component props and types
+
+// Size variants for components
+export type SizeVariant = 'small' | 'medium' | 'large';
+
+// Color variants for components
+export type ColorVariant = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
+
+// Button types
+export interface ButtonProps {
+  label?: string;
+  variant?: ColorVariant;
+  size?: SizeVariant;
+  disabled?: boolean;
+  loading?: boolean;
+  outlined?: boolean;
+  rounded?: boolean;
+  block?: boolean;
+  icon?: string;
+}
+
+// Input types
+export interface InputProps {
+  modelValue: string | number;
+  label?: string;
+  placeholder?: string;
+  type?: string;
+  size?: SizeVariant;
+  disabled?: boolean;
+  error?: string;
+  required?: boolean;
+  autofocus?: boolean;
+}
+
+// Card types
+export interface CardProps {
+  title?: string;
+  subtitle?: string;
+  bordered?: boolean;
+  elevated?: boolean;
+  loading?: boolean;
+}
+
+// Checkbox types
+export interface CheckboxProps {
+  modelValue: boolean;
+  label?: string;
+  disabled?: boolean;
+  required?: boolean;
+  indeterminate?: boolean;
+}
+
+// Select types
+export interface SelectOption {
+  value: string | number;
+  label: string;
+  disabled?: boolean;
+}
+
+export interface SelectProps {
+  modelValue: string | number | (string | number)[];
+  options: SelectOption[];
+  label?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  multiple?: boolean;
+  error?: string;
+  required?: boolean;
+  clearable?: boolean;
+}
+
+// Toggle types
+export interface ToggleProps {
+  modelValue: boolean;
+  label?: string;
+  disabled?: boolean;
+  size?: SizeVariant;
+}
+
+// Dashboard layout types
+export interface DashboardLayoutProps {
+  sidebarCollapsed?: boolean;
+  sidebarWidth?: number;
+  sidebarCollapsedWidth?: number;
+}
+
+// Sidebar props
+export interface SidebarProps {
+  collapsed?: boolean;
+  width?: number;
+  collapsedWidth?: number;
+  items?: SidebarItem[];
+}
+
+export interface SidebarItem {
+  id: string;
+  label: string;
+  icon?: string;
+  route?: string;
+  children?: SidebarItem[];
+}
+
+// Re-export visualization types
+export * from './visualization';
