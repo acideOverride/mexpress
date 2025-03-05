@@ -66,6 +66,20 @@ UserSchema.index({ email: 1 }, { unique: true });
 UserSchema.index({ role: 1 });
 UserSchema.index({ isActive: 1 });
 
+// Add text search index with weights for MegaSearch
+UserSchema.index({
+  email: 'text',
+  firstName: 'text',
+  lastName: 'text'
+}, {
+  weights: {
+    email: 10,
+    firstName: 5,
+    lastName: 5
+  },
+  name: 'UserTextIndex'
+});
+
 // Update the updatedAt timestamp before saving
 UserSchema.pre('save', function(this: UserDocument, next: CallbackWithoutResultAndOptionalError) {
     this.updatedAt = new Date();

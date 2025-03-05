@@ -11,7 +11,24 @@ import DashboardLayout from './components/layout/DashboardLayout.vue';
 import Sidebar from './components/layout/Sidebar.vue';
 
 // Import visualization components
-import { BaseChart, BarChart } from './components/visualizations';
+import { BaseChart, BarChart, LineChart, PieChart, AreaChart } from './components/visualizations';
+
+// Import search components
+import {
+  LiveSearch,
+  CustomerResult,
+  ProductResult,
+  UserResult,
+  CreateNewModal,
+  CustomerForm,
+  ProductForm,
+  UserForm
+} from './components/search';
+import LiveSearchExample from './components/search/LiveSearchExample.vue';
+import CreateNewExample from './components/search/CreateNewExample.vue';
+
+// Import directives
+import { highlightDirective } from './directives/highlight';
 
 // Export types
 export * from './types';
@@ -38,7 +55,25 @@ export {
   
   // Chart Components
   BaseChart,
-  BarChart
+  BarChart,
+  LineChart,
+  PieChart,
+  AreaChart,
+  
+  // Search Components
+  LiveSearch,
+  LiveSearchExample,
+  CreateNewExample,
+  CustomerResult,
+  ProductResult,
+  UserResult,
+  CreateNewModal,
+  CustomerForm,
+  ProductForm,
+  UserForm,
+  
+  // Directives
+  highlightDirective
 };
 
 // Vue plugin
@@ -61,5 +96,19 @@ export default {
     // Chart Components
     app.component('MBaseChart', BaseChart);
     app.component('MBarChart', BarChart);
+    app.component('MLineChart', LineChart);
+    app.component('MPieChart', PieChart);
+    app.component('MAreaChart', AreaChart);
+    
+    // Search Components
+    app.component('MLiveSearch', LiveSearch);
+    app.component('MLiveSearchExample', LiveSearchExample);
+    app.component('MCreateNewExample', CreateNewExample);
+    app.component('MCustomerResult', CustomerResult);
+    app.component('MProductResult', ProductResult);
+    app.component('MUserResult', UserResult);
+    
+    // Register directives
+    app.directive('highlight', highlightDirective);
   }
 };

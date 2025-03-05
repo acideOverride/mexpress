@@ -126,6 +126,22 @@ productSchema.index({ price: 1 });
 productSchema.index({ createdAt: 1 });
 productSchema.index({ updatedAt: 1 });
 
+// Text search index with weights for MegaSearch
+productSchema.index({
+  name: 'text',
+  description: 'text',
+  sku: 'text',
+  tags: 'text'
+}, {
+  weights: {
+    name: 10,
+    sku: 5,
+    description: 3,
+    tags: 2
+  },
+  name: 'ProductTextIndex'
+});
+
 // Pre-save middleware for data cleanup
 productSchema.pre('save', function(next) {
   // Trim all string fields
