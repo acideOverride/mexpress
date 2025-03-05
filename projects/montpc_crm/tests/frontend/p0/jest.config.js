@@ -1,20 +1,20 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} **/
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: "jsdom",
+  testEnvironment: 'jsdom',
   setupFilesAfterEnv: [
-    "<rootDir>/setupTests.ts"
+    '<rootDir>/setupTests.ts'
   ],
   transform: {
-    "^.+\\.(ts|tsx)$": ["ts-jest", {
-      tsconfig: "../../../frontend/tsconfig.json"
+    '^.+\\.tsx?$': ['ts-jest', {
+      isolatedModules: true
     }]
   },
   moduleNameMapper: {
-    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
-    "^@/(.*)$": "<rootDir>/../../../frontend/src/$1"
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
   },
-  testRegex: ".*\\.test\\.[jt]sx?$",
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  testPathIgnorePatterns: ['/node_modules/'],
+  testRegex: '.*.test.[jt]sx?$',
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   verbose: true
 };
