@@ -231,7 +231,7 @@ It is updated regularly to reflect current project status.
 ### MS-MEXP-015: Dashboard Design
 - **Status**: 🚧 In Progress
 - **Quarter**: Q2 2025
-- **Progress**: 50%
+- **Progress**: 60%
 - **Related BRQs**:
   - MEXP-2025-040-FE
 - **Key Deliverables**:
@@ -252,6 +252,10 @@ It is updated regularly to reflect current project status.
   - Chart theming and utilities (tooltip, legend)
   - BaseChart component with responsive capabilities
   - BarChart component (vertical/horizontal, grouped/stacked)
+  - LineChart component with multiple curve types
+  - Time-series and linear scale support
+  - Interactive crosshair and tooltip features
+  - Example components with interactive controls
 
 ### MS-MEXP-016: MegaSearch Implementation
 - **Status**: 📅 Planned
