@@ -1,6 +1,6 @@
 module.exports = {
   displayName: 'montpc_crm-frontend',
-  preset: '../../jest.preset.js',
+  preset: '../../../../jest.preset.js',
   testEnvironment: 'jsdom',
   testMatch: [
     '<rootDir>/p0/**/*.test.{ts,js,tsx}',
@@ -10,10 +10,13 @@ module.exports = {
     '<rootDir>/integration/**/*.test.{ts,js,tsx}'
   ],
   setupFilesAfterEnv: [
-    '<rootDir>/__mocks__/setup.ts',\n    '@testing-library/jest-dom/extend-expect'
+    '<rootDir>/__mocks__/setup.ts'
   ],
   moduleNameMapper: {
-    '^@mexpress/montpc_crm-frontend/(.*)$': '<rootDir>/src//opt/mExpress/projects/montpc_crm/tests/frontend',\n    '\.(css|less|scss)$': 'identity-obj-proxy'
+    '^@mexpress/core/(.*)$': '<rootDir>/../../../../packages/core/src/$1',
+    '^@mexpress/ui-components/(.*)$': '<rootDir>/../../../../packages/ui-components/src/$1',
+    '^@montpc/crm/(.*)$': '<rootDir>/../../../../projects/montpc_crm/src/$1',
+    '\\.(css|less|scss)$': 'identity-obj-proxy'
   },
   coverageThreshold: {
     global: {
