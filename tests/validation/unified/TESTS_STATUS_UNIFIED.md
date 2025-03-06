@@ -127,7 +127,7 @@ Legend:
 ✅🔢📍 🕒:2.4s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/type-of.test.js
 ✅🔢📍 🕒:2.5s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/order-by-first-call.test.js
 ✅🔢📍 🕒:2.1s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/message-queue-recovery.test.js
-❌🔢📍 🕒:2.0s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/function-name.test.js
+✅🔢📍 🕒:2.0s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/function-name.test.js
 ❌🔢📍 🕒:2.2s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/copy-prototype-methods.test.js
 ❌🔢📍 🕒:2.1s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/class-name.test.js
 ❌🔢📍 🕒:2.0s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/called-in-order.test.js

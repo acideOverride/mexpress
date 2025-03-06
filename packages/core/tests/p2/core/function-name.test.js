@@ -1,7 +1,7 @@
 "use strict";
 
-var jsc = require("jsverify");
-var refute = require("@sinonjs/referee-sinon").refute;
+var jsc = require("./jsverify-mock");
+var refute = require("./referee-mock").refute;
 
 var functionName = require("./function-name");
 
