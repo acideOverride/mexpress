@@ -42,8 +42,9 @@ Only the user may update this section directly.
 - Lint: `npm run lint`
 - Test all: `npm run test`
 - Test by priority: `npm run test:p0`, `npm run test:p1`, `npm run test:p2`
-- Run single test: `npx jest --config packages/core/jest.config.js path/to/test.test.ts > /dev/null 2>&1 && echo "PASSED: [test_name]" || echo "FAILED: [test_name]"`
-- Run simplified tests: `npx jest --config packages/core/jest.simplified.config.js path/to/test.test.ts > /dev/null 2>&1 && echo "PASSED: [test_name]" || echo "FAILED: [test_name]"`
+- Run single package test: `npx jest --config packages/core/jest.config.js packages/core/tests/path/to/test.test.ts > /dev/null 2>&1 && echo "PASSED: [test_name]" || echo "FAILED: [test_name]"`
+- Run single project test: `npx jest --config projects/montpc_crm/tests/jest.config.js projects/montpc_crm/tests/path/to/test.test.ts > /dev/null 2>&1 && echo "PASSED: [test_name]" || echo "FAILED: [test_name]"`
+- Run simplified tests: `npx jest --config projects/montpc_crm/tests/jest.simplified.config.js projects/montpc_crm/tests/path/to/test.test.ts > /dev/null 2>&1 && echo "PASSED: [test_name]" || echo "FAILED: [test_name]"`
 
 ⚠️ IMPORTANT: Always redirect test output to /dev/null to prevent Claude from hanging with large outputs. Use the exit code to determine pass/fail status.
 
@@ -57,39 +58,49 @@ Only the user may update this section directly.
   - **P3**: Performance, stress tests, and non-functional requirements
 - Each test maps to a specific BRQ (Business Requirement Query)
 - Test results are stored in `/tests/results/test-runs`
-- Test status is tracked in `/tests/dashboard-new/TEST_DASHBOARD.md`
+
 
 ### Test Standards
 - All tests MUST follow organization and structure defined in `/docs/standards/C4_test_standards.md`
-- ALWAYS use the centralized directory structure in `/tests`
-- NEVER create test files within source directories or project-specific test folders
-- ALWAYS follow priority organization (P0-P3) as defined in test standards
+- ALWAYS use project-specific test directories (e.g., `projects/montpc_crm/tests/`, `packages/core/tests/`)
+- NEVER scatter test files across source directories (e.g., `src/components/Button/Button.test.tsx`)
+- All tests MUST be organized by priority (P0-P3) within their project-specific test folders:
+  - Example: `projects/montpc_crm/tests/frontend/p0/` for critical frontend tests
+  - Example: `packages/core/tests/backend/p1/` for important backend tests
 - ALL test output MUST be redirected to files as specified in test standards
 
-### Dashboard Update Workflow
-After each successful test PASS, follow these steps:
-1. Update `/tests/dashboard-new/TEST_DASHBOARD.md` with the passing test status (✅)
-2. Update the JSON data section at the bottom with the latest statistics
-3. Run `cd /tests/dashboard-new && node update-all.js` to update the dashboard
-4. DO NOT wait for multiple tests to pass before updating the dashboard
+### Test Location Templates
+When creating new tests, ALWAYS follow these location templates:
 
-### Dashboard Architecture
-- **Source of Truth**: `/tests/dashboard-new/TEST_DASHBOARD.md` (master file)
-- **HTML Template**: `/tests/dashboard-new/dashboard-template.html` (never edit directly)
-- **JavaScript**: `/tests/dashboard-new/dashboard-data.js` (auto-generated)
-- **View Dashboard**: Open `/tests/dashboard-new/dashboard-template.html` in browser
-- **Update Dashboard**: Run `cd /tests/dashboard-new && node update-all.js`
+#### Core Package Tests
+- **Frontend Components**: `packages/core/tests/frontend/{priority}/components/{component-name}.test.tsx`
+- **Backend Services**: `packages/core/tests/backend/{priority}/services/{service-name}.service.test.ts`
+- **API Tests**: `packages/core/tests/api/{priority}/{endpoint-name}.api.test.ts`
+
+#### Project Tests
+- **MontPC CRM Frontend**: `projects/montpc_crm/tests/frontend/{priority}/{feature-name}.test.tsx`
+- **MontPC CRM Backend**: `projects/montpc_crm/tests/backend/{priority}/{service-name}.test.ts`
+- **Giandra Photos**: `projects/giandra_photos/tests/{test-type}/{priority}/{test-name}.test.ts`
+
+#### Never Create Tests In These Locations
+- ❌ `/src/components/{component-name}/__tests__/`
+- ❌ `/src/{feature}/tests/`
+- ❌ `/tests/packages/core/...` (centralized structure)
+- ❌ Any location within source code directories
 
 ## 🧩 Project Structure & Coding Standards
 
 ### Project Structure
 - `/packages`: Core reusable packages (core, ui-components, utils)
+  - `/packages/core/tests`: Tests for core functionality organized by priority (p0-p3)
+  - `/packages/ui-components/tests`: Tests for UI components organized by priority
 - `/projects`: Client-specific projects
+  - `/projects/montpc_crm/tests`: Tests for MontPC CRM organized by priority
+  - `/projects/giandra_photos/tests`: Tests for Giandra Photos organized by priority
+  - `/projects/jerome_bikes/tests`: Tests for Jerome Bikes organized by priority
 - `/docs`: Documentation (core and project-specific)
-- `/tests`: Centralized testing structure
-  - `/tests/dashboard-new`: Test dashboard and metrics
-  - `/tests/results`: Consolidated test results
-  - `/tests/validation`: Test status and reporting
+- `/tests/results`: Consolidated test results
+- `/tests/validation`: Test status and reporting
 
 ### Code Style
 - **Formatting**: Prettier with singleQuote=true, tabWidth=2, printWidth=80
@@ -194,10 +205,11 @@ fix(tests): fix [test-name] in [location]
 *All tests skipped with proper documentation due to MongoDB replica set requirement
 
 ### In Progress Components
-- 🟨 Service Integration Architecture (MEXP-2025-007-BE): 7/9 tests passing (77.8%)
+- ✅ Service Integration Architecture (MEXP-2025-007-BE): 9/9 tests passing (100%)
 - 🟨 MVP Readiness (MEXP-2025-024-INFRA): 1/2 tests passing (50%)
 
 ### Recently Fixed
+- 🆕 Service Integration Architecture (MEXP-2025-007-BE): Fixed all P1 integration tests (service-mesh, service-deployment, container-orchestrator-integration, external-integration)
 - 🆕 MegaSearch Implementation (MEXP-2025-051-BE, MEXP-2025-052-API): Implemented complete MegaSearch functionality
 - 🆕 MontPC Auth Service (MONT-2025-002-FULL): Fixed auth service tests and login tests in the central tests directory
 - 🆕 Core CRUD Functionality (MEXP-2025-004-BE): Added proper skipping for MongoDB replica set requirements
@@ -205,31 +217,31 @@ fix(tests): fix [test-name] in [location]
 - 🆕 Service Discovery (MEXP-2025-007-BE): Fixed issues with cacheSize statistics reporting
 
 ### Issue Summary
-- Primary issues: import path errors (70%), module resolution (20%), type errors (5%), replica set requirement (5%)
-- Failing components: Service Integration Architecture, Infrastructure
+- Primary issues: import path errors (60%), module resolution (25%), type errors (10%), environment requirements (5%)
+- Failing components: Infrastructure (kubernetes-config.test.ts)
 
 ### Priority Work Items
 1. ✅ Fix service discovery tests (COMPLETED: 9/9 tests passing)
 2. ✅ Fix authentication & security tests (COMPLETED: 4/4 tests passing)
 3. ✅ Address transaction rollback tests (COMPLETED: All 3 Core CRUD tests skipped with documentation)
 4. ✅ Fix MontPC Auth Service tests (COMPLETED: auth.service.test.ts and login.test.tsx passing)
-5. Fix service integration architecture tests (service-mesh.test.ts, service-deployment.test.ts)
+5. ✅ Fix service integration architecture tests (COMPLETED: service-mesh.test.js, service-deployment.test.js, container-orchestrator-integration.test.js, external-integration.*.test.js)
 6. Fix MVP Readiness tests (kubernetes-config.test.ts)
 
 ### Upcoming Priority Tasks
 This section maps to the "Next Steps" section that should be maintained in `/tests/dashboard-new/TEST_DASHBOARD.md` and the task priorities in `/docs/mexpress/TASKS.md` and `/docs/montpc_crm/TASKS.md`. When updating these files, be sure to keep priorities aligned.
 
 #### High Priority (P0)
-1. Fix service-mesh.test.ts - Address mock implementation for service mesh client (TASK-MEXP-059)
-2. Fix service-deployment.test.ts - Create deployment configuration adapter (TASK-MEXP-060)
+1. ✅ Fix service-mesh.test.ts - Completed JavaScript implementation with all tests passing (TASK-MEXP-059)
+2. ✅ Fix service-deployment.test.ts - Completed JavaScript implementation with all tests passing (TASK-MEXP-060)
 3. Setup Vue.js UI component library - Implement core components (TASK-MEXP-063)
 4. Create dashboard layout framework - Responsive layout with navigation (TASK-MEXP-064)
 
 #### Medium Priority (P1)
-1. Design D3.js visualization components - Chart wrapper components (TASK-MEXP-065)
-2. Fix kubernetes-config.test.ts - Create stub implementation that doesn't require actual k8s (TASK-MEXP-061)
+1. Fix kubernetes-config.test.ts - Create stub implementation that doesn't require actual k8s (TASK-MEXP-061)
+2. Design D3.js visualization components - Chart wrapper components (TASK-MEXP-065)
 3. Implement MontPC MVP frontend components - Convert to Vue.js (TASK-MONT-046)
-4. Design MegaSearch API - Cross-entity search functionality (TASK-MEXP-066)
+4. ✅ External Integration Tests - All external integration tests fixed with mock implementations (TASK-MEXP-062)
 
 #### Low Priority (P2-P3)
 1. Create MongoDB text search implementation - Optimize for performance (TASK-MEXP-067)
