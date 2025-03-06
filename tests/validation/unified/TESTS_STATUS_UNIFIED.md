@@ -230,6 +230,13 @@ e2e: 0
 ## Recent Updates
 
 **2025-03-06**:
+- Fixed resilience tests in utils package (MEXP-2025-049-INFRA):
+  - circuit-breaker.test.js/ts
+  - rate-limiter.resilience.test.js/ts
+  - retry-strategy.test.js/ts
+  - Created simplified Jest configuration for utils tests
+  - Resilience tests now passing with 100% success rate
+  - Utils test pass rate improved from 0% to 35%
 - Fixed login.ui.test.tsx in MontPC CRM frontend (MONT-2025-002-FULL):
   - Simplified test implementation to remove complex dependencies
   - Fixed JSX/React testing with proper jsdom environment
@@ -281,5 +288,6 @@ e2e: 0
 | MEXP-2025-024-INFRA | MVP Readiness | 2 | 50% |
 | MEXP-2025-026-UTILS | Monitoring System | 1 | 100% |
 | MEXP-2025-030-API | External API Integrations | 3 | 100% |
+| MEXP-2025-049-INFRA | Resilience Framework | 6 | 100% |
 | MEXP-2025-051-BE | MegaSearch Implementation | 3 | 100% |
 | MONT-2025-002-FULL | MontPC Auth Service | 5 | 100% |
