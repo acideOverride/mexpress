@@ -1,10 +1,13 @@
 module.exports = {
-    testEnvironment: 'node',
+    testEnvironment: 'jsdom',
     testMatch: [
-        '**/p2/**/*.test.ts'
+        '**/p2/**/*.test.{ts,tsx,js}'
     ],
     transform: {
-        '^.+\\.tsx?$': 'ts-jest'
+        '^.+\\.tsx?$': ['ts-jest', {
+            tsconfig: '<rootDir>/../../tsconfig.json',
+            jsx: 'react'
+        }]
     },
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
     globals: {
@@ -14,7 +17,7 @@ module.exports = {
     },
     testTimeout: 20000, // 20 seconds for P2 tests
     setupFilesAfterEnv: [
-        '../../jest/jest.mongodb.setup.js',
+        '../../jest/jest.react.setup.js',
         '../../jest/jest.console-redirect.js'
     ],
     // Use the simplified reporter for consistent output

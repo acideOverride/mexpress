@@ -121,7 +121,7 @@ Legend:
 ✅🔢📍 🕒:2.7s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p2/utils/logger.test.ts
 ✅🔢📍 🕒:3.0s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p2/lib/monitoring/monitoring.system.test.ts
 ✅🔢📍 🕒:4.6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/reconciliation-tools/matrixTracker.test.ts
-❌🔢📍 🕒:2.1s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/frontend/components/mobile/responsive-layout.test.tsx
+✅🔢📍 🕒:2.1s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/mobile-viewport.test.js
 ❌🔢📍 🕒:2.4s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/type-of.test.js
 ❌🔢📍 🕒:2.5s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/order-by-first-call.test.js
 ❌🔢📍 🕒:2.1s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/message-queue-recovery.test.js
@@ -139,7 +139,7 @@ Legend:
 
 ### Failing P3 (Low Priority) Tests
 ❌🔢📍 🕒:3.9s 🧪:unit 📦:frontend 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p3/components.test.tsx
-❌🔢📍 🕒:3.1s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p3/utils/rate-limiter.utils.test.ts
+✅🔢📍 🕒:3.1s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p3/utils/rate-limiter.utils.test.ts
 ❌🔢📍 🕒:2.0s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p3/utils/monitoring.collector.test.ts
 ❌🔢📍 🕒:2.2s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p3/utils/moduleCheck.test.ts
 ❌🔢📍 🕒:2.3s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p3/lib/resilience/retry-strategy.error.test.ts
@@ -170,8 +170,8 @@ Legend:
 
 ```
 Total tests: 111
-Passing: 48 (43%)
-Failing: 61 (54%)
+Passing: 49 (44%)
+Failing: 60 (53%)
 Timed out: 2 (1%)
 Skipped: 0
 
@@ -214,10 +214,10 @@ integration: 8 (7%)
 ## Error Type Breakdown
 
 ```
-Unknown: 55 (80%)
+Unknown: 55 (81%)
 ReferenceError: 1 (1%)
 AssertionError: 1 (1%)
-ModuleError: 6 (10%)
+ModuleError: 5 (9%)
 TypeError: 1 (1%)
 SyntaxError: 1 (1%)
 ```
