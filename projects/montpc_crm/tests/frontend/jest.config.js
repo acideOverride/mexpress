@@ -16,7 +16,10 @@ module.exports = {
     '^@mexpress/core/(.*)$': '<rootDir>/../../../../packages/core/src/$1',
     '^@mexpress/ui-components/(.*)$': '<rootDir>/../../../../packages/ui-components/src/$1',
     '^@montpc/crm/(.*)$': '<rootDir>/../../../../projects/montpc_crm/src/$1',
-    '\\.(css|less|scss)$': 'identity-obj-proxy'
+    '\\.(css|less|scss)$': 'identity-obj-proxy',
+    '^react$': '<rootDir>/../../../../node_modules/react',
+    '^react-dom$': '<rootDir>/../../../../node_modules/react-dom',
+    '^@testing-library/(.*)$': '<rootDir>/../../../../node_modules/@testing-library/$1'
   },
   coverageThreshold: {
     global: {

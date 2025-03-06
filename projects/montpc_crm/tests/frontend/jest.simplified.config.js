@@ -6,7 +6,9 @@ module.exports = {
       tsconfig: {
         jsx: 'react',
         esModuleInterop: true,
-        allowJs: true
+        allowJs: true,
+        noImplicitAny: false,
+        strict: false
       }
     }]
   },
@@ -16,11 +18,16 @@ module.exports = {
   ],
   rootDir: '/opt/mExpress/projects/montpc_crm/tests/frontend',
   setupFilesAfterEnv: [
-    '/opt/mExpress/projects/montpc_crm/tests/frontend/__mocks__/setup.ts'
+    '/opt/mExpress/projects/montpc_crm/tests/frontend/__mocks__/setup.ts',
+    '/opt/mExpress/projects/montpc_crm/tests/frontend/p0/setupTests.ts'
   ],
   moduleNameMapper: {
-    '\\.(css|less|scss)$': 'identity-obj-proxy'
+    '\\.(css|less|scss)$': 'identity-obj-proxy',
+    '^@montpc/crm/(.*)$': '/opt/mExpress/projects/montpc_crm/$1',
+    '^react$': '/opt/mExpress/node_modules/react',
+    '^react-dom$': '/opt/mExpress/node_modules/react-dom',
+    '^@testing-library/(.*)$': '/opt/mExpress/node_modules/@testing-library/$1'
   },
-  verbose: false,
-  silent: true
+  verbose: true,
+  silent: false
 };
