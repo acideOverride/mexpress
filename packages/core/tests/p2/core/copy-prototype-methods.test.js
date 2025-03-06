@@ -1,6 +1,6 @@
 "use strict";
 
-var refute = require("@sinonjs/referee-sinon").refute;
+var refute = require("./referee-mock").refute;
 var copyPrototypeMethods = require("./copy-prototype-methods");
 
 describe("copyPrototypeMethods", function () {
