@@ -77,7 +77,7 @@ Legend:
 ❌🔢📍 🕒:3.6s 🧪:unit 📦:api 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p1/api/interceptors/error.interceptor.test.ts
 ❌🔢📍 🕒:3.0s 🧪:integration 📦:services 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/backend/p1/services/external-integration.project.test.ts
 ✅🔢📍 🕒:2.0s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p1/lib/resilience/retry-strategy.test.ts
-❌🔢📍 🕒:2.9s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p1/lib/resilience/rate-limiter.resilience.test.ts
+✅🔢📍 🕒:2.9s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p1/lib/resilience/rate-limiter.resilience.test.ts
 ❌🔢📍 🕒:2.3s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p1/lib/resilience/circuit-breaker.test.ts
 ❌🔢📍 🕒:20.2s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/services/product-events.test.ts
 ❌🔢📍 🕒:15.9s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/services/category-events.test.ts
@@ -170,8 +170,8 @@ Legend:
 
 ```
 Total tests: 111
-Passing: 46 (41%)
-Failing: 63 (56%)
+Passing: 47 (42%)
+Failing: 62 (55%)
 Timed out: 2 (1%)
 Skipped: 0
 
@@ -217,7 +217,7 @@ integration: 8 (7%)
 Unknown: 55 (80%)
 ReferenceError: 1 (1%)
 AssertionError: 1 (1%)
-ModuleError: 8 (12%)
+ModuleError: 7 (11%)
 TypeError: 1 (1%)
 SyntaxError: 1 (1%)
 ```
