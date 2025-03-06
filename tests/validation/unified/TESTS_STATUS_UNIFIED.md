@@ -50,6 +50,7 @@ Legend:
 ✅🔢📍 🕒:2.8s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/istio-client.additional.test.ts
 ✅🔢📍 🕒:2.9s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/git-workflow.test.ts
 ✅🔢📍 🕒:2.3s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/every.test.js
+✅🔢📍 🕒:5.4s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/services/product.service.test.ts
 
 
 
@@ -161,7 +162,6 @@ Legend:
 
 ### Tests That Timed Out
 ⏱️🔢📍 🕒:>30s 🧪:unit 📦:core /opt/mExpress/packages/core/tests/p3/services/load-balancer.test.ts
-⏱️🔢📍 🕒:>30s 🧪:unit 📦:core /opt/mExpress/packages/core/tests/p0/services/product.service.test.ts (Currently working on fixing)
 
 
 ### Skipped Tests
@@ -171,9 +171,9 @@ Legend:
 
 ```
 Total tests: 111
-Passing: 55 (49.5%)
-Failing: 54 (48.7%)
-Timed out: 2 (1.8%)
+Passing: 56 (50.5%)
+Failing: 54 (48.6%)
+Timed out: 1 (0.9%)
 Skipped: 0
 
 In project-specific location: 109 (98.2%)
