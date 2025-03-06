@@ -1,5 +1,5 @@
-import { GitWorkflow } from '../../lib/git-workflow';
-import { WorkflowConfigOptions, CommitMessage } from '../../types/git-workflow-config';
+import { GitWorkflow } from '../../../src/lib/git-workflow';
+import { WorkflowConfigOptions, CommitMessage } from '../../../src/types/git-workflow-config';
 
 describe('GitWorkflow', () => {
   describe('Configuration Setup', () => {

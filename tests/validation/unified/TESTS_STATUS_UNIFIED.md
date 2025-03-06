@@ -48,11 +48,11 @@ Legend:
 ✅🔢📍 🕒:2.8s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/time-provider.test.ts
 ✅🔢📍 🕒:3.3s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/istio-client.test.ts
 ✅🔢📍 🕒:2.8s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/istio-client.additional.test.ts
+✅🔢📍 🕒:2.9s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/git-workflow.test.ts
 
 
 
 ### Failing P0 (Critical) Tests
-❌🔢📍 🕒:5.1s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/git-workflow.test.ts
 ❌🔢📍 🕒:2.5s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/every.test.js
 
 
@@ -171,8 +171,8 @@ Legend:
 
 ```
 Total tests: 111
-Passing: 53 (47.7%)
-Failing: 56 (50.5%)
+Passing: 54 (48.6%)
+Failing: 55 (49.6%)
 Timed out: 2 (1.8%)
 Skipped: 0
 
