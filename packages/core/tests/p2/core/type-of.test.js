@@ -1,27 +1,27 @@
 "use strict";
 
-var assert = require("@sinonjs/referee-sinon").assert;
+var assert = require("assert");
 var typeOf = require("./type-of");
 
 describe("typeOf", function () {
     it("returns boolean", function () {
-        assert.equals(typeOf(false), "boolean");
+        assert.strictEqual(typeOf(false), "boolean");
     });
 
     it("returns string", function () {
-        assert.equals(typeOf("Sinon.JS"), "string");
+        assert.strictEqual(typeOf("Sinon.JS"), "string");
     });
 
     it("returns number", function () {
-        assert.equals(typeOf(123), "number");
+        assert.strictEqual(typeOf(123), "number");
     });
 
     it("returns object", function () {
-        assert.equals(typeOf({}), "object");
+        assert.strictEqual(typeOf({}), "object");
     });
 
     it("returns function", function () {
-        assert.equals(
+        assert.strictEqual(
             typeOf(function () {
                 return undefined;
             }),
@@ -30,22 +30,22 @@ describe("typeOf", function () {
     });
 
     it("returns undefined", function () {
-        assert.equals(typeOf(undefined), "undefined");
+        assert.strictEqual(typeOf(undefined), "undefined");
     });
 
     it("returns null", function () {
-        assert.equals(typeOf(null), "null");
+        assert.strictEqual(typeOf(null), "null");
     });
 
     it("returns array", function () {
-        assert.equals(typeOf([]), "array");
+        assert.strictEqual(typeOf([]), "array");
     });
 
     it("returns regexp", function () {
-        assert.equals(typeOf(/.*/), "regexp");
+        assert.strictEqual(typeOf(/.*/), "regexp");
     });
 
     it("returns date", function () {
-        assert.equals(typeOf(new Date()), "date");
+        assert.strictEqual(typeOf(new Date()), "date");
     });
 });

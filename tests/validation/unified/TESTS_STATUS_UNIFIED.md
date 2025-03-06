@@ -123,7 +123,7 @@ Legend:
 ✅🔢📍 🕒:3.0s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p2/lib/monitoring/monitoring.system.test.ts
 ✅🔢📍 🕒:4.6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/reconciliation-tools/matrixTracker.test.ts
 ✅🔢📍 🕒:2.1s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/mobile-viewport.test.js
-❌🔢📍 🕒:2.4s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/type-of.test.js
+✅🔢📍 🕒:2.4s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/type-of.test.js
 ❌🔢📍 🕒:2.5s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/order-by-first-call.test.js
 ❌🔢📍 🕒:2.1s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/message-queue-recovery.test.js
 ❌🔢📍 🕒:2.0s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/function-name.test.js
