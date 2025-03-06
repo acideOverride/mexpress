@@ -32,7 +32,7 @@ describe('Pipeline Integration', () => {
     jest.spyOn(orchestrator, 'listResources');
     jest.spyOn(orchestrator, 'validateDeployment');
 
-    serviceMesh = new ServiceMesh();
+    serviceMesh = new ServiceMesh({ name: 'test-service-mesh', namespace: 'default' });
     jest.spyOn(serviceMesh, 'initialize');
     jest.spyOn(serviceMesh, 'getServiceConfig');
     jest.spyOn(serviceMesh, 'getTrafficRouting');
@@ -43,7 +43,19 @@ describe('Pipeline Integration', () => {
     jest.spyOn(runtime, 'listImages');
     jest.spyOn(runtime, 'getCacheStats');
 
-    deployment = new ServiceDeployment();
+    deployment = new ServiceDeployment({
+      name: 'test-deployment',
+      namespace: 'default',
+      image: 'test-image:latest',
+      version: 'v1',
+      ports: [testPort],
+      healthCheck: {
+        path: '/health',
+        port: 8080,
+        initialDelay: 10,
+        period: 30
+      }
+    });
     jest.spyOn(deployment, 'initialize');
     jest.spyOn(deployment, 'getStatus');
     jest.spyOn(deployment, 'validateHealth');

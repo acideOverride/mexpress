@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Theme } from '../../../themes/defaultTheme';
+import { Theme } from '../../themes/defaultTheme';
 
 interface MobileCardProps {
   title: string;
