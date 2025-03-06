@@ -49,11 +49,11 @@ Legend:
 ✅🔢📍 🕒:3.3s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/istio-client.test.ts
 ✅🔢📍 🕒:2.8s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/istio-client.additional.test.ts
 ✅🔢📍 🕒:2.9s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/git-workflow.test.ts
+✅🔢📍 🕒:2.3s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/every.test.js
 
 
 
 ### Failing P0 (Critical) Tests
-❌🔢📍 🕒:2.5s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/every.test.js
 
 
 ### Passing P1 (High Priority) Tests
@@ -171,8 +171,8 @@ Legend:
 
 ```
 Total tests: 111
-Passing: 54 (48.6%)
-Failing: 55 (49.6%)
+Passing: 55 (49.5%)
+Failing: 54 (48.7%)
 Timed out: 2 (1.8%)
 Skipped: 0
 
