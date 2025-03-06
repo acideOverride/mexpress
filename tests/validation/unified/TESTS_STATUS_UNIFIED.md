@@ -215,10 +215,10 @@ integration: 8 (7%)
 ## Error Type Breakdown
 
 ```
-Unknown: 55 (82%)
+Unknown: 55 (83%)
 ReferenceError: 1 (1%)
 AssertionError: 1 (1%)
-ModuleError: 4 (7%)
+ModuleError: 3 (6%)
 TypeError: 1 (1%)
 SyntaxError: 1 (1%)
 ```
