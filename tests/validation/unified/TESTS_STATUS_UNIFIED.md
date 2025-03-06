@@ -1,5 +1,5 @@
 # Unified Test Status Report
-*Last updated: 2025-03-06*
+*Last updated: 2025-03-06 17:45*
 
 This report shows test location, priority, and execution status for all tests in the codebase:
 
@@ -78,8 +78,8 @@ Legend:
 
 ✅🔢📍 🕒:3s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/frontend/component-tests.test.js
 ✅🔢📍 🕒:4s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/core/external-integration.update.test.js
-❌🔢📍 🕒:5s 🧪:integration 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/integration/external-integration.update.test.js
-❌🔢📍 🕒:5s 🧪:integration 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/integration/infrastructure/container-orchestrator-integration.test.js
+✅🔢📍 🕒:5s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/external-integration.update.test.js
+✅🔢📍 🕒:5s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/infrastructure/container-orchestrator-integration.test.js
 ❌🔢📍 🕒:4s 🧪:integration 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/integration/infrastructure/external-integration.core.test.js
 ❌🔢📍 🕒:4s 🧪:integration 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/integration/infrastructure/external-integration.update.test.js
 ❌🔢📍 🕒:5s 🧪:integration 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/integration/infrastructure/pipeline-integration.test.js
@@ -198,8 +198,8 @@ Legend:
 
 ```
 Total tests: 139
-Passing: 57 (41%)
-Failing: 68 (49%)
+Passing: 59 (42%)
+Failing: 66 (47%)
 Timed out: 14 (10%)
 Skipped: 0
 ```
