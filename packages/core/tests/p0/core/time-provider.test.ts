@@ -1,4 +1,4 @@
-import { TestTimeProvider } from '../../../../src/core/time/time-provider';
+import { TestTimeProvider } from '../../../src/core/time/time-provider';
 
 describe('TestTimeProvider', () => {
     let timeProvider: TestTimeProvider;

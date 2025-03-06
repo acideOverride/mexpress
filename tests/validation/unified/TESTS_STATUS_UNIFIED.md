@@ -45,11 +45,11 @@ Legend:
 ✅🔢📍 🕒:5.4s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/core/CustomerDetail.test.tsx
 ✅🔢📍 🕒:6.1s 🧪:unit 📦:frontend 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/dashboard.test.tsx
 ✅🔢📍 🕒:2.4s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/value-to-string.test.js
+✅🔢📍 🕒:2.8s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/time-provider.test.ts
 
 
 
 ### Failing P0 (Critical) Tests
-❌🔢📍 🕒:4.7s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/time-provider.test.ts
 ❌🔢📍 🕒:7.0s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/istio-client.test.ts
 ❌🔢📍 🕒:5.2s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/istio-client.additional.test.ts
 ❌🔢📍 🕒:5.1s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/git-workflow.test.ts
@@ -171,13 +171,13 @@ Legend:
 
 ```
 Total tests: 111
-Passing: 50 (45%)
-Failing: 59 (52%)
-Timed out: 2 (1%)
+Passing: 51 (45.9%)
+Failing: 58 (52.3%)
+Timed out: 2 (1.8%)
 Skipped: 0
 
-In project-specific location: 109 (98%)
-Needing location update: 2 (1%)
+In project-specific location: 109 (98.2%)
+Needing location update: 2 (1.8%)
 
 With priority label: 111 (100%)
 Missing priority label: 0 (0%)
