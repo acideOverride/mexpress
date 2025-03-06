@@ -120,7 +120,7 @@ Legend:
 ❌🔢📍 🕒:3.5s 🧪:unit 📦:unknown 🔍:Unknown /opt/mExpress/packages/vue-components/tests/p2/components/layout/DashboardLayout.test.ts
 ❌🔢📍 🕒:2.7s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p2/utils/logger.test.ts
 ❌🔢📍 🕒:3.0s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p2/lib/monitoring/monitoring.system.test.ts
-❌🔢📍 🕒:4.6s 🧪:unit 📦:core 🔍:ReferenceError /opt/mExpress/packages/core/tests/p2/reconciliation-tools/matrixTracker.test.ts
+✅🔢📍 🕒:4.6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/reconciliation-tools/matrixTracker.test.ts
 ❌🔢📍 🕒:2.1s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/frontend/components/mobile/responsive-layout.test.tsx
 ❌🔢📍 🕒:2.4s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/type-of.test.js
 ❌🔢📍 🕒:2.5s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/core/order-by-first-call.test.js
@@ -170,8 +170,8 @@ Legend:
 
 ```
 Total tests: 111
-Passing: 43 (38%)
-Failing: 66 (59%)
+Passing: 44 (39%)
+Failing: 65 (58%)
 Timed out: 2 (1%)
 Skipped: 0
 
