@@ -41,10 +41,10 @@ Legend:
 ✅🔢📍 🕒:5.0s 🧪:unit 📦:api 🧩:~70% /opt/mExpress/packages/core/tests/p0/api/connection-timeout.test.ts
 ✅🔢📍 🕒:10.0s 🧪:unit 📦:auth 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/auth/login.ui.test.tsx
 ✅🔢📍 🕒:11.3s 🧪:unit 📦:auth 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts
+✅🔢📍 🕒:13.0s 🧪:unit 📦:auth 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.tsx
 
 
 ### Failing P0 (Critical) Tests
-❌🔢📍 🕒:13.0s 🧪:unit 📦:auth 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts
 ❌🔢🚚 🕒:5.4s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/projects/montpc_crm/frontend/tests/p0/core/CustomerDetail.test.tsx
 ❌🔢🚚 🕒:6.1s 🧪:unit 📦:frontend 🔍:Unknown /opt/mExpress/projects/montpc_crm/frontend/tests/p0/components/dashboard.test.tsx
 ❌🔢📍 🕒:2.4s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/value-to-string.test.js
