@@ -46,12 +46,12 @@ Legend:
 ✅🔢📍 🕒:6.1s 🧪:unit 📦:frontend 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/dashboard.test.tsx
 ✅🔢📍 🕒:2.4s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/value-to-string.test.js
 ✅🔢📍 🕒:2.8s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/time-provider.test.ts
+✅🔢📍 🕒:3.3s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/istio-client.test.ts
+✅🔢📍 🕒:2.8s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/istio-client.additional.test.ts
 
 
 
 ### Failing P0 (Critical) Tests
-❌🔢📍 🕒:7.0s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/istio-client.test.ts
-❌🔢📍 🕒:5.2s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/istio-client.additional.test.ts
 ❌🔢📍 🕒:5.1s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/git-workflow.test.ts
 ❌🔢📍 🕒:2.5s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/every.test.js
 
@@ -142,7 +142,7 @@ Legend:
 ❌🔢📍 🕒:3.9s 🧪:unit 📦:frontend 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p3/components.test.tsx
 ✅🔢📍 🕒:3.1s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p3/utils/rate-limiter.utils.test.ts
 ✅🔢📍 🕒:2.0s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p3/utils/monitoring.collector.test.ts
-❌🔢📍 🕒:2.2s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p3/utils/moduleCheck.test.ts
+✅🔢📍 🕒:2.3s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p3/lib/resilience/retry-strategy.error.test.ts
 ❌🔢📍 🕒:2.3s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p3/lib/resilience/retry-strategy.error.test.ts
 ❌🔢📍 🕒:6.2s 🧪:integration 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p3/models/customer.integration.test.ts
 ❌🔢📍 🕒:22.8s 🧪:unit 📦:core 🔍:AssertionError /opt/mExpress/packages/core/tests/p3/infrastructure/database-performance.test.ts
@@ -171,8 +171,8 @@ Legend:
 
 ```
 Total tests: 111
-Passing: 51 (45.9%)
-Failing: 58 (52.3%)
+Passing: 53 (47.7%)
+Failing: 56 (50.5%)
 Timed out: 2 (1.8%)
 Skipped: 0
 
