@@ -140,7 +140,7 @@ Legend:
 ### Failing P3 (Low Priority) Tests
 ❌🔢📍 🕒:3.9s 🧪:unit 📦:frontend 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p3/components.test.tsx
 ✅🔢📍 🕒:3.1s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p3/utils/rate-limiter.utils.test.ts
-❌🔢📍 🕒:2.0s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p3/utils/monitoring.collector.test.ts
+✅🔢📍 🕒:2.0s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p3/utils/monitoring.collector.test.ts
 ❌🔢📍 🕒:2.2s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p3/utils/moduleCheck.test.ts
 ❌🔢📍 🕒:2.3s 🧪:unit 📦:utils 🔍:ModuleError /opt/mExpress/packages/utils/tests/p3/lib/resilience/retry-strategy.error.test.ts
 ❌🔢📍 🕒:6.2s 🧪:integration 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p3/models/customer.integration.test.ts
@@ -170,8 +170,8 @@ Legend:
 
 ```
 Total tests: 111
-Passing: 49 (44%)
-Failing: 60 (53%)
+Passing: 50 (45%)
+Failing: 59 (52%)
 Timed out: 2 (1%)
 Skipped: 0
 
@@ -214,10 +214,10 @@ integration: 8 (7%)
 ## Error Type Breakdown
 
 ```
-Unknown: 55 (81%)
+Unknown: 55 (82%)
 ReferenceError: 1 (1%)
 AssertionError: 1 (1%)
-ModuleError: 5 (9%)
+ModuleError: 4 (7%)
 TypeError: 1 (1%)
 SyntaxError: 1 (1%)
 ```
