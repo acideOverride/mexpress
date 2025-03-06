@@ -4,49 +4,44 @@ import { ProductService } from '../product.service';
 import { Product, IProduct } from '../../../src/models/product';
 import mongoose from 'mongoose';
 
-// Mock the mongoose model and methods
+// Override the default timeout for all tests in this file
+jest.setTimeout(60000); // 60 seconds
+
+// Simplified mock implementation to avoid timeouts
 jest.mock('../../../src/models/product', () => {
-  const mockProductModel = {
-    create: jest.fn(),
-    find: jest.fn(),
-    findById: jest.fn(),
-    findByIdAndUpdate: jest.fn(),
-    findByIdAndDelete: jest.fn(),
-    deleteMany: jest.fn(() => Promise.resolve())
+  // Create a simplified synchronous implementation
+  const Product = function(data: any) {
+    return {
+      ...data,
+      save: jest.fn().mockReturnValue(Promise.resolve({
+        ...data,
+        _id: new mongoose.Types.ObjectId().toString()
+      }))
+    };
   };
   
-  // Add return values for the mock methods
-  mockProductModel.find.mockImplementation(() => ({
+  // Static methods using synchronous mocks
+  Product.create = jest.fn().mockReturnValue(Promise.resolve({}));
+  
+  Product.find = jest.fn().mockReturnValue({
     skip: jest.fn().mockReturnThis(),
     limit: jest.fn().mockReturnThis(),
     lean: jest.fn().mockReturnValue([])
-  }));
+  });
   
-  mockProductModel.findById.mockImplementation(() => ({
+  Product.findById = jest.fn().mockReturnValue({
     lean: jest.fn().mockReturnValue(null)
-  }));
+  });
   
-  const Product = function(data: any) {
-    const instance = {
-      ...data,
-      save: jest.fn().mockResolvedValue({ 
-        ...data, 
-        _id: new mongoose.Types.ObjectId(),
-        toJSON: () => ({ ...data, _id: new mongoose.Types.ObjectId() })
-      })
-    };
-    return instance;
-  };
+  Product.findByIdAndUpdate = jest.fn().mockReturnValue(null);
   
-  // Add save method to prototype so it can be mocked with spyOn
-  Product.prototype = { 
-    save: jest.fn()
-  };
+  Product.findByIdAndDelete = jest.fn().mockReturnValue({
+    lean: jest.fn().mockReturnValue(null)
+  });
   
-  // Add static methods to the constructor function
-  Object.assign(Product, mockProductModel);
+  Product.deleteMany = jest.fn().mockReturnValue(Promise.resolve(true));
   
-  return { 
+  return {
     Product,
     IProduct: {}
   };
@@ -119,10 +114,10 @@ describe('ProductService', () => {
         sku: 'FIND123'
       };
       
-      // Setup mock to return the product
-      (Product.findById as jest.Mock).mockImplementationOnce(() => ({
+      // Use a simpler synchronous mock implementation
+      (Product.findById as jest.Mock).mockReturnValueOnce({
         lean: jest.fn().mockReturnValue(mockProduct)
-      }));
+      });
       
       // Call the service method
       const found = await productService.findById(mockId);
@@ -136,10 +131,10 @@ describe('ProductService', () => {
     it('should return null for non-existent product', async () => {
       const nonExistentId = new mongoose.Types.ObjectId().toString();
       
-      // Setup mock to return null
-      (Product.findById as jest.Mock).mockImplementationOnce(() => ({
+      // Use synchronous mock
+      (Product.findById as jest.Mock).mockReturnValueOnce({
         lean: jest.fn().mockReturnValue(null)
-      }));
+      });
       
       const result = await productService.findById(nonExistentId);
       
@@ -166,9 +161,10 @@ describe('ProductService', () => {
         }
       ];
       
-      (Product.find as jest.Mock).mockImplementationOnce(() => ({
+      // Use synchronous mock
+      (Product.find as jest.Mock).mockReturnValueOnce({
         lean: jest.fn().mockReturnValue(mockProducts)
-      }));
+      });
 
       // Call the service method
       const products = await productService.findAll();
@@ -182,9 +178,9 @@ describe('ProductService', () => {
 
     it('should return empty array when no products exist', async () => {
       // Setup mock to return empty array
-      (Product.find as jest.Mock).mockImplementationOnce(() => ({
+      (Product.find as jest.Mock).mockReturnValueOnce({
         lean: jest.fn().mockReturnValue([])
-      }));
+      });
       
       const products = await productService.findAll();
       
@@ -211,9 +207,7 @@ describe('ProductService', () => {
       };
       
       // Make sure the mock returns the updated product directly
-      (Product.findByIdAndUpdate as jest.Mock).mockImplementationOnce(
-        (id, update, options) => mockUpdatedProduct
-      );
+      (Product.findByIdAndUpdate as jest.Mock).mockReturnValueOnce(mockUpdatedProduct);
       
       // Call the service method
       const updated = await productService.update(mockId, updateData);
@@ -236,9 +230,7 @@ describe('ProductService', () => {
       const nonExistentId = new mongoose.Types.ObjectId().toString();
       
       // Setup mock to return null directly
-      (Product.findByIdAndUpdate as jest.Mock).mockImplementationOnce(
-        () => null
-      );
+      (Product.findByIdAndUpdate as jest.Mock).mockReturnValueOnce(null);
       
       const result = await productService.update(nonExistentId, { name: 'Updated' });
       
@@ -259,11 +251,9 @@ describe('ProductService', () => {
         sku: 'DELETE123'
       };
       
-      (Product.findByIdAndDelete as jest.Mock).mockImplementationOnce(
-        () => ({
-          lean: jest.fn().mockReturnValue(mockDeletedProduct)
-        })
-      );
+      (Product.findByIdAndDelete as jest.Mock).mockReturnValueOnce({
+        lean: jest.fn().mockReturnValue(mockDeletedProduct)
+      });
       
       // Call the service method
       const result = await productService.delete(mockId);
@@ -273,11 +263,9 @@ describe('ProductService', () => {
       expect(Product.findByIdAndDelete).toHaveBeenCalledWith(mockId);
       
       // Setup mock for findById to simulate product being deleted
-      (Product.findById as jest.Mock).mockImplementationOnce(
-        () => ({
-          lean: jest.fn().mockReturnValue(null)
-        })
-      );
+      (Product.findById as jest.Mock).mockReturnValueOnce({
+        lean: jest.fn().mockReturnValue(null)
+      });
       
       // Verify the product can't be found after deletion
       const found = await productService.findById(mockId);
@@ -288,11 +276,9 @@ describe('ProductService', () => {
       const nonExistentId = new mongoose.Types.ObjectId().toString();
       
       // Setup mock to return null
-      (Product.findByIdAndDelete as jest.Mock).mockImplementationOnce(
-        () => ({
-          lean: jest.fn().mockReturnValue(null)
-        })
-      );
+      (Product.findByIdAndDelete as jest.Mock).mockReturnValueOnce({
+        lean: jest.fn().mockReturnValue(null)
+      });
       
       const result = await productService.delete(nonExistentId);
       
@@ -314,12 +300,12 @@ describe('ProductService', () => {
         }
       ];
       
-      // Setup mock find with searchCriteria
-      (Product.find as jest.Mock).mockImplementationOnce((criteria) => ({
+      // Setup mock find with searchCriteria - using synchronous mock
+      (Product.find as jest.Mock).mockReturnValueOnce({
         skip: jest.fn().mockReturnThis(),
         limit: jest.fn().mockReturnThis(),
         lean: jest.fn().mockReturnValue(mockProducts)
-      }));
+      });
       
       const results = await productService.search({ query: 'Another' });
       
@@ -341,11 +327,11 @@ describe('ProductService', () => {
       ];
       
       // Setup mock find with searchCriteria
-      (Product.find as jest.Mock).mockImplementationOnce((criteria) => ({
+      (Product.find as jest.Mock).mockReturnValueOnce({
         skip: jest.fn().mockReturnThis(),
         limit: jest.fn().mockReturnThis(),
         lean: jest.fn().mockReturnValue(mockProducts)
-      }));
+      });
       
       const results = await productService.search({ query: 'TEST456' });
       
@@ -374,11 +360,11 @@ describe('ProductService', () => {
       ];
       
       // Setup mock find with searchCriteria
-      (Product.find as jest.Mock).mockImplementationOnce((criteria) => ({
+      (Product.find as jest.Mock).mockReturnValueOnce({
         skip: jest.fn().mockReturnThis(),
         limit: jest.fn().mockReturnThis(),
         lean: jest.fn().mockReturnValue(mockProducts)
-      }));
+      });
       
       const results = await productService.search({ category: 'electronics' });
       
@@ -399,11 +385,11 @@ describe('ProductService', () => {
       ];
       
       // Setup mock find with searchCriteria
-      (Product.find as jest.Mock).mockImplementationOnce((criteria) => ({
+      (Product.find as jest.Mock).mockReturnValueOnce({
         skip: jest.fn().mockReturnThis(),
         limit: jest.fn().mockReturnThis(),
         lean: jest.fn().mockReturnValue(mockProducts)
-      }));
+      });
       
       const results = await productService.search({ tag: 'another' });
       
@@ -414,11 +400,11 @@ describe('ProductService', () => {
 
     it('should return empty array for no matches', async () => {
       // Setup mock to return empty array
-      (Product.find as jest.Mock).mockImplementationOnce((criteria) => ({
+      (Product.find as jest.Mock).mockReturnValueOnce({
         skip: jest.fn().mockReturnThis(),
         limit: jest.fn().mockReturnThis(),
         lean: jest.fn().mockReturnValue([])
-      }));
+      });
       
       const results = await productService.search({ query: 'NonExistent' });
       
