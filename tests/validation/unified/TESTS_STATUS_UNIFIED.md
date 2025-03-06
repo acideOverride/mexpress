@@ -44,10 +44,10 @@ Legend:
 ✅🔢📍 🕒:13.0s 🧪:unit 📦:auth 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.tsx
 ✅🔢📍 🕒:5.4s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/core/CustomerDetail.test.tsx
 ✅🔢📍 🕒:6.1s 🧪:unit 📦:frontend 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/dashboard.test.tsx
+✅🔢📍 🕒:2.4s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/value-to-string.test.js
 
 
 ### Failing P0 (Critical) Tests
-❌🔢📍 🕒:2.4s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/value-to-string.test.js
 ❌🔢📍 🕒:4.7s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/time-provider.test.ts
 ❌🔢📍 🕒:7.0s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/istio-client.test.ts
 ❌🔢📍 🕒:5.2s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p0/core/istio-client.additional.test.ts
