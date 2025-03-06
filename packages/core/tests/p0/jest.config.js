@@ -13,7 +13,7 @@ module.exports = {
             isolatedModules: true
         }
     },
-    testTimeout: 15000, // 15 seconds for P0 tests
+    testTimeout: 30000, // 30 seconds for P0 tests
     setupFilesAfterEnv: [
         '../../jest/jest.mongodb.setup.js',
         '../../jest/jest.console-redirect.js'

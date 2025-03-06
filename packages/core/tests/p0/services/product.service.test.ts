@@ -1,11 +1,11 @@
 // Import from our test mocks instead of the real source
 // MEXP-2025-027-BE Product Catalog P0 Tests
 import { ProductService } from '../product.service';
-import { Product, IProduct } from '../../models/product';
+import { Product, IProduct } from '../../../src/models/product';
 import mongoose from 'mongoose';
 
 // Mock the mongoose model and methods
-jest.mock('../../models/product', () => {
+jest.mock('../../../src/models/product', () => {
   const mockProductModel = {
     create: jest.fn(),
     find: jest.fn(),
