@@ -1,5 +1,5 @@
 # Unified Test Status Report
-*Last updated: 2025-03-06 18:30*
+*Last updated: 2025-03-06 18:45*
 
 This report shows test location, priority, and execution status for all tests in the codebase:
 
@@ -50,13 +50,13 @@ Legend:
 ✅🔢📍 🕒:13s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/validation/customerValidation.test.ts
 ✅🔢📍 🕒:4s 🧪:unit 📦:api 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts
 ✅🔢📍 🕒:4s 🧪:unit 📦:api 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.tsx
+✅🔢📍 🕒:4s 🧪:unit 📦:api 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts
 
 
 ### Failing P0 (Critical) Tests
 
 ❌🔢🚚 🕒:5s 🧪:unit 📦:frontend 🔍:Unknown /opt/mExpress/projects/montpc_crm/frontend/tests/p0/components/dashboard.test.tsx
 ❌🔢🚚 🕒:4s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/projects/montpc_crm/frontend/tests/p0/core/CustomerDetail.test.tsx
-❌🔢📍 🕒:4s 🧪:unit 📦:api 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts
 ❌🔢📍 🕒:6s 🧪:unit 📦:auth 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/auth/login.ui.test.tsx
 ❌🔢📍 🕒:4s 🧪:unit 📦:frontend 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/dashboard.test.tsx
 ❌🔢📍 🕒:5s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/core/CustomerDetail.test.tsx
@@ -83,8 +83,8 @@ Legend:
 ✅🔢📍 🕒:4s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/infrastructure/external-integration.core.test.js
 ✅🔢📍 🕒:4s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/infrastructure/external-integration.update.test.js
 ✅🔢📍 🕒:5s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/infrastructure/pipeline-integration.test.js
-❌🔢📍 🕒:4s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/services/category-events.test.js
-❌🔢📍 🕒:6s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/services/product-events.test.js
+✅🔢📍 🕒:4s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/services/category-events.test.js
+✅🔢📍 🕒:6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/services/product-events.test.js
 ❌🔢📍 🕒:6s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/services/service-deployment.test.js
 ❌🔢📍 🕒:5s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/services/service-mesh.test.js
 ❌🔢📍 🕒:4s 🧪:unit 📦:utils 🔍:Unknown /opt/mExpress/packages/utils/tests/p1/lib/resilience/circuit-breaker.test.js
@@ -197,8 +197,8 @@ Legend:
 
 ```
 Total tests: 139
-Passing: 60 (43%)
-Failing: 65 (47%)
+Passing: 61 (44%)
+Failing: 64 (46%)
 Timed out: 14 (10%)
 Skipped: 0
 ```
@@ -226,6 +226,10 @@ e2e: 0
 ## Recent Updates
 
 **2025-03-06**:
+- Fixed auth.service.test.ts in MontPC CRM frontend (MONT-2025-002-FULL):
+  - Fixed import path in auth.service.test.ts
+  - Configured proper test environment (jsdom)
+  - MontPC Auth Service pass rate improved from 60% to 80%
 - Fixed responsive-layout.test.tsx in frontend components (MEXP-2025-002-FE):
   - Implemented simplified test with proper mocks
   - Fixed JSX syntax and TypeScript compatibility issues
@@ -233,7 +237,6 @@ e2e: 0
 - Fixed auth interceptor tests in MontPC CRM frontend (MONT-2025-002-FULL):
   - Simplified auth.interceptor.test.ts and auth.interceptor.test.js
   - Created proper test implementation in auth.interceptor.test.tsx
-  - MontPC Auth Service pass rate improved from 40% to 60%
 - Fixed all P1 integration tests in Service Integration Architecture (MEXP-2025-007-BE)
 - Implemented JavaScript versions of integration tests:
   - service-mesh.test.js
@@ -266,4 +269,4 @@ e2e: 0
 | MEXP-2025-024-INFRA | MVP Readiness | 2 | 50% |
 | MEXP-2025-030-API | External API Integrations | 3 | 100% |
 | MEXP-2025-051-BE | MegaSearch Implementation | 3 | 100% |
-| MONT-2025-002-FULL | MontPC Auth Service | 5 | 60% |
+| MONT-2025-002-FULL | MontPC Auth Service | 5 | 80% |
