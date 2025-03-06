@@ -48,14 +48,14 @@ Legend:
 ✅🔢📍 🕒:11s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/services/ringover.service.test.ts
 ✅🔢📍 🕒:12s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/sync.service.test.ts
 ✅🔢📍 🕒:13s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/validation/customerValidation.test.ts
+✅🔢📍 🕒:4s 🧪:unit 📦:api 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts
+✅🔢📍 🕒:4s 🧪:unit 📦:api 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.tsx
 
 
 ### Failing P0 (Critical) Tests
 
 ❌🔢🚚 🕒:5s 🧪:unit 📦:frontend 🔍:Unknown /opt/mExpress/projects/montpc_crm/frontend/tests/p0/components/dashboard.test.tsx
 ❌🔢🚚 🕒:4s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/projects/montpc_crm/frontend/tests/p0/core/CustomerDetail.test.tsx
-✅🔢📍 🕒:4s 🧪:unit 📦:api 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts
-✅🔢📍 🕒:4s 🧪:unit 📦:api 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.tsx
 ❌🔢📍 🕒:4s 🧪:unit 📦:api 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts
 ❌🔢📍 🕒:6s 🧪:unit 📦:auth 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/auth/login.ui.test.tsx
 ❌🔢📍 🕒:4s 🧪:unit 📦:frontend 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/dashboard.test.tsx
@@ -67,6 +67,10 @@ Legend:
 ✅🔢📍 🕒:25s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/auth/token-refresh.test.ts
 ✅🔢📍 🕒:30s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/core/concurrent-modification.test.ts
 ✅🔢📍 🕒:26s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/core/queue-persistence.test.ts
+✅🔢📍 🕒:3s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/frontend/component-tests.test.js
+✅🔢📍 🕒:4s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/core/external-integration.update.test.js
+✅🔢📍 🕒:5s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/external-integration.update.test.js
+✅🔢📍 🕒:5s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/infrastructure/container-orchestrator-integration.test.js
 ✅🔢📍 🕒:25s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/megasearch/mongodb-text-search.test.ts
 ✅🔢📍 🕒:27s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/services/ringover.customer.test.ts
 ✅🔢📍 🕒:21s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/services/service-deployment.test.ts
@@ -76,10 +80,6 @@ Legend:
 
 ### Failing P1 (High Priority) Tests
 
-✅🔢📍 🕒:3s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/frontend/component-tests.test.js
-✅🔢📍 🕒:4s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/core/external-integration.update.test.js
-✅🔢📍 🕒:5s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/external-integration.update.test.js
-✅🔢📍 🕒:5s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/infrastructure/container-orchestrator-integration.test.js
 ❌🔢📍 🕒:4s 🧪:integration 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/integration/infrastructure/external-integration.core.test.js
 ❌🔢📍 🕒:4s 🧪:integration 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/integration/infrastructure/external-integration.update.test.js
 ❌🔢📍 🕒:5s 🧪:integration 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/integration/infrastructure/pipeline-integration.test.js
@@ -127,7 +127,7 @@ Legend:
 
 ### Failing P2 (Medium Priority) Tests
 
-❌🔢📍 🕒:7s 🧪:unit 📦:core 🔍:SyntaxError /opt/mExpress/packages/core/tests/p2/frontend/components/mobile/responsive-layout.test.tsx
+✅🔢📍 🕒:7s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/frontend/components/mobile/responsive-layout.test.tsx
 ❌🔢📍 🕒:5s 🧪:unit 📦:utils 🔍:Unknown /opt/mExpress/packages/utils/tests/p2/lib/monitoring/monitoring.system.test.ts
 ❌🔢📍 🕒:5s 🧪:unit 📦:utils 🔍:Unknown /opt/mExpress/packages/utils/tests/p2/utils/logger.test.ts
 ❌🔢📍 🕒:5s 🧪:unit 📦:unknown 🔍:Unknown /opt/mExpress/packages/vue-components/tests/p2/components/layout/DashboardLayout.test.ts
@@ -198,8 +198,8 @@ Legend:
 
 ```
 Total tests: 139
-Passing: 59 (42%)
-Failing: 66 (47%)
+Passing: 60 (43%)
+Failing: 65 (47%)
 Timed out: 14 (10%)
 Skipped: 0
 ```
