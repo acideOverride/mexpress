@@ -1,4 +1,4 @@
-import { setupErrorInterceptor } from '../error';
+import { setupErrorInterceptor } from './error';
 import axios, { 
   AxiosInstance, 
   AxiosResponse, 

@@ -1,24 +1,31 @@
+/**
+ * MetricsDisplay Component Test
+ * 
+ * Tests the MetricsDisplay component which shows metrics cards with loading, error and data states.
+ */
+
+import React from 'react';
 import { render, screen, act } from '@testing-library/react';
-import MetricsDisplay from '../MetricsDisplay';
+import MetricsDisplay from '../../../../../frontend/src/components/dashboard/MetricsDisplay';
+
+// Mock the mockApi import
+jest.mock('../../../../../frontend/src/services/mockApi', () => ({
+  mockApi: {
+    getMetrics: jest.fn()
+  }
+}));
+
+// Import the mocked module
+import { mockApi } from '../../../../../frontend/src/services/mockApi';
 
 describe('MetricsDisplay', () => {
-  const originalFetch = global.fetch;
-
-  beforeAll(() => {
-    global.fetch = jest.fn();
-  });
-
-  afterAll(() => {
-    global.fetch = originalFetch;
-  });
-
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('should render loading state initially', async () => {
-    // Mock fetch to return a pending promise that never resolves
-    (global.fetch as jest.Mock).mockImplementationOnce(() => 
+    // Mock the API to return a pending promise that never resolves
+    (mockApi.getMetrics as jest.Mock).mockImplementationOnce(() => 
       new Promise(() => {})
     );
     
@@ -36,8 +43,8 @@ describe('MetricsDisplay', () => {
   });
 
   it('should handle error state', async () => {
-    // Mock fetch to simulate error
-    (global.fetch as jest.Mock).mockImplementationOnce(() => 
+    // Mock the API to simulate error
+    (mockApi.getMetrics as jest.Mock).mockImplementationOnce(() => 
       Promise.reject(new Error('Failed to load metrics'))
     );
     
@@ -88,11 +95,9 @@ describe('MetricsDisplay', () => {
       }
     ];
 
-    (global.fetch as jest.Mock).mockImplementationOnce(() => 
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockMetrics)
-      })
+    // Mock the API to return the mock data
+    (mockApi.getMetrics as jest.Mock).mockImplementationOnce(() => 
+      Promise.resolve(mockMetrics)
     );
     
     await act(async () => {

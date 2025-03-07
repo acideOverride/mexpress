@@ -1,6 +1,6 @@
-import { setupInterceptors } from '../index';
+import { setupInterceptors } from './index';
 import axios, { AxiosInstance, AxiosError } from 'axios';
-import { localStorageMock } from '../../../setupTests';
+import { localStorageMock } from '../../../p0/setupTests';
 
 jest.mock('axios', () => ({
   create: jest.fn(() => ({

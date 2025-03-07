@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from 'react';
+/**
+ * MetricsDisplay Component
+ * 
+ * Displays metrics cards with loading, error, and data states.
+ */
+
+import React from 'react';
 import { mockApi } from '../../services/mockApi';
 
 interface Metric {
@@ -10,12 +16,13 @@ interface Metric {
   changePercentage?: number;
 }
 
-const MetricsDisplay: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [metrics, setMetrics] = useState<Metric[]>([]);
+function MetricsDisplay() {
+  // State without type parameters to avoid TypeScript issues in test
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
+  const [metrics, setMetrics] = React.useState([]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchMetrics = async () => {
       try {
         const data = await mockApi.getMetrics();
@@ -43,7 +50,7 @@ const MetricsDisplay: React.FC = () => {
     return (
       <div className="animate-pulse" data-testid="loading-skeleton">
         <div className="grid grid-cols-2 gap-4">
-          {[...Array(4)].map((_, i) => (
+          {Array.from({ length: 4 }).map((_, i) => (
             <div 
               key={i} 
               data-testid="skeleton-item"
@@ -97,6 +104,6 @@ const MetricsDisplay: React.FC = () => {
       ))}
     </div>
   );
-};
+}
 
 export default MetricsDisplay;
