@@ -68,9 +68,9 @@ Legend:
 ❌🔢📍📘 🕒:3s 🧪:unit 📦:api 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p1/api/interceptors/index.test.ts
 ❌🔢📍📘 🕒:3s 🧪:unit 📦:api 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p1/api/interceptors/error.interceptor.test.ts
 ❌🔢📍📘 🕒:3s 🧪:integration 📦:services 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/backend/p1/services/external-integration.project.test.ts
-❌🔢📍📘 🕒:2s 🧪:unit 📦:utils 🔍:Unknown /opt/mExpress/packages/utils/tests/p1/lib/resilience/retry-strategy.test.ts
-❌🔢📍📘 🕒:2s 🧪:unit 📦:utils 🔍:Unknown /opt/mExpress/packages/utils/tests/p1/lib/resilience/rate-limiter.resilience.test.ts
-❌🔢📍📘 🕒:3s 🧪:unit 📦:utils 🔍:Unknown /opt/mExpress/packages/utils/tests/p1/lib/resilience/circuit-breaker.test.ts
+✅🔢📍📘 🕒:2s 🧪:unit 📦:utils 🧩:~80% /opt/mExpress/packages/utils/tests/p1/lib/resilience/retry-strategy.test.ts
+✅🔢📍📘 🕒:2s 🧪:unit 📦:utils 🧩:~80% /opt/mExpress/packages/utils/tests/p1/lib/resilience/rate-limiter.resilience.test.ts
+✅🔢📍📘 🕒:3s 🧪:unit 📦:utils 🧩:~80% /opt/mExpress/packages/utils/tests/p1/lib/resilience/circuit-breaker.test.ts
 ✅🔢📍📘 🕒:24s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/services/sync.customer.test.ts
 ✅🔢📍📘 🕒:20s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/services/service-mesh.test.ts
 ✅🔢📍📘 🕒:14s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/services/service-deployment.test.ts
@@ -159,8 +159,8 @@ Legend:
 
 Total tests to run: 117
 Tests completed: 117/117 (100%)
-Passing: 66 (56%)
-Failing: 40 (34%)
+Passing: 69 (59%)
+Failing: 37 (31%)
 Timed out: 11 (10%)
 TypeScript files: 108 (92%)
 JavaScript files: 9 (8%)
@@ -182,8 +182,8 @@ JavaScript files: 9 (8%)
 
 ```
 Total tests run: 117
-Passing: 66 (56%)
-Failing: 40 (34%)
+Passing: 69 (59%)
+Failing: 37 (31%)
 Timed out: 11 (10%)
 Skipped: 0
 ```
@@ -211,6 +211,15 @@ TypeScript Migration Status:
 Current Status: ⭐⭐⭐⭐☆ Very Good (92% TypeScript)
 
 ## Recent Updates
+
+**2025-03-07 (19:15)**:
+- Fixed utils resilience library tests (P1)
+  - Fixed circuit-breaker.test.ts - Added proper async cleanup
+  - Fixed rate-limiter.resilience.test.ts - Improved resource management
+  - Fixed retry-strategy.test.ts - Updated TypeScript implementation
+  - Created utils-resilience-patch.sh for reliable test execution
+  - Improved test success rate from 56% to 59%
+  - Part of MEXP-2025-007-BE (Service Integration Architecture)
 
 **2025-03-07 (18:00)**:
 - Fixed CustomerRoutes.test.tsx in MontPC CRM frontend (P2)

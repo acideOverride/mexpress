@@ -2,6 +2,9 @@ import { CircuitBreaker, CircuitState } from '../../../../src/lib/resilience/cir
 import { RedisClient } from '../../../../src/lib/redis/__mocks__/client';
 import { jest } from '@jest/globals';
 
+// Ensure any pending operations are completed
+const waitForAsyncOperations = () => new Promise(resolve => setTimeout(resolve, 100));
+
 describe('CircuitBreaker', () => {
     let circuitBreaker: CircuitBreaker;
     let mockRedis: RedisClient;
@@ -15,9 +18,14 @@ describe('CircuitBreaker', () => {
         }, mockRedis);
     });
 
-    afterEach(() => {
+    afterEach(async () => {
         mockRedis._reset();
         jest.restoreAllMocks();
+        await waitForAsyncOperations();
+    });
+    
+    afterAll(async () => {
+        await waitForAsyncOperations();
     });
 
     describe('getState', () => {

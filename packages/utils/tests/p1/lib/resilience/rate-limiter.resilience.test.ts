@@ -2,6 +2,9 @@ import { RateLimiter } from '../../../../src/lib/resilience/rate-limiter';
 import { RedisClient } from '../../../../src/lib/redis/__mocks__/client';
 import { jest } from '@jest/globals';
 
+// Ensure any pending operations are completed
+const waitForAsyncOperations = () => new Promise(resolve => setTimeout(resolve, 100));
+
 describe('RateLimiter', () => {
     let rateLimiter: RateLimiter;
     let mockRedis: RedisClient;
@@ -11,9 +14,14 @@ describe('RateLimiter', () => {
         rateLimiter = new RateLimiter(mockRedis);
     });
 
-    afterEach(() => {
+    afterEach(async () => {
         mockRedis._reset();
         jest.restoreAllMocks();
+        await waitForAsyncOperations();
+    });
+    
+    afterAll(async () => {
+        await waitForAsyncOperations();
     });
 
     describe('isAllowed', () => {

@@ -1,13 +1,21 @@
-// @ts-ignore
-const { RetryStrategy } = require('./test-utils.js');
+import { RetryStrategy } from '../../../../src/lib/resilience/retry-strategy';
+import { jest } from '@jest/globals';
+
+// Ensure any pending operations are completed
+const waitForAsyncOperations = () => new Promise(resolve => setTimeout(resolve, 100));
 
 describe('RetryStrategy', () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });
 
-  afterEach(() => {
+  afterEach(async () => {
     jest.useRealTimers();
+    await waitForAsyncOperations();
+  });
+  
+  afterAll(async () => {
+    await waitForAsyncOperations();
   });
 
   it('should succeed on first attempt if operation succeeds', async () => {
