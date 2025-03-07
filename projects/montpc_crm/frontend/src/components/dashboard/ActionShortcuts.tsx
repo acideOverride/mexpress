@@ -2,9 +2,10 @@ import React from 'react';
 
 interface ActionShortcutsProps {
   onActionSelect: (action: string) => void;
+  'data-testid'?: string;
 }
 
-const ActionShortcuts: React.FC<ActionShortcutsProps> = ({ onActionSelect }) => {
+const ActionShortcuts = ({ onActionSelect, 'data-testid': testId }: ActionShortcutsProps) => {
   const actions = [
     { 
       id: 'new-call', 
@@ -29,7 +30,7 @@ const ActionShortcuts: React.FC<ActionShortcutsProps> = ({ onActionSelect }) => 
   return (
     <div 
       className="flex space-x-4" 
-      data-testid="action-shortcuts"
+      data-testid={testId || "action-shortcuts"}
     >
       {actions.map(action => (
         <button
