@@ -1,6 +1,13 @@
-import React, { useState, useEffect } from 'react';
+/**
+ * RecentCalls Component
+ * 
+ * Displays a list of recent calls with loading, error, and data states.
+ */
+
+import React from 'react';
 import { mockApi } from '../../services/mockApi';
 
+// Define the call interface
 interface Call {
   id: string;
   callerName?: string;
@@ -10,12 +17,13 @@ interface Call {
   status: 'completed' | 'missed' | 'ongoing';
 }
 
-const RecentCalls: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [calls, setCalls] = useState<Call[]>([]);
+// RecentCalls component
+function RecentCalls() {
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
+  const [calls, setCalls] = React.useState([]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchCalls = async () => {
       try {
         const data = await mockApi.getRecentCalls();
@@ -42,7 +50,7 @@ const RecentCalls: React.FC = () => {
   if (loading) {
     return (
       <div className="animate-pulse" data-testid="loading-skeleton">
-        {[...Array(5)].map((_, i) => (
+        {Array.from({ length: 5 }).map((_, i) => (
           <div 
             key={i} 
             data-testid="skeleton-item"
@@ -94,6 +102,6 @@ const RecentCalls: React.FC = () => {
       ))}
     </ul>
   );
-};
+}
 
 export default RecentCalls;
