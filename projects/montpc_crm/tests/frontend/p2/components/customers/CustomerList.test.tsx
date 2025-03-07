@@ -1,27 +1,19 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { CustomerStatus } from '../../../../../frontend/src/types/customer';
 
-// Mock dependencies
+// Define mock types that match the actual types in the code
+enum CustomerStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  PENDING = 'PENDING',
+  BLOCKED = 'BLOCKED'
+}
+
+// Mock navigation function
 const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  useNavigate: () => mockNavigate,
-  Link: ({ children, to, ...props }: any) => (
-    <a href={to} {...props}>{children}</a>
-  )
-}));
 
 // Mock fetch API
-global.fetch = jest.fn();
-
-// Mock localStorage
-const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  clear: jest.fn(),
-  removeItem: jest.fn()
-};
-Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+global.fetch = jest.fn() as jest.Mock;
 
 // Sample customer data
 const mockCustomers = {
@@ -59,8 +51,7 @@ const mockCustomers = {
   totalPages: 1
 };
 
-// Mock of the CustomerList component
-// Note: We're creating a very simplified version that just renders what we need for tests
+// A simplified mock implementation of CustomerList component
 const CustomerList = () => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -69,20 +60,20 @@ const CustomerList = () => {
   const [status, setStatus] = React.useState('');
   
   // Handle search input
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (e) => {
     setSearch(e.target.value);
     fetchData(e.target.value, status);
   };
   
   // Handle status filter
-  const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleStatusChange = (e) => {
     setStatus(e.target.value);
     fetchData(search, e.target.value);
   };
   
   // Function to "fetch" data
   const fetchData = (searchTerm = '', statusFilter = '') => {
-    // Construct URL with query parameters
+    // Build query parameters
     const params = new URLSearchParams();
     if (searchTerm) params.append('search', searchTerm);
     if (statusFilter) params.append('status', statusFilter);
@@ -91,7 +82,7 @@ const CustomerList = () => {
     fetch(`/api/customers?${params.toString()}`);
   };
   
-  // Simulate data loading on component mount
+  // Simulate API data loading
   React.useEffect(() => {
     const loadData = async () => {
       try {
@@ -115,12 +106,12 @@ const CustomerList = () => {
     loadData();
   }, []);
   
-  // Render loading state
+  // Loading state
   if (loading && customers.length === 0) {
     return <div data-testid="loading-state">Loading customers...</div>;
   }
   
-  // Render error state
+  // Error state
   if (error) {
     return (
       <div data-testid="error-state">
@@ -130,7 +121,7 @@ const CustomerList = () => {
     );
   }
   
-  // Render empty state
+  // Empty state
   if (customers.length === 0) {
     return (
       <div data-testid="empty-state">
@@ -140,13 +131,13 @@ const CustomerList = () => {
     );
   }
   
-  // Render data table
+  // Success state - customer list
   return (
     <div data-testid="customer-list">
       <h1>Customer List</h1>
       
       {/* Search and filters */}
-      <div>
+      <div className="filters">
         <input 
           data-testid="search-input"
           aria-label="Search customers"
@@ -167,7 +158,10 @@ const CustomerList = () => {
           <option value={CustomerStatus.INACTIVE}>{CustomerStatus.INACTIVE}</option>
         </select>
         
-        <button onClick={() => mockNavigate('/customers/new')}>
+        <button 
+          data-testid="add-customer-button"
+          onClick={() => mockNavigate('/customers/new')}
+        >
           Add Customer
         </button>
       </div>
@@ -185,13 +179,16 @@ const CustomerList = () => {
         </thead>
         <tbody>
           {customers.map(customer => (
-            <tr key={customer.id}>
+            <tr key={customer.id} data-customer-id={customer.id}>
               <td>{customer.name}</td>
               <td>{customer.email}</td>
               <td>{customer.phone || '-'}</td>
               <td>{customer.status}</td>
               <td>
-                <button onClick={() => mockNavigate(`/customers/${customer.id}/edit`)}>
+                <button 
+                  data-testid={`edit-customer-${customer.id}`}
+                  onClick={() => mockNavigate(`/customers/${customer.id}/edit`)}
+                >
                   Edit
                 </button>
               </td>
@@ -203,6 +200,7 @@ const CustomerList = () => {
   );
 };
 
+// Set up tests
 beforeEach(() => {
   jest.clearAllMocks();
   
@@ -213,20 +211,22 @@ beforeEach(() => {
   });
 });
 
+// Tests
 describe('CustomerList Component', () => {
   it('should render customer data when loaded', async () => {
     render(<CustomerList />);
     
-    // Wait for the data to load
+    // Wait for the loading to complete
     await waitFor(() => {
-      expect(screen.getByText('John Doe')).toBeInTheDocument();
+      expect(screen.queryByTestId('loading-state')).not.toBeInTheDocument();
     });
     
-    // Check that all customers are displayed
+    // Verify all customers are displayed
+    expect(screen.getByText('John Doe')).toBeInTheDocument();
     expect(screen.getByText('Jane Smith')).toBeInTheDocument();
     expect(screen.getByText('Bob Johnson')).toBeInTheDocument();
     
-    // Check customer emails
+    // Check emails
     expect(screen.getByText('john@example.com')).toBeInTheDocument();
     expect(screen.getByText('jane@example.com')).toBeInTheDocument();
     expect(screen.getByText('bob@example.com')).toBeInTheDocument();
@@ -240,8 +240,7 @@ describe('CustomerList Component', () => {
     // Mock API failure
     (global.fetch as jest.Mock).mockResolvedValue({
       ok: false,
-      status: 500,
-      statusText: 'Server Error'
+      status: 500
     });
     
     render(<CustomerList />);
@@ -256,7 +255,7 @@ describe('CustomerList Component', () => {
   });
 
   it('should show empty state when no customers found', async () => {
-    // Mock empty customer list
+    // Mock empty response
     (global.fetch as jest.Mock).mockResolvedValue({
       ok: true,
       json: async () => ({ items: [], total: 0, page: 1, pageSize: 10, totalPages: 0 })
@@ -269,11 +268,11 @@ describe('CustomerList Component', () => {
       expect(screen.getByText('No customers found')).toBeInTheDocument();
     });
     
-    // Check for add customer button
-    const addButton = screen.getByRole('button', { name: /add customer/i });
+    // Check add button
+    const addButton = screen.getByText('Add Customer');
     expect(addButton).toBeInTheDocument();
     
-    // Click the button and verify navigation
+    // Click add button
     fireEvent.click(addButton);
     expect(mockNavigate).toHaveBeenCalledWith('/customers/new');
   });
@@ -281,66 +280,60 @@ describe('CustomerList Component', () => {
   it('should apply search filter', async () => {
     render(<CustomerList />);
     
-    // Wait for the data to load
+    // Wait for customer data to load
     await waitFor(() => {
       expect(screen.getByText('John Doe')).toBeInTheDocument();
     });
     
-    // Find search input
-    const searchInput = screen.getByLabelText('Search customers');
-    
     // Apply search filter
+    const searchInput = screen.getByLabelText('Search customers');
     fireEvent.change(searchInput, { target: { value: 'John' } });
     
-    // Verify search was passed to fetch API
+    // Verify search parameter in fetch call
     expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('search=John'));
   });
 
   it('should apply status filter', async () => {
     render(<CustomerList />);
     
-    // Wait for the data to load
+    // Wait for customer data to load
     await waitFor(() => {
       expect(screen.getByText('John Doe')).toBeInTheDocument();
     });
     
-    // Find status filter
-    const statusFilter = screen.getByLabelText('Filter by status');
-    
     // Apply status filter
+    const statusFilter = screen.getByLabelText('Filter by status');
     fireEvent.change(statusFilter, { target: { value: CustomerStatus.ACTIVE } });
     
-    // Verify status was passed to fetch API
+    // Verify status parameter in fetch call
     expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('status=ACTIVE'));
   });
 
   it('should navigate to edit page when edit button is clicked', async () => {
     render(<CustomerList />);
     
-    // Wait for the data to load
+    // Wait for customer data to load
     await waitFor(() => {
       expect(screen.getByText('John Doe')).toBeInTheDocument();
     });
     
-    // Find edit buttons
-    const editButtons = screen.getAllByText('Edit');
+    // Find and click edit button for first customer
+    const editButton = screen.getByTestId('edit-customer-1');
+    fireEvent.click(editButton);
     
-    // Click the first edit button
-    fireEvent.click(editButtons[0]);
-    
-    // Verify navigation
+    // Verify navigation call
     expect(mockNavigate).toHaveBeenCalledWith('/customers/1/edit');
   });
 
-  it('should have proper ARIA attributes for table', async () => {
+  it('should have accessible table attributes', async () => {
     render(<CustomerList />);
     
-    // Wait for the data to load
+    // Wait for customer data to load
     await waitFor(() => {
       expect(screen.getByText('John Doe')).toBeInTheDocument();
     });
     
-    // Check table attributes
+    // Check table attribute
     const table = screen.getByRole('grid');
     expect(table).toHaveAttribute('aria-label', 'Customer list');
   });

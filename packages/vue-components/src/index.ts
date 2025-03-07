@@ -4,6 +4,8 @@ import Input from './components/ui/Input.vue';
 import Card from './components/ui/Card.vue';
 import Checkbox from './components/ui/Checkbox.vue';
 import Select from './components/ui/Select.vue';
+import Table from './components/ui/Table.vue';
+import TableExample from './components/ui/TableExample.vue';
 import Toggle from './components/ui/Toggle.vue';
 
 // Layout Components
@@ -47,6 +49,8 @@ export {
   Card,
   Checkbox,
   Select,
+  Table,
+  TableExample,
   Toggle,
   
   // Layout Components
@@ -87,6 +91,8 @@ export default {
     app.component('MCard', Card);
     app.component('MCheckbox', Checkbox);
     app.component('MSelect', Select);
+    app.component('MTable', Table);
+    app.component('MTableExample', TableExample);
     app.component('MToggle', Toggle);
     
     // Layout Components

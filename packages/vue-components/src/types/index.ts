@@ -100,5 +100,52 @@ export interface SidebarItem {
   children?: SidebarItem[];
 }
 
+// Table types
+export interface TableColumn {
+  key: string;
+  label: string;
+  sortable?: boolean;
+  filterable?: boolean;
+  align?: 'left' | 'center' | 'right';
+  width?: string;
+  formatter?: (value: any, row: any) => string;
+  cellClass?: string | ((value: any, row: any) => string);
+}
+
+export interface TableProps {
+  columns: TableColumn[];
+  data: any[];
+  loading?: boolean;
+  striped?: boolean;
+  bordered?: boolean;
+  hoverable?: boolean;
+  caption?: string;
+  sortBy?: string;
+  sortDesc?: boolean;
+  pageSize?: number;
+  currentPage?: number;
+  totalRows?: number;
+  selectable?: boolean;
+  selectedRows?: any[];
+  emptyText?: string;
+  responsive?: boolean;
+  dense?: boolean;
+}
+
+export interface TableEvent {
+  sort: {
+    column: TableColumn;
+    sortBy: string;
+    sortDesc: boolean;
+  };
+  pagination: {
+    currentPage: number;
+    pageSize: number;
+  };
+  selection: {
+    selectedRows: any[];
+  };
+}
+
 // Re-export visualization types
 export * from './visualization';
