@@ -1,4 +1,4 @@
-import { rest } from 'msw';
+import { rest } from '../../../setupTests';
 import { server } from '../../../setupTests';
 import { customersService } from '../customers.service';
 import { Customer, CreateCustomerDto, UpdateCustomerDto } from '../../types';
