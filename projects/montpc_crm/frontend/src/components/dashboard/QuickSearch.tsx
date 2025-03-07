@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 
 interface QuickSearchProps {
   onSearch: (query: string) => void;
 }
 
-const QuickSearch: React.FC<QuickSearchProps> = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
+function QuickSearch({ onSearch }: QuickSearchProps) {
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [isSearching, setIsSearching] = React.useState(false);
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (debouncedSearchTerm) {
       setIsSearching(true);
       onSearch(debouncedSearchTerm);
