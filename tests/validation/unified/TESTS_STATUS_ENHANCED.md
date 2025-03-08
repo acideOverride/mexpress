@@ -90,7 +90,7 @@ Legend:
 ✅🔢📍📘 🕒:19s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/infrastructure/container-orchestrator-integration.test.ts | [log](/tests/results/logs/packages/core/tests/p1/integration/infrastructure/container-orchestrator-integration.test_20250308_035018.log)
 ❌🔢📍📘 🕒:19s 🧪:integration 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/integration/external-integration.update.test.ts | [log](/tests/results/logs/packages/core/tests/p1/integration/external-integration.update.test_20250308_034959.log)
 ✅🔢📍📘 🕒:17s 🧪:integration 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/integration/core/external-integration.update.test.ts | [log](/tests/results/logs/packages/core/tests/p1/integration/core/external-integration.update.test_20250308_034942.log)
-❌🔢📍📝 🕒:3s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/infrastructure/kubernetes-config.test.js | [log](/tests/results/logs/packages/core/tests/p1/infrastructure/kubernetes-config.test_20250308_034939.log)
+✅🔢📍📘 🕒:13s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/infrastructure/kubernetes-config.test.ts | [log](/tests/results/logs/packages/core/tests/p1/infrastructure/kubernetes-config.test_20250308_045939.log)
 ✅🔢📍📘 🕒:15s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/frontend/component-tests.test.ts | [log](/tests/results/logs/packages/core/tests/p1/frontend/component-tests.test_20250308_034924.log)
 ✅🔢📍📘 🕒:18s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/core/queue-persistence.test.ts | [log](/tests/results/logs/packages/core/tests/p1/core/queue-persistence.test_20250308_034906.log)
 ❌🔢📍📘 🕒:18s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/core/pipeline.test.ts | [log](/tests/results/logs/packages/core/tests/p1/core/pipeline.test_20250308_034848.log)
@@ -304,23 +304,23 @@ JavaScript files: 8 (7%)
 
 ```
 Total tests run: 121
-Passing: 77 (64%)
-Failing: 44 (36%)
+Passing: 78 (64.5%)
+Failing: 43 (35.5%)
 Timed out: 0 (0%)
 Skipped: 0
-Removed: 2 (due to migration to TypeScript)
+Removed: 3 (due to migration to TypeScript)
 ```
 
 ## Language Breakdown
 
 ```
-JavaScript (.js): 8 ⚠️
-TypeScript (.ts): 98 ✓
+JavaScript (.js): 7 ⚠️
+TypeScript (.ts): 99 ✓
 React TypeScript (.tsx): 15 ✓
 React JavaScript (.jsx): 0 ⚠️
-Duplicate Tests: 3 (down from 5)
+Duplicate Tests: 2 (down from 5)
 
-TypeScript Adoption: 93% (93% TypeScript, 7% JavaScript)
+TypeScript Adoption: 94% (94% TypeScript, 6% JavaScript)
 Migration Target: 100% TypeScript
 ```
 
@@ -334,6 +334,16 @@ TypeScript Migration Status:
 Current Status: ⭐⭐⭐⭐☆ Very Good
 
 ## Recent Updates
+
+**2025-03-08** (4th update):
+- Fixed P1 infrastructure test:
+  - Fixed `/opt/mExpress/packages/core/tests/p1/infrastructure/kubernetes-config.test.ts` - Removed JavaScript version and resolved mock conflicts
+  - Removed duplicate JavaScript mocks in `__mocks__` directory to avoid Jest conflicts
+  - Verified TypeScript implementation is working correctly
+- Improved overall pass rate from 64% to 64.5%
+- Improved TypeScript adoption from 93% to 94%
+- Reduced duplicate test count from 3 to 2
+- Related BRQ: MEXP-2025-024-INFRA MVP Readiness
 
 **2025-03-08** (3rd update):
 - Fixed all P1 resilience module tests:
