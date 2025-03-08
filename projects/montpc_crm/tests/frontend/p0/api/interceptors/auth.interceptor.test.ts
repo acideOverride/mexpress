@@ -1,6 +1,22 @@
 import axios from 'axios';
 import { setupAuthInterceptor } from '../../../../../frontend/src/api/interceptors/auth';
 
+// Set up the test environment for browser APIs
+beforeAll(() => {
+  // Mock localStorage if it doesn't exist in test environment
+  if (!global.localStorage) {
+    Object.defineProperty(global, 'localStorage', {
+      value: {
+        getItem: jest.fn(() => null),
+        setItem: jest.fn(),
+        removeItem: jest.fn(),
+        clear: jest.fn()
+      },
+      writable: true
+    });
+  }
+});
+
 // Simple mock implementation
 jest.mock('axios', () => ({
   create: jest.fn(() => ({
@@ -14,11 +30,6 @@ jest.mock('axios', () => ({
     }
   }))
 }));
-
-// Mock localStorage
-jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => null);
-jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {});
-jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
 
 describe('Auth Interceptor', () => {
   beforeEach(() => {

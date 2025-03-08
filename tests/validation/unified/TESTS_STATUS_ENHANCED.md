@@ -29,8 +29,8 @@ Legend:
 ❌🔢📍📗 🕒:1s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/core/CustomerDetail.test.tsx | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p0/core/CustomerDetail.test_20250308_034732.log)
 ❌🔢📍📗 🕒:2s 🧪:unit 📦:frontend 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/components/dashboard.test.tsx | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p0/components/dashboard.test_20250308_034730.log)
 ❌🔢📍📗 🕒:1s 🧪:unit 📦:auth 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/auth/login.ui.test.tsx | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p0/auth/login.ui.test_20250308_034729.log)
-❌🔢📍📘 🕒:2s 🧪:unit 📦:auth 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test_20250308_034727.log)
-❌🔢📍📘 🕒:2s 🧪:unit 📦:auth 🔍:Unknown /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test_20250308_034725.log)
+✅🔢📍📘 🕒:20s 🧪:unit 📦:auth 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test_20250308_034727.log)
+✅🔢📍📘 🕒:16s 🧪:unit 📦:auth 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test_20250308_034725.log)
 ✅🔢📍📘 🕒:5s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/validation/customerValidation.test.ts | [log](/tests/results/logs/packages/core/tests/p0/validation/customerValidation.test_20250308_034720.log)
 ✅🔢📍📘 🕒:6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/sync.service.test.ts | [log](/tests/results/logs/packages/core/tests/p0/sync.service.test_20250308_034714.log)
 ✅🔢📍📘 🕒:6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/services/ringover.service.test.ts | [log](/tests/results/logs/packages/core/tests/p0/services/ringover.service.test_20250308_034708.log)
@@ -42,7 +42,7 @@ Legend:
 ✅🔢📍📘 🕒:6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/services/catalog-event.service.test.ts | [log](/tests/results/logs/packages/core/tests/p0/services/catalog-event.service.test_20250308_034627.log)
 ✅🔢📍📘 🕒:5s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/infrastructure/kubernetes-config.test.ts | [log](/tests/results/logs/packages/core/tests/p0/infrastructure/kubernetes-config.test_20250308_034622.log)
 ✅🔢📍📘👯 🕒:6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/value-to-string.test.ts | [log](/tests/results/logs/packages/core/tests/p0/core/value-to-string.test_20250308_034615.log)
-🚫 REMOVED - Migrated to TypeScript - /opt/mExpress/packages/core/tests/p0/core/value-to-string.test.js
+✅ REMOVED - Migrated to TypeScript - /opt/mExpress/packages/core/tests/p0/core/value-to-string.test.js
 ✅🔢📍📘 🕒:6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/transaction-rollback.test.ts | [log](/tests/results/logs/packages/core/tests/p0/core/transaction-rollback.test_20250308_034602.log)
 ✅🔢📍📘 🕒:5s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/time-provider.test.ts | [log](/tests/results/logs/packages/core/tests/p0/core/time-provider.test_20250308_034557.log)
 ✅🔢📍📘 🕒:6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/service-discovery.test.ts | [log](/tests/results/logs/packages/core/tests/p0/core/service-discovery.test_20250308_034551.log)
@@ -55,7 +55,7 @@ Legend:
 ✅🔢📍📘 🕒:7s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/istio-client.additional.test.ts | [log](/tests/results/logs/packages/core/tests/p0/core/istio-client.additional.test_20250308_034505.log)
 ✅🔢📍📘 🕒:6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/git-workflow.test.ts | [log](/tests/results/logs/packages/core/tests/p0/core/git-workflow.test_20250308_034459.log)
 ✅🔢📍📘👯 🕒:7s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/every.test.ts | [log](/tests/results/logs/packages/core/tests/p0/core/every.test_20250308_034452.log)
-🚫 REMOVED - Migrated to TypeScript - /opt/mExpress/packages/core/tests/p0/core/every.test.js
+✅ REMOVED - Migrated to TypeScript - /opt/mExpress/packages/core/tests/p0/core/every.test.js
 ✅🔢📍📘 🕒:6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/event-handler.test.ts | [log](/tests/results/logs/packages/core/tests/p0/core/event-handler.test_20250308_034440.log)
 ✅🔢📍📘 🕒:6s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p0/core/customer-management.test.ts | [log](/tests/results/logs/packages/core/tests/p0/core/customer-management.test_20250308_034434.log)
 ✅🔢📍📘 🕒:12s 🧪:unit 📦:api 🧩:~70% /opt/mExpress/packages/core/tests/p0/api/connection-timeout.test.ts | [log](/tests/results/logs/packages/core/tests/p0/api/connection-timeout.test_20250308_034422.log)
@@ -291,8 +291,8 @@ Legend:
 
 Total tests to run: 121
 Tests completed: 121/121 (100%)
-Passing: 72
-Failing: 49
+Passing: 74
+Failing: 47
 Timed out: 0
 TypeScript files: 113 (93%)
 JavaScript files: 8 (7%)
@@ -304,8 +304,8 @@ JavaScript files: 8 (7%)
 
 ```
 Total tests run: 121
-Passing: 72 (59%)
-Failing: 49 (40%)
+Passing: 74 (61%)
+Failing: 47 (39%)
 Timed out: 0 (0%)
 Skipped: 0
 Removed: 2 (due to migration to TypeScript)
@@ -336,6 +336,9 @@ Current Status: ⭐⭐⭐⭐☆ Very Good
 ## Recent Updates
 
 **2025-03-08** (2nd update):
+- Fixed auth interceptor and auth service tests in P0:
+  - Fixed `/opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/interceptors/auth.interceptor.test.ts` - Added localStorage mock
+  - Fixed `/opt/mExpress/projects/montpc_crm/tests/frontend/p0/api/services/auth.service.test.ts` - Passed without modifications
 - Removed JavaScript versions of tests that have TypeScript equivalents:
   - Removed `/opt/mExpress/packages/core/tests/p0/core/every.test.js`
   - Removed `/opt/mExpress/packages/core/tests/p0/core/value-to-string.test.js`
@@ -343,6 +346,7 @@ Current Status: ⭐⭐⭐⭐☆ Very Good
   - Increased from 91% to 93%
   - Reduced duplicate test count from 5 to 3
   - Removed failing JavaScript tests that were already migrated to TypeScript
+- Improved overall pass rate from 59% to 61%
 
 **2025-03-08** (1st update):
 - Added real-time test status reporting
