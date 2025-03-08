@@ -20,7 +20,8 @@ describe('RetryStrategy', () => {
 
   it('should succeed on first attempt if operation succeeds', async () => {
     const strategy = new RetryStrategy();
-    const operation = jest.fn().mockResolvedValue('success');
+    // Add proper typing to the mock function
+    const operation = jest.fn<() => Promise<string>>().mockResolvedValue('success');
 
     const result = await strategy.execute(operation);
 
@@ -36,7 +37,8 @@ describe('RetryStrategy', () => {
       jitter: false
     });
 
-    const operation = jest.fn()
+    // Add proper typing to the mock function
+    const operation = jest.fn<() => Promise<string>>()
       .mockRejectedValueOnce(new Error('Attempt 1'))
       .mockRejectedValueOnce(new Error('Attempt 2'))
       .mockResolvedValueOnce('success');
@@ -67,7 +69,8 @@ describe('RetryStrategy', () => {
       jitter: false
     });
 
-    const operation = jest.fn()
+    // Add proper typing to the mock function
+    const operation = jest.fn<() => Promise<string>>()
       .mockRejectedValueOnce(new Error('Attempt 1'))
       .mockRejectedValueOnce(new Error('Attempt 2'))
       .mockResolvedValueOnce('success');
@@ -99,7 +102,8 @@ describe('RetryStrategy', () => {
       jitter: false
     });
 
-    const operation = jest.fn()
+    // Add proper typing to the mock function
+    const operation = jest.fn<() => Promise<string>>()
       .mockRejectedValueOnce(new Error('Attempt 1'))
       .mockRejectedValueOnce(new Error('Attempt 2'))
       .mockResolvedValueOnce('success');
