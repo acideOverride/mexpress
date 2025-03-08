@@ -93,7 +93,7 @@ Legend:
 ✅🔢📍📘 🕒:13s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/infrastructure/kubernetes-config.test.ts | [log](/tests/results/logs/packages/core/tests/p1/infrastructure/kubernetes-config.test_20250308_045939.log)
 ✅🔢📍📘 🕒:15s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/frontend/component-tests.test.ts | [log](/tests/results/logs/packages/core/tests/p1/frontend/component-tests.test_20250308_034924.log)
 ✅🔢📍📘 🕒:18s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/core/queue-persistence.test.ts | [log](/tests/results/logs/packages/core/tests/p1/core/queue-persistence.test_20250308_034906.log)
-❌🔢📍📘 🕒:18s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p1/core/pipeline.test.ts | [log](/tests/results/logs/packages/core/tests/p1/core/pipeline.test_20250308_034848.log)
+✅🔢📍📘 🕒:11s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/core/pipeline.test.ts | [log](/tests/results/logs/packages/core/tests/p1/core/pipeline.test_20250308_055848.log)
 ✅🔢📍📘 🕒:21s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p1/core/concurrent-modification.test.ts | [log](/tests/results/logs/packages/core/tests/p1/core/concurrent-modification.test_20250308_034827.log)
 ✅🔢📍📘 🕒:16s 🧪:unit 📦:auth 🧩:~70% /opt/mExpress/packages/core/tests/p1/auth/token-refresh.test.ts | [log](/tests/results/logs/packages/core/tests/p1/auth/token-refresh.test_20250308_034811.log)
 ✅🔢📍📘 🕒:16s 🧪:unit 📦:auth 🧩:~70% /opt/mExpress/packages/core/tests/p1/auth/permissions.test.ts | [log](/tests/results/logs/packages/core/tests/p1/auth/permissions.test_20250308_034755.log)
@@ -304,8 +304,8 @@ JavaScript files: 8 (7%)
 
 ```
 Total tests run: 121
-Passing: 78 (64.5%)
-Failing: 43 (35.5%)
+Passing: 79 (65.3%)
+Failing: 42 (34.7%)
 Timed out: 0 (0%)
 Skipped: 0
 Removed: 3 (due to migration to TypeScript)
@@ -334,6 +334,14 @@ TypeScript Migration Status:
 Current Status: ⭐⭐⭐⭐☆ Very Good
 
 ## Recent Updates
+
+**2025-03-08** (5th update):
+- Fixed P1 core pipeline test:
+  - Fixed `/opt/mExpress/packages/core/tests/p1/core/pipeline.test.ts` - Implemented required methods for test compatibility
+  - Aligned implementation with test expectations for stages, build cache, and deployment rollbacks
+  - Added proper TypeScript interfaces and async implementation
+- Improved overall pass rate from 64.5% to 65.3%
+- Related BRQ: MEXP-2025-007-BE Service Integration Architecture
 
 **2025-03-08** (4th update):
 - Fixed P1 infrastructure test:

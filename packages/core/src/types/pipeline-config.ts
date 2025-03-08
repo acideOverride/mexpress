@@ -158,6 +158,12 @@ export interface PipelineConfigOptions {
     };
   };
   labels?: Record<string, string>;
+  infrastructure?: {
+    orchestrator?: any;
+    serviceMesh?: any;
+    runtime?: any;
+    deployment?: any;
+  };
 }
 
 export interface PipelineValidationResult {
