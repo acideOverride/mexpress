@@ -125,7 +125,7 @@ Legend:
 ✅🔢📍📘 🕒:8s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/customer.unit.test.ts
 ✅🔢📍📘 🕒:4s 🧪:unit 📦:core 🧩:~95% /opt/mExpress/packages/core/tests/p2/core/copy-prototype-methods.test.ts
 ✅🔢📍📘 🕒:4s 🧪:unit 📦:core 🧩:~90% /opt/mExpress/packages/core/tests/p2/core/class-name.test.ts
-✅🔢📍📝🔄 🕒:5s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/called-in-order.test.js
+✅🔢📍📘 🕒:5s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/called-in-order.test.ts
 ✅🔢📍📘 🕒:9s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/bulk-operations.test.ts
 ✅🔢📍📘 🕒:11s 🧪:unit 📦:auth 🧩:~70% /opt/mExpress/packages/core/tests/p2/auth/multi-login.test.ts
 ✅🔢📍📘 🕒:12s 🧪:unit 📦:api 🧩:~70% /opt/mExpress/packages/core/tests/p2/api/edge-cases.test.ts
@@ -160,8 +160,8 @@ Tests completed: 117/117 (100%)
 Passing: 114 (97.4%)
 Failing: 1 (0.9%)
 Timed out: 2 (1.7%)
-TypeScript files: 110 (94%)
-JavaScript files: 7 (6%)
+TypeScript files: 111 (94.9%)
+JavaScript files: 6 (5.1%)
 
 ## Test Run Complete - Summary
 
@@ -197,13 +197,13 @@ Skipped: 0
 ## Language Breakdown
 
 ```
-JavaScript (.js): 3 ⚠️ (down from 4)
-TypeScript (.ts): 95 ✓ (up from 94)
+JavaScript (.js): 2 ⚠️ (down from 3)
+TypeScript (.ts): 96 ✓ (up from 95)
 React TypeScript (.tsx): 19 ✓
 React JavaScript (.jsx): 0 ⚠️
 Duplicate Tests: 0 (removed all JavaScript duplicates)
 
-TypeScript Adoption: 96% (96% TypeScript, 4% JavaScript)
+TypeScript Adoption: 97.4% (97.4% TypeScript, 2.6% JavaScript)
 Migration Target: 100% TypeScript
 ```
 
@@ -214,9 +214,22 @@ TypeScript Migration Status:
 - ⭐⭐☆☆☆ Fair: 60-74% TypeScript
 - ⭐☆☆☆☆ Poor: <60% TypeScript
 
-Current Status: ⭐⭐⭐⭐⭐ Excellent (96% TypeScript) - Achieved Excellent Rating!
+Current Status: ⭐⭐⭐⭐⭐ Excellent (97.4% TypeScript) - Achieved Excellent Rating!
 
 ## Recent Updates
+
+**2025-03-15 (21:30)**:
+- Migrated P2 called-in-order.test.js to TypeScript
+  - Converted calledInOrder utility to TypeScript with proper interfaces for Spy objects
+  - Implemented strong typing for all function parameters and return values
+  - Created standalone module with both default and named exports for flexibility
+  - Added comprehensive TypeScript interfaces for Spy and SpyCall objects
+  - Improved type safety with proper function overloading and array type handling
+  - Created test runner script that verifies test execution and cleans up JS files
+  - Implemented test result reporting with JSON output
+  - Removed JavaScript file after verifying TypeScript version works
+  - Increased TypeScript adoption to 97.4%
+  - BRQ: MEXP-2025-024-INFRA (MVP Readiness)
 
 **2025-03-15 (21:00)**:
 - Migrated P2 class-name.test.js to TypeScript
