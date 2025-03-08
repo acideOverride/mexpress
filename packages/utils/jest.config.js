@@ -1,19 +1,26 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
-module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
+// Import the base configuration preset and utilities
+const baseConfig = require('../../jest.preset');
+const jestUtils = require('../../jest.utils');
+
+// Create the base package config with utils-specific settings
+const packageConfig = {
+  ...baseConfig,
+  displayName: 'utils',
   roots: ['<rootDir>/src', '<rootDir>/tests'],
+  
+  // Module resolution - package-specific paths
+  moduleNameMapper: {
+    '^@mexpress/utils/(.*)$': '<rootDir>/src/$1'
+  },
+  
+  // TypeScript configuration - with local tsconfig reference
   transform: {
     '^.+\\.tsx?$': ['ts-jest', {
       tsconfig: './tsconfig.json'
     }]
-  },
-  testMatch: [
-    '<rootDir>/tests/**/*.test.ts',
-    '<rootDir>/src/**/*.test.ts'
-  ],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  moduleNameMapper: {
-    '^@mexpress/utils/(.*)$': '<rootDir>/src/$1'
   }
 };
+
+// Use dynamic configuration generation based on environment variables
+module.exports = jestUtils.createDynamicConfig('utils', packageConfig);
