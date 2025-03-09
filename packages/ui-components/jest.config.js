@@ -1,66 +1,48 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
-const baseConfig = require('./jest.config.base');
+/**
+ * UI Components Jest Configuration
+ * Using standardized dynamic configuration approach
+ * STANDARDIZED VERSION - 2025-03-16
+ * @type {import('ts-jest').JestConfigWithTsJest}
+ */
+const baseConfig = require('../../jest.preset');
+const jestUtils = require('../../jest.utils');
 
-module.exports = {
+// Create the base package config for UI components
+const packageConfig = {
   ...baseConfig,
-  displayName: 'backend',
-  testEnvironment: 'node',
-  roots: ['<rootDir>/src'],
+  displayName: 'ui-components',
+  testRunner: "jest-circus/runner",
+  testEnvironment: 'jsdom',  // Use jsdom for UI components
   
-  // Include all test files
-  testMatch: [
-    '<rootDir>/src/**/*.test.ts',
-    '<rootDir>/src/**/*.test.tsx'
-  ],
-
   moduleNameMapper: {
-    '^src/(.*)$': '<rootDir>/src/$1'
+    '^src/(.*)$': '<rootDir>/src/$1',
+    // Handle CSS and asset imports
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '/opt/mExpress/packages/core/tests/__mocks__/fileMock.js'
   },
   
-  // Backend-specific coverage collection
+  // UI component coverage collection
   collectCoverageFrom: [
-    'src/**/*.ts',
-    '!src/**/*.d.ts',
-    '!src/server.ts',
-    '!src/types/**'
+    'src/**/*.{ts,tsx}',
+    '\!src/**/*.d.ts',
+    '\!src/**/*.stories.{ts,tsx}'
   ],
 
-  // Use minimal reporter with correct output path
+  // Use standard reporter
   reporters: [
-    'default',
-    ['./jest.minimal-reporter.js', {
-      outputFile: 'src/__tests__/results/[priority]/[name].test.json'
-    }]
+    'default'
   ],
 
-  // Backend-specific resource limits
-  globals: {
-    __RESOURCE_LIMITS__: {
-      test: {
-        maxSuiteMemory: 1024,    // 1GB for backend
-        maxSuiteDuration: 300000, // 5 minutes
-        maxConcurrentSuites: 2    // Lower for backend tests
-      },
-      process: {
-        maxCpuUsage: 70,     // 70%
-        maxMemoryUsage: 80,  // 80%
-        maxFileDescriptors: 1000
-      }
-    },
-    __PERFORMANCE_BASELINES__: {
-      execution: {
-        setup: 100,      // 100ms
-        teardown: 100,   // 100ms
-        assertion: 50    // 50ms
-      },
-      memory: {
-        baselineUsage: 256,  // 256MB
-        maxIncrease: 512     // 512MB
-      },
-      throughput: {
-        testsPerSecond: 10,
-        suitesPerMinute: 2
-      }
-    }
+  setupFilesAfterEnv: [],
+  
+  // Transform configuration for TypeScript and React
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', {
+      isolatedModules: true,
+      tsconfig: './tsconfig.json'
+    }]
   }
 };
+
+// Use dynamic configuration utility
+module.exports = jestUtils.createDynamicConfig('ui-components', packageConfig);

@@ -193,18 +193,17 @@ function createDynamicConfig(packageName, baseConfig) {
     return createVueConfig(packageName, baseConfig);
   }
   
-  // Default full configuration with projects
+  // Default full configuration using testMatch instead of projects array
   return {
     ...baseConfig,
     displayName: packageName,
-    projects: [
-      // Priority configs
-      createPriorityConfig(packageName, 'p0', baseConfig),
-      createPriorityConfig(packageName, 'p1', baseConfig),
-      createPriorityConfig(packageName, 'p2', baseConfig),
-      createPriorityConfig(packageName, 'p3', baseConfig),
-      // Type configs
-      createIntegrationConfig(packageName, baseConfig)
+    // Use testMatch to include all test files
+    testMatch: [
+      '<rootDir>/tests/p0/**/*.test.ts?(x)',
+      '<rootDir>/tests/p1/**/*.test.ts?(x)',
+      '<rootDir>/tests/p2/**/*.test.ts?(x)',
+      '<rootDir>/tests/p3/**/*.test.ts?(x)',
+      '<rootDir>/tests/**/integration/**/*.test.ts?(x)'
     ]
   };
 }

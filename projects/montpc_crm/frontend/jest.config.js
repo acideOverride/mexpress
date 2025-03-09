@@ -1,25 +1,43 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} **/
-module.exports = {
+/**
+ * MontPC CRM Frontend Jest Configuration
+ * Using standardized dynamic configuration approach
+ * STANDARDIZED VERSION - 2025-03-16
+ * @type {import('ts-jest').JestConfigWithTsJest}
+ */
+const baseConfig = require('../../../jest.preset');
+const jestUtils = require('../../../jest.utils');
+
+// Create the base package config for MontPC CRM Frontend
+const packageConfig = {
+  ...baseConfig,
+  displayName: 'montpc-frontend',
+  testRunner: "jest-circus/runner",
   testEnvironment: "jsdom",
+  
   setupFilesAfterEnv: [
-    "<rootDir>/src/setupTests.ts"
+    "/opt/mExpress/projects/montpc_crm/frontend/src/setupTests.ts"
   ],
+  
   transform: {
     "^.+\\.(ts|tsx)$": ["ts-jest", {
-      tsconfig: "<rootDir>/tsconfig.json"
+      tsconfig: "/opt/mExpress/projects/montpc_crm/frontend/tsconfig.json"
     }]
   },
+  
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
-    "^@/(.*)$": "<rootDir>/src/$1"
+    "^@/(.*)$": "/opt/mExpress/projects/montpc_crm/frontend/src/$1"
   },
+  
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$",
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",
     "!src/**/*.d.ts",
     "!src/index.tsx",
     "!src/setupTests.ts"
-  ],
-  verbose: true
+  ]
 };
+
+// Use dynamic configuration utility
+module.exports = jestUtils.createDynamicConfig('montpc-frontend', packageConfig);

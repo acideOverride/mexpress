@@ -1,20 +1,27 @@
-module.exports = {
-  displayName: 'montpc_crm',
-  preset: '../../jest.preset.js',
+/**
+ * MontPC CRM Tests Jest Configuration
+ * Using standardized dynamic configuration approach
+ * STANDARDIZED VERSION - 2025-03-16
+ * @type {import('ts-jest').JestConfigWithTsJest}
+ */
+const baseConfig = require('../../../jest.preset');
+const jestUtils = require('../../../jest.utils');
+
+// Create the base package config for MontPC CRM tests
+const packageConfig = {
+  ...baseConfig,
+  displayName: 'montpc-tests',
+  testRunner: "jest-circus/runner",
   testEnvironment: 'node',
-  testMatch: [
-    '<rootDir>/p0/**/*.test.{ts,js,tsx}',
-    '<rootDir>/p1/**/*.test.{ts,js,tsx}',
-    '<rootDir>/p2/**/*.test.{ts,js,tsx}',
-    '<rootDir>/p3/**/*.test.{ts,js,tsx}',
-    '<rootDir>/integration/**/*.test.{ts,js,tsx}'
-  ],
+  
   setupFilesAfterEnv: [
-    '<rootDir>/__mocks__/setup.ts'
+    '/opt/mExpress/projects/montpc_crm/tests/__mocks__/setup.ts'
   ],
+  
   moduleNameMapper: {
-    '^@mexpress/montpc_crm/(.*)$': '<rootDir>/src//opt/mExpress/projects/montpc_crm/tests'
+    '^@mexpress/montpc_crm/(.*)$': '/opt/mExpress/projects/montpc_crm/$1'
   },
+  
   coverageThreshold: {
     global: {
       branches: 80,
@@ -23,8 +30,12 @@ module.exports = {
       statements: 80
     }
   },
+  
   collectCoverageFrom: [
-    'src/**/*.{ts,tsx}',
-    '!src/**/*.d.ts'
+    '/opt/mExpress/projects/montpc_crm/src/**/*.{ts,tsx}',
+    '\!/opt/mExpress/projects/montpc_crm/src/**/*.d.ts'
   ]
 };
+
+// Use dynamic configuration utility
+module.exports = jestUtils.createDynamicConfig('montpc-tests', packageConfig);

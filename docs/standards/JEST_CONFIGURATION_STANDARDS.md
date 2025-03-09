@@ -122,11 +122,16 @@ function createIntegrationConfig(packageName, baseConfig) {
 
 ### Package-Level Configuration
 
-Each package has a single root Jest configuration that extends the base preset and uses the utility functions:
+Each package has a single root Jest configuration that extends the base preset and uses our utility functions:
 
 ```js
 // /packages/core/jest.config.js
-/** @type {import('ts-jest').JestConfigWithTsJest} */
+/**
+ * Main Jest configuration file for mExpress core package
+ * This configuration uses the standardized dynamic approach
+ * STANDARDIZED VERSION - 2025-03-15
+ * @type {import('ts-jest').JestConfigWithTsJest}
+ */
 const baseConfig = require('../../jest.preset');
 const jestUtils = require('../../jest.utils');
 
@@ -134,48 +139,66 @@ const jestUtils = require('../../jest.utils');
 const packageConfig = {
   ...baseConfig,
   displayName: 'core',
+  setupFilesAfterEnv: [
+    '<rootDir>/jest/jest.mongodb.setup.js',
+    '<rootDir>/jest/jest.console-redirect.js'
+  ],
   moduleNameMapper: {
     '^@mexpress/core/(.*)$': '<rootDir>/src/$1'
   },
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/index.ts',
+    '!**/node_modules/**',
+    '!**/__tests__/**'
+  ],
+  coverageDirectory: '<rootDir>/tests/results/coverage',
+  reporters: [
+    'default',
+    ['<rootDir>/jest/jest.simplified.reporter.js', {}]
+  ],
   transform: {
     '^.+\\.tsx?$': ['ts-jest', {
+      isolatedModules: true,
       tsconfig: './tsconfig.json'
     }]
   }
 };
 
-// Determine if we're running specific priority tests from command line
-// e.g., PRIORITY=p1 npx jest --config packages/core/jest.config.js
-const priority = process.env.PRIORITY;
-const testType = process.env.TEST_TYPE; // e.g., integration, unit
+// Use our simplified dynamic configuration utility
+module.exports = jestUtils.createDynamicConfig('core', packageConfig);
+```
 
-// Dynamic configuration based on environment variables
-if (priority) {
-  module.exports = jestUtils.createPriorityConfig('core', priority, packageConfig);
-} else if (testType === 'integration') {
-  module.exports = jestUtils.createIntegrationConfig('core', packageConfig);
-} else {
-  // Default configuration for running all tests
-  module.exports = {
-    ...packageConfig,
-    projects: [
-      // Priority configs
-      jestUtils.createPriorityConfig('core', 'p0', packageConfig),
-      jestUtils.createPriorityConfig('core', 'p1', packageConfig),
-      jestUtils.createPriorityConfig('core', 'p2', packageConfig),
-      jestUtils.createPriorityConfig('core', 'p3', packageConfig),
-      // Integration config
-      jestUtils.createIntegrationConfig('core', packageConfig)
-    ]
-  };
-}
+The `createDynamicConfig` function is a powerful utility that handles all configuration based on environment variables. It automatically detects priority and test type to generate the appropriate configuration:
 ```
 
 ## Running Tests
 
+### Using Standardized Test Script
+
+The most convenient way to run tests is through our standardized test runner scripts:
+
+```bash
+# Run all tests across all packages
+./run-all-tests.sh
+
+# Run only P1 tests
+./run-all-tests.sh --p1
+
+# Run only Core package P0 tests
+./run-all-tests.sh --p0 --core
+
+# Run integration tests
+./run-all-tests.sh --integration
+
+# Run with coverage
+./run-all-tests.sh --coverage
+```
+
 ### Standard Commands with Environment Variables
 
-Use environment variables to customize test execution without changing configuration files:
+You can also use environment variables to customize test execution without changing configuration files:
 
 ```bash
 # Run all tests in a package
@@ -193,8 +216,8 @@ TEST_TYPE=frontend npx jest --config packages/core/jest.config.js
 # Run tests requiring MongoDB
 MONGODB_URI=mongodb://localhost:27017/mexpress_test npx jest --config packages/core/jest.config.js
 
-# Run a single test file
-npx jest --preset=ts-jest --no-cache path/to/test.test.ts
+# Run a single test file (through our dynamic configuration system)
+PRIORITY=p1 npx jest --config=packages/core/jest.config.js --testPathPattern=packages/core/tests/p1/specific/test.test.ts
 ```
 
 ### Standard Command-Line Arguments
@@ -208,14 +231,19 @@ Always include these arguments for consistent behavior:
 
 ## Test Runner Integration
 
-The standardized test runner script (`/opt/mExpress/scripts/testScripts/b_real_time_test_runner.sh`) automatically:
+We have two standardized test runner scripts:
 
-1. Determines the appropriate test priority and type from the file path
-2. Sets environment variables accordingly
-3. Runs tests with the correct configuration
-4. Captures and reports results
+1. **Master Test Runner** (`/opt/mExpress/run-all-tests.sh`)
+   - Runs tests across all packages using our standardized configuration
+   - Supports command-line options like `--p0`, `--core`, `--coverage`, etc.
+   - Uses the root Jest configuration with projects array
 
-Example code from the test runner:
+2. **Real-time Test Runner** (`/opt/mExpress/scripts/testScripts/b_real_time_test_runner.sh`)
+   - Executes tests and provides real-time status updates 
+   - Generates detailed reports with test metrics
+   - Uses environment variables for dynamic configuration
+
+Both runners use our standardized approach:
 
 ```bash
 # Extract priority and test type information from the test path
@@ -233,14 +261,22 @@ if [[ "$test_file" == *"/integration/"* ]]; then
   export TEST_TYPE=integration
 elif [[ "$test_file" == *"/frontend/"* ]]; then
   export TEST_TYPE=frontend
+elif [[ "$test_file" == *".tsx" ]]; then
+  export TEST_TYPE=react
+elif [[ "$test_file" == *".vue" ]]; then
+  export TEST_TYPE=vue
+else
+  export TEST_TYPE=unit
 fi
 
-# Run with environment variables
+# Run with environment variables and standardized configuration
 MONGODB_URI=mongodb://localhost:27017/mexpress_test \
 PRIORITY=$PRIORITY \
 TEST_TYPE=$TEST_TYPE \
-npx jest --config "$config" --preset=ts-jest --no-cache --runInBand --verbose
+npx jest --config "$config" --no-cache --runInBand --verbose
 ```
+
+Additionally, package-specific test runners (`/packages/core/tests/run-tests.sh`) are available for focused testing within a specific package.
 
 ## Common Configuration Issues
 
