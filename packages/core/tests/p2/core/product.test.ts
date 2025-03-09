@@ -1,65 +1,116 @@
-import { Schema } from 'mongoose';
 import { IProduct, IProductDocument } from '../../../src/models/product';
 import mongoose from 'mongoose';
 
-// Create a mock Product model to avoid database dependencies
-const mockProductSchema = new mongoose.Schema({
-  name: { 
-    type: String, 
-    required: true,
-    minlength: 3,
-    maxlength: 100
-  },
-  description: { 
-    type: String
-  },
-  price: { 
-    type: Number,
-    required: true,
-    min: 0,
-    validate: {
-      validator: function(value: number) {
-        const str = value.toString();
-        return !str.includes('.') || str.split('.')[1].length <= 2;
-      },
-      message: 'Price must have at most 2 decimal places'
-    }
-  },
-  sku: { 
-    type: String,
-    required: true,
-    match: /^[A-Za-z0-9]+$/,
-    unique: true
-  },
-  category: { 
-    type: String,
-    required: true,
-    enum: ['electronics', 'clothing', 'food', 'books', 'other']
-  },
-  tags: [String],
-  stockLevel: { 
-    type: Number,
-    required: true,
-    min: 0,
-    validate: {
-      validator: function(value: number) {
-        return Number.isInteger(value);
-      },
-      message: 'Stock level must be an integer'
-    }
-  },
-  status: { 
-    type: String,
-    default: 'active',
-    enum: ['active', 'inactive', 'discontinued']
+// Create a comprehensive mock of the Product model with proper validation
+
+// Schema definitions matching the actual product schema but simplified for testing
+const VALID_CATEGORIES = ['electronics', 'clothing', 'food', 'books', 'other'];
+
+// Track created products for uniqueness validation
+const createdProducts = new Map<string, any>();
+
+// Create a proper mock implementation of Product with validateSync
+class MockProduct {
+  // Product properties
+  _id?: mongoose.Types.ObjectId;
+  name?: string;
+  description?: string;
+  price?: number;
+  sku?: string;
+  category?: string;
+  tags?: string[];
+  stockLevel?: number;
+  status?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+
+  constructor(data: Partial<IProduct>) {
+    this._id = data._id || new mongoose.Types.ObjectId();
+    this.name = data.name;
+    this.description = data.description;
+    this.price = data.price;
+    this.sku = data.sku;
+    this.category = data.category;
+    this.tags = data.tags;
+    this.stockLevel = data.stockLevel;
+    this.status = data.status || 'active'; // Default value
+    this.createdAt = data.createdAt;
+    this.updatedAt = data.updatedAt;
   }
-}, {
-  timestamps: true
-});
 
-const Product = mongoose.model<IProductDocument>('Product', mockProductSchema);
+  // Mock validation method to mimic mongoose's validateSync
+  validateSync(): { errors: Record<string, { message: string }> } | undefined {
+    const errors: Record<string, { message: string }> = {};
 
-// Mock mongoose connection and operations
+    // Validate name
+    if (!this.name) {
+      errors.name = { message: 'Name is required' };
+    } else if (this.name.length < 3) {
+      errors.name = { message: 'Name must be at least 3 characters' };
+    } else if (this.name.length > 100) {
+      errors.name = { message: 'Name must be at most 100 characters' };
+    }
+
+    // Validate price
+    if (this.price === undefined) {
+      errors.price = { message: 'Price is required' };
+    } else if (this.price < 0) {
+      errors.price = { message: 'Price must be positive' };
+    } else {
+      const priceStr = this.price.toString();
+      if (priceStr.includes('.') && priceStr.split('.')[1].length > 2) {
+        errors.price = { message: 'Price must have at most 2 decimal places' };
+      }
+    }
+
+    // Validate SKU
+    if (!this.sku) {
+      errors.sku = { message: 'SKU is required' };
+    } else if (!/^[A-Za-z0-9]+$/.test(this.sku)) {
+      errors.sku = { message: 'SKU must be alphanumeric' };
+    }
+
+    // Validate category
+    if (!this.category) {
+      errors.category = { message: 'Category is required' };
+    } else if (!VALID_CATEGORIES.includes(this.category)) {
+      errors.category = { message: 'Invalid category' };
+    }
+
+    // Validate stockLevel
+    if (this.stockLevel === undefined) {
+      errors.stockLevel = { message: 'Stock level is required' };
+    } else if (this.stockLevel < 0) {
+      errors.stockLevel = { message: 'Stock level must be non-negative' };
+    } else if (!Number.isInteger(this.stockLevel)) {
+      errors.stockLevel = { message: 'Stock level must be an integer' };
+    }
+
+    // Validate status
+    if (this.status && !['active', 'inactive', 'discontinued'].includes(this.status)) {
+      errors.status = { message: 'Invalid status' };
+    }
+
+    return Object.keys(errors).length > 0 ? { errors } : undefined;
+  }
+
+  // Mock save method
+  async save(): Promise<this> {
+    // Set timestamps on save
+    if (!this.createdAt) {
+      this.createdAt = new Date();
+    }
+    this.updatedAt = new Date();
+    return this;
+  }
+}
+
+// Create a mock Product "model" with static methods
+const Product = function(data: Partial<IProduct>): MockProduct {
+  return new MockProduct(data);
+} as unknown as mongoose.Model<IProductDocument>;
+
+// Add static methods to the Product model
 (Product as any).deleteMany = jest.fn().mockResolvedValue(true);
 (Product as any).create = jest.fn().mockImplementation((data: any) => {
   // Check for unique SKU
@@ -67,24 +118,10 @@ const Product = mongoose.model<IProductDocument>('Product', mockProductSchema);
     return Promise.reject(new Error('Duplicate key error'));
   }
   
-  const product = new Product(data);
+  const product = new MockProduct(data);
   createdProducts.set(data.sku, product);
   return Promise.resolve(product);
 });
-
-// Track created products for uniqueness validation
-const createdProducts = new Map();
-
-// Mock save method on product instances
-const originalSave = mongoose.Model.prototype.save;
-mongoose.Model.prototype.save = function(this: any) {
-  // Set timestamps on save
-  if (!this.createdAt) {
-    this.createdAt = new Date();
-  }
-  this.updatedAt = new Date();
-  return Promise.resolve(this);
-};
 
 describe('Product Model', () => {
   beforeEach(() => {
