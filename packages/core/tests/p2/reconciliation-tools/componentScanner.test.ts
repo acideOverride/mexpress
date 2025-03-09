@@ -1,8 +1,8 @@
-// Update import paths to reference the source code location
-import { componentScanner } from '@mexpress/core/reconciliation-tools/verification/componentScanner';
+// Use relative imports instead of module aliases for more reliable resolution
+import { componentScanner } from '../../../src/reconciliation-tools/verification/componentScanner';
 import fs from 'fs';
 import path from 'path';
-import { ScannerOptions } from '@mexpress/core/reconciliation-tools/types';
+import { ScannerOptions } from '../../../src/reconciliation-tools/types';
 
 // Mock the fs module
 jest.mock('fs', () => ({
