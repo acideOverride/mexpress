@@ -1,8 +1,9 @@
   I need you to fix the next failing test by priority in the mExpress project. Please follow these steps:
 
   1. Check /opt/mExpress/tests/validation/unified/TESTS_STATUS_UNIFIED.md to identify failing tests by priority:
-      - fIX aLL fAILING TESTS IN [P0]
-      
+
+ /opt/mExpress/packages/core/tests/p2/frontend/components/mobile/responsive-layout.test.tsx | [log](/tests/results/logs/packages/core/tests/p2/frontend/components/mobile/responsive-layout.test_20250309_190325.log)
+
   2. Follow the TypeScript-first standards in /opt/mExpress/docs/standards/TS_CODE_STANDARDS.md:
      - If the failing test is a JavaScript (.js) file, migrate it to TypeScript (.ts)
      - If there are both .js and .ts versions of the same test, fix the TypeScript version and remove the JavaScript version
