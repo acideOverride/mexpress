@@ -1,9 +1,9 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
-import { IntegrationTester } from '../__mocks__/services/integration-tester';
-import { HiboutikService } from '../__mocks__/services/hiboutik.service';
-import { RingoverService } from '../__mocks__/services/ringover.service';
-import { CustomerService } from '../__mocks__/services/customer.service';
-import { MonitoringSystem } from '../__mocks__/services/monitoring';
+import { IntegrationTester } from '../../../__mocks__/services/integration-tester';
+import { HiboutikService } from '../../../__mocks__/services/hiboutik.service';
+import { RingoverService } from '../../../__mocks__/services/ringover.service';
+import { CustomerService } from '../../../__mocks__/services/customer.service';
+import { MonitoringSystem } from '../../../__mocks__/services/monitoring';
 
 describe('External Integration Testing', () => {
     let integrationTester: IntegrationTester;
