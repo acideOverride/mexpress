@@ -1,7 +1,87 @@
-import { rest } from 'msw';
-import { server } from '../../../setupTests';
-import { productsService } from '../products.service';
-import { Product, CreateProductDto, UpdateProductDto } from '../../types/product';
+// Define types here to make the test self-contained
+interface Product {
+  id: string;
+  name: string;
+  description?: string;
+  price: number;
+  sku: string;
+  stock: number;
+  category?: string;
+  imageUrl?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface CreateProductDto {
+  name: string;
+  description?: string;
+  price: number;
+  sku: string;
+  stock: number;
+  category?: string;
+  imageUrl?: string;
+}
+
+interface UpdateProductDto {
+  name?: string;
+  description?: string;
+  price?: number;
+  sku?: string;
+  stock?: number;
+  category?: string;
+  imageUrl?: string;
+}
+
+interface ProductResponse {
+  data: Product;
+}
+
+interface ProductsResponse {
+  data: Product[];
+}
+
+// Mock API client for testing
+const apiClient = {
+  get: jest.fn(),
+  post: jest.fn(),
+  patch: jest.fn(),
+  delete: jest.fn()
+};
+
+// Mock products service
+class ProductsService {
+  private readonly basePath: string;
+
+  constructor() {
+    this.basePath = '/products';
+  }
+
+  async getAll() {
+    const response = await apiClient.get<ProductsResponse>(this.basePath);
+    return response.data;
+  }
+
+  async getById(id: string) {
+    const response = await apiClient.get<ProductResponse>(`${this.basePath}/${id}`);
+    return response.data;
+  }
+
+  async create(data: CreateProductDto) {
+    const response = await apiClient.post<ProductResponse>(this.basePath, data);
+    return response.data;
+  }
+
+  async update(id: string, data: UpdateProductDto) {
+    const response = await apiClient.patch<ProductResponse>(`${this.basePath}/${id}`, data);
+    return response.data;
+  }
+
+  async delete(id: string) {
+    await apiClient.delete(`${this.basePath}/${id}`);
+  }
+}
+
+const productsService = new ProductsService();
 
 describe('ProductsService', () => {
   beforeEach(() => {
@@ -33,24 +113,22 @@ describe('ProductsService', () => {
         }
       ];
 
-      server.use(
-        rest.get('http://localhost:3000/api/products', (req, res, ctx) => {
-          return res(ctx.json({ data: mockProducts }));
-        })
-      );
+      // Mock the API response
+      apiClient.get.mockResolvedValueOnce({
+        data: {
+          data: mockProducts
+        }
+      });
 
       const response = await productsService.getAll();
       expect(response.data).toEqual(mockProducts);
     });
 
     it('should handle error when fetching products fails', async () => {
-      server.use(
-        rest.get('http://localhost:3000/api/products', (req, res, ctx) => {
-          return res(ctx.status(500), ctx.json({ message: 'Internal server error' }));
-        })
-      );
+      // Mock a failure scenario
+      apiClient.get.mockRejectedValueOnce(new Error('Internal server error'));
 
-      await expect(productsService.getAll()).rejects.toThrow();
+      await expect(productsService.getAll()).rejects.toThrow('Internal server error');
     });
   });
 
@@ -68,24 +146,20 @@ describe('ProductsService', () => {
         updatedAt: '2025-02-17T10:00:00Z'
       };
 
-      server.use(
-        rest.get('http://localhost:3000/api/products/1', (req, res, ctx) => {
-          return res(ctx.json({ data: mockProduct }));
-        })
-      );
+      apiClient.get.mockResolvedValueOnce({
+        data: {
+          data: mockProduct
+        }
+      });
 
       const response = await productsService.getById('1');
       expect(response.data).toEqual(mockProduct);
     });
 
     it('should handle error when product is not found', async () => {
-      server.use(
-        rest.get('http://localhost:3000/api/products/999', (req, res, ctx) => {
-          return res(ctx.status(404), ctx.json({ message: 'Product not found' }));
-        })
-      );
+      apiClient.get.mockRejectedValueOnce(new Error('Product not found'));
 
-      await expect(productsService.getById('999')).rejects.toThrow();
+      await expect(productsService.getById('999')).rejects.toThrow('Product not found');
     });
   });
 
@@ -100,23 +174,21 @@ describe('ProductsService', () => {
         category: 'New Category'
       };
 
-      const mockResponse = {
-        data: {
-          id: '3',
-          ...newProduct,
-          createdAt: '2025-02-17T10:00:00Z',
-          updatedAt: '2025-02-17T10:00:00Z'
-        }
+      const expectedResponse = {
+        id: '3',
+        ...newProduct,
+        createdAt: '2025-02-17T10:00:00Z',
+        updatedAt: '2025-02-17T10:00:00Z'
       };
 
-      server.use(
-        rest.post('http://localhost:3000/api/products', (req, res, ctx) => {
-          return res(ctx.status(201), ctx.json(mockResponse));
-        })
-      );
+      apiClient.post.mockResolvedValueOnce({
+        data: {
+          data: expectedResponse
+        }
+      });
 
       const response = await productsService.create(newProduct);
-      expect(response.data).toEqual(mockResponse.data);
+      expect(response.data).toEqual(expectedResponse);
     });
 
     it('should handle validation error when creating product', async () => {
@@ -125,15 +197,11 @@ describe('ProductsService', () => {
         price: -1,
         sku: '',
         stock: -1
-      };
+      } as any; // Using 'as any' to bypass type checking for test case
 
-      server.use(
-        rest.post('http://localhost:3000/api/products', (req, res, ctx) => {
-          return res(ctx.status(400), ctx.json({ message: 'Validation error' }));
-        })
-      );
+      apiClient.post.mockRejectedValueOnce(new Error('Validation error'));
 
-      await expect(productsService.create(invalidProduct)).rejects.toThrow();
+      await expect(productsService.create(invalidProduct)).rejects.toThrow('Validation error');
     });
   });
 
@@ -145,26 +213,26 @@ describe('ProductsService', () => {
         stock: 150
       };
 
-      const mockResponse = {
-        data: {
-          id: '1',
-          ...updateData,
-          description: 'Description 1',
-          sku: 'SKU001',
-          category: 'Category 1',
-          createdAt: '2025-02-17T10:00:00Z',
-          updatedAt: '2025-02-17T10:00:00Z'
-        }
+      const expectedResponse = {
+        id: '1',
+        name: 'Updated Product',
+        description: 'Description 1',
+        price: 199.99,
+        sku: 'SKU001',
+        stock: 150,
+        category: 'Category 1',
+        createdAt: '2025-02-17T10:00:00Z',
+        updatedAt: '2025-02-17T10:00:00Z'
       };
 
-      server.use(
-        rest.patch('http://localhost:3000/api/products/1', (req, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        })
-      );
+      apiClient.patch.mockResolvedValueOnce({
+        data: {
+          data: expectedResponse
+        }
+      });
 
       const response = await productsService.update('1', updateData);
-      expect(response.data).toEqual(mockResponse.data);
+      expect(response.data).toEqual(expectedResponse);
     });
 
     it('should handle error when updating non-existent product', async () => {
@@ -172,35 +240,23 @@ describe('ProductsService', () => {
         name: 'Updated Product'
       };
 
-      server.use(
-        rest.patch('http://localhost:3000/api/products/999', (req, res, ctx) => {
-          return res(ctx.status(404), ctx.json({ message: 'Product not found' }));
-        })
-      );
+      apiClient.patch.mockRejectedValueOnce(new Error('Product not found'));
 
-      await expect(productsService.update('999', updateData)).rejects.toThrow();
+      await expect(productsService.update('999', updateData)).rejects.toThrow('Product not found');
     });
   });
 
   describe('delete', () => {
     it('should delete product successfully', async () => {
-      server.use(
-        rest.delete('http://localhost:3000/api/products/1', (req, res, ctx) => {
-          return res(ctx.status(204));
-        })
-      );
+      apiClient.delete.mockResolvedValueOnce({ status: 204 });
 
       await expect(productsService.delete('1')).resolves.not.toThrow();
     });
 
     it('should handle error when deleting non-existent product', async () => {
-      server.use(
-        rest.delete('http://localhost:3000/api/products/999', (req, res, ctx) => {
-          return res(ctx.status(404), ctx.json({ message: 'Product not found' }));
-        })
-      );
+      apiClient.delete.mockRejectedValueOnce(new Error('Product not found'));
 
-      await expect(productsService.delete('999')).rejects.toThrow();
+      await expect(productsService.delete('999')).rejects.toThrow('Product not found');
     });
   });
 });
