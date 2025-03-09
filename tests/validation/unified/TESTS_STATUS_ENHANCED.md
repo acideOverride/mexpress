@@ -114,7 +114,7 @@ Legend:
 ✅🔢📍📘 🕒:5s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p2/utils/logger.test.ts | [log](/tests/results/logs/packages/utils/tests/p2/utils/logger.test_20250309_190406.log)
 ✅🔢📍📘 🕒:7s 🧪:unit 📦:utils 🧩:~70% /opt/mExpress/packages/utils/tests/p2/lib/monitoring/monitoring.system.test.ts | [log](/tests/results/logs/packages/utils/tests/p2/lib/monitoring/monitoring.system.test_20250309_190359.log)
 ✅🔢📍📘 🕒:9s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/services/data-consistency.test.ts | [log](/tests/results/logs/packages/core/tests/p2/services/data-consistency.test_20250309_190349.log)
-❌🔢📍📘 🕒:7s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/reconciliation-tools/matrixTracker.test.ts | [log](/tests/results/logs/packages/core/tests/p2/reconciliation-tools/matrixTracker.test_20250309_190342.log)
+✅🔢📍📘 🕒:7s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/reconciliation-tools/matrixTracker.test.ts | [log](/tests/results/logs/packages/core/tests/p2/reconciliation-tools/matrixTracker.test_20250309_190342.log)
 ❌🔢📍📘 🕒:7s 🧪:unit 📦:core 🔍:Unknown /opt/mExpress/packages/core/tests/p2/reconciliation-tools/componentScanner.test.ts | [log](/tests/results/logs/packages/core/tests/p2/reconciliation-tools/componentScanner.test_20250309_190335.log)
 ❌🔢📍📗 🕒:10s 🧪:unit 📦:core 🔍:ReferenceError /opt/mExpress/packages/core/tests/p2/frontend/components/mobile/responsive-layout.test.tsx | [log](/tests/results/logs/packages/core/tests/p2/frontend/components/mobile/responsive-layout.test_20250309_190325.log)
 ✅🔢📍📘 🕒:11s 🧪:unit 📦:core 🧩:~70% /opt/mExpress/packages/core/tests/p2/core/type-of.test.ts | [log](/tests/results/logs/packages/core/tests/p2/core/type-of.test_20250309_190314.log)
@@ -273,8 +273,8 @@ Legend:
 
 Total tests to run: 114
 Tests completed: 114/114 (100%)
-Passing: 87
-Failing: 27
+Passing: 88
+Failing: 26
 Timed out: 0
 TypeScript files: 114 (100%)
 JavaScript files: 0 (0%)
@@ -286,8 +286,8 @@ JavaScript files: 0 (0%)
 
 ```
 Total tests run: 114
-Passing: 87 (73%)
-Failing: 27 (26%)
+Passing: 88 (73%)
+Failing: 26 (26%)
 Timed out: 0 (0%)
 Skipped: 0
 ```

@@ -1,8 +1,8 @@
 // First import the mock data
 import { TEST_COMPONENT, HIGH_PRIORITY_COMPONENTS, DISCREPANCY_COMPONENTS } from './__mocks__/matrixTracker.mock';
 
-// Import the types we need
-import { ComponentStatus } from '@mexpress/core/reconciliation-tools/types';
+// Import the types we need (using relative path instead of module alias for better reliability)
+import { ComponentStatus } from '../../../src/reconciliation-tools/types';
 
 // Define the mocks before importing the modules
 // Mock the fileManager
@@ -47,18 +47,18 @@ const mockMatrixTracker = {
   saveMatrix: jest.fn().mockReturnValue(true)
 };
 
-// Mock the modules
-jest.mock('@mexpress/core/reconciliation-tools/utils/fileManager', () => ({
+// Mock the modules (using relative paths instead of module aliases for better reliability)
+jest.mock('../../../src/reconciliation-tools/utils/fileManager', () => ({
   fileManager: mockFileManager
 }));
 
-jest.mock('@mexpress/core/reconciliation-tools/matrix/matrixTracker', () => ({
+jest.mock('../../../src/reconciliation-tools/matrix/matrixTracker', () => ({
   matrixTracker: mockMatrixTracker
 }));
 
 // Now import the mocked modules
-import { matrixTracker } from '@mexpress/core/reconciliation-tools/matrix/matrixTracker';
-import { fileManager } from '@mexpress/core/reconciliation-tools/utils/fileManager';
+import { matrixTracker } from '../../../src/reconciliation-tools/matrix/matrixTracker';
+import { fileManager } from '../../../src/reconciliation-tools/utils/fileManager';
 
 describe('MatrixTracker', () => {
   beforeEach(() => {
