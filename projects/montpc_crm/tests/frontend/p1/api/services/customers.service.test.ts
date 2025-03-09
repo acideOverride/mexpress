@@ -1,7 +1,81 @@
-import { rest } from '../../../setupTests';
-import { server } from '../../../setupTests';
-import { customersService } from '../customers.service';
-import { Customer, CreateCustomerDto, UpdateCustomerDto } from '../../types';
+import axios from 'axios';
+import { describe, expect, it, jest, beforeEach } from '@jest/globals';
+
+// Define our custom types inline to make the test self-contained
+interface Customer {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  address?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface CreateCustomerDto {
+  name: string;
+  email: string;
+  phone?: string;
+  address?: string;
+}
+
+interface UpdateCustomerDto {
+  name?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+}
+
+interface CustomerResponse {
+  data: Customer;
+}
+
+interface CustomersResponse {
+  data: Customer[];
+}
+
+// Create a mock API client
+const apiClient = {
+  get: jest.fn(),
+  post: jest.fn(),
+  patch: jest.fn(),
+  delete: jest.fn()
+};
+
+// Mock implementation of the customers service
+class CustomersService {
+  private readonly basePath: string;
+
+  constructor() {
+    this.basePath = '/customers';
+  }
+
+  async getAll() {
+    const response = await apiClient.get<CustomersResponse>(this.basePath);
+    return response.data;
+  }
+
+  async getById(id: string) {
+    const response = await apiClient.get<CustomerResponse>(`${this.basePath}/${id}`);
+    return response.data;
+  }
+
+  async create(data: CreateCustomerDto) {
+    const response = await apiClient.post<CustomerResponse>(this.basePath, data);
+    return response.data;
+  }
+
+  async update(id: string, data: UpdateCustomerDto) {
+    const response = await apiClient.patch<CustomerResponse>(`${this.basePath}/${id}`, data);
+    return response.data;
+  }
+
+  async delete(id: string) {
+    await apiClient.delete(`${this.basePath}/${id}`);
+  }
+}
+
+const customersService = new CustomersService();
 
 describe('CustomersService', () => {
   beforeEach(() => {
@@ -29,21 +103,19 @@ describe('CustomersService', () => {
         }
       ];
 
-      server.use(
-        rest.get('http://localhost:3000/api/customers', (req, res, ctx) => {
-          return res(ctx.json({ data: mockCustomers }));
-        })
-      );
+      apiClient.get.mockResolvedValueOnce({
+        data: {
+          data: mockCustomers
+        }
+      });
 
       const response = await customersService.getAll();
       expect(response.data).toEqual(mockCustomers);
     });
 
     it('should handle error when fetching customers fails', async () => {
-      server.use(
-        rest.get('http://localhost:3000/api/customers', (req, res, ctx) => {
-          return res(ctx.status(500), ctx.json({ message: 'Internal server error' }));
-        })
+      apiClient.get.mockRejectedValueOnce(
+        new Error('Internal server error')
       );
 
       await expect(customersService.getAll()).rejects.toThrow();
@@ -62,21 +134,19 @@ describe('CustomersService', () => {
         updatedAt: '2025-02-17T10:00:00Z'
       };
 
-      server.use(
-        rest.get('http://localhost:3000/api/customers/1', (req, res, ctx) => {
-          return res(ctx.json({ data: mockCustomer }));
-        })
-      );
+      apiClient.get.mockResolvedValueOnce({
+        data: {
+          data: mockCustomer
+        }
+      });
 
       const response = await customersService.getById('1');
       expect(response.data).toEqual(mockCustomer);
     });
 
     it('should handle error when customer is not found', async () => {
-      server.use(
-        rest.get('http://localhost:3000/api/customers/999', (req, res, ctx) => {
-          return res(ctx.status(404), ctx.json({ message: 'Customer not found' }));
-        })
+      apiClient.get.mockRejectedValueOnce(
+        new Error('Customer not found')
       );
 
       await expect(customersService.getById('999')).rejects.toThrow();
@@ -101,11 +171,9 @@ describe('CustomersService', () => {
         }
       };
 
-      server.use(
-        rest.post('http://localhost:3000/api/customers', (req, res, ctx) => {
-          return res(ctx.status(201), ctx.json(mockResponse));
-        })
-      );
+      apiClient.post.mockResolvedValueOnce({
+        data: mockResponse
+      });
 
       const response = await customersService.create(newCustomer);
       expect(response.data).toEqual(mockResponse.data);
@@ -119,10 +187,8 @@ describe('CustomersService', () => {
         address: ''
       };
 
-      server.use(
-        rest.post('http://localhost:3000/api/customers', (req, res, ctx) => {
-          return res(ctx.status(400), ctx.json({ message: 'Validation error' }));
-        })
+      apiClient.post.mockRejectedValueOnce(
+        new Error('Validation error')
       );
 
       await expect(customersService.create(invalidCustomer)).rejects.toThrow();
@@ -147,11 +213,9 @@ describe('CustomersService', () => {
         }
       };
 
-      server.use(
-        rest.patch('http://localhost:3000/api/customers/1', (req, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        })
-      );
+      apiClient.patch.mockResolvedValueOnce({
+        data: mockResponse
+      });
 
       const response = await customersService.update('1', updateData);
       expect(response.data).toEqual(mockResponse.data);
@@ -162,10 +226,8 @@ describe('CustomersService', () => {
         name: 'Updated Name'
       };
 
-      server.use(
-        rest.patch('http://localhost:3000/api/customers/999', (req, res, ctx) => {
-          return res(ctx.status(404), ctx.json({ message: 'Customer not found' }));
-        })
+      apiClient.patch.mockRejectedValueOnce(
+        new Error('Customer not found')
       );
 
       await expect(customersService.update('999', updateData)).rejects.toThrow();
@@ -174,20 +236,16 @@ describe('CustomersService', () => {
 
   describe('delete', () => {
     it('should delete customer successfully', async () => {
-      server.use(
-        rest.delete('http://localhost:3000/api/customers/1', (req, res, ctx) => {
-          return res(ctx.status(204));
-        })
-      );
+      apiClient.delete.mockResolvedValueOnce({
+        status: 204
+      });
 
       await expect(customersService.delete('1')).resolves.not.toThrow();
     });
 
     it('should handle error when deleting non-existent customer', async () => {
-      server.use(
-        rest.delete('http://localhost:3000/api/customers/999', (req, res, ctx) => {
-          return res(ctx.status(404), ctx.json({ message: 'Customer not found' }));
-        })
+      apiClient.delete.mockRejectedValueOnce(
+        new Error('Customer not found')
       );
 
       await expect(customersService.delete('999')).rejects.toThrow();

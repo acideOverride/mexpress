@@ -79,7 +79,7 @@ export function setupAuthInterceptor(axiosInstance: AxiosInstance): void {
           localStorage.removeItem('refresh_token');
           
           // Redirect to login page
-          window.location.href = '/login';
+          global.location.href = '/login';
           
           return Promise.reject(refreshError);
         }
