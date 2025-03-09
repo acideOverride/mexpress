@@ -1,0 +1,1 @@
+for repairs - crm should suggest a cross sale of products that it will search on amazon, calculate the margin and suggest a cross sale product (usually protections and accessories) for accepted quotes of repairs and sales

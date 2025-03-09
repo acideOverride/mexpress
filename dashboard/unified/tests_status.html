@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mExpress Test Status Dashboard</title>
+  <!-- Use Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  <link rel="stylesheet" href="assets/dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="dashboard-title">
+        <div class="dashboard-logo">m</div>
+        <div class="dashboard-header-content">
+          <h1>Test Status Dashboard</h1>
+          <div class="meta">
+            <span id="last-updated">Last updated: 2025-03-06</span>
+            <span id="version">Version: 1.0.0</span>
+          </div>
+        </div>
+        <div class="dashboard-actions">
+          <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" class="moon-icon"></path>
+              <circle cx="12" cy="12" r="5" class="sun-icon-circle"></circle>
+              <line x1="12" y1="1" x2="12" y2="3" class="sun-icon-ray"></line>
+              <line x1="12" y1="21" x2="12" y2="23" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" class="sun-icon-ray"></line>
+              <line x1="1" y1="12" x2="3" y2="12" class="sun-icon-ray"></line>
+              <line x1="21" y1="12" x2="23" y2="12" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" class="sun-icon-ray"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="overview">Summary</div>
+      <div class="tab" data-tab="dashboards">P0 (Critical)</div>
+      <div class="tab" data-tab="projects">P1 (High)</div>
+      <div class="tab" data-tab="reports">BRQs</div>
+    </div>
+    
+    <main class="main-content">
+      <!-- Summary Tab -->
+      <div class="tab-content active" id="overview">
+        <h2>Test Status Summary</h2>
+        <div class="dashboard-content">
+          <div class="card grid-full">
+            <div class="card-header">
+              <h2 class="card-title">Overall Test Status</h2>
+              <p class="card-subtitle">All tests across the mExpress platform</p>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-value">111</div>
+                <div class="stat-label">Total Tests</div>
+              </div>
+              <div class="stat-card success">
+                <div class="stat-value">41</div>
+                <div class="stat-label">Passing (37%)</div>
+              </div>
+              <div class="stat-card danger">
+                <div class="stat-value">68</div>
+                <div class="stat-label">Failing (61%)</div>
+              </div>
+              <div class="stat-card warning">
+                <div class="stat-value">2</div>
+                <div class="stat-label">Timed Out (2%)</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Skipped (0%)</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Priority Breakdown</h2>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Priority</th>
+                  <th>Tests</th>
+                  <th>Passing</th>
+                  <th>Failing</th>
+                  <th>Success Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>P0 (Critical)</strong></td>
+                  <td>31</td>
+                  <td class="success">19</td>
+                  <td class="danger">12</td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="progress-fill progress-fill-success" style="width: 61%"></div>
+                    </div>
+                    61%
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>P1 (High)</strong></td>
+                  <td>30</td>
+                  <td class="success">12</td>
+                  <td class="danger">18</td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="progress-fill progress-fill-warning" style="width: 40%"></div>
+                    </div>
+                    40%
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>P2 (Medium)</strong></td>
+                  <td>34</td>
+                  <td class="success">7</td>
+                  <td class="danger">27</td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="progress-fill progress-fill-danger" style="width: 21%"></div>
+                    </div>
+                    21%
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>P3 (Low)</strong></td>
+                  <td>16</td>
+                  <td class="success">3</td>
+                  <td class="danger">13</td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="progress-fill progress-fill-danger" style="width: 19%"></div>
+                    </div>
+                    19%
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Component Breakdown</h2>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Component</th>
+                  <th>Tests</th>
+                  <th>Success Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Core</strong></td>
+                  <td>63</td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="progress-fill progress-fill-success" style="width: 65%"></div>
+                    </div>
+                    65%
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>API</strong></td>
+                  <td>11</td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="progress-fill progress-fill-success" style="width: 82%"></div>
+                    </div>
+                    82%
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Auth</strong></td>
+                  <td>12</td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="progress-fill progress-fill-warning" style="width: 50%"></div>
+                    </div>
+                    50%
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Frontend</strong></td>
+                  <td>10</td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="progress-fill progress-fill-danger" style="width: 10%"></div>
+                    </div>
+                    10%
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Utils</strong></td>
+                  <td>9</td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="progress-fill progress-fill-danger" style="width: 11%"></div>
+                    </div>
+                    11%
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Recent Fixes</h2>
+            </div>
+            <ul class="report-list">
+              <li>MegaSearch Implementation (MEXP-2025-051-BE, MEXP-2025-052-API): Implemented complete MegaSearch functionality</li>
+              <li>MontPC Auth Service (MONT-2025-002-FULL): Fixed auth service tests and login tests in the central tests directory</li>
+              <li>Core CRUD Functionality (MEXP-2025-004-BE): Added proper skipping for MongoDB replica set requirements</li>
+              <li>Authentication & Security (MEXP-2025-002-BE): Fixed import paths in all auth-related tests</li>
+              <li>Service Discovery (MEXP-2025-007-BE): Fixed issues with cacheSize statistics reporting</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- P0 Tab -->
+      <div class="tab-content" id="dashboards">
+        <h2>P0 (Critical) Tests</h2>
+        <div class="dashboard-content">
+          <div class="card grid-full">
+            <div class="card-header">
+              <h2 class="card-title">P0 Test Status</h2>
+              <p class="card-subtitle">Critical path tests that must pass for core functionality</p>
+            </div>
+            
+            <div class="filter-bar">
+              <button class="filter-button active" data-filter="all">All</button>
+              <button class="filter-button" data-filter="passing">Passing</button>
+              <button class="filter-button" data-filter="failing">Failing</button>
+            </div>
+            
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Test</th>
+                    <th>Component</th>
+                    <th>Duration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="passing">
+                    <td>✅</td>
+                    <td>/opt/mExpress/packages/core/tests/p0/validation/customerValidation.test.ts</td>
+                    <td>core</td>
+                    <td>5.8s</td>
+                  </tr>
+                  <tr class="passing">
+                    <td>✅</td>
+                    <td>/opt/mExpress/packages/core/tests/p0/core/message-queue/message-state-manager.test.ts</td>
+                    <td>core</td>
+                    <td>5.3s</td>
+                  </tr>
+                  <tr class="passing">
+                    <td>✅</td>
+                    <td>/opt/mExpress/packages/core/tests/p0/services/customer.service.test.ts</td>
+                    <td>core</td>
+                    <td>5.1s</td>
+                  </tr>
+                  <tr class="failing">
+                    <td>❌</td>
+                    <td>/opt/mExpress/projects/montpc_crm/tests/frontend/p0/auth/login.ui.test.tsx</td>
+                    <td>auth</td>
+                    <td>10.0s</td>
+                  </tr>
+                  <tr class="failing">
+                    <td>❌</td>
+                    <td>/opt/mExpress/packages/core/tests/p0/core/istio-client.test.ts</td>
+                    <td>core</td>
+                    <td>7.0s</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- BRQs Tab -->
+      <div class="tab-content" id="reports">
+        <h2>Business Requirement Queries (BRQs)</h2>
+        <div class="dashboard-content">
+          <div class="card grid-full">
+            <div class="card-header">
+              <h2 class="card-title">BRQ Test Status</h2>
+              <p class="card-subtitle">Test status grouped by Business Requirement Queries</p>
+            </div>
+            
+            <div class="filter-bar">
+              <button class="filter-button active" data-filter="all">All</button>
+              <button class="filter-button" data-filter="complete">Complete</button>
+              <button class="filter-button" data-filter="in-progress">In Progress</button>
+            </div>
+            
+            <div class="dashboard-grid">
+              <div class="dashboard-card success">
+                <h3 class="dashboard-card-title">MEXP-2025-001-API</h3>
+                <div class="dashboard-card-subtitle">API Integration</div>
+                <div class="progress-container">
+                  <div class="sprint-progress-label">Tests:</div>
+                  <div class="progress-bar large">
+                    <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+                  </div>
+                  <div class="sprint-progress-value">3/3 (100%)</div>
+                </div>
+              </div>
+              
+              <div class="dashboard-card success">
+                <h3 class="dashboard-card-title">MEXP-2025-002-BE</h3>
+                <div class="dashboard-card-subtitle">Authentication & Security</div>
+                <div class="progress-container">
+                  <div class="sprint-progress-label">Tests:</div>
+                  <div class="progress-bar large">
+                    <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+                  </div>
+                  <div class="sprint-progress-value">4/4 (100%)</div>
+                </div>
+              </div>
+              
+              <div class="dashboard-card success">
+                <h3 class="dashboard-card-title">MEXP-2025-003-BE</h3>
+                <div class="dashboard-card-subtitle">Message Queue</div>
+                <div class="progress-container">
+                  <div class="sprint-progress-label">Tests:</div>
+                  <div class="progress-bar large">
+                    <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+                  </div>
+                  <div class="sprint-progress-value">5/5 (100%)</div>
+                </div>
+              </div>
+              
+              <div class="dashboard-card warning">
+                <h3 class="dashboard-card-title">MEXP-2025-007-BE</h3>
+                <div class="dashboard-card-subtitle">Service Integration Architecture</div>
+                <div class="progress-container">
+                  <div class="sprint-progress-label">Tests:</div>
+                  <div class="progress-bar large">
+                    <div class="progress-fill progress-fill-warning" style="width: 78%"></div>
+                  </div>
+                  <div class="sprint-progress-value">7/9 (78%)</div>
+                </div>
+              </div>
+              
+              <div class="dashboard-card danger">
+                <h3 class="dashboard-card-title">MEXP-2025-024-INFRA</h3>
+                <div class="dashboard-card-subtitle">MVP Readiness</div>
+                <div class="progress-container">
+                  <div class="sprint-progress-label">Tests:</div>
+                  <div class="progress-bar large">
+                    <div class="progress-fill progress-fill-danger" style="width: 50%"></div>
+                  </div>
+                  <div class="sprint-progress-value">1/2 (50%)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>mExpress Platform Dashboard &copy; 2025</p>
+      <p>Last updated: <span id="footer-last-updated">2025-03-06</span></p>
+    </footer>
+  </div>
+  
+  <!-- Dashboard data and scripts -->
+  <script src="generated/dashboard-data.js"></script>
+  <script src="assets/dashboard.js"></script>
+  <script src="assets/js/tab-controller.js"></script>
+</body>
+</html>

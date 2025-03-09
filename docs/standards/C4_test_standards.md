@@ -23,46 +23,61 @@
 
 ### 1.1 Directory Structure
 
-#### Centralized Organization
-All tests are now centralized in a single top-level `/tests` directory that mirrors the source structure:
+#### Project-Specific Organization
+Tests should be organized within project-specific test directories that follow a consistent priority-based structure:
 
 ```
-/tests
-  /packages
-    /core
-      /unit
-        /services
-        /models
-        /utils
-      /integration
-      /e2e
-    /ui-components
-      /unit
-        /components
-      /integration
-    /utils
-      /unit
-        /lib
-  /projects
-    /montpc_crm
+/packages
+  /core
+    /tests
       /frontend
-        /unit
+        /p0  # Critical path tests
           /components
           /services
-        /integration
+        /p1  # Important features
+        /p2  # Secondary features
+        /p3  # Performance tests
       /backend
-        /unit
-        /integration
-    /mexpress
-      /unit
-      /integration
+        /p0
+          /services
+          /models
+        /p1
+        /p2
+        /p3
+      /api
+        /p0
+        /p1
+  /ui-components
+    /tests
+      /p0
+        /components
+      /p1
+      /p2
+/projects
+  /montpc_crm
+    /tests
+      /frontend
+        /p0
+          /components
+          /services
+        /p1
+        /p2
+      /backend
+        /p0
+        /p1
+        /p2
+  /mexpress
+    /tests
+      /p0
+      /p1
+      /p2
 ```
 
-This centralized approach:
-- Keeps all tests in one main location
-- Maintains a clear mirror of the source structure
-- Avoids scattered test files
-- Creates a consistent organization across packages and projects
+This project-specific approach:
+- Organizes tests alongside their respective projects
+- Maintains consistent priority-based structure
+- Prevents tests from being scattered across source files
+- Provides clear organization within each project
 
 #### Results Directory Structure
 ```
@@ -70,16 +85,32 @@ This centralized approach:
   /results
     /packages
       /core
-        /unit
-        /integration
-        /e2e
+        /frontend
+          /p0
+          /p1
+          /p2
+          /p3
+        /backend
+          /p0
+          /p1
+          /p2
+        /api
+          /p0
+          /p1
       /ui-components
-      /utils
+        /p0
+        /p1
     /projects
       /montpc_crm
         /frontend
+          /p0
+          /p1
         /backend
+          /p0
+          /p1
       /mexpress
+        /p0
+        /p1
     /summary
 ```
 
@@ -132,7 +163,7 @@ Process Limits:
 
 ### 2.1 Package Configs
 ```javascript
-// /tests/packages/core/jest.config.js
+// /packages/core/tests/jest.config.js
 module.exports = {
   displayName: 'core',
   preset: '../../../jest.preset.js',
@@ -144,16 +175,16 @@ module.exports = {
     '<rootDir>/setup.ts'
   ],
   moduleNameMapper: {
-    '^@mexpress/core/(.*)$': '<rootDir>/../../../packages/core/src/$1'
+    '^@mexpress/core/(.*)$': '<rootDir>/../../src/$1'
   }
 };
 ```
 
 ### 2.2 Project Configs
 ```javascript
-// /tests/projects/mexpress/frontend/jest.config.js
+// /projects/montpc_crm/tests/frontend/jest.config.js
 module.exports = {
-  displayName: 'mexpress-frontend',
+  displayName: 'montpc-crm-frontend',
   preset: '../../../../jest.preset.js',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: [
@@ -161,7 +192,8 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^@mexpress/core/(.*)$': '<rootDir>/../../../../packages/core/src/$1',
-    '^@mexpress/ui-components/(.*)$': '<rootDir>/../../../../packages/ui-components/src/$1'
+    '^@mexpress/ui-components/(.*)$': '<rootDir>/../../../../packages/ui-components/src/$1',
+    '^@montpc_crm/(.*)$': '<rootDir>/../../src/$1'
   }
 };
 ```
@@ -275,10 +307,10 @@ test.describe('Customer Management', () => {
 ```json
 {
   "scripts": {
-    "test:core": "jest --config tests/packages/core/jest.config.js --silent > tests/results/packages/core/test.log 2>/dev/null",
-    "test:ui": "jest --config tests/packages/ui-components/jest.config.js --silent > tests/results/packages/ui-components/test.log 2>/dev/null",
-    "test:utils": "jest --config tests/packages/utils/jest.config.js --silent > tests/results/packages/utils/test.log 2>/dev/null",
-    "test:packages": "jest --config tests/jest.packages.config.js --silent > tests/results/packages/packages.log 2>/dev/null"
+    "test:core": "jest --config packages/core/tests/jest.config.js --silent > tests/results/packages/core/test.log 2>/dev/null",
+    "test:ui": "jest --config packages/ui-components/tests/jest.config.js --silent > tests/results/packages/ui-components/test.log 2>/dev/null",
+    "test:utils": "jest --config packages/utils/tests/jest.config.js --silent > tests/results/packages/utils/test.log 2>/dev/null",
+    "test:packages": "npm run test:core && npm run test:ui && npm run test:utils > tests/results/packages/packages.log 2>/dev/null"
   }
 }
 ```
@@ -287,11 +319,11 @@ test.describe('Customer Management', () => {
 ```json
 {
   "scripts": {
-    "test:mexpress:frontend": "jest --config tests/projects/mexpress/frontend/jest.config.js --silent > tests/results/projects/mexpress/frontend/test.log 2>/dev/null",
-    "test:montpc:frontend": "jest --config tests/projects/montpc_crm/frontend/jest.config.js --silent > tests/results/projects/montpc_crm/frontend/test.log 2>/dev/null",
-    "test:montpc:backend": "jest --config tests/projects/montpc_crm/backend/jest.config.js --silent > tests/results/projects/montpc_crm/backend/test.log 2>/dev/null",
+    "test:mexpress:frontend": "jest --config projects/mexpress/tests/frontend/jest.config.js --silent > tests/results/projects/mexpress/frontend/test.log 2>/dev/null",
+    "test:montpc:frontend": "jest --config projects/montpc_crm/tests/frontend/jest.config.js --silent > tests/results/projects/montpc_crm/frontend/test.log 2>/dev/null",
+    "test:montpc:backend": "jest --config projects/montpc_crm/tests/backend/jest.config.js --silent > tests/results/projects/montpc_crm/backend/test.log 2>/dev/null",
     "test:e2e": "playwright test --reporter null > tests/results/e2e.log 2>/dev/null",
-    "test:projects": "jest --config tests/jest.projects.config.js --silent > tests/results/projects/projects.log 2>/dev/null"
+    "test:projects": "npm run test:mexpress:frontend && npm run test:montpc:frontend && npm run test:montpc:backend > tests/results/projects/projects.log 2>/dev/null"
   }
 }
 ```
@@ -366,10 +398,10 @@ test.describe('Customer Management', () => {
    - Follow centralized structure for cleanup
 
 6. Log Management:
-   - Follow the centralized directory structure
+   - Follow project-specific but consistently organized test results
    - Keep separate summary files
-   - Clean up by test type
+   - Clean up by test type and priority level
    - Maintain hierarchy:
-     * Package level: tests/results/packages/[package]/[test-type]/
-     * Project level: tests/results/projects/[project]/[component]/
+     * Package level: tests/results/packages/[package]/[frontend|backend]/[priority]/
+     * Project level: tests/results/projects/[project]/[frontend|backend]/[priority]/
      * Summary level: tests/results/summary/

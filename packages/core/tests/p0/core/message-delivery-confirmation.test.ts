@@ -1,7 +1,7 @@
-import { EventHandler } from '../../../../src/core/event-system/event-handler';
-import { MessageQueue } from '../../../../src/core/message-queue/message-queue-v2';
-import { MessageStateManager } from '../../../../src/core/message-queue/message-state-manager';
-import { QueuedMessage } from '../../../../src/core/message-queue/types';
+import { EventHandler } from '../../../src/core/event-system/event-handler';
+import { MessageQueue } from '../../../src/core/message-queue/message-queue-v2';
+import { MessageStateManager } from '../../../src/core/message-queue/message-state-manager';
+import { QueuedMessage } from '../../../src/core/message-queue/types';
 
 /**
  * Message Delivery Confirmation Tests

@@ -83,8 +83,32 @@ function processTemplate(templatePath, data) {
   // Read template
   const templateContent = fs.readFileSync(templatePath, 'utf8');
   
+  // Check if there's a special processor for this template
+  const templateName = path.basename(templatePath, '.md');
+  const processorPath = path.join(CONFIG.templatesDir, `${templateName}_PROCESSOR.js`);
+  
+  let processedMarkdown = templateContent;
+  try {
+    if (fs.existsSync(processorPath)) {
+      console.log(`Using custom processor: ${processorPath}`);
+      const processor = require(processorPath);
+      if (typeof processor.processTemplate === 'function') {
+        console.log(`Calling custom processor for ${templateName}`);
+        processedMarkdown = processor.processTemplate(templateContent, data);
+        console.log(`Custom processor completed successfully`);
+      } else {
+        console.log(`No processTemplate function found in processor module`);
+      }
+    } else {
+      console.log(`No custom processor found at ${processorPath}`);
+    }
+  } catch (error) {
+    console.error(`Error using custom processor: ${error.message}`);
+    console.error(error.stack);
+  }
+  
   // Render template with data
-  const renderedMarkdown = renderTemplate(templateContent, data);
+  const renderedMarkdown = renderTemplate(processedMarkdown, data);
   
   // Convert to HTML
   const html = markdownToHtml(renderedMarkdown);

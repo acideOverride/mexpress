@@ -1,0 +1,64 @@
+{
+  "summary": {
+    "total": 111,
+    "pass": 41,
+    "fail": 68,
+    "timeout": 2,
+    "skip": 0,
+    "passRate": 36,
+    "canonical": 109,
+    "nonCanonical": 2,
+    "prioritized": 111,
+    "nonPrioritized": 0
+  },
+  "priorities": {
+    "P0": 31
+,
+    "P1": 30
+,
+    "P2": 34
+,
+    "P3": 16
+,
+    "Unknown": 0
+  },
+  "components": {
+    "utils": 9
+,
+    "api": 11
+,
+    "frontend": 10
+,
+    "unknown": 5
+,
+    "core": 63
+,
+    "services": 1
+,
+    "auth": 12
+  },
+  "testTypes": {
+    "unit": 103
+,
+    "integration": 8
+  },
+  "errorTypes": {
+    "Unknown": 55
+,
+    "ReferenceError": 1
+,
+    "AssertionError": 1
+,
+    "ModuleError": 9
+,
+    "TypeError": 1
+,
+    "SyntaxError": 1
+  },
+  "duration": {
+    "fast": 0,
+    "normal": 56,
+    "slow": 55
+  },
+  "testDate": "2025-03-06 03:38:41"
+}

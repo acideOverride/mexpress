@@ -1,0 +1,25 @@
+{
+  "suite": "p0.unit.retry-strategy",
+  "stats": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0,
+    "duration": 39892
+  },
+  "tests": [],
+  "performance": {
+    "memory": {
+      "start": 15865648,
+      "end": 538325800,
+      "used": 522460152,
+      "peak": null
+    },
+    "cpu": {
+      "usage": 10.54,
+      "cores": 6
+    },
+    "duration": 39892,
+    "averageTestDuration": null,
+    "slowestTests": []
+  }
+}

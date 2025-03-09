@@ -1,0 +1,20 @@
+{
+  "testName": "monitoring.system.test.ts",
+  "timestamp": "2025-03-08T00:12:23.696Z",
+  "status": "passed",
+  "methods": [
+    "incrementCounter",
+    "setGauge",
+    "observeHistogram",
+    "getMetric",
+    "registerHealthCheck",
+    "runHealthChecks",
+    "registerAlert",
+    "checkAlerts",
+    "getPrometheusMetrics"
+  ],
+  "testsRun": 10,
+  "testsPassed": 10,
+  "testsFailed": 0,
+  "coverage": 100
+}

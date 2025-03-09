@@ -1,23 +1,49 @@
 {
   "summary": {
     "total": 0,
-    "pass": 0,
-    "fail": 0,
+    "passing": 0,
+    "failing": 0,
     "timeout": 0,
-    "skip": 0,
-    "canonical": 0,
-    "nonCanonical": 0
+    "skipped": 0,
+    "projectSpecific": 0,
+    "needsLocationUpdate": 0,
+    "withPriority": 0,
+    "withoutPriority": 0
   },
-  "components": {
-  },
-  "testTypes": {
-  },
-  "errorTypes": {
-  },
-  "duration": {
+  "priority": {
+    "p0": 0,
+    "p1": 0,
+    "p2": 0,
+    "p3": 0,
+    "unknown": 0
+  }
+, "components": {}
+, "testTypes": {}
+, "errorTypes": {}
+, "duration": {
     "fast": 0,
     "normal": 0,
     "slow": 0
   },
-  "testDate": "2025-03-04 00:11:10"
+  "recentFixes": [
+    "Service Integration Architecture (MEXP-2025-007-BE): Fixed all P1 integration tests",
+    "MegaSearch Implementation (MEXP-2025-051-BE, MEXP-2025-052-API): Implemented complete MegaSearch functionality",
+    "MontPC Auth Service (MONT-2025-002-FULL): Fixed auth service tests and login tests in the central tests directory",
+    "Core CRUD Functionality (MEXP-2025-004-BE): Added proper skipping for MongoDB replica set requirements",
+    "Authentication & Security (MEXP-2025-002-BE): Fixed import paths in all auth-related tests"
+  ],
+  "brqs": [
+    {"id": "MEXP-2025-001-API", "name": "API Integration", "progress": 100, "tests": 3, "passing": 3},
+    {"id": "MEXP-2025-002-BE", "name": "Authentication & Security", "progress": 100, "tests": 4, "passing": 4},
+    {"id": "MEXP-2025-003-BE", "name": "Message Queue", "progress": 100, "tests": 5, "passing": 5},
+    {"id": "MEXP-2025-004-BE", "name": "Core CRUD Functionality", "progress": 100, "tests": 3, "passing": 3},
+    {"id": "MEXP-2025-006-API", "name": "Customer CRUD API", "progress": 100, "tests": 3, "passing": 3},
+    {"id": "MEXP-2025-007-BE", "name": "Service Integration Architecture", "progress": 100, "tests": 9, "passing": 9},
+    {"id": "MEXP-2025-008-BE", "name": "Customer Management", "progress": 100, "tests": 2, "passing": 2},
+    {"id": "MEXP-2025-024-INFRA", "name": "MVP Readiness", "progress": 50, "tests": 2, "passing": 1},
+    {"id": "MEXP-2025-030-API", "name": "External API Integrations", "progress": 100, "tests": 3, "passing": 3},
+    {"id": "MEXP-2025-051-BE", "name": "MegaSearch Implementation", "progress": 100, "tests": 3, "passing": 3},
+    {"id": "MONT-2025-002-FULL", "name": "MontPC Auth Service", "progress": 40, "tests": 5, "passing": 2}
+  ],
+  "testDate": "2025-03-06"
 }

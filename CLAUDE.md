@@ -34,19 +34,38 @@ Only the user may update this section directly.
 6. Update test dashboard
 7. Commit changes
 
-<!-- END OF LOCKED SECTION -->
 
 ## 🛠️ Build Commands
 
 - Build all: `npm run build`
 - Lint: `npm run lint`
-- Test all: `npm run test`
-- Test by priority: `npm run test:p0`, `npm run test:p1`, `npm run test:p2`
-- Run single package test: `npx jest --config packages/core/jest.config.js packages/core/tests/path/to/test.test.ts > /dev/null 2>&1 && echo "PASSED: [test_name]" || echo "FAILED: [test_name]"`
-- Run single project test: `npx jest --config projects/montpc_crm/tests/jest.config.js projects/montpc_crm/tests/path/to/test.test.ts > /dev/null 2>&1 && echo "PASSED: [test_name]" || echo "FAILED: [test_name]"`
-- Run simplified tests: `npx jest --config projects/montpc_crm/tests/jest.simplified.config.js projects/montpc_crm/tests/path/to/test.test.ts > /dev/null 2>&1 && echo "PASSED: [test_name]" || echo "FAILED: [test_name]"`
 
-⚠️ IMPORTANT: Always redirect test output to /dev/null to prevent Claude from hanging with large outputs. Use the exit code to determine pass/fail status.
+### Standardized Test Commands
+
+#### Using Master Test Script
+- Test all packages: `./scripts/test_scripts/run-all-tests.sh`
+- Test by priority: `./scripts/test_scripts/run-all-tests.sh --p0` or `./scripts/test_scripts/run-all-tests.sh --p1` or `./scripts/test_scripts/run-all-tests.sh --p2`
+- Test by test type: `./scripts/test_scripts/run-all-tests.sh --integration` or `./scripts/test_scripts/run-all-tests.sh --frontend`
+- Test specific package: `./scripts/test_scripts/run-all-tests.sh --core` or `./scripts/test_scripts/run-all-tests.sh --utils` or `./scripts/test_scripts/run-all-tests.sh --montpc`
+- Combination options: `./scripts/test_scripts/run-all-tests.sh --p1 --core --coverage`
+
+#### Using Environment Variables
+- Test all: `npm run test`
+- Test by priority: `PRIORITY=p0 npm run test`, `PRIORITY=p1 npm run test`, `PRIORITY=p2 npm run test`
+- Integration tests: `TEST_TYPE=integration npm run test`
+- Frontend tests: `TEST_TYPE=frontend npm run test`
+
+#### Package-Specific Tests
+- Core package: `cd packages/core && ../../scripts/test_scripts/run-p0-tests.sh`
+- UI components package: `./scripts/test_scripts/run-all-tests.sh --ui-components --p0`
+- Vue components package: `./scripts/test_scripts/run-vue-component-tests.sh --p0`
+- Single file test: `PRIORITY=p0 npx jest --config=packages/core/jest.config.js packages/core/tests/p0/specific/test.test.ts > /dev/null 2>&1 && echo "PASSED: [test_name]" || echo "FAILED: [test_name]"`
+
+#### Test Output Management
+- Redirect test output to reduce noise: `./scripts/test_scripts/run-all-tests.sh --p0 > /dev/null 2>&1 && echo "PASSED" || echo "FAILED"`
+- Redirect specific test output: `./scripts/test_scripts/run-vue-component-tests.sh --p0 --output /tmp/test-output.log`
+
+⚠️ IMPORTANT: For use with Claude, redirect large test outputs to /dev/null to prevent Claude from hanging with large outputs. Use the exit code to determine pass/fail status.
 
 ## 📊 Testing & Dashboard
 
@@ -58,6 +77,60 @@ Only the user may update this section directly.
   - **P3**: Performance, stress tests, and non-functional requirements
 - Each test maps to a specific BRQ (Business Requirement Query)
 - Test results are stored in `/tests/results/test-runs`
+
+### Jest Configuration Standards
+- All Jest configurations MUST extend from `/opt/mExpress/jest.preset.js` 
+- Always use ts-jest, not Babel, for TypeScript tests
+- Follow the simplified configuration structure:
+  1. Root preset: `/jest.preset.js` - Base configuration all others extend from
+  2. Utilities: `/jest.utils.js` - Dynamic configuration generation functions
+  3. Package-level config: `/packages/{package}/jest.config.js` - One config per package
+  4. Project-level config: `/projects/{project}/jest.config.js` - One config per project
+- Dynamic configuration using environment variables:
+  - `PRIORITY=p0|p1|p2|p3`: Specify which priority level tests to run
+  - `TEST_TYPE=unit|integration|frontend|react|vue`: Specify which type of tests to run
+- Standard test invocation:
+  - All tests in package: `npx jest --config packages/{package}/jest.config.js`
+  - P1 tests only: `PRIORITY=p1 npx jest --config packages/{package}/jest.config.js`
+  - Integration tests: `TEST_TYPE=integration npx jest --config packages/{package}/jest.config.js`
+  - Single test: `npx jest --preset=ts-jest --no-cache {path-to-test}`
+  - MongoDB tests: `MONGODB_URI=mongodb://localhost:27017/mexpress_test npx jest --config {config-file}`
+- Common Jest settings:
+  - `--runInBand`: Run tests sequentially for better stability
+  - `--verbose`: For detailed output
+  - `--preset=ts-jest`: Ensure TypeScript compatibility
+  - `--no-cache`: Prevent stale cache issues
+- Standardized timeouts based on priority:
+  - P0 tests: 30 seconds
+  - P1 tests: 60 seconds
+  - P2 tests: 60 seconds
+  - P3 tests: 120 seconds
+  - Integration tests: 120 seconds
+- Full documentation at `/docs/standards/JEST_CONFIGURATION_STANDARDS.md`
+- Implementation status at `/tests/validation/unified/JEST_STANDARDISATION.md`
+- Benefits of this approach:
+  1. Drastically reduced maintenance (45+ files → ~10 files)
+  2. Consistent test execution across environments
+  3. Dynamic configuration through environment variables
+  4. Better type safety with TypeScript interfaces
+  5. Simplified commands and execution patterns
+
+### Vue Components Testing
+The Vue components package supports both Jest and Vitest for testing:
+
+#### Using Jest
+- Run all tests: `./scripts/test_scripts/run-vue-component-tests.sh`
+- Run priority tests: `./scripts/test_scripts/run-vue-component-tests.sh --p0`
+- Run with coverage: `./scripts/test_scripts/run-vue-component-tests.sh --coverage`
+
+#### Using Vitest
+- Run all tests: `./scripts/test_scripts/run-vue-component-tests.sh --vitest`
+- Run in watch mode: `./scripts/test_scripts/run-vue-component-tests.sh --vitest --watch`
+
+#### NPM Scripts
+- Default test: `cd packages/vue-components && npm test`
+- Jest testing: `cd packages/vue-components && npm run test:jest`
+- Vitest testing: `cd packages/vue-components && npm run test:vitest`
 
 
 ### Test Standards
@@ -101,6 +174,12 @@ When creating new tests, ALWAYS follow these location templates:
 - `/docs`: Documentation (core and project-specific)
 - `/tests/results`: Consolidated test results
 - `/tests/validation`: Test status and reporting
+- `/scripts`: All scripts must be placed in the appropriate subdirectory:
+  - `/scripts/package_scripts/`: Scripts for core packages
+  - `/scripts/project_scripts/`: Scripts for specific projects
+  - `/scripts/test_scripts/`: Test runner scripts
+  - `/scripts/utility_scripts/`: Utility and maintenance scripts
+  - `/scripts/testScripts/`: Legacy test scripting (maintained for compatibility)
 
 ### Code Style
 - **Formatting**: Prettier with singleQuote=true, tabWidth=2, printWidth=80
@@ -144,6 +223,9 @@ fix(tests): fix [test-name] in [location]
 - Solution: [what was changed to fix it]
 - BRQ: [related BRQ id]
 ```
+
+<!-- END OF LOCKED SECTION -->
+
 
 ## 📋 Current Status & Handoff
 

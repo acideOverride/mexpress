@@ -1,0 +1,30 @@
+{
+  "summary": {
+    "total": 140,
+    "prioritized": 140,
+    "unprioritized": 0,
+    "canonical": 138,
+    "nonCanonical": 2
+  },
+  "components": {
+    "utils": 17
+,
+    "api": 15
+,
+    "frontend": 11
+,
+    "unknown": 5
+,
+    "core": 76
+,
+    "services": 2
+,
+    "auth": 14
+  },
+  "testTypes": {
+    "unit": 125
+,
+    "integration": 15
+  },
+  "reportDate": "2025-03-07 00:51:36"
+}

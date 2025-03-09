@@ -1,0 +1,99 @@
+/**
+ * API interceptor setup module - Fixed version
+ */
+
+/**
+ * Setup all API interceptors
+ * @param {Object} axiosInstance - The axios instance to configure
+ */
+function setupInterceptors(axiosInstance) {
+  // Setup request interceptor for auth 
+  axiosInstance.interceptors.request.use(
+    config => {
+      const token = localStorage.getItem('auth_token');
+      if (token) {
+        config.headers = config.headers || {};
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    }, 
+    error => Promise.reject(error)
+  );
+
+  // Setup first response interceptor for auth
+  axiosInstance.interceptors.response.use(
+    response => response,
+    async error => {
+      const originalRequest = error.config;
+      
+      if (error.response?.status === 401 && !originalRequest?._retry) {
+        if (originalRequest) {
+          originalRequest._retry = true;
+        }
+        
+        try {
+          const refreshToken = localStorage.getItem('refresh_token');
+          if (!refreshToken) {
+            throw new Error('No refresh token available');
+          }
+          
+          const response = await axiosInstance.post('/auth/refresh', {
+            refreshToken: refreshToken
+          });
+          
+          if (response.data?.accessToken) {
+            localStorage.setItem('auth_token', response.data.accessToken);
+            if (response.data.refreshToken) {
+              localStorage.setItem('refresh_token', response.data.refreshToken);
+            }
+            
+            if (originalRequest) {
+              originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
+              return axiosInstance(originalRequest);
+            }
+          }
+        } catch (refreshError) {
+          localStorage.removeItem('auth_token');
+          localStorage.removeItem('refresh_token');
+          window.location.href = '/login';
+          return Promise.reject(refreshError);
+        }
+      }
+      
+      return Promise.reject(error);
+    }
+  );
+  
+  // Setup second response interceptor for errors
+  axiosInstance.interceptors.response.use(
+    response => response,
+    async error => {
+      const responseData = error.response?.data;
+      const statusCode = error.response?.status;
+
+      if (statusCode === 400) {
+        console.error('Bad Request:', responseData);
+      } else if (statusCode === 404) {
+        console.error('Not Found:', responseData);
+      } else if (statusCode === 401) {
+        console.error('Unauthorized:', responseData);
+      } else if (statusCode === 403) {
+        console.error('Forbidden:', responseData);
+      } else if (statusCode >= 500) {
+        console.error('Server Error:', responseData);
+      } else if (statusCode) {
+        console.error(`HTTP Error ${statusCode}:`, responseData);
+      } else if (error.message === 'Network Error') {
+        console.error('Network Error:', error.message);
+      } else {
+        console.error('API Error:', error.message);
+      }
+
+      return Promise.reject(error);
+    }
+  );
+}
+
+module.exports = {
+  setupInterceptors
+};

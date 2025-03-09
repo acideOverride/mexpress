@@ -1,0 +1,37 @@
+{
+  "summary": {
+    "total": 130,
+    "prioritized": 129,
+    "unprioritized": 1,
+    "canonical": 129,
+    "nonCanonical": 1,
+    "javaScriptFiles": 14,
+    "typeScriptFiles": 101,
+    "reactTypeScriptFiles": 15,
+    "reactJavaScriptFiles": 0,
+    "duplicateTests": 0,
+    "typeScriptPercentage": 89,
+    "javaScriptPercentage": 10
+  },
+  "components": {
+    "utils": 13
+,
+    "api": 13
+,
+    "frontend": 10
+,
+    "unknown": 13
+,
+    "core": 68
+,
+    "services": 1
+,
+    "auth": 12
+  },
+  "testTypes": {
+    "unit": 122
+,
+    "integration": 8
+  },
+  "reportDate": "2025-03-09 13:12:55"
+}

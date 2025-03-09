@@ -1,6 +1,6 @@
-import { EventHandler } from '../../../../src/core/event-system/event-handler';
-import { MessageQueue } from '../../../../src/core/message-queue/message-queue-v2';
-import { QueuedMessage } from '../../../../src/core/message-queue/types';
+import { EventHandler } from '../../../src/core/event-system/event-handler';
+import { MessageQueue } from '../../../src/core/message-queue/message-queue-v2';
+import { QueuedMessage } from '../../../src/core/message-queue/types';
 
 describe('MessageQueue V2', () => {
     let messageQueue: MessageQueue;

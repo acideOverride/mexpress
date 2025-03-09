@@ -6,7 +6,7 @@
  * reduce the number of configuration files while maintaining flexibility.
  * 
  * Created: 2025-03-08
- * Updated: 2025-03-08
+ * Updated: 2025-03-09
  */
 
 /**
@@ -69,18 +69,29 @@ function createIntegrationConfig(packageName, baseConfig) {
  * @returns {JestConfig} Jest configuration for frontend tests
  */
 function createFrontendConfig(packageName, baseConfig) {
+  // Determine appropriate setup files path based on package structure
+  const setupFiles = [
+    ...(baseConfig.setupFilesAfterEnv || [])
+  ];
+  
+  // For MontPC project specifically
+  if (packageName.includes('montpc')) {
+    setupFiles.push('<rootDir>/frontend/p0/setupTests.ts');
+  } else {
+    // Standard path for other packages
+    setupFiles.push('<rootDir>/tests/setupTests.ts');
+  }
+  
   return {
     ...baseConfig,
     displayName: `${packageName}-frontend`,
     testEnvironment: 'jsdom',
     testMatch: [
       `<rootDir>/tests/**/frontend/**/*.test.{ts,tsx}`,
+      `<rootDir>/frontend/**/*.test.{ts,tsx}`,
       `<rootDir>/src/**/frontend/**/*.test.{ts,tsx}`
     ],
-    setupFilesAfterEnv: [
-      ...(baseConfig.setupFilesAfterEnv || []),
-      '<rootDir>/tests/setupTests.ts',
-    ],
+    setupFilesAfterEnv: setupFiles,
     moduleNameMapper: {
       ...baseConfig.moduleNameMapper,
       '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',

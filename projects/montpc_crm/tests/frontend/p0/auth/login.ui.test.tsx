@@ -3,8 +3,16 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
+// Define the prop types for the LoginForm component
+interface LoginFormProps {
+  onLogin?: (email: string, password: string, rememberMe: boolean) => void;
+  onForgotPassword?: () => void;
+  isLoading?: boolean;
+  error?: string;
+}
+
 // Simplified login form without React state
-const LoginForm = (props) => (
+const LoginForm: React.FC<LoginFormProps> = (props) => (
   <div data-testid="login-container">
     <h1 data-testid="login-title">Sign In</h1>
     

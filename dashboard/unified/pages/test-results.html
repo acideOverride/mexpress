@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mExpress Dashboard - Test Results</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  <link rel="stylesheet" href="../assets/dashboard.css">
+  <style>
+    .test-status {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .status-card {
+      padding: 1.5rem;
+      border-radius: 8px;
+      flex: 0 0 23%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .status-card h3 {
+      margin-top: 0;
+      font-size: 1rem;
+    }
+    .status-card .number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+    .status-card .percentage {
+      font-size: 1.2rem;
+      color: var(--secondary-text);
+    }
+    .passing { background-color: #e6f7e6; color: #2e7d32; }
+    .failing { background-color: #ffeaea; color: #d32f2f; }
+    .timeout { background-color: #fff8e1; color: #f57c00; }
+    .skipped { background-color: #e1f5fe; color: #0288d1; }
+    
+    .chart-container {
+      height: 300px;
+      margin-bottom: 2rem;
+    }
+    
+    .test-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .test-table th {
+      background-color: var(--secondary-bg);
+      color: var(--secondary-text);
+      text-align: left;
+      padding: 0.75rem;
+    }
+    .test-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .test-table tr:hover {
+      background-color: var(--hover-bg);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="dashboard-title">
+        <div class="dashboard-logo">m</div>
+        <div class="dashboard-header-content">
+          <h1>mExpress Test Results Dashboard</h1>
+          <div class="meta">
+            <span id="last-updated">Last updated: <span id="update-date">Loading...</span></span>
+          </div>
+        </div>
+        <div class="dashboard-actions">
+          <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" class="moon-icon"></path>
+              <circle cx="12" cy="12" r="5" class="sun-icon-circle"></circle>
+              <line x1="12" y1="1" x2="12" y2="3" class="sun-icon-ray"></line>
+              <line x1="12" y1="21" x2="12" y2="23" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" class="sun-icon-ray"></line>
+              <line x1="1" y1="12" x2="3" y2="12" class="sun-icon-ray"></line>
+              <line x1="21" y1="12" x2="23" y2="12" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" class="sun-icon-ray"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <div class="tabs">
+      <a href="index.html" class="tab">Overview</a>
+      <a href="architecture.html" class="tab">Architecture</a>
+      <a href="test-results.html" class="tab active">Test Results</a>
+      <a href="projects.html" class="tab">Projects</a>
+    </div>
+    
+    <main class="main-content">
+      <div class="tab-content active" id="page-content">
+        <h1>Test Execution Status</h1>
+        
+        <div class="test-status">
+          <div class="status-card passing">
+            <h3>Passing Tests</h3>
+            <div class="number" id="passing-count">-</div>
+            <div class="percentage" id="passing-percentage">-%</div>
+          </div>
+          <div class="status-card failing">
+            <h3>Failing Tests</h3>
+            <div class="number" id="failing-count">-</div>
+            <div class="percentage" id="failing-percentage">-%</div>
+          </div>
+          <div class="status-card timeout">
+            <h3>Timeouts</h3>
+            <div class="number" id="timeout-count">-</div>
+            <div class="percentage" id="timeout-percentage">-%</div>
+          </div>
+          <div class="status-card skipped">
+            <h3>Skipped</h3>
+            <div class="number" id="skipped-count">-</div>
+            <div class="percentage" id="skipped-percentage">-%</div>
+          </div>
+        </div>
+        
+        <div class="stat-cards">
+          <div class="stat-card">
+            <h2>Test Results by Priority</h2>
+            <div class="chart-container">
+              <canvas id="priority-chart"></canvas>
+            </div>
+          </div>
+          <div class="stat-card">
+            <h2>Components Breakdown</h2>
+            <div class="chart-container">
+              <canvas id="component-chart"></canvas>
+            </div>
+          </div>
+        </div>
+        
+        <div class="stat-cards">
+          <div class="stat-card">
+            <h2>Test Locations</h2>
+            <div class="chart-container">
+              <canvas id="location-chart"></canvas>
+            </div>
+          </div>
+          <div class="stat-card">
+            <h2>Test Types</h2>
+            <div class="chart-container">
+              <canvas id="type-chart"></canvas>
+            </div>
+          </div>
+        </div>
+        
+        <h2>Test Duration Breakdown</h2>
+        <div class="chart-container" style="height: 200px;">
+          <canvas id="duration-chart"></canvas>
+        </div>
+        
+        <h2>Error Type Analysis</h2>
+        <div id="error-section">
+          <p>Loading error data...</p>
+        </div>
+        
+        <h2>All Tests Status</h2>
+        <div id="tests-table-container">
+          <p>Loading test data...</p>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>mExpress Unified Dashboard &copy; 2025 | mExpress Test Status Report</p>
+      <p>Last updated: <span class="update-date">Loading...</span></p>
+    </footer>
+  </div>
+  
+  <script>
+    // Static data for testing
+    const staticData = {
+      testDate: "2025-03-06",
+      summary: {
+        total: 10,
+        pass: 6,
+        fail: 4,
+        timeout: 0,
+        skip: 0,
+        passRate: 60,
+        canonical: 10,
+        nonCanonical: 0
+      },
+      priorities: {
+        "P0": 10,
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      components: {
+        "core": 7,
+        "api": 3
+      },
+      testTypes: {
+        "unit": 10
+      },
+      duration: {
+        fast: 0,
+        normal: 8,
+        slow: 2
+      },
+      errorTypes: {
+        "Unknown": 4
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Update main stats
+      document.getElementById('passing-count').textContent = staticData.summary.pass;
+      document.getElementById('failing-count').textContent = staticData.summary.fail;
+      document.getElementById('timeout-count').textContent = staticData.summary.timeout;
+      document.getElementById('skipped-count').textContent = staticData.summary.skip;
+      
+      document.getElementById('passing-percentage').textContent = '60%';
+      document.getElementById('failing-percentage').textContent = '40%';
+      document.getElementById('timeout-percentage').textContent = '0%';
+      document.getElementById('skipped-percentage').textContent = '0%';
+      
+      // Update date
+      const dateElements = document.querySelectorAll('#update-date, .update-date');
+      dateElements.forEach(el => {
+        el.textContent = staticData.testDate;
+      });
+      
+      // Error section
+      document.getElementById('error-section').innerHTML = '<p>4 Unknown errors found</p>';
+      
+      // Tests table
+      document.getElementById('tests-table-container').innerHTML = '<p>10 tests total: 6 passing, 4 failing</p>';
+    });
+  </script>
+</body>
+</html>

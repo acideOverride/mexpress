@@ -1,0 +1,1 @@
+{"compilerOptions":{"target":"es2020","module":"commonjs","moduleResolution":"node","esModuleInterop":true,"strict":true,"outDir":"/opt/mExpress/packages/vue-components/tests/p2/components/ui"},"include":["/opt/mExpress/packages/vue-components/tests/p2/components/ui/Select.test.ts"]}

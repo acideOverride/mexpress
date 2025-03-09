@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mExpress Dashboard - TEST_STATUS</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  <link rel="stylesheet" href="../assets/dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="dashboard-title">
+        <div class="dashboard-logo">m</div>
+        <div class="dashboard-header-content">
+          <h1>mExpress Dashboard Hub</h1>
+          <div class="meta">
+            <span id="last-updated">Last updated: 2025-03-03</span>
+            <span id="version">Version: 1.0.0</span>
+          </div>
+        </div>
+        <div class="dashboard-actions">
+          <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" class="moon-icon"></path>
+              <circle cx="12" cy="12" r="5" class="sun-icon-circle"></circle>
+              <line x1="12" y1="1" x2="12" y2="3" class="sun-icon-ray"></line>
+              <line x1="12" y1="21" x2="12" y2="23" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" class="sun-icon-ray"></line>
+              <line x1="1" y1="12" x2="3" y2="12" class="sun-icon-ray"></line>
+              <line x1="21" y1="12" x2="23" y2="12" class="sun-icon-ray"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" class="sun-icon-ray"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" class="sun-icon-ray"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="overview">Overview</div>
+      <div class="tab" data-tab="dashboards">Dashboards</div>
+      <div class="tab" data-tab="projects">Projects</div>
+      <div class="tab" data-tab="reports">Reports</div>
+    </div>
+    
+    <main class="main-content">
+      <div class="tab-content active" id="page-content">
+        <h1>Test Status Dashboard</h1>
+<p>This dashboard shows the current status of all tests in the mExpress codebase. <a href="test-status-detailed.html" class="button" style="margin-left: 10px;">View Detailed Blueprint</a></p>
+<h2>Test Status Summary</h2>
+<p>Currently, there are 111 tests in the codebase. 
+41 tests are passing (37%), 
+68 tests are failing (61%), 
+2 tests timed out, and 0 tests are skipped.</p>
+<h2>Tests By Status (Grouped by Priority)</h2>
+<h3>P0 (Critical) Tests</h3>
+<h4>Passing</h4>
+<div class="test-summary-card">
+      <strong>Total P0 Tests Passing:</strong> 11.48 of 31 (28%)
+    </div>
+
+<h4>Failing</h4>
+<div class="test-summary-card">
+      <strong>Total P0 Tests Failing:</strong> 11.96 of 31 (72%)
+    </div>
+
+<h3>P1 (High Priority) Tests</h3>
+<h4>Passing</h4>
+<div class="test-summary-card">
+      <strong>Total P1 Tests Passing:</strong> 11.07 of 30 (27%)
+    </div>
+
+<h4>Failing</h4>
+<div class="test-summary-card">
+      <strong>Total P1 Tests Failing:</strong> 11.64 of 30 (73%)
+    </div>
+
+<h3>P2 (Medium Priority) Tests</h3>
+<h4>Passing</h4>
+<div class="test-summary-card">
+      <strong>Total P2 Tests Passing:</strong> 12.71 of 34 (31%)
+    </div>
+
+<h4>Failing</h4>
+<div class="test-summary-card">
+      <strong>Total P2 Tests Failing:</strong> 12.920000000000002 of 34 (69%)
+    </div>
+
+<h3>P3 (Low Priority) Tests</h3>
+<h4>Passing</h4>
+<div class="test-summary-card">
+      <strong>Total P3 Tests Passing:</strong> 5.74 of 16 (14%)
+    </div>
+
+<h4>Failing</h4>
+<div class="test-summary-card">
+      <strong>Total P3 Tests Failing:</strong> 6.48 of 16 (86%)
+    </div>
+
+<h2>Statistics</h2>
+<h3>Overall Statistics</h3>
+<pre><code>
+Total tests: 111
+Passing: 41 (37%)
+Failing: 68 (61%)
+Timed out: 2 (2%)
+Skipped: 0 (0%)
+
+In project-specific location: 109 (98%)
+Needing location update: 2 (2%)
+
+With priority label: 111 (100%)
+Missing priority label: 0 (0%)
+</code></pre>
+<h3>Priority Breakdown</h3>
+<pre><code>
+P0: 31 (28%)
+P1: 30 (27%)
+P2: 34 (31%)
+P3: 16 (14%)
+Unknown: 0 (0%)
+</code></pre>
+<h3>Component Breakdown</h3>
+<pre><code>utils: 9 (8%)
+api: 11 (10%)
+frontend: 10 (9%)
+unknown: 5 (5%)
+core: 63 (57%)
+services: 1 (1%)
+auth: 12 (11%)
+</code></pre>
+<h3>Test Type Breakdown</h3>
+<pre><code>unit: 103 (93%)
+integration: 8 (7%)
+e2e: 0 (0%)
+</code></pre>
+<h3>Error Type Breakdown</h3>
+<pre><code>Unknown: 55 (81%)
+ReferenceError: 1 (1%)
+AssertionError: 1 (1%)
+ModuleError: 9 (13%)
+TypeError: 1 (1%)
+SyntaxError: 1 (1%)
+</code></pre>
+<h3>Test Duration Breakdown</h3>
+<pre><code>
+Fast (≤1s): 0
+Normal (1-5s): 56
+Slow (&gt;5s): 55
+</code></pre>
+<h2>Recent Progress</h2>
+<ul class="recent-fixes">
+  <li>MegaSearch Implementation (MEXP-2025-051-BE, MEXP-2025-052-API): Implemented complete MegaSearch functionality</li>
+  <li>MontPC Auth Service (MONT-2025-002-FULL): Fixed auth service tests and login tests in the central tests directory</li>
+  <li>Core CRUD Functionality (MEXP-2025-004-BE): Added proper skipping for MongoDB replica set requirements</li>
+  <li>Authentication & Security (MEXP-2025-002-BE): Fixed import paths in all auth-related tests</li>
+  <li>Service Discovery (MEXP-2025-007-BE): Fixed issues with cacheSize statistics reporting</li>
+</ul>
+
+<pre><code class="language-json">{
+  &quot;summary&quot;: {
+    &quot;total&quot;: 111,
+    &quot;passing&quot;: 41,
+    &quot;failing&quot;: 68,
+    &quot;timeout&quot;: 2,
+    &quot;skipped&quot;: 0,
+    &quot;projectSpecific&quot;: 109,
+    &quot;needsLocationUpdate&quot;: 2,
+    &quot;withPriority&quot;: 111,
+    &quot;withoutPriority&quot;: 0
+  },
+  &quot;priority&quot;: {
+    &quot;p0&quot;: 31,
+    &quot;p1&quot;: 30,
+    &quot;p2&quot;: 34,
+    &quot;p3&quot;: 16,
+    &quot;unknown&quot;: 0
+  },
+  &quot;components&quot;: {
+    &quot;utils&quot;: 9,
+    &quot;api&quot;: 11,
+    &quot;frontend&quot;: 10,
+    &quot;unknown&quot;: 5,
+    &quot;core&quot;: 63,
+    &quot;services&quot;: 1,
+    &quot;auth&quot;: 12
+  },
+  &quot;testTypes&quot;: {
+    &quot;unit&quot;: 103,
+    &quot;integration&quot;: 8,
+    &quot;e2e&quot;: 0
+  },
+  &quot;errorTypes&quot;: {
+    &quot;Unknown&quot;: 55,
+    &quot;ReferenceError&quot;: 1,
+    &quot;AssertionError&quot;: 1,
+    &quot;ModuleError&quot;: 9,
+    &quot;TypeError&quot;: 1,
+    &quot;SyntaxError&quot;: 1
+  },
+  &quot;duration&quot;: {
+    &quot;fast&quot;: 0,
+    &quot;normal&quot;: 56,
+    &quot;slow&quot;: 55
+  },
+  &quot;recentFixes&quot;: [
+    &quot;MegaSearch Implementation (MEXP-2025-051-BE, MEXP-2025-052-API): Implemented complete MegaSearch functionality&quot;,
+    &quot;MontPC Auth Service (MONT-2025-002-FULL): Fixed auth service tests and login tests in the central tests directory&quot;,
+    &quot;Core CRUD Functionality (MEXP-2025-004-BE): Added proper skipping for MongoDB replica set requirements&quot;,
+    &quot;Authentication &amp; Security (MEXP-2025-002-BE): Fixed import paths in all auth-related tests&quot;,
+    &quot;Service Discovery (MEXP-2025-007-BE): Fixed issues with cacheSize statistics reporting&quot;
+  ],
+  &quot;brqs&quot;: [
+    {&quot;id&quot;: &quot;MEXP-2025-001-API&quot;, &quot;name&quot;: &quot;API Integration&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 3, &quot;passing&quot;: 3},
+    {&quot;id&quot;: &quot;MEXP-2025-002-BE&quot;, &quot;name&quot;: &quot;Authentication &amp; Security&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 4, &quot;passing&quot;: 4},
+    {&quot;id&quot;: &quot;MEXP-2025-003-BE&quot;, &quot;name&quot;: &quot;Message Queue&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 5, &quot;passing&quot;: 5},
+    {&quot;id&quot;: &quot;MEXP-2025-004-BE&quot;, &quot;name&quot;: &quot;Core CRUD Functionality&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 3, &quot;passing&quot;: 3},
+    {&quot;id&quot;: &quot;MEXP-2025-005-FE&quot;, &quot;name&quot;: &quot;UI Architecture&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 1, &quot;passing&quot;: 1},
+    {&quot;id&quot;: &quot;MEXP-2025-006-API&quot;, &quot;name&quot;: &quot;Customer CRUD API&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 3, &quot;passing&quot;: 3},
+    {&quot;id&quot;: &quot;MEXP-2025-007-BE&quot;, &quot;name&quot;: &quot;Service Integration Architecture&quot;, &quot;progress&quot;: 78, &quot;tests&quot;: 9, &quot;passing&quot;: 7},
+    {&quot;id&quot;: &quot;MEXP-2025-008-BE&quot;, &quot;name&quot;: &quot;Customer Management&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 2, &quot;passing&quot;: 2},
+    {&quot;id&quot;: &quot;MEXP-2025-024-INFRA&quot;, &quot;name&quot;: &quot;MVP Readiness&quot;, &quot;progress&quot;: 50, &quot;tests&quot;: 2, &quot;passing&quot;: 1},
+    {&quot;id&quot;: &quot;MEXP-2025-027-BE&quot;, &quot;name&quot;: &quot;Product Catalog&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 3, &quot;passing&quot;: 3},
+    {&quot;id&quot;: &quot;MEXP-2025-030-API&quot;, &quot;name&quot;: &quot;External API Integrations&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 3, &quot;passing&quot;: 3},
+    {&quot;id&quot;: &quot;MEXP-2025-031-API&quot;, &quot;name&quot;: &quot;Ringover Customer Management&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 3, &quot;passing&quot;: 3},
+    {&quot;id&quot;: &quot;MEXP-2025-037-FULL&quot;, &quot;name&quot;: &quot;MVP Implementation&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 3, &quot;passing&quot;: 3},
+    {&quot;id&quot;: &quot;MEXP-2025-051-BE&quot;, &quot;name&quot;: &quot;MegaSearch Implementation&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 3, &quot;passing&quot;: 3},
+    {&quot;id&quot;: &quot;MEXP-2025-052-API&quot;, &quot;name&quot;: &quot;MegaSearch API&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 3, &quot;passing&quot;: 3},
+    {&quot;id&quot;: &quot;MONT-2025-001-FULL&quot;, &quot;name&quot;: &quot;MontPC Customer Service&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 1, &quot;passing&quot;: 1},
+    {&quot;id&quot;: &quot;MONT-2025-002-FULL&quot;, &quot;name&quot;: &quot;MontPC Auth Service&quot;, &quot;progress&quot;: 100, &quot;tests&quot;: 2, &quot;passing&quot;: 2}
+  ]
+}
+</code></pre>
+
+      </div>
+    </main>
+    
+    <footer>
+      <p>mExpress Unified Dashboard &copy; 2025 | Generated from template files in the /templates directory</p>
+      <p>Last updated: <span id="footer-last-updated">2025-03-03</span></p>
+    </footer>
+  </div>
+  
+  <!-- Dashboard data and scripts -->
+  <script src="../generated/dashboard-data.js"></script>
+  <script src="../assets/dashboard.js"></script>
+</body>
+</html>

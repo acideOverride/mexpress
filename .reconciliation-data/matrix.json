@@ -1,0 +1,16 @@
+{
+  "components": [
+    {
+      "name": "TestComponent",
+      "documentedStatus": "COMPLETE",
+      "actualStatus": "COMPLETE",
+      "gapDescription": "Missing implementation",
+      "priority": "HIGH",
+      "owner": "Test User",
+      "targetDate": "2025-03-10",
+      "status": "COMPLETED",
+      "evidenceLinks": [],
+      "lastUpdated": "2025-03-06T03:56:53.981Z"
+    }
+  ]
+}

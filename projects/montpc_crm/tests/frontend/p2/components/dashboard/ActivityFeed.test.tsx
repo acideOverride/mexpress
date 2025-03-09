@@ -1,24 +1,32 @@
+/**
+ * ActivityFeed Component Test
+ * 
+ * Tests the ActivityFeed component which displays a list of recent activities
+ * with loading, error, and data states.
+ */
+
+import React from 'react';
 import { render, screen, act } from '@testing-library/react';
-import ActivityFeed from '../ActivityFeed';
+import ActivityFeed from '../../../../../frontend/src/components/dashboard/ActivityFeed';
+
+// Mock the mockApi import
+jest.mock('../../../../../frontend/src/services/mockApi', () => ({
+  mockApi: {
+    getActivities: jest.fn()
+  }
+}));
+
+// Import the mocked module
+import { mockApi } from '../../../../../frontend/src/services/mockApi';
 
 describe('ActivityFeed', () => {
-  const originalFetch = global.fetch;
-
-  beforeAll(() => {
-    global.fetch = jest.fn();
-  });
-
-  afterAll(() => {
-    global.fetch = originalFetch;
-  });
-
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('should render loading state initially', async () => {
-    // Mock fetch to return a pending promise that never resolves
-    (global.fetch as jest.Mock).mockImplementationOnce(() => 
+    // Mock the API to return a pending promise that never resolves
+    (mockApi.getActivities as jest.Mock).mockImplementationOnce(() => 
       new Promise(() => {})
     );
     
@@ -36,8 +44,8 @@ describe('ActivityFeed', () => {
   });
 
   it('should handle error state', async () => {
-    // Mock fetch to simulate error
-    (global.fetch as jest.Mock).mockImplementationOnce(() => 
+    // Mock the API to simulate error
+    (mockApi.getActivities as jest.Mock).mockImplementationOnce(() => 
       Promise.reject(new Error('Failed to load activity feed'))
     );
     
@@ -71,11 +79,9 @@ describe('ActivityFeed', () => {
       }
     ];
 
-    (global.fetch as jest.Mock).mockImplementationOnce(() => 
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockActivities)
-      })
+    // Mock the API to return the mock data
+    (mockApi.getActivities as jest.Mock).mockImplementationOnce(() => 
+      Promise.resolve(mockActivities)
     );
     
     await act(async () => {

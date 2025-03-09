@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 
 describe('CustomerService', () => {
   let customerService: CustomerService;
-  let db: mongoose.Connection;
 
   const validCustomerData: Partial<ICustomer> = {
     firstName: 'John',
@@ -15,14 +14,17 @@ describe('CustomerService', () => {
   };
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mexpress_test');
-    db = mongoose.connection;
+    // MongoDB connection is handled by jest.mongodb.setup.js
+    // Just create the service instance
     customerService = new CustomerService();
   });
 
   afterAll(async () => {
-    await db.dropDatabase();
-    await mongoose.connection.close();
+    // Clear database collections instead of dropping the entire database
+    // This is safer and works with MongoMemoryServer
+    await Promise.all(
+      Object.values(mongoose.connection.collections).map(collection => collection.deleteMany({}))
+    );
   });
 
   beforeEach(async () => {

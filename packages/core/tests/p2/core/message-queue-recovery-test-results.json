@@ -1,0 +1,9 @@
+{
+  "testName": "message-queue-recovery.test.ts",
+  "timestamp": "2025-03-08T00:37:03.443Z",
+  "status": "passed",
+  "testsRun": 4,
+  "testsPassed": 4,
+  "testsFailed": 0,
+  "coverage": 80
+}

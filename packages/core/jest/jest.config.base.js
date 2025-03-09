@@ -4,12 +4,10 @@ module.exports = {
   testEnvironment: 'node',
 
   // Common settings
-  verbose: false,          // Minimize console output
-  silent: true,           // Further reduce noise
   maxWorkers: '50%',      // Limit CPU usage
 
-  // Timeouts
-  testTimeout: 30000,     // 30s default timeout
+  // Timeouts (managed via testRunner and env var)
+  testRunner: "jest-circus/runner",
 
   // Error Handling
   bail: 0,               // Don't stop on failure
@@ -44,11 +42,9 @@ module.exports = {
   // Setup files
   setupFilesAfterEnv: [],
 
-  // Global settings
+  // Global settings - kept for backward compatibility but ts-jest config moved to transform
   globals: {
-    'ts-jest': {
-      isolatedModules: true  // Faster compilation
-    }
+    // No longer using ts-jest here - moved to transform section
   },
 
   // Resource management
@@ -57,7 +53,7 @@ module.exports = {
   detectLeaks: true,        // Memory leak detection
 
   // Output settings
-  reporters: ['default'],
+  reporters: [['default', {}]],
 
   // Error formatting
   errorOnDeprecated: true,

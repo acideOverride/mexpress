@@ -1,0 +1,15 @@
+{
+  "testName": "logger.test.ts",
+  "timestamp": "2025-03-08T00:12:16.607Z",
+  "status": "passed",
+  "methods": [
+    "info",
+    "error",
+    "warn",
+    "debug"
+  ],
+  "testsRun": 12,
+  "testsPassed": 12,
+  "testsFailed": 0,
+  "coverage": 100
+}

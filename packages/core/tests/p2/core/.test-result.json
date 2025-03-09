@@ -1,0 +1,10 @@
+{
+  "name": "called-in-order.test.ts",
+  "result": "passed",
+  "timestamp": "2025-03-08T00:46:30.218Z",
+  "type": "unit",
+  "component": "core",
+  "coverage": "70%",
+  "migrated": true,
+  "language": "TypeScript"
+}

@@ -228,7 +228,46 @@
     }
   </style>
 </head>
-<body>
+<body class="manual-fix">
+  <!-- Extreme solution to fix all navigation issues -->
+  <style>
+    body.manual-fix {
+      position: relative;
+    }
+    
+    body.manual-fix * {
+      pointer-events: auto !important;
+    }
+    
+    /* Force all SVG elements to be below other content */
+    body.manual-fix svg {
+      z-index: 1 !important;
+    }
+    
+    /* Make sure containers don't block clicks */
+    body.manual-fix .container,
+    body.manual-fix .blueprint-container,
+    body.manual-fix .blueprint-content,
+    body.manual-fix .blueprint-main {
+      pointer-events: auto !important;
+      position: relative !important;
+      z-index: auto !important;
+    }
+    
+    /* Force buttons to be on top */
+    body.manual-fix button,
+    body.manual-fix .button,
+    body.manual-fix .tab,
+    body.manual-fix .sub-tab,
+    body.manual-fix .theme-toggle,
+    body.manual-fix #dark-mode-toggle,
+    body.manual-fix .filter-button {
+      position: relative !important;
+      z-index: 10000 !important;
+      pointer-events: auto !important;
+    }
+  </style>
+  
   <div class="container">
     <header>
       <div class="dashboard-title">
@@ -241,7 +280,7 @@
           </div>
         </div>
         <div class="dashboard-actions">
-          <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <button id="dark-mode-toggle" class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" style="position:relative; z-index:10000; cursor:pointer !important;">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" class="moon-icon"></path>
               <circle cx="12" cy="12" r="5" class="sun-icon-circle"></circle>
@@ -255,16 +294,22 @@
               <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" class="sun-icon-ray"></line>
             </svg>
           </button>
+          <script>
+            function toggleDarkMode() {
+              console.log('TOGGLING DARK MODE');
+              document.documentElement.classList.toggle('dark-mode');
+            }
+          </script>
         </div>
       </div>
     </header>
     
     <div class="tabs">
-      <div class="tab" data-tab="overview" data-href="../index.html">Overview</div>
-      <div class="tab active" data-tab="architecture">Architecture</div>
-      <div class="tab" data-tab="dashboards" data-href="index.html">Dashboards</div>
-      <div class="tab" data-tab="projects" data-href="projects.html">Projects</div>
-      <div class="tab" data-tab="reports" data-href="tests.html">Reports</div>
+      <a href="../index.html" class="tab" style="position:relative; z-index:10000; pointer-events:auto !important; text-decoration:none; color:inherit;">Overview</a>
+      <div class="tab active" style="position:relative; z-index:10000; pointer-events:auto !important;">Architecture</div>
+      <a href="index.html" class="tab" style="position:relative; z-index:10000; pointer-events:auto !important; text-decoration:none; color:inherit;">Dashboards</a>
+      <a href="projects.html" class="tab" style="position:relative; z-index:10000; pointer-events:auto !important; text-decoration:none; color:inherit;">Projects</a>
+      <a href="tests.html" class="tab" style="position:relative; z-index:10000; pointer-events:auto !important; text-decoration:none; color:inherit;">Reports</a>
     </div>
     
     <main class="main-content">
@@ -531,48 +576,30 @@
             <div class="blueprint-content">
               <!-- Sub tabs for detailed views - with improved styling -->
               <div class="sub-tabs" id="sub-tabs-container" style="z-index:1000; position:relative; display:flex; gap:4px; border-bottom: 1px solid var(--blueprint-outline); margin-bottom: 1rem;">
-                <!-- Direct inline onclick handlers with improved styling -->
-                <button onclick="activateTab('overview');" id="tab-overview" class="sub-tab active" data-subtab="overview" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid var(--blueprint-accent); font-weight: 500; transition: all 0.2s ease;">Overview</button>
+                <!-- Tabs without inline event handlers -->
+                <button id="tab-overview" class="sub-tab active" data-subtab="overview" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-accent); border-bottom: 3px solid var(--blueprint-accent); font-weight: 500; transition: all 0.2s ease;">Overview</button>
                 
-                <button onclick="activateTab('components');" id="tab-components" class="sub-tab" data-subtab="components" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Components</button>
+                <button id="tab-components" class="sub-tab" data-subtab="components" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Components</button>
                 
-                <button onclick="activateTab('brqs');" id="tab-brqs" class="sub-tab" data-subtab="brqs" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">BRQs</button>
+                <button id="tab-brqs" class="sub-tab" data-subtab="brqs" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">BRQs</button>
                 
-                <button onclick="activateTab('connections');" id="tab-connections" class="sub-tab" data-subtab="connections" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Connections</button>
+                <button id="tab-connections" class="sub-tab" data-subtab="connections" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Connections</button>
                 
-                <button onclick="activateTab('roadmap');" id="tab-roadmap" class="sub-tab" data-subtab="roadmap" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Roadmap</button>
+                <button id="tab-roadmap" class="sub-tab" data-subtab="roadmap" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Roadmap</button>
               </div>
               
               <script>
+                // This function will be replaced by our direct tab fix
                 function activateTab(tabId) {
-                  // First, reset all tabs and hide all content
-                  document.querySelectorAll('.sub-tab').forEach(function(tab) {
-                    tab.style.borderBottom = '3px solid transparent';
-                    tab.style.color = 'var(--blueprint-text)';
-                  });
-                  
-                  document.getElementById('overview-tab').style.display = 'none';
-                  document.getElementById('components-tab').style.display = 'none';
-                  document.getElementById('brqs-tab').style.display = 'none';
-                  document.getElementById('connections-tab').style.display = 'none';
-                  document.getElementById('roadmap-tab').style.display = 'none';
-                  
-                  // Then activate the selected tab and show its content
-                  document.getElementById('tab-' + tabId).style.borderBottom = '3px solid var(--blueprint-accent)';
-                  document.getElementById('tab-' + tabId).style.color = 'var(--blueprint-accent)';
-                  document.getElementById(tabId + '-tab').style.display = 'block';
-                  
-                  // Handle connections tab specially
-                  if (tabId === 'connections' && typeof window.initializeConnectionsDiagram === 'function') {
-                    setTimeout(function() { window.initializeConnectionsDiagram(); }, 100);
-                  }
+                  console.log('Original activateTab called for', tabId);
+                  // Event will be handled by our direct tab fix
                 }
               </script>
               
               <!-- Overview Tab Content -->
               <div class="sub-tab-content active" id="overview-tab">
                 <!-- Background grid pattern -->
-                <div class="blueprint-grid"></div>
+                <!-- Removed blueprint grid as it might be causing issues -->
                 
                 <!-- Project Overview Section -->
                 <div class="overview-container">
@@ -793,6 +820,167 @@
       });
   </script>
   <script src="../assets/dashboard.js"></script>
+  <!-- Add direct fix for tab switching with extreme solution -->
+  <style>
+    /* Extreme debugging solution to find what's blocking clicks */
+    body * {
+      pointer-events: auto !important;
+    }
+    
+    /* Force all elements to be clickable that might be in the header */
+    .blueprint-header,
+    .blueprint-title,
+    .blueprint-controls,
+    .theme-switch,
+    #blueprint-view-toggle,
+    .switch-slider,
+    #view-mode-label,
+    .filter-button,
+    .tab, 
+    .tabs,
+    #sub-tabs-container,
+    .sub-tab,
+    .sub-tab-content,
+    /* These are all the tab elements */
+    #tab-overview, 
+    #tab-components,
+    #tab-brqs,
+    #tab-connections,
+    #tab-roadmap {
+      position: relative !important;
+      z-index: 10000 !important;
+      cursor: pointer !important;
+      pointer-events: auto !important;
+    }
+    
+    /* Ensure the blueprint grid doesn't block clicks */
+    .blueprint-grid {
+      pointer-events: none !important;
+    }
+    
+    /* Check if any absolutely positioned elements might be blocking clicks */
+    .blueprint-container::before,
+    .blueprint-container::after,
+    .blueprint-main::before,
+    .blueprint-main::after,
+    .blueprint-content::before,
+    .blueprint-content::after {
+      display: none !important;
+    }
+    
+    /* Fix tab switching visibility */
+    .sub-tab-content {
+      position: relative !important;
+      z-index: 100 !important;
+    }
+    
+    .sub-tab-content.active {
+      display: block !important;
+    }
+    
+    .sub-tab-content:not(.active) {
+      display: none !important;
+    }
+  </style>
+  
+  <script>
+    // THIS IS A NUCLEAR SOLUTION - completely rebuilds the tabs
+    window.onload = function() {
+      console.log('NUCLEAR SOLUTION: Rebuilding tabs completely');
+      
+      // First, remove any event listeners by cloning and replacing each tab
+      const tabContainer = document.getElementById('sub-tabs-container');
+      if (!tabContainer) {
+        console.error('Tab container not found!');
+        return;
+      }
+      
+      // Create completely new tab buttons with hard-coded HTML
+      tabContainer.innerHTML = `
+        <button id="new-tab-overview" class="sub-tab active" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-accent); border-bottom: 3px solid var(--blueprint-accent); font-weight: 500; transition: all 0.2s ease;">Overview</button>
+        
+        <button id="new-tab-components" class="sub-tab" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Components</button>
+        
+        <button id="new-tab-brqs" class="sub-tab" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">BRQs</button>
+        
+        <button id="new-tab-connections" class="sub-tab" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Connections</button>
+        
+        <button id="new-tab-roadmap" class="sub-tab" style="cursor:pointer; display:inline-block; padding:0.75rem 1.5rem; border:none; background:none; color:var(--blueprint-text); border-bottom: 3px solid transparent; font-weight: 500; transition: all 0.2s ease;">Roadmap</button>
+      `;
+      
+      // Now set up direct click handlers for all tabs
+      document.getElementById('new-tab-overview').onclick = function() {
+        showTabContent('overview');
+      };
+      
+      document.getElementById('new-tab-components').onclick = function() {
+        showTabContent('components');
+      };
+      
+      document.getElementById('new-tab-brqs').onclick = function() {
+        showTabContent('brqs');
+      };
+      
+      document.getElementById('new-tab-connections').onclick = function() {
+        showTabContent('connections');
+      };
+      
+      document.getElementById('new-tab-roadmap').onclick = function() {
+        showTabContent('roadmap');
+      };
+      
+      // Ensure content tabs are set up correctly
+      showTabContent('overview');
+      
+      // This is the most direct tab switching function possible
+      function showTabContent(tabId) {
+        console.log('NUCLEAR handler showing tab: ' + tabId);
+        
+        // 1. Hide all content tabs
+        const contentTabs = ['overview-tab', 'components-tab', 'brqs-tab', 'connections-tab', 'roadmap-tab'];
+        contentTabs.forEach(function(id) {
+          const element = document.getElementById(id);
+          if (element) {
+            element.style.display = 'none';
+            element.classList.remove('active');
+          }
+        });
+        
+        // 2. Reset all tab buttons
+        const newTabs = document.querySelectorAll('#sub-tabs-container .sub-tab');
+        newTabs.forEach(function(tab) {
+          tab.classList.remove('active');
+          tab.style.borderBottom = '3px solid transparent';
+          tab.style.color = 'var(--blueprint-text)';
+        });
+        
+        // 3. Show the selected content tab
+        const selectedContent = document.getElementById(tabId + '-tab');
+        if (selectedContent) {
+          selectedContent.style.display = 'block';
+          selectedContent.classList.add('active');
+        } else {
+          console.error('Content tab not found: ' + tabId + '-tab');
+        }
+        
+        // 4. Highlight the selected tab button
+        const selectedTab = document.getElementById('new-tab-' + tabId);
+        if (selectedTab) {
+          selectedTab.classList.add('active');
+          selectedTab.style.borderBottom = '3px solid var(--blueprint-accent)';
+          selectedTab.style.color = 'var(--blueprint-accent)';
+        }
+        
+        // 5. Special case for connections tab
+        if (tabId === 'connections' && typeof window.initializeConnectionsDiagram === 'function') {
+          setTimeout(function() { 
+            console.log('Initializing connections diagram from nuclear handler');
+            window.initializeConnectionsDiagram(); 
+          }, 100);
+        }
+      }
+    };
+  </script>
   <script>
     // Make sure initializeConnectionsDiagram is globally accessible
     window.initializeConnectionsDiagram = function(projectFilter) {

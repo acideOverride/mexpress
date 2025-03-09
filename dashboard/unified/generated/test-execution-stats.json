@@ -1,0 +1,34 @@
+{
+  "summary": {
+    "total": 114,
+    "passing": 79,
+    "failing": 35,
+    "timedOut": 0,
+    "skipped": 0,
+    "passingPercentage": 69,
+    "javaScriptFiles": 0,
+    "typeScriptFiles": 99,
+    "reactTypeScriptFiles": 15,
+    "reactJavaScriptFiles": 0,
+    "duplicateTests": 0,
+    "typeScriptPercentage": 100,
+    "javaScriptPercentage": 0
+  },
+  "p0Tests": {
+    "passing": 24,
+    "failing": 7
+  },
+  "p1Tests": {
+    "passing": 27,
+    "failing": 4
+  },
+  "p2Tests": {
+    "passing": 14,
+    "failing": 22
+  },
+  "p3Tests": {
+    "passing": 14,
+    "failing": 2
+  },
+  "reportDate": "2025-03-09 13:36:06"
+}
