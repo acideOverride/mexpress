@@ -29,15 +29,15 @@ const packageConfig = {
     '^.+\\.vue$': '@vue/vue3-jest'
   },
   moduleFileExtensions: ['vue', 'ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  // Add for Vue files in src and tests
+  // Specific test match pattern for Vue component tests
   testMatch: [
     '<rootDir>/tests/**/*.test.ts?(x)',
-    '<rootDir>/src/**/__tests__/**/*.test.ts?(x)'
+    '<rootDir>/src/**/*.test.ts?(x)'
   ],
   // Setup files for the Vue testing environment
   setupFilesAfterEnv: [
     ...(baseConfig.setupFilesAfterEnv || []),
-    // Add a setup file if needed for Vue testing
+    '<rootDir>/tests/setup.ts'
   ]
 };
 
