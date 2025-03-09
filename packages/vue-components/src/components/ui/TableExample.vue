@@ -128,13 +128,44 @@
         </template>
       </Table>
     </div>
+    
+    <div class="section">
+      <h3>Filterable Table</h3>
+      <Table
+        :columns="filterableColumns"
+        :data="users"
+        :filters="filters"
+        filter-enabled
+        hoverable
+        bordered
+        @update:filters="updateFilters"
+      />
+      <div class="controls">
+        <div class="control-info">
+          Active filters: {{ 
+            Object.entries(filters).length 
+              ? Object.entries(filters).map(([key, filter]) => 
+                  `${key} ${filter.operator} "${filter.value}"`
+                ).join(', ') 
+              : 'None' 
+          }}
+        </div>
+        <button 
+          v-if="Object.keys(filters).length > 0" 
+          class="btn-action btn-clear"
+          @click="clearFilters"
+        >
+          Clear Filters
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import Table from './Table.vue';
-import { TableColumn } from '@/types';
+import { TableColumn, TableFilter } from '@/types';
 
 export default defineComponent({
   name: 'TableExample',
@@ -255,12 +286,35 @@ export default defineComponent({
       { key: 'role', label: 'Role' },
       { key: 'actions', label: 'Actions', align: 'center' }
     ];
+    
+    // Filterable columns
+    const filterableColumns: TableColumn[] = [
+      { key: 'id', label: 'ID', width: '50px', sortable: true, filterable: true },
+      { key: 'name', label: 'Name', sortable: true, filterable: true },
+      { key: 'email', label: 'Email', sortable: true, filterable: true },
+      { key: 'age', label: 'Age', align: 'right', width: '80px', sortable: true, filterable: true },
+      { key: 'status', label: 'Status', sortable: true, filterable: true },
+      { key: 'role', label: 'Role', sortable: true, filterable: true },
+      { key: 'lastLogin', label: 'Last Login', 
+        sortable: true, 
+        filterable: true,
+        formatter: (value) => {
+          const date = new Date(value);
+          return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          });
+        }
+      }
+    ];
 
     // Reactive state for demo
     const sortBy = ref('');
     const sortDesc = ref(false);
     const selectedUsers = ref<any[]>([]);
     const currentPage = ref(1);
+    const filters = ref<Record<string, TableFilter>>({});
 
     // Methods
     const updateSelected = (rows: any[]) => {
@@ -270,6 +324,14 @@ export default defineComponent({
     const updatePage = (page: number) => {
       currentPage.value = page;
     };
+    
+    const updateFilters = (newFilters: Record<string, TableFilter>) => {
+      filters.value = newFilters;
+    };
+    
+    const clearFilters = () => {
+      filters.value = {};
+    };
 
     return {
       users,
@@ -277,12 +339,16 @@ export default defineComponent({
       sortableColumns,
       formattedColumns,
       customColumns,
+      filterableColumns,
       sortBy,
       sortDesc,
       selectedUsers,
       currentPage,
+      filters,
       updateSelected,
-      updatePage
+      updatePage,
+      updateFilters,
+      clearFilters
     };
   }
 });
@@ -381,5 +447,12 @@ h3 {
   color: #fff;
   background-color: #dc3545;
   border-color: #dc3545;
+}
+
+.btn-clear {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  margin-top: 0.5rem;
 }
 </style>

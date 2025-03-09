@@ -112,6 +112,21 @@ export interface TableColumn {
   cellClass?: string | ((value: any, row: any) => string);
 }
 
+export type TableFilterOperator = 
+  | 'contains' 
+  | 'equals' 
+  | 'startsWith' 
+  | 'endsWith' 
+  | 'gt' 
+  | 'gte' 
+  | 'lt' 
+  | 'lte';
+
+export interface TableFilter {
+  value: string | number | boolean;
+  operator: TableFilterOperator;
+}
+
 export interface TableProps {
   columns: TableColumn[];
   data: any[];
@@ -122,6 +137,8 @@ export interface TableProps {
   caption?: string;
   sortBy?: string;
   sortDesc?: boolean;
+  filters?: Record<string, TableFilter>;
+  filterEnabled?: boolean;
   pageSize?: number;
   currentPage?: number;
   totalRows?: number;
@@ -137,6 +154,12 @@ export interface TableEvent {
     column: TableColumn;
     sortBy: string;
     sortDesc: boolean;
+  };
+  filter: {
+    column: string;
+    value: any;
+    operator: string;
+    filters: Record<string, TableFilter>;
   };
   pagination: {
     currentPage: number;

@@ -42,20 +42,55 @@
           >
             <div class="th-content">
               {{ column.label }}
-              <span v-if="column.sortable" class="sort-icon">
-                <span
-                  class="sort-icon-asc"
-                  :class="{ active: sortBy === column.key && !sortDesc }"
-                >
-                  ▲
+              <div class="th-actions">
+                <span v-if="column.sortable" class="sort-icon">
+                  <span
+                    class="sort-icon-asc"
+                    :class="{ active: sortBy === column.key && !sortDesc }"
+                  >
+                    ▲
+                  </span>
+                  <span
+                    class="sort-icon-desc"
+                    :class="{ active: sortBy === column.key && sortDesc }"
+                  >
+                    ▼
+                  </span>
                 </span>
-                <span
-                  class="sort-icon-desc"
-                  :class="{ active: sortBy === column.key && sortDesc }"
+                <span 
+                  v-if="filterEnabled && column.filterable" 
+                  class="filter-icon"
+                  @click.stop="$refs.filterInput[column.key].focus()"
+                  :class="{ active: internalFilters[column.key] }"
                 >
-                  ▼
+                  ◉
                 </span>
-              </span>
+              </div>
+            </div>
+            <div v-if="filterEnabled && column.filterable" class="filter-container" @click.stop>
+              <input
+                :ref="el => { if (el) $refs.filterInput = { ...$refs.filterInput || {}, [column.key]: el } }"
+                type="text"
+                class="filter-input"
+                :placeholder="`Filter ${column.label}`"
+                :value="internalFilters[column.key]?.value || ''"
+                @input="updateFilter(column.key, $event.target.value)"
+              />
+              <select 
+                v-if="internalFilters[column.key]?.value" 
+                class="filter-operator"
+                :value="internalFilters[column.key]?.operator || 'contains'"
+                @change="updateFilter(column.key, internalFilters[column.key]?.value, $event.target.value)"
+              >
+                <option value="contains">Contains</option>
+                <option value="equals">Equals</option>
+                <option value="startsWith">Starts with</option>
+                <option value="endsWith">Ends with</option>
+                <option v-if="typeof props.data[0]?.[column.key] === 'number'" value="gt">></option>
+                <option v-if="typeof props.data[0]?.[column.key] === 'number'" value="gte">≥</option>
+                <option v-if="typeof props.data[0]?.[column.key] === 'number'" value="lt"><</option>
+                <option v-if="typeof props.data[0]?.[column.key] === 'number'" value="lte">≤</option>
+              </select>
             </div>
           </th>
         </tr>
@@ -134,7 +169,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, ref, watch } from 'vue';
-import { TableColumn, TableProps } from '@/types';
+import { TableColumn, TableProps, TableFilter } from '@/types';
 
 export default defineComponent({
   name: 'Table',
@@ -172,6 +207,14 @@ export default defineComponent({
       default: ''
     },
     sortDesc: {
+      type: Boolean,
+      default: false
+    },
+    filters: {
+      type: Object as PropType<Record<string, TableFilter>>,
+      default: () => ({})
+    },
+    filterEnabled: {
       type: Boolean,
       default: false
     },
@@ -213,8 +256,10 @@ export default defineComponent({
     'update:sortDesc',
     'update:currentPage',
     'update:selectedRows',
+    'update:filters',
     'row-click',
     'sort',
+    'filter',
     'page-change',
     'selection-change'
   ],
@@ -223,6 +268,8 @@ export default defineComponent({
     const internalSortDesc = ref(props.sortDesc);
     const internalCurrentPage = ref(props.currentPage);
     const internalSelectedRows = ref<any[]>(props.selectedRows || []);
+    const internalFilters = ref<Record<string, TableFilter>>(props.filters || {});
+    const filterInput = ref<Record<string, HTMLInputElement>>({});
 
     // Watch for prop changes
     watch(() => props.sortBy, (newVal) => {
@@ -240,10 +287,60 @@ export default defineComponent({
     watch(() => props.selectedRows, (newVal) => {
       internalSelectedRows.value = newVal || [];
     });
+    
+    watch(() => props.filters, (newVal) => {
+      internalFilters.value = newVal || {};
+    });
 
     // Computed properties
     const processedData = computed(() => {
       let result = [...props.data];
+
+      // Apply filtering
+      if (props.filterEnabled && Object.keys(internalFilters.value).length > 0) {
+        result = result.filter(row => {
+          return Object.entries(internalFilters.value).every(([key, filter]) => {
+            if (!filter.value || filter.value === '') return true;
+            
+            const columnValue = row[key];
+            if (columnValue === undefined || columnValue === null) return false;
+            
+            const column = props.columns.find(col => col.key === key);
+            let formattedValue = columnValue;
+            
+            // Apply formatter if available
+            if (column?.formatter) {
+              formattedValue = column.formatter(columnValue, row);
+            }
+            
+            // Convert to string for comparison
+            const stringValue = String(formattedValue).toLowerCase();
+            const filterValue = String(filter.value).toLowerCase();
+            
+            // Apply filter operator
+            switch (filter.operator) {
+              case 'contains':
+                return stringValue.includes(filterValue);
+              case 'equals':
+                return stringValue === filterValue;
+              case 'startsWith':
+                return stringValue.startsWith(filterValue);
+              case 'endsWith':
+                return stringValue.endsWith(filterValue);
+              case 'gt':
+                return parseFloat(stringValue) > parseFloat(filterValue);
+              case 'gte':
+                return parseFloat(stringValue) >= parseFloat(filterValue);
+              case 'lt':
+                return parseFloat(stringValue) < parseFloat(filterValue);
+              case 'lte':
+                return parseFloat(stringValue) <= parseFloat(filterValue);
+              default:
+                return stringValue.includes(filterValue); // default to contains
+            }
+          });
+        });
+      }
 
       // Apply sorting
       if (internalSortBy.value) {
@@ -392,6 +489,39 @@ export default defineComponent({
       emit('row-click', row);
     };
 
+    // Update filter values
+    const updateFilter = (column: string, value: any, operator: string = 'contains') => {
+      const newFilters = { ...internalFilters.value };
+      
+      if (value === null || value === undefined || value === '') {
+        // Remove filter if value is empty
+        if (newFilters[column]) {
+          delete newFilters[column];
+        }
+      } else {
+        // Add or update filter
+        newFilters[column] = {
+          value,
+          operator: operator as TableFilter['operator']
+        };
+      }
+      
+      internalFilters.value = newFilters;
+      emit('update:filters', newFilters);
+      emit('filter', {
+        column,
+        value,
+        operator,
+        filters: newFilters
+      });
+      
+      // Reset to first page when filtering
+      if (props.pageSize > 0) {
+        internalCurrentPage.value = 1;
+        emit('update:currentPage', 1);
+      }
+    };
+
     // Basic object comparison for selection
     const isEqual = (obj1: any, obj2: any): boolean => {
       if (obj1 === obj2) return true;
@@ -415,6 +545,8 @@ export default defineComponent({
       internalSortDesc,
       internalCurrentPage,
       internalSelectedRows,
+      internalFilters,
+      filterInput,
       processedData,
       hasPagination,
       totalPages,
@@ -428,7 +560,8 @@ export default defineComponent({
       isRowSelected,
       onSelectRow,
       onSelectAll,
-      onRowClick
+      onRowClick,
+      updateFilter
     };
   }
 });
@@ -522,6 +655,11 @@ export default defineComponent({
   justify-content: space-between;
 }
 
+.th-actions {
+  display: flex;
+  align-items: center;
+}
+
 .sort-icon {
   display: inline-flex;
   flex-direction: column;
@@ -543,6 +681,50 @@ export default defineComponent({
 
 .sortable-column:hover .sort-icon {
   opacity: 0.6;
+}
+
+.filter-icon {
+  display: inline-flex;
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.filter-icon.active {
+  opacity: 1;
+  color: #007bff;
+}
+
+.filter-container {
+  display: flex;
+  padding: 0.25rem 0;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  margin-top: 0.25rem;
+}
+
+.filter-input {
+  flex: 1;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.2rem;
+  outline: none;
+}
+
+.filter-input:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.filter-operator {
+  margin-left: 0.25rem;
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.2rem;
+  background-color: #fff;
 }
 
 .empty-message {
