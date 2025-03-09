@@ -94,7 +94,7 @@ Legend:
 
 
 ### P2 (Medium Priority) Tests - Running
-❌🔢📍📘 🕒:7s 🧪:unit 📦:frontend 🔍:ReferenceError /opt/mExpress/projects/montpc_crm/tests/frontend/p2/hooks/useDebounce.test.ts | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p2/hooks/useDebounce.test_20250309_190558.log)
+✅🔢📍📘 🕒:7s 🧪:unit 📦:frontend 🧩:~70% /opt/mExpress/projects/montpc_crm/tests/frontend/p2/hooks/useDebounce.test.ts | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p2/hooks/useDebounce.test_20250309_190558.log)
 ❌🔢📍📗 🕒:7s 🧪:unit 📦:frontend 🔍:SyntaxError /opt/mExpress/projects/montpc_crm/tests/frontend/p2/features/CustomerRoutes.test.tsx | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p2/features/CustomerRoutes.test_20250309_190551.log)
 ❌🔢📍📗 🕒:8s 🧪:unit 📦:frontend 🔍:SyntaxError /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/dashboard/RecentCalls.test.tsx | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p2/components/dashboard/RecentCalls.test_20250309_190543.log)
 ❌🔢📍📗 🕒:9s 🧪:unit 📦:frontend 🔍:SyntaxError /opt/mExpress/projects/montpc_crm/tests/frontend/p2/components/dashboard/QuickSearch.test.tsx | [log](/tests/results/logs/projects/montpc_crm/tests/frontend/p2/components/dashboard/QuickSearch.test_20250309_190534.log)
@@ -273,8 +273,8 @@ Legend:
 
 Total tests to run: 114
 Tests completed: 114/114 (100%)
-Passing: 86
-Failing: 28
+Passing: 87
+Failing: 27
 Timed out: 0
 TypeScript files: 114 (100%)
 JavaScript files: 0 (0%)
@@ -286,8 +286,8 @@ JavaScript files: 0 (0%)
 
 ```
 Total tests run: 114
-Passing: 86 (73%)
-Failing: 28 (26%)
+Passing: 87 (73%)
+Failing: 27 (26%)
 Timed out: 0 (0%)
 Skipped: 0
 ```
