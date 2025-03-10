@@ -173,13 +173,15 @@ import { TableColumn, TableProps, TableFilter } from '@/types';
 
 export default defineComponent({
   name: 'Table',
+  // Using generic type for improved type safety
+  
   props: {
     columns: {
       type: Array as PropType<TableColumn[]>,
       required: true
     },
     data: {
-      type: Array as PropType<any[]>,
+      type: Array as PropType<Record<string, unknown>[]>,
       required: true
     },
     loading: {

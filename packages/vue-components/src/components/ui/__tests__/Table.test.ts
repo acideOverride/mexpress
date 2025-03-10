@@ -1,7 +1,17 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
 import Table from '../Table.vue';
-import { TableColumn } from '@/types';
+import { TableColumn, TableFilter } from '@/types';
+
+// Define test user type to improve type safety
+interface TestUser {
+  id: number;
+  name: string;
+  email: string;
+  age?: number;
+  status?: string;
+  role?: string;
+}
 
 describe('Table Component', () => {
   const columns: TableColumn[] = [
@@ -10,7 +20,7 @@ describe('Table Component', () => {
     { key: 'email', label: 'Email' }
   ];
 
-  const data = [
+  const data: TestUser[] = [
     { id: 1, name: 'John Doe', email: 'john@example.com' },
     { id: 2, name: 'Jane Smith', email: 'jane@example.com' }
   ];
@@ -192,13 +202,15 @@ describe('Table Component', () => {
         data
       },
       slots: {
-        'cell(name)': `<template #cell(name)="{ value }"><span class="custom-cell">{{ value.toUpperCase() }}</span></template>`
+        'cell(name)': ({ value }: { value: string }) => {
+          return `<span class="custom-cell">${value.toUpperCase()}</span>`;
+        }
       }
     });
     
-    // Check if custom cell content renders correctly
-    const customCell = wrapper.find('.custom-cell');
-    expect(customCell.exists()).toBeFalsy(); // Slots don't seem to work in this test setup
+    // Verify the content of the cell reflects our intended customization
+    const nameCell = wrapper.findAll('tbody tr')[0].findAll('td')[1];
+    expect(nameCell.html()).toContain('JOHN DOE');
   });
 
   it('handles row click events', async () => {

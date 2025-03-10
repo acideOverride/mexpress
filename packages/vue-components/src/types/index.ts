@@ -127,9 +127,9 @@ export interface TableFilter {
   operator: TableFilterOperator;
 }
 
-export interface TableProps {
+export interface TableProps<T = Record<string, unknown>> {
   columns: TableColumn[];
-  data: any[];
+  data: T[];
   loading?: boolean;
   striped?: boolean;
   bordered?: boolean;
@@ -143,7 +143,7 @@ export interface TableProps {
   currentPage?: number;
   totalRows?: number;
   selectable?: boolean;
-  selectedRows?: any[];
+  selectedRows?: T[];
   emptyText?: string;
   responsive?: boolean;
   dense?: boolean;
