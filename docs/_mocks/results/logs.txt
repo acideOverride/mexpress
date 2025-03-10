@@ -1,0 +1,779 @@
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:35:06 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:35:06 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:35:07 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2:35:11 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:35:11 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/App.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/App.vue:13:25
+  1  |  import { defineComponent, computed } from "vue";
+  2  |  import { useRoute } from "vue-router";
+     |                            ^
+  3  |  import AppLayout from "./layout/AppLayout.vue";
+  4  |  const _sfc_main = defineComponent({
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:35:11 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:35:11 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2:35:27 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:35:27 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/App.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/App.vue:13:25
+  1  |  import { defineComponent, computed } from "vue";
+  2  |  import { useRoute } from "vue-router";
+     |                            ^
+  3  |  import AppLayout from "./layout/AppLayout.vue";
+  4  |  const _sfc_main = defineComponent({
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:35:27 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:35:28 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2:35:30 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:35:30 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/App.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/App.vue:13:25
+  1  |  import { defineComponent, computed } from "vue";
+  2  |  import { useRoute } from "vue-router";
+     |                            ^
+  3  |  import AppLayout from "./layout/AppLayout.vue";
+  4  |  const _sfc_main = defineComponent({
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:35:30 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:35:30 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2:35:33 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:35:33 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/App.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/App.vue:13:25
+  1  |  import { defineComponent, computed } from "vue";
+  2  |  import { useRoute } from "vue-router";
+     |                            ^
+  3  |  import AppLayout from "./layout/AppLayout.vue";
+  4  |  const _sfc_main = defineComponent({
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:35:33 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:35:34 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2:36:21 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/App.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/App.vue:13:25
+  1  |  import { defineComponent, computed } from "vue";
+  2  |  import { useRoute } from "vue-router";
+     |                            ^
+  3  |  import AppLayout from "./layout/AppLayout.vue";
+  4  |  const _sfc_main = defineComponent({
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:36:21 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:36:21 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:36:21 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2:36:24 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:36:24 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/App.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/App.vue:13:25
+  1  |  import { defineComponent, computed } from "vue";
+  2  |  import { useRoute } from "vue-router";
+     |                            ^
+  3  |  import AppLayout from "./layout/AppLayout.vue";
+  4  |  const _sfc_main = defineComponent({
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:36:24 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:36:25 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2:36:25 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:36:25 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/App.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/App.vue:13:25
+  1  |  import { defineComponent, computed } from "vue";
+  2  |  import { useRoute } from "vue-router";
+     |                            ^
+  3  |  import AppLayout from "./layout/AppLayout.vue";
+  4  |  const _sfc_main = defineComponent({
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:36:25 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:36:25 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2:36:26 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:36:26 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/App.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/App.vue:13:25
+  1  |  import { defineComponent, computed } from "vue";
+  2  |  import { useRoute } from "vue-router";
+     |                            ^
+  3  |  import AppLayout from "./layout/AppLayout.vue";
+  4  |  const _sfc_main = defineComponent({
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:36:26 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:36:26 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2:36:28 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:36:28 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/App.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/App.vue:13:25
+  1  |  import { defineComponent, computed } from "vue";
+  2  |  import { useRoute } from "vue-router";
+     |                            ^
+  3  |  import AppLayout from "./layout/AppLayout.vue";
+  4  |  const _sfc_main = defineComponent({
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:36:28 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:36:28 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2:37:50 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/App.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/App.vue:13:25
+  1  |  import { defineComponent, computed } from "vue";
+  2  |  import { useRoute } from "vue-router";
+     |                            ^
+  3  |  import AppLayout from "./layout/AppLayout.vue";
+  4  |  const _sfc_main = defineComponent({
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:37:50 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:37:50 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:37:51 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2:37:54 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/App.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/App.vue:13:25
+  1  |  import { defineComponent, computed } from "vue";
+  2  |  import { useRoute } from "vue-router";
+     |                            ^
+  3  |  import AppLayout from "./layout/AppLayout.vue";
+  4  |  const _sfc_main = defineComponent({
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:37:54 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/router.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/router.ts:1:63
+  1  |  import { createRouter, createWebHistory } from "vue-router";
+     |                                                  ^
+  2  |  import Dashboard from "./dashboard/Dashboard.vue";
+  3  |  import { CustomerList, CustomerDetail } from "./customers";
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 0)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+✘ [ERROR] Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+
+    ../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42:
+      6 │ import { initCustomFormatter, warn } from '@vue/runtime-dom';
+        ╵                                           ~~~~~~~~~~~~~~~~~~
+
+2:37:55 PM [vite] Internal server error: Failed to resolve import "vue-router" from "src/vue-components/auth/Login.vue". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/auth/Login.vue:66:26
+  1  |  import { defineComponent, ref } from "vue";
+  2  |  import { useRouter } from "vue-router";
+     |                             ^
+  3  |  const _sfc_main = defineComponent({
+  4  |    name: "Login",
+      at formatError (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44065:46)
+      at TransformContext.error (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44061:19)
+      at normalizeUrl (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41999:47
+      at async Promise.all (index 1)
+      at async TransformContext.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:41915:13)
+      at async Object.transform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:44355:30)
+      at async loadAndTransform (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:55029:29)
+      at async viteTransformMiddleware (file:///opt/mExpress/projects/montpc_crm/frontend/node_modules/vite/dist/node/chunks/dep-3936e161.js:64617:32)
+2:37:55 PM [vite] error while updating dependencies:
+Error: Build failed with 1 error:
+../../../node_modules/vue/dist/vue.runtime.esm-bundler.js:6:42: ERROR: Could not read from file: /opt/mExpress/projects/montpc_crm/frontend/src/vue-components/runtime-dom
+    at failureErrorWithLog (/opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1649:15)
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1058:25
+    at /opt/mExpress/projects/montpc_crm/frontend/node_modules/esbuild/lib/main.js:1525:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+
+
+
