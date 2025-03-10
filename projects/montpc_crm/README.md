@@ -1,6 +1,6 @@
 # MontPC CRM
 
-A customer relationship management system for MontPC, focusing on customer management and repair ticket tracking.
+A customer relationship management system for MontPC, focusing on customer management and repair ticket tracking, built with TypeScript, Vue.js, and MongoDB.
 
 ## Features
 
@@ -25,59 +25,88 @@ A customer relationship management system for MontPC, focusing on customer manag
 
 - Node.js 16+ installed
 - MongoDB 5.0+ installed and running
-- npm or yarn package manager
+- npm package manager
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/montpc/crm.git
-   cd crm
-   ```
-
-2. Install dependencies:
+1. Install dependencies:
    ```bash
    npm install
    ```
 
-3. Set up environment variables:
-   Create a `.env` file in the root directory with the following variables:
-   ```
-   NODE_ENV=development
-   PORT=3000
-   MONGODB_URI=mongodb://localhost:27017/montpc_crm
-   API_BASE_URL=/api
-   ```
-
 ### Running the Application
 
-#### Backend
+#### TypeScript All-in-One Starter Script (Recommended)
 
-1. Start the MongoDB server if it's not already running:
-   ```bash
-   mongod
-   ```
+The easiest way to start all components (MongoDB, API server, and Vue.js frontend) at once:
 
-2. Build and start the backend server:
-   ```bash
-   # From the root directory
-   cd packages/core
-   npm run build
-   npm start
-   ```
+```bash
+# From the project root
+./start-app.sh
+```
 
-   The backend API will be available at http://localhost:3000/api
+This TypeScript-based script:
+1. Starts MongoDB (or connects to an existing instance)
+2. Launches the Express API server connected to MongoDB
+3. Starts the Vue.js frontend development server
 
-#### Frontend
+All services will be accessible at:
+- Vue.js Frontend: http://localhost:5173
+- API: http://localhost:3000/api
+- MongoDB: mongodb://localhost:27017/montpc_crm
 
-1. Start the frontend development server:
-   ```bash
-   # From the root directory
-   cd projects/montpc_crm/frontend
-   npm run dev
-   ```
+You can stop all services by pressing Ctrl+C in the terminal where you started the script.
 
-   The frontend will be available at http://localhost:5173
+#### Testing the API Server
+
+To test that the API server is working correctly, you can use the included TypeScript test client:
+
+```bash
+# From the project root
+npx ts-node test-api.ts
+```
+
+This will:
+1. Test the API health endpoint
+2. Retrieve the list of customers
+3. Create a new test customer
+4. Verify the customer was created successfully
+
+The test client is a good way to ensure the API server is running and connected to MongoDB.
+
+#### Starting Components Individually
+
+For development purposes, you may want to start the components individually:
+
+##### 1. MongoDB
+
+```bash
+# Create a data directory if it doesn't exist
+mkdir -p ./data/db
+
+# Start MongoDB
+mongod --dbpath ./data/db
+```
+
+##### 2. API Server
+
+```bash
+# Install required dependencies
+npm install express mongoose cors typescript ts-node @types/node @types/express @types/mongoose @types/cors
+
+# Start the API server
+npx ts-node api-server.ts
+```
+
+##### 3. Vue.js Frontend
+
+```bash
+# From the frontend directory
+cd frontend
+
+# Start the Vue.js development server
+npm run dev:vue
+```
 
 ### Testing the Application
 
@@ -85,11 +114,11 @@ A customer relationship management system for MontPC, focusing on customer manag
 
 ```bash
 # From the frontend directory
-cd projects/montpc_crm/frontend
-npm test
+cd frontend
+npm test:vue
 ```
 
-This will run the tests and save the results to the `tests/results` directory.
+This will run the Vue.js component tests.
 
 #### Manual Testing
 
@@ -100,50 +129,42 @@ This will run the tests and save the results to the `tests/results` directory.
    - Click "Add Customer" to create a new customer
    - Fill in the customer details and save
    - View the customer list to see the new customer
-   - Click on a customer to view their details
-   - Click "Edit" to modify customer information
 
 3. Testing Repair Ticket Management:
    - Click on "Repair Tickets" in the navigation bar
    - Click "Create Ticket" to create a new repair ticket
    - Select a customer, enter problem details, and save
    - View the ticket list to see the new ticket
-   - Click on a ticket to view its details
-   - Update the ticket status to track progress
-
-4. Testing Dashboard:
-   - Navigate to the Dashboard by clicking on "Dashboard" in the navigation bar
-   - View statistics and metrics
-   - Use quick action buttons to create new customers or tickets
-   - View recent activity
 
 ## Project Structure
 
 ```
 /
-├── packages/
-│   ├── core/               # Backend core package
-│   │   ├── src/
-│   │   │   ├── api/        # API controllers and routes
-│   │   │   ├── models/     # MongoDB models
-│   │   │   └── ...
-│   ├── ui-components/      # Shared UI components
-│   └── utils/              # Utility functions
-├── projects/
-│   └── montpc_crm/         # MontPC CRM project
-│       ├── frontend/       # React frontend
-│       │   ├── src/
-│       │   │   ├── api/    # API client
-│       │   │   ├── components/
-│       │   │   └── ...
-│       └── ...
+├── frontend/                # Vue.js frontend
+│   ├── src/
+│   │   ├── vue-components/  # Vue.js components
+│   │   ├── api/             # API client
+│   │   └── ...
+├── src/
+│   ├── api/                 # API controllers and routes
+│   ├── models/              # MongoDB models
+│   └── ...
+├── data/
+│   └── db/                  # MongoDB data directory
+├── start-app.ts             # TypeScript application starter
+├── start-app.sh             # Shell script to run the TypeScript starter
 └── ...
 ```
+
+## Migration to Vue.js and TypeScript
+
+MontPC CRM is currently transitioning from React to Vue.js while maintaining a TypeScript-first approach. The following changes are in progress:
+
+- Converting React components to Vue.js components
+- Moving from JavaScript to TypeScript for all new code
+- Reorganizing project structure to follow TypeScript and Vue.js best practices
+- Consolidating startup scripts for a more reliable developer experience
 
 ## Deployment
 
 See [deployment.md](./deployment.md) for instructions on deploying the application to a staging or production environment.
-
-## License
-
-This project is proprietary and confidential. Unauthorized copying, distribution, or use is strictly prohibited.

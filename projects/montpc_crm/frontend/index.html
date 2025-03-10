@@ -11,52 +11,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="root"></div>
-    <div id="app-vue" style="display: none;"></div>
-    
-    <!-- Framework Toggle Button -->
-    <div id="framework-toggle" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-      <a href="/toggle.html" style="display: flex; align-items: center; font-family: 'Inter', sans-serif; text-decoration: none; color: #333;">
-        <span style="margin-right: 8px;">Switch Framework</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-        </svg>
-      </a>
+    <div id="app-vue">
+      <!-- Initial loading state -->
+      <div style="padding: 40px; text-align: center; font-family: 'Inter', sans-serif;">
+        <h1 style="font-size: 28px; margin-bottom: 20px; color: #1e40af;">MontPC CRM</h1>
+        <p style="font-size: 18px; color: #6b7280;">Loading Vue.js application...</p>
+      </div>
     </div>
-
-    <!-- Framework Selection Script -->
-    <script type="text/javascript">
-      (function() {
-        const framework = localStorage.getItem('montpc-framework') || 'react';
-        
-        // Show the correct app container
-        if (framework === 'vue') {
-          document.getElementById('root').style.display = 'none';
-          document.getElementById('app-vue').style.display = 'block';
-          
-          // Load Vue entry point
-          const script = document.createElement('script');
-          script.type = 'module';
-          script.src = '/src/vue-main.ts';
-          document.body.appendChild(script);
-        } else {
-          document.getElementById('root').style.display = 'block';
-          document.getElementById('app-vue').style.display = 'none';
-          
-          // Load React entry point
-          const script = document.createElement('script');
-          script.type = 'module';
-          script.src = '/src/main.tsx';
-          document.body.appendChild(script);
-        }
-        
-        // Update toggle text
-        const toggleElement = document.getElementById('framework-toggle');
-        if (toggleElement) {
-          const frameworkLabel = framework.charAt(0).toUpperCase() + framework.slice(1);
-          toggleElement.querySelector('span').textContent = `Using ${frameworkLabel}`;
-        }
-      })();
+    
+    <!-- Vue.js Entry Point -->
+    <script type="module">
+      import('./src/vue-main.ts').catch(err => {
+        console.error('Failed to load Vue app:', err);
+        document.getElementById('app-vue').innerHTML = `
+          <div style="padding: 40px; text-align: center; font-family: 'Inter', sans-serif;">
+            <h1 style="font-size: 28px; margin-bottom: 20px; color: #e11d48;">Error Loading Application</h1>
+            <p style="font-size: 18px; color: #6b7280;">There was a problem loading the application. Please try refreshing the page.</p>
+            <pre style="margin-top: 20px; text-align: left; background: #f1f5f9; padding: 16px; border-radius: 8px; overflow: auto;">${err.toString()}</pre>
+          </div>
+        `;
+      });
     </script>
   </body>
 </html>

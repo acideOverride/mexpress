@@ -1,50 +1,118 @@
-# React + TypeScript + Vite
+# MontPC CRM Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MontPC CRM is a customer relationship management system for a PC repair business. It provides customer management, repair ticket tracking, and reporting features.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Frontend**: React (migrating to Vue.js), TypeScript, Vite
+- **Styling**: Tailwind CSS
+- **Build Tools**: Vite, TypeScript
+- **Testing**: Jest, Vitest, Vue Test Utils
+- **State Management**: Pinia (Vue), Context API (React)
 
-## Expanding the ESLint configuration
+## Vue.js Migration Status
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The MontPC CRM frontend is currently being migrated from React to Vue.js. This migration follows the phased approach outlined in the [Vue Migration Guide](/docs/mexpress/VUE_MIGRATION_GUIDE.md).
 
-- Configure the top-level `parserOptions` property like this:
+### Current Status
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+#### Completed Components
+- Base Vue.js application setup with router
+- AppLayout component with navigation
+- Dashboard component
+- Customer management components:
+  - CustomerList
+  - CustomerDetail
+  - CustomerForm
+- Ticket management components:
+  - TicketList
+  - TicketDetail
+  - TicketForm
+
+#### In Progress
+- Authentication components
+- Reporting components
+- State management integration
+- Test suite setup
+
+### Component Structure
+
+The Vue.js components are organized following the structure defined in the migration guide:
+
+```
+src/
+├── vue-components/           # Vue.js components
+│   ├── App.vue               # Root component
+│   ├── auth/                 # Authentication components
+│   ├── common/               # Shared utility components
+│   ├── customers/            # Customer management components
+│   ├── dashboard/            # Dashboard components
+│   ├── layout/               # Layout components
+│   ├── tickets/              # Ticket management components
+│   ├── router.ts             # Vue Router configuration
+│   └── index.ts              # Component exports
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Test Structure
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Tests for Vue components follow the project's priority-based organization structure:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+tests/
+├── frontend/
+│   ├── p0/                   # Critical path tests
+│   ├── p1/                   # Important feature tests
+│   └── p2/                   # Secondary feature tests
+```
+
+## Development
+
+### Installation
+
+```bash
+npm install
+```
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Testing
+
+#### Run All Tests
+
+```bash
+npm test
+```
+
+#### Run Vue Component Tests
+
+```bash
+cd /opt/mExpress
+./scripts/test_scripts/run-vue-component-tests.sh --vitest
+```
+
+Or using Jest:
+
+```bash
+./scripts/test_scripts/run-vue-component-tests.sh --jest
+```
+
+## Next Steps in Migration
+
+1. Complete test suite for all Vue components
+2. Implement remaining components:
+   - Product management views
+   - Advanced reporting views
+   - Settings and administration views
+3. Add Pinia state management integration
+4. Update dashboard components to use D3.js visualization
+5. Complete end-to-end tests for critical workflows

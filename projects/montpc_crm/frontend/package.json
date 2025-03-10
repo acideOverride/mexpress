@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "dev:react": "vite",
+    "dev:vue": "vite --config vite.vue.config.ts",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "bash tests/run-tests.sh",
@@ -11,17 +13,16 @@
     "test:p1": "NODE_OPTIONS='--max-old-space-size=1024' jest --config tests/jest.config.js --testMatch '**/p1/**/*.test.{ts,tsx}' --silent > tests/results/p1/test.log 2>/dev/null",
     "test:coverage": "NODE_OPTIONS='--max-old-space-size=1024' jest --config tests/jest.config.js --coverage --silent > tests/results/summary/coverage.log 2>/dev/null",
     "test:vue": "vitest run",
-    "test:vue:watch": "vitest",
-    "dev:vue": "vite --config vite.vue.config.ts"
+    "test:vue:watch": "vitest"
   },
   "dependencies": {
     "axios": "^1.6.0",
+    "pinia": "2.1.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0",
-    "pinia": "^2.1.7"
+    "vue-router": "4.3.0"
   },
   "devDependencies": {
     "@tanstack/react-query": "^5.66.11",

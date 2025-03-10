@@ -150,6 +150,13 @@ mExpress is a flexible, extensible platform for building business applications w
 
 ### 6.1 BRQ Test Status
 
+**Important Note About Component Status:**
+While most tests are passing, there is a critical difference between component testing and integration status:
+1. **Component Test Status**: Individual Vue components have been developed and pass tests in isolation
+2. **Integration Status**: These components are not yet integrated into the main application user interface
+3. **Main Application UI**: Still uses the older UI components, not the new Vue components
+4. **Integration Gap**: The priority is connecting the working components to the application entry point
+
 #### Core Services
 | Status | BRQ | Component | Tests | Priority | Progress |
 |:------:|-----|-----------|:-----:|:--------:|:--------:|
@@ -176,23 +183,25 @@ mExpress is a flexible, extensible platform for building business applications w
 | 🟢 | MEXP-2025-037-FULL | MVP Implementation | 3/3 | P1 | 100% |
 
 #### Frontend
-| Status | BRQ | Component | Tests | Priority | Progress |
-|:------:|-----|-----------|:-----:|:--------:|:--------:|
-| 🟢 | MEXP-2025-005-FE | UI Architecture | 1/1 | P1 | 100% |
-| 🟢 | MEXP-2025-040-FE | Dashboard Design | 5/5 | P2 | 100% |
-| 🟡 | MEXP-2025-050-FE | UI Component Library | 5/6 | P1 | 83% |
+| Status | BRQ | Component | Tests | Priority | Progress | Integration |
+|:------:|-----|-----------|:-----:|:--------:|:--------:|:--------:|
+| 🟢 | MEXP-2025-005-FE | UI Architecture | 1/1 | P1 | 100% | ✓ |
+| 🟢 | MEXP-2025-040-FE | Dashboard Design | 5/5 | P2 | 100% | ✗ |
+| 🟢 | MEXP-2025-050-FE | UI Component Library | 6/6 | P1 | 100% | ✗ |
 
 *All tests skipped with proper documentation due to MongoDB replica set requirement
 
 ### 6.2 Business Requirements (BRQ)
 
 #### Current
-- MEXP-2025-050-FE: UI Component Library 🚧 (83% complete, 5/6 tests passing)
+- MONT-2025-050-FE: MontPC CRM MVP Frontend 🚧 (Components created but not yet integrated in main application)
+- MONT-2025-099-FE: Vue.js Integration 🚧 (Priority task to connect components to application)
 
 #### Next
-- MONT-2025-050-FE: MontPC CRM MVP Frontend 🚧 (Needs migration from React to Vue.js)
+- MEXP-2025-086-FE: Entity Dashboard Templates 📅 (Planned for next sprint)
 
 #### Completed
+- MEXP-2025-050-FE: UI Component Library ✅ (6/6 tests passing)
 - MEXP-2025-007-BE: Service Integration Architecture ✅ (9/9 tests passing)
 - MEXP-2025-024-INFRA: MVP Readiness ✅ (2/2 tests passing)
 - MEXP-2025-040-FE: Dashboard Design ✅ (5/5 tests passing)

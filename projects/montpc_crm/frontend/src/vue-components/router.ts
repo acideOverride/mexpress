@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Dashboard from './dashboard/Dashboard.vue';
+import { CustomerList, CustomerDetail } from './customers';
+import { TicketList, TicketDetail } from './tickets';
 
 // Define routes
 const routes: Array<RouteRecordRaw> = [
@@ -15,37 +17,73 @@ const routes: Array<RouteRecordRaw> = [
       requiresAuth: true
     }
   },
-  // For now, we'll redirect unimplemented routes to Dashboard
+  // Customer routes
   {
     path: '/customers',
     name: 'Customers',
-    component: Dashboard,
+    component: CustomerList,
     meta: {
       requiresAuth: true
     }
   },
+  {
+    path: '/customers/:id',
+    name: 'CustomerDetail',
+    component: CustomerDetail,
+    props: true,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/customers/new',
+    name: 'NewCustomer',
+    component: () => import('./customers/CustomerForm.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  // Ticket routes
   {
     path: '/tickets',
     name: 'Tickets',
-    component: Dashboard,
+    component: TicketList,
     meta: {
       requiresAuth: true
     }
   },
   {
+    path: '/tickets/:id',
+    name: 'TicketDetail',
+    component: TicketDetail,
+    props: true,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/tickets/new',
+    name: 'NewTicket',
+    component: () => import('./tickets/TicketForm.vue'),
+    props: route => ({ customerId: route.query.customerId }),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  // Auth routes
+  {
     path: '/login',
     name: 'Login',
-    // Will be implemented later
     component: () => import('./auth/Login.vue'),
     meta: {
       layout: 'none',
       requiresAuth: false
     }
   },
+  // Not found
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    // Will be implemented later
     component: () => import('./common/NotFound.vue'),
     meta: {
       layout: 'none',

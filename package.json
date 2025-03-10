@@ -28,6 +28,7 @@
     "@sinonjs/referee-sinon": "^12.0.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@types/commander": "^2.12.5",
+    "@types/supertest": "^6.0.2",
     "axios-mock-adapter": "^2.1.0",
     "crypto": "^1.0.1",
     "glob": "^11.0.1",
@@ -36,6 +37,7 @@
     "jsverify": "^0.8.4",
     "lerna": "^7.0.0",
     "marked": "^15.0.7",
+    "supertest": "^7.0.0",
     "typescript": "^5.0.0"
   },
   "engines": {
@@ -44,6 +46,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.2",
-    "commander": "^13.1.0"
+    "commander": "^13.1.0",
+    "cors": "^2.8.5"
   }
 }

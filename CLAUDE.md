@@ -34,6 +34,42 @@ Only the user may update this section directly.
 6. Update test dashboard
 7. Commit changes
 
+  ## 📋 AMTC Documentation Workflow
+
+  When implementing features or fixing bugs, maintain the following documentation files in order:
+
+  ### AMTC Documentation Structure
+  - **A: ARCHITECTURE.md** - Architectural blueprint (semi-immutable)
+  - **M: MILESTONES.md** - Project milestones and progress (semi-mutable)
+  - **T: TASKS.md** - Task tracking and implementation details (mutable)
+  - **C: CHECKLIST.md** - Technical implementation verification (highly mutable)
+
+  ### CHECKLIST.md Maintenance
+  - CHECKLIST.md should be updated at the beginning of each new task to track technical implementation details
+  - Start each CHECKLIST.md with headers showing the current status of other AMTC documents:
+  Technical Implementation Checklist
+
+
+    Current Documentation Status:
+  - A: ARCHITECTURE.md - [relevant section, e.g., "Section 6.2.1 UI Components"]
+  - M: MILESTONES.md - [current milestone, e.g., "MS-MEXP-014 - UI Component Library"]
+  - T: TASKS.md - [current task, e.g., "TASK-MEXP-078 - Table Component"]
+  - Organize CHECKLIST.md by technical component, not by business requirement
+  - Include specific technical verification steps with checkboxes
+  - Mark steps as ✅ when completed or ⏭️ when deferred
+  - Include debugging notes and troubleshooting steps
+
+  ### AMTC Update Order
+  1. First update ARCHITECTURE.md if the implementation affects system design
+  2. Check MILESTONES.md to ensure alignment with current milestone
+  3. Update TASKS.md with implementation details and status
+  4. Create or update CHECKLIST.md with technical steps and verification
+
+  ### Technical vs. Business Documentation
+  - ARCHITECTURE.md and MILESTONES.md focus on business requirements and system design
+  - TASKS.md bridges business requirements and technical implementation
+  - CHECKLIST.md is purely technical and focused on implementation details
+
 
 ## 🛠️ Build Commands
 
@@ -179,7 +215,27 @@ When creating new tests, ALWAYS follow these location templates:
   - `/scripts/project_scripts/`: Scripts for specific projects
   - `/scripts/test_scripts/`: Test runner scripts
   - `/scripts/utility_scripts/`: Utility and maintenance scripts
+  - `/scripts/setup_scripts/`: Database and application setup scripts
   - `/scripts/testScripts/`: Legacy test scripting (maintained for compatibility)
+
+### Starting MontPC CRM Application
+To start the entire MontPC CRM application with MongoDB, API server, and frontend:
+```
+cd /opt/mExpress/projects/montpc_crm
+./start-app.sh
+```
+
+This script starts:
+1. In-memory MongoDB database server
+2. Express API server connected to MongoDB
+3. Vue.js frontend development server
+
+All services will be accessible at:
+- Frontend: http://localhost:5173
+- API: http://localhost:3000/api
+- MongoDB: mongodb://localhost:27017/montpc_crm
+
+Use Ctrl+C to stop all services.
 
 ### Code Style
 - **Formatting**: Prettier with singleQuote=true, tabWidth=2, printWidth=80
@@ -215,6 +271,27 @@ When creating new tests, ALWAYS follow these location templates:
 6. Push to the remote repository
 7. Move to the next test/feature
 
+ ### Branch Naming Conventions
+  - Format: `feature/[BRQ-ID]-[component-name]`
+    - **BRQ-ID**: Full BRQ identifier (e.g., MEXP-2025-050-FE)
+    - **component-name**: Specific component or feature being implemented (e.g., table-component)
+  - Examples:
+    - `feature/MEXP-2025-050-FE-table-component` (for UI table component implementation)
+    - `feature/MEXP-2025-030-API-external-integrations` (for API integrations)
+    - `feature/MEXP-2025-002-FE-foundation` (for frontend foundation)
+  - Always tie branches to BRQs rather than individual task IDs
+  - For broader initiatives not tied to a specific BRQ, use descriptive names:
+    - `feature/major-project-restructure`
+    - `feature/test-phase`
+    - `feature/kubernetes-config-test`
+  - When creating branches for bug fixes, use:
+    - `fix/[BRQ-ID]-[brief-description]`
+  - Branch lifecycle:
+    1. Create branch from main/develop for a specific BRQ feature
+    2. Complete all related tasks and tests for that BRQ
+    3. Create PR when all tests pass
+    4. After review and merge, delete the branch
+
 ### Commit Message Format
 ```
 fix(tests): fix [test-name] in [location]
@@ -229,11 +306,17 @@ fix(tests): fix [test-name] in [location]
 
 ## 📋 Current Status & Handoff
 
-### Current Status (Updated: 2025-03-15)
+### Current Status (Updated: 2025-03-09)
 - Major documentation restructuring:
   - Created consolidated documentation structure for both mExpress and MontPC CRM
   - Established `/docs/{project}/ARCHITECTURE.md`, `/docs/{project}/MILESTONES.md`, and `/docs/{project}/TASKS.md`
   - Migrated from nested documentation to a flatter, more maintainable structure
+- Completed Vue.js component library (MS-MEXP-014):
+  - Implemented base components (Button, Input, Card, etc.)
+  - Created form system with validation
+  - Implemented advanced Table component with filtering, sorting, and pagination
+  - Added comprehensive test coverage for all components
+  - All 6/6 UI component tests passing (100% complete)
 - Completed Vue.js visualization components:
   - Implemented LineChart, PieChart/DonutChart, and AreaChart components
   - Created chart theming with light/dark mode support
@@ -245,27 +328,22 @@ fix(tests): fix [test-name] in [location]
   - Implemented LiveSearch component with typeahead suggestions
   - Added "create new" functionality with entity-specific forms
   - Completed MS-MEXP-016 (MegaSearch Implementation) milestone
-- Vue.js component library progress:
-  - Implemented base components (Button, Input, Card, etc.)
-  - Created form system with validation
-  - Implemented Vue.js component library (MS-MEXP-014, 75% complete)
-  - Remaining task: implement table component
 - Platform and project alignment:
   - Synchronized technology stack between mExpress and MontPC CRM
   - Ensured consistent integration patterns across projects
   - Defined shared component approach for Vue.js UI components
   - Established common approach for Hiboutik and Ringover integration
 - Current BRQs in progress:
-  - MEXP-2025-007-BE (Service Integration Architecture, 78% complete)
-  - MEXP-2025-024-INFRA (MVP Readiness, 50% complete)
-  - MEXP-2025-050-FE (UI Component Library, 75% complete)
   - MONT-2025-050-FE (MontPC CRM MVP Frontend, 15% complete)
-- Current working test count: 125/187 tests (66.8% success rate)
+- Upcoming BRQs:
+  - MEXP-2025-086-FE (Entity Dashboard Templates, planned)
+  - MEXP-2025-087-FE (Dashboard State Management, planned)
+- Current working test count: 131/187 tests (70.1% success rate)
 - Next focus areas:
-  1. Completing Service Integration Architecture
-  2. Finishing Vue.js Component Library (table component)
-  3. Implementing entity dashboard templates
-  4. Creating dashboard state management system
+  1. Starting MontPC CRM Vue.js Migration
+  2. Implementing entity dashboard templates
+  3. Creating dashboard state management system
+  4. Building filtering and search UI components
 
 ### Completed Components
 - ✅ Customer Management (MEXP-2025-008-BE): 2/2 tests passing (100%)
@@ -287,16 +365,15 @@ fix(tests): fix [test-name] in [location]
 *All tests skipped with proper documentation due to MongoDB replica set requirement
 
 ### In Progress Components
-- ✅ Service Integration Architecture (MEXP-2025-007-BE): 9/9 tests passing (100%)
-- 🟨 MVP Readiness (MEXP-2025-024-INFRA): 1/2 tests passing (50%)
+- 🟨 MontPC CRM MVP Frontend (MONT-2025-050-FE): 3/20 tests passing (15%)
 
 ### Recently Fixed
+- 🆕 UI Component Library (MEXP-2025-050-FE): Completed Table component with filtering, sorting, and pagination features (2025-03-09)
 - 🆕 Service Integration Architecture (MEXP-2025-007-BE): Fixed all P1 integration tests (service-mesh, service-deployment, container-orchestrator-integration, external-integration)
 - 🆕 MegaSearch Implementation (MEXP-2025-051-BE, MEXP-2025-052-API): Implemented complete MegaSearch functionality
 - 🆕 MontPC Auth Service (MONT-2025-002-FULL): Fixed auth service tests and login tests in the central tests directory
 - 🆕 Core CRUD Functionality (MEXP-2025-004-BE): Added proper skipping for MongoDB replica set requirements
 - 🆕 Authentication & Security (MEXP-2025-002-BE): Fixed import paths in all auth-related tests
-- 🆕 Service Discovery (MEXP-2025-007-BE): Fixed issues with cacheSize statistics reporting
 
 ### Issue Summary
 - Primary issues: import path errors (60%), module resolution (25%), type errors (10%), environment requirements (5%)
@@ -308,7 +385,8 @@ fix(tests): fix [test-name] in [location]
 3. ✅ Address transaction rollback tests (COMPLETED: All 3 Core CRUD tests skipped with documentation)
 4. ✅ Fix MontPC Auth Service tests (COMPLETED: auth.service.test.ts and login.test.tsx passing)
 5. ✅ Fix service integration architecture tests (COMPLETED: service-mesh.test.js, service-deployment.test.js, container-orchestrator-integration.test.js, external-integration.*.test.js)
-6. Fix MVP Readiness tests (kubernetes-config.test.ts)
+6. ✅ Complete UI Component Library (COMPLETED: Table component with filtering, sorting, and pagination)
+7. Fix MVP Readiness tests (kubernetes-config.test.ts)
 
 ### Upcoming Priority Tasks
 This section maps to the "Next Steps" section that should be maintained in `/tests/dashboard-new/TEST_DASHBOARD.md` and the task priorities in `/docs/mexpress/TASKS.md` and `/docs/montpc_crm/TASKS.md`. When updating these files, be sure to keep priorities aligned.
@@ -316,18 +394,21 @@ This section maps to the "Next Steps" section that should be maintained in `/tes
 #### High Priority (P0)
 1. ✅ Fix service-mesh.test.ts - Completed JavaScript implementation with all tests passing (TASK-MEXP-059)
 2. ✅ Fix service-deployment.test.ts - Completed JavaScript implementation with all tests passing (TASK-MEXP-060)
-3. Setup Vue.js UI component library - Implement core components (TASK-MEXP-063)
-4. Create dashboard layout framework - Responsive layout with navigation (TASK-MEXP-064)
+3. ✅ Setup Vue.js UI component library - Implemented core components (TASK-MEXP-063)
+4. ✅ Create dashboard layout framework - Responsive layout with navigation (TASK-MEXP-064)
+5. ✅ Implement table component - Completed with sorting, filtering, and pagination (TASK-MEXP-078)
+6. Start MontPC CRM Vue.js migration - Begin with core components (TASK-MEXP-098)
 
 #### Medium Priority (P1)
 1. Fix kubernetes-config.test.ts - Create stub implementation that doesn't require actual k8s (TASK-MEXP-061)
-2. Design D3.js visualization components - Chart wrapper components (TASK-MEXP-065)
+2. ✅ Design D3.js visualization components - Chart wrapper components (TASK-MEXP-065)
 3. Implement MontPC MVP frontend components - Convert to Vue.js (TASK-MONT-046)
 4. ✅ External Integration Tests - All external integration tests fixed with mock implementations (TASK-MEXP-062)
+5. Implement entity dashboard templates - Customer, repair, product views (TASK-MEXP-086)
 
 #### Low Priority (P2-P3)
-1. Create MongoDB text search implementation - Optimize for performance (TASK-MEXP-067)
-2. Implement entity dashboard templates - Customer, repair, product views (TASK-MEXP-086)
+1. ✅ Create MongoDB text search implementation - Optimized for performance (TASK-MEXP-067)
+2. Create dashboard state management system - For entity dashboards (TASK-MEXP-087)
 3. Build filtering and search UI - Results display and interactions (TASK-MEXP-088)
 4. Fix message-queue-recovery.test.ts - Implement recovery test adapters
 
