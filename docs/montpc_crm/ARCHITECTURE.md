@@ -205,6 +205,46 @@ MontPC CRM is a comprehensive customer relationship management system built on t
 🔍 Test Location:     📍 Canonical    🔄 Need to Move
 ```
 
+### 6.2.1 Integration Status
+While tests for components are largely passing, there is an important distinction to clarify:
+
+1. **Component Test Status**: Many Vue.js components have been created and pass tests in isolation
+2. **Integration Status**: These components are not yet integrated into the main application
+3. **Current UI**: The current user-facing UI is still using React components
+4. **Integration Gap**: The primary gap is connecting the Vue components to the application entry point  
+
+This explains why the application UI appears basic despite component tests passing - the new components exist but aren't being used in the actual application yet. The highest current priority is bridging this integration gap.
+
+### 6.2.2 Application Startup and Development Environment
+
+A consolidated TypeScript application starter has been implemented to simplify the development process and provide a consistent environment:
+
+1. **TypeScript Application Starter**: The `start-simple-ts.sh` script provides a single command to start all required services:
+   - MongoDB (automatically starts or connects to an existing instance)
+   - Express API Server with auto-generated TypeScript implementation
+   - Vue.js Frontend
+
+2. **Shell Script Wrapper**: The shell script handles dependency installation and proper environment setup:
+   - Checks and installs required dependencies
+   - Sets up MongoDB data directory with appropriate permissions
+   - Runs the TypeScript starter with proper error handling
+   - Provides graceful shutdown for all services
+
+3. **Simplified Developer Experience**:
+   - Single command to start the entire environment: `./start-simple-ts.sh`
+   - Automatic MongoDB initialization with sample data
+   - Port management to avoid conflicts
+   - Proper startup sequence and service dependency management
+   - Automatic error recovery and diagnostic information
+   - Clear console output with service URLs
+
+All services are accessible at standardized URLs:
+- MongoDB: mongodb://localhost:27017/montpc_crm
+- API Server: http://localhost:3000/api
+- Vue.js Frontend: http://localhost:3002 (or another available port)
+
+This approach bridges the development and production environments by ensuring consistent service initialization and communication.
+
 #### Recent Test Runs
 - 🟢📍⚡️0.3s🔬auth MEXP-2025-002-BE packages/core/tests/p0/core/login.api.test.ts
 - 🟢📍⚡️0.2s🔬auth MEXP-2025-002-BE packages/core/tests/p1/auth/permissions.test.ts
