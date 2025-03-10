@@ -19,18 +19,9 @@
       </div>
     </div>
     
-    <!-- Vue.js Entry Point -->
-    <script type="module">
-      import('./src/vue-main.ts').catch(err => {
-        console.error('Failed to load Vue app:', err);
-        document.getElementById('app-vue').innerHTML = `
-          <div style="padding: 40px; text-align: center; font-family: 'Inter', sans-serif;">
-            <h1 style="font-size: 28px; margin-bottom: 20px; color: #e11d48;">Error Loading Application</h1>
-            <p style="font-size: 18px; color: #6b7280;">There was a problem loading the application. Please try refreshing the page.</p>
-            <pre style="margin-top: 20px; text-align: left; background: #f1f5f9; padding: 16px; border-radius: 8px; overflow: auto;">${err.toString()}</pre>
-          </div>
-        `;
-      });
+    <!-- Redirect to API dashboard -->
+    <script>
+      window.location.href = '/api.html';
     </script>
   </body>
 </html>

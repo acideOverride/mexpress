@@ -91,10 +91,10 @@ while [ $attempts -lt $max_attempts ]; do
   fi
 done
 
-# Start the Vue.js frontend
-echo "Starting Vue.js frontend..."
+# Start the frontend
+echo "Starting frontend..."
 cd frontend
-npm run dev:vue &
+npm run dev &
 FRONTEND_PID=$!
 
 # Print usage information
