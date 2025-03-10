@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MontPC CRM - Framework Toggle</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">MontPC CRM Framework</h1>
+    
+    <div class="space-y-6">
+      <div>
+        <h2 class="text-xl font-semibold mb-3">Choose Implementation</h2>
+        <p class="text-gray-600 mb-4">Select which framework you want to use for the application.</p>
+        
+        <div class="flex space-x-4 justify-center">
+          <a href="/react" id="react-btn" class="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors">
+            React.js
+          </a>
+          
+          <a href="/vue" id="vue-btn" class="bg-green-600 text-white py-2 px-6 rounded-md hover:bg-green-700 transition-colors">
+            Vue.js
+          </a>
+        </div>
+      </div>
+      
+      <div class="border-t pt-6">
+        <p class="text-sm text-gray-500">
+          This toggle allows you to switch between React and Vue implementations of MontPC CRM during the migration phase.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Set up event listeners
+    document.getElementById('react-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.setItem('montpc-framework', 'react');
+      window.location.href = '/';
+    });
+    
+    document.getElementById('vue-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.setItem('montpc-framework', 'vue');
+      window.location.href = '/';
+    });
+  </script>
+</body>
+</html>

@@ -4,10 +4,59 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mExpress</title>
+    <title>MontPC CRM</title>
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div id="app-vue" style="display: none;"></div>
+    
+    <!-- Framework Toggle Button -->
+    <div id="framework-toggle" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <a href="/toggle.html" style="display: flex; align-items: center; font-family: 'Inter', sans-serif; text-decoration: none; color: #333;">
+        <span style="margin-right: 8px;">Switch Framework</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Framework Selection Script -->
+    <script type="text/javascript">
+      (function() {
+        const framework = localStorage.getItem('montpc-framework') || 'react';
+        
+        // Show the correct app container
+        if (framework === 'vue') {
+          document.getElementById('root').style.display = 'none';
+          document.getElementById('app-vue').style.display = 'block';
+          
+          // Load Vue entry point
+          const script = document.createElement('script');
+          script.type = 'module';
+          script.src = '/src/vue-main.ts';
+          document.body.appendChild(script);
+        } else {
+          document.getElementById('root').style.display = 'block';
+          document.getElementById('app-vue').style.display = 'none';
+          
+          // Load React entry point
+          const script = document.createElement('script');
+          script.type = 'module';
+          script.src = '/src/main.tsx';
+          document.body.appendChild(script);
+        }
+        
+        // Update toggle text
+        const toggleElement = document.getElementById('framework-toggle');
+        if (toggleElement) {
+          const frameworkLabel = framework.charAt(0).toUpperCase() + framework.slice(1);
+          toggleElement.querySelector('span').textContent = `Using ${frameworkLabel}`;
+        }
+      })();
+    </script>
   </body>
 </html>

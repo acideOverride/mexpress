@@ -18,15 +18,18 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@vue/*": ["src/vue-components/*"]
     },
-    "types": ["node", "jest", "@testing-library/jest-dom"]
+    "types": ["node", "jest", "@testing-library/jest-dom", "vitest/globals"]
   },
   "include": [
     "src",
     "tests",
     "tests/types/jest-dom.d.ts",
-    "src/types/*.d.ts"
+    "src/types/*.d.ts",
+    "vite.vue.config.ts",
+    "vitest.config.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
