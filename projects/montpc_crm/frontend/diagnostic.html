@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Diagnostic Test</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Vue Diagnostic Test</h1>
+    <div class="card">
+      <p>{{ message }}</p>
+      <button @click="count++">Count: {{ count }}</button>
+    </div>
+  </div>
+
+  <div style="margin-top: 40px; padding: 20px; border: 1px solid #ccc;">
+    <h2>Console Logs:</h2>
+    <pre id="console-output"></pre>
+  </div>
+
+  <script>
+    // Capture console logs
+    const originalConsoleLog = console.log;
+    const originalConsoleError = console.error;
+    const originalConsoleWarn = console.warn;
+    
+    const consoleOutput = document.getElementById('console-output');
+    
+    console.log = function() {
+      const args = Array.from(arguments);
+      consoleOutput.textContent += 'LOG: ' + args.join(' ') + '\n';
+      originalConsoleLog.apply(console, args);
+    };
+    
+    console.error = function() {
+      const args = Array.from(arguments);
+      consoleOutput.textContent += 'ERROR: ' + args.join(' ') + '\n';
+      originalConsoleError.apply(console, args);
+    };
+    
+    console.warn = function() {
+      const args = Array.from(arguments);
+      consoleOutput.textContent += 'WARN: ' + args.join(' ') + '\n';
+      originalConsoleWarn.apply(console, args);
+    };
+
+    // Simple Vue app
+    const { createApp, ref } = Vue;
+    
+    createApp({
+      setup() {
+        const message = ref('Vue is working correctly!');
+        const count = ref(0);
+        
+        console.log('Vue app created successfully');
+        
+        return {
+          message,
+          count
+        };
+      }
+    }).mount('#app');
+    
+    // Test Vue imports
+    try {
+      console.log('Testing Vue imports:');
+      const computed = Vue.computed;
+      console.log('- computed is available:', !!computed);
+      
+      const ref = Vue.ref;
+      console.log('- ref is available:', !!ref);
+      
+      const reactive = Vue.reactive;
+      console.log('- reactive is available:', !!reactive);
+      
+      console.log('Vue is working correctly!');
+    } catch (error) {
+      console.error('Vue import test failed:', error);
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    #app {
+      background-color: #f5f5f5;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    
+    .card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    #console-output {
+      background-color: #f8f8f8;
+      padding: 10px;
+      border-radius: 4px;
+      white-space: pre-wrap;
+      font-family: monospace;
+      height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</body>
+</html>

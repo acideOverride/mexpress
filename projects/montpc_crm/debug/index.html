@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Debug Test</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #1976d2;
+    }
+    button {
+      margin: 10px 0;
+      padding: 8px 16px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0d5fa9;
+    }
+    .success-message {
+      padding: 10px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
+    .error-message {
+      padding: 10px;
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vue.js Debug Test</h1>
+  <div id="app">
+    <!-- Vue app will mount here -->
+  </div>
+
+  <!-- Import Vue 3 -->
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+  </script>
+  
+  <script type="module">
+    import { createApp, ref, computed } from 'vue';
+    
+    // Create a simple app
+    const app = createApp({
+      setup() {
+        // Reactive state
+        const count = ref(0);
+        const successMessage = ref('');
+        const errorMessage = ref('');
+        
+        // Computed property
+        const doubleCount = computed(() => count.value * 2);
+        
+        // Function to increment counter
+        const increment = () => {
+          count.value++;
+          successMessage.value = `Counter incremented to ${count.value}`;
+          setTimeout(() => {
+            successMessage.value = '';
+          }, 2000);
+        };
+        
+        // Function to test computed properties
+        const testComputed = () => {
+          try {
+            successMessage.value = `Computed value is ${doubleCount.value}`;
+            setTimeout(() => {
+              successMessage.value = '';
+            }, 3000);
+          } catch (err) {
+            errorMessage.value = `Error testing computed: ${err.message}`;
+            setTimeout(() => {
+              errorMessage.value = '';
+            }, 3000);
+          }
+        };
+        
+        return {
+          count,
+          doubleCount,
+          increment,
+          testComputed,
+          successMessage,
+          errorMessage
+        };
+      },
+      
+      template: `
+        <div>
+          <p>Counter: {{ count }}</p>
+          <p>Double: {{ doubleCount }}</p>
+          
+          <div>
+            <button @click="increment">Increment</button>
+            <button @click="testComputed">Test Computed</button>
+          </div>
+          
+          <div v-if="successMessage" class="success-message">{{ successMessage }}</div>
+          <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+        </div>
+      `
+    });
+    
+    // Mount to app container
+    app.mount('#app');
+    
+    // Debugging info
+    console.log('Vue version:', Vue.version);
+    console.log('Vue app initialized successfully');
+  </script>
+</body>
+</html>

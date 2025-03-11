@@ -1,40 +1,25 @@
 /**
- * MontPC CRM - TypeScript API Server
- * Simple Express server using TypeScript
+ * MontPC CRM - Simple TypeScript API Server
  */
-import * as express from 'express';
-import * as mongoose from 'mongoose';
-import * as cors from 'cors';
+
+// Import required packages using CommonJS require syntax
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
 // Create Express app
-const app = express.default();
+const app = express();
 const port = 3000;
 
 // Configure middleware
-app.use(express.default.json());
-app.use(cors.default());
+app.use(express.json());
+app.use(cors());
 
 // Logging middleware
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
   next();
 });
-
-// Define schemas and models
-interface ICustomer {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone?: string;
-  address?: {
-    street?: string;
-    city?: string;
-    state?: string;
-    zip?: string;
-  };
-  status: string;
-  notes?: string;
-}
 
 // Customer schema
 const CustomerSchema = new mongoose.Schema({
@@ -90,11 +75,7 @@ async function connectToMongoDB() {
       await createSampleData();
     }
   } catch (error) {
-    if (error instanceof Error) {
-      console.error('MongoDB connection error:', error.message);
-    } else {
-      console.error('MongoDB connection error:', error);
-    }
+    console.error('MongoDB connection error:', error);
     process.exit(1);
   }
 }
@@ -152,10 +133,10 @@ app.get('/api/customers', async (req, res) => {
         timestamp: new Date().toISOString()
       }
     });
-  } catch (error: any) {
+  } catch (error) {
     res.status(500).json({
       status: 'error',
-      error: error.message
+      error: error.message || 'Unknown error'
     });
   }
 });
@@ -170,57 +151,11 @@ app.post('/api/customers', async (req, res) => {
       status: 'success',
       data: savedCustomer
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error creating customer:', error);
     res.status(400).json({
       status: 'error',
-      error: error.message
-    });
-  }
-});
-
-// Delete customer
-app.delete('/api/customers/:id', async (req, res) => {
-  try {
-    const result = await Customer.findByIdAndDelete(req.params.id);
-    if (!result) {
-      return res.status(404).json({
-        status: 'error',
-        error: 'Customer not found'
-      });
-    }
-    res.json({
-      status: 'success',
-      message: 'Customer deleted successfully'
-    });
-  } catch (error: any) {
-    res.status(500).json({
-      status: 'error',
-      error: error.message
-    });
-  }
-});
-
-// Get customer by ID
-app.get('/api/customers/:id', async (req, res) => {
-  try {
-    const customer = await Customer.findById(req.params.id);
-    
-    if (!customer) {
-      return res.status(404).json({
-        status: 'error',
-        error: 'Customer not found'
-      });
-    }
-    
-    res.json({
-      status: 'success',
-      data: customer
-    });
-  } catch (error: any) {
-    res.status(500).json({
-      status: 'error',
-      error: error.message
+      error: error.message || 'Unknown error'
     });
   }
 });
@@ -250,13 +185,10 @@ async function main() {
       process.exit(0);
     });
   } catch (error) {
-    if (error instanceof Error) {
-      console.error('Startup error:', error.message);
-    } else {
-      console.error('Startup error:', error);
-    }
+    console.error('Startup error:', error);
     process.exit(1);
   }
 }
 
+// Run the application
 main();

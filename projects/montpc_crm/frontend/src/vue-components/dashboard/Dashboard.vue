@@ -211,8 +211,31 @@ import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { Modal } from '../ui';
 import QuickCustomerForm from '../customers/QuickCustomerForm.vue';
-import { Customer } from '@/api/types/customer';
-import { customersService } from '@/api/services/customers.service';
+// Use simplified customer type and service
+interface Customer {
+  id: string;
+  name: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  status: string;
+  createdAt: string;
+}
+
+// Simple customer service
+const customersService = {
+  getCustomers: async () => {
+    try {
+      const response = await fetch('/api/customers');
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.error('Error fetching customers:', err);
+      return { status: 'error', message: err.message };
+    }
+  }
+};
 
 const router = useRouter();
 const currentDate = ref(new Date().toLocaleDateString('en-US', { 
@@ -252,13 +275,24 @@ const refreshData = async () => {
     // Clear any previous error
     error.value = '';
     
-    // Fetch customers from service
+    // Fetch dashboard stats from API
+    const statsResponse = await fetch('/api/dashboard/stats');
+    const statsData = await statsResponse.json();
+    
+    if (statsData.status === 'success' && statsData.data) {
+      // Update dashboard stats with real data
+      customerCount.value = statsData.data.customers;
+      ticketCount.value = statsData.data.tickets;
+      repairCount.value = statsData.data.completedRepairs;
+      revenue.value = statsData.data.revenue;
+      
+      console.log('Updated dashboard stats from API:', statsData.data);
+    }
+    
+    // Fetch customers for activity feed
     const customerResponse = await customersService.getCustomers();
     if (customerResponse.status === 'success' && customerResponse.data) {
-      // Update stats
-      customerCount.value = customerResponse.data.length;
-      
-      // Update recent activity with latest customers (for this demo)
+      // Update recent activity with latest customers
       const newActivity = customerResponse.data
         .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
         .slice(0, 3)
@@ -271,11 +305,6 @@ const refreshData = async () => {
         }));
       
       recentActivity.value = newActivity;
-      
-      // Set demo values for tickets, repairs and revenue (these would come from real APIs)
-      ticketCount.value = 38;
-      repairCount.value = 142;
-      revenue.value = 19850;
       
       // Show success message briefly
       successMessage.value = 'Dashboard data refreshed successfully';
@@ -295,8 +324,11 @@ const handleCustomerCreated = (customer: Customer) => {
   console.log('Customer created:', customer);
   showCustomerModal.value = false;
   
+  // Use firstName + lastName if name is not available
+  const customerName = customer.name || `${customer.firstName} ${customer.lastName}`;
+  
   // Add success message to show to the user
-  successMessage.value = `Customer ${customer.name} created successfully!`;
+  successMessage.value = `Customer ${customerName} created successfully!`;
   
   // Clear success message after 5 seconds
   setTimeout(() => {

@@ -7,24 +7,24 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-      '@vue': resolve(__dirname, 'src/vue-components'),
-      // Add these aliases to resolve module import issues
-      'vue': resolve(__dirname, 'node_modules/vue'),
-      '@vue/runtime-dom': resolve(__dirname, 'node_modules/@vue/runtime-dom'),
-      '@vue/devtools-api': resolve(__dirname, 'node_modules/@vue/devtools-api'),
-    },
-    dedupe: ['vue']
+      '@': resolve(__dirname, 'src')
+    }
   },
   server: {
-    port: 3001, // Different from React's port
+    port: 5173,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true
+      }
+    }
   },
   build: {
-    outDir: 'dist/vue',
+    outDir: 'dist'
   },
   test: {
     globals: true,
     environment: 'jsdom',
-    include: ['**/*.{test,spec}.{js,ts,jsx,tsx}'],
-  },
+    include: ['**/*.{test,spec}.{js,ts,vue}']
+  }
 })

@@ -1,151 +1,189 @@
-# MontPC CRM TypeScript Migration Checklist
+# Clean Slate Vue.js Implementation Checklist
 
-## Existing Tests & Components
-According to `/opt/mExpress/tests/validation/unified/TESTS_STATUS_ENHANCED.md`, the following components already have tests:
+## Current Documentation Status:
+- A: ARCHITECTURE.md - Section 6.2 UI Framework Implementation
+- M: MILESTONES.md - MS-MEXP-014 - UI Component Library
+- T: TASKS.md - TASK-MEXP-078 - Table Component
 
--  Customer service (/opt/mExpress/packages/core/tests/p0/services/customer.service.test.ts)
--  Authentication (/opt/mExpress/packages/core/tests/p0/services/hiboutik.auth.test.ts)
--  Message queue (/opt/mExpress/packages/core/tests/p0/core/message-queue-v2.test.ts)
--  MongoDB customer model integration test (/opt/mExpress/packages/core/tests/p3/models/customer.integration.test.ts)
--  DB-related tests with TypeScript (/opt/mExpress/packages/core/tests/p2/core/customer.unit.test.ts)
--  Database performance test (/opt/mExpress/packages/core/tests/p3/infrastructure/database-performance.test.ts)
+## Problem Summary
 
-## MongoDB Connectivity
-- [x] Check if MongoDB is running (v7.0.17)
-- [x] Verify MongoDB version compatibility (v7.0.17 is compatible with latest mongoose)
-- [x] Create a simple MongoDB connection test with TypeScript (/opt/mExpress/projects/montpc_crm/debug-mongo.ts)
-- [x] Test MongoDB CRUD operations with proper TypeScript interfaces (implemented in debug-mongo.ts)
-- [x] Implement proper error handling and retry logic for MongoDB connection (implemented in start-app.ts)
+After extensive investigation, we determined that the Vue.js application has deep-rooted issues with dependency management, module resolution, and build system configuration. The emergency dashboard works, confirming that Vue.js itself functions correctly, but the bundled application fails to load. This checklist outlines a clean slate approach for a reliable, maintainable implementation.
 
-## API Server (TypeScript)
-Based on existing tests:
-- ✅ Customer service API (/opt/mExpress/packages/core/tests/p0/services/customer.service.test.ts)
-- ✅ Authentication API (/opt/mExpress/packages/core/tests/p0/services/hiboutik.auth.test.ts)
-- ✅ Product service API (/opt/mExpress/packages/core/tests/p0/services/product.service.test.ts)
-- ✅ Frontend API calls (/opt/mExpress/projects/montpc_crm/tests/frontend/p1/api/services/customers.service.test.ts)
-- ✅ Error handling (/opt/mExpress/projects/montpc_crm/tests/frontend/p1/api/interceptors/error.interceptor.test.ts)
+## Phase 1: Backup and Preparation
 
-Now implemented:
-- [x] Convert JavaScript API server to TypeScript (/opt/mExpress/projects/montpc_crm/simple-api.ts)
-- [x] Create proper TypeScript interfaces for models (ICustomer, ICustomerMethods, ICustomerModel, ICustomerDocument)
-- [x] Set up TypeScript config for API server (using existing TypeScript config)
-- [x] Add proper error handling with TypeScript types (implemented in simple-api.ts)
-- [x] Add health check endpoint (/api/health) with proper response format
-- [x] Add customers endpoint (/api/customers) with working MongoDB connection
-- [x] Verified working API responses for both endpoints
-- [x] Ensure consistent response format using interfaces (IApiResponse interface)
+- [✅] Create backup directory for Vue components
+  - [✅] Create `/opt/mExpress/projects/montpc_crm/frontend/backup`
+  - [✅] Copy all Vue components to backup directory
+  - [✅] Document component relationships and dependencies
 
-## Vue.js Frontend
-Based on existing components:
-- ✅ Vue components (/opt/mExpress/packages/vue-components/tests/p2/components/ui/Button.test.ts, etc.)
-- ✅ Vue layout components (/opt/mExpress/packages/vue-components/tests/p2/components/layout/DashboardLayout.test.ts)
-- ✅ Vue component structure (/opt/mExpress/projects/montpc_crm/frontend/src/vue-components/)
+- [✅] Document current API integrations
+  - [✅] Extract API service classes and interfaces
+  - [✅] Document existing API endpoints and data structures
+  - [✅] Back up API client configuration 
 
-Implementation progress:
-- [x] Verify Vue.js development server startup (implemented in start-app.ts with both dev:vue and dev fallbacks)
-- [x] Ensure proper detection of Vue.js script in package.json
-- [x] Add intelligent fallback for dev script if dev:vue not available
-- [x] Created simple API dashboard with vanilla JavaScript instead of Vue.js (workaround for Vue import issues)
-- [x] Implemented customer data display from API within the API dashboard
-- [x] Added refresh functionality to verify live API connection
-- [x] Fixed errors with Vue.js dependencies (implemented correct module paths)
-- [ ] Ensure Vue Router is properly configured (requires Vue dependency issues to be resolved)
-- [ ] Verify Pinia state management (requires Vue dependency issues to be resolved)
+- [✅] Clean up environment
+  - [✅] Create git branch for clean implementation
+  - [✅] Temporarily move problematic files out of src directory
+  - [✅] Document path aliases and import patterns
 
-## Application Integration
-Progress:
-- [x] Created TypeScript API server (simple-api.ts) with proper TypeScript interfaces
-- [x] Created shell script wrapper (start-simple-ts.sh) with comprehensive startup logic
-- [x] Fix and debug TypeScript API server (fixed import/require issues and TypeScript errors)
-- [x] Implement proper shutdown handling (graceful shutdown with error handling)
-- [x] Add port conflict detection and handling
-- [x] Add dependency checking and auto-installation
-- [x] Add error recovery and fallback mechanisms
-- [x] Test integrated application flow with verified endpoints
-- [x] Verify data persistence with MongoDB connection
-- [x] Test error scenarios with retry mechanisms
-- [x] Document startup process in README.md
+## Phase 2: Fresh Installation
 
-## Debugging Steps
-1. ✅ Test MongoDB connection with TypeScript
-2. ✅ Debug and fix MongoDB connection issues
-3. ✅ Start API server with TypeScript
-4. ✅ Fix API server issues
-5. ✅ Ensure Vue.js frontend can start
-6. ✅ Integrate all components into single starter script (start-simple-ts.sh)
-7. ✅ Test end-to-end functionality
-   - ✅ MongoDB starts correctly
-   - ✅ API server connects to MongoDB
-   - ✅ API health endpoint (/api/health) responds successfully
-   - ✅ API customers endpoint (/api/customers) returns data
-   - ✅ Frontend starts and connects to API
-8. ✅ Test error scenarios and recovery
-   - ✅ Proper error handling when API server fails to start
-   - ✅ Retry mechanism for API server health check
-   - ✅ Graceful shutdown with cleanup for all processes
+- [✅] Create minimal package.json
+  - [✅] Remove all Vue-related dependencies
+  - [✅] Remove conflicting build tools
+  - [✅] Remove redundant packages
 
-## Next Steps
-1. ✅ Test the integrated application with real data flow (test-api.ts)
-2. ✅ Set up proper TypeScript configuration (tsconfig.json)
-3. ✅ Fix TypeScript path and import errors
-4. ✅ Add usage documentation for the TypeScript version (updated README.md)
-5. ✅ Created API dashboard to display customer data from API
-6. ✅ Implemented workaround for Vue.js dependency issues
-7. ✅ Made frontend connect to API server with live data fetching
-8. ✅ Fix Vue.js dependency incompatibilities (Vue 3.3.4 vs Vue 3.4.21)
-9. ✅ Resolve Vue module import errors for runtime-dom and devtools-api
-10. ✅ Implement proper Vue components instead of the simplified API dashboard
-11. ✅ Add comprehensive error handling in frontend components
+- [✅] Install core dependencies with exact versions
+  - [✅] Vue 3.2.47 (downgraded from 3.3.4 for stability)
+  - [✅] Vite 4.3.9
+  - [✅] @vitejs/plugin-vue 4.0.0
+  - [✅] TypeScript 5.0.2 and Vue types
 
-## Common Issues to Check
-- Port conflicts
-- MongoDB permissions
-- TypeScript configuration
-- Package dependencies
-- Path resolution
-- Error handling
-- Event loop management
+- [✅] Configure Vite build system
+  - [✅] Create minimalist vite.vue.config.ts
+  - [✅] Configure path aliases
+  - [✅] Set up proper module resolution
+  - [✅] Configure proxy for API
 
-## Standards Compliance
-Based on existing standards:
-- [x] TypeScript configuration is set up (100% TypeScript adoption according to tests)
-- [x] Naming conventions are established (kebab-case files, PascalCase components)
-- [x] Vue.js component structure exists
+- [✅] Set up proper TypeScript configuration
+  - [✅] Create tsconfig.json with minimal settings
+  - [✅] Configure Vue SFC support
+  - [✅] Set up path mappings matching Vite config
+  - [✅] Configure strict type checking
 
-To complete:
-- [ ] Ensure all new server-side code is TypeScript
-- [ ] Convert API server to TypeScript
-- [ ] Use interfaces and types consistently across components
-- [ ] Use modern ES syntax (async/await, optional chaining, etc.)
-- [ ] Follow Vue.js component standards for new components
-- [ ] Update documentation with TypeScript examples
+## Phase 3: Create Minimal Working Application
 
-## Detailed Debugging Plan
+- [✅] Create index.html with proper mount point
+  - [✅] Add mount element with id "app"
+  - [✅] Include basic styles
+  - [✅] Add proper meta tags
+  - [✅] Include fallback content for loading state
 
-### 1. Debug MongoDB Connection (TypeScript)
-- Create a standalone MongoDB connection test file
-- Test connectivity with proper TypeScript typing
-- Verify CRUD operations work correctly
-- Add error handling and connection retry logic
-- Document connection patterns for reuse
+- [✅] Create main entry point
+  - [✅] Implement minimal main.ts
+  - [✅] Add robust error handling
+  - [✅] Set up Vue app creation and mounting
+  - [✅] Configure debug logging
 
-### 2. Develop TypeScript API Server
-- Convert JavaScript API server to TypeScript
-- Create interfaces for all models (Customer, Product, etc.)
-- Ensure consistent response format with interfaces
-- Test API endpoints with TypeScript clients
-- Document API patterns for frontend consumption
+- [✅] Build simplest App component
+  - [✅] Create minimal App.vue
+  - [✅] Verify component loads correctly
+  - [✅] Test reactive data
+  - [✅] Add basic styling
 
-### 3. Verify Vue.js Frontend
-- Test Vue.js development server startup
-- Verify Vue components can load and render
-- Test Vue router configuration
-- Test connection to TypeScript API
-- Document Vue.js patterns for future components
+- [✅] Create API service layer
+  - [✅] Implement base API client
+  - [✅] Add common interfaces for API responses
+  - [✅] Add proper error handling
+  - [✅] Create customer service module
 
-### 4. Integrate All Components
-- Update TypeScript startup script to handle all services
-- Add proper error recovery and retry logic
-- Test full application flow with all components
-- Document startup process and configuration options
-- Create runbook for common issues
+## Phase 4: Implement Core Features
+
+- [✅] Create dashboard layout
+  - [✅] Implement the stats grid
+  - [✅] Add action buttons
+  - [✅] Create responsive layout
+  - [✅] Add API data integration
+
+- [✅] Add basic UI components
+  - [✅] Button component (functional in dashboard)
+  - [✅] Card component (used in stats display)
+  - [✅] Layout components (AppLayout with header, sidebar, footer)
+  - [✅] Table component (functional in customer list)
+
+- [✅] Implement API connectivity
+  - [✅] Add customer data fetching
+  - [✅] Implement data refresh (basic implementation)
+  - [✅] Add error handling
+  - [✅] Add loading states
+
+- [✅] Test integration
+  - [✅] Verify components load correctly
+  - [✅] Test API data flow
+  - [✅] Verify reactivity works
+  - [✅] Test error handling
+
+## Phase 5: Complete Implementation
+
+- [✅] Add remaining UI components
+  - [✅] Modal component
+  - [✅] Form components
+  - [✅] Navigation components
+  - [✅] Dashboard widgets
+
+- [✅] Implement routing
+  - [✅] Install Vue Router
+  - [✅] Set up route configuration
+  - [✅] Create view components
+  - [✅] Add navigation guards
+
+- [ ] Add state management
+  - [ ] Install Pinia
+  - [ ] Create store modules
+  - [ ] Implement proper reactive state
+  - [ ] Connect components to store
+
+- [✅] Complete CSS styling
+  - [✅] Implement basic component styles
+  - [✅] Add responsive breakpoints
+  - [✅] Implement theme support (light mode)
+  - [✅] Add transitions and animations
+
+## Implementation Progress
+- ✅ Basic dashboard UI implemented and functioning
+- ✅ Reactive data display working correctly 
+- ✅ Button click triggers data refresh
+- ✅ Responsive layout working properly
+- ✅ Clean dependency structure established
+- ✅ Vue Router implemented with multiple views
+- ✅ Layout implemented with navigation sidebar
+- ✅ Multiple view components created and working (Dashboard, Customers, Tickets, Settings)
+- ⏭️ Next steps: Add state management with Pinia and connect more API endpoints
+
+## Best Practices (Revised Based on Implementation)
+
+1. **Direct Named Imports**: Always use `import { x } from 'y'` instead of namespace imports
+
+2. **Pin Exact Versions**: Use exact version numbers in package.json to avoid dependency conflicts
+   - PROVEN: Exact versions resolved the dependency conflicts
+
+3. **Critical Dependencies**:
+   - Vue: 3.2.47 (more stable than 3.3.4 with our setup)
+   - Vite: 4.3.9
+   - @vitejs/plugin-vue: 4.0.0
+   - TypeScript: 5.0.2 (compatible with Vue)
+   - Vue Router: 4.1.6
+
+4. **Progressive Implementation**:
+   - CONFIRMED: Starting with minimal working example was successful
+   - Add one feature at a time
+   - Test thoroughly between additions
+   - Document all issues encountered
+
+5. **Avoid Auto-Fix Scripts**:
+   - CONFIRMED: Manual changes provided more control and understanding
+   - Make all changes manually and intentionally
+   - Understand each dependency relationship
+   - Keep dependencies minimal
+
+## Key Lessons from Current Implementation
+
+1. ✅ Downgrading Vue from 3.3.4 to 3.2.47 resolved the "computed" export error
+
+2. ✅ Removing React dependencies eliminated conflicts and simplified the build process
+
+3. ✅ Using a clean, minimal Vite configuration prevented build issues
+
+4. ✅ Mount point ID in HTML matching the ID in the entry point was critical
+
+5. ✅ Starting with a minimal working example and progressively adding features is effective
+
+6. ✅ Focusing on Vue-only implementation simplified debugging and dependency management
+
+7. ✅ Using exact package versions prevented subtle version conflicts
+
+8. ✅ Implementing proper router integration with layouts improved code organization
+
+9. ✅ Creating reusable components for layout improved maintainability
+
+10. ✅ Using scoped CSS in components prevents style leakage and conflicts

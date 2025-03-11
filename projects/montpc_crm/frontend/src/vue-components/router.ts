@@ -1,9 +1,14 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Dashboard from './dashboard/Dashboard.vue';
-import { CustomerList, CustomerDetail } from './customers';
-import { TicketList, TicketDetail } from './tickets';
 
-// Define routes
+// Lazy load components for better performance
+const CustomerList = () => import('./customers/CustomerList.vue');
+const CustomerDetail = () => import('./customers/CustomerDetail.vue');
+const TicketList = () => import('./tickets/TicketList.vue');
+const TicketDetail = () => import('./tickets/TicketDetail.vue');
+const Settings = () => import('./settings/Settings.vue');
+
+// Define routes with proper structure
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -14,16 +19,17 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Dashboard',
     component: Dashboard,
     meta: {
-      requiresAuth: true
+      requiresAuth: false,  // Set to false for testing
+      title: 'Dashboard'
     }
   },
-  // Customer routes
   {
     path: '/customers',
-    name: 'Customers',
+    name: 'CustomerList',
     component: CustomerList,
     meta: {
-      requiresAuth: true
+      requiresAuth: false,
+      title: 'Customers'
     }
   },
   {
@@ -32,24 +38,17 @@ const routes: Array<RouteRecordRaw> = [
     component: CustomerDetail,
     props: true,
     meta: {
-      requiresAuth: true
+      requiresAuth: false,
+      title: 'Customer Details'
     }
   },
-  {
-    path: '/customers/new',
-    name: 'NewCustomer',
-    component: () => import('./customers/CustomerForm.vue'),
-    meta: {
-      requiresAuth: true
-    }
-  },
-  // Ticket routes
   {
     path: '/tickets',
-    name: 'Tickets',
+    name: 'TicketList',
     component: TicketList,
     meta: {
-      requiresAuth: true
+      requiresAuth: false,
+      title: 'Repair Tickets'
     }
   },
   {
@@ -58,37 +57,23 @@ const routes: Array<RouteRecordRaw> = [
     component: TicketDetail,
     props: true,
     meta: {
-      requiresAuth: true
+      requiresAuth: false,
+      title: 'Ticket Details'
     }
   },
   {
-    path: '/tickets/new',
-    name: 'NewTicket',
-    component: () => import('./tickets/TicketForm.vue'),
-    props: route => ({ customerId: route.query.customerId }),
+    path: '/settings',
+    name: 'Settings',
+    component: Settings,
     meta: {
-      requiresAuth: true
+      requiresAuth: false,
+      title: 'Settings'
     }
   },
-  // Auth routes
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('./auth/Login.vue'),
-    meta: {
-      layout: 'none',
-      requiresAuth: false
-    }
-  },
-  // Not found
+  // Fallback route
   {
     path: '/:pathMatch(.*)*',
-    name: 'NotFound',
-    component: () => import('./common/NotFound.vue'),
-    meta: {
-      layout: 'none',
-      requiresAuth: false
-    }
+    redirect: '/dashboard'
   }
 ];
 
@@ -98,16 +83,22 @@ const router = createRouter({
   routes
 });
 
-// Navigation guard (basic implementation)
+// Navigation guard with title updates
 router.beforeEach((to, from, next) => {
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  const isAuthenticated = true; // This will be replaced with actual auth check
+  console.log('Route navigation:', from.path, '->', to.path);
   
-  if (requiresAuth && !isAuthenticated) {
-    next('/login');
-  } else {
-    next();
+  // Update page title
+  if (to.meta.title) {
+    document.title = `MontPC CRM - ${to.meta.title}`;
   }
+  
+  // Auth logic would go here in production
+  // For now just log and continue
+  if (to.meta.requiresAuth) {
+    console.log('This route requires auth, but we are bypassing for development');
+  }
+  
+  next();
 });
 
 export default router;

@@ -116,6 +116,35 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Dashboard stats endpoint
+app.get('/api/dashboard/stats', async (req, res) => {
+  try {
+    // Get real customer count
+    const customerCount = await Customer.countDocuments();
+    
+    // Mock other stats since we don't have real data yet
+    const stats = {
+      customers: customerCount,
+      tickets: 38,
+      revenue: 19850,
+      completedRepairs: 142,
+    };
+    
+    res.json({
+      status: 'success',
+      data: stats,
+      meta: {
+        timestamp: new Date().toISOString()
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: error.message
+    });
+  }
+});
+
 // Get all customers
 app.get('/api/customers', async (req, res) => {
   try {
@@ -136,7 +165,29 @@ app.get('/api/customers', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       status: 'error',
-      error: error.message
+      message: error.message
+    });
+  }
+});
+
+// Get customer by ID
+app.get('/api/customers/:id', async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    if (!customer) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'Customer not found'
+      });
+    }
+    res.json({
+      status: 'success',
+      data: customer
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: error.message
     });
   }
 });
@@ -155,7 +206,33 @@ app.post('/api/customers', async (req, res) => {
     console.error('Error creating customer:', error);
     res.status(400).json({
       status: 'error',
-      error: error.message
+      message: error.message
+    });
+  }
+});
+
+// Update customer
+app.put('/api/customers/:id', async (req, res) => {
+  try {
+    const customer = await Customer.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+    if (!customer) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'Customer not found'
+      });
+    }
+    res.json({
+      status: 'success',
+      data: customer
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: error.message
     });
   }
 });
@@ -167,7 +244,7 @@ app.delete('/api/customers/:id', async (req, res) => {
     if (!result) {
       return res.status(404).json({
         status: 'error',
-        error: 'Customer not found'
+        message: 'Customer not found'
       });
     }
     res.json({
@@ -177,7 +254,7 @@ app.delete('/api/customers/:id', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       status: 'error',
-      error: error.message
+      message: error.message
     });
   }
 });

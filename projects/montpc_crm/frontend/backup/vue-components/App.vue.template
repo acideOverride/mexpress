@@ -1,0 +1,28 @@
+<template>
+  <div class="app">
+    <router-view />
+  </div>
+</template>
+
+<script setup lang="ts">
+// App root component
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+
+// Get router instance
+const router = useRouter();
+
+onMounted(() => {
+  console.log('Vue app mounted successfully');
+  console.log('Current route:', router.currentRoute.value);
+});
+</script>
+
+<style>
+.app {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+</style>
