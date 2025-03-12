@@ -153,7 +153,20 @@
           <button class="view-all">View all</button>
         </div>
         <ul class="activity-list">
-          <li class="activity-item">
+          <!-- Display real customer activity from API -->
+          <li v-if="recentActivity.length === 0 && !isRefreshing" class="activity-item">
+            <div class="activity-content">
+              <div class="activity-title">No recent activity found</div>
+              <div class="activity-time">Click refresh to update</div>
+            </div>
+          </li>
+          <li v-if="isRefreshing" class="activity-item">
+            <div class="activity-content">
+              <div class="activity-title">Loading activity data...</div>
+            </div>
+          </li>
+          <!-- Dynamic activity items from API data -->
+          <li v-for="(activity, index) in recentActivity" :key="index" class="activity-item">
             <div class="activity-icon customer">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -161,32 +174,36 @@
               </svg>
             </div>
             <div class="activity-content">
-              <div class="activity-title">New customer added: <strong>John Doe</strong></div>
-              <div class="activity-time">10:30 AM</div>
+              <div class="activity-title">{{ activity.title }}</div>
+              <div class="activity-time">{{ activity.time }}</div>
             </div>
           </li>
-          <li class="activity-item">
-            <div class="activity-icon completed">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-            <div class="activity-content">
-              <div class="activity-title">Ticket <strong>#1234</strong> marked as completed</div>
-              <div class="activity-time">9:15 AM</div>
-            </div>
-          </li>
-          <li class="activity-item">
-            <div class="activity-icon repair">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-              </svg>
-            </div>
-            <div class="activity-content">
-              <div class="activity-title">New repair ticket created for <strong>Jane Smith</strong></div>
-              <div class="activity-time">Yesterday</div>
-            </div>
-          </li>
+          
+          <!-- Add some static sample entries when no real data -->
+          <template v-if="recentActivity.length === 0 && !isRefreshing">
+            <li class="activity-item">
+              <div class="activity-icon completed">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">Ticket <strong>#1234</strong> marked as completed</div>
+                <div class="activity-time">9:15 AM</div>
+              </div>
+            </li>
+            <li class="activity-item">
+              <div class="activity-icon repair">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                </svg>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">New repair ticket created for <strong>Jane Smith</strong></div>
+                <div class="activity-time">Yesterday</div>
+              </div>
+            </li>
+          </template>
         </ul>
       </div>
     </div>
@@ -208,7 +225,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Modal } from '../ui';
 import QuickCustomerForm from '../customers/QuickCustomerForm.vue';
 // Use simplified customer type and service
@@ -338,6 +355,12 @@ const handleCustomerCreated = (customer: Customer) => {
   // Refresh the dashboard data to show updated stats
   refreshData();
 };
+
+// Call refreshData when component is mounted to load initial data
+onMounted(() => {
+  console.log('Dashboard component mounted, loading data...');
+  refreshData();
+});
 </script>
 
 <style scoped>
