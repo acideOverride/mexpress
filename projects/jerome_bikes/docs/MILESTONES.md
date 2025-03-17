@@ -50,15 +50,15 @@
   - API documentation and tests
 
 ## MS-JRMB-006: Frontend-Backend Integration
-- **Status**: In Progress
+- **Status**: In Progress (2/6 deliverables complete)
 - **Description**: Implement frontend framework and integrate with backend.
 - **Key Deliverables**:
-  - Frontend framework setup 
-  - Authentication frontend implementation
-  - Bike browsing and reservation components
-  - User profile and history components
-  - Admin dashboard components
-  - Frontend-backend integration tests
+  - ✅ Frontend framework setup (Completed: 2025-03-18)
+  - ✅ Authentication frontend implementation (Completed: 2025-03-19)
+  - ⏳ Bike browsing and reservation components
+  - ⏳ User profile and history components
+  - ⏳ Admin dashboard components
+  - ⏳ Frontend-backend integration tests
 
 ## MS-JRMB-007: Maps and Location Features
 - **Status**: Planned
