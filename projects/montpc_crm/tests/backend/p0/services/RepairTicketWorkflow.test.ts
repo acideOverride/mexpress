@@ -6,6 +6,7 @@ import {
 } from '../../../../backend/src/models/RepairTicket';
 import { RepairTicketService } from '../../../../backend/src/services/RepairTicketService';
 import { RepairTicketRepository } from '../../../../backend/src/repositories/RepairTicketRepository';
+import { RepairTicketWorkflowService } from '../../../../backend/src/services/RepairTicketWorkflowService';
 
 // Mock the repository
 jest.mock('../../../../backend/src/repositories/RepairTicketRepository');
@@ -154,9 +155,11 @@ describe('Repair Ticket Workflow', () => {
 
   describe('Ticket Status Workflow Operations', () => {
     let service: RepairTicketService;
+    let workflowService: RepairTicketWorkflowService;
 
     beforeEach(() => {
-      service = new RepairTicketService(mockRepository);
+      workflowService = new RepairTicketWorkflowService(mockRepository);
+      service = new RepairTicketService(mockRepository, workflowService);
     });
 
     test('should handle non-existent tickets gracefully', async () => {
@@ -196,10 +199,19 @@ describe('Repair Ticket Workflow', () => {
       const ticketId = mockRepairTicket._id.toString();
       const technicianId = new mongoose.Types.ObjectId();
       
+      // First change to IN_PROGRESS (an allowed transition from PENDING)
+      mockRepository.findById = jest.fn().mockResolvedValue({
+        ...mockRepairTicket,
+        status: TicketStatus.IN_PROGRESS
+      });
+      
       await service.updateRepairTicketStatus(
         ticketId,
         TicketStatus.COMPLETED,
-        { technicianId }
+        { 
+          technicianId,
+          validateTransition: true 
+        }
       );
       
       expect(mockRepository.update).toHaveBeenCalledWith(

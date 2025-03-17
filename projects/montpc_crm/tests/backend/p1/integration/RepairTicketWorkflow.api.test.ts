@@ -117,11 +117,10 @@ describe('Repair Ticket Workflow API Integration Tests', () => {
           technicianId: technicianId.toString()
         });
       
-      // Should still succeed but with different logic in future
-      expect(response.status).toBe(200);
-      
-      // For now, verify that it doesn't validate transitions in the API yet
-      // This will be updated in our implementation
+      // Now we expect a 400 error (invalid transition)
+      expect(response.status).toBe(400);
+      expect(response.body.message).toBe('Invalid status transition');
+      expect(response.body.error).toContain(`from ${TicketStatus.PENDING} to ${TicketStatus.COMPLETED}`);
     });
     
     test('should reject invalid status value', async () => {
