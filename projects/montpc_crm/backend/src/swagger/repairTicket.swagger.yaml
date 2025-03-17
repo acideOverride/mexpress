@@ -182,7 +182,7 @@ paths:
   /api/repair-tickets/{id}/status:
     put:
       summary: Update a repair ticket status
-      description: Updates the status of a repair ticket
+      description: Updates the status of a repair ticket with workflow validation
       parameters:
         - in: path
           name: id
@@ -209,6 +209,9 @@ paths:
                 technicianId:
                   type: string
                   description: ID of the technician making the status change
+                validateTransition:
+                  type: boolean
+                  description: Whether to validate the status transition (default true)
       responses:
         '200':
           description: The updated repair ticket
@@ -217,11 +220,53 @@ paths:
               schema:
                 $ref: '#/components/schemas/RepairTicket'
         '400':
-          description: Invalid status value
+          description: Invalid status or transition not allowed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        '404':
+          description: Repair ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /api/repair-tickets/{id}/transitions:
+    get:
+      summary: Get allowed status transitions
+      description: Returns the current status and possible transitions for a repair ticket
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The repair ticket ID
+      responses:
+        '200':
+          description: The current status and allowed transitions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  currentStatus:
+                    type: string
+                    enum: [PENDING, IN_PROGRESS, WAITING_FOR_PARTS, READY_FOR_PICKUP, COMPLETED, CANCELLED]
+                    description: The current status of the ticket
+                  allowedTransitions:
+                    type: array
+                    description: List of allowed status transitions
+                    items:
+                      type: string
+                      enum: [PENDING, IN_PROGRESS, WAITING_FOR_PARTS, READY_FOR_PICKUP, COMPLETED, CANCELLED]
         '404':
           description: Repair ticket not found
           content:

@@ -184,7 +184,7 @@ export class RepairTicketController {
   public async updateRepairTicketStatus(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const { status, notes } = req.body;
+      const { status, notes, validateTransition = true } = req.body;
       
       // Validate ID format
       if (!isValidObjectId(id)) {
@@ -201,21 +201,67 @@ export class RepairTicketController {
       // Get technician ID from authenticated user or request body
       const technicianId = req.body.technicianId || (req as any).user?.id;
       
-      const updatedTicket = await this.service.updateRepairTicketStatus(id, status, {
-        technicianId,
-        notes
-      });
-      
-      if (!updatedTicket) {
-        res.status(404).json({ message: 'Repair ticket not found' });
-        return;
+      try {
+        const updatedTicket = await this.service.updateRepairTicketStatus(id, status, {
+          technicianId,
+          notes,
+          validateTransition
+        });
+        
+        if (!updatedTicket) {
+          res.status(404).json({ message: 'Repair ticket not found' });
+          return;
+        }
+        
+        res.status(200).json(updatedTicket);
+      } catch (error) {
+        // If error is related to invalid transition, return 400
+        if (error instanceof Error && error.message.includes('Invalid status transition')) {
+          res.status(400).json({
+            message: 'Invalid status transition',
+            error: error.message
+          });
+          return;
+        }
+        
+        // Re-throw for general error handling
+        throw error;
       }
-      
-      res.status(200).json(updatedTicket);
     } catch (error) {
       console.error('Error updating repair ticket status:', error);
       res.status(400).json({
         message: 'Error updating repair ticket status',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  }
+
+  /**
+   * Get allowed status transitions for a ticket
+   * @route GET /api/repair-tickets/:id/transitions
+   */
+  public async getStatusTransitions(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      
+      // Validate ID format
+      if (!isValidObjectId(id)) {
+        res.status(400).json({ message: 'Invalid repair ticket ID format' });
+        return;
+      }
+      
+      const transitions = await this.service.getTicketStatusTransitions(id);
+      
+      if (!transitions) {
+        res.status(404).json({ message: 'Repair ticket not found' });
+        return;
+      }
+      
+      res.status(200).json(transitions);
+    } catch (error) {
+      console.error('Error fetching status transitions:', error);
+      res.status(500).json({
+        message: 'Error fetching status transitions',
         error: error instanceof Error ? error.message : 'Unknown error'
       });
     }

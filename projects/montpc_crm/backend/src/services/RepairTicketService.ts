@@ -2,9 +2,11 @@ import mongoose from 'mongoose';
 import { 
   TicketStatus, 
   TicketPriority,
-  createStatusHistoryEntry 
+  createStatusHistoryEntry,
+  isValidStatusTransition
 } from '../models/RepairTicket';
 import { RepairTicketRepository } from '../repositories/RepairTicketRepository';
+import { RepairTicketWorkflowService } from './RepairTicketWorkflowService';
 import { 
   IRepairTicket, 
   IRepairTicketCreate, 
@@ -14,9 +16,14 @@ import {
 
 export class RepairTicketService {
   private repository: RepairTicketRepository;
+  private workflowService: RepairTicketWorkflowService;
 
-  constructor(repository: RepairTicketRepository) {
+  constructor(
+    repository: RepairTicketRepository,
+    workflowService?: RepairTicketWorkflowService
+  ) {
     this.repository = repository;
+    this.workflowService = workflowService || new RepairTicketWorkflowService(repository);
   }
 
   /**
@@ -89,7 +96,7 @@ export class RepairTicketService {
 
     // Handle status updates differently if changing status
     if (data.status && data.status !== ticket.status) {
-      // Update status using the dedicated method
+      // Update status using the workflow service
       return this.updateRepairTicketStatus(id, data.status as TicketStatus, {
         technicianId: data.technicianId,
         notes: data.notes || 'Status updated'
@@ -101,7 +108,7 @@ export class RepairTicketService {
   }
 
   /**
-   * Update a repair ticket status with history tracking
+   * Update a repair ticket status with workflow handling
    * @param id The repair ticket ID
    * @param status The new status
    * @param options Options for the status update
@@ -113,44 +120,11 @@ export class RepairTicketService {
     options: {
       technicianId?: mongoose.Types.ObjectId;
       notes?: string;
+      validateTransition?: boolean;
     } = {}
   ): Promise<IRepairTicket | null> {
-    // Check if ticket exists
-    const ticket = await this.repository.findById(id);
-    if (!ticket) {
-      return null;
-    }
-
-    // Validate the status value
-    if (!Object.values(TicketStatus).includes(status)) {
-      throw new Error('Invalid status value');
-    }
-
-    // Check if status transition is allowed (could implement more complex rules here)
-    if (ticket.status === status) {
-      // No change needed
-      return ticket;
-    }
-
-    // Create status history entry if technicianId is provided
-    let statusHistory = [...(ticket.statusHistory || [])];
-    
-    if (options.technicianId) {
-      const historyEntry = createStatusHistoryEntry(
-        status,
-        options.technicianId,
-        options.notes
-      );
-      statusHistory.push(historyEntry);
-    }
-
-    // Update ticket
-    return this.repository.update(id, {
-      status,
-      statusHistory,
-      // Set completed date if status is COMPLETED
-      ...(status === TicketStatus.COMPLETED ? { completedDate: new Date() } : {})
-    });
+    // Use the workflow service for status transitions
+    return this.workflowService.updateTicketStatus(id, status, options);
   }
 
   /**
@@ -166,5 +140,29 @@ export class RepairTicketService {
     }
 
     return this.repository.delete(id);
+  }
+
+  /**
+   * Get available status transitions for a ticket
+   * @param id The repair ticket ID
+   * @returns Promise with allowed transitions or null if ticket not found
+   */
+  async getTicketStatusTransitions(id: string): Promise<{
+    currentStatus: TicketStatus;
+    allowedTransitions: TicketStatus[];
+  } | null> {
+    const ticket = await this.repository.findById(id);
+    if (!ticket) {
+      return null;
+    }
+
+    // Get all transition rules
+    const rules = this.workflowService.getStatusTransitionRules();
+    
+    // Return current status and allowed transitions
+    return {
+      currentStatus: ticket.status,
+      allowedTransitions: rules[ticket.status].to
+    };
   }
 }
