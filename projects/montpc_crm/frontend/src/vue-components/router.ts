@@ -6,6 +6,10 @@ const CustomerList = () => import('./customers/CustomerList.vue');
 const CustomerDetail = () => import('./customers/CustomerDetail.vue');
 const TicketList = () => import('./tickets/TicketList.vue');
 const TicketDetail = () => import('./tickets/TicketDetail.vue');
+const RepairDashboard = () => import('./tickets/RepairDashboard.vue');
+const RepairDetail = () => import('./tickets/RepairDetail.vue');
+const ProductDashboard = () => import('./products/ProductDashboard.vue');
+const ProductDetail = () => import('./products/ProductDetail.vue');
 const Settings = () => import('./settings/Settings.vue');
 
 // Define routes with proper structure
@@ -59,6 +63,44 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       requiresAuth: false,
       title: 'Ticket Details'
+    }
+  },
+  {
+    path: '/repairs',
+    name: 'RepairDashboard',
+    component: RepairDashboard,
+    meta: {
+      requiresAuth: false,
+      title: 'Repair Dashboard'
+    }
+  },
+  {
+    path: '/repairs/:id',
+    name: 'RepairDetail',
+    component: RepairDetail,
+    props: true,
+    meta: {
+      requiresAuth: false,
+      title: 'Repair Details'
+    }
+  },
+  {
+    path: '/products',
+    name: 'ProductDashboard',
+    component: ProductDashboard,
+    meta: {
+      requiresAuth: false,
+      title: 'Product Inventory'
+    }
+  },
+  {
+    path: '/products/:id',
+    name: 'ProductDetail',
+    component: ProductDetail,
+    props: true,
+    meta: {
+      requiresAuth: false,
+      title: 'Product Details'
     }
   },
   {
