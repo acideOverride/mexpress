@@ -1,0 +1,47 @@
+{
+  "name": "@mexpress/email-service",
+  "version": "1.0.0",
+  "description": "Shared email service for mExpress ecosystem using Resend.com",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:p0": "PRIORITY=p0 jest",
+    "test:p1": "PRIORITY=p1 jest",
+    "test:integration": "TEST_TYPE=integration jest",
+    "lint": "eslint src/**/*.ts",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "email",
+    "service",
+    "resend",
+    "transactional",
+    "mexpress"
+  ],
+  "author": "mExpress Team",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "resend": "^1.0.0",
+    "handlebars": "^4.7.8",
+    "fs-extra": "^11.1.1",
+    "dotenv": "^16.3.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/jest": "^29.5.5",
+    "@types/node": "^18.17.18",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.2.2",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.0.3"
+  },
+  "peerDependencies": {
+    "@mexpress/core": "^1.0.0"
+  }
+}

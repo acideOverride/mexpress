@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Submission - MontPC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4a5568;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo {
+            max-width: 150px;
+            margin-bottom: 10px;
+        }
+        .content {
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .footer {
+            background-color: #f7fafc;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #718096;
+        }
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #4a5568;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 24px;
+        }
+        h2 {
+            color: #4a5568;
+            margin-top: 0;
+            font-size: 20px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        .contact-detail {
+            margin-bottom: 5px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>New Contact Form Submission</h1>
+        </div>
+        <div class="content">
+            <h2>Customer Inquiry from MontPC Website</h2>
+            
+            <p>A new customer has submitted a contact form on the MontPC website.</p>
+            
+            <div class="info-box">
+                <p class="contact-detail"><span class="highlight">Name:</span> {{name}}</p>
+                <p class="contact-detail"><span class="highlight">Email:</span> {{email}}</p>
+                {{#if phone}}
+                <p class="contact-detail"><span class="highlight">Phone:</span> {{phone}}</p>
+                {{/if}}
+                {{#if device}}
+                <p class="contact-detail"><span class="highlight">Device Type:</span> {{device}}</p>
+                {{/if}}
+            </div>
+            
+            <h3>Message:</h3>
+            <p>{{message}}</p>
+            
+            <p>Please respond to this inquiry within our standard response time.</p>
+        </div>
+        <div class="footer">
+            <p>This is an automated message from the MontPC website contact form.</p>
+            <p>&copy; {{year}} MontPC. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
