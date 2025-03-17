@@ -45,7 +45,7 @@ This quick-reference guide helps you discover and use shared components across m
 ✅ `StatusCard`, `CommunicationStatusPanel`, `PriorityCommunications`, `RepairTimeline`, `ProductDashboard` - Packages: ui-components, vue-components
 
 ### Need user management?
-✅ `AuthService`, `PermissionManager`, `UserProfile`, `LoginForm`, `RegisterForm` - Packages: core, vue-components
+✅ `AuthService`, `PermissionManager`, `TokenManager`, `AuthGuard`, `LoginForm`, `RegisterForm`, `ForgotPassword`, `ProfileManagement`, `EmailVerification` - Packages: core, vue-components
 
 ### Need to send emails?
 🟡 `EmailService`, `ResendEmailProvider`, `TemplateManager` - Packages: email-service
@@ -92,9 +92,13 @@ If you need a component, follow this decision process:
 
 | Component | Status | Added Date | Packages |
 |-----------|--------|------------|----------|
-| MainLayout | 🟡 | 2025-03-18 | jerome/frontend |
-| LoginForm | 🟡 | 2025-03-18 | jerome/frontend |
-| RegisterForm | 🟡 | 2025-03-18 | jerome/frontend |
+| AuthGuard | ✅ | 2025-03-19 | jerome/frontend |
+| ForgotPassword | ✅ | 2025-03-19 | jerome/frontend |
+| ProfileManagement | ✅ | 2025-03-19 | jerome/frontend |
+| EmailVerification | ✅ | 2025-03-19 | jerome/frontend |
+| MainLayout | ✅ | 2025-03-18 | jerome/frontend |
+| LoginForm | ✅ | 2025-03-18 | jerome/frontend |
+| RegisterForm | ✅ | 2025-03-18 | jerome/frontend |
 | ApiService | 🟡 | 2025-03-18 | jerome/frontend |
 | BikeService | 🟡 | 2025-03-18 | jerome/frontend |
 | ReservationService | 🟡 | 2025-03-18 | jerome/frontend |

@@ -37,19 +37,19 @@ These rules ensure component discoverability and reuse across projects.
 
 | Category | Total | Stable | Beta | Alpha | Deprecated |
 |----------|-------|--------|------|-------|------------|
-| Core     | 12    | 10     | 2    | 0     | 0          |
-| UI       | 49    | 31     | 16   | 2     | 0          |
+| Core     | 12    | 11     | 1    | 0     | 0          |
+| UI       | 54    | 36     | 16   | 2     | 0          |
 | Utility  | 15    | 12     | 2    | 0     | 1          |
 | Service  | 14    | 8      | 5    | 1     | 0          |
-| **Total**    | **90**   | **61**    | **25**   | **3**     | **1**         |
+| **Total**    | **95**   | **67**    | **24**   | **3**     | **1**         |
 
 ## Project Usage
 
 | Project       | Components Used | Coverage % |
 |---------------|----------------|------------|
-| MontPC CRM    | 68/90          | 76%        |
-| Jerome Bikes  | 56/90          | 62%        |
-| Giandra Photos| 41/90          | 46%        |
+| MontPC CRM    | 72/95          | 76%        |
+| Jerome Bikes  | 61/95          | 64%        |
+| Giandra Photos| 41/95          | 43%        |
 
 ## Core Components
 
@@ -70,10 +70,10 @@ These rules ensure component discoverability and reuse across projects.
 
 | Component        | Status | Projects Using       | Location                          | Description                         |
 |------------------|--------|----------------------|-----------------------------------|-------------------------------------|
-| AuthService      | ✅     | All                  | packages/core/auth/AuthService    | Authentication service with JWT      |
+| AuthService      | ✅     | All                  | packages/core/auth/AuthService    | Authentication service with JWT, refresh tokens, role management, and email verification |
 | PermissionManager| ✅     | All                  | packages/core/auth/Permissions    | Role-based access control system    |
 | TokenManager     | ✅     | All                  | packages/core/auth/TokenManager   | JWT token handling and refresh       |
-| SecureStorage    | 🟡     | MontPC, Jerome       | packages/core/security/Storage    | Encrypted local storage utility      |
+| SecureStorage    | ✅     | MontPC, Jerome       | packages/core/security/Storage    | Encrypted local storage utility      |
 
 ## UI Components
 
@@ -134,6 +134,7 @@ These rules ensure component discoverability and reuse across projects.
 
 | Component        | Status | Projects Using       | Location                                         | Description                                 |
 |------------------|--------|----------------------|--------------------------------------------------|---------------------------------------------|
+| AuthGuard        | ✅     | MontPC, Jerome       | projects/jerome_bikes/src/frontend/router/auth-guard.ts | Route protection with role-based access control |
 | StatusCard       | 🟡     | MontPC               | projects/montpc_crm/frontend/src/vue-components/ui/StatusCard.vue | Status display card with icon, count, and label |
 | CommunicationStatusPanel | 🟡 | MontPC           | projects/montpc_crm/frontend/src/vue-components/ui/CommunicationStatusPanel.vue | Grid container for status cards with title |
 | PriorityCommunications | 🟡 | MontPC             | projects/montpc_crm/frontend/src/vue-components/ui/PriorityCommunications.vue | Prioritized notification list with actions |
@@ -162,8 +163,11 @@ These rules ensure component discoverability and reuse across projects.
 | ThemeToggle      | ✅     | MontPC               | projects/montpc_crm/frontend/src/vue-components/ui/ThemeToggle.vue | Theme switching button for light/dark modes |
 | UserAvatar       | ✅     | MontPC               | projects/montpc_crm/frontend/src/vue-components/ui/UserAvatar.vue | User avatar with image or initials and status |
 | NotificationItem | ✅     | MontPC               | projects/montpc_crm/frontend/src/vue-components/ui/NotificationItem.vue | Notification with priority, title, and actions |
-| LoginForm        | 🟡     | Jerome, MontPC       | projects/jerome_bikes/src/frontend/views/Login.vue | Authentication form with validation and error handling |
-| RegisterForm     | 🟡     | Jerome, MontPC       | projects/jerome_bikes/src/frontend/views/Register.vue | Registration form with validation and Terms of Service acceptance |
+| LoginForm        | ✅     | Jerome, MontPC       | projects/jerome_bikes/src/frontend/views/Login.vue | Authentication form with validation and error handling |
+| RegisterForm     | ✅     | Jerome, MontPC       | projects/jerome_bikes/src/frontend/views/Register.vue | Registration form with validation and Terms of Service acceptance |
+| ForgotPassword   | ✅     | Jerome, MontPC       | projects/jerome_bikes/src/frontend/views/ForgotPassword.vue | Password reset workflow with email verification |
+| EmailVerification| ✅     | Jerome               | projects/jerome_bikes/src/frontend/views/VerifyEmail.vue | Email verification component with resend capability |
+| ProfileManagement| ✅     | Jerome, MontPC       | projects/jerome_bikes/src/frontend/views/Profile.vue | User profile management with password change |
 
 ## Utility Components
 
