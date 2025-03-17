@@ -202,7 +202,7 @@ It is updated regularly to reflect current project status.
 ### MS-MONT-013: MontPC CRM MVP Frontend
 - **Status**: 🚧 In Progress
 - **Quarter**: Q2 2025
-- **Progress**: 15%
+- **Progress**: 25%
 - **Related BRQs**:
   - MEXP-2025-040-FE
   - MONT-2025-050-FE
