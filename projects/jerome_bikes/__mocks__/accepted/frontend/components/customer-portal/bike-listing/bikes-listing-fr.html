@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jerome Bikes - Catalogue de Vélos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="../future-portal.css">
+  <link rel="stylesheet" href="bikes-listing.css">
+</head>
+<body data-theme="light">
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo">
+        <div class="logo-icon">J</div>
+        <span class="logo-text">Jerome Bikes</span>
+      </div>
+      <div class="header-right">
+        <nav class="top-nav">
+          <ul class="nav-links">
+            <li><a href="../future-portal-fr.html">Accueil</a></li>
+            <li><a href="bikes-listing-fr.html" class="active">Vélos</a></li>
+            <li><a href="#">Emplacements</a></li>
+            <li><a href="#">Circuits</a></li>
+            <li><a href="#">Tarifs</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-toggle" id="themeToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <button class="language-toggle" id="languageToggle">FR</button>
+          <a href="#" class="user-profile">
+            <div class="avatar">JD</div>
+            <span class="username">Jean Dupont</span>
+          </a>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="bikes-listing-header" style="background: url('../../../img/hero_list.png') no-repeat center center; background-size: cover; position: relative; padding: 5rem 0;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(46, 125, 50, 0.8);"></div>
+      <div class="header-content" style="position: relative; z-index: 1;">
+        <h1>Notre Collection de Vélos</h1>
+        <p>Découvrez notre gamme complète de vélos haut de gamme disponibles à la location</p>
+      </div>
+    </section>
+
+    <section class="filter-section">
+      <div class="filter-container">
+        <div class="filter-options">
+          <div class="filter-group">
+            <label>Type de vélo</label>
+            <div class="filter-buttons">
+              <button class="filter-button active" data-filter="all"><i class="fas fa-bicycle"></i> Tous</button>
+              <button class="filter-button" data-filter="road"><i class="fas fa-road"></i> Route</button>
+              <button class="filter-button" data-filter="mountain"><i class="fas fa-mountain"></i> VTT</button>
+              <button class="filter-button" data-filter="electric"><i class="fas fa-bolt"></i> Électrique</button>
+              <button class="filter-button" data-filter="city"><i class="fas fa-city"></i> Ville</button>
+              <button class="filter-button" data-filter="gravel"><i class="fas fa-hiking"></i> Gravel</button>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <label>Gamme</label>
+            <div class="filter-buttons">
+              <button class="filter-button active" data-category="all"><i class="fas fa-th-list"></i> Toutes</button>
+              <button class="filter-button" data-category="premium"><i class="fas fa-crown"></i> Premium</button>
+              <button class="filter-button" data-category="standard"><i class="fas fa-certificate"></i> Standard</button>
+              <button class="filter-button" data-category="basic"><i class="fas fa-check"></i> Basique</button>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <label>Disponibilité</label>
+            <div class="filter-buttons">
+              <button class="filter-button active" data-availability="all"><i class="fas fa-calendar-alt"></i> Toutes</button>
+              <button class="filter-button" data-availability="available"><i class="fas fa-check-circle"></i> Disponible maintenant</button>
+              <button class="filter-button" data-availability="soon"><i class="fas fa-clock"></i> Bientôt disponible</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="search-section">
+          <div class="search-input-container">
+            <input type="text" id="bikeSearch" placeholder="Rechercher par modèle, marque ou caractéristiques...">
+            <button class="search-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+          </div>
+          
+          <div class="view-options">
+            <button class="view-option active" data-view="grid">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </button>
+            <button class="view-option" data-view="list">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="results-section">
+      <div class="results-summary">
+        <p id="resultsCount">Affichage de <span>16</span> vélos</p>
+        <div class="sort-by">
+          <label>Trier par:</label>
+          <select id="sortSelect">
+            <option value="recommended">Recommandés</option>
+            <option value="price-low">Prix - croissant</option>
+            <option value="price-high">Prix - décroissant</option>
+            <option value="name">Nom</option>
+            <option value="newest">Plus récents</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="bike-grid view-grid" id="bikeListingContainer">
+        <!-- Bike cards will be added here by JavaScript -->
+      </div>
+      
+      <div class="pagination">
+        <button class="pagination-arrow previous">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <div class="pagination-numbers">
+          <button class="pagination-number active">1</button>
+          <button class="pagination-number">2</button>
+          <button class="pagination-number">3</button>
+        </div>
+        <button class="pagination-arrow next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <div class="logo-icon">J</div>
+        <span class="logo-text">Jerome Bikes</span>
+      </div>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Explorer</h3>
+          <ul>
+            <li><a href="#">Vélos</a></li>
+            <li><a href="#">Emplacements</a></li>
+            <li><a href="#">Circuits</a></li>
+            <li><a href="#">Tarifs</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Service Client</h3>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Nous Contacter</a></li>
+            <li><a href="#">Conditions Générales</a></li>
+            <li><a href="#">Politique de Confidentialité</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Connectez-vous avec Nous</h3>
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="#" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="contact-info">
+            <p>Email: info@jeromebikes.com</p>
+            <p>Téléphone: +33 (0)1 23 45 67 89</p>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 Jerome Bikes. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal for bike details -->
+  <div class="bike-detail-modal" id="bikeDetailModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <button class="modal-close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      
+      <div class="modal-content">
+        <div class="bike-detail-gallery">
+          <div class="main-image">
+            <img id="modalBikeImage" src="" alt="Bike">
+          </div>
+          <div class="thumbnail-gallery">
+            <div class="thumbnail active" data-image="../../../img/card1.webp">
+              <img src="../../../img/card1.webp" alt="Thumbnail 1">
+            </div>
+            <div class="thumbnail" data-image="../../../img/card2.webp">
+              <img src="../../../img/card2.webp" alt="Thumbnail 2">
+            </div>
+            <div class="thumbnail" data-image="../../../img/card3.webp">
+              <img src="../../../img/card3.webp" alt="Thumbnail 3">
+            </div>
+            <div class="thumbnail" data-image="../../../img/card4.webp">
+              <img src="../../../img/card4.webp" alt="Thumbnail 4">
+            </div>
+          </div>
+        </div>
+        
+        <div class="bike-detail-info">
+          <div class="bike-detail-header">
+            <div class="bike-header-left">
+              <div class="bike-badge" id="modalBikeCategory">Premium</div>
+              <h2 id="modalBikeModel">Trek Domane SL 7</h2>
+              <p id="modalBikeType">Vélo de Route</p>
+            </div>
+            <div class="bike-header-right">
+              <div class="availability-badge available" id="modalBikeAvailability">Disponible</div>
+            </div>
+          </div>
+          
+          <div class="bike-details-grid">
+            <div class="detail-card">
+              <div class="detail-icon">⚙️</div>
+              <div class="detail-info">
+                <h4>Groupset</h4>
+                <p id="modalBikeGroupset">Shimano Ultegra Di2</p>
+              </div>
+            </div>
+            
+            <div class="detail-card">
+              <div class="detail-icon">🏗️</div>
+              <div class="detail-info">
+                <h4>Cadre</h4>
+                <p id="modalBikeFrame">Carbone</p>
+              </div>
+            </div>
+            
+            <div class="detail-card">
+              <div class="detail-icon">⚖️</div>
+              <div class="detail-info">
+                <h4>Poids</h4>
+                <p id="modalBikeWeight">8,2 kg</p>
+              </div>
+            </div>
+            
+            <div class="detail-card">
+              <div class="detail-icon">🛣️</div>
+              <div class="detail-info">
+                <h4>Usage idéal</h4>
+                <p id="modalBikeUsage">Routes pavées et sentiers lisses</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bike-description">
+            <h3>Description</h3>
+            <p id="modalBikeDescription">Le Trek Domane SL 7 est un vélo de route haut de gamme avec un cadre en carbone OCLV de série 500 qui offre à la fois légèreté et durabilité. Équipé du système IsoSpeed avant et arrière, il absorbe les vibrations de la route pour un confort optimal sur les longues distances. La transmission électronique Shimano Ultegra Di2 offre des changements de vitesse précis et sans effort.</p>
+          </div>
+          
+          <div class="features-list">
+            <h3>Caractéristiques principales</h3>
+            <ul id="modalBikeFeatures">
+              <li>Cadre en carbone OCLV série 500</li>
+              <li>Transmission électronique Shimano Ultegra Di2 11 vitesses</li>
+              <li>Freins à disque hydrauliques</li>
+              <li>Technologie IsoSpeed avant et arrière</li>
+              <li>Compatible avec des pneus jusqu'à 38c</li>
+            </ul>
+          </div>
+          
+          <div class="rental-section">
+            <div class="rental-pricing">
+              <div class="price-card">
+                <div class="price-header">
+                  <h4>Location à la journée</h4>
+                </div>
+                <div class="price-amount">
+                  <span class="price" id="modalBikePrice">95€</span>
+                  <span class="period">/jour</span>
+                </div>
+                <ul class="price-features">
+                  <li>Casque inclus</li>
+                  <li>Assistance pendant les heures d'ouverture</li>
+                </ul>
+              </div>
+              
+              <div class="price-card highlighted">
+                <div class="price-header">
+                  <h4>Location hebdomadaire</h4>
+                  <div class="price-badge">Économisez 20%</div>
+                </div>
+                <div class="price-amount">
+                  <span class="price" id="modalBikeWeekPrice">532€</span>
+                  <span class="period">/semaine</span>
+                </div>
+                <ul class="price-features">
+                  <li>Casque et accessoires inclus</li>
+                  <li>Service de maintenance gratuit</li>
+                  <li>Assistance 24/7</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="rental-actions">
+              <div class="date-picker">
+                <label>Dates de location</label>
+                <div class="date-inputs">
+                  <div class="date-input-group">
+                    <span class="date-label">Début</span>
+                    <input type="date" id="modalStartDate">
+                  </div>
+                  <div class="date-input-group">
+                    <span class="date-label">Fin</span>
+                    <input type="date" id="modalEndDate">
+                  </div>
+                </div>
+              </div>
+              
+              <button class="primary-button rent-button" id="rentButton">Réserver ce vélo</button>
+              <button class="secondary-button contact-button">Poser une question</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bike card template -->
+  <template id="bikeCardTemplate">
+    <div class="bike-card">
+      <div class="bike-image">
+        <img src="" alt="">
+        <div class="availability-indicator available">Disponible</div>
+      </div>
+      <div class="bike-content">
+        <div class="bike-header">
+          <div class="bike-category">Premium</div>
+          <div class="bike-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(24)</span>
+          </div>
+        </div>
+        <h3 class="bike-title"></h3>
+        <p class="bike-type"></p>
+        <div class="bike-specs">
+          <div class="spec">
+            <span class="spec-icon">⚙️</span>
+            <span class="spec-value groupset"></span>
+          </div>
+          <div class="spec">
+            <span class="spec-icon">⚖️</span>
+            <span class="spec-value weight"></span>
+          </div>
+        </div>
+        <div class="bike-footer">
+          <div class="bike-price">
+            <span class="amount"></span>
+            <span class="period">/jour</span>
+          </div>
+          <div class="bike-actions">
+            <button class="view-details-button">Détails</button>
+            <button class="quick-rent-button">Réserver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="bikes-listing.js"></script>
+  <script src="../../../scripts/additional-fixes.js"></script>
+  <script src="../../../scripts/modal-fix.js"></script>
+</body>
+</html>

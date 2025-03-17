@@ -1,0 +1,700 @@
+/**
+ * Sample data for Jerome Bikes
+ * This file contains sample data for testing and development
+ */
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import { 
+  UserRole, 
+  BikeType, 
+  BikeSize, 
+  BikeStatus, 
+  ReservationStatus, 
+  MaintenanceType, 
+  MaintenanceStatus
+} from '../../shared/types/models';
+
+// Helper function to create ObjectIds
+const createId = (id: string) => new mongoose.Types.ObjectId(id);
+
+// Create deterministic IDs for reference integrity
+const IDS = {
+  USERS: {
+    ADMIN: createId('000000000000000000000001'),
+    STAFF1: createId('000000000000000000000002'),
+    STAFF2: createId('000000000000000000000003'),
+    TECHNICIAN1: createId('000000000000000000000004'),
+    TECHNICIAN2: createId('000000000000000000000005'),
+    CUSTOMER1: createId('000000000000000000000006'),
+    CUSTOMER2: createId('000000000000000000000007'),
+    CUSTOMER3: createId('000000000000000000000008'),
+    CUSTOMER4: createId('000000000000000000000009'),
+    CUSTOMER5: createId('000000000000000000000010'),
+  },
+  CUSTOMERS: {
+    CUSTOMER1: createId('000000000000000000000011'),
+    CUSTOMER2: createId('000000000000000000000012'),
+    CUSTOMER3: createId('000000000000000000000013'),
+    CUSTOMER4: createId('000000000000000000000014'),
+    CUSTOMER5: createId('000000000000000000000015'),
+  },
+  STATIONS: {
+    DOWNTOWN: createId('000000000000000000000016'),
+    UPTOWN: createId('000000000000000000000017'),
+    PARK: createId('000000000000000000000018'),
+    UNIVERSITY: createId('000000000000000000000019'),
+    BEACH: createId('000000000000000000000020'),
+  },
+  BIKES: {
+    MOUNTAIN1: createId('000000000000000000000021'),
+    MOUNTAIN2: createId('000000000000000000000022'),
+    ROAD1: createId('000000000000000000000023'),
+    ROAD2: createId('000000000000000000000024'),
+    HYBRID1: createId('000000000000000000000025'),
+    HYBRID2: createId('000000000000000000000026'),
+    ELECTRIC1: createId('000000000000000000000027'),
+    ELECTRIC2: createId('000000000000000000000028'),
+    CITY1: createId('000000000000000000000029'),
+    CITY2: createId('000000000000000000000030'),
+  },
+  RESERVATIONS: {
+    RES1: createId('000000000000000000000031'),
+    RES2: createId('000000000000000000000032'),
+    RES3: createId('000000000000000000000033'),
+  },
+  MAINTENANCE: {
+    MAINT1: createId('000000000000000000000034'),
+    MAINT2: createId('000000000000000000000035'),
+    MAINT3: createId('000000000000000000000036'),
+  },
+  ROUTES: {
+    ROUTE1: createId('000000000000000000000037'),
+    ROUTE2: createId('000000000000000000000038'),
+    ROUTE3: createId('000000000000000000000039'),
+  },
+  RATINGS: {
+    RATING1: createId('000000000000000000000040'),
+    RATING2: createId('000000000000000000000041'),
+    RATING3: createId('000000000000000000000042'),
+  },
+};
+
+// Sample hashed password (hashed version of "Password123!")
+const HASHED_PASSWORD = '$2b$10$DagXK07vA0NlGlVKqJN1HOJRc1RgQ0xqiLdNBhFTtOQNpRNTDPcJS';
+
+// Users
+export const users = [
+  {
+    _id: IDS.USERS.ADMIN,
+    email: 'admin@jeromebikes.com',
+    password: HASHED_PASSWORD,
+    firstName: 'Admin',
+    lastName: 'User',
+    role: UserRole.ADMIN,
+    isActive: true,
+    lastLogin: new Date('2025-01-01T10:00:00Z'),
+    createdAt: new Date('2024-01-01T00:00:00Z'),
+    updatedAt: new Date('2024-01-01T00:00:00Z'),
+  },
+  {
+    _id: IDS.USERS.STAFF1,
+    email: 'staff1@jeromebikes.com',
+    password: HASHED_PASSWORD,
+    firstName: 'Staff',
+    lastName: 'One',
+    role: UserRole.STAFF,
+    isActive: true,
+    lastLogin: new Date('2025-01-01T09:00:00Z'),
+    createdAt: new Date('2024-01-02T00:00:00Z'),
+    updatedAt: new Date('2024-01-02T00:00:00Z'),
+  },
+  {
+    _id: IDS.USERS.TECHNICIAN1,
+    email: 'tech1@jeromebikes.com',
+    password: HASHED_PASSWORD,
+    firstName: 'Tech',
+    lastName: 'One',
+    role: UserRole.MAINTENANCE,
+    isActive: true,
+    lastLogin: new Date('2025-01-01T08:00:00Z'),
+    createdAt: new Date('2024-01-03T00:00:00Z'),
+    updatedAt: new Date('2024-01-03T00:00:00Z'),
+  },
+  {
+    _id: IDS.USERS.CUSTOMER1,
+    email: 'customer1@example.com',
+    password: HASHED_PASSWORD,
+    firstName: 'John',
+    lastName: 'Doe',
+    role: UserRole.CUSTOMER,
+    isActive: true,
+    lastLogin: new Date('2025-01-01T07:00:00Z'),
+    createdAt: new Date('2024-01-04T00:00:00Z'),
+    updatedAt: new Date('2024-01-04T00:00:00Z'),
+  },
+  {
+    _id: IDS.USERS.CUSTOMER2,
+    email: 'customer2@example.com',
+    password: HASHED_PASSWORD,
+    firstName: 'Jane',
+    lastName: 'Smith',
+    role: UserRole.CUSTOMER,
+    isActive: true,
+    lastLogin: new Date('2025-01-01T06:00:00Z'),
+    createdAt: new Date('2024-01-05T00:00:00Z'),
+    updatedAt: new Date('2024-01-05T00:00:00Z'),
+  },
+];
+
+// Customers
+export const customers = [
+  {
+    _id: IDS.CUSTOMERS.CUSTOMER1,
+    userId: IDS.USERS.CUSTOMER1,
+    phone: '+1234567890',
+    address: {
+      street: '123 Main St',
+      city: 'Montreal',
+      state: 'Quebec',
+      postalCode: 'H2X 1Y6',
+      country: 'Canada',
+    },
+    dateOfBirth: new Date('1985-05-15T00:00:00Z'),
+    emergencyContact: {
+      name: 'Jane Doe',
+      phone: '+1987654321',
+      relationship: 'Spouse',
+    },
+    preferences: {
+      bikeTypes: [BikeType.MOUNTAIN, BikeType.HYBRID],
+      bikeSize: BikeSize.M,
+      notificationPreferences: {
+        email: true,
+        sms: true,
+        push: false,
+      },
+    },
+    paymentMethods: [
+      {
+        type: 'Credit Card',
+        lastFour: '4242',
+        expiryDate: '12/25',
+        isDefault: true,
+      },
+    ],
+    loyaltyPoints: 120,
+    memberSince: new Date('2024-01-04T00:00:00Z'),
+    rentalHistory: [IDS.RESERVATIONS.RES1],
+    createdAt: new Date('2024-01-04T00:00:00Z'),
+    updatedAt: new Date('2024-01-04T00:00:00Z'),
+  },
+  {
+    _id: IDS.CUSTOMERS.CUSTOMER2,
+    userId: IDS.USERS.CUSTOMER2,
+    phone: '+1345678901',
+    address: {
+      street: '456 Elm St',
+      city: 'Montreal',
+      state: 'Quebec',
+      postalCode: 'H3A 2B1',
+      country: 'Canada',
+    },
+    dateOfBirth: new Date('1990-08-20T00:00:00Z'),
+    emergencyContact: {
+      name: 'Robert Smith',
+      phone: '+1876543210',
+      relationship: 'Father',
+    },
+    preferences: {
+      bikeTypes: [BikeType.ROAD, BikeType.CITY],
+      bikeSize: BikeSize.S,
+      notificationPreferences: {
+        email: true,
+        sms: false,
+        push: true,
+      },
+    },
+    paymentMethods: [
+      {
+        type: 'Credit Card',
+        lastFour: '5678',
+        expiryDate: '11/26',
+        isDefault: true,
+      },
+    ],
+    loyaltyPoints: 85,
+    memberSince: new Date('2024-01-05T00:00:00Z'),
+    rentalHistory: [IDS.RESERVATIONS.RES2],
+    createdAt: new Date('2024-01-05T00:00:00Z'),
+    updatedAt: new Date('2024-01-05T00:00:00Z'),
+  },
+];
+
+// Stations
+export const stations = [
+  {
+    _id: IDS.STATIONS.DOWNTOWN,
+    name: 'Downtown Station',
+    address: {
+      street: '100 Saint Catherine St',
+      city: 'Montreal',
+      state: 'Quebec',
+      postalCode: 'H3B 1A7',
+      country: 'Canada',
+    },
+    location: {
+      type: 'Point',
+      coordinates: [-73.567253, 45.503372], // longitude, latitude
+    },
+    capacity: 20,
+    currentBikes: [
+      IDS.BIKES.MOUNTAIN1,
+      IDS.BIKES.ROAD1,
+      IDS.BIKES.HYBRID1,
+      IDS.BIKES.ELECTRIC1,
+      IDS.BIKES.CITY1,
+    ],
+    status: 'active',
+    amenities: ['bathroom', 'repair_tools', 'water_station'],
+    openingHours: {
+      monday: { open: '07:00', close: '21:00' },
+      tuesday: { open: '07:00', close: '21:00' },
+      wednesday: { open: '07:00', close: '21:00' },
+      thursday: { open: '07:00', close: '21:00' },
+      friday: { open: '07:00', close: '22:00' },
+      saturday: { open: '08:00', close: '22:00' },
+      sunday: { open: '08:00', close: '20:00' },
+    },
+    contactPhone: '+15141234567',
+    isAccessControlled: true,
+    accessMethod: 'key_card',
+    createdAt: new Date('2024-01-01T00:00:00Z'),
+    updatedAt: new Date('2024-01-01T00:00:00Z'),
+  },
+  {
+    _id: IDS.STATIONS.PARK,
+    name: 'Park Station',
+    address: {
+      street: '4601 Sherbrooke St E',
+      city: 'Montreal',
+      state: 'Quebec',
+      postalCode: 'H1X 2B1',
+      country: 'Canada',
+    },
+    location: {
+      type: 'Point',
+      coordinates: [-73.556397, 45.560968], // longitude, latitude
+    },
+    capacity: 15,
+    currentBikes: [
+      IDS.BIKES.MOUNTAIN2,
+      IDS.BIKES.ROAD2,
+      IDS.BIKES.HYBRID2,
+      IDS.BIKES.ELECTRIC2,
+      IDS.BIKES.CITY2,
+    ],
+    status: 'active',
+    amenities: ['water_station', 'maps', 'seating'],
+    openingHours: {
+      monday: { open: '08:00', close: '20:00' },
+      tuesday: { open: '08:00', close: '20:00' },
+      wednesday: { open: '08:00', close: '20:00' },
+      thursday: { open: '08:00', close: '20:00' },
+      friday: { open: '08:00', close: '21:00' },
+      saturday: { open: '08:00', close: '21:00' },
+      sunday: { open: '09:00', close: '19:00' },
+    },
+    contactPhone: '+15149876543',
+    isAccessControlled: false,
+    createdAt: new Date('2024-01-02T00:00:00Z'),
+    updatedAt: new Date('2024-01-02T00:00:00Z'),
+  },
+];
+
+// Bikes
+export const bikes = [
+  {
+    _id: IDS.BIKES.MOUNTAIN1,
+    name: 'Mountain Explorer 5000',
+    type: BikeType.MOUNTAIN,
+    size: BikeSize.M,
+    modelYear: 2023,
+    color: 'Blue',
+    description: 'High-performance mountain bike with front suspension',
+    frameNumber: 'ME5000-12345',
+    features: ['front_suspension', 'disc_brakes', 'aluminum_frame'],
+    specifications: {
+      weight: 12.5,
+      frameType: 'Aluminum',
+      suspension: 'Front',
+      gears: 21,
+      brakeType: 'Hydraulic Disc',
+      wheelSize: 29,
+    },
+    dailyRate: 35.99,
+    hourlyRate: 8.99,
+    weeklyRate: 199.99,
+    status: BikeStatus.AVAILABLE,
+    condition: 'Excellent',
+    maintenanceHistory: [IDS.MAINTENANCE.MAINT1],
+    currentLocation: IDS.STATIONS.DOWNTOWN,
+    imageUrls: [
+      'https://example.com/bikes/mountain1-1.jpg',
+      'https://example.com/bikes/mountain1-2.jpg',
+    ],
+    purchaseDate: new Date('2023-03-15T00:00:00Z'),
+    purchasePrice: 1200,
+    mileage: 450,
+    ratings: [
+      {
+        userId: IDS.USERS.CUSTOMER1,
+        rating: 5,
+        comment: 'Excellent bike, very comfortable and reliable.',
+        date: new Date('2024-06-10T00:00:00Z'),
+      },
+    ],
+    totalRentals: 12,
+    createdAt: new Date('2024-01-01T00:00:00Z'),
+    updatedAt: new Date('2024-01-01T00:00:00Z'),
+  },
+  {
+    _id: IDS.BIKES.ROAD1,
+    name: 'Road Runner Pro',
+    type: BikeType.ROAD,
+    size: BikeSize.L,
+    modelYear: 2024,
+    color: 'Red',
+    description: 'Lightweight road bike designed for speed',
+    frameNumber: 'RR-PRO-54321',
+    features: ['carbon_frame', 'racing_handlebars', 'narrow_tires'],
+    specifications: {
+      weight: 8.2,
+      frameType: 'Carbon Fiber',
+      gears: 22,
+      brakeType: 'Caliper',
+      wheelSize: 28,
+    },
+    dailyRate: 45.99,
+    hourlyRate: 10.99,
+    weeklyRate: 249.99,
+    status: BikeStatus.AVAILABLE,
+    condition: 'Excellent',
+    maintenanceHistory: [],
+    currentLocation: IDS.STATIONS.DOWNTOWN,
+    imageUrls: [
+      'https://example.com/bikes/road1-1.jpg',
+      'https://example.com/bikes/road1-2.jpg',
+    ],
+    purchaseDate: new Date('2024-01-10T00:00:00Z'),
+    purchasePrice: 2500,
+    mileage: 120,
+    ratings: [
+      {
+        userId: IDS.USERS.CUSTOMER2,
+        rating: 4,
+        comment: 'Fast and lightweight, great for city rides.',
+        date: new Date('2024-06-15T00:00:00Z'),
+      },
+    ],
+    totalRentals: 8,
+    createdAt: new Date('2024-01-15T00:00:00Z'),
+    updatedAt: new Date('2024-01-15T00:00:00Z'),
+  },
+  {
+    _id: IDS.BIKES.ELECTRIC1,
+    name: 'E-Rider City',
+    type: BikeType.ELECTRIC,
+    size: BikeSize.M,
+    modelYear: 2023,
+    color: 'Black',
+    description: 'Electric bike with pedal assist for effortless city riding',
+    frameNumber: 'ER-CITY-98765',
+    features: ['electric_motor', 'removable_battery', 'lights', 'fenders'],
+    specifications: {
+      weight: 18.5,
+      frameType: 'Aluminum',
+      gears: 7,
+      brakeType: 'Hydraulic Disc',
+      wheelSize: 27.5,
+      electricRange: 80,
+    },
+    dailyRate: 55.99,
+    hourlyRate: 12.99,
+    weeklyRate: 299.99,
+    status: BikeStatus.AVAILABLE,
+    condition: 'Excellent',
+    maintenanceHistory: [],
+    currentLocation: IDS.STATIONS.DOWNTOWN,
+    imageUrls: [
+      'https://example.com/bikes/electric1-1.jpg',
+      'https://example.com/bikes/electric1-2.jpg',
+    ],
+    purchaseDate: new Date('2023-05-20T00:00:00Z'),
+    purchasePrice: 3000,
+    mileage: 350,
+    ratings: [],
+    totalRentals: 15,
+    createdAt: new Date('2023-06-01T00:00:00Z'),
+    updatedAt: new Date('2023-06-01T00:00:00Z'),
+  },
+];
+
+// Reservations
+export const reservations = [
+  {
+    _id: IDS.RESERVATIONS.RES1,
+    customerId: IDS.CUSTOMERS.CUSTOMER1,
+    bikes: [IDS.BIKES.MOUNTAIN1],
+    startStation: IDS.STATIONS.DOWNTOWN,
+    endStation: IDS.STATIONS.DOWNTOWN,
+    startDate: new Date('2024-06-01T10:00:00Z'),
+    endDate: new Date('2024-06-03T10:00:00Z'),
+    status: ReservationStatus.COMPLETED,
+    totalAmount: 71.98,
+    paymentStatus: 'paid',
+    createdBy: IDS.USERS.STAFF1,
+    weatherConditions: {
+      forecast: 'Sunny',
+      temperature: 25,
+      precipitation: 0,
+    },
+    returnDetails: {
+      actualReturnDate: new Date('2024-06-03T09:30:00Z'),
+      condition: 'Good',
+      additionalCharges: 0,
+      notes: 'Returned on time in good condition',
+    },
+    createdAt: new Date('2024-05-25T00:00:00Z'),
+    updatedAt: new Date('2024-06-03T09:30:00Z'),
+  },
+  {
+    _id: IDS.RESERVATIONS.RES2,
+    customerId: IDS.CUSTOMERS.CUSTOMER2,
+    bikes: [IDS.BIKES.ROAD1],
+    startStation: IDS.STATIONS.DOWNTOWN,
+    endStation: IDS.STATIONS.PARK,
+    startDate: new Date('2024-06-10T14:00:00Z'),
+    endDate: new Date('2024-06-11T14:00:00Z'),
+    status: ReservationStatus.COMPLETED,
+    totalAmount: 45.99,
+    paymentStatus: 'paid',
+    createdBy: IDS.USERS.CUSTOMER2,
+    weatherConditions: {
+      forecast: 'Partly Cloudy',
+      temperature: 22,
+      precipitation: 10,
+    },
+    returnDetails: {
+      actualReturnDate: new Date('2024-06-11T13:45:00Z'),
+      condition: 'Good',
+      additionalCharges: 0,
+      notes: 'Returned on time',
+    },
+    createdAt: new Date('2024-06-05T00:00:00Z'),
+    updatedAt: new Date('2024-06-11T13:45:00Z'),
+  },
+  {
+    _id: IDS.RESERVATIONS.RES3,
+    customerId: IDS.CUSTOMERS.CUSTOMER1,
+    bikes: [IDS.BIKES.ELECTRIC1],
+    startStation: IDS.STATIONS.DOWNTOWN,
+    endStation: IDS.STATIONS.DOWNTOWN,
+    startDate: new Date('2025-06-20T09:00:00Z'),
+    endDate: new Date('2025-06-21T09:00:00Z'),
+    status: ReservationStatus.CONFIRMED,
+    totalAmount: 55.99,
+    paymentStatus: 'paid',
+    createdBy: IDS.USERS.CUSTOMER1,
+    weatherConditions: {
+      forecast: 'Unknown',
+      temperature: 0,
+      precipitation: 0,
+    },
+    createdAt: new Date('2024-06-15T00:00:00Z'),
+    updatedAt: new Date('2024-06-15T00:00:00Z'),
+  },
+];
+
+// Maintenance
+export const maintenance = [
+  {
+    _id: IDS.MAINTENANCE.MAINT1,
+    bikeId: IDS.BIKES.MOUNTAIN1,
+    maintenanceType: MaintenanceType.ROUTINE,
+    status: MaintenanceStatus.COMPLETED,
+    scheduledDate: new Date('2024-05-01T09:00:00Z'),
+    completedDate: new Date('2024-05-01T11:30:00Z'),
+    technician: IDS.USERS.TECHNICIAN1,
+    description: 'Regular maintenance and inspection',
+    issues: [
+      {
+        category: 'Brakes',
+        description: 'Brake pads worn',
+        severity: 'medium',
+        resolved: true,
+      },
+      {
+        category: 'Gears',
+        description: 'Gear shifting not smooth',
+        severity: 'low',
+        resolved: true,
+      },
+    ],
+    parts: [
+      {
+        name: 'Brake pads',
+        quantity: 2,
+        cost: 15.99,
+      },
+      {
+        name: 'Chain lube',
+        quantity: 1,
+        cost: 8.99,
+      },
+    ],
+    laborHours: 2.5,
+    laborCost: 125.00,
+    totalCost: 149.98,
+    notes: 'Performed full inspection and tuning.',
+    recommendations: 'Replace chain in next 3 months',
+    nextMaintenanceDate: new Date('2024-08-01T00:00:00Z'),
+    createdAt: new Date('2024-04-25T00:00:00Z'),
+    updatedAt: new Date('2024-05-01T11:30:00Z'),
+  },
+];
+
+// Routes
+export const routes = [
+  {
+    _id: IDS.ROUTES.ROUTE1,
+    name: 'City Park Loop',
+    description: 'Scenic route around the city park with great views',
+    difficulty: 'easy',
+    distance: 8.5,
+    estimatedTime: 45,
+    elevation: 50,
+    path: {
+      type: 'LineString',
+      coordinates: [
+        [-73.567253, 45.503372],
+        [-73.560000, 45.510000],
+        [-73.555000, 45.515000],
+        [-73.558000, 45.520000],
+        [-73.567253, 45.503372],
+      ],
+    },
+    startPoint: {
+      type: 'Point',
+      coordinates: [-73.567253, 45.503372],
+      name: 'Downtown Station',
+    },
+    endPoint: {
+      type: 'Point',
+      coordinates: [-73.567253, 45.503372],
+      name: 'Downtown Station',
+    },
+    waypoints: [
+      {
+        type: 'Point',
+        coordinates: [-73.560000, 45.510000],
+        name: 'Park Entrance',
+      },
+      {
+        type: 'Point',
+        coordinates: [-73.555000, 45.515000],
+        name: 'Lake Viewpoint',
+      },
+    ],
+    pointsOfInterest: [
+      {
+        type: 'Point',
+        coordinates: [-73.558000, 45.520000],
+        name: 'Historic Fountain',
+        description: 'Beautiful 19th century fountain',
+        category: 'landmark',
+      },
+    ],
+    terrain: ['paved', 'flat'],
+    bestSeasons: ['spring', 'summer', 'fall'],
+    tags: ['scenic', 'family-friendly', 'beginner'],
+    imageUrls: [
+      'https://example.com/routes/park-loop-1.jpg',
+      'https://example.com/routes/park-loop-2.jpg',
+    ],
+    createdBy: IDS.USERS.STAFF1,
+    isPublic: true,
+    ratings: [
+      {
+        userId: IDS.USERS.CUSTOMER1,
+        rating: 5,
+        comment: 'Beautiful views and easy riding',
+        date: new Date('2024-06-05T00:00:00Z'),
+      },
+      {
+        userId: IDS.USERS.CUSTOMER2,
+        rating: 4,
+        comment: 'Nice route for beginners',
+        date: new Date('2024-06-08T00:00:00Z'),
+      },
+    ],
+    averageRating: 4.5,
+    createdAt: new Date('2024-03-01T00:00:00Z'),
+    updatedAt: new Date('2024-03-01T00:00:00Z'),
+  },
+];
+
+// Ratings
+export const ratings = [
+  {
+    _id: IDS.RATINGS.RATING1,
+    userId: IDS.USERS.CUSTOMER1,
+    entityType: 'bike',
+    entityId: IDS.BIKES.MOUNTAIN1,
+    rating: 5,
+    title: 'Great Mountain Bike',
+    comment: 'This bike performed excellently on rough terrain. Highly recommended!',
+    isVerified: true,
+    isPublic: true,
+    createdAt: new Date('2024-06-10T00:00:00Z'),
+    updatedAt: new Date('2024-06-10T00:00:00Z'),
+  },
+  {
+    _id: IDS.RATINGS.RATING2,
+    userId: IDS.USERS.CUSTOMER2,
+    entityType: 'bike',
+    entityId: IDS.BIKES.ROAD1,
+    rating: 4,
+    title: 'Fast Road Bike',
+    comment: 'Very fast and lightweight. Perfect for city rides.',
+    isVerified: true,
+    isPublic: true,
+    createdAt: new Date('2024-06-15T00:00:00Z'),
+    updatedAt: new Date('2024-06-15T00:00:00Z'),
+  },
+  {
+    _id: IDS.RATINGS.RATING3,
+    userId: IDS.USERS.CUSTOMER1,
+    entityType: 'route',
+    entityId: IDS.ROUTES.ROUTE1,
+    rating: 5,
+    title: 'Beautiful Park Route',
+    comment: 'Amazing views and very well marked. A must-ride!',
+    isVerified: true,
+    isPublic: true,
+    createdAt: new Date('2024-06-05T00:00:00Z'),
+    updatedAt: new Date('2024-06-05T00:00:00Z'),
+  },
+];
+
+// Export all sample data
+export default {
+  users,
+  customers,
+  stations,
+  bikes,
+  reservations,
+  maintenance,
+  routes,
+  ratings,
+  IDS,
+};

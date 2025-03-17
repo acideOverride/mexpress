@@ -1,0 +1,483 @@
+# Bike Schema Definitions
+# Swagger/OpenAPI definitions for bikes
+
+components:
+  schemas:
+    # Basic Bike object
+    Bike:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 507f1f77bcf86cd799439011
+        name:
+          type: string
+          example: Mountain Explorer X4
+        type:
+          type: string
+          enum: [mountain, road, hybrid, electric, city, kids]
+          example: mountain
+        size:
+          type: string
+          enum: [xs, s, m, l, xl]
+          example: m
+        modelYear:
+          type: integer
+          example: 2022
+        color:
+          type: string
+          example: Blue
+        description:
+          type: string
+          example: A high-quality mountain bike perfect for trail riding
+        frameNumber:
+          type: string
+          example: MT-2022-12345
+        features:
+          type: array
+          items:
+            type: string
+          example: ["Front suspension", "Hydraulic disc brakes", "21-speed"]
+        specifications:
+          type: object
+          properties:
+            weight:
+              type: number
+              example: 12.5
+            frameType:
+              type: string
+              example: aluminum
+            suspension:
+              type: string
+              example: front
+            gears:
+              type: integer
+              example: 21
+            brakeType:
+              type: string
+              example: disc-hydraulic
+            wheelSize:
+              type: number
+              example: 27.5
+            electricRange:
+              type: number
+              example: null
+        dailyRate:
+          type: number
+          example: 35.99
+        hourlyRate:
+          type: number
+          example: 5.99
+        weeklyRate:
+          type: number
+          example: 199.99
+        status:
+          type: string
+          enum: [available, rented, maintenance, reserved, damaged, retired]
+          example: available
+        condition:
+          type: string
+          enum: [excellent, good, fair, poor, needs_repair]
+          example: excellent
+        maintenanceHistory:
+          type: array
+          items:
+            type: string
+          example: ["507f1f77bcf86cd799439020", "507f1f77bcf86cd799439021"]
+        currentLocation:
+          oneOf:
+            - type: string
+            - type: object
+              properties:
+                _id:
+                  type: string
+                name:
+                  type: string
+                address:
+                  type: object
+          example: 
+            _id: 507f1f77bcf86cd799439030
+            name: Central Station
+            address:
+              street: 123 Main St
+              city: Bikeville
+        imageUrls:
+          type: array
+          items:
+            type: string
+          example: ["https://example.com/images/bike1.jpg"]
+        purchaseDate:
+          type: string
+          format: date-time
+          example: 2022-01-15T00:00:00Z
+        purchasePrice:
+          type: number
+          example: 1200.00
+        mileage:
+          type: number
+          example: 150.5
+        ratings:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              rating:
+                type: integer
+              comment:
+                type: string
+              date:
+                type: string
+                format: date-time
+          example:
+            - userId: 507f1f77bcf86cd799439099
+              rating: 5
+              comment: Great bike, smooth ride!
+              date: 2023-03-15T14:30:00Z
+        totalRentals:
+          type: integer
+          example: 23
+        createdAt:
+          type: string
+          format: date-time
+          example: 2022-01-15T10:30:00Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2023-03-15T14:30:00Z
+      required:
+        - name
+        - type
+        - size
+        - modelYear
+        - color
+        - description
+        - frameNumber
+        - dailyRate
+        - hourlyRate
+        - weeklyRate
+        - condition
+        - currentLocation
+    
+    # Request schemas
+    CreateBikeRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Mountain Explorer X4
+        type:
+          type: string
+          enum: [mountain, road, hybrid, electric, city, kids]
+          example: mountain
+        size:
+          type: string
+          enum: [xs, s, m, l, xl]
+          example: m
+        modelYear:
+          type: integer
+          example: 2022
+        color:
+          type: string
+          example: Blue
+        description:
+          type: string
+          example: A high-quality mountain bike perfect for trail riding
+        frameNumber:
+          type: string
+          example: MT-2022-12345
+        features:
+          type: array
+          items:
+            type: string
+          example: ["Front suspension", "Hydraulic disc brakes", "21-speed"]
+        specifications:
+          type: object
+          properties:
+            weight:
+              type: number
+              example: 12.5
+            frameType:
+              type: string
+              example: aluminum
+            suspension:
+              type: string
+              example: front
+            gears:
+              type: integer
+              example: 21
+            brakeType:
+              type: string
+              example: disc-hydraulic
+            wheelSize:
+              type: number
+              example: 27.5
+            electricRange:
+              type: number
+        dailyRate:
+          type: number
+          example: 35.99
+        hourlyRate:
+          type: number
+          example: 5.99
+        weeklyRate:
+          type: number
+          example: 199.99
+        condition:
+          type: string
+          enum: [excellent, good, fair, poor, needs_repair]
+          example: excellent
+        currentLocation:
+          type: string
+          example: 507f1f77bcf86cd799439030
+        imageUrls:
+          type: array
+          items:
+            type: string
+          example: ["https://example.com/images/bike1.jpg"]
+        purchaseDate:
+          type: string
+          format: date-time
+          example: 2022-01-15T00:00:00Z
+        purchasePrice:
+          type: number
+          example: 1200.00
+        mileage:
+          type: number
+          example: 0
+      required:
+        - name
+        - type
+        - size
+        - modelYear
+        - color
+        - description
+        - frameNumber
+        - dailyRate
+        - hourlyRate
+        - weeklyRate
+        - condition
+        - currentLocation
+    
+    UpdateBikeRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Mountain Explorer X4 Deluxe
+        type:
+          type: string
+          enum: [mountain, road, hybrid, electric, city, kids]
+          example: mountain
+        size:
+          type: string
+          enum: [xs, s, m, l, xl]
+          example: m
+        modelYear:
+          type: integer
+          example: 2022
+        color:
+          type: string
+          example: Red
+        description:
+          type: string
+          example: A high-quality mountain bike perfect for trail riding, now with enhanced features
+        frameNumber:
+          type: string
+          example: MT-2022-12345
+        features:
+          type: array
+          items:
+            type: string
+          example: ["Front suspension", "Hydraulic disc brakes", "24-speed"]
+        specifications:
+          type: object
+          properties:
+            weight:
+              type: number
+              example: 12.0
+            frameType:
+              type: string
+              example: aluminum
+            suspension:
+              type: string
+              example: full
+            gears:
+              type: integer
+              example: 24
+            brakeType:
+              type: string
+              example: disc-hydraulic
+            wheelSize:
+              type: number
+              example: 27.5
+            electricRange:
+              type: number
+        dailyRate:
+          type: number
+          example: 39.99
+        hourlyRate:
+          type: number
+          example: 6.99
+        weeklyRate:
+          type: number
+          example: 219.99
+        status:
+          type: string
+          enum: [available, rented, maintenance, reserved, damaged, retired]
+          example: available
+        condition:
+          type: string
+          enum: [excellent, good, fair, poor, needs_repair]
+          example: excellent
+        currentLocation:
+          type: string
+          example: 507f1f77bcf86cd799439031
+        imageUrls:
+          type: array
+          items:
+            type: string
+          example: ["https://example.com/images/bike1-new.jpg"]
+        purchaseDate:
+          type: string
+          format: date-time
+          example: 2022-01-15T00:00:00Z
+        purchasePrice:
+          type: number
+          example: 1250.00
+        mileage:
+          type: number
+          example: 160.5
+    
+    UpdateBikeStatusRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [available, rented, maintenance, reserved, damaged, retired]
+          example: maintenance
+        reason:
+          type: string
+          example: Scheduled maintenance for brake check
+      required:
+        - status
+    
+    AddBikeRatingRequest:
+      type: object
+      properties:
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+          example: 5
+        comment:
+          type: string
+          example: Very comfortable ride, would rent again!
+      required:
+        - rating
+    
+    TransferBikeRequest:
+      type: object
+      properties:
+        stationId:
+          type: string
+          example: 507f1f77bcf86cd799439031
+        reason:
+          type: string
+          example: Rebalancing station inventory
+      required:
+        - stationId
+    
+    UpdateMileageRequest:
+      type: object
+      properties:
+        additionalKm:
+          type: number
+          example: 25.5
+      required:
+        - additionalKm
+    
+    # Response schemas
+    BikeResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/Bike'
+    
+    BikesArrayResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bike'
+    
+    PaginatedBikesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bike'
+        metadata:
+          type: object
+          properties:
+            totalItems:
+              type: integer
+              example: 50
+            totalPages:
+              type: integer
+              example: 5
+            currentPage:
+              type: integer
+              example: 1
+            itemsPerPage:
+              type: integer
+              example: 10
+            hasNextPage:
+              type: boolean
+              example: true
+            hasPrevPage:
+              type: boolean
+              example: false
+    
+    MaintenanceCostsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            total:
+              type: number
+              example: 350.75
+            labor:
+              type: number
+              example: 200.00
+            parts:
+              type: number
+              example: 150.75
+            count:
+              type: integer
+              example: 3
+            bikeId:
+              type: string
+              example: 507f1f77bcf86cd799439011
+            bikeName:
+              type: string
+              example: Mountain Explorer X4
+            bikeFrameNumber:
+              type: string
+              example: MT-2022-12345

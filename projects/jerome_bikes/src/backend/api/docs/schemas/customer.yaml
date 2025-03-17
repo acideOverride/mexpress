@@ -1,0 +1,430 @@
+# Customer Schema Definitions
+# Swagger/OpenAPI definitions for customers
+
+components:
+  schemas:
+    # Basic Address schema
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          example: 123 Rue de Paris
+        city:
+          type: string
+          example: Paris
+        state:
+          type: string
+          example: Île-de-France
+        postalCode:
+          type: string
+          example: 75001
+        country:
+          type: string
+          example: France
+      required:
+        - street
+        - city
+        - state
+        - postalCode
+        - country
+
+    # Emergency Contact schema
+    EmergencyContact:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Jean Dupont
+        phone:
+          type: string
+          example: +33612345678
+        relationship:
+          type: string
+          enum: [family, spouse, partner, friend, colleague, other]
+          example: family
+      required:
+        - name
+        - phone
+        - relationship
+
+    # Notification Preferences schema
+    NotificationPreferences:
+      type: object
+      properties:
+        email:
+          type: boolean
+          example: true
+        sms:
+          type: boolean
+          example: false
+        push:
+          type: boolean
+          example: false
+
+    # Customer Preferences schema
+    Preferences:
+      type: object
+      properties:
+        bikeTypes:
+          type: array
+          items:
+            type: string
+            enum: [mountain, road, hybrid, electric, city, kids]
+          example: ["mountain", "road"]
+        bikeSize:
+          type: string
+          enum: [xs, s, m, l, xl]
+          example: m
+        notificationPreferences:
+          $ref: '#/components/schemas/NotificationPreferences'
+        preferredPickupStations:
+          type: array
+          items:
+            type: string
+          example: ["507f1f77bcf86cd799439011", "507f1f77bcf86cd799439012"]
+        preferredRentalDuration:
+          type: string
+          enum: [hourly, daily, weekly]
+          example: daily
+
+    # Payment Method schema
+    PaymentMethod:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [credit, debit, paypal, applepay, googlepay, other]
+          example: credit
+        lastFour:
+          type: string
+          example: 1234
+        expiryDate:
+          type: string
+          example: 12/25
+        cardholderName:
+          type: string
+          example: Jean Dupont
+        billingAddress:
+          type: string
+          example: 123 Rue de Paris, 75001 Paris
+        isDefault:
+          type: boolean
+          example: true
+        addedAt:
+          type: string
+          format: date-time
+          example: 2023-01-15T10:30:00Z
+        nickname:
+          type: string
+          example: My Main Card
+      required:
+        - type
+        - lastFour
+        - expiryDate
+
+    # Identification Document schema
+    IdentificationDocument:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [passport, drivers_license, national_id, other]
+          example: passport
+        documentNumber:
+          type: string
+          example: AB123456
+        expiryDate:
+          type: string
+          format: date-time
+          example: 2030-01-15T00:00:00Z
+        isVerified:
+          type: boolean
+          example: true
+        uploadDate:
+          type: string
+          format: date-time
+          example: 2023-01-15T10:30:00Z
+      required:
+        - type
+
+    # Basic Customer object
+    Customer:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 507f1f77bcf86cd799439011
+        userId:
+          type: string
+          example: 507f1f77bcf86cd799439099
+        phone:
+          type: string
+          example: +33612345678
+        address:
+          $ref: '#/components/schemas/Address'
+        dateOfBirth:
+          type: string
+          format: date-time
+          example: 1990-01-15T00:00:00Z
+        emergencyContact:
+          $ref: '#/components/schemas/EmergencyContact'
+        preferences:
+          $ref: '#/components/schemas/Preferences'
+        paymentMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethod'
+        loyaltyPoints:
+          type: integer
+          example: 150
+        memberSince:
+          type: string
+          format: date-time
+          example: 2022-03-15T00:00:00Z
+        rentalHistory:
+          type: array
+          items:
+            type: string
+          example: ["507f1f77bcf86cd799439020", "507f1f77bcf86cd799439021"]
+        notes:
+          type: string
+          example: Long-time customer, prefers mountain bikes
+        verificationStatus:
+          type: string
+          enum: [unverified, pending, verified, rejected]
+          example: verified
+        identificationDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentificationDocument'
+        referredBy:
+          type: string
+          example: 507f1f77bcf86cd799439098
+        fullName:
+          type: string
+          example: Jean Dupont
+        email:
+          type: string
+          example: jean.dupont@example.com
+        age:
+          type: integer
+          example: 33
+        membershipDuration:
+          type: integer
+          example: 365
+        loyaltyTier:
+          type: string
+          enum: [bronze, silver, gold, platinum]
+          example: silver
+        createdAt:
+          type: string
+          format: date-time
+          example: 2022-03-15T00:00:00Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2023-01-15T10:30:00Z
+      required:
+        - userId
+        - phone
+
+    # Request schemas
+    CreateCustomerRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: 507f1f77bcf86cd799439099
+        phone:
+          type: string
+          example: +33612345678
+        address:
+          $ref: '#/components/schemas/Address'
+        dateOfBirth:
+          type: string
+          format: date-time
+          example: 1990-01-15T00:00:00Z
+        emergencyContact:
+          $ref: '#/components/schemas/EmergencyContact'
+        notes:
+          type: string
+          example: New customer
+        verificationStatus:
+          type: string
+          enum: [unverified, pending, verified, rejected]
+          example: unverified
+      required:
+        - userId
+        - phone
+
+    UpdateCustomerRequest:
+      type: object
+      properties:
+        phone:
+          type: string
+          example: +33698765432
+        address:
+          $ref: '#/components/schemas/Address'
+        dateOfBirth:
+          type: string
+          format: date-time
+          example: 1990-01-15T00:00:00Z
+        emergencyContact:
+          $ref: '#/components/schemas/EmergencyContact'
+        notes:
+          type: string
+          example: Updated customer information
+
+    LoyaltyPointsRequest:
+      type: object
+      properties:
+        points:
+          type: integer
+          minimum: 1
+          example: 50
+        reason:
+          type: string
+          example: Quarterly loyalty bonus
+      required:
+        - points
+
+    AddPaymentMethodRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [credit, debit, paypal, applepay, googlepay, other]
+          example: credit
+        lastFour:
+          type: string
+          example: 1234
+        expiryDate:
+          type: string
+          example: 12/25
+        cardholderName:
+          type: string
+          example: Jean Dupont
+        billingAddress:
+          type: string
+          example: 123 Rue de Paris, 75001 Paris
+        isDefault:
+          type: boolean
+          example: true
+        nickname:
+          type: string
+          example: My Main Card
+      required:
+        - type
+        - lastFour
+        - expiryDate
+
+    VerificationStatusRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [unverified, pending, verified, rejected]
+          example: verified
+        notes:
+          type: string
+          example: Identity verified with valid passport
+      required:
+        - status
+
+    UpdatePreferencesRequest:
+      type: object
+      properties:
+        bikeTypes:
+          type: array
+          items:
+            type: string
+            enum: [mountain, road, hybrid, electric, city, kids]
+          example: ["mountain", "road"]
+        bikeSize:
+          type: string
+          enum: [xs, s, m, l, xl]
+          example: m
+        notificationPreferences:
+          $ref: '#/components/schemas/NotificationPreferences'
+        preferredPickupStations:
+          type: array
+          items:
+            type: string
+          example: ["507f1f77bcf86cd799439011", "507f1f77bcf86cd799439012"]
+        preferredRentalDuration:
+          type: string
+          enum: [hourly, daily, weekly]
+          example: daily
+
+    # Response schemas
+    CustomerResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/Customer'
+
+    CustomersArrayResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+
+    PaginatedCustomersResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        metadata:
+          type: object
+          properties:
+            totalItems:
+              type: integer
+              example: 50
+            totalPages:
+              type: integer
+              example: 5
+            currentPage:
+              type: integer
+              example: 1
+            itemsPerPage:
+              type: integer
+              example: 10
+            hasNextPage:
+              type: boolean
+              example: true
+            hasPrevPage:
+              type: boolean
+              example: false
+
+    DeductPointsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            deducted:
+              type: boolean
+              example: true
+            remainingPoints:
+              type: integer
+              example: 100
+            customerId:
+              type: string
+              example: 507f1f77bcf86cd799439011

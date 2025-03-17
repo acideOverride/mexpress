@@ -1,0 +1,402 @@
+# Authentication Schema Definitions
+# Swagger/OpenAPI definitions for authentication
+
+components:
+  schemas:
+    # Basic User object
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 507f1f77bcf86cd799439011
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        role:
+          type: string
+          enum: [customer, admin, staff, manager]
+          example: customer
+        isActive:
+          type: boolean
+          example: true
+        lastLogin:
+          type: string
+          format: date-time
+          example: 2023-06-15T10:30:00Z
+        fullName:
+          type: string
+          example: John Doe
+        createdAt:
+          type: string
+          format: date-time
+          example: 2023-06-10T14:30:00Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2023-06-14T09:30:00Z
+      required:
+        - _id
+        - email
+        - firstName
+        - lastName
+        - role
+        - isActive
+
+    # Token object
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjMwYzJlMzJmZGQ4MjJmMWYxOWJmNiIsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTYyOTgzNjMzMSwiZXhwIjoxNjI5ODM5OTMxfQ.JMN9hUtiMTyWF_SqWdslB4ZCMUm6XEEr_ZrU8x
+        expiry:
+          type: string
+          format: date-time
+          example: 2023-06-18T16:30:00Z
+
+    # Register Request
+    RegisterRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          example: SecureP@ssw0rd!
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        role:
+          type: string
+          enum: [customer, admin, staff, manager]
+          example: customer
+        phone:
+          type: string
+          example: +1234567890
+      required:
+        - email
+        - password
+        - firstName
+        - lastName
+
+    # Login Request
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          example: SecureP@ssw0rd!
+      required:
+        - email
+        - password
+
+    # Authentication Response
+    AuthResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+            token:
+              type: string
+              example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjMwYzJlMzJmZGQ4MjJmMWYxOWJmNiIsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTYyOTgzNjMzMSwiZXhwIjoxNjI5ODM5OTMxfQ.JMN9hUtiMTyWF_SqWdslB4ZCMUm6XEEr_ZrU8x
+            refreshToken:
+              type: string
+              example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjMwYzJlMzJmZGQ4MjJmMWYxOWJmNiIsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTYyOTgzNjMzMSwiZXhwIjoxNjMwNDQxMTMxfQ.JDkL_HYwIxTBCSv4RGLw82_LM_XtC5S7_8Lw2v
+
+    # Refresh Token Request
+    RefreshTokenRequest:
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjMwYzJlMzJmZGQ4MjJmMWYxOWJmNiIsImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTYyOTgzNjMzMSwiZXhwIjoxNjMwNDQxMTMxfQ.JDkL_HYwIxTBCSv4RGLw82_LM_XtC5S7_8Lw2v
+      required:
+        - refreshToken
+
+    # Forgot Password Request
+    ForgotPasswordRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+      required:
+        - email
+
+    # Reset Password Request
+    ResetPasswordRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          example: c4ca4238a0b923820dcc509a6f75849b
+        newPassword:
+          type: string
+          format: password
+          example: NewSecureP@ssw0rd!
+        confirmPassword:
+          type: string
+          format: password
+          example: NewSecureP@ssw0rd!
+      required:
+        - token
+        - newPassword
+        - confirmPassword
+
+    # Change Password Request
+    ChangePasswordRequest:
+      type: object
+      properties:
+        currentPassword:
+          type: string
+          format: password
+          example: CurrentP@ssw0rd!
+        newPassword:
+          type: string
+          format: password
+          example: NewSecureP@ssw0rd!
+        confirmPassword:
+          type: string
+          format: password
+          example: NewSecureP@ssw0rd!
+      required:
+        - currentPassword
+        - newPassword
+        - confirmPassword
+
+    # Update Profile Request
+    UpdateProfileRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        profile:
+          type: object
+          properties:
+            phone:
+              type: string
+              example: +1234567890
+            address:
+              type: object
+              properties:
+                street:
+                  type: string
+                  example: 123 Main St
+                city:
+                  type: string
+                  example: Biketopia
+                state:
+                  type: string
+                  example: California
+                postalCode:
+                  type: string
+                  example: 94123
+                country:
+                  type: string
+                  example: USA
+            dateOfBirth:
+              type: string
+              format: date
+              example: 1990-01-01
+            emergencyContact:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Jane Doe
+                phone:
+                  type: string
+                  example: +1987654321
+                relationship:
+                  type: string
+                  example: Spouse
+            preferences:
+              type: object
+              properties:
+                bikeTypes:
+                  type: array
+                  items:
+                    type: string
+                    enum: [mountain, road, hybrid, electric, city, children, tandem]
+                  example: ["mountain", "electric"]
+                bikeSize:
+                  type: string
+                  enum: [XS, S, M, L, XL, XXL]
+                  example: M
+                notificationPreferences:
+                  type: object
+                  properties:
+                    email:
+                      type: boolean
+                      example: true
+                    sms:
+                      type: boolean
+                      example: false
+                    push:
+                      type: boolean
+                      example: true
+
+    # User Profile Response
+    UserProfileResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 507f1f77bcf86cd799439011
+            email:
+              type: string
+              format: email
+              example: user@example.com
+            firstName:
+              type: string
+              example: John
+            lastName:
+              type: string
+              example: Doe
+            role:
+              type: string
+              enum: [customer, admin, staff, manager]
+              example: customer
+            isActive:
+              type: boolean
+              example: true
+            fullName:
+              type: string
+              example: John Doe
+            profile:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 507f1f77bcf86cd799439022
+                userId:
+                  type: string
+                  example: 507f1f77bcf86cd799439011
+                phone:
+                  type: string
+                  example: +1234567890
+                loyaltyPoints:
+                  type: integer
+                  example: 150
+                memberSince:
+                  type: string
+                  format: date-time
+                  example: 2023-03-15T10:30:00Z
+                rentalCount:
+                  type: integer
+                  example: 12
+                totalSpent:
+                  type: number
+                  example: 560.75
+                address:
+                  type: object
+                  properties:
+                    street:
+                      type: string
+                      example: 123 Main St
+                    city:
+                      type: string
+                      example: Biketopia
+                    state:
+                      type: string
+                      example: California
+                    postalCode:
+                      type: string
+                      example: 94123
+                    country:
+                      type: string
+                      example: USA
+                dateOfBirth:
+                  type: string
+                  format: date
+                  example: 1990-01-01
+                emergencyContact:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: Jane Doe
+                    phone:
+                      type: string
+                      example: +1987654321
+                    relationship:
+                      type: string
+                      example: Spouse
+                preferences:
+                  type: object
+                  properties:
+                    bikeTypes:
+                      type: array
+                      items:
+                        type: string
+                      example: ["mountain", "electric"]
+                    bikeSize:
+                      type: string
+                      example: M
+                    notificationPreferences:
+                      type: object
+                      properties:
+                        email:
+                          type: boolean
+                          example: true
+                        sms:
+                          type: boolean
+                          example: false
+                        push:
+                          type: boolean
+                          example: true
+                isVerified:
+                  type: boolean
+                  example: true
+                verificationDate:
+                  type: string
+                  format: date-time
+                  example: 2023-03-16T14:30:00Z
+                lastRental:
+                  type: string
+                  format: date-time
+                  example: 2023-06-10T09:00:00Z
+
+  # Common security scheme definition
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme

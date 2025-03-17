@@ -1,0 +1,655 @@
+# Reservation Schema Definitions
+# Swagger/OpenAPI definitions for reservations
+
+components:
+  schemas:
+    # Weather Conditions schema
+    WeatherConditions:
+      type: object
+      description: Weather conditions for reservation dates (useful for planning and recommendations)
+      properties:
+        forecast:
+          type: string
+          enum: [sunny, partly cloudy, cloudy, rainy, stormy, snowy, windy, foggy]
+          example: sunny
+          description: General weather forecast description
+        temperature:
+          type: number
+          example: 23.5
+          description: Temperature in Celsius
+        precipitation:
+          type: number
+          example: 0
+          description: Precipitation chance (0-100%)
+        windSpeed:
+          type: number
+          example: 5.2
+          description: Wind speed in km/h
+        forecastDate:
+          type: string
+          format: date-time
+          example: 2023-06-15T10:30:00Z
+          description: Date and time of the weather forecast
+
+    # Additional Service schema
+    AdditionalService:
+      type: object
+      description: Additional services that can be added to a bike reservation
+      properties:
+        name:
+          type: string
+          enum: [helmet rental, bike lock, child seat, basket, phone holder, bike lights, guided tour, gps tracker, roadside assistance, rain gear, storage, bike trailer, custom]
+          example: helmet rental
+          description: Type of additional service being added to the reservation
+        price:
+          type: number
+          example: 5.99
+          description: Price of the service in local currency
+        quantity:
+          type: integer
+          minimum: 1
+          example: 1
+          description: Number of units of this service
+        description:
+          type: string
+          example: Standard bike helmet
+          description: Detailed description of the service
+        isOptional:
+          type: boolean
+          example: true
+          description: Whether the service is optional or required
+      required:
+        - name
+        - price
+        - quantity
+
+    # Insurance schema
+    Insurance:
+      type: object
+      description: Insurance coverage options for bike rentals
+      properties:
+        type:
+          type: string
+          enum: [basic, standard, premium, theft, damage, liability, comprehensive]
+          example: standard
+          description: Type of insurance coverage selected
+        coverageAmount:
+          type: integer
+          example: 500
+          description: Maximum coverage amount in local currency
+        price:
+          type: number
+          example: 15.99
+          description: Insurance premium cost in local currency
+        description:
+          type: string
+          example: Standard coverage for minor damage and theft
+          description: Detailed description of what is covered
+        termsAccepted:
+          type: boolean
+          example: true
+          description: Whether customer has accepted insurance terms
+        deductible:
+          type: number
+          example: 50
+          description: Deductible amount in case of claim in local currency
+      required:
+        - type
+        - coverageAmount
+        - price
+        - termsAccepted
+
+    # Return Details schema
+    ReturnDetails:
+      type: object
+      description: Details about the bike return process and condition
+      properties:
+        actualReturnDate:
+          type: string
+          format: date-time
+          example: 2023-06-18T16:30:00Z
+          description: Actual date and time when the bike was returned
+        condition:
+          type: string
+          enum: [excellent, good, fair, poor, damaged]
+          example: good
+          description: Condition of the bike when returned
+        additionalCharges:
+          type: number
+          example: 0
+          description: Additional charges due to damages or late return
+        notes:
+          type: string
+          example: Returned on time in good condition
+          description: Staff notes about the return process
+        processedBy:
+          type: string
+          example: 507f1f77bcf86cd799439099
+          description: ID of staff member who processed the return
+        damageReport:
+          type: string
+          example: No damage
+          description: Detailed report of any damages found
+        returnLocation:
+          type: string
+          example: 507f1f77bcf86cd799439030
+          description: ID of the station where bike was returned
+        lateReturnHours:
+          type: number
+          example: 0
+          description: Number of hours late if returned after deadline
+        feedback:
+          type: object
+          description: Customer feedback about the rental experience
+          properties:
+            rating:
+              type: integer
+              minimum: 1
+              maximum: 5
+              example: 5
+              description: Customer rating from 1-5 stars
+            comment:
+              type: string
+              example: Great experience, would rent again
+              description: Customer comments about the rental experience
+      required:
+        - actualReturnDate
+        - condition
+
+    # Basic Reservation object
+    Reservation:
+      type: object
+      description: Complete reservation information including all related details
+      properties:
+        _id:
+          type: string
+          example: 507f1f77bcf86cd799439011
+          description: Unique identifier for the reservation
+        customerId:
+          type: string
+          example: 507f1f77bcf86cd799439099
+          description: ID of the customer who made the reservation
+        bikes:
+          type: array
+          description: Array of bike IDs included in this reservation
+          items:
+            type: string
+          example: ["507f1f77bcf86cd799439020", "507f1f77bcf86cd799439021"]
+        startStation:
+          type: string
+          example: 507f1f77bcf86cd799439030
+          description: ID of the station where bikes will be picked up
+        endStation:
+          type: string
+          example: 507f1f77bcf86cd799439031
+          description: ID of the station where bikes will be returned
+        startDate:
+          type: string
+          format: date-time
+          example: 2023-06-15T10:00:00Z
+          description: Reservation start date and time
+        endDate:
+          type: string
+          format: date-time
+          example: 2023-06-18T16:00:00Z
+          description: Reservation end date and time
+        status:
+          type: string
+          enum: [pending, confirmed, active, completed, cancelled, no_show]
+          example: confirmed
+          description: Current status of the reservation
+        totalAmount:
+          type: number
+          example: 125.99
+          description: Total cost of the reservation including all fees and services
+        paymentStatus:
+          type: string
+          enum: [pending, paid, refunded, partial]
+          example: paid
+          description: Current payment status of the reservation
+        discountCode:
+          type: string
+          example: SUMMER2023
+          description: Discount code applied to the reservation
+        discountAmount:
+          type: number
+          example: 15
+          description: Discount amount in local currency
+        createdBy:
+          type: string
+          example: 507f1f77bcf86cd799439099
+          description: ID of user who created the reservation (could be customer or staff)
+        notes:
+          type: string
+          example: Customer requested early pickup
+          description: Additional notes about the reservation
+        weatherConditions:
+          $ref: '#/components/schemas/WeatherConditions'
+          description: Weather forecast information for the reservation period
+        additionalServices:
+          type: array
+          description: List of additional services added to the reservation
+          items:
+            $ref: '#/components/schemas/AdditionalService'
+        specialRequirements:
+          type: string
+          example: Customer needs a bike with a child seat
+          description: Special requirements or requests for the reservation
+        insurance:
+          $ref: '#/components/schemas/Insurance'
+          description: Insurance details for the reservation
+        returnDetails:
+          $ref: '#/components/schemas/ReturnDetails'
+          description: Details about the return process (only present for completed reservations)
+        cancelReason:
+          type: string
+          example: Customer had a schedule conflict
+          description: Reason for cancellation (only present for cancelled reservations)
+        cancelledBy:
+          type: string
+          example: 507f1f77bcf86cd799439099
+          description: ID of user who cancelled the reservation
+        cancelledAt:
+          type: string
+          format: date-time
+          example: 2023-06-14T09:30:00Z
+          description: Date and time when the reservation was cancelled
+        confirmationCode:
+          type: string
+          example: ABC123DEF
+          description: Unique confirmation code for the reservation
+        createdAt:
+          type: string
+          format: date-time
+          example: 2023-06-10T14:30:00Z
+          description: Date and time when the reservation was created
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2023-06-14T09:30:00Z
+          description: Date and time when the reservation was last updated
+        durationDays:
+          type: integer
+          example: 3
+          description: Duration of the reservation in days
+        durationHours:
+          type: integer
+          example: 78
+          description: Duration of the reservation in hours
+        durationMinutes:
+          type: integer
+          example: 4680
+          description: Duration of the reservation in minutes
+        isActive:
+          type: boolean
+          example: false
+          description: Whether the reservation is currently active
+        isUpcoming:
+          type: boolean
+          example: true
+          description: Whether the reservation is upcoming (not yet started)
+        isCompleted:
+          type: boolean
+          example: false
+          description: Whether the reservation is completed
+        isCancelled:
+          type: boolean
+          example: false
+          description: Whether the reservation is cancelled
+        bikeCount:
+          type: integer
+          example: 2
+          description: Number of bikes included in the reservation
+        isModified:
+          type: boolean
+          example: false
+          description: Whether the reservation has been modified from its original state
+        formattedConfirmationCode:
+          type: string
+          example: ABC-123-DEF
+          description: Formatted confirmation code for display purposes
+        canCancel:
+          type: boolean
+          example: true
+          description: Whether the reservation can currently be cancelled
+        canModify:
+          type: boolean
+          example: true
+          description: Whether the reservation can currently be modified
+        servicesCost:
+          type: number
+          example: 10.99
+          description: Total cost of additional services
+      required:
+        - customerId
+        - bikes
+        - startStation
+        - startDate
+        - endDate
+        - status
+        - totalAmount
+        - paymentStatus
+        - createdBy
+
+    # Request schemas
+    CreateReservationRequest:
+      type: object
+      properties:
+        customerId:
+          type: string
+          example: 507f1f77bcf86cd799439099
+        bikes:
+          type: array
+          items:
+            type: string
+          example: ["507f1f77bcf86cd799439020", "507f1f77bcf86cd799439021"]
+        startStation:
+          type: string
+          example: 507f1f77bcf86cd799439030
+        endStation:
+          type: string
+          example: 507f1f77bcf86cd799439031
+        startDate:
+          type: string
+          format: date-time
+          example: 2023-06-15T10:00:00Z
+        endDate:
+          type: string
+          format: date-time
+          example: 2023-06-18T16:00:00Z
+        notes:
+          type: string
+          example: Customer requested early pickup
+        additionalServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalService'
+        specialRequirements:
+          type: string
+          example: Customer needs a bike with a child seat
+        insurance:
+          $ref: '#/components/schemas/Insurance'
+        createdBy:
+          type: string
+          example: 507f1f77bcf86cd799439099
+        weatherConditions:
+          $ref: '#/components/schemas/WeatherConditions'
+      required:
+        - customerId
+        - bikes
+        - startStation
+        - startDate
+        - endDate
+        - createdBy
+
+    UpdateReservationRequest:
+      type: object
+      properties:
+        bikes:
+          type: array
+          items:
+            type: string
+          example: ["507f1f77bcf86cd799439020", "507f1f77bcf86cd799439021"]
+        startStation:
+          type: string
+          example: 507f1f77bcf86cd799439030
+        endStation:
+          type: string
+          example: 507f1f77bcf86cd799439031
+        startDate:
+          type: string
+          format: date-time
+          example: 2023-06-15T10:00:00Z
+        endDate:
+          type: string
+          format: date-time
+          example: 2023-06-18T16:00:00Z
+        notes:
+          type: string
+          example: Updated pickup time
+        additionalServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalService'
+        specialRequirements:
+          type: string
+          example: Customer needs a bike with a child seat
+
+    CancelReservationRequest:
+      type: object
+      properties:
+        reason:
+          type: string
+          example: Customer had a schedule conflict
+      required:
+        - reason
+
+    UpdateStatusRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [pending, confirmed, active, completed, cancelled, no_show]
+          example: active
+        reason:
+          type: string
+          example: Customer picked up bikes
+      required:
+        - status
+
+    CompleteReservationRequest:
+      type: object
+      properties:
+        actualReturnDate:
+          type: string
+          format: date-time
+          example: 2023-06-18T16:30:00Z
+        condition:
+          type: string
+          enum: [excellent, good, fair, poor, damaged]
+          example: good
+        additionalCharges:
+          type: number
+          example: 0
+        notes:
+          type: string
+          example: Returned on time in good condition
+        processedBy:
+          type: string
+          example: 507f1f77bcf86cd799439099
+        damageReport:
+          type: string
+          example: No damage
+        returnLocation:
+          type: string
+          example: 507f1f77bcf86cd799439030
+        feedback:
+          type: object
+          properties:
+            rating:
+              type: integer
+              minimum: 1
+              maximum: 5
+              example: 5
+            comment:
+              type: string
+              example: Great experience, would rent again
+      required:
+        - actualReturnDate
+        - condition
+        - processedBy
+
+    AddServiceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          enum: [helmet rental, bike lock, child seat, basket, phone holder, bike lights, guided tour, gps tracker, roadside assistance, rain gear, storage, bike trailer, custom]
+          example: helmet rental
+        price:
+          type: number
+          example: 5.99
+        quantity:
+          type: integer
+          minimum: 1
+          example: 1
+        description:
+          type: string
+          example: Standard bike helmet
+        isOptional:
+          type: boolean
+          example: true
+      required:
+        - name
+        - price
+        - quantity
+
+    InsuranceRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [basic, standard, premium, theft, damage, liability, comprehensive]
+          example: standard
+        coverageAmount:
+          type: integer
+          example: 500
+        price:
+          type: number
+          example: 15.99
+        description:
+          type: string
+          example: Standard coverage for minor damage and theft
+        termsAccepted:
+          type: boolean
+          example: true
+        deductible:
+          type: number
+          example: 50
+      required:
+        - type
+        - coverageAmount
+        - price
+        - termsAccepted
+
+    DiscountRequest:
+      type: object
+      properties:
+        code:
+          type: string
+          example: SUMMER2023
+        amount:
+          type: number
+          example: 15
+      required:
+        - code
+        - amount
+
+    # Response schemas
+    ReservationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/Reservation'
+
+    ReservationsArrayResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reservation'
+
+    PaginatedReservationsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reservation'
+        metadata:
+          type: object
+          properties:
+            totalItems:
+              type: integer
+              example: 50
+            totalPages:
+              type: integer
+              example: 5
+            currentPage:
+              type: integer
+              example: 1
+            itemsPerPage:
+              type: integer
+              example: 10
+            hasNextPage:
+              type: boolean
+              example: true
+            hasPrevPage:
+              type: boolean
+              example: false
+
+    AvailabilityResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            available:
+              type: boolean
+              example: true
+            bikeIds:
+              type: array
+              items:
+                type: string
+              example: ["507f1f77bcf86cd799439020", "507f1f77bcf86cd799439021"]
+            startDate:
+              type: string
+              format: date-time
+              example: 2023-06-15T10:00:00Z
+            endDate:
+              type: string
+              format: date-time
+              example: 2023-06-18T16:00:00Z
+            conflicts:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: 507f1f77bcf86cd799439011
+                  startDate:
+                    type: string
+                    format: date-time
+                    example: 2023-06-16T10:00:00Z
+                  endDate:
+                    type: string
+                    format: date-time
+                    example: 2023-06-17T16:00:00Z
+                  bikes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          example: 507f1f77bcf86cd799439020
+                        name:
+                          type: string
+                          example: Mountain Explorer X4
+                  status:
+                    type: string
+                    example: confirmed

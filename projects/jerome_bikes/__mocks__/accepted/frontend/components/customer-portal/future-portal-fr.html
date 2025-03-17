@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jerome Bikes - Système de Réservation Intelligent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="future-portal.css">
+</head>
+<body data-theme="light">
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo">
+        <div class="logo-icon">J</div>
+        <span class="logo-text">Jerome Bikes</span>
+      </div>
+      <div class="header-right">
+        <nav class="top-nav">
+          <ul class="nav-links">
+            <li><a href="#" class="active">Accueil</a></li>
+            <li><a href="bike-listing/bikes-listing-fr.html">Vélos</a></li>
+            <li><a href="#">Emplacements</a></li>
+            <li><a href="#">Circuits</a></li>
+            <li><a href="#">Tarifs</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-toggle" id="themeToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <button class="language-toggle">FR</button>
+          <a href="#" class="user-profile">
+            <div class="avatar">JD</div>
+            <span class="username">Jean Dupont</span>
+          </a>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>Réservation Intelligente</h1>
+        <p>Notre système alimenté par l'IA rend la réservation du vélo parfait sans effort. Dites-nous simplement quand et où.</p>
+        <a href="#smart-booking" class="cta-button">Réservation Rapide</a>
+      </div>
+      <div class="hero-image">
+        <img src="../../img/hero_image.jpg" alt="Système de Réservation Intelligente">
+      </div>
+    </section>
+
+    <section class="smart-booking-section" id="smart-booking">
+      <div class="section-header">
+        <h2>Réservation Intelligente</h2>
+        <p>Dites-nous simplement où et quand. Notre IA s'occupe du reste.</p>
+      </div>
+
+      <div class="smart-booking-container">
+        <div class="smart-booking-input">
+          <div class="input-with-mic">
+            <input type="text" id="smartInput" placeholder="Je veux faire du VTT au Parc Central ce week-end...">
+            <button class="mic-button" id="micButton">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="quick-suggestions">
+            <button class="suggestion-chip" data-text="VTT le week-end prochain">VTT</button>
+            <button class="suggestion-chip" data-text="Vélo de route demain pour 3 heures">Vélo de route</button>
+            <button class="suggestion-chip" data-text="Vélo électrique cet après-midi">Vélo électrique</button>
+            <button class="suggestion-chip" data-text="Sortie familiale avec 4 vélos">Sortie familiale</button>
+          </div>
+          <button class="primary-button" id="smartSearch">Trouver Mon Vélo Parfait</button>
+        </div>
+
+        <div class="or-divider">
+          <span>ou utilisez le sélecteur rapide</span>
+        </div>
+
+        <div class="quick-selector">
+          <div class="selector-row">
+            <div class="selector-group">
+              <label>Quand ?</label>
+              <div class="date-quick-select">
+                <button class="date-option active" data-value="today">Aujourd'hui</button>
+                <button class="date-option" data-value="tomorrow">Demain</button>
+                <button class="date-option" data-value="weekend">Week-end</button>
+                <button class="date-option" data-value="custom">Personnalisé</button>
+              </div>
+              <input type="date" id="quickDate" class="hidden">
+            </div>
+            
+            <div class="selector-group">
+              <label>Combien de temps ?</label>
+              <div class="duration-quick-select">
+                <button class="duration-option active" data-value="2h">2h</button>
+                <button class="duration-option" data-value="4h">4h</button>
+                <button class="duration-option" data-value="day">Journée</button>
+                <button class="duration-option" data-value="custom">Personnalisé</button>
+              </div>
+              <select id="quickDuration" class="hidden">
+                <option value="1">1 heure</option>
+                <option value="2">2 heures</option>
+                <option value="3">3 heures</option>
+                <option value="4">4 heures</option>
+                <option value="6">6 heures</option>
+                <option value="8">8 heures</option>
+                <option value="24">1 jour</option>
+                <option value="48">2 jours</option>
+                <option value="72">3 jours</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="selector-row">
+            <div class="selector-group">
+              <label>Quel type ?</label>
+              <div class="bike-type-select">
+                <button class="bike-type-option active" data-value="any">
+                  <span class="icon">🚲</span>
+                  <span>Tous</span>
+                </button>
+                <button class="bike-type-option" data-value="road">
+                  <span class="icon">🏎️</span>
+                  <span>Route</span>
+                </button>
+                <button class="bike-type-option" data-value="mountain">
+                  <span class="icon">⛰️</span>
+                  <span>VTT</span>
+                </button>
+                <button class="bike-type-option" data-value="electric">
+                  <span class="icon">⚡</span>
+                  <span>Électrique</span>
+                </button>
+              </div>
+            </div>
+            
+            <div class="selector-group">
+              <label>Où ?</label>
+              <div class="location-quick-select">
+                <button class="location-option active" data-value="nearest">
+                  <span class="icon">📍</span>
+                  <span>Le plus proche</span>
+                </button>
+                <button class="location-option" data-value="downtown">
+                  <span class="icon">🏙️</span>
+                  <span>Centre-ville</span>
+                </button>
+                <button class="location-option" data-value="park">
+                  <span class="icon">🌳</span>
+                  <span>Parc Central</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <button class="primary-button" id="quickSearch">Afficher les Vélos Disponibles</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="ai-recommendations" id="aiRecommendations" style="display: none;">
+      <div class="section-header">
+        <h2>Recommandations Intelligentes</h2>
+        <p>Selon vos préférences, nous avons trouvé ces correspondances parfaites :</p>
+      </div>
+      
+      <div class="recommendation-container">
+        <div class="recommendation-card primary">
+          <div class="rec-header">
+            <span class="rec-badge">Correspondance Parfaite</span>
+            <span class="match-percentage">98%</span>
+          </div>
+          <div class="rec-image">
+            <img src="../../img/card3.webp" alt="Trek Domane SL 7">
+          </div>
+          <div class="rec-content">
+            <h3>Trek Domane SL 7</h3>
+            <p class="rec-description">Vélo de route premium, parfait pour votre balade au Parc Central ce week-end.</p>
+            <div class="rec-details">
+              <div class="detail-item">
+                <span class="detail-icon">🏁</span>
+                <span>Vélo de Route</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-icon">⚖️</span>
+                <span>8,2 kg</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-icon">⚙️</span>
+                <span>Shimano Ultegra</span>
+              </div>
+            </div>
+            <div class="rec-extras">
+              <p>Emplacement centre-ville, à 5 min de votre hôtel</p>
+              <p>Disponible tout le week-end</p>
+            </div>
+            <div class="rec-price">
+              <div class="price-display">
+                <span class="amount">95€</span>
+                <span class="period">/jour</span>
+              </div>
+              <div class="savings-badge">Choix Premium</div>
+            </div>
+            <button class="primary-button reserve-button" data-bike-id="B-2025-001">Réserver Maintenant</button>
+          </div>
+        </div>
+        
+        <div class="alt-recommendations">
+          <div class="recommendation-card secondary">
+            <div class="rec-header">
+              <span class="rec-badge">Bon Rapport Qualité-Prix</span>
+              <span class="match-percentage">92%</span>
+            </div>
+            <div class="rec-image">
+              <img src="../../img/card4.webp" alt="Specialized Allez">
+            </div>
+            <div class="rec-content">
+              <h3>Specialized Allez</h3>
+              <p class="rec-type">Vélo de Route</p>
+              <div class="rec-details-mini">
+                <span>9,3 kg</span> • 
+                <span>Shimano 105</span> • 
+                <span>Centre-ville</span>
+              </div>
+              <div class="rec-price">
+                <div class="price-display">
+                  <span class="amount">70€</span>
+                  <span class="period">/jour</span>
+                </div>
+                <div class="savings-badge">Économisez 26%</div>
+              </div>
+              <button class="secondary-button reserve-button" data-bike-id="B-2025-085">Réserver</button>
+            </div>
+          </div>
+          
+          <div class="recommendation-card secondary">
+            <div class="rec-header">
+              <span class="rec-badge">Premium</span>
+              <span class="match-percentage">85%</span>
+            </div>
+            <div class="rec-image">
+              <img src="../../img/card5.webp" alt="Specialized Turbo Vado">
+            </div>
+            <div class="rec-content">
+              <h3>Specialized Turbo</h3>
+              <p class="rec-type">Vélo Électrique</p>
+              <div class="rec-details-mini">
+                <span>23,8 kg</span> • 
+                <span>Moteur 250W</span> • 
+                <span>Parc Central</span>
+              </div>
+              <div class="rec-price">
+                <div class="price-display">
+                  <span class="amount">85€</span>
+                  <span class="period">/jour</span>
+                </div>
+                <div class="savings-badge">Conduite Sans Effort</div>
+              </div>
+              <button class="secondary-button reserve-button" data-bike-id="B-2025-015">Réserver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="recommendation-extras">
+        <h3>Complétez Votre Expérience</h3>
+        <div class="extras-grid">
+          <div class="extra-item">
+            <div class="extra-image">
+              <img src="../../img/cross1.png" alt="Itinéraires GPS">
+            </div>
+            <div class="extra-content">
+              <h4>Itinéraires GPS Premium</h4>
+              <p>Découvrez les meilleurs circuits panoramiques autour du Parc Central</p>
+              <div class="extra-price">10€</div>
+              <button class="add-extra" data-extra="gps-routes">
+                <span class="plus-icon">+</span> Ajouter
+              </button>
+            </div>
+          </div>
+          
+          <div class="extra-item">
+            <div class="extra-image">
+              <img src="../../img/cross2.png" alt="Kit de Cyclisme Pro">
+            </div>
+            <div class="extra-content">
+              <h4>Kit de Cyclisme Pro</h4>
+              <p>Maillot, cuissard, gants et chaussettes</p>
+              <div class="extra-price">35€</div>
+              <button class="add-extra" data-extra="pro-kit">
+                <span class="plus-icon">+</span> Ajouter
+              </button>
+            </div>
+          </div>
+          
+          <div class="extra-item">
+            <div class="extra-image">
+              <img src="../../img/cross3.png" alt="Guide Local">
+            </div>
+            <div class="extra-content">
+              <h4>Guide Local (2h)</h4>
+              <p>Guide personnel pour vous montrer les meilleurs endroits</p>
+              <div class="extra-price">45€</div>
+              <button class="add-extra" data-extra="local-guide">
+                <span class="plus-icon">+</span> Ajouter
+              </button>
+            </div>
+          </div>
+          
+          <div class="extra-item">
+            <div class="extra-image">
+              <img src="../../img/cross4.png" alt="Panier Pique-nique">
+            </div>
+            <div class="extra-content">
+              <h4>Panier Pique-nique Gourmet</h4>
+              <p>Spécialités locales pour votre pause vélo</p>
+              <div class="extra-price">28€</div>
+              <button class="add-extra" data-extra="picnic">
+                <span class="plus-icon">+</span> Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="instant-checkout" id="instantCheckout" style="display: none;">
+      <div class="section-header">
+        <h2>Paiement en Un Clic</h2>
+        <p>Votre vélo est réservé et prêt à partir !</p>
+      </div>
+      
+      <div class="checkout-container">
+        <div class="checkout-content">
+          <div class="bike-summary">
+            <div class="bike-image">
+              <img src="../../img/card2.webp" alt="Trek Domane SL 7" id="checkoutBikeImage">
+            </div>
+            <div class="bike-details">
+              <h3 id="checkoutBikeModel">Trek Domane SL 7</h3>
+              <p id="checkoutBikeType">Vélo de Route</p>
+              <div class="rental-details">
+                <div class="detail-item">
+                  <span class="detail-icon">📅</span>
+                  <span id="checkoutDates">15-17 mars 2025</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">📍</span>
+                  <span id="checkoutLocation">Station Centre-ville</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">⏱️</span>
+                  <span id="checkoutPickupTime">Prêt dans 15 minutes</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checkout-summary">
+            <h4>Résumé de la Réservation</h4>
+            <div class="summary-items">
+              <div class="summary-item">
+                <span class="item-label">Trek Domane SL 7 (2 jours)</span>
+                <span class="item-price">190,00€</span>
+              </div>
+              <div class="summary-item extras-list" id="checkoutExtras">
+                <!-- Rempli dynamiquement -->
+              </div>
+              <div class="summary-item subtotal">
+                <span class="item-label">Sous-total</span>
+                <span class="item-price" id="checkoutSubtotal">190,00€</span>
+              </div>
+              <div class="summary-item">
+                <span class="item-label">Assurance (recommandée)</span>
+                <span class="item-price">15,00€</span>
+              </div>
+              <div class="summary-item total">
+                <span class="item-label">Total</span>
+                <span class="item-price" id="checkoutTotal">205,00€</span>
+              </div>
+            </div>
+            
+            <div class="payment-options">
+              <div class="saved-payments">
+                <div class="payment-option selected">
+                  <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                      <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                  </div>
+                  <div class="card-details">
+                    <div class="card-name">Visa se terminant par 4242</div>
+                    <div class="card-expiry">Expire 12/25</div>
+                  </div>
+                  <div class="card-selection">
+                    <div class="selected-indicator"></div>
+                  </div>
+                </div>
+                <button class="add-payment-method">+ Ajouter un Mode de Paiement</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="checkout-actions">
+          <div class="express-checkout">
+            <button class="express-checkout-button" id="oneClickCheckout">
+              <span class="button-text">Paiement en Un Clic</span>
+              <span class="button-price">205,00€</span>
+            </button>
+            <p class="express-info">Votre vélo sera prêt à être récupéré dans 15 minutes</p>
+          </div>
+          <div class="additional-actions">
+            <button class="text-button" id="saveForLater">Enregistrer pour plus tard</button>
+            <button class="text-button" id="backToRecommendations">Modifier la sélection</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="reservation-confirmed" id="reservationConfirmed" style="display: none;">
+      <div class="confirmation-container">
+        <div class="success-animation">
+          <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+        </div>
+        
+        <h2>Votre vélo est confirmé !</h2>
+        <p class="confirmation-message">Nous avons envoyé une confirmation à votre email et téléphone.</p>
+        
+        <div class="qr-container">
+          <div class="qr-code">
+            <img src="../../results/1.png" alt="Code QR">
+          </div>
+          <p class="qr-info">Scannez ce code à la station pour déverrouiller votre vélo</p>
+        </div>
+        
+        <div class="reservation-details">
+          <div class="detail-card">
+            <div class="detail-icon">📍</div>
+            <div class="detail-info">
+              <h4>Lieu de Récupération</h4>
+              <p id="confirmedLocation">Station Centre-ville</p>
+              <p>123 Rue Principale, Paris</p>
+              <a href="#" class="detail-action">Obtenir l'Itinéraire</a>
+            </div>
+          </div>
+          
+          <div class="detail-card">
+            <div class="detail-icon">🚲</div>
+            <div class="detail-info">
+              <h4>Votre Vélo</h4>
+              <p id="confirmedBike">Trek Domane SL 7</p>
+              <p>Vélo #B-2025-001</p>
+              <a href="#" class="detail-action">Voir les Détails</a>
+            </div>
+          </div>
+          
+          <div class="detail-card">
+            <div class="detail-icon">📅</div>
+            <div class="detail-info">
+              <h4>Période de Location</h4>
+              <p id="confirmedDates">15-17 mars 2025</p>
+              <p id="confirmedTimes">Récupération: 10h00</p>
+              <a href="#" class="detail-action">Ajouter au Calendrier</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="weather-forecast">
+          <h4>Prévisions Météo du Week-end</h4>
+          <div class="forecast-days">
+            <div class="forecast-day">
+              <div class="day-name">Samedi</div>
+              <div class="weather-icon">☀️</div>
+              <div class="temperature">24°C</div>
+              <div class="conditions">Ensoleillé</div>
+            </div>
+            <div class="forecast-day">
+              <div class="day-name">Dimanche</div>
+              <div class="weather-icon">🌤️</div>
+              <div class="temperature">22°C</div>
+              <div class="conditions">Partiellement Nuageux</div>
+            </div>
+          </div>
+          <p class="weather-tip">Temps parfait pour rouler ! N'oubliez pas la crème solaire.</p>
+        </div>
+        
+        <div class="next-steps">
+          <h4>Prochaines Étapes</h4>
+          <div class="steps-grid">
+            <div class="step-item">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h5>Arrivez à la Station</h5>
+                <p>Présentez-vous à l'heure choisie</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h5>Scannez le Code QR</h5>
+                <p>Utilisez le kiosque pour scanner votre code</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h5>Prenez Votre Vélo</h5>
+                <p>Votre vélo sera automatiquement déverrouillé</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h5>Profitez de Votre Balade</h5>
+                <p>Retournez à n'importe quelle station à la fin</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="share-experience">
+          <h4>Partagez Votre Réservation</h4>
+          <div class="share-buttons">
+            <button class="share-button facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+              Partager
+            </button>
+            <button class="share-button twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+              Tweet
+            </button>
+            <button class="share-button email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              Email
+            </button>
+          </div>
+        </div>
+        
+        <div class="confirmation-actions">
+          <button class="primary-button" id="viewBooking">Voir Ma Réservation</button>
+          <button class="secondary-button" id="bookAnother">Réserver un Autre Vélo</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience-features">
+      <div class="section-header">
+        <h2>Pourquoi les Réservations Intelligentes ?</h2>
+        <p>Découvrez les avantages de notre système de réservation alimenté par l'IA</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Ultra Rapide</h3>
+          <p>Réservez votre vélo parfait en moins de 30 secondes grâce à notre système d'IA prédictive.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Correspondance Parfaite</h3>
+          <p>Notre moteur de recommandation apprend vos préférences pour de meilleures correspondances à chaque fois.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Réservations Flexibles</h3>
+          <p>Modifiez ou annulez votre réservation jusqu'à 1 heure avant votre balade sans frais.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Récupération Sans Contact</h3>
+          <p>Scannez simplement votre code QR à la station et votre vélo se déverrouille automatiquement.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🌦️</div>
+          <h3>Intelligence Météo</h3>
+          <p>Obtenez des prévisions météo en temps réel et des suggestions de replanification intelligentes.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🔔</div>
+          <h3>Notifications Intelligentes</h3>
+          <p>Recevez des rappels opportuns et des mises à jour importantes concernant votre réservation.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="testimonials-section">
+      <div class="section-header">
+        <h2>Ce que Disent les Cyclistes</h2>
+        <p>Écoutez ce que disent les clients qui ont utilisé notre système de réservation intelligent</p>
+      </div>
+      
+      <div class="testimonials-carousel">
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+          </div>
+          <div class="testimonial-icons">
+            <span class="icon-badge"><i class="fas fa-stopwatch"></i> Rapide</span>
+            <span class="icon-badge"><i class="fas fa-qrcode"></i> Sans contact</span>
+            <span class="icon-badge"><i class="fas fa-bullseye"></i> Précis</span>
+          </div>
+          <p class="testimonial-text">"J'ai réservé un vélo de route premium en moins de 30 secondes. Les recommandations étaient parfaites et la récupération par code QR était si pratique !"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-green">
+              <span>MB</span>
+            </div>
+            <div class="author-info">
+              <div class="author-name">Michel B.</div>
+              <div class="author-detail"><i class="fas fa-bicycle"></i> Cycliste du Week-end</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+          </div>
+          <div class="testimonial-icons">
+            <span class="icon-badge"><i class="fas fa-cloud-sun-rain"></i> Météo</span>
+            <span class="icon-badge"><i class="fas fa-exchange-alt"></i> Flexible</span>
+            <span class="icon-badge"><i class="fas fa-mountain"></i> Aventure</span>
+          </div>
+          <p class="testimonial-text">"La fonction de prévision météo a sauvé mon voyage ! Elle m'a suggéré d'avancer ma réservation d'un jour pour éviter la pluie, et j'ai eu un temps parfait pour rouler."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-blue">
+              <span>SR</span>
+            </div>
+            <div class="author-info">
+              <div class="author-name">Sophie R.</div>
+              <div class="author-detail"><i class="fas fa-mountain"></i> Passionnée de VTT</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+          </div>
+          <div class="testimonial-icons">
+            <span class="icon-badge"><i class="fas fa-map-marked-alt"></i> Guide</span>
+            <span class="icon-badge"><i class="fas fa-utensils"></i> Gastronomie</span>
+            <span class="icon-badge"><i class="fas fa-heart"></i> Spécial</span>
+          </div>
+          <p class="testimonial-text">"Ajouter le guide local et le panier pique-nique a rendu notre balade d'anniversaire si spéciale. Jerome Bikes a pensé à tout pour en faire une journée parfaite !"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-orange">
+              <span>D&K</span>
+            </div>
+            <div class="author-info">
+              <div class="author-name">David & Katia</div>
+              <div class="author-detail"><i class="fas fa-glass-cheers"></i> Couple en Anniversaire</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <div class="logo-icon">J</div>
+        <span class="logo-text">Jerome Bikes</span>
+      </div>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Explorer</h3>
+          <ul>
+            <li><a href="#">Vélos</a></li>
+            <li><a href="#">Emplacements</a></li>
+            <li><a href="#">Circuits</a></li>
+            <li><a href="#">Tarifs</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Service Client</h3>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Nous Contacter</a></li>
+            <li><a href="#">Conditions Générales</a></li>
+            <li><a href="#">Politique de Confidentialité</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Connectez-vous avec Nous</h3>
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="#" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="contact-info">
+            <p>Email: info@jeromebikes.com</p>
+            <p>Téléphone: +33 (0)1 23 45 67 89</p>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 Jerome Bikes. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="future-portal-fr.js"></script>
+  <script src="../../scripts/additional-fixes.js"></script>
+</body>
+</html>

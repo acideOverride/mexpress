@@ -1,0 +1,295 @@
+# Common Swagger Schema Definitions
+# Reusable components for API documentation
+
+components:
+  schemas:
+    # Success Response Schema
+    ApiSuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          description: Response data (varies by endpoint)
+      required:
+        - success
+
+    # Error Response Schema
+    ApiErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Error message
+            code:
+              type: integer
+              format: int32
+              description: HTTP status code
+            details:
+              type: object
+              description: Additional error details (optional)
+      required:
+        - success
+        - error
+  
+  responses:
+    # Common Error Responses
+    BadRequestError:
+      description: Bad request error due to invalid input
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid input parameters
+                  code:
+                    type: integer
+                    example: 400
+                  details:
+                    type: object
+                    example:
+                      field: "startDate"
+                      issue: "Must be a valid date in ISO format"
+    
+    UnauthorizedError:
+      description: Authentication error due to missing or invalid credentials
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Authentication required
+                  code:
+                    type: integer
+                    example: 401
+    
+    ForbiddenError:
+      description: Authorization error due to insufficient permissions
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Insufficient permissions
+                  code:
+                    type: integer
+                    example: 403
+    
+    NotFoundError:
+      description: Resource not found error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Resource not found
+                  code:
+                    type: integer
+                    example: 404
+    
+    ConflictError:
+      description: Conflict with current state of the resource
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Resource conflict
+                  code:
+                    type: integer
+                    example: 409
+                  details:
+                    type: object
+                    example:
+                      conflict: "Bike already reserved for this time period"
+    
+    ValidationError:
+      description: Validation error for input data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Validation failed
+                  code:
+                    type: integer
+                    example: 422
+                  details:
+                    type: object
+                    example:
+                      errors: [
+                        {
+                          "field": "email",
+                          "message": "Must be a valid email address"
+                        },
+                        {
+                          "field": "password",
+                          "message": "Must be at least 8 characters long"
+                        }
+                      ]
+    
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error
+                  code:
+                    type: integer
+                    example: 500
+
+    # Pagination Metadata Schema
+    PaginationMetadata:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          example: 1
+          description: Current page number
+        itemsPerPage:
+          type: integer
+          example: 10
+          description: Number of items per page
+        totalItems:
+          type: integer
+          example: 100
+          description: Total number of items
+        totalPages:
+          type: integer
+          example: 10
+          description: Total number of pages
+        hasNextPage:
+          type: boolean
+          example: true
+          description: Whether there is a next page
+        hasPrevPage:
+          type: boolean
+          example: false
+          description: Whether there is a previous page
+      required:
+        - currentPage
+        - itemsPerPage
+        - totalItems
+        - totalPages
+        - hasNextPage
+        - hasPrevPage
+
+    # Paginated Response Schema
+    PaginatedResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            type: object
+            description: Response data items (varies by endpoint)
+        metadata:
+          $ref: '#/components/schemas/PaginationMetadata'
+      required:
+        - success
+        - data
+        - metadata
+
+    # ID Parameter Schema
+    IdParam:
+      name: id
+      in: path
+      description: Resource ID
+      required: true
+      schema:
+        type: string
+        pattern: '^[0-9a-fA-F]{24}$'
+        example: '507f1f77bcf86cd799439011'
+
+    # Pagination Query Parameters
+    PaginationQuery:
+      - name: page
+        in: query
+        description: Page number (starts from 1)
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: limit
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: sort
+        in: query
+        description: Sort field with optional direction (e.g., name:asc, createdAt:desc)
+        schema:
+          type: string
+          example: 'createdAt:desc'

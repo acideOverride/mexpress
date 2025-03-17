@@ -1,0 +1,1453 @@
+openapi: 3.0.0
+info:
+  title: Maintenance API
+  description: API endpoints for bike maintenance management
+  version: 1.0.0
+
+paths:
+  /maintenance:
+    get:
+      summary: Get all maintenance records
+      description: Returns a paginated list of maintenance records with optional filters
+      tags:
+        - Maintenance
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Page number
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+          description: Items per page
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [SCHEDULED, IN_PROGRESS, COMPLETED, CANCELLED, POSTPONED]
+          description: Filter by maintenance status
+        - name: maintenanceType
+          in: query
+          schema:
+            type: string
+            enum: [ROUTINE, REPAIR, INSPECTION, CLEANING, UPGRADE]
+          description: Filter by maintenance type
+        - name: bikeId
+          in: query
+          schema:
+            type: string
+            format: objectid
+          description: Filter by bike ID
+        - name: technician
+          in: query
+          schema:
+            type: string
+            format: objectid
+          description: Filter by technician ID
+        - name: fromDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Filter by scheduled date from
+        - name: toDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Filter by scheduled date to
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    post:
+      summary: Create a new maintenance record
+      description: Creates a new maintenance record
+      tags:
+        - Maintenance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaintenanceCreate'
+      responses:
+        '201':
+          description: Maintenance created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceSingleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  
+  /maintenance/{id}:
+    get:
+      summary: Get maintenance by ID
+      description: Returns a single maintenance record by ID
+      tags:
+        - Maintenance
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Maintenance ID
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceSingleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    put:
+      summary: Update maintenance
+      description: Updates an existing maintenance record
+      tags:
+        - Maintenance
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Maintenance ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaintenanceUpdate'
+      responses:
+        '200':
+          description: Maintenance updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceSingleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    delete:
+      summary: Delete maintenance
+      description: Deletes a maintenance record
+      tags:
+        - Maintenance
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Maintenance ID
+      responses:
+        '200':
+          description: Maintenance deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                      message:
+                        type: string
+                        example: Maintenance deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                error:
+                  message: Cannot delete maintenance in progress
+                  code: 409
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/{id}/status:
+    patch:
+      summary: Update maintenance status
+      description: Updates the status of a maintenance record
+      tags:
+        - Maintenance Status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Maintenance ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  enum: [SCHEDULED, IN_PROGRESS, COMPLETED, CANCELLED, POSTPONED]
+                  description: New status
+                completedDate:
+                  type: string
+                  format: date-time
+                  description: Completion date (required for COMPLETED status)
+                notes:
+                  type: string
+                  description: Notes about the status change
+                laborHours:
+                  type: number
+                  minimum: 0
+                  description: Hours spent on maintenance
+                mileageAfter:
+                  type: integer
+                  minimum: 0
+                  description: Bike mileage after maintenance
+                technician:
+                  type: string
+                  format: objectid
+                  description: Technician who performed the maintenance
+      responses:
+        '200':
+          description: Status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceSingleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/{id}/complete:
+    patch:
+      summary: Complete maintenance
+      description: Marks a maintenance record as completed
+      tags:
+        - Maintenance Status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Maintenance ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                completedDate:
+                  type: string
+                  format: date-time
+                  description: Completion date
+                laborHours:
+                  type: number
+                  minimum: 0
+                  description: Hours spent on maintenance
+                mileageAfter:
+                  type: integer
+                  minimum: 0
+                  description: Bike mileage after maintenance
+                notes:
+                  type: string
+                  description: Notes about the completion
+                technician:
+                  type: string
+                  format: objectid
+                  description: Technician who performed the maintenance
+                recommendations:
+                  type: string
+                  description: Recommendations for future maintenance
+                nextMaintenanceDate:
+                  type: string
+                  format: date-time
+                  description: Recommended date for next maintenance
+                nextMaintenanceType:
+                  type: string
+                  enum: [ROUTINE, REPAIR, INSPECTION, CLEANING, UPGRADE]
+                  description: Recommended type for next maintenance
+      responses:
+        '200':
+          description: Maintenance completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceSingleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/{id}/cancel:
+    patch:
+      summary: Cancel maintenance
+      description: Cancels a scheduled maintenance record
+      tags:
+        - Maintenance Status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Maintenance ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notes:
+                  type: string
+                  description: Notes about the cancellation
+      responses:
+        '200':
+          description: Maintenance cancelled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceSingleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/{id}/postpone:
+    patch:
+      summary: Postpone maintenance
+      description: Postpones a scheduled maintenance record
+      tags:
+        - Maintenance Status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Maintenance ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - newDate
+              properties:
+                newDate:
+                  type: string
+                  format: date-time
+                  description: New scheduled date
+                notes:
+                  type: string
+                  description: Notes about the postponement
+      responses:
+        '200':
+          description: Maintenance postponed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceSingleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/{id}/issues:
+    post:
+      summary: Add issue to maintenance
+      description: Adds a new issue to a maintenance record
+      tags:
+        - Maintenance Issues
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Maintenance ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Issue'
+      responses:
+        '200':
+          description: Issue added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceSingleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/{id}/issues/{issueIndex}/resolve:
+    patch:
+      summary: Resolve maintenance issue
+      description: Resolves an issue in a maintenance record
+      tags:
+        - Maintenance Issues
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Maintenance ID
+        - name: issueIndex
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 0
+          description: Index of the issue to resolve
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - resolutionDetails
+                - resolvedBy
+              properties:
+                resolutionDetails:
+                  type: string
+                  description: Details about how the issue was resolved
+                resolvedBy:
+                  type: string
+                  format: objectid
+                  description: ID of the user who resolved the issue
+                resolvedDate:
+                  type: string
+                  format: date-time
+                  description: Date when the issue was resolved
+      responses:
+        '200':
+          description: Issue resolved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceSingleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/{id}/parts:
+    post:
+      summary: Add part to maintenance
+      description: Adds a new part to a maintenance record
+      tags:
+        - Maintenance Parts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Maintenance ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Part'
+      responses:
+        '200':
+          description: Part added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceSingleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/{id}/parts/{partIndex}:
+    patch:
+      summary: Update maintenance part
+      description: Updates a part in a maintenance record
+      tags:
+        - Maintenance Parts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Maintenance ID
+        - name: partIndex
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 0
+          description: Index of the part to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Part name
+                partNumber:
+                  type: string
+                  description: Part number
+                quantity:
+                  type: integer
+                  minimum: 1
+                  description: Quantity of parts
+                cost:
+                  type: number
+                  minimum: 0
+                  description: Cost per part
+                category:
+                  type: string
+                  enum: [brake, chain, derailleur, wheel, tire, tube, suspension, frame, handlebar, seat, pedal, gear, electronic, accessory, other]
+                  description: Part category
+                isWarranty:
+                  type: boolean
+                  description: Whether the part is under warranty
+                warrantyDetails:
+                  type: string
+                  description: Warranty details
+      responses:
+        '200':
+          description: Part updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceSingleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/upcoming:
+    get:
+      summary: Get upcoming maintenance
+      description: Returns a list of upcoming maintenance records
+      tags:
+        - Maintenance Reporting
+      parameters:
+        - name: days
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 90
+            default: 7
+          description: Number of days to look ahead
+        - name: bikeId
+          in: query
+          schema:
+            type: string
+            format: objectid
+          description: Filter by bike ID
+        - name: maintenanceType
+          in: query
+          schema:
+            type: string
+            enum: [ROUTINE, REPAIR, INSPECTION, CLEANING, UPGRADE]
+          description: Filter by maintenance type
+        - name: technician
+          in: query
+          schema:
+            type: string
+            format: objectid
+          description: Filter by technician ID
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MaintenanceRecord'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/overdue:
+    get:
+      summary: Get overdue maintenance
+      description: Returns a list of overdue maintenance records
+      tags:
+        - Maintenance Reporting
+      parameters:
+        - name: bikeId
+          in: query
+          schema:
+            type: string
+            format: objectid
+          description: Filter by bike ID
+        - name: maintenanceType
+          in: query
+          schema:
+            type: string
+            enum: [ROUTINE, REPAIR, INSPECTION, CLEANING, UPGRADE]
+          description: Filter by maintenance type
+        - name: technician
+          in: query
+          schema:
+            type: string
+            format: objectid
+          description: Filter by technician ID
+        - name: minDaysOverdue
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+          description: Minimum days overdue
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MaintenanceRecord'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/bike/{bikeId}:
+    get:
+      summary: Get maintenance by bike
+      description: Returns a list of maintenance records for a specific bike
+      tags:
+        - Maintenance Reporting
+      parameters:
+        - name: bikeId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Bike ID
+        - name: status
+          in: query
+          schema:
+            type: string
+            description: Comma-separated list of statuses or single status
+          description: Filter by maintenance status
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+          description: Maximum number of records to return
+        - name: includeCompleted
+          in: query
+          schema:
+            type: boolean
+            default: true
+          description: Whether to include completed maintenance
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MaintenanceRecord'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/technician/{technicianId}:
+    get:
+      summary: Get maintenance by technician
+      description: Returns a list of maintenance records assigned to a specific technician
+      tags:
+        - Maintenance Reporting
+      parameters:
+        - name: technicianId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: objectid
+          description: Technician ID
+        - name: status
+          in: query
+          schema:
+            type: string
+            description: Comma-separated list of statuses or single status
+          description: Filter by maintenance status
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+          description: Maximum number of records to return
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Filter by scheduled date from
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Filter by scheduled date to
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MaintenanceRecord'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /maintenance/statistics:
+    get:
+      summary: Get maintenance statistics
+      description: Returns statistical data about maintenance records
+      tags:
+        - Maintenance Reporting
+      parameters:
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Filter by date from
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Filter by date to
+        - name: bikeId
+          in: query
+          schema:
+            type: string
+            format: objectid
+          description: Filter by bike ID
+        - name: maintenanceType
+          in: query
+          schema:
+            type: string
+            enum: [ROUTINE, REPAIR, INSPECTION, CLEANING, UPGRADE]
+          description: Filter by maintenance type
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      summary:
+                        $ref: '#/components/schemas/MaintenanceStatsSummary'
+                      monthly:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/MaintenanceMonthlyStats'
+                      byType:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/MaintenanceTypeStats'
+                      topBikes:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/TopBikeStats'
+                      issueCategories:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/IssueCategoryStats'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  schemas:
+    MaintenanceCreate:
+      type: object
+      required:
+        - bikeId
+        - maintenanceType
+        - scheduledDate
+        - description
+      properties:
+        bikeId:
+          type: string
+          format: objectid
+          description: Bike reference
+        maintenanceType:
+          type: string
+          enum: [ROUTINE, REPAIR, INSPECTION, CLEANING, UPGRADE]
+          description: Type of maintenance
+        scheduledDate:
+          type: string
+          format: date-time
+          description: Scheduled date for maintenance
+        description:
+          type: string
+          minLength: 10
+          maxLength: 1000
+          description: Maintenance description
+        technician:
+          type: string
+          format: objectid
+          description: Assigned technician
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+          description: Issues to address (required for REPAIR type)
+        priority:
+          type: string
+          enum: [low, medium, high, critical]
+          default: medium
+          description: Maintenance priority
+
+    MaintenanceUpdate:
+      type: object
+      properties:
+        maintenanceType:
+          type: string
+          enum: [ROUTINE, REPAIR, INSPECTION, CLEANING, UPGRADE]
+          description: Type of maintenance
+        scheduledDate:
+          type: string
+          format: date-time
+          description: Scheduled date for maintenance
+        description:
+          type: string
+          minLength: 10
+          maxLength: 1000
+          description: Maintenance description
+        technician:
+          type: string
+          format: objectid
+          description: Assigned technician
+        priority:
+          type: string
+          enum: [low, medium, high, critical]
+          description: Maintenance priority
+        notes:
+          type: string
+          description: Additional notes
+
+    Issue:
+      type: object
+      required:
+        - category
+        - description
+        - severity
+      properties:
+        category:
+          type: string
+          enum: [brakes, drivetrain, wheels, frame, suspension, electronics, controls, cosmetic, safety, other]
+          description: Issue category
+        description:
+          type: string
+          minLength: 10
+          maxLength: 500
+          description: Issue description
+        severity:
+          type: string
+          enum: [low, medium, high, critical]
+          description: Issue severity
+        resolved:
+          type: boolean
+          default: false
+          description: Whether the issue is resolved
+        resolutionDetails:
+          type: string
+          description: Details about how the issue was resolved
+        resolvedBy:
+          type: string
+          format: objectid
+          description: User who resolved the issue
+        resolvedDate:
+          type: string
+          format: date-time
+          description: Date when the issue was resolved
+
+    Part:
+      type: object
+      required:
+        - name
+        - quantity
+        - cost
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 100
+          description: Part name
+        partNumber:
+          type: string
+          description: Part number
+        quantity:
+          type: integer
+          minimum: 1
+          description: Quantity of parts
+        cost:
+          type: number
+          minimum: 0
+          description: Cost per part
+        category:
+          type: string
+          enum: [brake, chain, derailleur, wheel, tire, tube, suspension, frame, handlebar, seat, pedal, gear, electronic, accessory, other]
+          description: Part category
+        isWarranty:
+          type: boolean
+          default: false
+          description: Whether the part is under warranty
+        warrantyDetails:
+          type: string
+          description: Warranty details
+
+    MaintenanceRecord:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: objectid
+          description: Maintenance ID
+        bikeId:
+          type: object
+          properties:
+            _id:
+              type: string
+              format: objectid
+            name:
+              type: string
+            frameNumber:
+              type: string
+            type:
+              type: string
+          description: Bike reference
+        maintenanceType:
+          type: string
+          enum: [ROUTINE, REPAIR, INSPECTION, CLEANING, UPGRADE]
+          description: Type of maintenance
+        status:
+          type: string
+          enum: [SCHEDULED, IN_PROGRESS, COMPLETED, CANCELLED, POSTPONED]
+          description: Maintenance status
+        scheduledDate:
+          type: string
+          format: date-time
+          description: Scheduled date
+        completedDate:
+          type: string
+          format: date-time
+          description: Completed date
+        technician:
+          type: object
+          properties:
+            _id:
+              type: string
+              format: objectid
+            firstName:
+              type: string
+            lastName:
+              type: string
+          description: Assigned technician
+        description:
+          type: string
+          description: Maintenance description
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+          description: Issues to address
+        parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Part'
+          description: Parts used in maintenance
+        laborHours:
+          type: number
+          description: Hours spent on maintenance
+        laborRate:
+          type: number
+          description: Hourly rate for labor
+        laborCost:
+          type: number
+          description: Total labor cost
+        totalCost:
+          type: number
+          description: Total maintenance cost
+        priority:
+          type: string
+          enum: [low, medium, high, critical]
+          description: Maintenance priority
+        notes:
+          type: string
+          description: Additional notes
+        recommendations:
+          type: string
+          description: Recommendations for future maintenance
+        nextMaintenanceDate:
+          type: string
+          format: date-time
+          description: Recommended date for next maintenance
+        nextMaintenanceType:
+          type: string
+          enum: [ROUTINE, REPAIR, INSPECTION, CLEANING, UPGRADE]
+          description: Recommended type for next maintenance
+        daysOverdue:
+          type: integer
+          description: Days overdue (if applicable)
+        resolvedIssuesCount:
+          type: integer
+          description: Number of resolved issues
+        totalIssuesCount:
+          type: integer
+          description: Total number of issues
+        issueResolutionPercentage:
+          type: integer
+          description: Percentage of resolved issues
+        isCritical:
+          type: boolean
+          description: Whether the maintenance is critical
+        isOverdue:
+          type: boolean
+          description: Whether the maintenance is overdue
+        statusDisplay:
+          type: string
+          description: Human-readable status display
+        createdAt:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+
+    MaintenanceStatsSummary:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of maintenance records
+        completedCount:
+          type: integer
+          description: Number of completed maintenance records
+        inProgressCount:
+          type: integer
+          description: Number of in-progress maintenance records
+        scheduledCount:
+          type: integer
+          description: Number of scheduled maintenance records
+        cancelledCount:
+          type: integer
+          description: Number of cancelled maintenance records
+        postponedCount:
+          type: integer
+          description: Number of postponed maintenance records
+        routineCount:
+          type: integer
+          description: Number of routine maintenance records
+        repairCount:
+          type: integer
+          description: Number of repair maintenance records
+        inspectionCount:
+          type: integer
+          description: Number of inspection maintenance records
+        cleaningCount:
+          type: integer
+          description: Number of cleaning maintenance records
+        upgradeCount:
+          type: integer
+          description: Number of upgrade maintenance records
+        totalCost:
+          type: number
+          description: Total maintenance cost
+        laborCost:
+          type: number
+          description: Total labor cost
+        partsCost:
+          type: number
+          description: Total parts cost
+        totalLaborHours:
+          type: number
+          description: Total labor hours
+        averageLaborHours:
+          type: number
+          description: Average labor hours per maintenance
+        issueCount:
+          type: integer
+          description: Total number of issues
+        resolvedIssueCount:
+          type: integer
+          description: Number of resolved issues
+        completionRate:
+          type: number
+          description: Percentage of completed maintenance
+        averageCost:
+          type: number
+          description: Average cost per maintenance
+        issueResolutionRate:
+          type: number
+          description: Percentage of resolved issues
+
+    MaintenanceMonthlyStats:
+      type: object
+      properties:
+        year:
+          type: integer
+          description: Year
+        month:
+          type: integer
+          description: Month (1-12)
+        count:
+          type: integer
+          description: Number of maintenance records
+        completedCount:
+          type: integer
+          description: Number of completed maintenance records
+        totalCost:
+          type: number
+          description: Total maintenance cost
+        completionRate:
+          type: number
+          description: Completion rate percentage
+
+    MaintenanceTypeStats:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [ROUTINE, REPAIR, INSPECTION, CLEANING, UPGRADE]
+          description: Maintenance type
+        count:
+          type: integer
+          description: Number of records
+        completedCount:
+          type: integer
+          description: Number of completed records
+        totalCost:
+          type: number
+          description: Total cost
+        laborHours:
+          type: number
+          description: Total labor hours
+        averageCost:
+          type: number
+          description: Average cost per maintenance
+        averageLaborHours:
+          type: number
+          description: Average labor hours per maintenance
+
+    TopBikeStats:
+      type: object
+      properties:
+        bikeId:
+          type: string
+          format: objectid
+          description: Bike ID
+        name:
+          type: string
+          description: Bike name
+        frameNumber:
+          type: string
+          description: Bike frame number
+        bikeType:
+          type: string
+          description: Bike type
+        count:
+          type: integer
+          description: Number of maintenance records
+        totalCost:
+          type: number
+          description: Total maintenance cost
+        averageCost:
+          type: number
+          description: Average cost per maintenance
+
+    IssueCategoryStats:
+      type: object
+      properties:
+        category:
+          type: string
+          description: Issue category
+        count:
+          type: integer
+          description: Number of issues
+        resolvedCount:
+          type: integer
+          description: Number of resolved issues
+        criticalCount:
+          type: integer
+          description: Number of critical issues
+        resolutionRate:
+          type: number
+          description: Percentage of resolved issues
+
+    MaintenanceListResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MaintenanceRecord'
+        metadata:
+          type: object
+          properties:
+            totalItems:
+              type: integer
+              description: Total number of records
+            totalPages:
+              type: integer
+              description: Total number of pages
+            currentPage:
+              type: integer
+              description: Current page number
+            itemsPerPage:
+              type: integer
+              description: Number of items per page
+            hasNextPage:
+              type: boolean
+              description: Whether there is a next page
+            hasPrevPage:
+              type: boolean
+              description: Whether there is a previous page
+
+    MaintenanceSingleResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/MaintenanceRecord'
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Error message
+            code:
+              type: integer
+              description: HTTP status code
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            error:
+              message: Validation failed
+              code: 400
+    
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            error:
+              message: Authentication required
+              code: 401
+    
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            error:
+              message: Resource not found
+              code: 404
+    
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            error:
+              message: Internal server error
+              code: 500
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - BearerAuth: []
