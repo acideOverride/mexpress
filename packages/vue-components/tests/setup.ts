@@ -42,5 +42,19 @@ jest.mock('@/types', () => {
   };
 }, { virtual: true });
 
-// Set up Vue test-utils specific configuration if needed
+// Suppress specific console errors that might appear during testing
+const originalConsoleError = console.error;
+console.error = (...args: any[]) => {
+  // Filter out specific errors that occur during testing
+  if (
+    typeof args[0] === 'string' && (
+      args[0].includes('Vue received a Component which was made a reactive object') ||
+      args[0].includes('[Vue warn]: Extraneous non-props attributes')
+    )
+  ) {
+    return;
+  }
+  originalConsoleError(...args);
+};
+
 console.log('Vue testing environment initialized');
