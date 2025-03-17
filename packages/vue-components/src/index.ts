@@ -32,6 +32,9 @@ import CreateNewExample from './components/search/CreateNewExample.vue';
 // Import directives
 import { highlightDirective } from './directives/highlight';
 
+// Import stores and Pinia
+import { pinia } from './stores/pinia';
+
 // Export types
 export * from './types';
 
@@ -40,6 +43,9 @@ export * from './composables';
 
 // Export visualization utilities
 export * from './components/visualizations/utils';
+
+// Export stores
+export * from './stores';
 
 // Export all components
 export {
@@ -77,7 +83,10 @@ export {
   UserForm,
   
   // Directives
-  highlightDirective
+  highlightDirective,
+  
+  // Pinia instance
+  pinia
 };
 
 // Vue plugin
@@ -116,5 +125,8 @@ export default {
     
     // Register directives
     app.directive('highlight', highlightDirective);
+    
+    // Install Pinia
+    app.use(pinia);
   }
 };
