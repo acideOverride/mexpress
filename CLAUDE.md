@@ -1,6 +1,72 @@
 # mExpress Coding Assistant Guidelines
 
 <!-- 
+══════════════════════════════════════════════════════════════════════════════
+IMPORTANT: WORKFLOW INSTRUCTIONS FOR CLAUDE
+══════════════════════════════════════════════════════════════════════════════
+
+AT THE START OF EACH SESSION, THE USER SHOULD TYPE:
+"Please review the WORKFLOW INSTRUCTIONS section in CLAUDE.md before we begin"
+
+WHEN SHOWN THESE INSTRUCTIONS, CLAUDE MUST RESPOND:
+"I've reviewed the WORKFLOW INSTRUCTIONS. I will strictly follow the combined AMTC and TDD 
+workflow with component registry checks. This means I will check for existing components first,
+create tests, implement features until tests pass, maintain the CHECKLIST.md file, and update
+the component registry when appropriate."
+
+REQUIRED WORKFLOW STEPS COMBINING TDD AND AMTC:
+
+Component Registry Checks:
+1. Before any architecture or planning work:
+   - ALWAYS check COMPONENT_REGISTRY.md first for existing components
+   - Search with: `grep -i "[keyword]" /opt/mExpress/docs/mexpress/COMPONENT_REGISTRY.md`
+   - Identify reusable components before proposing new ones
+   - Include component registry checks in CHECKLIST.md
+
+TDD (Test-Driven Development) Core Steps:
+1. Before implementation begins:
+   - Create tests first for new features/components following standardized project structure:
+     - For MontPC CRM Vue components: `projects/montpc_crm/tests/frontend/{priority}/{feature-name}.test.ts`
+     - Follow all test structure rules in "Test Standards" and "Test Location Templates" sections
+     - Organize by priority (P0-P3) in the correct directory
+     - Use proper test frameworks (Jest/Vitest for Vue components)
+   - Verify tests fail initially (red phase)
+   - Only then proceed to implementation (green phase) 
+   - Finally, refactor while ensuring tests continue to pass
+
+AMTC Workflow Steps:
+1. When starting a task from TASKS.md:
+   - Change task status to "In Progress" in TASKS.md
+   - Create or update CHECKLIST.md with technical implementation steps
+   - INCLUDE COMPONENT REGISTRY CHECK at the beginning of CHECKLIST.md
+   - Ensure CHECKLIST.md includes specific test creation steps BEFORE implementation steps
+   - Review current test status in `/opt/mExpress/tests/validation/unified/TESTS_STATUS_ENHANCED.md`
+   - Update CHECKLIST.md header to reference current AMTC documents and relevant test status
+
+2. During implementation:
+   - First create tests following TDD principles
+   - Then implement features until tests pass
+   - Mark items as completed in CHECKLIST.md as they are implemented
+   - Add debugging notes and practical observations
+   - Monitor test status using TESTS_STATUS_ENHANCED.md
+
+3. When completing a task:
+   - Verify all tests are passing in TESTS_STATUS_ENHANCED.md
+   - If implementing a UI component or reusable service:
+     1. UPDATE `/opt/mExpress/docs/mexpress/COMPONENT_REGISTRY.md` with your component details
+     2. UPDATE `/opt/mExpress/docs/mexpress/SHARED_COMPONENTS.md` with quick-reference info
+     3. Include both files in the same commit as your implementation code
+   - ALWAYS archive the completed CHECKLIST.md to checklist_history with:
+     `cp CHECKLIST.md checklist_history/CHECKLIST-{TASK-ID}-{Task-Name}-{YYYYMMDD}.md`
+   - Mark the task as "Completed" in TASKS.md with completion date
+   - Update the corresponding milestone in MILESTONES.md
+
+This strict workflow combining TDD, AMTC, and Component Registry management MUST be 
+followed for ALL tasks regardless of session length or complexity.
+══════════════════════════════════════════════════════════════════════════════
+-->
+
+<!-- 
 ██████╗  ██████╗     ███╗   ██╗ ██████╗ ████████╗    ███╗   ███╗ ██████╗ ██████╗ ██╗███████╗██╗   ██╗
 ██╔══██╗██╔═══██╗    ████╗  ██║██╔═══██╗╚══██╔══╝    ████╗ ████║██╔═══██╗██╔══██╗██║██╔════╝╚██╗ ██╔╝
 ██║  ██║██║   ██║    ██╔██╗ ██║██║   ██║   ██║       ██╔████╔██║██║   ██║██║  ██║██║█████╗   ╚████╔╝ 
@@ -31,8 +97,7 @@ Only the user may update this section directly.
 3. Break down into tasks in TASKS.md 
 4. Create tests first, verify they fail
 5. Implement features until tests pass
-6. Update test dashboard
-7. Commit changes
+6. Commit changes
 
   ## 📋 AMTC Documentation Workflow
 
@@ -44,10 +109,16 @@ Only the user may update this section directly.
   - **T: TASKS.md** - Task tracking and implementation details (mutable)
   - **C: CHECKLIST.md** - Technical implementation verification (highly mutable)
 
-  ### CHECKLIST.md Maintenance
-  - CHECKLIST.md should be updated at the beginning of each new task to track technical implementation details
-  - Start each CHECKLIST.md with headers showing the current status of other AMTC documents:
-  Technical Implementation Checklist
+  ### CHECKLIST.md Maintenance and History Tracking
+  - CHECKLIST.md should be created/updated at the beginning of each new task from TASKS.md
+  - Start each CHECKLIST.md with headers showing the current status of other AMTC documents
+  - Always include a reference to the latest test status information from `/opt/mExpress/tests/validation/unified/TESTS_STATUS_ENHANCED.md`
+  - When completing a task, archive the current CHECKLIST.md with the pattern:
+    ```
+    /opt/mExpress/docs/{project}/checklist_history/CHECKLIST-{TASK-ID}-{Task-Name}-{YYYYMMDD}.md
+    ```
+  - Only after archiving the completed checklist, create a new CHECKLIST.md for the next task
+  - This ensures a complete historical record of all task implementations is preserved
 
 
     Current Documentation Status:
@@ -63,7 +134,8 @@ Only the user may update this section directly.
   1. First update ARCHITECTURE.md if the implementation affects system design
   2. Check MILESTONES.md to ensure alignment with current milestone
   3. Update TASKS.md with implementation details and status
-  4. Create or update CHECKLIST.md with technical steps and verification
+  4. Review `/opt/mExpress/tests/validation/unified/TESTS_STATUS_ENHANCED.md` for current test status
+  5. Create or update CHECKLIST.md with technical steps and verification, including relevant test status information
 
   ### Technical vs. Business Documentation
   - ARCHITECTURE.md and MILESTONES.md focus on business requirements and system design
@@ -105,6 +177,18 @@ Only the user may update this section directly.
 
 ## 📊 Testing & Dashboard
 
+### Test Status Tracking
+- Current test status is maintained in `/opt/mExpress/tests/validation/unified/TESTS_STATUS_ENHANCED.md`
+- This file provides a real-time view of all tests across the codebase with:
+  - Pass/fail status with appropriate icons (✅/❌)
+  - Test type information (unit, integration, e2e)
+  - Execution time metrics
+  - Component area categorization
+  - Error type details for failing tests
+  - File type and migration status tracking
+- Always reference this file when working on test fixes or implementations
+- **IMPORTANT**: This file must be included in all CHECKLIST.md documents
+
 ### Test Organization
 - Tests are organized by priority level (P0-P3)
   - **P0**: Critical path tests - must pass for core functionality
@@ -142,7 +226,9 @@ Only the user may update this section directly.
   - P2 tests: 60 seconds
   - P3 tests: 120 seconds
   - Integration tests: 120 seconds
-- Full documentation at `/docs/standards/JEST_CONFIGURATION_STANDARDS.md`
+- Full documentation at:
+  - Full standards: `/docs/standards/JEST_CONFIGURATION_STANDARDS.md`
+  - Lite standards: `/docs/standards/lite/JEST_CONFIGURATION_STANDARDS.md`
 - Implementation status at `/tests/validation/unified/JEST_STANDARDISATION.md`
 - Benefits of this approach:
   1. Drastically reduced maintenance (45+ files → ~10 files)
@@ -170,7 +256,9 @@ The Vue components package supports both Jest and Vitest for testing:
 
 
 ### Test Standards
-- All tests MUST follow organization and structure defined in `/docs/standards/C4_test_standards.md`
+- All tests MUST follow organization and structure defined in:
+  - Full standards: `/docs/standards/C4_test_standards.md` 
+  - Lite standards: `/docs/standards/lite/TDD_WORKFLOW.md` and `/docs/standards/lite/JEST_CONFIGURATION_STANDARDS.md`
 - ALWAYS use project-specific test directories (e.g., `projects/montpc_crm/tests/`, `packages/core/tests/`)
 - NEVER scatter test files across source directories (e.g., `src/components/Button/Button.test.tsx`)
 - All tests MUST be organized by priority (P0-P3) within their project-specific test folders:
@@ -208,6 +296,7 @@ When creating new tests, ALWAYS follow these location templates:
   - `/projects/giandra_photos/tests`: Tests for Giandra Photos organized by priority
   - `/projects/jerome_bikes/tests`: Tests for Jerome Bikes organized by priority
 - `/docs`: Documentation (core and project-specific)
+  - `/docs/standards/lite`: Lightweight, practical standards
 - `/tests/results`: Consolidated test results
 - `/tests/validation`: Test status and reporting
 - `/scripts`: All scripts must be placed in the appropriate subdirectory:
@@ -217,6 +306,10 @@ When creating new tests, ALWAYS follow these location templates:
   - `/scripts/utility_scripts/`: Utility and maintenance scripts
   - `/scripts/setup_scripts/`: Database and application setup scripts
   - `/scripts/testScripts/`: Legacy test scripting (maintained for compatibility)
+
+For detailed directory structure standards:
+- Full standards: Original detailed documentation
+- Lite standards: `/docs/standards/lite/DIRECTORY_STRUCTURE.md`
 
 ### Starting MontPC CRM Application
 To start the entire MontPC CRM application with MongoDB, API server, and frontend:
@@ -244,6 +337,12 @@ Use Ctrl+C to stop all services.
 - **Naming**: kebab-case (files), PascalCase (classes), camelCase (functions), UPPER_SNAKE_CASE (constants)
 - **Error Handling**: Typed errors extending AppError, log then throw
 - **Testing**: Priority-based (P0-P3), 80%+ coverage, mock dependencies
+- **Detailed standards**:
+  - Full standards: Original detailed documentation
+  - Lite standards: 
+    - `/docs/standards/lite/TS_CODE_STANDARDS.md` for TypeScript
+    - `/docs/standards/lite/COMPONENT_STANDARDS.md` for Vue/React components
+    - `/docs/standards/lite/API_STANDARDS.md` for API endpoints
 
 ## 📝 Documentation Standards
 
@@ -258,18 +357,20 @@ Use Ctrl+C to stop all services.
 - Keep documentation focused on a single topic
 - Minimize file nesting (prefer flat structures where possible)
 - Group by feature rather than by process
-- For detailed standards, see `/docs/standards/`
+- For detailed standards:
+  - Full standards: `/docs/standards/`
+  - Lite standards: `/docs/standards/lite/DOCUMENTATION_STANDARDS.md`
 
 ## 🔄 Version Control Workflow
 
 ### Commit Workflow
 1. Fix a test or implement a feature based on a BRQ
 2. Run tests repeatedly until CONFIRMED to pass
-3. Update TEST_DASHBOARD.md with the new status
-4. Run update-all.js to refresh the dashboard
-5. Commit the changes immediately
-6. Push to the remote repository
-7. Move to the next test/feature
+3. Commit the changes immediately
+4. Push to the remote repository
+5. Move to the next test/feature
+
+For CI/CD standards, see `/docs/standards/lite/CI_CD_STANDARDS.md`
 
  ### Branch Naming Conventions
   - Format: `feature/[BRQ-ID]-[component-name]`
@@ -301,119 +402,184 @@ fix(tests): fix [test-name] in [location]
 - BRQ: [related BRQ id]
 ```
 
+  ### AMTC-Git Integration Workflow
+
+  1. **Milestone Branch Management**:
+     - Create milestone branches at the start of a new milestone:
+       ```
+       git checkout main
+       git pull
+       git checkout -b milestone/MS-MEXP-014-ui-component-library
+       ```
+     - Use milestone branches as integration points for related feature branches
+     - Only merge milestone branches to main when entire milestone is complete
+
+  2. **Task Branch Creation**:
+     - Create a new feature branch IMMEDIATELY when selecting a task from TASKS.md:
+       ```
+       git checkout milestone/MS-MEXP-014-ui-component-library
+       git checkout -b feature/MEXP-2025-050-FE-table-component
+       ```
+     - Update TASKS.md status and create CHECKLIST.md as first commit:
+       ```
+       git add docs/{project}/TASKS.md docs/{project}/CHECKLIST.md
+       git commit -m "task(TASK-MEXP-078): start table component implementation"
+       ```
+
+  3. **TDD Phase Commits**:
+     - RED Phase (Test Creation):
+       ```
+       git add {test-files}
+       git commit -m "test(component): add tests for feature"
+       ```
+     - GREEN Phase (Implementation):
+       ```
+       git add {implementation-files}
+       git commit -m "feat(component): implement feature"
+       ```
+     - REFACTOR Phase:
+       ```
+       git add {refactored-files}
+       git commit -m "refactor(component): optimize feature"
+       ```
+
+  4. **Task Completion Process**:
+     - Component Registry Update (if applicable):
+       ```
+       git add docs/mexpress/COMPONENT_REGISTRY.md docs/mexpress/SHARED_COMPONENTS.md
+       git commit -m "docs(registry): add component to registry"
+       ```
+     - Archive CHECKLIST.md and Update Status:
+       ```
+       # Archive CHECKLIST.md to history and update TASKS.md
+       git add docs/{project}/checklist_history/* docs/{project}/TASKS.md
+  docs/{project}/MILESTONES.md
+       git commit -m "complete(TASK-ID): finish implementation"
+       ```
+     - Push and Create PR:
+       ```
+       git push -u origin feature/MEXP-2025-050-FE-table-component
+       ```
+
+  5. **CHECKLIST.md Git Integration**:
+     - Every CHECKLIST.md must include these git-related steps:
+       - At beginning: "[ ] Create feature branch:
+  `feature/[BRQ-ID]-[component-name]`"
+       - After RED phase: "[ ] Commit test files: `git commit -m \"test(component):
+  add tests for feature\"`"
+       - After GREEN phase: "[ ] Commit implementation: `git commit -m
+  \"feat(component): implement feature\"`"
+       - After REFACTOR phase: "[ ] Commit optimizations: `git commit -m
+  \"refactor(component): optimize feature\"`"
+       - At end: "[ ] Archive CHECKLIST.md and commit completion: `git commit -m
+  \"complete(TASK-ID): finish implementation\"`"
+
+## 📋 Assistant Memory
+
+This section is for the Claude Code assistant to maintain context about important commands, 
+configurations, and preferences that apply to all projects in the mExpress ecosystem.
+This helps Claude remember essential information across sessions without tracking
+project-specific progress that belongs in project documentation.
+
+### General Commands for All Projects
+- Run all tests: `./scripts/test_scripts/run-all-tests.sh`
+- Run priority tests: `./scripts/test_scripts/run-all-tests.sh --p0`
+- Vue component tests: `./scripts/test_scripts/run-vue-component-tests.sh`
+- Lint checks: `npm run lint`
+- Build all: `npm run build`
+
+### Project Startup Commands
+- MontPC CRM: `cd /opt/mExpress/projects/montpc_crm && ./start-app.sh`
+- Giandra Photos: `cd /opt/mExpress/projects/giandra_photos && ./start-app.sh`
+- Jerome Bikes: `cd /opt/mExpress/projects/jerome_bikes && ./start-app.sh`
+
+### Standard Documentation Paths
+- Architecture blueprints: `/docs/{project}/ARCHITECTURE.md`
+- Milestone tracking: `/docs/{project}/MILESTONES.md`
+- Task management: `/docs/{project}/TASKS.md`
+- Implementation steps: `/docs/{project}/CHECKLIST.md`
+- Test status: `/opt/mExpress/tests/validation/unified/TESTS_STATUS_ENHANCED.md`
+- Component registry: `/docs/mexpress/COMPONENT_REGISTRY.md`
+- Component quick reference: `/docs/mexpress/SHARED_COMPONENTS.md`
+
+### Component Registry Workflow
+
+1. **Pre-Architecture Check**:
+   - Before creating or updating ARCHITECTURE.md, I will first check COMPONENT_REGISTRY.md
+   - I will search for existing components that meet requirements before proposing new ones
+   - Command: `grep -i "[keyword]" /opt/mExpress/docs/mexpress/COMPONENT_REGISTRY.md`
+   - When architecting new features, I will explicitly list reusable components found
+
+2. **Registry Update Process**:
+   - **Who**: Developer implementing the component
+   - **When**: As the final step before marking a task as completed
+   - **Files to Update**:
+     1. `/opt/mExpress/docs/mexpress/COMPONENT_REGISTRY.md` - Main detailed registry
+     2. `/opt/mExpress/docs/mexpress/SHARED_COMPONENTS.md` - Quick reference guide
+   - **How**: Update both files in the same commit as the implementation code
+   - **Workflow Position**: This is the LAST step before archiving CHECKLIST.md
+
+3. **COMPONENT_REGISTRY.md Updates**:
+   - Add component to appropriate section table with:
+     - Component name
+     - Status (✅/🟡/🟠/⚠️)
+     - Projects using it
+     - Location
+     - Description
+   - Update "Component Status Summary" table counts
+   - Update "Project Usage" table percentages
+
+4. **SHARED_COMPONENTS.md Updates**:
+   - Add to "Most Used Components" if appropriate
+   - Add to "Component Quick Search" section
+   - Add to "Recent Additions" section with today's date
+
+5. **Integration with CHECKLIST.md**:
+   - All CHECKLIST.md files for component work must include:
+     - At beginning: "✅ Check COMPONENT_REGISTRY.md for existing components" 
+     - At end: "✅ Update COMPONENT_REGISTRY.md and SHARED_COMPONENTS.md"
+   - Registry update is the FINAL technical step before archiving CHECKLIST.md
+
+6. **Component Criteria**:
+   - Components must be used in at least 2 projects to be promoted to shared status
+   - Components must have 90%+ test coverage
+   - Components must have proper documentation
+   - Components must follow shared API patterns
+
+### Testing Locations by Project
+- Core package: `packages/core/tests/{test-type}/{priority}/{test-name}.test.ts`
+- MontPC CRM: `projects/montpc_crm/tests/{test-type}/{priority}/{test-name}.test.ts`
+- Giandra Photos: `projects/giandra_photos/tests/{test-type}/{priority}/{test-name}.test.ts`
+- Jerome Bikes: `projects/jerome_bikes/tests/{test-type}/{priority}/{test-name}.test.ts`
+
+### Coding Standards for All Projects
+- Frontend: TypeScript with appropriate framework (Vue 3 Composition API or React)
+- Files: kebab-case for filenames, PascalCase for components/classes
+- Testing: Always follow TDD workflow (red-green-refactor) for all new features
+  - See `/docs/standards/lite/TDD_WORKFLOW.md` for detailed TDD guidelines
+- Documentation: Use structured CHECKLIST.md with three distinct TDD phases:
+  1. RED PHASE: Test creation steps
+  2. GREEN PHASE: Implementation steps
+  3. REFACTOR PHASE: Cleanup steps
+- Always reference project documentation for implementation details rather than duplicating in CLAUDE.md
+
+### Session Context
+- Remember to check which project is currently active
+- Refer to project-specific documents for current status and priorities
+- Maintain CHECKLIST.md structured with TDD phases
+- Keep implementation focused on requirements in project documentation
+
+### Checklist History Reference
+- When working on related features, always check checklist history:
+  - Path: `/opt/mExpress/docs/{project}/checklist_history/`
+  - Naming: `CHECKLIST-{TASK-ID}-{Task-Name}-{YYYYMMDD}.md`
+- Use checklist history to:
+  - Understand past implementation decisions
+  - Follow established patterns
+  - Identify related components
+  - Learn from previous challenges
+- Search history with: `grep -r "keyword" /opt/mExpress/docs/{project}/checklist_history/`
+- Reference relevant history findings in new CHECKLIST.md files
+- Include "Previous Implementation Reference" section when building on existing work
+
 <!-- END OF LOCKED SECTION -->
-
-
-## 📋 Current Status & Handoff
-
-### Current Status (Updated: 2025-03-09)
-- Major documentation restructuring:
-  - Created consolidated documentation structure for both mExpress and MontPC CRM
-  - Established `/docs/{project}/ARCHITECTURE.md`, `/docs/{project}/MILESTONES.md`, and `/docs/{project}/TASKS.md`
-  - Migrated from nested documentation to a flatter, more maintainable structure
-- Completed Vue.js component library (MS-MEXP-014):
-  - Implemented base components (Button, Input, Card, etc.)
-  - Created form system with validation
-  - Implemented advanced Table component with filtering, sorting, and pagination
-  - Added comprehensive test coverage for all components
-  - All 6/6 UI component tests passing (100% complete)
-- Completed Vue.js visualization components:
-  - Implemented LineChart, PieChart/DonutChart, and AreaChart components
-  - Created chart theming with light/dark mode support
-  - Added comprehensive examples with interactive controls
-  - Completed MS-MEXP-015 (Dashboard Design) milestone visualizations
-- Completed MegaSearch implementation:
-  - Designed and implemented MegaSearch API with MongoDB text search
-  - Created optimized search with caching and fuzzy matching
-  - Implemented LiveSearch component with typeahead suggestions
-  - Added "create new" functionality with entity-specific forms
-  - Completed MS-MEXP-016 (MegaSearch Implementation) milestone
-- Platform and project alignment:
-  - Synchronized technology stack between mExpress and MontPC CRM
-  - Ensured consistent integration patterns across projects
-  - Defined shared component approach for Vue.js UI components
-  - Established common approach for Hiboutik and Ringover integration
-- Current BRQs in progress:
-  - MONT-2025-050-FE (MontPC CRM MVP Frontend, 15% complete)
-- Upcoming BRQs:
-  - MEXP-2025-086-FE (Entity Dashboard Templates, planned)
-  - MEXP-2025-087-FE (Dashboard State Management, planned)
-- Current working test count: 131/187 tests (70.1% success rate)
-- Next focus areas:
-  1. Starting MontPC CRM Vue.js Migration
-  2. Implementing entity dashboard templates
-  3. Creating dashboard state management system
-  4. Building filtering and search UI components
-
-### Completed Components
-- ✅ Customer Management (MEXP-2025-008-BE): 2/2 tests passing (100%)
-- ✅ Message Queue (MEXP-2025-003-BE): 5/5 tests passing (100%)
-- ✅ API Integration (MEXP-2025-001-API): 3/3 tests passing (100%)
-- ✅ Customer CRUD API (MEXP-2025-006-API): 3/3 tests passing (100%)
-- ✅ MVP Implementation (MEXP-2025-037-FULL): 3/3 tests passing (100%)
-- ✅ Authentication & Security (MEXP-2025-002-BE): 4/4 tests passing (100%)
-- ✅ Core CRUD Functionality (MEXP-2025-004-BE): 3/3 tests skipped (100%)*
-- ✅ Product Catalog (MEXP-2025-027-BE): 3/3 tests passing (100%)
-- ✅ External API Integrations (MEXP-2025-030-API): 3/3 tests passing (100%)
-- ✅ Ringover Customer Management (MEXP-2025-031-API): 3/3 tests passing (100%)
-- ✅ UI Architecture (MEXP-2025-005-FE): 1/1 tests passing (100%)
-- ✅ MontPC Customer Service (MONT-2025-001-FULL): 1/1 tests passing (100%)
-- ✅ MontPC Auth Service (MONT-2025-002-FULL): 2/2 tests passing (100%)
-- ✅ MegaSearch Implementation (MEXP-2025-051-BE): 3/3 tests passing (100%)
-- ✅ MegaSearch API (MEXP-2025-052-API): 3/3 tests passing (100%)
-
-*All tests skipped with proper documentation due to MongoDB replica set requirement
-
-### In Progress Components
-- 🟨 MontPC CRM MVP Frontend (MONT-2025-050-FE): 3/20 tests passing (15%)
-
-### Recently Fixed
-- 🆕 UI Component Library (MEXP-2025-050-FE): Completed Table component with filtering, sorting, and pagination features (2025-03-09)
-- 🆕 Service Integration Architecture (MEXP-2025-007-BE): Fixed all P1 integration tests (service-mesh, service-deployment, container-orchestrator-integration, external-integration)
-- 🆕 MegaSearch Implementation (MEXP-2025-051-BE, MEXP-2025-052-API): Implemented complete MegaSearch functionality
-- 🆕 MontPC Auth Service (MONT-2025-002-FULL): Fixed auth service tests and login tests in the central tests directory
-- 🆕 Core CRUD Functionality (MEXP-2025-004-BE): Added proper skipping for MongoDB replica set requirements
-- 🆕 Authentication & Security (MEXP-2025-002-BE): Fixed import paths in all auth-related tests
-
-### Issue Summary
-- Primary issues: import path errors (60%), module resolution (25%), type errors (10%), environment requirements (5%)
-- Failing components: Infrastructure (kubernetes-config.test.ts)
-
-### Priority Work Items
-1. ✅ Fix service discovery tests (COMPLETED: 9/9 tests passing)
-2. ✅ Fix authentication & security tests (COMPLETED: 4/4 tests passing)
-3. ✅ Address transaction rollback tests (COMPLETED: All 3 Core CRUD tests skipped with documentation)
-4. ✅ Fix MontPC Auth Service tests (COMPLETED: auth.service.test.ts and login.test.tsx passing)
-5. ✅ Fix service integration architecture tests (COMPLETED: service-mesh.test.js, service-deployment.test.js, container-orchestrator-integration.test.js, external-integration.*.test.js)
-6. ✅ Complete UI Component Library (COMPLETED: Table component with filtering, sorting, and pagination)
-7. Fix MVP Readiness tests (kubernetes-config.test.ts)
-
-### Upcoming Priority Tasks
-This section maps to the "Next Steps" section that should be maintained in `/tests/dashboard-new/TEST_DASHBOARD.md` and the task priorities in `/docs/mexpress/TASKS.md` and `/docs/montpc_crm/TASKS.md`. When updating these files, be sure to keep priorities aligned.
-
-#### High Priority (P0)
-1. ✅ Fix service-mesh.test.ts - Completed JavaScript implementation with all tests passing (TASK-MEXP-059)
-2. ✅ Fix service-deployment.test.ts - Completed JavaScript implementation with all tests passing (TASK-MEXP-060)
-3. ✅ Setup Vue.js UI component library - Implemented core components (TASK-MEXP-063)
-4. ✅ Create dashboard layout framework - Responsive layout with navigation (TASK-MEXP-064)
-5. ✅ Implement table component - Completed with sorting, filtering, and pagination (TASK-MEXP-078)
-6. Start MontPC CRM Vue.js migration - Begin with core components (TASK-MEXP-098)
-
-#### Medium Priority (P1)
-1. Fix kubernetes-config.test.ts - Create stub implementation that doesn't require actual k8s (TASK-MEXP-061)
-2. ✅ Design D3.js visualization components - Chart wrapper components (TASK-MEXP-065)
-3. Implement MontPC MVP frontend components - Convert to Vue.js (TASK-MONT-046)
-4. ✅ External Integration Tests - All external integration tests fixed with mock implementations (TASK-MEXP-062)
-5. Implement entity dashboard templates - Customer, repair, product views (TASK-MEXP-086)
-
-#### Low Priority (P2-P3)
-1. ✅ Create MongoDB text search implementation - Optimized for performance (TASK-MEXP-067)
-2. Create dashboard state management system - For entity dashboards (TASK-MEXP-087)
-3. Build filtering and search UI - Results display and interactions (TASK-MEXP-088)
-4. Fix message-queue-recovery.test.ts - Implement recovery test adapters
-
-### Fix Strategy
-1. Create mock implementations that match expected interfaces
-2. Update import paths to point to mock implementations
-3. Ensure interface compatibility (MongoDB-style methods like lean(), exec())
-4. Add proper error handling and test stabilization
