@@ -7,12 +7,12 @@
 - Test Status: See in `/opt/mExpress/tests/validation/unified/TESTS_STATUS_ENHANCED.md`
 
 ## Git Setup (FIRST STEP)
-- [ ] Create feature branch from appropriate milestone branch:
+- [x] Create feature branch from appropriate milestone branch:
   ```bash
   git checkout milestone/MS-JRMB-006-frontend-backend-integration
   git checkout -b feature/JRMB-2025-031-FE-auth-implementation
   ```
-- [ ] Initial commit with CHECKLIST.md creation:
+- [x] Initial commit with CHECKLIST.md creation:
   ```bash
   git add docs/jerome_bikes/TASKS.md docs/jerome_bikes/CHECKLIST.md
   git commit -m "task(TASK-JRMB-031): start authentication frontend implementation"
