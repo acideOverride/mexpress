@@ -1,0 +1,445 @@
+openapi: 3.0.0
+info:
+  title: Repair Ticket API
+  description: API for managing repair tickets
+  version: 1.0.0
+paths:
+  /api/repair-tickets:
+    get:
+      summary: Get all repair tickets
+      description: Returns a list of all repair tickets, with optional filtering by status, priority, etc.
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [PENDING, IN_PROGRESS, WAITING_FOR_PARTS, READY_FOR_PICKUP, COMPLETED, CANCELLED]
+          description: Filter by ticket status
+        - in: query
+          name: priority
+          schema:
+            type: string
+            enum: [LOW, MEDIUM, HIGH, URGENT]
+          description: Filter by ticket priority
+        - in: query
+          name: customerId
+          schema:
+            type: string
+          description: Filter by customer ID
+        - in: query
+          name: deviceId
+          schema:
+            type: string
+          description: Filter by device ID
+        - in: query
+          name: technicianId
+          schema:
+            type: string
+          description: Filter by technician ID
+      responses:
+        '200':
+          description: A list of repair tickets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RepairTicket'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new repair ticket
+      description: Creates a new repair ticket with the provided data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepairTicketCreate'
+      responses:
+        '201':
+          description: The created repair ticket
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepairTicket'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /api/repair-tickets/{id}:
+    get:
+      summary: Get a repair ticket by ID
+      description: Returns a single repair ticket by its ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The repair ticket ID
+      responses:
+        '200':
+          description: The repair ticket
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepairTicket'
+        '404':
+          description: Repair ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update a repair ticket
+      description: Updates a repair ticket with the provided data
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The repair ticket ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepairTicketUpdate'
+      responses:
+        '200':
+          description: The updated repair ticket
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepairTicket'
+        '404':
+          description: Repair ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete a repair ticket
+      description: Deletes a repair ticket by its ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The repair ticket ID
+      responses:
+        '200':
+          description: Success message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Repair ticket deleted successfully
+        '404':
+          description: Repair ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /api/repair-tickets/{id}/status:
+    put:
+      summary: Update a repair ticket status
+      description: Updates the status of a repair ticket
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The repair ticket ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  enum: [PENDING, IN_PROGRESS, WAITING_FOR_PARTS, READY_FOR_PICKUP, COMPLETED, CANCELLED]
+                  description: The new status for the ticket
+                notes:
+                  type: string
+                  description: Optional notes about the status change
+                technicianId:
+                  type: string
+                  description: ID of the technician making the status change
+      responses:
+        '200':
+          description: The updated repair ticket
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepairTicket'
+        '400':
+          description: Invalid status value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Repair ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+components:
+  schemas:
+    RepairTicket:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: The repair ticket ID
+        customerId:
+          type: string
+          description: The customer ID
+        deviceId:
+          type: string
+          description: The device ID
+        technicianId:
+          type: string
+          description: The technician ID (optional)
+        problem:
+          type: string
+          description: Description of the problem
+        diagnosis:
+          type: string
+          description: Technical diagnosis of the problem (optional)
+        status:
+          type: string
+          enum: [PENDING, IN_PROGRESS, WAITING_FOR_PARTS, READY_FOR_PICKUP, COMPLETED, CANCELLED]
+          description: The current status of the repair ticket
+        priority:
+          type: string
+          enum: [LOW, MEDIUM, HIGH, URGENT]
+          description: The priority level of the repair ticket
+        estimatedCost:
+          type: number
+          description: The estimated cost of the repair
+        actualCost:
+          type: number
+          description: The actual cost of the repair (optional)
+        estimatedCompletionDate:
+          type: string
+          format: date-time
+          description: The estimated completion date (optional)
+        completedDate:
+          type: string
+          format: date-time
+          description: The actual completion date (optional)
+        notes:
+          type: string
+          description: Additional notes about the repair (optional)
+        repairNotes:
+          type: array
+          description: Notes about the repair process
+          items:
+            type: object
+            properties:
+              note:
+                type: string
+                description: The note content
+              createdBy:
+                type: string
+                description: ID of the user who created the note
+              createdAt:
+                type: string
+                format: date-time
+                description: When the note was created
+        statusHistory:
+          type: array
+          description: History of status changes
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                enum: [PENDING, IN_PROGRESS, WAITING_FOR_PARTS, READY_FOR_PICKUP, COMPLETED, CANCELLED]
+                description: The status
+              changedBy:
+                type: string
+                description: ID of the user who changed the status
+              changedAt:
+                type: string
+                format: date-time
+                description: When the status was changed
+              notes:
+                type: string
+                description: Notes about the status change
+        parts:
+          type: array
+          description: Parts used in the repair
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the part
+              partNumber:
+                type: string
+                description: Part number/SKU (optional)
+              cost:
+                type: number
+                description: Cost of the part
+              quantity:
+                type: integer
+                description: Quantity of the part
+        createdAt:
+          type: string
+          format: date-time
+          description: When the ticket was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the ticket was last updated
+          
+    RepairTicketCreate:
+      type: object
+      required:
+        - customerId
+        - deviceId
+        - problem
+        - estimatedCost
+      properties:
+        customerId:
+          type: string
+          description: The customer ID
+        deviceId:
+          type: string
+          description: The device ID
+        technicianId:
+          type: string
+          description: The technician ID (optional)
+        problem:
+          type: string
+          description: Description of the problem
+        diagnosis:
+          type: string
+          description: Technical diagnosis of the problem (optional)
+        status:
+          type: string
+          enum: [PENDING, IN_PROGRESS, WAITING_FOR_PARTS, READY_FOR_PICKUP, COMPLETED, CANCELLED]
+          description: The status of the repair ticket
+        priority:
+          type: string
+          enum: [LOW, MEDIUM, HIGH, URGENT]
+          description: The priority level of the repair ticket
+        estimatedCost:
+          type: number
+          description: The estimated cost of the repair
+        estimatedCompletionDate:
+          type: string
+          format: date-time
+          description: The estimated completion date (optional)
+        notes:
+          type: string
+          description: Additional notes about the repair (optional)
+          
+    RepairTicketUpdate:
+      type: object
+      properties:
+        problem:
+          type: string
+          description: Description of the problem
+        diagnosis:
+          type: string
+          description: Technical diagnosis of the problem
+        status:
+          type: string
+          enum: [PENDING, IN_PROGRESS, WAITING_FOR_PARTS, READY_FOR_PICKUP, COMPLETED, CANCELLED]
+          description: The status of the repair ticket
+        priority:
+          type: string
+          enum: [LOW, MEDIUM, HIGH, URGENT]
+          description: The priority level of the repair ticket
+        technicianId:
+          type: string
+          description: The technician ID
+        estimatedCost:
+          type: number
+          description: The estimated cost of the repair
+        actualCost:
+          type: number
+          description: The actual cost of the repair
+        estimatedCompletionDate:
+          type: string
+          format: date-time
+          description: The estimated completion date
+        notes:
+          type: string
+          description: Additional notes about the repair
+          
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        error:
+          type: string
+          description: Detailed error information
+          
+    ValidationError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+        errors:
+          type: array
+          description: List of validation errors
+          items:
+            type: string
