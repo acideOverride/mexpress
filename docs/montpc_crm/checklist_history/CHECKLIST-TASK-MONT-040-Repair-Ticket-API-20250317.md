@@ -125,25 +125,25 @@
 
 ## Task Completion Git Steps
 
-- [✅] **Final updates**:
-  - [✅] Archive CHECKLIST.md to checklist_history:
+- [ ] **Final updates**:
+  - [ ] Archive CHECKLIST.md to checklist_history:
     ```bash
     cp docs/montpc_crm/CHECKLIST.md docs/montpc_crm/checklist_history/CHECKLIST-TASK-MONT-040-Repair-Ticket-API-$(date +%Y%m%d).md
     ```
-  - [✅] Update TASKS.md status to "Completed":
+  - [ ] Update TASKS.md status to "Completed":
     ```bash
     sed -i 's/- 📅 **TASK-MONT-040**: Create repair ticket API endpoints/- ✅ **TASK-MONT-040**: Create repair ticket API endpoints ($(date +%Y-%m-%d))/g' docs/montpc_crm/TASKS.md
     ```
-  - [✅] Update MILESTONES.md progress:
+  - [ ] Update MILESTONES.md progress:
     ```bash
     sed -i 's/- **Progress**: 50%/- **Progress**: 60%/g' docs/montpc_crm/MILESTONES.md
     ```
-  - [✅] Commit completion:
+  - [ ] Commit completion:
     ```bash
     git add docs/montpc_crm/checklist_history/* docs/montpc_crm/TASKS.md docs/montpc_crm/MILESTONES.md
     git commit -m "complete(TASK-MONT-040): finish repair ticket API endpoints implementation"
     ```
-  - [✅] Push branch and prepare for PR:
+  - [ ] Push branch and prepare for PR:
     ```bash
     git push -u origin feature/MONT-2025-040-API-repair-ticket-endpoints
     ```

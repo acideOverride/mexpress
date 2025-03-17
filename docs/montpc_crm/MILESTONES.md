@@ -188,7 +188,7 @@ It is updated regularly to reflect current project status.
 ### MS-MONT-012: Repair Ticket Management
 - **Status**: 🚧 In Progress
 - **Quarter**: Q2 2025
-- **Progress**: 50%
+- **Progress**: 60%
 - **Related BRQs**:
   - MONT-2025-032-API
   - MONT-2025-033-API
