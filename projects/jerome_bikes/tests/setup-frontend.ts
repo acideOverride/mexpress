@@ -1,27 +1,73 @@
 // Frontend-specific test setup
+import { vi } from 'vitest';
+import { config } from '@vue/test-utils';
 
-// Import Vue Test Utils related setup
-import '@vue/test-utils';
+// Set up window mock for non-browser environments
+if (typeof window === 'undefined') {
+  globalThis.window = {
+    localStorage: {
+      getItem: vi.fn(),
+      setItem: vi.fn(),
+      removeItem: vi.fn(),
+      clear: vi.fn()
+    },
+    sessionStorage: {
+      getItem: vi.fn(),
+      setItem: vi.fn(),
+      removeItem: vi.fn(),
+      clear: vi.fn()
+    },
+    location: {
+      href: '',
+      pathname: '/'
+    },
+    alert: vi.fn(),
+    history: {
+      pushState: vi.fn(),
+      replaceState: vi.fn(),
+      go: vi.fn(),
+      back: vi.fn(),
+      forward: vi.fn()
+    },
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    navigator: {
+      userAgent: 'test'
+    }
+  } as any;
+}
 
-// Mock any browser APIs that Jest doesn't provide in jsdom
+// Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: jest.fn().mockImplementation(query => ({
+  value: vi.fn().mockImplementation(query => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
   })),
 });
 
-// Mock any other browser APIs used in your Vue components
-// For example, if you use IntersectionObserver:
-global.IntersectionObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+// Mock IntersectionObserver
+global.IntersectionObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
+
+// Add global mocks for Vue Test Utils
+config.global.mocks = {
+  $router: {
+    push: vi.fn(),
+    replace: vi.fn()
+  },
+  $route: {
+    params: {},
+    query: {},
+    path: '/'
+  }
+};;
