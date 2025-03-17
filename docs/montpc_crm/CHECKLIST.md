@@ -1,210 +1,152 @@
-# Clean Slate Vue.js Implementation Checklist
+# MVP Dashboard Wireframes Implementation Checklist
 
 ## Current Documentation Status:
-- A: ARCHITECTURE.md - Section 6.2 UI Framework Implementation
-- M: MILESTONES.md - MS-MEXP-014 - UI Component Library
-- T: TASKS.md - TASK-MEXP-078 - Table Component (COMPLETED 2025-03-17)
+- A: ARCHITECTURE.md - Section 6.2.1 UI Dashboard Components
+- M: MILESTONES.md - MS-MONT-013 - MontPC CRM MVP Frontend (15% complete)
+- T: TASKS.md - TASK-MONT-040 - Design MVP dashboard wireframes
+- Test Status: See [TESTS_STATUS_ENHANCED.md](/opt/mExpress/tests/validation/unified/TESTS_STATUS_ENHANCED.md)
 
-## Problem Summary
+## Component Registry Check (FIRST STEP)
+- [✅] Check `/opt/mExpress/docs/mexpress/COMPONENT_REGISTRY.md` for existing component entries
+- [✅] Search command: `grep -i "dashboard\|repair" /opt/mExpress/docs/mexpress/COMPONENT_REGISTRY.md`
+- [✅] List reusable components already in registry:
+  - RepairTimeline
+  - RepairTimelineItem
+  - CommunicationStatusPanel
+  - PriorityCommunications
+  - StatusCard
+  - Table
 
-After extensive investigation, we determined that the Vue.js application has deep-rooted issues with dependency management, module resolution, and build system configuration. The emergency dashboard works, confirming that Vue.js itself functions correctly, but the bundled application fails to load. This checklist outlines a clean slate approach for a reliable, maintainable implementation.
+## Git Setup
+- [✅] Create feature branch for the dashboard implementation:
+  ```bash
+  git checkout -b feature/MONT-2025-040-FE-dashboard-wireframes
+  ```
+- [✅] Initial commit with CHECKLIST.md update:
+  ```bash
+  git add docs/montpc_crm/CHECKLIST.md
+  git commit -m "task(TASK-MONT-040): start dashboard wireframe implementation"
+  ```
 
-## Phase 1: Backup and Preparation
+## 🔴 RED PHASE: Test Creation
 
-- [✅] Create backup directory for Vue components
-  - [✅] Create `/opt/mExpress/projects/montpc_crm/frontend/backup`
-  - [✅] Copy all Vue components to backup directory
-  - [✅] Document component relationships and dependencies
+### Dashboard Test Creation
+- [✅] Check existing dashboard components to understand requirements
+  - [✅] Main Dashboard
+  - [✅] Product Dashboard
+  - [✅] RepairDashboard
 
-- [✅] Document current API integrations
-  - [✅] Extract API service classes and interfaces
-  - [✅] Document existing API endpoints and data structures
-  - [✅] Back up API client configuration 
+- [✅] Verify RepairDashboard component implementation
+  - [✅] Component exists but has no tests
+  - [✅] Component has working UI and loading states
+  - [✅] Component uses other shared components correctly
 
-- [✅] Clean up environment
-  - [✅] Create git branch for clean implementation
-  - [✅] Temporarily move problematic files out of src directory
-  - [✅] Document path aliases and import patterns
+- [✅] Create RepairDashboard test file
+  - [✅] Create test file at `/opt/mExpress/projects/montpc_crm/tests/frontend/p0/tickets/RepairDashboard.test.ts`
+  - [✅] Add basic mount test
+  - [✅] Add tests for API data loading
+  - [✅] Add tests for component rendering
+  - [✅] Add tests for filter functionality
+  - [✅] Add tests for pagination 
+  - [✅] Add tests for notification interactions
+  - [✅] Add tests for error handling
 
-## Phase 2: Fresh Installation
+- [ ] Create RepairTimelineItem test file
+  - [ ] Create test file at `/opt/mExpress/projects/montpc_crm/tests/frontend/p0/ui/RepairTimelineItem.test.ts`
+  - [ ] Test rendering with different states (waiting, in-progress, completed)
+  - [ ] Test customer and device display
+  - [ ] Test action buttons
+  - [ ] Test responsive behavior
 
-- [✅] Create minimal package.json
-  - [✅] Remove all Vue-related dependencies
-  - [✅] Remove conflicting build tools
-  - [✅] Remove redundant packages
+- [ ] Create repair detail view test file
+  - [ ] Create test file at `/opt/mExpress/projects/montpc_crm/tests/frontend/p1/tickets/RepairDetail.test.ts`
+  - [ ] Test data loading and display
+  - [ ] Test status update functionality
+  - [ ] Test customer communication features
+  - [ ] Test error states
 
-- [✅] Install core dependencies with exact versions
-  - [✅] Vue 3.2.47 (downgraded from 3.3.4 for stability)
-  - [✅] Vite 4.3.9
-  - [✅] @vitejs/plugin-vue 4.0.0
-  - [✅] TypeScript 5.0.2 and Vue types
+- [ ] **Commit test files**:
+  - [ ] Stage test files: `git add projects/montpc_crm/tests/frontend/p0/tickets/RepairDashboard.test.ts`
+  - [ ] Commit: `git commit -m "test(dashboard): add tests for Repair Dashboard component"`
 
-- [✅] Configure Vite build system
-  - [✅] Create minimalist vite.vue.config.ts
-  - [✅] Configure path aliases
-  - [✅] Set up proper module resolution
-  - [✅] Configure proxy for API
+## 🟢 GREEN PHASE: Component Implementation
 
-- [✅] Set up proper TypeScript configuration
-  - [✅] Create tsconfig.json with minimal settings
-  - [✅] Configure Vue SFC support
-  - [✅] Set up path mappings matching Vite config
-  - [✅] Configure strict type checking
+### RepairDashboard Implementation
+- [✅] Verify existing RepairDashboard component implementation
+  - [✅] Check layout structure and responsiveness
+  - [✅] Verify filter functionality works
+  - [✅] Check pagination implementation
+  - [✅] Verify error handling
 
-## Phase 3: Create Minimal Working Application
+- [ ] Update RepairDashboard component with missing features
+  - [ ] Improve filter dropdown interaction
+  - [ ] Fix mock data handling
+  - [ ] Add empty state improvements
+  - [ ] Enhance animation and transitions
 
-- [✅] Create index.html with proper mount point
-  - [✅] Add mount element with id "app"
-  - [✅] Include basic styles
-  - [✅] Add proper meta tags
-  - [✅] Include fallback content for loading state
+### Dashboard Integration
+- [ ] Integrate RepairDashboard into main dashboard view
+  - [ ] Add proper routing in router configuration
+  - [ ] Create dashboard links to repair dashboard
+  - [ ] Test navigation between dashboard views
 
-- [✅] Create main entry point
-  - [✅] Implement minimal main.ts
-  - [✅] Add robust error handling
-  - [✅] Set up Vue app creation and mounting
-  - [✅] Configure debug logging
+### Dashboard Navigation
+- [ ] Implement dashboard navigation improvements
+  - [ ] Add breadcrumb support for navigation
+  - [ ] Ensure mobile-responsive design works correctly
+  - [ ] Test navigation links and active state highlighting
 
-- [✅] Build simplest App component
-  - [✅] Create minimal App.vue
-  - [✅] Verify component loads correctly
-  - [✅] Test reactive data
-  - [✅] Add basic styling
+- [ ] **Commit implementation**:
+  - [ ] Stage implementation files: `git add projects/montpc_crm/frontend/src/vue-components/tickets/RepairDashboard.vue`
+  - [ ] Commit: `git commit -m "feat(dashboard): implement Repair Dashboard with filtering and pagination"`
 
-- [✅] Create API service layer
-  - [✅] Implement base API client
-  - [✅] Add common interfaces for API responses
-  - [✅] Add proper error handling
-  - [✅] Create customer service module
+## 🔵 REFACTOR PHASE: Optimization
 
-## Phase 4: Implement Core Features
+### Performance Improvements
+- [ ] Optimize data loading
+  - [ ] Add data caching for repairs and notifications
+  - [ ] Implement staggered loading for better UX
+  - [ ] Add skeleton loaders for components
 
-- [✅] Create dashboard layout
-  - [✅] Implement the stats grid
-  - [✅] Add action buttons
-  - [✅] Create responsive layout
-  - [✅] Add API data integration
+### Usability Enhancements
+- [ ] Improve user interaction
+  - [ ] Add keyboard navigation support
+  - [ ] Improve focus management
+  - [ ] Add tooltips for better UX
 
-- [✅] Add basic UI components
-  - [✅] Button component (functional in dashboard)
-  - [✅] Card component (used in stats display)
-  - [✅] Layout components (AppLayout with header, sidebar, footer)
-  - [✅] Table component (functional in customer list)
+### Theme Support
+- [ ] Enhance theme support
+  - [ ] Ensure dark mode works properly
+  - [ ] Implement night-shift mode with glowing elements
+  - [ ] Test all theme variations
 
-- [✅] Implement API connectivity
-  - [✅] Add customer data fetching
-  - [✅] Implement data refresh (basic implementation)
-  - [✅] Add error handling
-  - [✅] Add loading states
-
-- [✅] Test integration
-  - [✅] Verify components load correctly
-  - [✅] Test API data flow
-  - [✅] Verify reactivity works
-  - [✅] Test error handling
-
-## Phase 5: Complete Implementation
-
-- [✅] Add remaining UI components
-  - [✅] Modal component
-  - [✅] Form components
-  - [✅] Navigation components
-  - [✅] Dashboard widgets
-
-- [✅] Implement routing
-  - [✅] Install Vue Router
-  - [✅] Set up route configuration
-  - [✅] Create view components
-  - [✅] Add navigation guards
-
-- [ ] Add state management
-  - [ ] Install Pinia
-  - [ ] Create store modules
-  - [ ] Implement proper reactive state
-  - [ ] Connect components to store
-
-- [✅] Complete CSS styling
-  - [✅] Implement basic component styles
-  - [✅] Add responsive breakpoints
-  - [✅] Implement theme support (light mode)
-  - [✅] Add transitions and animations
-
-## Phase 6: UI Component Library Implementation
-
-- [✅] Implement Table component
-  - [✅] Create component structure
-  - [✅] Add column configuration with customization options
-  - [✅] Implement sorting functionality with asc/desc options
-  - [✅] Add proper TypeScript interfaces for component props
-  - [✅] Implement row selection with select all functionality
-  - [✅] Add filterable columns with multiple filter operators
-  - [✅] Create pagination with customizable page sizes
-  - [✅] Implement custom cell rendering via slots
-  - [✅] Add proper accessibility features and keyboard navigation
-  - [✅] Create comprehensive test suite covering all functionality
-  - [✅] Add TableExample component showcasing all features
-  - [✅] Create responsive table design with horizontal scrolling
+- [ ] **Commit refactoring**:
+  - [ ] Stage refactored files: `git add projects/montpc_crm/frontend/src/vue-components/tickets/RepairDashboard.vue`
+  - [ ] Commit: `git commit -m "refactor(dashboard): optimize dashboard loading and interaction"`
 
 ## Implementation Progress
-- ✅ Basic dashboard UI implemented and functioning
-- ✅ Reactive data display working correctly 
-- ✅ Button click triggers data refresh
-- ✅ Responsive layout working properly
-- ✅ Clean dependency structure established
-- ✅ Vue Router implemented with multiple views
-- ✅ Layout implemented with navigation sidebar
-- ✅ Multiple view components created and working (Dashboard, Customers, Tickets, Settings)
-- ✅ Table component implemented with comprehensive features
-- ⏭️ Next steps: Add state management with Pinia and connect more API endpoints
+- ✅ Main dashboard implementation verified and working
+- ✅ Product dashboard implementation verified and working
+- ✅ Repair dashboard component implementation verified
+- ✅ RepairDashboard tests created
+- ⏭️ Created mockup structure for UI components
+- ⏭️ Next steps: Create remaining tests for RepairTimelineItem and RepairDetail
 
-## Best Practices (Revised Based on Implementation)
+## Task Completion Git Steps
 
-1. **Direct Named Imports**: Always use `import { x } from 'y'` instead of namespace imports
-
-2. **Pin Exact Versions**: Use exact version numbers in package.json to avoid dependency conflicts
-   - PROVEN: Exact versions resolved the dependency conflicts
-
-3. **Critical Dependencies**:
-   - Vue: 3.2.47 (more stable than 3.3.4 with our setup)
-   - Vite: 4.3.9
-   - @vitejs/plugin-vue: 4.0.0
-   - TypeScript: 5.0.2 (compatible with Vue)
-   - Vue Router: 4.1.6
-
-4. **Progressive Implementation**:
-   - CONFIRMED: Starting with minimal working example was successful
-   - Add one feature at a time
-   - Test thoroughly between additions
-   - Document all issues encountered
-
-5. **Avoid Auto-Fix Scripts**:
-   - CONFIRMED: Manual changes provided more control and understanding
-   - Make all changes manually and intentionally
-   - Understand each dependency relationship
-   - Keep dependencies minimal
-
-## Key Lessons from Current Implementation
-
-1. ✅ Downgrading Vue from 3.3.4 to 3.2.47 resolved the "computed" export error
-
-2. ✅ Removing React dependencies eliminated conflicts and simplified the build process
-
-3. ✅ Using a clean, minimal Vite configuration prevented build issues
-
-4. ✅ Mount point ID in HTML matching the ID in the entry point was critical
-
-5. ✅ Starting with a minimal working example and progressively adding features is effective
-
-6. ✅ Focusing on Vue-only implementation simplified debugging and dependency management
-
-7. ✅ Using exact package versions prevented subtle version conflicts
-
-8. ✅ Implementing proper router integration with layouts improved code organization
-
-9. ✅ Creating reusable components for layout improved maintainability
-
-10. ✅ Using scoped CSS in components prevents style leakage and conflicts
-
-11. ✅ Implementing comprehensive test suite for components ensures stability and reliability
-
-12. ✅ Breaking complex components like Table into smaller, manageable features improves maintainability
+- [ ] **Final updates**:
+  - [ ] Archive CHECKLIST.md to checklist_history:
+    ```bash
+    cp docs/montpc_crm/CHECKLIST.md docs/montpc_crm/checklist_history/CHECKLIST-TASK-MONT-040-Dashboard-wireframes-$(date +%Y%m%d).md
+    ```
+  - [ ] Update TASKS.md status to "Completed"
+  - [ ] Update MILESTONES.md progress
+  - [ ] Commit completion:
+    ```bash
+    git add docs/montpc_crm/checklist_history/* docs/montpc_crm/TASKS.md docs/montpc_crm/MILESTONES.md
+    git commit -m "complete(TASK-MONT-040): finish dashboard wireframes implementation"
+    ```
+  - [ ] Push branch and prepare for PR:
+    ```bash
+    git push -u origin feature/MONT-2025-040-FE-dashboard-wireframes
+    ```
