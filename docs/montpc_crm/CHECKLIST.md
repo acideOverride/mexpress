@@ -1,167 +1,165 @@
-# Basic Repair Ticket Model Implementation Checklist
+# Customer Notification for Status Changes Implementation Checklist
 
 ## Current Documentation Status:
 - A: ARCHITECTURE.md - Section 7.3 Repair Ticket Management
-- M: MILESTONES.md - MS-MONT-012 - Repair Ticket Management (40% Complete)
-- T: TASKS.md - TASK-MONT-039: Implement basic repair ticket model
+- M: MILESTONES.md - MS-MONT-012 - Repair Ticket Management (50% Complete)
+- T: TASKS.md - TASK-MONT-043: Implement customer notification for status changes
 - Test Status: See [TESTS_STATUS_ENHANCED.md](/opt/mExpress/tests/validation/unified/TESTS_STATUS_ENHANCED.md)
 
 ## Component Registry Check (FIRST STEP)
 - [✅] Check `/opt/mExpress/docs/mexpress/COMPONENT_REGISTRY.md` for existing component entries
-- [✅] Search command: `grep -i "repair\|ticket\|model" /opt/mExpress/docs/mexpress/COMPONENT_REGISTRY.md`
-- [✅] List reusable components or models already in registry:
-  - RepairTimeline
-  - RepairTimelineItem
-  - StatusBadge (for repair status)
+- [✅] Search command: `grep -i "notification\|email\|service" /opt/mExpress/docs/mexpress/COMPONENT_REGISTRY.md`
+- [✅] List reusable components already in registry:
+  - EmailService (packages/email-service) - Provider-agnostic email service with templating
+  - NotificationService (packages/vue-components/src/services/NotificationService.ts) - UI notification service
+  - NotificationItem (projects/montpc_crm/frontend/src/vue-components/ui/NotificationItem.vue) - Notification UI component
+  - Toast (packages/vue-components/src/components/ui/Toast.vue) - Toast notification component
+  - Alert (packages/vue-components/src/components/ui/Alert.vue) - Alert message component
 
 ## Git Setup
-- [✅] Create feature branch for the repair ticket model implementation:
+- [ ] Create feature branch for the customer notification implementation:
   ```bash
-  git checkout -b feature/MONT-2025-039-BE-repair-ticket-model
+  git checkout -b feature/MONT-2025-043-BE-customer-notification
   ```
-- [✅] Initial commit with CHECKLIST.md update:
+- [ ] Initial commit with CHECKLIST.md update:
   ```bash
   git add docs/montpc_crm/CHECKLIST.md
-  git commit -m "task(TASK-MONT-039): start repair ticket model implementation"
+  git commit -m "task(TASK-MONT-043): start customer notification implementation"
   ```
 
 ## 🔴 RED PHASE: Test Creation
 
-### Model Test Creation
-- [✅] Create repair ticket model test file
-  - [✅] Create test file at `/opt/mExpress/projects/montpc_crm/tests/backend/p0/models/RepairTicket.model.test.ts`
-  - [✅] Add tests for basic model properties
-  - [✅] Add tests for required fields validation
-  - [✅] Add tests for ticket creation with minimum fields
-  - [✅] Add tests for status workflow transitions
-  - [✅] Add tests for ticket updates and modifications
-  - [✅] Add tests for customer association
-  - [✅] Add tests for device association
-  - [✅] Add tests for technician assignment
-  - [✅] Add tests for repair notes and updates
+### Notification Service Tests
+- [ ] Create notification service test file
+  - [ ] Create test file at `/opt/mExpress/projects/montpc_crm/tests/backend/p1/services/NotificationService.test.ts`
+  - [ ] Add tests for email notification sending
+  - [ ] Add tests for SMS notification sending
+  - [ ] Add tests for notification preferences
+  - [ ] Add tests for notification templates
+  - [ ] Add tests for notification delivery status tracking
 
-### Schema Test Creation
-- [✅] Create repair ticket schema test file
-  - [✅] Create test file at `/opt/mExpress/projects/montpc_crm/tests/backend/p0/schemas/RepairTicket.schema.test.ts`
-  - [✅] Test schema validation for required fields
-  - [✅] Test schema validation for field types
-  - [✅] Test schema validation for enum values (status, priority)
-  - [✅] Test schema relationships (customer, device, technician)
+### Repair Ticket Notification Tests
+- [ ] Create repair ticket notification test file
+  - [ ] Create test file at `/opt/mExpress/projects/montpc_crm/tests/backend/p1/services/RepairTicketNotificationService.test.ts`
+  - [ ] Add tests for notification triggers on status changes
+  - [ ] Add tests for customer notification preferences
+  - [ ] Add tests for notification content based on status
+  - [ ] Add tests for notification sending failures handling
 
-### Repository Test Creation
-- [✅] Create repair ticket repository test file
-  - [✅] Create test file at `/opt/mExpress/projects/montpc_crm/tests/backend/p1/repositories/RepairTicketRepository.test.ts`
-  - [✅] Test CRUD operations for repair tickets
-  - [✅] Test finding tickets by various criteria (status, customer, date range)
-  - [✅] Test pagination and sorting functionality
-  - [✅] Test filtering by different fields
-  - [✅] Test data relationships (customer, device, technician)
+### API Tests for Notification Endpoints
+- [ ] Create notification API test file
+  - [ ] Create test file at `/opt/mExpress/projects/montpc_crm/tests/backend/p1/api/NotificationAPI.test.ts`
+  - [ ] Add tests for getting notification history
+  - [ ] Add tests for updating notification preferences
+  - [ ] Add tests for sending test notifications
 
-- [✅] **Commit test files**:
-  - [✅] Stage test files: `git add projects/montpc_crm/tests/backend/p0/models/RepairTicket.model.test.ts projects/montpc_crm/tests/backend/p0/schemas/RepairTicket.schema.test.ts projects/montpc_crm/tests/backend/p1/repositories/RepairTicketRepository.test.ts`
-  - [✅] Commit: `git commit -m "test(model): add tests for repair ticket model, schema, and repository"`
+- [ ] **Commit test files**:
+  - [ ] Stage test files: `git add projects/montpc_crm/tests/backend/p1/services/NotificationService.test.ts projects/montpc_crm/tests/backend/p1/services/RepairTicketNotificationService.test.ts projects/montpc_crm/tests/backend/p1/api/NotificationAPI.test.ts`
+  - [ ] Commit: `git commit -m "test(notification): add tests for customer notification services"`
 
-## 🟢 GREEN PHASE: Model Implementation
+## 🟢 GREEN PHASE: Implementation
 
 ### Define Interfaces
-- [✅] Create repair ticket interfaces
-  - [✅] Create ticket status enum
-  - [✅] Create ticket priority enum
-  - [✅] Create repair ticket interface with all required fields
-  - [✅] Create repair notes interface
-  - [✅] Create ticket status update interface
+- [ ] Create notification interfaces
+  - [ ] Create notification types enum
+  - [ ] Create notification channel enum (EMAIL, SMS, PUSH)
+  - [ ] Create notification interface with required fields
+  - [ ] Create notification preference interface
+  - [ ] Create notification template interface
+  - [ ] Create notification delivery status interface
 
-### Implement Model
-- [✅] Create repair ticket model file
-  - [✅] Implement RepairTicket class with all required properties
-  - [✅] Implement validation methods
-  - [✅] Implement status transition methods
-  - [✅] Implement update methods
-  - [✅] Implement relationship methods (customer, device, technician)
+### Implement Core Notification Service
+- [ ] Create notification service
+  - [ ] Implement NotificationService base class
+  - [ ] Implement email notification using EmailService
+  - [ ] Implement SMS notification (stub for future)
+  - [ ] Implement notification preference management
+  - [ ] Implement template management for notifications
+  - [ ] Implement notification history tracking
 
-### Implement Schema
-- [✅] Create repair ticket schema
-  - [✅] Define MongoDB schema structure
-  - [✅] Set required fields and validations
-  - [✅] Define indexes for performance
-  - [✅] Define virtual fields and relationships
-  - [✅] Implement pre/post hooks for data integrity
+### Implement Repair Ticket Notification Service
+- [ ] Create repair ticket notification service
+  - [ ] Implement RepairTicketNotificationService class
+  - [ ] Implement status change event listeners
+  - [ ] Implement notification content generation based on status
+  - [ ] Implement customer notification preference checking
+  - [ ] Implement notification sending for each status change type
+  - [ ] Implement notification retry logic
 
-### Implement Repository
-- [✅] Create repair ticket repository
-  - [✅] Implement CRUD operations
-  - [✅] Implement specialized queries (by status, customer, date)
-  - [✅] Implement pagination and sorting
-  - [✅] Implement filtering methods
-  - [✅] Implement relationship queries
+### Implement API Endpoints
+- [ ] Create notification API endpoints
+  - [ ] Implement endpoint for notification history
+  - [ ] Implement endpoint for notification preferences
+  - [ ] Implement endpoint to send test notification
+  - [ ] Update API documentation for notification endpoints
 
-- [✅] **Commit implementation**:
-  - [✅] Stage implementation files: `git add projects/montpc_crm/backend/src/interfaces/device.interface.ts projects/montpc_crm/backend/src/interfaces/repair-ticket.interface.ts projects/montpc_crm/backend/src/schemas/RepairTicket.schema.ts projects/montpc_crm/backend/src/models/RepairTicket.ts projects/montpc_crm/backend/src/repositories/RepairTicketRepository.ts`
-  - [✅] Commit: `git commit -m "feat(model): implement repair ticket model, schema, and repository"`
+### Integrate with Existing Components
+- [ ] Integrate with repair ticket workflow
+  - [ ] Update RepairTicketController to use notification service
+  - [ ] Add notification hooks in status transition methods
+  - [ ] Ensure notification is triggered on status changes
+
+- [ ] **Commit implementation**:
+  - [ ] Stage implementation files: `git add projects/montpc_crm/backend/src/interfaces/notification.interface.ts projects/montpc_crm/backend/src/services/NotificationService.ts projects/montpc_crm/backend/src/services/RepairTicketNotificationService.ts projects/montpc_crm/backend/src/controllers/NotificationController.ts projects/montpc_crm/backend/src/routes/notification.routes.ts`
+  - [ ] Commit: `git commit -m "feat(notification): implement customer notification system for repair status changes"`
 
 ## 🔵 REFACTOR PHASE: Optimization
 
 ### Code Optimization
-- [✅] Optimize model implementation
-  - [✅] Review and improve validation methods
-  - [✅] Fix duplicate indexes in schema
-  - [✅] Fix test cases to match implementation
-  - [✅] Improve error handling and reporting
+- [ ] Optimize notification service
+  - [ ] Review and improve performance of notification sending
+  - [ ] Optimize database queries for notification history
+  - [ ] Improve error handling and reporting
+  - [ ] Add retry policy for failed notifications
 
-### Integration and Sample Data
-- [✅] Create sample data for testing
-  - [✅] Add mock repair tickets with various statuses
-  - [✅] Create relationships with existing customers and devices
-  - [✅] Associate with technicians from user database
+### Templates and Content
+- [ ] Create notification templates
+  - [ ] Create email templates for each status change type
+  - [ ] Implement template variables substitution
+  - [ ] Create plain text fallback versions
+  - [ ] Add styling for email notifications
 
-### Documentation
-- [ ] Update technical documentation
-  - [ ] Document model fields and usage
-  - [ ] Document schema structure
-  - [ ] Document repository methods
-  - [ ] Add examples for common operations
+### Frontend Integration
+- [ ] Update frontend to support notifications
+  - [ ] Add notification preferences UI
+  - [ ] Display notification history
+  - [ ] Show real-time notification status
 
-- [✅] **Commit refactoring**:
-  - [✅] Stage refactored files: `git add projects/montpc_crm/backend/src/seeds/repair-tickets.seed.ts`
-  - [✅] Commit: `git commit -m "refactor(model): optimize repair ticket implementation and add seed data"`
+- [ ] **Commit refactoring**:
+  - [ ] Stage refactored files: `git add projects/montpc_crm/backend/src/templates/* projects/montpc_crm/frontend/src/components/notifications/*`
+  - [ ] Commit: `git commit -m "refactor(notification): optimize notification system and add templates"`
 
 ## Implementation Progress
-- [✅] Repair ticket model tests created and passing
-- [✅] Repair ticket schema tests created and passing
-- [✅] Repair ticket repository tests created and passing
-- [✅] Repair ticket interface implemented
-- [✅] Repair ticket model implemented
-- [✅] Repair ticket schema implemented
-- [✅] Repair ticket repository implemented
-- [✅] Sample data created for testing
-- [ ] Documentation created
+- [ ] Notification service tests created and passing
+- [ ] Repair ticket notification tests created and passing
+- [ ] API tests created and passing
+- [ ] Notification interfaces implemented
+- [ ] Notification service implemented
+- [ ] Repair ticket notification service implemented
+- [ ] API endpoints implemented
+- [ ] Integration with workflow completed
+- [ ] Template system implemented
 
 ## Task Completion Git Steps
-
 - [ ] **Final updates**:
-  - [ ] Create documentation:
-    ```bash
-    mkdir -p /opt/mExpress/docs/montpc_crm/models
-    touch /opt/mExpress/docs/montpc_crm/models/REPAIR_TICKET.md
-    ```
   - [ ] Archive CHECKLIST.md to checklist_history:
     ```bash
-    cp docs/montpc_crm/CHECKLIST.md docs/montpc_crm/checklist_history/CHECKLIST-TASK-MONT-039-Repair-Ticket-Model-$(date +%Y%m%d).md
+    cp docs/montpc_crm/CHECKLIST.md docs/montpc_crm/checklist_history/CHECKLIST-TASK-MONT-043-Customer-Notification-$(date +%Y%m%d).md
     ```
   - [ ] Update TASKS.md status to "Completed":
     ```bash
-    sed -i 's/- 📅 **TASK-MONT-039**: Implement basic repair ticket model/- ✅ **TASK-MONT-039**: Implement basic repair ticket model ($(date +%Y-%m-%d))/g' docs/montpc_crm/TASKS.md
+    sed -i 's/- 📅 **TASK-MONT-043**: Implement customer notification for status changes/- ✅ **TASK-MONT-043**: Implement customer notification for status changes ($(date +%Y-%m-%d))/g' docs/montpc_crm/TASKS.md
     ```
   - [ ] Update MILESTONES.md progress:
     ```bash
-    sed -i 's/- **Progress**: 40%/- **Progress**: 50%/g' docs/montpc_crm/MILESTONES.md
+    sed -i 's/- **Progress**: 50%/- **Progress**: 60%/g' docs/montpc_crm/MILESTONES.md
     ```
   - [ ] Commit completion:
     ```bash
     git add docs/montpc_crm/checklist_history/* docs/montpc_crm/TASKS.md docs/montpc_crm/MILESTONES.md
-    git commit -m "complete(TASK-MONT-039): finish repair ticket model implementation"
+    git commit -m "complete(TASK-MONT-043): finish customer notification implementation"
     ```
   - [ ] Push branch and prepare for PR:
     ```bash
-    git push -u origin feature/MONT-2025-039-BE-repair-ticket-model
+    git push -u origin feature/MONT-2025-043-BE-customer-notification
     ```
