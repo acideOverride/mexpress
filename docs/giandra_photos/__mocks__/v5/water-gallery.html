@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIANDRA | Liquid Art Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="water-gallery.css">
+  
+  <!-- Early loader script - runs before page fully loads -->
+  <script>
+    console.log("Inline loader script running");
+    // This will run immediately as page starts loading
+    window.onload = function() {
+      console.log("Window loaded - ensuring loader is visible");
+      var loadingContainer = document.querySelector('.loading-container');
+      var progressFill = document.querySelector('.progress-fill');
+      var progressValue = document.querySelector('.progress-value');
+      
+      if (loadingContainer && progressFill && progressValue) {
+        // Start a simple loader
+        var progress = 0;
+        var interval = setInterval(function() {
+          progress += 5;
+          if (progress > 100) {
+            progress = 100;
+            clearInterval(interval);
+            setTimeout(function() {
+              loadingContainer.style.opacity = '0';
+              setTimeout(function() {
+                loadingContainer.style.display = 'none';
+              }, 500);
+            }, 500);
+          }
+          progressFill.style.width = progress + '%';
+          progressValue.textContent = progress + '%';
+        }, 100);
+      }
+    };
+  </script>
+</head>
+<body style="cursor: none;">
+  <!-- Interactive water background -->
+  <div class="water-background">
+    <canvas id="waterCanvas"></canvas>
+  </div>
+  
+  <!-- Loading animation - revised for more reliability -->
+  <div class="loading-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #f2f9ff; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
+    <div class="water-drop-loader">
+      <div class="drop" style="position: relative; width: 60px; height: 60px; background-color: #4dc4ff; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: drop-fall 2s infinite ease-in-out;"></div>
+      <div class="wave" style="position: absolute; bottom: 0; width: 120px; height: 20px; background-color: #4dc4ff; border-radius: 50%; opacity: 0; animation: wave-spread 2s infinite ease-out;"></div>
+      <div class="loading-text" style="position: absolute; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; letter-spacing: 3px; font-weight: 500; color: #003652; transform: translateY(30px);">GIANDRA</div>
+    </div>
+    <div class="loading-progress" style="width: 200px; display: flex; flex-direction: column; align-items: center; margin-top: 80px;">
+      <div class="progress-value" style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #4dc4ff; margin-bottom: 10px;">0%</div>
+      <div class="progress-bar" style="width: 100%; height: 4px; background-color: rgba(77, 196, 255, 0.2); border-radius: 2px; overflow: hidden;">
+        <div class="progress-fill" style="height: 100%; width: 0%; background-color: #4dc4ff; transition: width 0.1s linear;"></div>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    @keyframes drop-fall {
+      0% { transform: scale(0) translateY(-100px); opacity: 0; }
+      20% { transform: scale(1) translateY(0); opacity: 1; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
+      30% { transform: scale(1.2, 0.8) translateY(5px); border-radius: 50%; }
+      40% { transform: scale(0.8, 1.1) translateY(-10px); border-radius: 40% 40% 60% 60% / 40% 40% 60% 60%; }
+      50% { transform: scale(1) translateY(0); border-radius: 50%; }
+      100% { transform: scale(1) translateY(0); opacity: 0; }
+    }
+    
+    @keyframes wave-spread {
+      0% { transform: scale(0); opacity: 0; }
+      20% { opacity: 0; }
+      30% { transform: scale(0.5); opacity: 0.3; }
+      50% { transform: scale(1.5); opacity: 0; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+  </style>
+
+  <!-- Main content -->
+  <div class="site-container">
+    <!-- Navigation -->
+    <header class="main-header">
+      <div class="logo-container">
+        <div class="logo">GIANDRA</div>
+        <div class="tagline">Liquid Visions</div>
+      </div>
+      
+      <nav class="main-nav">
+        <ul class="nav-links">
+          <li><a href="#" class="active">Collections</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Exhibitions</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-controls">
+        <button class="language-toggle">EN | FR</button>
+        <button class="theme-toggle">
+          <span class="light-icon">☀️</span>
+          <span class="dark-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">Exploring the Fluid Boundaries of Reality</h1>
+        <p class="hero-description">Dive into a world where water becomes the canvas for artistic expression, capturing the ephemeral beauty of liquid states and their relationship with light, movement, and perception.</p>
+        <a href="#collections" class="discover-button">
+          <span>Discover Collections</span>
+          <div class="button-ripple"></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Collections section -->
+    <section id="collections" class="collections-section">
+      <div class="section-header">
+        <h2 class="section-title">Collections</h2>
+        <div class="controls">
+          <div class="view-toggles">
+            <button class="view-toggle grid-toggle active" data-view="grid">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </button>
+            <button class="view-toggle list-toggle" data-view="list">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="4" width="18" height="2" rx="1" fill="currentColor"/>
+                <rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor"/>
+                <rect x="3" y="18" width="18" height="2" rx="1" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="filter-tags">
+        <button class="filter-tag active" data-filter="all">ALL COLLECTIONS</button>
+        <button class="filter-tag" data-filter="blue">BLUE</button>
+        <button class="filter-tag" data-filter="abstract">ABSTRACT</button>
+        <button class="filter-tag" data-filter="surface">SURFACE</button>
+        <button class="filter-tag" data-filter="depth">DEPTH</button>
+      </div>
+      
+      <div class="collections-grid">
+        <!-- LE GRAND BLEU -->
+        <div class="collection-card" data-categories="blue depth">
+          <div class="card-image-container">
+            <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Le Grand Bleu">
+            <div class="water-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">LE GRAND BLEU</h3>
+            <div class="card-meta">
+              <span class="card-count">34 pieces</span>
+              <span class="card-year">2024</span>
+            </div>
+            <a href="#" class="card-link">
+              <span>Explore</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- COSMOGONIE -->
+        <div class="collection-card" data-categories="abstract depth">
+          <div class="card-image-container">
+            <img src="../../PHOTOS_DATABASE/COSMOGONIE/cosmogonie_001.jpg" alt="Cosmogonie">
+            <div class="water-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">COSMOGONIE</h3>
+            <div class="card-meta">
+              <span class="card-count">28 pieces</span>
+              <span class="card-year">2023</span>
+            </div>
+            <a href="#" class="card-link">
+              <span>Explore</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- SURFING ANGELS -->
+        <div class="collection-card" data-categories="blue surface">
+          <div class="card-image-container">
+            <img src="../../PHOTOS_DATABASE/Surfing_Angels/surfing_angels_001.jpg" alt="Surfing Angels">
+            <div class="water-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">SURFING ANGELS</h3>
+            <div class="card-meta">
+              <span class="card-count">36 pieces</span>
+              <span class="card-year">2024</span>
+            </div>
+            <a href="#" class="card-link">
+              <span>Explore</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- TISSER LA MATIÈRE -->
+        <div class="collection-card" data-categories="abstract surface">
+          <div class="card-image-container">
+            <img src="../../PHOTOS_DATABASE/TISSER_LA_MATIERE/tisser_la_matiere_001.jpg" alt="Tisser la Matière">
+            <div class="water-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">TISSER LA MATIÈRE</h3>
+            <div class="card-meta">
+              <span class="card-count">15 pieces</span>
+              <span class="card-year">2022</span>
+            </div>
+            <a href="#" class="card-link">
+              <span>Explore</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- RENVERSER LES MONTAGNES -->
+        <div class="collection-card" data-categories="blue abstract depth">
+          <div class="card-image-container">
+            <img src="../../PHOTOS_DATABASE/RENVERSER_LES_MONTAGNES/renverser_les_montagnes_001.jpg" alt="Renverser les Montagnes">
+            <div class="water-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">RENVERSER LES MONTAGNES</h3>
+            <div class="card-meta">
+              <span class="card-count">22 pieces</span>
+              <span class="card-year">2023</span>
+            </div>
+            <a href="#" class="card-link">
+              <span>Explore</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- COMME À GIVERNY -->
+        <div class="collection-card" data-categories="abstract surface">
+          <div class="card-image-container">
+            <img src="../../PHOTOS_DATABASE/COMME_A_GIVERNY/comme_a_giverny_001.jpg" alt="Comme à Giverny">
+            <div class="water-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">COMME À GIVERNY</h3>
+            <div class="card-meta">
+              <span class="card-count">20 pieces</span>
+              <span class="card-year">2022</span>
+            </div>
+            <a href="#" class="card-link">
+              <span>Explore</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- ESPRITS DE NOTRE ESPRIT -->
+        <div class="collection-card" data-categories="abstract depth">
+          <div class="card-image-container">
+            <img src="../../PHOTOS_DATABASE/ESPRITS_DE_NOTRE_ESPRIT/esprits_de_notre_esprit_001.jpg" alt="Esprits de Notre Esprit">
+            <div class="water-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">ESPRITS DE NOTRE ESPRIT</h3>
+            <div class="card-meta">
+              <span class="card-count">24 pieces</span>
+              <span class="card-year">2021</span>
+            </div>
+            <a href="#" class="card-link">
+              <span>Explore</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Featured collection -->
+    <section class="featured-collection">
+      <div class="featured-header">
+        <h2 class="featured-title">Featured Collection</h2>
+        <div class="featured-subtitle">LE GRAND BLEU</div>
+      </div>
+      
+      <div class="featured-content">
+        <div class="featured-image">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_002.jpg" alt="Le Grand Bleu">
+          <div class="image-caption">
+            An exploration of the vast oceanic depths and their mysterious blue hues
+          </div>
+        </div>
+        
+        <div class="featured-description">
+          <p>The Grand Bleu collection captures the infinite variations of blue found in oceanic waters. Each photograph reveals a unique dimension of blue that escapes our everyday perception.</p>
+          <p>Taken without any digital retouching, these works capture the essence of the interaction between light and water, creating mesmerizing patterns that blur the boundary between abstraction and reality.</p>
+          
+          <div class="featured-details">
+            <div class="detail-item">
+              <div class="detail-label">YEAR</div>
+              <div class="detail-value">2024</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">PIECES</div>
+              <div class="detail-value">34</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">TECHNIQUE</div>
+              <div class="detail-value">Unretouched</div>
+            </div>
+          </div>
+          
+          <a href="#" class="view-collection-button">
+            <span>VIEW ENTIRE COLLECTION</span>
+            <div class="button-ripple"></div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="featured-previews">
+        <div class="preview-image">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_003.jpg" alt="Preview 1">
+        </div>
+        <div class="preview-image">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_004.jpg" alt="Preview 2">
+        </div>
+        <div class="preview-image">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_005.jpg" alt="Preview 3">
+        </div>
+        <div class="preview-image">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_006.jpg" alt="Preview 4">
+        </div>
+      </div>
+    </section>
+    
+    <!-- Quote section -->
+    <section class="quote-section">
+      <div class="wave-divider"></div>
+      <blockquote>
+        "Water is not just the subject of my work, but the very medium through which I explore the boundaries between perception and reality."
+        <cite>— Giandra de Castro</cite>
+      </blockquote>
+      <div class="wave-divider reversed"></div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">GIANDRA</div>
+        <div class="footer-links">
+          <a href="#">INSTAGRAM</a>
+          <a href="#">TWITTER</a>
+          <a href="#">FACEBOOK</a>
+        </div>
+        <div class="footer-copyright">
+          © 2025 GIANDRA DE CASTRO. ALL RIGHTS RESERVED.
+        </div>
+      </div>
+    </footer>
+  </div>
+  
+  <!-- Collection detail overlay -->
+  <div class="collection-detail-overlay">
+    <div class="overlay-header">
+      <button class="close-overlay">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="detail-content">
+      <div class="detail-header">
+        <h2 class="detail-title">LE GRAND BLEU</h2>
+        <p class="detail-subtitle">A journey into the depths of blue</p>
+      </div>
+      
+      <div class="detail-hero">
+        <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Le Grand Bleu">
+      </div>
+      
+      <div class="detail-information">
+        <div class="information-left">
+          <p class="detail-description">
+            An exploration of the depths of oceanic blue, this collection captures the mesmerizing patterns and hues found in water. Each piece reveals the fluid nature of reality and the way light dances through liquid matter.
+          </p>
+          <p class="detail-description">
+            Photographed along the Mediterranean coast, these unretouched images preserve the authentic interaction between light and water, creating abstract forms that challenge our perception.
+          </p>
+          
+          <div class="detail-specifications">
+            <div class="specification-item">
+              <div class="specification-label">YEAR</div>
+              <div class="specification-value">2024</div>
+            </div>
+            <div class="specification-item">
+              <div class="specification-label">PIECES</div>
+              <div class="specification-value">34</div>
+            </div>
+            <div class="specification-item">
+              <div class="specification-label">TECHNIQUE</div>
+              <div class="specification-value">Unretouched</div>
+            </div>
+            <div class="specification-item">
+              <div class="specification-label">MEDIUM</div>
+              <div class="specification-value">Digital Photography</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="information-right">
+          <div class="acquisition-options">
+            <h3 class="acquisition-header">ACQUISITION OPTIONS</h3>
+            
+            <div class="option-item">
+              <div class="option-details">
+                <div class="option-size">30×45 cm</div>
+                <div class="option-price">€350</div>
+              </div>
+              <button class="option-button">Select</button>
+            </div>
+            
+            <div class="option-item">
+              <div class="option-details">
+                <div class="option-size">50×70 cm</div>
+                <div class="option-price">€550</div>
+              </div>
+              <button class="option-button">Select</button>
+            </div>
+            
+            <div class="option-item">
+              <div class="option-details">
+                <div class="option-size">70×100 cm</div>
+                <div class="option-price">€850</div>
+              </div>
+              <button class="option-button">Select</button>
+            </div>
+            
+            <div class="option-note">
+              All pieces are printed on premium archival paper, signed, numbered, and come with a certificate of authenticity.
+            </div>
+            
+            <button class="contact-button">
+              <span>CONTACT FOR ACQUISITION</span>
+              <div class="button-ripple"></div>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="detail-gallery">
+        <h3 class="gallery-header">EXPLORE THE COLLECTION</h3>
+        
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Le Grand Bleu 001">
+          </div>
+          <div class="gallery-item">
+            <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_002.jpg" alt="Le Grand Bleu 002">
+          </div>
+          <div class="gallery-item">
+            <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_003.jpg" alt="Le Grand Bleu 003">
+          </div>
+          <div class="gallery-item">
+            <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_004.jpg" alt="Le Grand Bleu 004">
+          </div>
+          <div class="gallery-item">
+            <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_005.jpg" alt="Le Grand Bleu 005">
+          </div>
+          <div class="gallery-item">
+            <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_006.jpg" alt="Le Grand Bleu 006">
+          </div>
+          <div class="gallery-item">
+            <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_007.jpg" alt="Le Grand Bleu 007">
+          </div>
+          <div class="gallery-item">
+            <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_008.jpg" alt="Le Grand Bleu 008">
+          </div>
+        </div>
+        
+        <button class="view-all-gallery-button">
+          <span>VIEW ALL 34 PIECES</span>
+          <div class="button-ripple"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Fullscreen gallery -->
+  <div class="fullscreen-gallery">
+    <div class="gallery-navigation">
+      <button class="close-gallery">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      
+      <div class="gallery-controls">
+        <button class="previous-button">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        
+        <div class="gallery-pagination">
+          <span class="current-index">1</span>
+          <span class="divider">/</span>
+          <span class="total-count">34</span>
+        </div>
+        
+        <button class="next-button">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <div class="gallery-showcase">
+      <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Le Grand Bleu 001" class="showcase-image">
+      
+      <div class="image-information">
+        <h4 class="image-title">LE GRAND BLEU | 001</h4>
+        <p class="image-details">
+          Captured at sunset with the light refracting through the Mediterranean waves, creating a mesmerizing pattern of blues.
+        </p>
+      </div>
+    </div>
+    
+    <div class="gallery-thumbnails">
+      <div class="thumbnail active">
+        <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Thumbnail 1">
+      </div>
+      <div class="thumbnail">
+        <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_002.jpg" alt="Thumbnail 2">
+      </div>
+      <div class="thumbnail">
+        <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_003.jpg" alt="Thumbnail 3">
+      </div>
+      <div class="thumbnail">
+        <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_004.jpg" alt="Thumbnail 4">
+      </div>
+      <div class="thumbnail">
+        <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_005.jpg" alt="Thumbnail 5">
+      </div>
+      <div class="thumbnail">
+        <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_006.jpg" alt="Thumbnail 6">
+      </div>
+      <div class="thumbnail">
+        <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_007.jpg" alt="Thumbnail 7">
+      </div>
+      <div class="thumbnail">
+        <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_008.jpg" alt="Thumbnail 8">
+      </div>
+    </div>
+  </div>
+  
+  <!-- Liquid cursor with inline styles -->
+  <div class="liquid-cursor" style="position: fixed; width: 20px; height: 20px; border-radius: 50%; background-color: #4dc4ff; filter: drop-shadow(0 0 6px #00e1ff); pointer-events: none; transform: translate(-50%, -50%); z-index: 9999; opacity: 0.7; mix-blend-mode: lighten; transition: width 0.2s, height 0.2s, transform 0.1s;"></div>
+  
+  <!-- Inline cursor script that works without waiting for external JS -->
+  <script>
+    // Immediate cursor functionality
+    (function() {
+      var cursor = document.querySelector('.liquid-cursor');
+      if (cursor) {
+        try {
+          // Initial visibility
+          cursor.style.opacity = '0.7';
+          
+          // Track mouse movement
+          document.addEventListener('mousemove', function(e) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+          });
+          
+          // Interactive elements - add this after a slight delay to ensure DOM is ready
+          setTimeout(function() {
+            var interactiveElements = document.querySelectorAll('a, button, .collection-card, .gallery-item, .thumbnail');
+            interactiveElements.forEach(function(el) {
+              el.addEventListener('mouseenter', function() {
+                cursor.style.width = '40px';
+                cursor.style.height = '40px';
+                cursor.style.opacity = '0.9';
+              });
+              
+              el.addEventListener('mouseleave', function() {
+                cursor.style.width = '20px';
+                cursor.style.height = '20px';
+                cursor.style.opacity = '0.7';
+              });
+            });
+          }, 500);
+          
+          // Show cursor when mouse enters the window
+          document.addEventListener('mouseenter', function() {
+            cursor.style.opacity = '0.7';
+          });
+          
+          // Hide cursor when mouse leaves the window
+          document.addEventListener('mouseleave', function() {
+            cursor.style.opacity = '0';
+          });
+          
+          console.log('Inline cursor script initialized');
+        } catch (error) {
+          // If anything goes wrong, restore normal cursor
+          console.error('Cursor error, restoring normal cursor', error);
+          document.body.style.cursor = 'auto';
+        }
+      } else {
+        // No cursor element found, restore normal cursor
+        document.body.style.cursor = 'auto';
+      }
+      
+      // Failsafe: If cursor doesn't move after 2 seconds, restore normal cursor
+      var cursorMoved = false;
+      document.addEventListener('mousemove', function() {
+        cursorMoved = true;
+      });
+      
+      setTimeout(function() {
+        if (!cursorMoved) {
+          document.body.style.cursor = 'auto';
+          console.log('Cursor not detected moving, restoring normal cursor');
+        }
+      }, 2000);
+    })();
+  </script>
+  
+  <!-- Main script -->
+  <script src="water-gallery.js"></script>
+</body>
+</html>

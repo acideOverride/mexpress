@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "lAiguille_immaculée",
+  "originalName": "l'Aiguille immaculée",
+  "downloadDate": "2025-03-15T19:46:17.583Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/lAiguille_immaculée/lAiguille_immaculée_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648137401218-ZVHCHSEZK7GKJRLUUYNX/IMG_39724536374A-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/lAiguille_immaculée/lAiguille_immaculée_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648137507945-ZY1NE5GI3U4VJ5XRM52I/aiguille-du-midi-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/lAiguille_immaculée/lAiguille_immaculée_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648137495182-92QXPUCIH2SMTJU7SNPE/aiguille-du-midi-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

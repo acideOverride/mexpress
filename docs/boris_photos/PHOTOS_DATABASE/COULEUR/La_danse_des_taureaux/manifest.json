@@ -1,0 +1,23 @@
+{
+  "collection": "COULEUR",
+  "photoName": "La_danse_des_taureaux",
+  "originalName": "La danse des taureaux",
+  "downloadDate": "2025-03-15T19:46:25.921Z",
+  "variations": [
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/La_danse_des_taureaux/La_danse_des_taureaux_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648474700870-R2ISVQZBB34WTTNYL9PO/manade-camarguaise-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/La_danse_des_taureaux/La_danse_des_taureaux_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648474700914-678M8Y8TUGKOZZ2RDHTM/manade-camarguaise-caisse-americaine-boris-molinier.jpg"
+    },
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/La_danse_des_taureaux/La_danse_des_taureaux_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648474679881-9EKMZIU54O4U51BT2L7D/IMG_4935+2.JPG"
+    }
+  ]
+}

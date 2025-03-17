@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boris Photography | Fine Art Photography Gallery</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="#home">BORIS</a>
+            </div>
+            <div class="nav-links">
+                <a href="#portfolio" class="nav-item">Portfolio</a>
+                <a href="#exhibitions" class="nav-item">Exhibitions</a>
+                <a href="#prints" class="nav-item">Prints</a>
+                <a href="#about" class="nav-item">About</a>
+                <a href="#contact" class="nav-item">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#cart" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-image">
+                <img src="images/hero.jpg" alt="Boris Photography">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <h1>Capturing Moments in Stillness</h1>
+                <p>Fine art photography that tells stories through light and shadow</p>
+                <div class="hero-cta">
+                    <a href="#portfolio" class="btn">View Portfolio</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Work -->
+        <section id="portfolio" class="portfolio">
+            <div class="section-header">
+                <h2>Featured Portfolio</h2>
+                <p>A selection of recent work exploring light, texture, and composition</p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item large">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-1.jpg" alt="Urban Architecture">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-details">
+                                <h3>Urban Architecture</h3>
+                                <p>2023</p>
+                                <a href="#" class="btn-outline">View Series</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-2.jpg" alt="Natural Elements">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-details">
+                                <h3>Natural Elements</h3>
+                                <p>2024</p>
+                                <a href="#" class="btn-outline">View Series</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-3.jpg" alt="Human Form">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-details">
+                                <h3>Human Form</h3>
+                                <p>2022</p>
+                                <a href="#" class="btn-outline">View Series</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-4.jpg" alt="Abstract Light">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-details">
+                                <h3>Abstract Light</h3>
+                                <p>2024</p>
+                                <a href="#" class="btn-outline">View Series</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-5.jpg" alt="Urban Solitude">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-details">
+                                <h3>Urban Solitude</h3>
+                                <p>2023</p>
+                                <a href="#" class="btn-outline">View Series</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-footer">
+                <a href="#" class="btn">Explore Full Portfolio</a>
+            </div>
+        </section>
+
+        <!-- Collections -->
+        <section id="collections" class="collections">
+            <div class="section-header">
+                <h2>Thematic Collections</h2>
+                <p>Explore photography series organized by concept and theme</p>
+            </div>
+            
+            <div class="collections-slider">
+                <div class="collection-item">
+                    <img src="images/collection-1.jpg" alt="Architectural Forms">
+                    <div class="collection-info">
+                        <h3>Architectural Forms</h3>
+                        <p>Exploring the geometry and patterns of modern urban spaces</p>
+                        <span class="collection-meta">15 images</span>
+                        <a href="#" class="btn-text">View Collection</a>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <img src="images/collection-2.jpg" alt="Shadow & Light">
+                    <div class="collection-info">
+                        <h3>Shadow & Light</h3>
+                        <p>A study of contrast and illumination in natural and urban settings</p>
+                        <span class="collection-meta">12 images</span>
+                        <a href="#" class="btn-text">View Collection</a>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <img src="images/collection-3.jpg" alt="Intimate Portraits">
+                    <div class="collection-info">
+                        <h3>Intimate Portraits</h3>
+                        <p>Capturing the essence of individuals through thoughtful portraiture</p>
+                        <span class="collection-meta">9 images</span>
+                        <a href="#" class="btn-text">View Collection</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slider-controls">
+                <button class="slider-prev"><i class="fas fa-arrow-left"></i></button>
+                <button class="slider-next"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Exhibitions -->
+        <section id="exhibitions" class="exhibitions">
+            <div class="section-header">
+                <h2>Current Exhibitions</h2>
+                <p>Where to experience my work in person</p>
+            </div>
+            
+            <div class="exhibitions-grid">
+                <div class="exhibition-item">
+                    <div class="exhibition-date">
+                        <span class="month">JUN</span>
+                        <span class="day">15</span>
+                        <span class="year">2025</span>
+                    </div>
+                    <div class="exhibition-details">
+                        <h3>Urban Perspectives</h3>
+                        <p class="exhibition-location">Modern Gallery, New York</p>
+                        <p class="exhibition-description">A solo exhibition featuring large-scale architectural photography that explores the relationship between humans and urban spaces.</p>
+                        <a href="#" class="btn-text">Exhibition Details</a>
+                    </div>
+                </div>
+                
+                <div class="exhibition-item">
+                    <div class="exhibition-date">
+                        <span class="month">AUG</span>
+                        <span class="day">03</span>
+                        <span class="year">2025</span>
+                    </div>
+                    <div class="exhibition-details">
+                        <h3>Light Reflections</h3>
+                        <p class="exhibition-location">Art Space Gallery, London</p>
+                        <p class="exhibition-description">A group exhibition featuring contemporary photography that examines the interplay of light and surface.</p>
+                        <a href="#" class="btn-text">Exhibition Details</a>
+                    </div>
+                </div>
+                
+                <div class="exhibition-item">
+                    <div class="exhibition-date">
+                        <span class="month">SEP</span>
+                        <span class="day">22</span>
+                        <span class="year">2025</span>
+                    </div>
+                    <div class="exhibition-details">
+                        <h3>Nature's Patterns</h3>
+                        <p class="exhibition-location">Contemporary Museum, Berlin</p>
+                        <p class="exhibition-description">An exploration of natural forms and patterns through macro photography and large-format prints.</p>
+                        <a href="#" class="btn-text">Exhibition Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Print Store -->
+        <section id="prints" class="print-store">
+            <div class="section-header">
+                <h2>Limited Edition Prints</h2>
+                <p>Museum-quality prints available for purchase</p>
+            </div>
+            
+            <div class="print-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="architecture">Architecture</button>
+                <button class="filter-btn" data-filter="nature">Nature</button>
+                <button class="filter-btn" data-filter="portrait">Portrait</button>
+                <button class="filter-btn" data-filter="abstract">Abstract</button>
+            </div>
+            
+            <div class="prints-grid">
+                <div class="print-item" data-category="architecture">
+                    <div class="print-image">
+                        <img src="images/print-1.jpg" alt="Urban Lines">
+                        <div class="print-overlay">
+                            <a href="#" class="quick-view"><i class="fas fa-search"></i></a>
+                            <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="print-info">
+                        <h3>Urban Lines</h3>
+                        <p class="print-details">Limited Edition of 25</p>
+                        <p class="print-price">$450</p>
+                    </div>
+                </div>
+                
+                <div class="print-item" data-category="nature">
+                    <div class="print-image">
+                        <img src="images/print-2.jpg" alt="Coastal Harmony">
+                        <div class="print-overlay">
+                            <a href="#" class="quick-view"><i class="fas fa-search"></i></a>
+                            <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="print-info">
+                        <h3>Coastal Harmony</h3>
+                        <p class="print-details">Limited Edition of 20</p>
+                        <p class="print-price">$550</p>
+                    </div>
+                </div>
+                
+                <div class="print-item" data-category="portrait">
+                    <div class="print-image">
+                        <img src="images/print-3.jpg" alt="Contemplation">
+                        <div class="print-overlay">
+                            <a href="#" class="quick-view"><i class="fas fa-search"></i></a>
+                            <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="print-info">
+                        <h3>Contemplation</h3>
+                        <p class="print-details">Limited Edition of 15</p>
+                        <p class="print-price">$650</p>
+                    </div>
+                </div>
+                
+                <div class="print-item" data-category="abstract">
+                    <div class="print-image">
+                        <img src="images/print-4.jpg" alt="Light Study #3">
+                        <div class="print-overlay">
+                            <a href="#" class="quick-view"><i class="fas fa-search"></i></a>
+                            <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="print-info">
+                        <h3>Light Study #3</h3>
+                        <p class="print-details">Limited Edition of 25</p>
+                        <p class="print-price">$400</p>
+                    </div>
+                </div>
+                
+                <div class="print-item" data-category="architecture">
+                    <div class="print-image">
+                        <img src="images/print-5.jpg" alt="Geometric City">
+                        <div class="print-overlay">
+                            <a href="#" class="quick-view"><i class="fas fa-search"></i></a>
+                            <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="print-info">
+                        <h3>Geometric City</h3>
+                        <p class="print-details">Limited Edition of 25</p>
+                        <p class="print-price">$500</p>
+                    </div>
+                </div>
+                
+                <div class="print-item" data-category="nature">
+                    <div class="print-image">
+                        <img src="images/print-6.jpg" alt="Forest Whispers">
+                        <div class="print-overlay">
+                            <a href="#" class="quick-view"><i class="fas fa-search"></i></a>
+                            <a href="#" class="add-to-cart"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="print-info">
+                        <h3>Forest Whispers</h3>
+                        <p class="print-details">Limited Edition of 20</p>
+                        <p class="print-price">$600</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-footer">
+                <a href="#" class="btn">View All Prints</a>
+            </div>
+        </section>
+
+        <!-- About the Artist -->
+        <section id="about" class="about">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Boris</h2>
+                    <p class="about-intro">I am a fine art photographer focused on capturing the subtle interplay between light, form, and emotion.</p>
+                    
+                    <p>With over 15 years of experience, my work explores the boundaries between documentary and artistic expression. My photographs have been exhibited in galleries across Europe and North America, and are held in private and public collections worldwide.</p>
+                    
+                    <p>I believe in the power of photography to reveal the extraordinary within the ordinary – finding beauty in overlooked moments and spaces that surround us daily. My process involves patient observation and an intuitive approach to composition and light.</p>
+                    
+                    <div class="about-details">
+                        <div class="about-detail">
+                            <h4>Education</h4>
+                            <p>Masters in Fine Art Photography, Royal College of Art</p>
+                            <p>Bachelor of Arts, Visual Communication, Central Saint Martins</p>
+                        </div>
+                        
+                        <div class="about-detail">
+                            <h4>Selected Exhibitions</h4>
+                            <p>2024 - "Light Studies," Modern Gallery, New York</p>
+                            <p>2023 - "Urban Perspectives," Contemporary Arts Center, Berlin</p>
+                            <p>2022 - "Natural Forms," Photography Biennale, Paris</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-cta">
+                        <a href="#contact" class="btn">Get in Touch</a>
+                        <a href="#" class="btn-outline">Download CV</a>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="images/about.jpg" alt="Boris - Photographer">
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="section-header">
+                <h2>Contact</h2>
+                <p>Interested in purchasing prints, commissioning work, or discussing collaborations?</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>hello@borisphotography.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (212) 555-6789</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Studio Location</h4>
+                            <p>123 Art District, New York, NY 10001</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="newsletter-content">
+                <h2>Stay Connected</h2>
+                <p>Subscribe to receive updates on new work, exhibitions, and print releases</p>
+                
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#home">BORIS</a>
+                    <p>Fine Art Photography</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navigate</h4>
+                        <ul>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#exhibitions">Exhibitions</a></li>
+                            <li><a href="#prints">Prints</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Collections</h4>
+                        <ul>
+                            <li><a href="#">Architectural Forms</a></li>
+                            <li><a href="#">Shadow & Light</a></li>
+                            <li><a href="#">Intimate Portraits</a></li>
+                            <li><a href="#">Natural Patterns</a></li>
+                            <li><a href="#">Urban Landscapes</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Information</h4>
+                        <ul>
+                            <li><a href="#">Shipping & Returns</a></li>
+                            <li><a href="#">Print Care Guide</a></li>
+                            <li><a href="#">Framing Options</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Boris Photography. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal for quick view -->
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="" alt="Print Preview" id="modalImage">
+                </div>
+                <div class="modal-details">
+                    <h3 id="modalTitle">Print Title</h3>
+                    <p id="modalDescription">This is a description of the print, including details about when and where it was taken.</p>
+                    <div class="modal-meta">
+                        <p class="modal-edition">Limited Edition of <span id="modalEdition">25</span></p>
+                        <p class="modal-price">$<span id="modalPrice">450</span></p>
+                    </div>
+                    <div class="modal-options">
+                        <div class="option-group">
+                            <label>Size</label>
+                            <div class="option-buttons">
+                                <button class="option-btn active">8×10"</button>
+                                <button class="option-btn">11×14"</button>
+                                <button class="option-btn">16×20"</button>
+                                <button class="option-btn">24×30"</button>
+                            </div>
+                        </div>
+                        <div class="option-group">
+                            <label>Frame</label>
+                            <div class="option-buttons">
+                                <button class="option-btn active">Unframed</button>
+                                <button class="option-btn">Black Frame</button>
+                                <button class="option-btn">White Frame</button>
+                                <button class="option-btn">Natural Wood</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn" id="modalAddToCart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0</span>
+            </div>
+            <button class="btn" id="checkoutButton">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

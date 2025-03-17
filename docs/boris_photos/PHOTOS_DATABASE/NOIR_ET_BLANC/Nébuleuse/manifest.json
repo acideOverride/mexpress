@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Nébuleuse",
+  "originalName": "Nébuleuse",
+  "downloadDate": "2025-03-15T19:46:16.331Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Nébuleuse/Nébuleuse_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648143996933-DLNHYQMP9BQIN68CTF6R/IMG_AFBA10D04FE4-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Nébuleuse/Nébuleuse_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648143950942-XAKIEZBXJEILJDAA3TL2/n%C3%A9buleuse-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Nébuleuse/Nébuleuse_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648143950932-66IS65MMFKZWWEOH7C9S/n%C3%A9buleuse-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

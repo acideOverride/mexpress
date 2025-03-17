@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Les_Aiguilles_de_Chamonix",
+  "originalName": "Les Aiguilles de Chamonix",
+  "downloadDate": "2025-03-15T19:46:18.040Z",
+  "variations": [
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_Aiguilles_de_Chamonix/Les_Aiguilles_de_Chamonix_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646317575614-YHQ5FF437I196J7LHKT6/aiguilles-de-chamonix-avec-ligne-tmb-ms-boris-molinier.jpeg"
+    },
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_Aiguilles_de_Chamonix/Les_Aiguilles_de_Chamonix_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647886141775-LD7ONUC257XW4CAS24GD/image.jpeg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_Aiguilles_de_Chamonix/Les_Aiguilles_de_Chamonix_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647932828084-NSZII4UUIOGHKYATMYQ5/Alu-Noir-3-2.jpg"
+    }
+  ]
+}

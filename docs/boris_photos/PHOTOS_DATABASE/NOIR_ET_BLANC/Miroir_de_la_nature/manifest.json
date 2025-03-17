@@ -1,0 +1,28 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Miroir_de_la_nature",
+  "originalName": "Miroir de la nature",
+  "downloadDate": "2025-03-15T05:45:45.486Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Miroir_de_la_nature/Miroir_de_la_nature_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648476863323-PM67VXNC7J6QXEQFQFGK/IMG_EBC0EFA5ECA7-1.jpeg"
+    },
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Miroir_de_la_nature/Miroir_de_la_nature_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648477010031-LEEFGEPUOLLTEYR8WT2W/L%27%C3%A9tang+%C3%A0+Riton%C2%A9Boris+Molinier.jpg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Miroir_de_la_nature/Miroir_de_la_nature_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648476863326-9JOUCVBGWDCUWD8IJCI2/l-etang-%C3%A0-riton-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Miroir_de_la_nature/Miroir_de_la_nature_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648476863163-WQBPBQ57EHPFOQH8S1S5/l-etang-%C3%A0-riton-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "collection": "COULEUR",
+  "photoName": "Paisible",
+  "originalName": "Paisible",
+  "downloadDate": "2025-03-15T19:46:27.602Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Paisible/Paisible_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1645031605084-M7184EBQY10DVTHYKXBB/IMG_1FBC012B23DC-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Paisible/Paisible_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647956882791-S0Q9ZXCME6OUXPZ36JAF/paisible-alu-noir-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Paisible/Paisible_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647956882800-SRDI1VVAHSKXOHIH0KU3/paisible-caisse-am%C3%A9ricaine-boris-molinier.jpg"
+    }
+  ]
+}

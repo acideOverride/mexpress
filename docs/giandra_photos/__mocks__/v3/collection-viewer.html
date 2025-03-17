@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giandra Photos - Collection Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="collection-viewer.css">
+</head>
+<body class="viewer-active">
+  <div class="noise-overlay"></div>
+  
+  <!-- Navigation overlay -->
+  <div class="viewer-controls">
+    <a href="immersive-collections.html" class="back-button">
+      <i class="fas fa-arrow-left"></i>
+      <span>Retour aux Collections</span>
+    </a>
+    <div class="viewer-info-toggle">
+      <i class="fas fa-info-circle"></i>
+    </div>
+    <div class="viewer-progress">
+      <span class="current-index">1</span>
+      <div class="progress-bar">
+        <div class="progress-track"></div>
+        <div class="progress-fill"></div>
+      </div>
+      <span class="total-count">34</span>
+    </div>
+    <div class="viewer-actions">
+      <button class="action-button fullscreen-toggle">
+        <i class="fas fa-expand"></i>
+      </button>
+      <button class="action-button slideshow-toggle">
+        <i class="fas fa-play"></i>
+      </button>
+      <button class="action-button share-toggle">
+        <i class="fas fa-share-alt"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Main viewer -->
+  <main class="collection-viewer">
+    <!-- Collection information sidebar -->
+    <aside class="collection-info">
+      <div class="info-header">
+        <h1 class="collection-title">Le Grand Bleu</h1>
+        <button class="close-info">×</button>
+      </div>
+      <div class="info-content">
+        <div class="collection-description">
+          <p>Plongez dans les profondeurs infinies de l'océan à travers cette collection hypnotique qui capture la majesté et le mystère de l'eau dans sa forme la plus pure.</p>
+          <p>Photographiée au coucher du soleil sur la côte atlantique française, chaque image révèle une nouvelle dimension de bleu qui échappe à notre perception quotidienne. Sans aucune retouche, ces œuvres capturent l'essence même de l'interaction entre la lumière et l'eau.</p>
+        </div>
+        <div class="collection-meta">
+          <div class="meta-item">
+            <span class="meta-label">Photographe</span>
+            <span class="meta-value">Giandra De Castro</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Année</span>
+            <span class="meta-value">2024</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Photographies</span>
+            <span class="meta-value">34</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Technique</span>
+            <span class="meta-value">Photographie sans retouche</span>
+          </div>
+        </div>
+        <div class="collection-purchase">
+          <h3>Acquérir une œuvre de cette collection</h3>
+          <p>Chaque œuvre est disponible en édition limitée, imprimée sur papier d'art premium et signée par l'artiste.</p>
+          <div class="purchase-options">
+            <div class="option">
+              <span class="option-size">30×45 cm</span>
+              <span class="option-price">350€</span>
+            </div>
+            <div class="option">
+              <span class="option-size">50×70 cm</span>
+              <span class="option-price">550€</span>
+            </div>
+            <div class="option">
+              <span class="option-size">70×100 cm</span>
+              <span class="option-price">850€</span>
+            </div>
+          </div>
+          <a href="#" class="purchase-button">Contacter pour achat</a>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Image viewer -->
+    <div class="viewer-container">
+      <div class="image-container">
+        <!-- Images will be dynamically loaded here -->
+        <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Le Grand Bleu #001" class="viewer-image active" data-index="1">
+        <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_002.jpg" alt="Le Grand Bleu #002" class="viewer-image" data-index="2">
+        <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_003.jpg" alt="Le Grand Bleu #003" class="viewer-image" data-index="3">
+      </div>
+      <div class="image-caption">
+        <span class="caption-title">Le Grand Bleu #001</span>
+        <span class="caption-description">Les ondulations créent un motif hypnotique qui semble vibrer à l'unisson avec l'observateur.</span>
+      </div>
+      <div class="navigation-controls">
+        <button class="nav-button prev-button">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="nav-button next-button">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Thumbnails navigation -->
+  <div class="thumbnails-drawer">
+    <div class="drawer-toggle">
+      <i class="fas fa-chevron-up"></i>
+      <span>Voir toutes les images</span>
+    </div>
+    <div class="thumbnails-container">
+      <!-- Thumbnails will be dynamically generated -->
+      <div class="thumbnail active" data-index="1">
+        <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Le Grand Bleu #001">
+      </div>
+      <div class="thumbnail" data-index="2">
+        <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_002.jpg" alt="Le Grand Bleu #002">
+      </div>
+      <div class="thumbnail" data-index="3">
+        <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_003.jpg" alt="Le Grand Bleu #003">
+      </div>
+      <div class="thumbnail" data-index="4">
+        <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_004.jpg" alt="Le Grand Bleu #004">
+      </div>
+      <div class="thumbnail" data-index="5">
+        <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_005.jpg" alt="Le Grand Bleu #005">
+      </div>
+      <div class="thumbnail" data-index="6">
+        <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_006.jpg" alt="Le Grand Bleu #006">
+      </div>
+      <div class="thumbnail" data-index="7">
+        <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_007.jpg" alt="Le Grand Bleu #007">
+      </div>
+      <div class="thumbnail" data-index="8">
+        <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_008.jpg" alt="Le Grand Bleu #008">
+      </div>
+      <!-- More thumbnails would be generated dynamically -->
+    </div>
+  </div>
+  
+  <!-- Share overlay -->
+  <div class="share-overlay">
+    <div class="share-container">
+      <h3>Partager cette collection</h3>
+      <div class="share-options">
+        <a href="#" class="share-option">
+          <i class="fab fa-facebook-f"></i>
+          <span>Facebook</span>
+        </a>
+        <a href="#" class="share-option">
+          <i class="fab fa-twitter"></i>
+          <span>Twitter</span>
+        </a>
+        <a href="#" class="share-option">
+          <i class="fab fa-pinterest-p"></i>
+          <span>Pinterest</span>
+        </a>
+        <a href="#" class="share-option">
+          <i class="far fa-envelope"></i>
+          <span>Email</span>
+        </a>
+      </div>
+      <div class="share-link">
+        <input type="text" value="https://giandraphotos.com/collections/le-grand-bleu" readonly>
+        <button class="copy-link">Copier</button>
+      </div>
+      <button class="close-share">Fermer</button>
+    </div>
+  </div>
+  
+  <!-- Loading indicator -->
+  <div class="loading-indicator">
+    <div class="spinner"></div>
+  </div>
+  
+  <!-- Cursor Elements -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-circle"></div>
+
+  <script src="collection-viewer.js"></script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MontPC - Assistant Réparation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap">
+</head>
+<body class="light-mode">
+    <!-- Curseur personnalisé -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <!-- Header minimaliste -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">
+                    <span class="logo-text">Mont<span class="logo-highlight">PC</span></span>
+                    <span class="tagline">Assistant Réparation</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" title="Changer de thème">
+                    <svg class="theme-toggle-icon light" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 1V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 21V23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4.22 4.22L5.64 5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18.36 18.36L19.78 19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M1 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M21 12H23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4.22 19.78L5.64 18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg class="theme-toggle-icon dark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <a href="/opt/mExpress/docs/montpc_com/__mocks__/accepted/v3/index.html" class="btn primary-btn">Retour au Site</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="chatbot-section">
+            <div class="container">
+                <div class="chatbot-container">
+                    <div class="chatbot-header">
+                        <div class="chatbot-avatar">
+                            <div class="avatar-circle">
+                                <svg class="avatar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="chatbot-info">
+                            <h1>TechBot</h1>
+                            <div class="status">
+                                <span class="status-dot"></span>
+                                <span class="status-text">En ligne</span>
+                            </div>
+                        </div>
+                        <div class="chatbot-actions">
+                            <button class="action-button" title="Effacer la conversation">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                            <button class="action-button" title="Paramètres">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chatbot-messages" id="chat-messages">
+                        <div class="message bot">
+                            <div class="message-avatar">
+                                <div class="avatar-circle small">
+                                    <svg class="avatar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="message-content">
+                                <p>Bonjour ! Je suis TechBot, l'assistant virtuel de MontPC. Comment puis-je vous aider avec votre appareil aujourd'hui ?</p>
+                                <div class="suggestion-chips">
+                                    <button class="suggestion-chip" data-message="Problème d'écran">Problème d'écran</button>
+                                    <button class="suggestion-chip" data-message="Batterie faible">Batterie faible</button>
+                                    <button class="suggestion-chip" data-message="Réparation iPhone">Réparation iPhone</button>
+                                    <button class="suggestion-chip" data-message="Tarifs">Tarifs</button>
+                                </div>
+                                <div class="message-time">10:30</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message user">
+                            <div class="message-content">
+                                <p>Bonjour, mon iPhone 12 a l'écran cassé. Combien coûterait la réparation ?</p>
+                                <div class="message-time">10:31</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message bot">
+                            <div class="message-avatar">
+                                <div class="avatar-circle small">
+                                    <svg class="avatar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="message-content">
+                                <p>Pour un iPhone 12 avec écran cassé, le remplacement coûte 159€. Nous utilisons uniquement des pièces de haute qualité et offrons une garantie de 12 mois sur la réparation.</p>
+                                <div class="repair-card">
+                                    <div class="repair-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="repair-details">
+                                        <h3>Remplacement Écran iPhone 12</h3>
+                                        <div class="repair-info">
+                                            <span class="repair-price">159€</span>
+                                            <span class="repair-time">45 minutes</span>
+                                        </div>
+                                        <div class="repair-features">
+                                            <span class="feature">Garantie 12 mois</span>
+                                            <span class="feature">Pièces premium</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Souhaitez-vous prendre rendez-vous pour cette réparation ?</p>
+                                <div class="suggestion-chips">
+                                    <button class="suggestion-chip" data-message="Oui, prendre rendez-vous">Oui, prendre rendez-vous</button>
+                                    <button class="suggestion-chip" data-message="Autres modèles iPhone">Autres modèles iPhone</button>
+                                    <button class="suggestion-chip" data-message="Plus d'informations">Plus d'informations</button>
+                                </div>
+                                <div class="message-time">10:32</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message user">
+                            <div class="message-content">
+                                <p>Oui, prendre rendez-vous</p>
+                                <div class="message-time">10:33</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message bot">
+                            <div class="message-avatar">
+                                <div class="avatar-circle small">
+                                    <svg class="avatar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="message-content">
+                                <p>Parfait ! Pour prendre rendez-vous, j'ai besoin de quelques informations :</p>
+                                <div class="appointment-form">
+                                    <div class="form-fields">
+                                        <div class="form-field">
+                                            <label for="name">Nom</label>
+                                            <input type="text" id="name" placeholder="Votre nom">
+                                        </div>
+                                        <div class="form-field">
+                                            <label for="phone">Téléphone</label>
+                                            <input type="tel" id="phone" placeholder="Votre numéro">
+                                        </div>
+                                        <div class="form-field full">
+                                            <label for="date">Date souhaitée</label>
+                                            <input type="date" id="date">
+                                        </div>
+                                        <div class="form-field full">
+                                            <label for="time">Heure préférée</label>
+                                            <select id="time">
+                                                <option value="">Choisir une heure</option>
+                                                <option value="9:00">9:00</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="14:00">14:00</option>
+                                                <option value="15:00">15:00</option>
+                                                <option value="16:00">16:00</option>
+                                                <option value="17:00">17:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button class="submit-btn" id="submit-appointment">Confirmer le rendez-vous</button>
+                                </div>
+                                <div class="message-time">10:34</div>
+                            </div>
+                        </div>
+                        
+                        <div class="typing-indicator">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="chatbot-input">
+                        <div class="input-actions">
+                            <button class="action-button" title="Joindre une photo">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                    <polyline points="21 15 16 10 5 21"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type="text" id="message-input" placeholder="Écrivez votre message ici...">
+                        <button class="send-button" id="send-message">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="chatbot-info-panel">
+                    <div class="panel-section">
+                        <h2>Notre service de réparation</h2>
+                        <p>MontPC offre des services de réparation rapides et fiables pour tous vos appareils électroniques.</p>
+                        <ul class="features-list">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Diagnostic gratuit
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Réparation rapide (la plupart en moins d'une heure)
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Garantie jusqu'à 12 mois
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                Composants de qualité supérieure
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="panel-section">
+                        <h2>Horaires d'ouverture</h2>
+                        <div class="opening-hours">
+                            <div class="day">
+                                <span class="day-name">Lundi - Vendredi</span>
+                                <span class="day-hours">9h00 - 19h00</span>
+                            </div>
+                            <div class="day">
+                                <span class="day-name">Samedi</span>
+                                <span class="day-hours">10h00 - 18h00</span>
+                            </div>
+                            <div class="day">
+                                <span class="day-name">Dimanche</span>
+                                <span class="day-hours">Fermé</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-section">
+                        <h2>Contact</h2>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span>23 Avenue des Alpes, 74000 Annecy</span>
+                            </div>
+                            <div class="contact-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                                <span>+33 (0)4 50 XX XX XX</span>
+                            </div>
+                            <div class="contact-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <span>contact@montpc.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-section">
+                        <div class="satisfaction-rate">
+                            <div class="rate-circle">
+                                <svg viewBox="0 0 36 36">
+                                    <path class="circle-bg"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        fill="none"
+                                        stroke="#eee"
+                                        stroke-width="3"
+                                        stroke-dasharray="100, 100" />
+                                    <path class="circle"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="3"
+                                        stroke-dasharray="98, 100" />
+                                </svg>
+                                <div class="rate-value">98%</div>
+                            </div>
+                            <div class="rate-text">Taux de satisfaction client</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <span class="logo-text">Mont<span class="logo-highlight">PC</span></span>
+                    </div>
+                    <p class="footer-tagline">Réparation professionnelle d'appareils électroniques</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Conditions d'utilisation</a>
+                    <a href="#">Mentions légales</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MontPC. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

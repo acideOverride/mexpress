@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boris Molinier | Alpine Majesty Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/viewer.css">
+</head>
+<body class="viewer-active">
+    <div class="noise-overlay"></div>
+    
+    <!-- Viewer controls -->
+    <div class="viewer-controls">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Collections</span>
+        </a>
+        <div class="viewer-info-toggle">
+            <i class="fas fa-info-circle"></i>
+        </div>
+        <div class="viewer-progress">
+            <span class="current-index">1</span>
+            <div class="progress-bar">
+                <div class="progress-track"></div>
+                <div class="progress-fill"></div>
+            </div>
+            <span class="total-count">25</span>
+        </div>
+        <div class="viewer-actions">
+            <button class="action-button fullscreen-toggle">
+                <i class="fas fa-expand"></i>
+            </button>
+            <button class="action-button slideshow-toggle">
+                <i class="fas fa-play"></i>
+            </button>
+            <button class="action-button share-toggle">
+                <i class="fas fa-share-alt"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Main viewer -->
+    <main class="collection-viewer">
+        <!-- Collection information sidebar -->
+        <aside class="collection-info">
+            <div class="info-header">
+                <h1 class="collection-title">Alpine Majesty</h1>
+                <button class="close-info">×</button>
+            </div>
+            <div class="info-content">
+                <div class="collection-description">
+                    <p>Witness the dramatic play of light across the Mont Blanc massif in this series capturing the essence of alpine grandeur across seasons, weather, and time.</p>
+                    <p>Photographed over three years from various vantage points around the Alps, this collection represents an intimate portrait of mountains in their most evocative moments. Each image is the result of countless hours waiting for the perfect alignment of light, weather and atmospheric conditions.</p>
+                </div>
+                <div class="collection-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Photographer</span>
+                        <span class="meta-value">Boris Molinier</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Years</span>
+                        <span class="meta-value">2022-2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Photographs</span>
+                        <span class="meta-value">25</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Location</span>
+                        <span class="meta-value">French, Swiss and Italian Alps</span>
+                    </div>
+                </div>
+                <div class="collection-purchase">
+                    <h3>Acquire a print from this collection</h3>
+                    <p>Each photograph is available as a limited-edition fine art print, printed on museum-quality paper and signed by the artist.</p>
+                    <div class="purchase-options">
+                        <div class="option">
+                            <span class="option-size">40×60 cm</span>
+                            <span class="option-price">€450</span>
+                        </div>
+                        <div class="option">
+                            <span class="option-size">60×90 cm</span>
+                            <span class="option-price">€750</span>
+                        </div>
+                        <div class="option">
+                            <span class="option-size">100×150 cm</span>
+                            <span class="option-price">€1,250</span>
+                        </div>
+                    </div>
+                    <a href="#" class="purchase-button">Purchase Print</a>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Image viewer -->
+        <div class="viewer-container">
+            <div class="image-container">
+                <!-- Images will be dynamically loaded here -->
+                <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000" alt="Alpine Majesty #1" class="viewer-image active" data-index="1">
+                <img src="https://images.unsplash.com/photo-1580739824572-c5d2cc633784?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000" alt="Alpine Majesty #2" class="viewer-image" data-index="2">
+                <img src="https://images.unsplash.com/photo-1559825063-810589e4a2ed?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000" alt="Alpine Majesty #3" class="viewer-image" data-index="3">
+            </div>
+            <div class="image-caption">
+                <span class="caption-title">Mont Blanc at Dawn</span>
+                <span class="caption-description">First light illuminates the summit of Mont Blanc, revealing the majestic scale of Europe's highest peak against the morning sky.</span>
+            </div>
+            <div class="navigation-controls">
+                <button class="nav-button prev-button">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-button next-button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Thumbnails navigation -->
+    <div class="thumbnails-drawer">
+        <div class="drawer-toggle">
+            <i class="fas fa-chevron-up"></i>
+            <span>View all images</span>
+        </div>
+        <div class="thumbnails-container">
+            <!-- Thumbnails -->
+            <div class="thumbnail active" data-index="1">
+                <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=200" alt="Alpine Majesty #1">
+            </div>
+            <div class="thumbnail" data-index="2">
+                <img src="https://images.unsplash.com/photo-1580739824572-c5d2cc633784?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=200" alt="Alpine Majesty #2">
+            </div>
+            <div class="thumbnail" data-index="3">
+                <img src="https://images.unsplash.com/photo-1559825063-810589e4a2ed?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=200" alt="Alpine Majesty #3">
+            </div>
+            <div class="thumbnail" data-index="4">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=200" alt="Alpine Majesty #4">
+            </div>
+            <div class="thumbnail" data-index="5">
+                <img src="https://images.unsplash.com/photo-1618135337069-a8f3eec39b5e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=200" alt="Alpine Majesty #5">
+            </div>
+            <div class="thumbnail" data-index="6">
+                <img src="https://images.unsplash.com/photo-1536483229563-2b2a2dd75c59?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=200" alt="Alpine Majesty #6">
+            </div>
+            <div class="thumbnail" data-index="7">
+                <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=200" alt="Alpine Majesty #7">
+            </div>
+            <div class="thumbnail" data-index="8">
+                <img src="https://images.unsplash.com/photo-1524272332618-3a94122bb0c1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=200" alt="Alpine Majesty #8">
+            </div>
+        </div>
+    </div>
+
+    <!-- Share overlay -->
+    <div class="share-overlay">
+        <div class="share-container">
+            <div class="share-header">
+                <h3>Share this image</h3>
+                <button class="close-share">×</button>
+            </div>
+            <div class="share-options">
+                <a href="#" class="share-option">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="#" class="share-option">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+                <a href="#" class="share-option">
+                    <i class="fab fa-pinterest-p"></i>
+                    <span>Pinterest</span>
+                </a>
+                <a href="#" class="share-option">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+            <div class="share-link">
+                <input type="text" value="https://borismolinier.com/collections/alpine-majesty/image-1" readonly>
+                <button class="copy-link">Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/viewer.js"></script>
+</body>
+</html>

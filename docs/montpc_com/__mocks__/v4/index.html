@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MontPC Alpin | Réparation Informatique Haute Précision</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap">
+    <meta name="description" content="Experts en réparation informatique au pied du Mont Blanc. Service premium avec garantie et technologie de pointe.">
+</head>
+<body class="loading">
+    <!-- Écran de chargement -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="logo-preloader">
+                <span class="mont">Mont</span><span class="pc">PC</span>
+                <span class="alpin">ALPIN</span>
+            </div>
+            <div class="loader-line">
+                <div class="loader-progress"></div>
+            </div>
+            <div class="loader-text">Initialisation du système...</div>
+        </div>
+    </div>
+
+    <!-- Effet de parallaxe pour montagne -->
+    <div class="mountain-parallax">
+        <div class="mountain-layer" data-depth="0.1"></div>
+        <div class="mountain-layer" data-depth="0.2"></div>
+        <div class="mountain-layer" data-depth="0.3"></div>
+    </div>
+
+    <!-- Curseur personnalisé -->
+    <div class="cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-circle"></div>
+        <div class="cursor-text"></div>
+    </div>
+
+    <!-- Particules de neige -->
+    <div class="snow-container"></div>
+
+    <!-- Navigation -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="#" data-cursor-text="Accueil">
+                    <span class="mont">Mont</span><span class="pc">PC</span>
+                    <span class="alpin">ALPIN</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#services" data-cursor-text="Services">Services</a></li>
+                    <li><a href="#expertise" data-cursor-text="Notre Expertise">Expertise</a></li>
+                    <li><a href="#technologie" data-cursor-text="Technologie">Technologie</a></li>
+                    <li><a href="#testimonials" data-cursor-text="Témoignages">Témoignages</a></li>
+                    <li><a href="#contact" data-cursor-text="Contact" class="btn-nav">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="glitch-text" data-text="Réparation Tech Alpine">Réparation Tech Alpine</h1>
+                    <p class="hero-subtitle">L'excellence technologique inspirée par les sommets</p>
+                    <div class="hero-badges">
+                        <div class="badge">
+                            <div class="badge-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
+                            <div class="badge-text">100% Sécurisé</div>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                            <div class="badge-text">Rapide 24-48h</div>
+                        </div>
+                        <div class="badge">
+                            <div class="badge-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <div class="badge-text">Garantie 2 ans</div>
+                        </div>
+                    </div>
+                    <div class="cta-group">
+                        <a href="#diagnostic" class="btn btn-primary" data-cursor-text="Diagnostic">Diagnostic Gratuit</a>
+                        <a href="#contact" class="btn btn-secondary" data-cursor-text="Devis">Devis Express</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="device-hologram">
+                        <div class="device-model">
+                            <div class="device-scan"></div>
+                            <div class="device-glow"></div>
+                        </div>
+                        <div class="scan-details">
+                            <div class="scan-title">Analyse système</div>
+                            <div class="scan-stats">
+                                <div class="scan-stat">
+                                    <div class="stat-label">CPU</div>
+                                    <div class="stat-bar"><div class="stat-progress" style="width: 78%"></div></div>
+                                    <div class="stat-value">78%</div>
+                                </div>
+                                <div class="scan-stat">
+                                    <div class="stat-label">RAM</div>
+                                    <div class="stat-bar"><div class="stat-progress" style="width: 65%"></div></div>
+                                    <div class="stat-value">65%</div>
+                                </div>
+                                <div class="scan-stat">
+                                    <div class="stat-label">DISK</div>
+                                    <div class="stat-bar"><div class="stat-progress" style="width: 92%"></div></div>
+                                    <div class="stat-value">92%</div>
+                                </div>
+                                <div class="scan-stat">
+                                    <div class="stat-label">TEMP</div>
+                                    <div class="stat-bar"><div class="stat-progress" style="width: 45%"></div></div>
+                                    <div class="stat-value">45°C</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-background">
+                <div class="hero-overlay"></div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="section-header">
+                <h2 class="reveal-title">Services Haute Précision</h2>
+                <p class="section-subtitle">Notre expertise au service de votre technologie</p>
+            </div>
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card" data-cursor-text="En savoir plus">
+                        <div class="card-front">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                                </svg>
+                            </div>
+                            <h3>Smartphones Premium</h3>
+                            <p>Réparation d'écrans, batteries et cartes mères avec technologie ultrasonique.</p>
+                            <div class="service-stats">
+                                <div class="stat">
+                                    <div class="stat-value">24h</div>
+                                    <div class="stat-label">Délai moyen</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">2 ans</div>
+                                    <div class="stat-label">Garantie</div>
+                                </div>
+                            </div>
+                            <div class="card-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14"></path>
+                                    <path d="M12 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Notre Expertise Smartphone</h3>
+                            <ul class="service-features">
+                                <li>Réparation d'écrans avec calibration couleur professionnelle</li>
+                                <li>Remplacement de batteries certifiées avec compensation thermique</li>
+                                <li>Micro-soudure niveau composant sur carte mère</li>
+                                <li>Récupération de données même sur appareils endommagés</li>
+                                <li>Traitement hydrophobe des composants internes</li>
+                            </ul>
+                            <div class="service-price">
+                                <span>À partir de</span>
+                                <div class="price">59€</div>
+                            </div>
+                            <a href="#contact" class="btn btn-small">Prendre RDV</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card" data-cursor-text="En savoir plus">
+                        <div class="card-front">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                            </div>
+                            <h3>Laptops & Ultrabooks</h3>
+                            <p>Réparation et optimisation de PC portables avec diagnostic multicouche avancé.</p>
+                            <div class="service-stats">
+                                <div class="stat">
+                                    <div class="stat-value">48h</div>
+                                    <div class="stat-label">Délai moyen</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">2 ans</div>
+                                    <div class="stat-label">Garantie</div>
+                                </div>
+                            </div>
+                            <div class="card-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14"></path>
+                                    <path d="M12 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Notre Expertise Portable</h3>
+                            <ul class="service-features">
+                                <li>Réparation de carte mère avec station de soudure infrarouge</li>
+                                <li>Remplacement d'écrans haute résolution avec calibration</li>
+                                <li>Récupération de données sur tous types de disques</li>
+                                <li>Upgrade SSD et RAM avec optimisation firmware</li>
+                                <li>Repasting thermique céramique haute conductivité</li>
+                            </ul>
+                            <div class="service-price">
+                                <span>À partir de</span>
+                                <div class="price">89€</div>
+                            </div>
+                            <a href="#contact" class="btn btn-small">Prendre RDV</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card" data-cursor-text="En savoir plus">
+                        <div class="card-front">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                            </div>
+                            <h3>Stations Gaming</h3>
+                            <p>Configuration sur mesure et optimisation pour performance gaming extrême.</p>
+                            <div class="service-stats">
+                                <div class="stat">
+                                    <div class="stat-value">72h</div>
+                                    <div class="stat-label">Délai moyen</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">3 ans</div>
+                                    <div class="stat-label">Garantie</div>
+                                </div>
+                            </div>
+                            <div class="card-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14"></path>
+                                    <path d="M12 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Notre Expertise Gaming</h3>
+                            <ul class="service-features">
+                                <li>Assemblage PC gaming sur mesure haut de gamme</li>
+                                <li>Overclocking sécurisé avec profils personnalisés</li>
+                                <li>Watercooling custom avec tests d'étanchéité</li>
+                                <li>Configuration RAID optimisée pour temps de chargement</li>
+                                <li>Câblage professionnel et optimisation airflow</li>
+                            </ul>
+                            <div class="service-price">
+                                <span>À partir de</span>
+                                <div class="price">129€</div>
+                            </div>
+                            <a href="#contact" class="btn btn-small">Prendre RDV</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card" data-cursor-text="En savoir plus">
+                        <div class="card-front">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                </svg>
+                            </div>
+                            <h3>Récupération Données</h3>
+                            <p>Extraction professionnelle de données sur supports endommagés en salle blanche.</p>
+                            <div class="service-stats">
+                                <div class="stat">
+                                    <div class="stat-value">99%</div>
+                                    <div class="stat-label">Taux succès</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">100%</div>
+                                    <div class="stat-label">Confidentiel</div>
+                                </div>
+                            </div>
+                            <div class="card-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14"></path>
+                                    <path d="M12 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Récupération Pro</h3>
+                            <ul class="service-features">
+                                <li>Récupération sur disques physiquement endommagés</li>
+                                <li>Extraction en salle blanche ISO 5 certifiée</li>
+                                <li>Restauration de fichiers supprimés et formatages</li>
+                                <li>Récupération RAID et systèmes NAS complexes</li>
+                                <li>Protocole de confidentialité stricte (certifié)</li>
+                            </ul>
+                            <div class="service-price">
+                                <span>À partir de</span>
+                                <div class="price">189€</div>
+                            </div>
+                            <a href="#contact" class="btn btn-small">Prendre RDV</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expertise Section -->
+        <section id="expertise" class="expertise">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-title">Notre Expertise Alpine</h2>
+                    <p class="section-subtitle">Précision technique inspirée par l'environnement montagnard</p>
+                </div>
+                <div class="expertise-content">
+                    <div class="expertise-visual">
+                        <div class="expertise-image">
+                            <img src="img/lab-placeholder.jpg" alt="Laboratoire de réparation MontPC">
+                            <div class="expertise-badge">
+                                <div class="badge-inner">
+                                    <span class="badge-num">15+</span>
+                                    <span class="badge-text">ans d'expertise</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="expertise-stats">
+                            <div class="exp-stat">
+                                <div class="exp-stat-num">10 000+</div>
+                                <div class="exp-stat-text">Appareils réparés</div>
+                            </div>
+                            <div class="exp-stat">
+                                <div class="exp-stat-num">99.7%</div>
+                                <div class="exp-stat-text">Taux de satisfaction</div>
+                            </div>
+                            <div class="exp-stat">
+                                <div class="exp-stat-num">24h</div>
+                                <div class="exp-stat-text">Délai moyen</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="expertise-text">
+                        <h3>Une équipe d'experts certifiés</h3>
+                        <p class="expertise-intro">Comme les glaciers sculptent avec précision le paysage alpin, nos techniciens façonnent des solutions durables pour vos appareils avec une rigueur exceptionnelle.</p>
+                        
+                        <div class="expertise-accordion">
+                            <div class="accordion-item active">
+                                <div class="accordion-header">
+                                    <h4>Certification Niveau Industriel</h4>
+                                    <div class="accordion-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Nos techniciens sont certifiés aux normes industrielles les plus exigeantes (IPC-7711/7721) et utilisent exclusivement des équipements de grade professionnel pour garantir des réparations au niveau composant.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <h4>Laboratoire de Pointe</h4>
+                                    <div class="accordion-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Notre laboratoire situé au pied du Mont Blanc est équipé des technologies les plus avancées : microscopes numériques à haute définition, stations de soudure BGA infrarouge, et outils de diagnostic propriétaires.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <h4>Pièces Premium Exclusives</h4>
+                                    <div class="accordion-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Nous utilisons uniquement des composants de grade A+ provenant directement des fabricants ou de fournisseurs certifiés. Chaque pièce est testée individuellement avant installation pour garantir une durabilité supérieure.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <h4>Tests Rigoureux</h4>
+                                    <div class="accordion-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Chaque appareil réparé est soumis à une batterie de 42 tests rigoureux incluant des cycles de stress thermique, des vérifications d'étanchéité, et des diagnostics logiciels avancés pour s'assurer de la fiabilité à long terme.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="certifications">
+                            <div class="certification">
+                                <div class="cert-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        <path d="M9 12l2 2 4-4"></path>
+                                    </svg>
+                                </div>
+                                <div class="cert-text">ISO 9001</div>
+                            </div>
+                            <div class="certification">
+                                <div class="cert-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        <path d="M9 12l2 2 4-4"></path>
+                                    </svg>
+                                </div>
+                                <div class="cert-text">Apple Cert.</div>
+                            </div>
+                            <div class="certification">
+                                <div class="cert-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        <path d="M9 12l2 2 4-4"></path>
+                                    </svg>
+                                </div>
+                                <div class="cert-text">IPC-7711</div>
+                            </div>
+                            <div class="certification">
+                                <div class="cert-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        <path d="M9 12l2 2 4-4"></path>
+                                    </svg>
+                                </div>
+                                <div class="cert-text">Microsoft</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technologie Section -->
+        <section id="technologie" class="technologie">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-title">Technologie Révolutionnaire</h2>
+                    <p class="section-subtitle">Des équipements de pointe pour des résultats exceptionnels</p>
+                </div>
+                <div class="tech-showcase">
+                    <div class="tech-card" data-cursor-text="Explorer">
+                        <div class="tech-image">
+                            <img src="img/tech-1-placeholder.jpg" alt="Microscope numérique">
+                            <div class="tech-overlay"></div>
+                        </div>
+                        <div class="tech-details">
+                            <h3>Microscope Numérique 4K</h3>
+                            <p>Réparation de composants microscopiques avec une précision de 0.01mm grâce à notre système optique industriel.</p>
+                            <div class="tech-specs">
+                                <div class="spec">
+                                    <div class="spec-label">Précision</div>
+                                    <div class="spec-value">10µm</div>
+                                </div>
+                                <div class="spec">
+                                    <div class="spec-label">Zoom</div>
+                                    <div class="spec-value">300x</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card" data-cursor-text="Explorer">
+                        <div class="tech-image">
+                            <img src="img/tech-2-placeholder.jpg" alt="Station BGA">
+                            <div class="tech-overlay"></div>
+                        </div>
+                        <div class="tech-details">
+                            <h3>Station BGA Infrarouge</h3>
+                            <p>Remplacement de puces BGA complexes avec contrôle thermique précis et profilage avancé pour prévenir tout dommage.</p>
+                            <div class="tech-specs">
+                                <div class="spec">
+                                    <div class="spec-label">Précision</div>
+                                    <div class="spec-value">±2°C</div>
+                                </div>
+                                <div class="spec">
+                                    <div class="spec-label">Zones</div>
+                                    <div class="spec-value">5</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card" data-cursor-text="Explorer">
+                        <div class="tech-image">
+                            <img src="img/tech-3-placeholder.jpg" alt="Chambre climatique">
+                            <div class="tech-overlay"></div>
+                        </div>
+                        <div class="tech-details">
+                            <h3>Chambre Climatique Alpine</h3>
+                            <p>Tests de stress thermique simulant les conditions extrêmes du climat alpin pour garantir la fiabilité des réparations.</p>
+                            <div class="tech-specs">
+                                <div class="spec">
+                                    <div class="spec-label">Plage</div>
+                                    <div class="spec-value">-40°C/+85°C</div>
+                                </div>
+                                <div class="spec">
+                                    <div class="spec-label">Humidité</div>
+                                    <div class="spec-value">10-95%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card" data-cursor-text="Explorer">
+                        <div class="tech-image">
+                            <img src="img/tech-4-placeholder.jpg" alt="Système diagnostic">
+                            <div class="tech-overlay"></div>
+                        </div>
+                        <div class="tech-details">
+                            <h3>Système Diagnostic Propriétaire</h3>
+                            <p>Logiciel d'analyse développé en interne capable de diagnostiquer des problèmes hardware et software indétectables par les outils standards.</p>
+                            <div class="tech-specs">
+                                <div class="spec">
+                                    <div class="spec-label">Précision</div>
+                                    <div class="spec-value">99.8%</div>
+                                </div>
+                                <div class="spec">
+                                    <div class="spec-label">Base données</div>
+                                    <div class="spec-value">15000+ cas</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="process">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-title">Notre Processus</h2>
+                    <p class="section-subtitle">Une méthodologie rigoureuse pour des résultats garantis</p>
+                </div>
+                <div class="process-timeline">
+                    <div class="timeline-item active">
+                        <div class="timeline-number">01</div>
+                        <div class="timeline-content">
+                            <h3>Diagnostic Avancé</h3>
+                            <p>Chaque appareil subit un scan complet avec notre logiciel propriétaire pour identifier avec précision l'origine des problèmes.</p>
+                            <div class="timeline-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">02</div>
+                        <div class="timeline-content">
+                            <h3>Devis Transparent</h3>
+                            <p>Nous vous présentons un rapport détaillé avec différentes options de réparation et un devis précis sans frais cachés.</p>
+                            <div class="timeline-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">03</div>
+                        <div class="timeline-content">
+                            <h3>Réparation Premium</h3>
+                            <p>Nos techniciens certifiés utilisent des pièces et équipements de qualité supérieure pour une réparation durable et fiable.</p>
+                            <div class="timeline-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">04</div>
+                        <div class="timeline-content">
+                            <h3>Tests Rigoureux</h3>
+                            <p>Chaque appareil est soumis à une série de 42 tests sous conditions variables pour valider la fiabilité de la réparation.</p>
+                            <div class="timeline-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">05</div>
+                        <div class="timeline-content">
+                            <h3>Remise & Garantie</h3>
+                            <p>Recevez votre appareil avec un rapport détaillé, une garantie de 2 ans et des conseils personnalisés pour optimiser sa durée de vie.</p>
+                            <div class="timeline-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    <path d="M8 14h.01"></path>
+                                    <path d="M12 14h.01"></path>
+                                    <path d="M16 14h.01"></path>
+                                    <path d="M8 18h.01"></path>
+                                    <path d="M12 18h.01"></path>
+                                    <path d="M16 18h.01"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Témoignages Section -->
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-title">Témoignages Clients</h2>
+                    <p class="section-subtitle">Des expériences qui parlent d'elles-mêmes</p>
+                </div>
+                <div class="testimonial-slider">
+                    <div class="testimonial-track">
+                        <div class="testimonial-item">
+                            <div class="testimonial-content">
+                                <div class="testimonial-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <blockquote>
+                                    "Mon MacBook Pro qui avait subi des dégâts d'eau semblait irréparable. MontPC Alpin l'a ressuscité en récupérant même mes données. Je suis impressionné par leur expertise et leur professionnalisme."
+                                </blockquote>
+                                <div class="testimonial-author">
+                                    <div class="author-image">
+                                        <img src="img/testimonial-1.jpg" alt="Jean Dupont">
+                                    </div>
+                                    <div class="author-info">
+                                        <div class="author-name">Jean Dupont</div>
+                                        <div class="author-title">Directeur Créatif, Chamonix</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-item">
+                            <div class="testimonial-content">
+                                <div class="testimonial-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <blockquote>
+                                    "Après avoir consulté plusieurs techniciens pour ma carte graphique défectueuse, seul MontPC Alpin a pu effectuer une réparation au niveau composant. Service rapide, professionnel et d'une qualité exceptionnelle."
+                                </blockquote>
+                                <div class="testimonial-author">
+                                    <div class="author-image">
+                                        <img src="img/testimonial-2.jpg" alt="Sophie Martin">
+                                    </div>
+                                    <div class="author-info">
+                                        <div class="author-name">Sophie Martin</div>
+                                        <div class="author-title">Gameuse Professionnelle, Megève</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-item">
+                            <div class="testimonial-content">
+                                <div class="testimonial-rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <blockquote>
+                                    "Service exceptionnel ! Mon iPhone tombé dans l'eau pendant une randonnée semblait perdu. L'équipe de MontPC Alpin l'a non seulement réparé mais a renforcé son étanchéité. Merci pour ce service premium !"
+                                </blockquote>
+                                <div class="testimonial-author">
+                                    <div class="author-image">
+                                        <img src="img/testimonial-3.jpg" alt="Thomas Bernard">
+                                    </div>
+                                    <div class="author-info">
+                                        <div class="author-name">Thomas Bernard</div>
+                                        <div class="author-title">Guide de Haute Montagne, Annecy</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-controls">
+                        <button class="testimonial-btn prev" aria-label="Témoignage précédent">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <div class="testimonial-dots">
+                            <button class="dot active" aria-label="Témoignage 1"></button>
+                            <button class="dot" aria-label="Témoignage 2"></button>
+                            <button class="dot" aria-label="Témoignage 3"></button>
+                        </div>
+                        <button class="testimonial-btn next" aria-label="Témoignage suivant">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-title">Contactez-Nous</h2>
+                    <p class="section-subtitle">Notre équipe d'experts est à votre disposition</p>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="diagnostic-form">
+                            <div class="form-header">
+                                <h3>Diagnostic Gratuit</h3>
+                                <p>Décrivez votre problème et recevez une évaluation préliminaire</p>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Nom complet</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Téléphone</label>
+                                    <input type="tel" id="phone" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="device">Type d'appareil</label>
+                                    <select id="device" name="device" required>
+                                        <option value="">Sélectionnez</option>
+                                        <option value="smartphone">Smartphone</option>
+                                        <option value="laptop">Ordinateur portable</option>
+                                        <option value="desktop">Ordinateur fixe</option>
+                                        <option value="tablet">Tablette</option>
+                                        <option value="other">Autre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="problem">Décrivez le problème</label>
+                                <textarea id="problem" name="problem" rows="4" required></textarea>
+                            </div>
+                            <div class="form-submit">
+                                <button type="submit" class="btn btn-primary" data-cursor-text="Envoyer">
+                                    <span>Obtenir un Diagnostic</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <h3>Laboratoire MontPC Alpin</h3>
+                                <div class="open-badge">
+                                    <span class="dot"></span>
+                                    <span class="text">Ouvert Aujourd'hui</span>
+                                </div>
+                            </div>
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                    </div>
+                                    <div class="contact-text">
+                                        <h4>Adresse</h4>
+                                        <p>123 Avenue des Alpes<br>74400 Chamonix-Mont-Blanc</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="contact-text">
+                                        <h4>Téléphone</h4>
+                                        <p>+33 (0)4 50 XX XX XX</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                            <polyline points="22,6 12,13 2,6"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="contact-text">
+                                        <h4>Email</h4>
+                                        <p>contact@montpc-alpin.fr</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="contact-text">
+                                        <h4>Horaires</h4>
+                                        <p>Lun-Ven: 9h-19h<br>Samedi: 10h-18h</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact-social">
+                                <a href="#" class="social-link" aria-label="Facebook" data-cursor-text="Facebook">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Instagram" data-cursor-text="Instagram">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-link" aria-label="LinkedIn" data-cursor-text="LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Twitter" data-cursor-text="Twitter">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-map">
+                            <div class="map-placeholder">
+                                <img src="img/map-placeholder.jpg" alt="Carte MontPC Alpin">
+                                <a href="#" class="map-link" data-cursor-text="Voir sur Google Maps">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="17 1 21 5 17 9"></polyline>
+                                        <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                                        <polyline points="7 23 3 19 7 15"></polyline>
+                                        <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                                    </svg>
+                                    <span>Ouvrir dans Google Maps</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Une Qualité À La Hauteur<br>Des Sommets Alpins</h2>
+                    <p>Bénéficiez de l'expertise technologique la plus avancée de la région pour vos appareils.</p>
+                    <a href="#contact" class="btn btn-primary-alt" data-cursor-text="Contact">Prendre Rendez-vous</a>
+                </div>
+                <div class="cta-badges">
+                    <div class="trust-badge">
+                        <div class="badge-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                <path d="M9 12l2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <div class="badge-text">
+                            <h3>Avis vérifiés</h3>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="rating-value">4.9/5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trust-badge">
+                        <div class="badge-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                <polyline points="13 2 13 9 20 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="badge-text">
+                            <h3>Rapport détaillé</h3>
+                            <p>Offert avec chaque réparation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="mont">Mont</span><span class="pc">PC</span>
+                        <span class="alpin">ALPIN</span>
+                    </div>
+                    <p class="tagline">L'excellence technologique inspirée par les sommets</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Réparation Smartphone</a></li>
+                            <li><a href="#">Réparation PC Portable</a></li>
+                            <li><a href="#">PC Gaming sur Mesure</a></li>
+                            <li><a href="#">Récupération de Données</a></li>
+                            <li><a href="#">Maintenance Préventive</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Garantie</a></li>
+                            <li><a href="#">Expédition</a></li>
+                            <li><a href="#">Pièces & Accessoires</a></li>
+                            <li><a href="#">Service Entreprises</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Légal</h3>
+                        <ul>
+                            <li><a href="#">Mentions Légales</a></li>
+                            <li><a href="#">Politique de Confidentialité</a></li>
+                            <li><a href="#">Conditions Générales</a></li>
+                            <li><a href="#">Garantie</a></li>
+                            <li><a href="#">Données Personnelles</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 MontPC Alpin. Tous droits réservés.
+                </div>
+                <div class="payment-methods">
+                    <div class="payment-label">Moyens de paiement acceptés :</div>
+                    <div class="payment-icons">
+                        <span class="payment-icon">Visa</span>
+                        <span class="payment-icon">Mastercard</span>
+                        <span class="payment-icon">American Express</span>
+                        <span class="payment-icon">Apple Pay</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

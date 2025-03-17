@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Les_Gardiens_solitaires",
+  "originalName": "Les Gardiens solitaires",
+  "downloadDate": "2025-03-15T19:46:15.575Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_Gardiens_solitaires/Les_Gardiens_solitaires_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679950037388-PH7OWJP2NCUHIKHZVRFI/IMG_A455AC86B88E-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_Gardiens_solitaires/Les_Gardiens_solitaires_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679949993025-MDR3VV2X3ALL48UJMLCJ/Matrice-Alu-noirPano.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_Gardiens_solitaires/Les_Gardiens_solitaires_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679949997543-WSD1S7S0GATEJS3OMT84/Matrice-Caisse-am%C3%A9ricaine-noir-Pano.jpg"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Water Loader</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f2f9ff;
+      font-family: sans-serif;
+    }
+    
+    .loader-container {
+      text-align: center;
+    }
+    
+    .water-drop {
+      width: 60px;
+      height: 60px;
+      background-color: #4dc4ff;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      margin: 0 auto 20px;
+      animation: drop 2s infinite ease-in-out;
+    }
+    
+    @keyframes drop {
+      0% {
+        transform: scale(1);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      }
+      20% {
+        transform: scale(0.8, 1.1);
+        border-radius: 40% 40% 60% 60% / 40% 40% 60% 60%;
+      }
+      40% {
+        transform: scale(1.2, 0.8);
+        border-radius: 60% 60% 40% 40% / 60% 60% 40% 40%;
+      }
+      60% {
+        transform: scale(1);
+        border-radius: 50%;
+      }
+      100% {
+        transform: scale(1);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      }
+    }
+    
+    .loading-text {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #003652;
+    }
+    
+    .progress-bar {
+      width: 200px;
+      height: 6px;
+      background-color: rgba(77, 196, 255, 0.2);
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background-color: #4dc4ff;
+      transition: width 0.1s linear;
+    }
+    
+    .percentage {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #4dc4ff;
+    }
+    
+    .main-content {
+      display: none;
+      text-align: center;
+      max-width: 800px;
+      padding: 20px;
+    }
+    
+    h1 {
+      color: #003652;
+    }
+    
+    p {
+      color: #6b97b1;
+      line-height: 1.6;
+    }
+    
+    .success-button {
+      display: inline-block;
+      background-color: #4dc4ff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader-container" id="loader">
+    <div class="water-drop"></div>
+    <div class="loading-text">GIANDRA</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="percentage" id="percentage">0%</div>
+  </div>
+  
+  <div class="main-content" id="content">
+    <h1>Loader Works!</h1>
+    <p>The simple water drop loader is successfully implemented and functioning. This demonstrates that the loader mechanism works correctly in isolation.</p>
+    <p>You can now apply this approach to the main water-gallery.html file.</p>
+    <a href="water-gallery.html" class="success-button">Go to Main Gallery</a>
+  </div>
+
+  <script>
+    // Simple loader implementation
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Page loaded - starting loader');
+      
+      const loader = document.getElementById('loader');
+      const content = document.getElementById('content');
+      const progressFill = document.getElementById('progressFill');
+      const percentage = document.getElementById('percentage');
+      
+      let progress = 0;
+      
+      // Simulate loading with a simple interval
+      const interval = setInterval(function() {
+        // Increment progress by a random amount between 3-7%
+        progress += Math.floor(Math.random() * 5) + 3;
+        
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          
+          // Update UI one last time
+          progressFill.style.width = progress + '%';
+          percentage.textContent = progress + '%';
+          
+          // Show content after a short delay
+          setTimeout(function() {
+            loader.style.display = 'none';
+            content.style.display = 'block';
+          }, 500);
+        } else {
+          // Update UI
+          progressFill.style.width = progress + '%';
+          percentage.textContent = progress + '%';
+        }
+        
+        console.log('Loading progress: ' + progress + '%');
+      }, 200); // Update every 200ms
+    });
+  </script>
+</body>
+</html>

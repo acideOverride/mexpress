@@ -1,0 +1,28 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Les_derniers_feux_sur_Bionnassay",
+  "originalName": "Les derniers feux sur Bionnassay",
+  "downloadDate": "2025-03-15T05:45:42.096Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_derniers_feux_sur_Bionnassay/Les_derniers_feux_sur_Bionnassay_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1649083569237-RVYYVXVEUO5WS41CMA4T/IMG_F0DA3B6F96E4-1.jpeg"
+    },
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_derniers_feux_sur_Bionnassay/Les_derniers_feux_sur_Bionnassay_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648472631290-4MIIY9W5Z80ZF9KSD0EF/Sunset+sur+Bionnassay%C2%A9Boris+Molinier.jpg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_derniers_feux_sur_Bionnassay/Les_derniers_feux_sur_Bionnassay_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648473312832-UEP4S39IL6LNEHV0FHDB/sunset-sur-bionnassay-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_derniers_feux_sur_Bionnassay/Les_derniers_feux_sur_Bionnassay_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648473313068-9Z4QFA4FDUADZK0OOX1A/sunset-sur-bionnassay-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

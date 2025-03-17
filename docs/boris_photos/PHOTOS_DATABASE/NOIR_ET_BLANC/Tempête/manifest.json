@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Tempête",
+  "originalName": "Tempête",
+  "downloadDate": "2025-03-15T19:46:15.845Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Tempête/Tempête_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646321247141-HLNM5HLZ2U0N1341U4KN/IMG_CD0EB628D38A-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Tempête/Tempête_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648141722189-5C51SDJW9RNP3OYZ1H3L/temp%C3%AAte-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Tempête/Tempête_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648141728403-PHWLTW4P81EYK21831TS/temp%C3%AAte-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

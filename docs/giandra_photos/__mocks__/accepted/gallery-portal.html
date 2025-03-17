@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giandra Photos - Galerie d'Art & Photographie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="gallery-portal.css">
+</head>
+<body data-theme="light">
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo">
+        <div class="logo-icon">G</div>
+        <span class="logo-text">Giandra Photos</span>
+      </div>
+      <div class="header-right">
+        <nav class="top-nav">
+          <ul class="nav-links">
+            <li><a href="#" class="active">Accueil</a></li>
+            <li><a href="#">Galerie</a></li>
+            <li><a href="#">Boutique</a></li>
+            <li><a href="#">Locations</a></li>
+            <li><a href="#">Événements</a></li>
+            <li><a href="#">À Propos</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-toggle" id="themeToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <button class="language-toggle">FR</button>
+          <a href="#" class="user-profile">
+            <div class="avatar">JM</div>
+            <span class="username">Jeanne Martin</span>
+          </a>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>Photographies d'Art et d'Eau</h1>
+        <p>Explorez la beauté éthérée et les émotions capturées dans mes photographies contemplatives et méditatives, sans retouches. Je capture l'Art dans l'Eau... sous tous ses courants!</p>
+        <div class="hero-buttons">
+          <a href="#featured-works" class="cta-button primary-cta">Explorer la Galerie</a>
+          <a href="#upcoming-events" class="cta-button secondary-cta">Événements à Venir</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="../frontend/img/collections/COSMOGONIE/cosmogonie_001.jpg" alt="Photographie en Vedette">
+        <div class="image-credit">
+          <span class="collection-tag">Collection Cosmogonie</span>
+          <span class="image-title">Murmures de l'Aube</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-works" id="featured-works">
+      <div class="section-header">
+        <h2>Séries Photographiques</h2>
+        <p>Explorez les collections photographiques sans retouche de Giandra De Castro</p>
+      </div>
+
+      <div class="collections-slider">
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="../frontend/img/collections/TISSER_LA_MATIERE/tisser_la_matiere_001.jpg" alt="Collection Tisser la Matière">
+            <div class="collection-overlay">
+              <span class="collection-name">Tisser la Matière</span>
+              <span class="collection-count">15 Photos</span>
+            </div>
+          </div>
+          <div class="collection-details">
+            <h3>Tisser la Matière</h3>
+            <p>Une exploration saisissante des textures et des formes aquatiques, capturant l'émotion dans chaque ondulation.</p>
+            <div class="collection-actions">
+              <a href="#" class="view-collection">Explorer la Collection</a>
+              <div class="collection-price">À partir de 350€</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="collection-card featured">
+          <div class="collection-image">
+            <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Collection Le Grand Bleu">
+            <div class="collection-overlay">
+              <span class="collection-name">Le Grand Bleu</span>
+              <span class="collection-count">34 Photos</span>
+              <span class="featured-badge">Collection en Vedette</span>
+            </div>
+          </div>
+          <div class="collection-details">
+            <h3>Le Grand Bleu</h3>
+            <p>Capturer l'interaction délicate entre la lumière et l'eau dans des paysages marins dramatiques et hypnotiques.</p>
+            <div class="collection-actions">
+              <a href="#" class="view-collection">Explorer la Collection</a>
+              <div class="collection-price">À partir de 425€</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="../frontend/img/collections/Surfing_Angels/surfing_angels_001.jpg" alt="Collection Surfing Angels">
+            <div class="collection-overlay">
+              <span class="collection-name">Surfing Angels</span>
+              <span class="collection-count">36 Photos</span>
+            </div>
+          </div>
+          <div class="collection-details">
+            <h3>Surfing Angels</h3>
+            <p>Explorations de la grâce et du mouvement des surfeurs, capturés comme des anges flottant sur l'eau.</p>
+            <div class="collection-actions">
+              <a href="#" class="view-collection">Explorer la Collection</a>
+              <div class="collection-price">À partir de 385€</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="view-all-collections">
+        <a href="#" class="all-collections-link">Voir Toutes les Collections <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </section>
+
+    <section class="art-services">
+      <div class="section-header">
+        <h2>Services d'Art</h2>
+        <p>Vivez l'art de Giandra de la manière qui vous convient le mieux</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-shopping-bag"></i>
+          </div>
+          <h3>Achat d'Œuvres</h3>
+          <p>Possédez une partie de la vision de Giandra avec des tirages en édition limitée dans différentes tailles et options d'encadrement premium.</p>
+          <ul class="service-features">
+            <li>Tirages en édition limitée</li>
+            <li>Certificat d'authenticité</li>
+            <li>Options d'encadrement personnalisé</li>
+            <li>Livraison gratuite dans le monde entier</li>
+          </ul>
+          <a href="#" class="service-cta">Découvrir les Collections</a>
+        </div>
+
+        <div class="service-card highlight">
+          <div class="service-icon">
+            <i class="fas fa-sync-alt"></i>
+          </div>
+          <h3>Location d'Œuvres</h3>
+          <p>Transformez votre espace avec les œuvres de Giandra pour des événements, des séances photo ou des installations temporaires.</p>
+          <ul class="service-features">
+            <li>Périodes de location flexibles</li>
+            <li>Installation professionnelle</li>
+            <li>Assurance incluse</li>
+            <li>Option de location-achat</li>
+          </ul>
+          <a href="#" class="service-cta">Explorer les Locations</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <h3>Commandes Personnalisées</h3>
+          <p>Travaillez directement avec Giandra pour créer une œuvre unique adaptée à votre vision et à votre espace.</p>
+          <ul class="service-features">
+            <li>Consultation personnelle</li>
+            <li>Adapté à votre espace</li>
+            <li>Exploration de concepts</li>
+            <li>Propriété totale d'une œuvre unique</li>
+          </ul>
+          <a href="#" class="service-cta">Demander une Commande</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="artwork-finder">
+      <div class="section-header">
+        <h2>Trouvez Votre Œuvre Parfaite</h2>
+        <p>Laissez-nous vous aider à découvrir la pièce idéale pour votre espace et votre style</p>
+      </div>
+
+      <div class="finder-container">
+        <div class="finder-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Style d'Art</label>
+              <div class="style-selector">
+                <button class="style-option active" data-style="all">Tous les Styles</button>
+                <button class="style-option" data-style="abstract">Abstrait</button>
+                <button class="style-option" data-style="landscape">Paysage</button>
+                <button class="style-option" data-style="portrait">Portrait</button>
+                <button class="style-option" data-style="urban">Urbain</button>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Palette de Couleurs</label>
+              <div class="color-selector">
+                <button class="color-option" data-color="all" style="background: linear-gradient(135deg, #f5f7fa, #c3cfe2, #bdc3c7, #2c3e50, #fd746c, #2c3e50)">
+                  <span>Tous</span>
+                </button>
+                <button class="color-option" data-color="monochrome" style="background: linear-gradient(to right, #f5f7fa, #c3cfe2)">
+                  <span>Monochrome</span>
+                </button>
+                <button class="color-option" data-color="warm" style="background: linear-gradient(to right, #ff7e5f, #feb47b)">
+                  <span>Chaude</span>
+                </button>
+                <button class="color-option" data-color="cool" style="background: linear-gradient(to right, #4facfe, #00f2fe)">
+                  <span>Froide</span>
+                </button>
+                <button class="color-option" data-color="vibrant" style="background: linear-gradient(to right, #43cea2, #185a9d)">
+                  <span>Vibrante</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Type d'Espace</label>
+              <div class="space-selector">
+                <button class="space-option" data-space="home">
+                  <i class="fas fa-home"></i>
+                  <span>Maison</span>
+                </button>
+                <button class="space-option" data-space="office">
+                  <i class="fas fa-briefcase"></i>
+                  <span>Bureau</span>
+                </button>
+                <button class="space-option" data-space="commercial">
+                  <i class="fas fa-store"></i>
+                  <span>Commercial</span>
+                </button>
+                <button class="space-option" data-space="hospitality">
+                  <i class="fas fa-concierge-bell"></i>
+                  <span>Hôtellerie</span>
+                </button>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Fourchette de Budget</label>
+              <div class="budget-slider">
+                <input type="range" min="100" max="2000" value="750" class="range-slider" id="budgetSlider">
+                <div class="budget-display">
+                  <span>100€</span>
+                  <span id="budgetValue">750€</span>
+                  <span>2000€+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="find-art-actions">
+            <button class="primary-button find-art-button">Trouver Mon Art Parfait</button>
+            <button class="text-button art-consultation">Demander une Consultation d'Art Personnelle</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="upcoming-events" id="upcoming-events">
+      <div class="section-header">
+        <h2>Événements à Venir</h2>
+        <p>Rejoignez Giandra lors de ces prochaines expositions et événements artistiques</p>
+      </div>
+
+      <div class="events-container">
+        <div class="event-card highlight">
+          <div class="event-date">
+            <div class="date-number">18</div>
+            <div class="date-month">MAI</div>
+          </div>
+          <div class="event-details">
+            <h3>Vernissage Réflexions Urbaines</h3>
+            <p class="event-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Galerie d'Art Moderne, 234 Avenue des Arts</span>
+            </p>
+            <p class="event-description">Rejoignez-nous pour la soirée d'ouverture de la dernière collection de Giandra présentant des paysages urbains capturés avec son style éthéré signature. Rencontrez l'artiste et soyez parmi les premiers à voir ces nouvelles œuvres époustouflantes.</p>
+            <div class="event-actions">
+              <button class="event-rsvp-button">Réserver Maintenant</button>
+              <button class="event-save-button">
+                <i class="far fa-bookmark"></i> Sauvegarder l'Événement
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-date">
+            <div class="date-number">23</div>
+            <div class="date-month">JUIN</div>
+          </div>
+          <div class="event-details">
+            <h3>Discussion avec l'Artiste: Processus Créatif Révélé</h3>
+            <p class="event-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Centre des Arts de la Ville, 45 Rue de l'Ouest</span>
+            </p>
+            <p class="event-description">Une discussion intime avec Giandra sur son processus créatif, ses inspirations et ses techniques. Parfait pour les photographes en herbe et les passionnés d'art.</p>
+            <div class="event-actions">
+              <button class="event-rsvp-button">Réserver Maintenant</button>
+              <button class="event-save-button">
+                <i class="far fa-bookmark"></i> Sauvegarder l'Événement
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-date">
+            <div class="date-number">05</div>
+            <div class="date-month">JUIL</div>
+          </div>
+          <div class="event-details">
+            <h3>Atelier de Photographie d'Été</h3>
+            <p class="event-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Parc de la Rivière, Pavillon Est</span>
+            </p>
+            <p class="event-description">Un atelier pratique avec Giandra explorant la photographie de lumière naturelle en extérieur. Apportez votre appareil photo et apprenez des techniques pour capturer la magie de la lumière estivale.</p>
+            <div class="event-actions">
+              <button class="event-rsvp-button">Réserver Maintenant</button>
+              <button class="event-save-button">
+                <i class="far fa-bookmark"></i> Sauvegarder l'Événement
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="events-calendar-link">
+        <a href="#" class="view-calendar">Voir le Calendrier Complet <i class="fas fa-calendar-alt"></i></a>
+      </div>
+    </section>
+
+    <section class="collector-testimonials">
+      <div class="section-header">
+        <h2>Expériences des Collectionneurs</h2>
+        <p>Écoutez ceux qui ont intégré l'art de Giandra dans leur vie</p>
+      </div>
+
+      <div class="testimonials-container">
+        <div class="testimonial-card">
+          <div class="testimonial-image">
+            <img src="../frontend/img/collections/COMME_A_GIVERNY/comme_a_giverny_005.jpg" alt="Michel Dupont">
+          </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">"L'œuvre 'Tisser la Matière' de Giandra a transformé mon salon. La façon dont elle capture la lumière dans l'eau crée une sensation de profondeur qui change tout au long de la journée. C'est comme avoir une fenêtre sur un autre monde."</p>
+            <div class="testimonial-author">
+              <div class="author-name">Michel Dupont</div>
+              <div class="author-title">Propriétaire d'un Cabinet d'Architecture</div>
+              <div class="author-collection">Collectionneur: Série Tisser la Matière</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-image">
+            <img src="../frontend/img/collections/LE_GRAND_BLEU/le_grand_bleu_015.jpg" alt="Sophie Chen">
+          </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">"Nous avons loué plusieurs pièces de la collection Le Grand Bleu pour le gala d'anniversaire de notre entreprise. Les photographies ont créé exactement l'atmosphère sophistiquée et onirique que nous voulions. De nombreux invités ont commenté les œuvres d'art."</p>
+            <div class="testimonial-author">
+              <div class="author-name">Sophie Chen</div>
+              <div class="author-title">Directrice d'Événements</div>
+              <div class="author-collection">Location: Collection Le Grand Bleu</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-image">
+            <img src="../frontend/img/collections/ESPRITS_DE_NOTRE_ESPRIT/esprits_de_notre_esprit_008.jpg" alt="Jacques & Rebecca Lambert">
+          </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">"La photographie commandée que Giandra a créée pour notre anniversaire capture non seulement l'essence de notre passion pour la mer, mais aussi la profondeur de notre relation. Travailler avec elle a été une expérience délicieuse du début à la fin."</p>
+            <div class="testimonial-author">
+              <div class="author-name">Jacques & Rebecca Lambert</div>
+              <div class="author-title">Collectionneurs d'Art</div>
+              <div class="author-collection">Commande: Série Esprits de Notre Esprit</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter-signup">
+      <div class="newsletter-container">
+        <div class="newsletter-content">
+          <h2>Restez Connecté</h2>
+          <p>Abonnez-vous pour recevoir des mises à jour sur les nouvelles collections, les vernissages d'expositions et les événements exclusifs.</p>
+          <form class="newsletter-form">
+            <div class="form-input-group">
+              <input type="email" placeholder="Votre adresse email" required>
+              <button type="submit" class="subscribe-button">S'abonner</button>
+            </div>
+            <div class="form-consent">
+              <label class="consent-checkbox">
+                <input type="checkbox" required>
+                <span class="checkmark"></span>
+                <span class="consent-text">J'accepte de recevoir des emails concernant l'art et les événements de Giandra. Vous pouvez vous désabonner à tout moment.</span>
+              </label>
+            </div>
+          </form>
+        </div>
+        <div class="newsletter-image">
+          <img src="../frontend/img/collections/RENVERSER_LES_MONTAGNES/renverser_les_montagnes_007.jpg" alt="Abonnez-vous à la Newsletter">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <div class="logo-icon">G</div>
+        <span class="logo-text">Giandra Photos</span>
+      </div>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Explorer</h3>
+          <ul>
+            <li><a href="#">Toutes les Collections</a></li>
+            <li><a href="#">Boutique</a></li>
+            <li><a href="#">Locations</a></li>
+            <li><a href="#">Commandes</a></li>
+            <li><a href="#">Événements</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Informations</h3>
+          <ul>
+            <li><a href="about.html">À Propos de Giandra</a></li>
+            <li><a href="past-exhibitions.html">Historique des Expositions</a></li>
+            <li><a href="awards-recognition.html">Prix et Reconnaissances</a></li>
+            <li><a href="press-publications.html">Presse et Publications</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Services Clients</h3>
+          <ul>
+            <li><a href="#">Consultation d'Art</a></li>
+            <li><a href="#">Livraison & Retours</a></li>
+            <li><a href="#">Options d'Encadrement</a></li>
+            <li><a href="#">Instructions d'Entretien</a></li>
+            <li><a href="#">Contactez-nous</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Connexion</h3>
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-pinterest-p"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+          <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> contact@giandraphotos.com</p>
+            <p><i class="fas fa-phone"></i> +33 (0)1 23 45 67 89</p>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Galerie, Suite 500<br>Paris, 75001</p>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 Giandra Photos. Tous droits réservés. Toutes les images sont la propriété de Giandra Wellington.</p>
+        <div class="footer-links">
+          <a href="#">Politique de Confidentialité</a>
+          <a href="#">Conditions d'Utilisation</a>
+          <a href="#">Accessibilité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="gallery-portal.js"></script>
+</body>
+</html>

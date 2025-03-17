@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BORIS | Visionary Photography</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    
+    <div class="loader">
+        <div class="loader-content">
+            <h1>BORIS</h1>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="#home">B<span>ORIS</span></a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#vision" class="nav-link">Vision</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#studio" class="nav-link">Studio</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-controls">
+                <button class="theme-toggle">
+                    <span class="toggle-icon light">
+                        <i class="fas fa-sun"></i>
+                    </span>
+                    <span class="toggle-icon dark active">
+                        <i class="fas fa-moon"></i>
+                    </span>
+                </button>
+                <button class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-slider">
+                <div class="slide active">
+                    <div class="slide-image" style="background-image: url('images/hero-1.jpg')"></div>
+                    <div class="slide-content">
+                        <h1 class="slide-title">Perception<br>Beyond Reality</h1>
+                        <p class="slide-description">Exploring the space between what we see and what we feel</p>
+                        <a href="#gallery" class="btn btn-hero">Explore Gallery</a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-image" style="background-image: url('images/hero-2.jpg')"></div>
+                    <div class="slide-content">
+                        <h1 class="slide-title">Visual<br>Storytelling</h1>
+                        <p class="slide-description">Narratives captured in a fleeting moment of time</p>
+                        <a href="#projects" class="btn btn-hero">View Projects</a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-image" style="background-image: url('images/hero-3.jpg')"></div>
+                    <div class="slide-content">
+                        <h1 class="slide-title">Light &<br>Shadow</h1>
+                        <p class="slide-description">The interplay that shapes our understanding of form</p>
+                        <a href="#vision" class="btn btn-hero">Discover Vision</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-arrow prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-dots">
+                    <button class="dot active" data-slide="0"></button>
+                    <button class="dot" data-slide="1"></button>
+                    <button class="dot" data-slide="2"></button>
+                </div>
+                <button class="slider-arrow next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll</span>
+                <i class="fas fa-arrow-down"></i>
+            </div>
+        </section>
+
+        <section id="vision" class="vision-section">
+            <div class="section-container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">The Vision</h2>
+                    <p class="section-subtitle">Merging perception, technology, and emotion</p>
+                </div>
+                <div class="vision-content">
+                    <div class="vision-text reveal">
+                        <p class="vision-lead">Photography isn't just about capturing what exists—it's about revealing what lies beneath the surface of perception.</p>
+                        <p>Through my lens, I explore the intersection of the seen and unseen, using technology to expand the boundaries of visual storytelling. Each image represents a moment where reality transforms into something more profound—a glimpse into parallel dimensions of experience.</p>
+                        <p>My work challenges viewers to question their perception and connect with emotions that transcend the visual spectrum.</p>
+                        <div class="signature">
+                            <img src="images/signature.png" alt="Boris signature">
+                        </div>
+                    </div>
+                    <div class="vision-image reveal">
+                        <div class="image-container">
+                            <img src="images/vision.jpg" alt="Boris in his studio">
+                            <div class="image-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="parallax-bg" style="background-image: url('images/parallax-1.jpg')"></div>
+        </section>
+
+        <section id="gallery" class="gallery-section">
+            <div class="section-container wide">
+                <div class="section-header center reveal">
+                    <h2 class="section-title">Featured Works</h2>
+                    <p class="section-subtitle">A curated selection of visual explorations</p>
+                </div>
+                
+                <div class="filters reveal">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="abstract">Abstract</button>
+                    <button class="filter-btn" data-filter="portrait">Portrait</button>
+                    <button class="filter-btn" data-filter="urban">Urban</button>
+                    <button class="filter-btn" data-filter="nature">Nature</button>
+                </div>
+                
+                <div class="gallery-grid reveal">
+                    <div class="gallery-item" data-category="abstract">
+                        <div class="gallery-image">
+                            <img src="images/gallery-1.jpg" alt="Fluid Movements">
+                            <div class="item-overlay">
+                                <div class="item-details">
+                                    <h3 class="item-title">Fluid Movements</h3>
+                                    <p class="item-category">Abstract</p>
+                                    <div class="item-actions">
+                                        <button class="btn-circle view-btn">
+                                            <i class="fas fa-expand"></i>
+                                        </button>
+                                        <button class="btn-circle purchase-btn">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="portrait">
+                        <div class="gallery-image">
+                            <img src="images/gallery-2.jpg" alt="Inner Reflection">
+                            <div class="item-overlay">
+                                <div class="item-details">
+                                    <h3 class="item-title">Inner Reflection</h3>
+                                    <p class="item-category">Portrait</p>
+                                    <div class="item-actions">
+                                        <button class="btn-circle view-btn">
+                                            <i class="fas fa-expand"></i>
+                                        </button>
+                                        <button class="btn-circle purchase-btn">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="urban">
+                        <div class="gallery-image">
+                            <img src="images/gallery-3.jpg" alt="Geometric Contrast">
+                            <div class="item-overlay">
+                                <div class="item-details">
+                                    <h3 class="item-title">Geometric Contrast</h3>
+                                    <p class="item-category">Urban</p>
+                                    <div class="item-actions">
+                                        <button class="btn-circle view-btn">
+                                            <i class="fas fa-expand"></i>
+                                        </button>
+                                        <button class="btn-circle purchase-btn">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="nature">
+                        <div class="gallery-image">
+                            <img src="images/gallery-4.jpg" alt="Ethereal Landscape">
+                            <div class="item-overlay">
+                                <div class="item-details">
+                                    <h3 class="item-title">Ethereal Landscape</h3>
+                                    <p class="item-category">Nature</p>
+                                    <div class="item-actions">
+                                        <button class="btn-circle view-btn">
+                                            <i class="fas fa-expand"></i>
+                                        </button>
+                                        <button class="btn-circle purchase-btn">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="abstract">
+                        <div class="gallery-image">
+                            <img src="images/gallery-5.jpg" alt="Light Fragments">
+                            <div class="item-overlay">
+                                <div class="item-details">
+                                    <h3 class="item-title">Light Fragments</h3>
+                                    <p class="item-category">Abstract</p>
+                                    <div class="item-actions">
+                                        <button class="btn-circle view-btn">
+                                            <i class="fas fa-expand"></i>
+                                        </button>
+                                        <button class="btn-circle purchase-btn">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="portrait">
+                        <div class="gallery-image">
+                            <img src="images/gallery-6.jpg" alt="Ethereal Portrait">
+                            <div class="item-overlay">
+                                <div class="item-details">
+                                    <h3 class="item-title">Ethereal Portrait</h3>
+                                    <p class="item-category">Portrait</p>
+                                    <div class="item-actions">
+                                        <button class="btn-circle view-btn">
+                                            <i class="fas fa-expand"></i>
+                                        </button>
+                                        <button class="btn-circle purchase-btn">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-container reveal">
+                    <a href="#" class="btn btn-outline">View Full Gallery</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section">
+            <div class="section-container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Exploring themes through connected visual narratives</p>
+                </div>
+                
+                <div class="projects-slider reveal">
+                    <div class="project-slide active">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h3 class="project-title">Chromatic Dreams</h3>
+                                <p class="project-description">An exploration of how color shapes our emotional response to imagery. This series uses advanced color theory and digital manipulation to create dreamlike scenes that blur the boundary between photography and painting.</p>
+                                <a href="#" class="btn btn-outline">Explore Project</a>
+                            </div>
+                            <div class="project-preview">
+                                <div class="project-images">
+                                    <div class="project-image main">
+                                        <img src="images/project-1-main.jpg" alt="Chromatic Dreams">
+                                    </div>
+                                    <div class="project-image thumbnail">
+                                        <img src="images/project-1-thumb1.jpg" alt="Chromatic Dreams thumbnail 1">
+                                    </div>
+                                    <div class="project-image thumbnail">
+                                        <img src="images/project-1-thumb2.jpg" alt="Chromatic Dreams thumbnail 2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-slide">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h3 class="project-title">Urban Fragments</h3>
+                                <p class="project-description">A visual study of urban architecture and its relationship with human experience. This series captures the geometric patterns, reflections, and interplays of light that define our constructed environments.</p>
+                                <a href="#" class="btn btn-outline">Explore Project</a>
+                            </div>
+                            <div class="project-preview">
+                                <div class="project-images">
+                                    <div class="project-image main">
+                                        <img src="images/project-2-main.jpg" alt="Urban Fragments">
+                                    </div>
+                                    <div class="project-image thumbnail">
+                                        <img src="images/project-2-thumb1.jpg" alt="Urban Fragments thumbnail 1">
+                                    </div>
+                                    <div class="project-image thumbnail">
+                                        <img src="images/project-2-thumb2.jpg" alt="Urban Fragments thumbnail 2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-slide">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <h3 class="project-title">Ethereal Portraits</h3>
+                                <p class="project-description">A series that reimagines portraiture through the lens of technological manipulation. Each subject exists in a space between reality and digital abstraction, challenging our perception of identity.</p>
+                                <a href="#" class="btn btn-outline">Explore Project</a>
+                            </div>
+                            <div class="project-preview">
+                                <div class="project-images">
+                                    <div class="project-image main">
+                                        <img src="images/project-3-main.jpg" alt="Ethereal Portraits">
+                                    </div>
+                                    <div class="project-image thumbnail">
+                                        <img src="images/project-3-thumb1.jpg" alt="Ethereal Portraits thumbnail 1">
+                                    </div>
+                                    <div class="project-image thumbnail">
+                                        <img src="images/project-3-thumb2.jpg" alt="Ethereal Portraits thumbnail 2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-navigation reveal">
+                    <button class="project-nav-btn prev">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Previous</span>
+                    </button>
+                    
+                    <div class="project-dots">
+                        <button class="project-dot active" data-project="0"></button>
+                        <button class="project-dot" data-project="1"></button>
+                        <button class="project-dot" data-project="2"></button>
+                    </div>
+                    
+                    <button class="project-nav-btn next">
+                        <span>Next</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="studio" class="studio-section">
+            <div class="section-container">
+                <div class="section-header center reveal">
+                    <h2 class="section-title">The Studio</h2>
+                    <p class="section-subtitle">Where vision becomes reality</p>
+                </div>
+                
+                <div class="studio-content reveal">
+                    <div class="studio-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Years of Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">120+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">International Exhibitions</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Industry Awards</div>
+                        </div>
+                    </div>
+                    
+                    <div class="studio-gallery reveal">
+                        <div class="studio-image main">
+                            <img src="images/studio-1.jpg" alt="Boris Photography Studio">
+                        </div>
+                        <div class="studio-grid">
+                            <div class="studio-image">
+                                <img src="images/studio-2.jpg" alt="Studio Equipment">
+                            </div>
+                            <div class="studio-image">
+                                <img src="images/studio-3.jpg" alt="Studio Workspace">
+                            </div>
+                            <div class="studio-image">
+                                <img src="images/studio-4.jpg" alt="Digital Editing Station">
+                            </div>
+                            <div class="studio-image">
+                                <img src="images/studio-5.jpg" alt="Print Processing Area">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="studio-services reveal">
+                        <h3 class="services-title">Services Offered</h3>
+                        <div class="services-grid">
+                            <div class="service-item">
+                                <div class="service-icon">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                <h4 class="service-title">Fine Art Photography</h4>
+                                <p class="service-description">Museum-quality prints for collectors and art enthusiasts.</p>
+                            </div>
+                            
+                            <div class="service-item">
+                                <div class="service-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h4 class="service-title">Architectural Photography</h4>
+                                <p class="service-description">Capturing spaces and structures with artistic vision.</p>
+                            </div>
+                            
+                            <div class="service-item">
+                                <div class="service-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h4 class="service-title">Conceptual Portraits</h4>
+                                <p class="service-description">Artistic portrait sessions that tell a visual story.</p>
+                            </div>
+                            
+                            <div class="service-item">
+                                <div class="service-icon">
+                                    <i class="fas fa-laptop"></i>
+                                </div>
+                                <h4 class="service-title">Digital Art Collaborations</h4>
+                                <p class="service-description">Pushing boundaries through technological innovation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="parallax-bg" style="background-image: url('images/parallax-2.jpg')"></div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="section-container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Connect</h2>
+                    <p class="section-subtitle">Start a conversation about your vision</p>
+                </div>
+                
+                <div class="contact-content reveal">
+                    <div class="contact-form-container">
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" class="form-input" required>
+                                <label for="name" class="form-label">Your Name</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-input" required>
+                                <label for="email" class="form-label">Your Email</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="text" id="subject" class="form-input" required>
+                                <label for="subject" class="form-label">Subject</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea id="message" class="form-input form-textarea" required></textarea>
+                                <label for="message" class="form-label">Your Message</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-submit">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <div class="info-group">
+                            <h3 class="info-title">Contact Details</h3>
+                            <div class="info-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>contact@borisphotography.com</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+1 (212) 555-7890</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>123 Gallery District, New York, NY</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-group">
+                            <h3 class="info-title">Studio Hours</h3>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Tuesday - Friday: 10am - 6pm</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Saturday: 11am - 5pm</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Sunday - Monday: Closed</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-group">
+                            <h3 class="info-title">Connect</h3>
+                            <div class="social-links">
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-behance"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="newsletter-signup">
+                            <h3 class="info-title">Stay Updated</h3>
+                            <p>Subscribe to receive updates on new work and exhibitions.</p>
+                            <form class="newsletter-form">
+                                <input type="email" placeholder="Your email address" required>
+                                <button type="submit" class="btn btn-icon">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <a href="#home">B<span>ORIS</span></a>
+                </div>
+                
+                <div class="footer-nav">
+                    <div class="footer-nav-column">
+                        <h4 class="footer-heading">Navigation</h4>
+                        <ul class="footer-links">
+                            <li><a href="#vision">Vision</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="#studio">Studio</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-nav-column">
+                        <h4 class="footer-heading">Projects</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Chromatic Dreams</a></li>
+                            <li><a href="#">Urban Fragments</a></li>
+                            <li><a href="#">Ethereal Portraits</a></li>
+                            <li><a href="#">Light Studies</a></li>
+                            <li><a href="#">Digital Abstractions</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-nav-column">
+                        <h4 class="footer-heading">Legal</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Copyright Notice</a></li>
+                            <li><a href="#">Image Licensing</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 Boris Photography. All rights reserved.</p>
+                <div class="credits">
+                    <p>Site design: <a href="#">Studio Kreativ</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Viewer Modal -->
+    <div class="modal image-viewer">
+        <div class="modal-content">
+            <button class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="image-container">
+                <img src="" alt="Enlarged image" id="modalImage">
+            </div>
+            <div class="image-details">
+                <h3 id="modalTitle">Image Title</h3>
+                <p id="modalDescription">Image description goes here, providing context and detail about the photograph.</p>
+                <div class="modal-actions">
+                    <a href="#" class="btn btn-outline" id="viewProjectBtn">View Project</a>
+                    <button class="btn" id="purchaseBtn">Purchase Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-items">
+            <!-- Empty state -->
+            <div class="cart-empty active">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <a href="#gallery" class="btn btn-sm">Browse Gallery</a>
+            </div>
+            
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span id="cartShipping">$0.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+            </div>
+            
+            <button class="btn btn-checkout" disabled>Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Purchase Modal -->
+    <div class="modal purchase-modal">
+        <div class="modal-content">
+            <button class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="purchase-content">
+                <div class="purchase-image">
+                    <img src="" alt="Print preview" id="purchaseImage">
+                </div>
+                
+                <div class="purchase-details">
+                    <h3 id="purchaseTitle">Print Title</h3>
+                    <p id="purchaseDescription">This limited edition print is produced using archival pigment inks on museum-quality paper.</p>
+                    
+                    <div class="purchase-options">
+                        <div class="option-group">
+                            <h4>Print Size</h4>
+                            <div class="option-buttons">
+                                <button class="option-btn active" data-price="250">11"×14"</button>
+                                <button class="option-btn" data-price="400">16"×20"</button>
+                                <button class="option-btn" data-price="650">24"×30"</button>
+                                <button class="option-btn" data-price="1200">36"×48"</button>
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <h4>Frame Options</h4>
+                            <div class="option-buttons">
+                                <button class="option-btn active" data-price="0">Unframed</button>
+                                <button class="option-btn" data-price="180">Black Frame</button>
+                                <button class="option-btn" data-price="180">White Frame</button>
+                                <button class="option-btn" data-price="220">Natural Wood</button>
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <h4>Edition</h4>
+                            <p class="edition-info">Limited Edition of 25</p>
+                        </div>
+                    </div>
+                    
+                    <div class="purchase-price">
+                        <div class="price">$<span id="currentPrice">250</span></div>
+                    </div>
+                    
+                    <div class="purchase-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" value="1" min="1" max="5" id="quantity">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                        <button class="btn" id="addToCartBtn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="menu-header">
+            <div class="logo">
+                <a href="#home">B<span>ORIS</span></a>
+            </div>
+            <button class="menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="mobile-nav">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="#vision" class="mobile-nav-link">Vision</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#gallery" class="mobile-nav-link">Gallery</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#projects" class="mobile-nav-link">Projects</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#studio" class="mobile-nav-link">Studio</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#contact" class="mobile-nav-link">Contact</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="mobile-footer">
+            <div class="mobile-social">
+                <a href="#" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-behance"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            
+            <div class="mobile-contact">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contact@borisphotography.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+1 (212) 555-7890</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

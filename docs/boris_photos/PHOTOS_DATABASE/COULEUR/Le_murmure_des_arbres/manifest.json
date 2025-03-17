@@ -1,0 +1,23 @@
+{
+  "collection": "COULEUR",
+  "photoName": "Le_murmure_des_arbres",
+  "originalName": "Le murmure des arbres",
+  "downloadDate": "2025-03-15T19:46:25.581Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Le_murmure_des_arbres/Le_murmure_des_arbres_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648475612772-CQBA0NOWKUPHA02476HY/IMG_B0696B2746E1-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Le_murmure_des_arbres/Le_murmure_des_arbres_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648475888314-Y1WSFVZWMIPBPEL3BFSZ/la-for%C3%AAt-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Le_murmure_des_arbres/Le_murmure_des_arbres_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648475888254-QCJ4AJ0VNFIZJ1NT2NBQ/la-for%C3%AAt-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

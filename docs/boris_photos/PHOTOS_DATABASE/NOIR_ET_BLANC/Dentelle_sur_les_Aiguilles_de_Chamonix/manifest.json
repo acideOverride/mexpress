@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Dentelle_sur_les_Aiguilles_de_Chamonix",
+  "originalName": "Dentelle sur les Aiguilles de Chamonix",
+  "downloadDate": "2025-03-15T19:46:17.343Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Dentelle_sur_les_Aiguilles_de_Chamonix/Dentelle_sur_les_Aiguilles_de_Chamonix_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1645201870806-DJSRCZSXJHVSNL1ZXRZL/IMG_BDFBB544B682-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Dentelle_sur_les_Aiguilles_de_Chamonix/Dentelle_sur_les_Aiguilles_de_Chamonix_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647957643405-FEPR5VY2D4U7ONR7W5V0/dentelle-sur-les-aiguilles-alu-noir-boris-molinier.jpg.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Dentelle_sur_les_Aiguilles_de_Chamonix/Dentelle_sur_les_Aiguilles_de_Chamonix_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647957643633-MGA3IDTEPT9XZDSCC2FQ/dentelle-sur-les-aiguilles-caisse-am%C3%A9ricaine-noir-boris-molinier.jpg"
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boris Art Gallery | Futuristic Art Experience</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="logo">
+                <h1>BORIS<span>GALLERY</span></h1>
+            </div>
+            <div class="nav-links">
+                <a href="#gallery" class="nav-item">Gallery</a>
+                <a href="#featured" class="nav-item">Featured</a>
+                <a href="#collections" class="nav-item">Collections</a>
+                <a href="#about" class="nav-item">About</a>
+                <a href="#contact" class="nav-item">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#shop" class="btn btn-primary">Shop Now</a>
+                <a href="#cart" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="glitch-text">Future Through Art</h1>
+                <p>Explore the boundaries of imagination in Boris's futuristic digital art collection</p>
+                <div class="hero-cta">
+                    <a href="#featured" class="btn btn-primary">Explore Gallery</a>
+                    <a href="#about" class="btn btn-secondary">About the Artist</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <div class="floating-shapes">
+                        <div class="shape shape-1"></div>
+                        <div class="shape shape-2"></div>
+                        <div class="shape shape-3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Works Section -->
+        <section id="featured" class="featured-works">
+            <div class="section-header">
+                <h2>Featured <span>Masterpieces</span></h2>
+                <p>The latest and most captivating works from Boris's collection</p>
+            </div>
+            <div class="featured-gallery">
+                <div class="gallery-item featured-item">
+                    <div class="item-image">
+                        <div class="hover-effect"></div>
+                        <img src="images/featured-1.jpg" alt="Future City">
+                    </div>
+                    <div class="item-info">
+                        <h3>Future City</h3>
+                        <p>Digital Art, 2025</p>
+                        <div class="item-price">$1,200</div>
+                        <a href="#" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+                <div class="gallery-item featured-item">
+                    <div class="item-image">
+                        <div class="hover-effect"></div>
+                        <img src="images/featured-2.jpg" alt="Neon Dreams">
+                    </div>
+                    <div class="item-info">
+                        <h3>Neon Dreams</h3>
+                        <p>Mixed Media, 2024</p>
+                        <div class="item-price">$950</div>
+                        <a href="#" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+                <div class="gallery-item featured-item">
+                    <div class="item-image">
+                        <div class="hover-effect"></div>
+                        <img src="images/featured-3.jpg" alt="Digital Soul">
+                    </div>
+                    <div class="item-info">
+                        <h3>Digital Soul</h3>
+                        <p>AI-Generated, 2025</p>
+                        <div class="item-price">$1,500</div>
+                        <a href="#" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="section-footer">
+                <a href="#gallery" class="btn btn-secondary">View All Works</a>
+            </div>
+        </section>
+
+        <!-- Collections Section -->
+        <section id="collections" class="collections">
+            <div class="section-header">
+                <h2>Exclusive <span>Collections</span></h2>
+                <p>Thematic series that showcase Boris's artistic journey</p>
+            </div>
+            <div class="collections-grid">
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <img src="images/collection-1.jpg" alt="Cyberpunk Series">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Cyberpunk Series</h3>
+                        <p>A dark vision of the technological future</p>
+                        <span class="collection-count">12 works</span>
+                        <a href="#" class="btn btn-outline">Explore Collection</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <img src="images/collection-2.jpg" alt="Abstract Technology">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Abstract Technology</h3>
+                        <p>Technology through an abstract lens</p>
+                        <span class="collection-count">8 works</span>
+                        <a href="#" class="btn btn-outline">Explore Collection</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <img src="images/collection-3.jpg" alt="Future Nature">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Future Nature</h3>
+                        <p>Where nature meets technology</p>
+                        <span class="collection-count">15 works</span>
+                        <a href="#" class="btn btn-outline">Explore Collection</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Immersive 3D Gallery Preview -->
+        <section class="immersive-preview">
+            <div class="immersive-content">
+                <h2>Experience Art in <span>3D</span></h2>
+                <p>Explore our virtual gallery for an immersive art experience</p>
+                <a href="#virtual" class="btn btn-primary">Enter Virtual Gallery</a>
+            </div>
+            <div class="canvas-container" id="3d-preview">
+                <!-- 3D canvas will be rendered here via JavaScript -->
+            </div>
+        </section>
+
+        <!-- About the Artist -->
+        <section id="about" class="about-artist">
+            <div class="artist-image">
+                <img src="images/artist.jpg" alt="Boris - Digital Artist">
+            </div>
+            <div class="artist-bio">
+                <h2>About <span>Boris</span></h2>
+                <p class="bio-intro">A visionary digital artist exploring the intersection of technology and human experience.</p>
+                <p>Boris creates stunning digital artworks that challenge our perception of reality and the future. With a background in both traditional art and digital technology, his pieces blend technical precision with emotional depth.</p>
+                <p>His work has been featured in digital art exhibitions worldwide and has gained recognition for its unique futuristic aesthetic that captures both the excitement and anxiety of our technological future.</p>
+                <div class="artist-social">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter">
+            <div class="newsletter-content">
+                <h2>Stay in the <span>Loop</span></h2>
+                <p>Subscribe to receive updates on new artworks, exhibitions, and exclusive offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-col footer-about">
+                    <h3>BORIS<span>GALLERY</span></h3>
+                    <p>A futuristic digital art gallery showcasing the visionary work of Boris, pushing the boundaries of artistic expression through technology.</p>
+                </div>
+                <div class="footer-col footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#collections">Collections</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#shop">Shop</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Art District, City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@borisgallery.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Boris Gallery. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/three.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

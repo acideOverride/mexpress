@@ -1,0 +1,18 @@
+{
+  "collection": "COULEUR",
+  "photoName": "Chaîne_du_Mont-Blanc",
+  "originalName": "Chaîne du Mont-Blanc",
+  "downloadDate": "2025-03-15T19:46:27.466Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Chaîne_du_Mont-Blanc/Chaîne_du_Mont-Blanc_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646400042750-NQKJCZIYNITWQ1LWHEVM/IMG_2D002054454E-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Chaîne_du_Mont-Blanc/Chaîne_du_Mont-Blanc_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647946037545-OLOY45Y7QWX6MOPAUBMO/chaine-du-mont-blanc-alu-arg.jpg"
+    }
+  ]
+}

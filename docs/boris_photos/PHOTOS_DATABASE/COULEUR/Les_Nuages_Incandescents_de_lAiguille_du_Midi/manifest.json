@@ -1,0 +1,18 @@
+{
+  "collection": "COULEUR",
+  "photoName": "Les_Nuages_Incandescents_de_lAiguille_du_Midi",
+  "originalName": "Les Nuages Incandescents de l'Aiguille du Midi",
+  "downloadDate": "2025-03-15T19:46:26.176Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Les_Nuages_Incandescents_de_lAiguille_du_Midi/Les_Nuages_Incandescents_de_lAiguille_du_Midi_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647277089963-P25UUQ8A102W14ENC6UU/IMG_4F14691F5E9F-1.jpeg"
+    },
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Les_Nuages_Incandescents_de_lAiguille_du_Midi/Les_Nuages_Incandescents_de_lAiguille_du_Midi_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647956053498-BVTE26AR4KPAG6IJHFFV/aiguille-du-midi-et-mont-blanc-alu-boris-molinier.jpg"
+    }
+  ]
+}

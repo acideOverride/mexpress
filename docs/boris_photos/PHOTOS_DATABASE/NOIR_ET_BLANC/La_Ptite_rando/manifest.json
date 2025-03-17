@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "La_Ptite_rando",
+  "originalName": "La Ptite rando",
+  "downloadDate": "2025-03-15T05:45:49.372Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/La_Ptite_rando/La_Ptite_rando_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648131870711-0715UWWPCBDHPRX3MOCQ/IMG_D64B83C201AF-1.jpeg"
+    },
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/La_Ptite_rando/La_Ptite_rando_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648131909710-54IXIWMY0N7DBYKJILZA/la-ptite-rando-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/La_Ptite_rando/La_Ptite_rando_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648131905924-ZZEQVEJQ63JMAO816MYR/la--ptite-rando-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Les_Flamants_rose",
+  "originalName": "Les Flamants rose",
+  "downloadDate": "2025-03-15T05:45:46.366Z",
+  "variations": [
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_Flamants_rose/Les_Flamants_rose_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648473896777-2KMMZUE2V39PNZPODHUF/La+camargue%C2%A9Boris+Molinier-2.jpg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_Flamants_rose/Les_Flamants_rose_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648473838561-24TQFU4NR1TPSW7ENAFL/les-flamants-rose-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_Flamants_rose/Les_Flamants_rose_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648473848495-OBUDN53JQEPHTZ59AP9D/les-flamants-rose-caisse-americaine-boris-molinier.jpg"
+    },
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_Flamants_rose/Les_Flamants_rose_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648473788819-W5OBPEFDDJPK5QDI4K7B/IMG_4934+3.JPG"
+    }
+  ]
+}

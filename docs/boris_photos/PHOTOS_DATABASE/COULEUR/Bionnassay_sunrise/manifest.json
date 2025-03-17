@@ -1,0 +1,28 @@
+{
+  "collection": "COULEUR",
+  "photoName": "Bionnassay_sunrise",
+  "originalName": "Bionnassay sunrise",
+  "downloadDate": "2025-03-15T19:46:26.990Z",
+  "variations": [
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Bionnassay_sunrise/Bionnassay_sunrise_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646318901866-WZUU47QUPKLFUQ4XYJ3O/bionnassay-sunrise-ms-boris-molinier.JPG"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Bionnassay_sunrise/Bionnassay_sunrise_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647958330555-NKGGV0EHECZ04FWLWPP7/sunrise-sur-bionnassay-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Bionnassay_sunrise/Bionnassay_sunrise_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647958329723-HIPK3BF5HOJIOCYD53SZ/sunrise-sur-bionnassay-caisse-americaine-boris-molinier.jpg"
+    },
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Bionnassay_sunrise/Bionnassay_sunrise_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646318901866-WZUU47QUPKLFUQ4XYJ3O/bionnassay-sunrise-ms-boris-molinier.JPG"
+    }
+  ]
+}

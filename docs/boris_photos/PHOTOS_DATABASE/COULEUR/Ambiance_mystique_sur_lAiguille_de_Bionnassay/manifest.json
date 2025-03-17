@@ -1,0 +1,23 @@
+{
+  "collection": "COULEUR",
+  "photoName": "Ambiance_mystique_sur_lAiguille_de_Bionnassay",
+  "originalName": "Ambiance mystique sur l'Aiguille de Bionnassay",
+  "downloadDate": "2025-03-15T19:46:26.373Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Ambiance_mystique_sur_lAiguille_de_Bionnassay/Ambiance_mystique_sur_lAiguille_de_Bionnassay_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646404096607-KDAXKS29592A9WCEF6Y7/IMG_2C53322256EC-1.jpeg"
+    },
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Ambiance_mystique_sur_lAiguille_de_Bionnassay/Ambiance_mystique_sur_lAiguille_de_Bionnassay_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648134608574-QVV6YEJVZL3I35DNZRFG/ambiance-mystique-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Ambiance_mystique_sur_lAiguille_de_Bionnassay/Ambiance_mystique_sur_lAiguille_de_Bionnassay_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648134612656-8ZNNU98TUKC5Q9ZG15BE/ambiance-mystique-caisse-americaine-boris-molinier.jpg.jpg"
+    }
+  ]
+}

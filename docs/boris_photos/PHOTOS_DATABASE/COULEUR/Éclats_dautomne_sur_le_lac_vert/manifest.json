@@ -1,0 +1,23 @@
+{
+  "collection": "COULEUR",
+  "photoName": "Éclats_dautomne_sur_le_lac_vert",
+  "originalName": "Éclats d'automne sur le lac vert",
+  "downloadDate": "2025-03-15T19:46:26.494Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Éclats_dautomne_sur_le_lac_vert/Éclats_dautomne_sur_le_lac_vert_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648224492318-IOUMESD2ZRSE68ZZG2QE/IMG_B12B2FCA7210-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Éclats_dautomne_sur_le_lac_vert/Éclats_dautomne_sur_le_lac_vert_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648224513164-POTGYJQ8UPLYGOPDNNWA/lac-vert-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Éclats_dautomne_sur_le_lac_vert/Éclats_dautomne_sur_le_lac_vert_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648224513334-GVCJO5R2QEUTMKZILIOE/lac-vert-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

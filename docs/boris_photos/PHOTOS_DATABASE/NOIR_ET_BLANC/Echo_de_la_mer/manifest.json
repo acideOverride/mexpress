@@ -1,0 +1,18 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Echo_de_la_mer",
+  "originalName": "Echo de la mer",
+  "downloadDate": "2025-03-15T19:46:15.649Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Echo_de_la_mer/Echo_de_la_mer_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679931737684-FGYPIZKFV20SLHWQJLXJ/IMG_647D526CC3BB-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Echo_de_la_mer/Echo_de_la_mer_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679931729545-7TQVX6E53CV5R9I7WL8Y/Alu-noirPano.jpg"
+    }
+  ]
+}

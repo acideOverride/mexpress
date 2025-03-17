@@ -1,0 +1,28 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Paintboat",
+  "originalName": "Paintboat",
+  "downloadDate": "2025-03-15T05:45:49.273Z",
+  "variations": [
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Paintboat/Paintboat_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646386896732-3VZHGQ787HD0Z6VHJT1U/Les+Voiles+de+Saint-Tropez+2021%C2%A9Boris+Molinier-12.jpg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Paintboat/Paintboat_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648198853388-4FIKAITAP840DIETBSIA/paintboat-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Paintboat/Paintboat_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648198853383-QPH6QSSNHROROWO3I2LV/paintboat-caisse-americaine-boris-molinier.jpg"
+    },
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Paintboat/Paintboat_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646386885081-OWTNGKB4C4JNQOPMDE2N/IMG_5418.JPG"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Le_Mont-Blanc",
+  "originalName": "Le Mont-Blanc",
+  "downloadDate": "2025-03-15T19:46:15.981Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Le_Mont-Blanc/Le_Mont-Blanc_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646322799154-H7GLQX2J1CMB5CW42N4U/IMG_A9FD5A91A3C3-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Le_Mont-Blanc/Le_Mont-Blanc_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648140794019-RG44CWTBOB940TP22FOH/le-mont-blanc-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Le_Mont-Blanc/Le_Mont-Blanc_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648140795445-IG3LXH35P34RWH32AERH/le-mont-blanc-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

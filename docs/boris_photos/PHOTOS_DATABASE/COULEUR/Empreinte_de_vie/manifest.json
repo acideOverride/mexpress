@@ -1,0 +1,18 @@
+{
+  "collection": "COULEUR",
+  "photoName": "Empreinte_de_vie",
+  "originalName": "Empreinte de vie",
+  "downloadDate": "2025-03-15T19:46:24.841Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Empreinte_de_vie/Empreinte_de_vie_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679933766913-5YJOCX22GD1XNNS613TH/IMG_9B36ACB48ADF-1.jpeg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Empreinte_de_vie/Empreinte_de_vie_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679933777556-PWFC3PMK1IBNAPJBTO35/Matrice-Caisse-am%C3%A9ricaine-noir-Pano.jpg"
+    }
+  ]
+}

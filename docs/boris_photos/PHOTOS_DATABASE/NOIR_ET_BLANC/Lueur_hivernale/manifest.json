@@ -1,0 +1,28 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Lueur_hivernale",
+  "originalName": "Lueur hivernale",
+  "downloadDate": "2025-03-15T05:45:44.781Z",
+  "variations": [
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Lueur_hivernale/Lueur_hivernale_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648225066937-AXMERARC8C5E3JD42TR1/Brume%C2%A9Boris+Molinier.jpg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Lueur_hivernale/Lueur_hivernale_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648225024550-2FETDCFZEAOFUF6LWTKN/brume-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Lueur_hivernale/Lueur_hivernale_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648225024842-YET7HU9DBA8VKWL9F2TT/brume-caisse-americaine-boris-molinier.jpg"
+    },
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Lueur_hivernale/Lueur_hivernale_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648224968446-QJGOG5X182G3YFYZR3SV/brume-ms-boris-molinier.JPG"
+    }
+  ]
+}

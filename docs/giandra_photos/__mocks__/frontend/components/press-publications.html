@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presse et Publications - Giandra Photos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="gallery-portal.css">
+</head>
+<body data-theme="light">
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo">
+        <div class="logo-icon">G</div>
+        <span class="logo-text">Giandra Photos</span>
+      </div>
+      <div class="header-right">
+        <nav class="top-nav">
+          <ul class="nav-links">
+            <li><a href="gallery-portal.html">Accueil</a></li>
+            <li><a href="#">Galerie</a></li>
+            <li><a href="#">Boutique</a></li>
+            <li><a href="#">Locations</a></li>
+            <li><a href="#">Événements</a></li>
+            <li><a href="#" class="active">À Propos</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-toggle" id="themeToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <button class="language-toggle">FR</button>
+          <a href="#" class="user-profile">
+            <div class="avatar">JM</div>
+            <span class="username">Jeanne Martin</span>
+          </a>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="page-header">
+      <div class="header-content">
+        <h1>Presse et Publications</h1>
+        <p>Découvrez les livres, magazines et articles qui présentent mon travail photographique</p>
+      </div>
+    </section>
+
+    <section class="press-media-tabs">
+      <div class="tabs-container">
+        <button class="tab-button active" data-tab="books">Livres</button>
+        <button class="tab-button" data-tab="magazines">Magazines</button>
+        <button class="tab-button" data-tab="press">Presse</button>
+        <button class="tab-button" data-tab="tv-radio">TV & Radio</button>
+      </div>
+
+      <div class="tab-content-container">
+        <!-- Books Tab Content -->
+        <div class="tab-content active" id="books-content">
+          <div class="books-grid">
+            <div class="book-card">
+              <div class="book-cover">
+                <img src="../img/hero_image.jpg" alt="L'Art de l'Eau">
+                <div class="book-overlay">
+                  <span class="view-details">Voir détails</span>
+                </div>
+              </div>
+              <div class="book-details">
+                <h3>L'Art de l'Eau</h3>
+                <p class="book-author">Par Marie Fontaine, contributions de Giandra De Castro</p>
+                <p class="book-publisher">Éditions Lumière, 2023</p>
+                <p class="book-description">Exploration visuelle de l'eau comme médium artistique à travers l'histoire et l'art contemporain. Inclut un chapitre dédié à mon approche photographique des surfaces aquatiques.</p>
+                <div class="book-featured">
+                  <span class="feature-highlight">Œuvres présentées:</span>
+                  <ul>
+                    <li>Série "RENVERSER LES MONTAGNES" (6 photographies)</li>
+                    <li>Série "COMME A GIVERNY" (4 photographies)</li>
+                  </ul>
+                </div>
+                <div class="book-purchase-options">
+                  <a href="#" class="purchase-link">Acheter sur Amazon</a>
+                  <a href="#" class="purchase-link">Éditions Lumière</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="book-card feature">
+              <div class="book-cover">
+                <img src="../img/hero_image.jpg" alt="Méditations Aquatiques">
+                <div class="featured-label">Monographie</div>
+                <div class="book-overlay">
+                  <span class="view-details">Voir détails</span>
+                </div>
+              </div>
+              <div class="book-details">
+                <h3>Méditations Aquatiques</h3>
+                <p class="book-author">Giandra De Castro</p>
+                <p class="book-publisher">Éditions Artistiques de Paris, 2022</p>
+                <p class="book-description">Ma première monographie présentant une collection de 120 photographies d'eau, accompagnée d'essais sur la contemplation et la méditation à travers l'art photographique. Préface de Jean-Claude Lemagny, historien de la photographie.</p>
+                <div class="book-featured">
+                  <span class="feature-highlight">Collection complète:</span>
+                  <ul>
+                    <li>Œuvres sélectionnées des séries 2018-2022</li>
+                    <li>Textes inédits sur ma démarche artistique</li>
+                    <li>Édition limitée de 1000 exemplaires numérotés</li>
+                  </ul>
+                </div>
+                <div class="book-purchase-options">
+                  <a href="#" class="purchase-link primary">Acheter un exemplaire signé</a>
+                  <a href="#" class="purchase-link">Librairies spécialisées</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="book-card">
+              <div class="book-cover">
+                <img src="../img/hero_image.jpg" alt="Biennale des Arts Visuels 2023">
+                <div class="book-overlay">
+                  <span class="view-details">Voir détails</span>
+                </div>
+              </div>
+              <div class="book-details">
+                <h3>Biennale des Arts Visuels 2023</h3>
+                <p class="book-author">Catalogue d'exposition</p>
+                <p class="book-publisher">Musée d'Art Contemporain, Marseille, 2023</p>
+                <p class="book-description">Catalogue officiel de la Biennale des Arts Visuels 2023, présentant les artistes sélectionnés et leurs œuvres. Section spéciale consacrée aux lauréats du Grand Prix.</p>
+                <div class="book-featured">
+                  <span class="feature-highlight">Ma contribution:</span>
+                  <ul>
+                    <li>Section lauréats, pages 42-47</li>
+                    <li>Interview exclusive</li>
+                    <li>Portfolio de 8 photographies grand format</li>
+                  </ul>
+                </div>
+                <div class="book-purchase-options">
+                  <a href="#" class="purchase-link">Boutique du Musée</a>
+                  <a href="#" class="purchase-link">Librairie en ligne</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Magazines Tab Content -->
+        <div class="tab-content" id="magazines-content">
+          <div class="magazines-grid">
+            <div class="magazine-card">
+              <div class="magazine-cover">
+                <img src="../img/hero_image.jpg" alt="Art Contemporain Magazine">
+                <div class="magazine-label">Cover Feature</div>
+              </div>
+              <div class="magazine-details">
+                <h3>Art Contemporain Magazine</h3>
+                <p class="magazine-issue">Numéro Spécial "Eau & Art", Mai 2022</p>
+                <p class="magazine-description">Article de fond de 8 pages sur ma démarche artistique, accompagné d'un portfolio et d'un entretien exclusif.</p>
+                <a href="#" class="magazine-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+
+            <div class="magazine-card">
+              <div class="magazine-cover">
+                <img src="../img/hero_image.jpg" alt="Photo Magazine">
+              </div>
+              <div class="magazine-details">
+                <h3>Photo Magazine</h3>
+                <p class="magazine-issue">Juillet 2023</p>
+                <p class="magazine-description">Article technique sur ma méthode de capture sans retouche des reflets aquatiques. Inclut des conseils pratiques pour les photographes.</p>
+                <a href="#" class="magazine-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+
+            <div class="magazine-card">
+              <div class="magazine-cover">
+                <img src="../img/hero_image.jpg" alt="Cahiers d'Art">
+              </div>
+              <div class="magazine-details">
+                <h3>Cahiers d'Art</h3>
+                <p class="magazine-issue">Numéro 24, Automne 2021</p>
+                <p class="magazine-description">Essai critique sur l'abstraction dans la photographie contemporaine, avec analyse de mon travail dans la section "Nouveaux Talents".</p>
+                <a href="#" class="magazine-link">Lire l'article <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+
+            <div class="magazine-card">
+              <div class="magazine-cover">
+                <img src="../img/hero_image.jpg" alt="International Photography Annual">
+              </div>
+              <div class="magazine-details">
+                <h3>International Photography Annual</h3>
+                <p class="magazine-issue">Edition 2023</p>
+                <p class="magazine-description">Sélection dans la catégorie Fine Art Photography avec présentation de la série "COSMOGONIE".</p>
+                <a href="#" class="magazine-link">Voir la publication <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Press Tab Content -->
+        <div class="tab-content" id="press-content">
+          <div class="press-timeline">
+            <div class="press-year">
+              <h3>2023</h3>
+              <div class="press-items">
+                <div class="press-item">
+                  <div class="press-date">4 Juin 2023</div>
+                  <div class="press-outlet">Le Monde des Arts</div>
+                  <h4 class="press-title">"La photographe qui capture la poésie de l'eau"</h4>
+                  <p class="press-excerpt">Article de deux pages explorant mon approche unique de la photographie d'eau et mon parcours artistique franco-brésilien. L'article souligne particulièrement ma technique de capture sans retouche numérique.</p>
+                  <a href="#" class="press-read-more">Lire l'article complet <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="press-item">
+                  <div class="press-date">17 Mars 2023</div>
+                  <div class="press-outlet">La Gazette des Arts</div>
+                  <h4 class="press-title">"Grand Prix de la Biennale: Une artiste de l'eau"</h4>
+                  <p class="press-excerpt">Compte-rendu de la remise du Grand Prix de la Biennale des Arts Visuels, avec interview et analyse de mon travail par le critique d'art Pierre Menard.</p>
+                  <a href="#" class="press-read-more">Lire l'article complet <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="press-year">
+              <h3>2022</h3>
+              <div class="press-items">
+                <div class="press-item featured">
+                  <div class="press-date">28 Novembre 2022</div>
+                  <div class="press-outlet">Le Figaro Culture</div>
+                  <h4 class="press-title">"Les nouveaux maîtres de la photographie française"</h4>
+                  <p class="press-excerpt">Dossier spécial sur les photographes émergents qui renouvellent la scène artistique française. Portrait et interview dans la section "Méditation et Contemplation dans l'Art Contemporain".</p>
+                  <div class="press-quote">
+                    <blockquote>"Giandra De Castro transforme la surface de l'eau en toile vivante, capturant des moments fugaces qui évoquent tant les maîtres impressionnistes que l'art abstrait contemporain."</blockquote>
+                    <cite>— Jean Bertrand, critique d'art</cite>
+                  </div>
+                  <a href="#" class="press-read-more">Lire l'article complet <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="press-item">
+                  <div class="press-date">5 Mai 2022</div>
+                  <div class="press-outlet">Art Press</div>
+                  <h4 class="press-title">"L'eau comme médium: Entre réalité et abstraction"</h4>
+                  <p class="press-excerpt">Article analytique sur les artistes contemporains qui utilisent l'eau comme sujet principal, avec une section dédiée à mon approche photographique.</p>
+                  <a href="#" class="press-read-more">Lire l'article complet <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="press-year">
+              <h3>2021</h3>
+              <div class="press-items">
+                <div class="press-item">
+                  <div class="press-date">12 Septembre 2021</div>
+                  <div class="press-outlet">ArtNet International</div>
+                  <h4 class="press-title">"Water as Canvas: The Mesmerizing Photography of Giandra"</h4>
+                  <p class="press-excerpt">Article en anglais présentant mon travail à un public international, avec focus sur la série "COSMOGONIE".</p>
+                  <a href="#" class="press-read-more">Read the full article <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="press-item">
+                  <div class="press-date">3 Mars 2021</div>
+                  <div class="press-outlet">L'Œil de la Photographie</div>
+                  <h4 class="press-title">"Talents à suivre: Giandra De Castro"</h4>
+                  <p class="press-excerpt">Article de découverte présentant mon travail et ma philosophie artistique dans la section "Nouveaux Talents".</p>
+                  <a href="#" class="press-read-more">Lire l'article complet <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TV & Radio Tab Content -->
+        <div class="tab-content" id="tv-radio-content">
+          <div class="media-appearances">
+            <div class="appearance-card">
+              <div class="appearance-thumbnail">
+                <img src="../img/hero_image.jpg" alt="France 5 - Regards d'Artistes">
+                <div class="play-button">
+                  <i class="fas fa-play"></i>
+                </div>
+              </div>
+              <div class="appearance-details">
+                <h3>Arts & Culture - France 5</h3>
+                <p class="appearance-program">"Regards d'Artistes"</p>
+                <p class="appearance-date">Diffusé le 15 Novembre 2022</p>
+                <p class="appearance-description">Interview de 12 minutes présentant mon atelier et mon processus créatif. Inclut une démonstration de ma technique de photographie d'eau et une visite de mon exposition à la Galerie Moderne.</p>
+                <div class="appearance-duration">
+                  <i class="far fa-clock"></i> 12:45
+                </div>
+                <a href="#" class="appearance-watch">Regarder l'extrait <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+
+            <div class="appearance-card">
+              <div class="appearance-thumbnail">
+                <img src="../img/hero_image.jpg" alt="Podcast L'Art en Question">
+                <div class="play-button audio">
+                  <i class="fas fa-headphones"></i>
+                </div>
+              </div>
+              <div class="appearance-details">
+                <h3>Podcast "L'Art en Question"</h3>
+                <p class="appearance-program">Episode 47: "L'eau comme miroir de l'âme"</p>
+                <p class="appearance-date">Mars 2022</p>
+                <p class="appearance-description">Entretien approfondi sur ma philosophie artistique, mon parcours entre la France et le Brésil, et ma vision de la photographie contemplative. Discussion sur l'influence de Bachelard et sa "Poétique de l'eau" sur mon travail.</p>
+                <div class="appearance-duration">
+                  <i class="far fa-clock"></i> 58:23
+                </div>
+                <a href="#" class="appearance-watch">Écouter le podcast <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+
+            <div class="appearance-card">
+              <div class="appearance-thumbnail">
+                <img src="../img/hero_image.jpg" alt="Radio France Culture">
+                <div class="play-button audio">
+                  <i class="fas fa-headphones"></i>
+                </div>
+              </div>
+              <div class="appearance-details">
+                <h3>France Culture</h3>
+                <p class="appearance-program">"Les Chemins de la création"</p>
+                <p class="appearance-date">Juin 2021</p>
+                <p class="appearance-description">Interview radiophonique sur les liens entre contemplation, méditation et création artistique. Présentation de mon approche particulière de la photographie sans retouche.</p>
+                <div class="appearance-duration">
+                  <i class="far fa-clock"></i> 27:15
+                </div>
+                <a href="#" class="appearance-watch">Écouter l'émission <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+
+            <div class="appearance-card">
+              <div class="appearance-thumbnail">
+                <img src="../img/hero_image.jpg" alt="Arte - Metropolis">
+                <div class="play-button">
+                  <i class="fas fa-play"></i>
+                </div>
+              </div>
+              <div class="appearance-details">
+                <h3>Arte - Metropolis</h3>
+                <p class="appearance-program">"Les nouveaux langages de l'image"</p>
+                <p class="appearance-date">Septembre 2021</p>
+                <p class="appearance-description">Reportage sur les photographes qui repoussent les limites traditionnelles du médium. Segment de 8 minutes sur ma technique et mon approche artistique.</p>
+                <div class="appearance-duration">
+                  <i class="far fa-clock"></i> 8:35
+                </div>
+                <a href="#" class="appearance-watch">Regarder le reportage <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-press-section">
+      <div class="contact-press-container">
+        <div class="contact-press-content">
+          <h2>Contact Presse</h2>
+          <p>Pour les demandes d'interviews, d'informations ou de visuels haute définition, veuillez contacter:</p>
+          <div class="press-contact-info">
+            <div class="contact-item">
+              <i class="fas fa-user"></i>
+              <span>Marie Dubois, Attachée de presse</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>presse@giandraphotos.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>+33 (0)1 23 45 67 89</span>
+            </div>
+          </div>
+          <a href="#" class="press-kit-button">
+            <i class="fas fa-download"></i> Télécharger le dossier de presse (PDF)
+          </a>
+        </div>
+        <div class="contact-press-image">
+          <img src="../img/hero_image.jpg" alt="Giandra en interview">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <div class="logo-icon">G</div>
+        <span class="logo-text">Giandra Photos</span>
+      </div>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Explorer</h3>
+          <ul>
+            <li><a href="#">Toutes les Collections</a></li>
+            <li><a href="#">Boutique</a></li>
+            <li><a href="#">Locations</a></li>
+            <li><a href="#">Commandes</a></li>
+            <li><a href="#">Événements</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Informations</h3>
+          <ul>
+            <li><a href="#">À Propos de Giandra</a></li>
+            <li><a href="#">Historique des Expositions</a></li>
+            <li><a href="awards-recognition.html">Prix et Reconnaissances</a></li>
+            <li><a href="press-publications.html">Presse et Publications</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Services Clients</h3>
+          <ul>
+            <li><a href="#">Consultation d'Art</a></li>
+            <li><a href="#">Livraison & Retours</a></li>
+            <li><a href="#">Options d'Encadrement</a></li>
+            <li><a href="#">Instructions d'Entretien</a></li>
+            <li><a href="#">Contactez-nous</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Connexion</h3>
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-pinterest-p"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+          <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> contact@giandraphotos.com</p>
+            <p><i class="fas fa-phone"></i> +33 (0)1 23 45 67 89</p>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Galerie, Suite 500<br>Paris, 75001</p>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 Giandra Photos. Tous droits réservés. Toutes les images sont la propriété de Giandra Wellington.</p>
+        <div class="footer-links">
+          <a href="#">Politique de Confidentialité</a>
+          <a href="#">Conditions d'Utilisation</a>
+          <a href="#">Accessibilité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="gallery-portal.js"></script>
+  <script>
+    // Tab functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove active class from all buttons
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          
+          // Add active class to clicked button
+          button.classList.add('active');
+          
+          // Hide all tab contents
+          tabContents.forEach(content => content.classList.remove('active'));
+          
+          // Show the corresponding tab content
+          const tabId = button.getAttribute('data-tab');
+          document.getElementById(`${tabId}-content`).classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

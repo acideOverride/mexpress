@@ -1,0 +1,18 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Le_reflet_des_roches",
+  "originalName": "Le reflet des roches",
+  "downloadDate": "2025-03-15T05:45:41.904Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Le_reflet_des_roches/Le_reflet_des_roches_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679948656886-ZEFCU69HK7BVMLW741UX/IMG_5377061C468E-1.jpeg"
+    },
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Le_reflet_des_roches/Le_reflet_des_roches_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679948594964-CCA9UTE946WCGWYE2567/Matrice-Caisse-am%C3%A9ricaine-noir-Pano.jpg"
+    }
+  ]
+}

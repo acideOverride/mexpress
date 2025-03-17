@@ -1,0 +1,18 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Reflet_des_Montagnes",
+  "originalName": "Reflet des Montagnes",
+  "downloadDate": "2025-03-15T05:45:48.628Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Reflet_des_Montagnes/Reflet_des_Montagnes_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1641636586004-07DABXKM6DBKNB16JOQZ/IMG_30D81C2D5466-1.jpeg"
+    },
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Reflet_des_Montagnes/Reflet_des_Montagnes_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647947412452-RS5LQUN755G4QQTBJOEM/reflet-des-montagnes-CA.jpg"
+    }
+  ]
+}

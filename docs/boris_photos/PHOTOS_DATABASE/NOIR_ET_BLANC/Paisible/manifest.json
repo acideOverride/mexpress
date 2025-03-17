@@ -1,0 +1,18 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Paisible",
+  "originalName": "Paisible",
+  "downloadDate": "2025-03-15T05:45:49.453Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Paisible/Paisible_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1645031605084-M7184EBQY10DVTHYKXBB/IMG_1FBC012B23DC-1.jpeg"
+    },
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Paisible/Paisible_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647956882800-SRDI1VVAHSKXOHIH0KU3/paisible-caisse-am%C3%A9ricaine-boris-molinier.jpg"
+    }
+  ]
+}

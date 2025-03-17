@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boris Molinier | Fine Art Nature Photography</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="loading">
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-content">
+            <h1 class="loader-logo">Boris<span>Molinier</span></h1>
+            <div class="loader-progress-container">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">Boris<span>Molinier</span></a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#prints" class="nav-link">Fine Art Prints</a></li>
+                    <li><a href="#exhibitions" class="nav-link">Exhibitions</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="language-selector">
+                    <button class="language-btn active" data-lang="en">EN</button>
+                    <button class="language-btn" data-lang="fr">FR</button>
+                </div>
+                <button class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slideshow">
+            <div class="slide active">
+                <div class="slide-image" style="background-image: url('images/mountain-1.jpg')"></div>
+                <div class="slide-caption">
+                    <h2>Ephemeral Moments</h2>
+                    <p>Mont Blanc, France</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('images/sea-1.jpg')"></div>
+                <div class="slide-caption">
+                    <h2>Coastal Reflections</h2>
+                    <p>Brittany, France</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('images/landscape-1.jpg')"></div>
+                <div class="slide-caption">
+                    <h2>Light & Shadow</h2>
+                    <p>Alps, France</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-controls">
+            <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <div class="slide-indicators">
+                <button class="indicator active" data-slide="0"></button>
+                <button class="indicator" data-slide="1"></button>
+                <button class="indicator" data-slide="2"></button>
+            </div>
+            <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-arrow-down"></i>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="section-header">
+            <h2 class="section-title">Portfolio</h2>
+            <p class="section-subtitle">Capturing nature's ephemeral moments</p>
+        </div>
+        
+        <div class="portfolio-categories">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="mountains">Mountains</button>
+            <button class="category-btn" data-category="seascapes">Seascapes</button>
+            <button class="category-btn" data-category="landscapes">Landscapes</button>
+        </div>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-category="mountains">
+                <div class="portfolio-image">
+                    <img src="images/portfolio-1.jpg" alt="Mountain Majesty">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <h3>Mountain Majesty</h3>
+                            <p>Mont Blanc, 2023</p>
+                            <div class="overlay-actions">
+                                <button class="overlay-btn view-btn"><i class="fas fa-expand"></i></button>
+                                <button class="overlay-btn info-btn"><i class="fas fa-info"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="seascapes">
+                <div class="portfolio-image">
+                    <img src="images/portfolio-2.jpg" alt="Ocean Light">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <h3>Ocean Light</h3>
+                            <p>Brittany, 2022</p>
+                            <div class="overlay-actions">
+                                <button class="overlay-btn view-btn"><i class="fas fa-expand"></i></button>
+                                <button class="overlay-btn info-btn"><i class="fas fa-info"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="landscapes">
+                <div class="portfolio-image">
+                    <img src="images/portfolio-3.jpg" alt="Valley Mist">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <h3>Valley Mist</h3>
+                            <p>Alps, 2023</p>
+                            <div class="overlay-actions">
+                                <button class="overlay-btn view-btn"><i class="fas fa-expand"></i></button>
+                                <button class="overlay-btn info-btn"><i class="fas fa-info"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="mountains">
+                <div class="portfolio-image">
+                    <img src="images/portfolio-4.jpg" alt="Alpine Sunrise">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <h3>Alpine Sunrise</h3>
+                            <p>Mont Blanc, 2022</p>
+                            <div class="overlay-actions">
+                                <button class="overlay-btn view-btn"><i class="fas fa-expand"></i></button>
+                                <button class="overlay-btn info-btn"><i class="fas fa-info"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="seascapes">
+                <div class="portfolio-image">
+                    <img src="images/portfolio-5.jpg" alt="Coastal Solitude">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <h3>Coastal Solitude</h3>
+                            <p>Mediterranean, 2023</p>
+                            <div class="overlay-actions">
+                                <button class="overlay-btn view-btn"><i class="fas fa-expand"></i></button>
+                                <button class="overlay-btn info-btn"><i class="fas fa-info"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="landscapes">
+                <div class="portfolio-image">
+                    <img src="images/portfolio-6.jpg" alt="Forest Light">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <h3>Forest Light</h3>
+                            <p>Pyrenees, 2023</p>
+                            <div class="overlay-actions">
+                                <button class="overlay-btn view-btn"><i class="fas fa-expand"></i></button>
+                                <button class="overlay-btn info-btn"><i class="fas fa-info"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="portfolio-cta">
+            <a href="#" class="btn btn-outline">View Complete Portfolio</a>
+        </div>
+    </section>
+
+    <!-- Featured Print Section -->
+    <section class="featured-print">
+        <div class="featured-content">
+            <div class="featured-image">
+                <img src="images/featured-print.jpg" alt="Featured Print">
+            </div>
+            <div class="featured-details">
+                <span class="featured-label">Limited Edition</span>
+                <h2 class="featured-title">Mont Blanc Reflection</h2>
+                <p class="featured-description">
+                    Captured during a rare moment when the peak of Mont Blanc is perfectly reflected in the still waters of Lac Blanc. This limited edition print is available in various sizes, printed on museum-quality paper with archival inks.
+                </p>
+                <div class="featured-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Edition</span>
+                        <span class="spec-value">Limited to 25</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Medium</span>
+                        <span class="spec-value">Archival Pigment Print</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Sizes</span>
+                        <span class="spec-value">40x60cm to 100x150cm</span>
+                    </div>
+                </div>
+                <div class="featured-actions">
+                    <span class="featured-price">From €450</span>
+                    <a href="#prints" class="btn">Explore Print Options</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prints Section -->
+    <section id="prints" class="prints-section">
+        <div class="section-header">
+            <h2 class="section-title">Fine Art Prints</h2>
+            <p class="section-subtitle">Museum-quality limited editions</p>
+        </div>
+        
+        <div class="print-options">
+            <div class="print-info">
+                <h3>Print Specifications</h3>
+                <p>All photographs are printed on premium archival papers using the finest pigment inks, ensuring exceptional detail, color accuracy, and longevity.</p>
+                
+                <div class="print-details">
+                    <div class="detail-item">
+                        <h4><i class="fas fa-certificate"></i> Limited Editions</h4>
+                        <p>Each print is part of a strictly limited edition, individually signed and numbered with a certificate of authenticity.</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <h4><i class="fas fa-paint-brush"></i> Paper Options</h4>
+                        <p>Choose between Hahnemühle Photo Rag® (matte) or FineArt Baryta (satin) papers for optimal presentation of each image.</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <h4><i class="fas fa-border-all"></i> Framing Service</h4>
+                        <p>Custom museum-quality framing options available with UV-protective glass and archival mounting techniques.</p>
+                    </div>
+                </div>
+                
+                <div class="print-cta">
+                    <a href="#" class="btn">View Print Catalog</a>
+                </div>
+            </div>
+            
+            <div class="print-showcase">
+                <div class="print-display">
+                    <img src="images/print-display.jpg" alt="Framed Print Display">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exhibitions Section -->
+    <section id="exhibitions" class="exhibitions-section">
+        <div class="section-header">
+            <h2 class="section-title">Exhibitions</h2>
+            <p class="section-subtitle">Current and upcoming shows</p>
+        </div>
+        
+        <div class="exhibition-feature">
+            <div class="exhibition-image">
+                <img src="images/exhibition.jpg" alt="Current Exhibition">
+            </div>
+            <div class="exhibition-details">
+                <span class="status-badge">Current Exhibition</span>
+                <h3>Reg'Art sur Almae</h3>
+                <div class="exhibition-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Hôtel Armancette, Saint-Nicolas de Véroce</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>December 15, 2024 - March 15, 2025</span>
+                    </div>
+                </div>
+                <p class="exhibition-description">
+                    This solo exhibition features a selection of my latest mountain landscapes, focusing on the changing moods and light of Mont Blanc throughout the seasons. Fifteen large-format prints showcase the dramatic beauty and ephemeral moments captured in the French Alps.
+                </p>
+                <div class="exhibition-actions">
+                    <a href="#" class="btn">Exhibition Details</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="exhibitions-timeline">
+            <h3 class="timeline-title">Exhibition Calendar</h3>
+            
+            <div class="timeline-events">
+                <div class="timeline-event">
+                    <div class="event-date">
+                        <span class="month">APR</span>
+                        <span class="day">12</span>
+                        <span class="year">2025</span>
+                    </div>
+                    <div class="event-details">
+                        <h4 class="event-title">Perspectives Naturelles</h4>
+                        <div class="event-location">Galerie d'Art Moderne, Paris</div>
+                        <p class="event-description">Group exhibition featuring contemporary landscape photography.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="event-date">
+                        <span class="month">JUN</span>
+                        <span class="day">05</span>
+                        <span class="year">2025</span>
+                    </div>
+                    <div class="event-details">
+                        <h4 class="event-title">Alpine Visions</h4>
+                        <div class="event-location">Mountain Photography Festival, Chamonix</div>
+                        <p class="event-description">A dedicated space showcasing my Mont Blanc series alongside other mountain photographers.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="event-date">
+                        <span class="month">SEP</span>
+                        <span class="day">18</span>
+                        <span class="year">2025</span>
+                    </div>
+                    <div class="event-details">
+                        <h4 class="event-title">Nature's Abstractions</h4>
+                        <div class="event-location">Contemporary Arts Center, Lyon</div>
+                        <p class="event-description">Solo exhibition exploring abstract patterns found in natural landscapes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="images/photographer.jpg" alt="Boris Molinier">
+            </div>
+            <div class="about-text">
+                <h2 class="about-title">About Boris Molinier</h2>
+                <p class="about-intro">I am a fine art photographer specializing in landscape, mountain and seascape photography.</p>
+                
+                <div class="about-paragraphs">
+                    <p>Based in the French Alps, my work focuses on capturing the ephemeral moments when light, weather, and landscape combine to create scenes of extraordinary beauty. I believe photography is about connecting with a place deeply enough to reveal its essence through patience and observation.</p>
+                    
+                    <p>Having spent decades exploring the mountains around Mont Blanc, I've developed an intimate relationship with these landscapes through all seasons. This deep connection allows me to anticipate the fleeting moments where nature reveals its most compelling aspects.</p>
+                    
+                    <p>My photographs have been exhibited in galleries across Europe and are held in private collections worldwide. Each image is meticulously crafted, from the initial composition to the final fine art print, ensuring the highest quality representation of these natural wonders.</p>
+                </div>
+                
+                <div class="about-credentials">
+                    <div class="credential">
+                        <span class="credential-year">20+</span>
+                        <span class="credential-detail">Years as a Professional Photographer</span>
+                    </div>
+                    <div class="credential">
+                        <span class="credential-year">35+</span>
+                        <span class="credential-detail">Exhibitions Worldwide</span>
+                    </div>
+                    <div class="credential">
+                        <span class="credential-year">12</span>
+                        <span class="credential-detail">International Awards</span>
+                    </div>
+                </div>
+                
+                <div class="about-signature">
+                    <img src="images/signature.png" alt="Boris Molinier Signature">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Highlight Section -->
+    <section class="video-section">
+        <div class="video-content">
+            <div class="video-text">
+                <h2>Behind the Scenes</h2>
+                <p>Follow my journey in search of the perfect light across the Alpine landscapes. This short film captures the patience and dedication required to create these images, as well as the breathtaking moments when nature's elements align perfectly.</p>
+                <a href="https://www.youtube.com/watch?v=3TBdxTqDQ90" class="btn video-btn" target="_blank">
+                    <i class="fas fa-play"></i> Watch Video
+                </a>
+            </div>
+            <div class="video-thumbnail">
+                <img src="images/video-thumbnail.jpg" alt="Video Thumbnail">
+                <div class="play-overlay">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-header">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-subtitle">Get in touch for inquiries or collaborations</p>
+        </div>
+        
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="info-text">
+                        <h3>Email</h3>
+                        <p>contact@borismolinier.com</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div class="info-text">
+                        <h3>Phone</h3>
+                        <p>+33 (0) 6 XX XX XX XX</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="info-text">
+                        <h3>Studio</h3>
+                        <p>Saint-Gervais-les-Bains, French Alps</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.facebook.com/borisphotographe" class="social-link" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/borismolinier/" class="social-link" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="contact-form-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" required>
+                        <label for="name">Your Name</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" required>
+                        <label for="email">Your Email</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="subject" required>
+                        <label for="subject">Subject</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="message" rows="4" required></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <div class="newsletter-text">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to receive information about new work, exhibitions, and limited edition releases.</p>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your Email Address" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-main">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <a href="#">Boris<span>Molinier</span></a>
+                </div>
+                <p class="footer-tagline">Fine Art Nature Photography</p>
+            </div>
+            
+            <div class="footer-nav">
+                <div class="footer-nav-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#prints">Fine Art Prints</a></li>
+                        <li><a href="#exhibitions">Exhibitions</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-nav-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Copyright Notice</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="copyright">© 2025 Boris Molinier. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/borisphotographe" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/borismolinier/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-logo">
+                <a href="#">Boris<span>Molinier</span></a>
+            </div>
+            <button class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#prints">Fine Art Prints</a></li>
+                <li><a href="#exhibitions">Exhibitions</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="mobile-language">
+            <button class="mobile-lang-btn active" data-lang="en">English</button>
+            <button class="mobile-lang-btn" data-lang="fr">Français</button>
+        </div>
+        
+        <div class="mobile-social">
+            <a href="https://www.facebook.com/borisphotographe" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/borismolinier/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="cart-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-items">
+            <div class="cart-empty active">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Your cart is currently empty</p>
+                <a href="#prints" class="btn btn-sm">Browse Prints</a>
+            </div>
+            
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">€0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span id="cart-shipping">€0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="cart-total">€0</span>
+                </div>
+            </div>
+            
+            <a href="#" class="btn btn-checkout disabled">Checkout</a>
+        </div>
+    </div>
+
+    <!-- Image Viewer Modal -->
+    <div class="modal image-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <button class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="image-container">
+                <img src="" alt="" id="modal-image">
+            </div>
+            <div class="image-info">
+                <h3 id="modal-title"></h3>
+                <p id="modal-caption"></p>
+                <a href="#prints" class="btn btn-outline btn-sm" id="modal-buy">Purchase Print</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Info Modal -->
+    <div class="modal info-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <button class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="info-container">
+                <img src="" alt="" id="info-image">
+                <div class="info-content">
+                    <h3 id="info-title"></h3>
+                    <p id="info-description">This image was captured during a rare moment when the light and weather conditions created a perfect atmosphere for this composition. After several days of waiting for the right conditions, the clouds parted just enough to allow the rising sun to illuminate the mountain peaks against the dramatic sky.</p>
+                    
+                    <div class="image-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Location</span>
+                            <span class="detail-value" id="info-location"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Date</span>
+                            <span class="detail-value" id="info-date"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Technical</span>
+                            <span class="detail-value">Sony α7R IV, 16-35mm f/2.8 G Master</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Print Editions</span>
+                            <span class="detail-value">Limited to 25</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-cta">
+                        <a href="#prints" class="btn">Purchase Print</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

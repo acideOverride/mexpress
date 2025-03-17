@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIANDRA | Water Photography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Clean, modern styling that puts photos first */
+    :root {
+      /* Elegant, minimal color palette */
+      --color-bg: #ffffff;
+      --color-text: #232323;
+      --color-text-light: #767676;
+      --color-accent: #2c7ea1;
+      --color-accent-light: rgba(44, 126, 161, 0.1);
+      --color-border: #eaeaea;
+      
+      /* Fonts */
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-xxl: 48px;
+      
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.3s ease;
+    }
+    
+    /* Dark mode variables */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #121212;
+        --color-text: #f0f0f0;
+        --color-text-light: #a0a0a0;
+        --color-border: #2a2a2a;
+      }
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      font-size: 16px;
+    }
+    
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+    
+    p {
+      margin-bottom: var(--space-lg);
+    }
+    
+    a {
+      color: var(--color-text);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    
+    a:hover {
+      color: var(--color-accent);
+    }
+    
+    /* Layout */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+    
+    /* Loading Screen */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--color-bg);
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .loading-logo {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      margin-bottom: var(--space-xl);
+      letter-spacing: 2px;
+    }
+    
+    .loading-bar {
+      width: 200px;
+      height: 2px;
+      background-color: var(--color-border);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .loading-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background-color: var(--color-accent);
+      transition: width 0.2s linear;
+    }
+    
+    .loading-percentage {
+      margin-top: var(--space-md);
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+    }
+    
+    /* Header */
+    .site-header {
+      padding: var(--space-xl) 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: var(--space-xl);
+    }
+    
+    .nav-link {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: var(--color-accent);
+      transition: width var(--transition-medium);
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .nav-link.active {
+      color: var(--color-accent);
+    }
+    
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xxl);
+      align-items: center;
+      padding: var(--space-xxl) 0 var(--space-xxl);
+    }
+    
+    .hero-content {
+      max-width: 500px;
+    }
+    
+    .hero-title {
+      margin-bottom: var(--space-lg);
+      font-weight: 500;
+    }
+    
+    .hero-subtitle {
+      color: var(--color-text-light);
+      margin-bottom: var(--space-xl);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    .hero-cta {
+      display: inline-block;
+      padding: var(--space-md) var(--space-xl);
+      background-color: var(--color-accent);
+      color: white;
+      border-radius: 3px;
+      font-weight: 500;
+      transition: background-color var(--transition-fast), transform var(--transition-fast);
+    }
+    
+    .hero-cta:hover {
+      background-color: var(--color-text);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .hero-image {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+    }
+    
+    /* Collection Grid */
+    .section-title {
+      font-weight: 500;
+      margin-bottom: var(--space-lg);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--color-accent);
+    }
+    
+    .filter-bar {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      background: none;
+      border: none;
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+      cursor: pointer;
+      transition: color var(--transition-fast), background-color var(--transition-fast);
+      border-radius: 3px;
+    }
+    
+    .filter-btn:hover,
+    .filter-btn.active {
+      color: var(--color-accent);
+      background-color: var(--color-accent-light);
+    }
+    
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-xl);
+      margin-bottom: var(--space-xxl);
+    }
+    
+    .collection-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 3px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+    }
+    
+    .collection-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+    
+    .card-image {
+      height: 400px;
+      overflow: hidden;
+    }
+    
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-medium);
+    }
+    
+    .collection-card:hover .card-image img {
+      transform: scale(1.05);
+    }
+    
+    .card-content {
+      padding: var(--space-lg);
+      background-color: var(--color-bg);
+    }
+    
+    .card-title {
+      margin-bottom: var(--space-xs);
+      font-size: 1.25rem;
+    }
+    
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+    }
+    
+    /* Featured Collection */
+    .featured-collection {
+      margin: var(--space-xxl) 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xxl);
+      align-items: center;
+    }
+    
+    .featured-image {
+      height: 700px;
+      position: relative;
+    }
+    
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .featured-content {
+      max-width: 500px;
+    }
+    
+    .featured-title {
+      margin-bottom: var(--space-sm);
+      font-size: 2.5rem;
+    }
+    
+    .featured-subtitle {
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.875rem;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .featured-description {
+      color: var(--color-text);
+      line-height: 1.8;
+    }
+    
+    .featured-details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+      margin: var(--space-xl) 0;
+    }
+    
+    .detail-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text-light);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .detail-value {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+    }
+    
+    .view-collection {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 500;
+      color: var(--color-accent);
+      transition: gap var(--transition-fast);
+    }
+    
+    .view-collection:hover {
+      gap: var(--space-md);
+    }
+    
+    .view-collection svg {
+      transition: transform var(--transition-fast);
+    }
+    
+    .view-collection:hover svg {
+      transform: translateX(4px);
+    }
+    
+    /* Artist Quote */
+    .quote-section {
+      text-align: center;
+      padding: var(--space-xxl) 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    blockquote {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      line-height: 1.5;
+      margin-bottom: var(--space-lg);
+      font-style: italic;
+    }
+    
+    cite {
+      font-style: normal;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+    }
+    
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-xxl) 0;
+      margin-top: var(--space-xxl);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .footer-info {
+      max-width: 300px;
+    }
+    
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      margin-bottom: var(--space-md);
+    }
+    
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: var(--space-lg);
+    }
+    
+    .social-link {
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+    }
+    
+    .footer-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xxl);
+    }
+    
+    .footer-nav-group h4 {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--space-md);
+    }
+    
+    .footer-nav-link {
+      display: block;
+      margin-bottom: var(--space-sm);
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+    }
+    
+    .copyright {
+      margin-top: var(--space-xxl);
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--color-text-light);
+    }
+    
+    /* Collection Overlay */
+    .collection-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-bg);
+      z-index: 1000;
+      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-medium), visibility var(--transition-medium);
+    }
+    
+    .collection-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .overlay-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-xl);
+      position: sticky;
+      top: 0;
+      background-color: var(--color-bg);
+      z-index: 10;
+    }
+    
+    .overlay-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+    }
+    
+    .close-overlay {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-text);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background-color var(--transition-fast);
+    }
+    
+    .close-overlay:hover {
+      background-color: var(--color-border);
+    }
+    
+    .overlay-content {
+      padding: 0 var(--space-xl) var(--space-xxl);
+    }
+    
+    .collection-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xxl);
+      margin-bottom: var(--space-xxl);
+    }
+    
+    .collection-main-image {
+      height: 600px;
+    }
+    
+    .collection-main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .collection-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .collection-info-title {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-md);
+    }
+    
+    .collection-info-description {
+      margin-bottom: var(--space-xl);
+    }
+    
+    .collection-metadata {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .metadata-item {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .metadata-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text-light);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .metadata-value {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+    }
+    
+    .collection-gallery-title {
+      margin: var(--space-xxl) 0 var(--space-xl);
+      font-size: 1.5rem;
+    }
+    
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+    
+    .image-item {
+      aspect-ratio: 1;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .image-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-medium);
+    }
+    
+    .image-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-medium), visibility var(--transition-medium);
+    }
+    
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 80vh;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    .lightbox-controls {
+      position: absolute;
+      bottom: -60px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+    }
+    
+    .lightbox-nav {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color var(--transition-fast);
+    }
+    
+    .lightbox-nav:hover {
+      background-color: var(--color-accent);
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: -60px;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color var(--transition-fast);
+    }
+    
+    .lightbox-close:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .lightbox-counter {
+      position: absolute;
+      bottom: -60px;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 0.875rem;
+    }
+    
+    /* Media Queries */
+    @media (max-width: 1200px) {
+      .hero,
+      .featured-collection,
+      .collection-hero {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+      
+      .hero-image,
+      .featured-image {
+        height: 500px;
+      }
+      
+      .featured-content,
+      .hero-content {
+        max-width: none;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: var(--space-xxl);
+        align-items: flex-start;
+      }
+      
+      .footer-info {
+        max-width: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-lg);
+      }
+      
+      .collections-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      
+      .footer-nav {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+      
+      .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .featured-details,
+      .collection-metadata {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .filter-bar {
+        overflow-x: auto;
+        padding-bottom: var(--space-sm);
+        margin-bottom: var(--space-lg);
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      .filter-bar::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .filter-btn {
+        flex: 0 0 auto;
+      }
+      
+      .hero-image,
+      .featured-image,
+      .collection-main-image {
+        height: 350px;
+      }
+      
+      .image-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      blockquote {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+  
+  <!-- Simple loader script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loadingScreen = document.querySelector('.loading-screen');
+      const loadingProgress = document.querySelector('.loading-progress');
+      const loadingPercentage = document.querySelector('.loading-percentage');
+      
+      let progress = 0;
+      const interval = setInterval(function() {
+        progress += Math.floor(Math.random() * 5) + 3; // increment by 3-7%
+        
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          
+          loadingProgress.style.width = '100%';
+          loadingPercentage.textContent = '100%';
+          
+          setTimeout(function() {
+            loadingScreen.classList.add('hidden');
+          }, 500);
+        } else {
+          loadingProgress.style.width = `${progress}%`;
+          loadingPercentage.textContent = `${progress}%`;
+        }
+      }, 100);
+    });
+  </script>
+</head>
+<body>
+  <!-- Loading screen -->
+  <div class="loading-screen">
+    <div class="loading-logo">GIANDRA</div>
+    <div class="loading-bar">
+      <div class="loading-progress" style="width: 0%;"></div>
+    </div>
+    <div class="loading-percentage">0%</div>
+  </div>
+
+  <!-- Main content -->
+  <div class="container">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="logo">GIANDRA</div>
+      <nav class="main-nav">
+        <div class="nav-links">
+          <a href="#" class="nav-link active">Collections</a>
+          <a href="#" class="nav-link">About</a>
+          <a href="#" class="nav-link">Exhibitions</a>
+          <a href="#" class="nav-link">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Exploring the Fluid Boundaries of Reality</h1>
+        <p class="hero-subtitle">A photographic journey through water's abstract patterns, capturing their ephemeral beauty and endless transformation.</p>
+        <a href="#collections" class="hero-cta">View Collections</a>
+      </div>
+      <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Water abstract photography" class="hero-image">
+    </section>
+
+    <!-- Collections -->
+    <section id="collections">
+      <h2 class="section-title">Collections</h2>
+      
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="blue">Blue</button>
+        <button class="filter-btn" data-filter="abstract">Abstract</button>
+        <button class="filter-btn" data-filter="surface">Surface</button>
+        <button class="filter-btn" data-filter="depth">Depth</button>
+      </div>
+      
+      <div class="collections-grid">
+        <!-- LE GRAND BLEU -->
+        <div class="collection-card" data-categories="blue depth">
+          <div class="card-image">
+            <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Le Grand Bleu">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Le Grand Bleu</h3>
+            <div class="card-meta">
+              <span>34 pieces</span>
+              <span>2024</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- COSMOGONIE -->
+        <div class="collection-card" data-categories="abstract depth">
+          <div class="card-image">
+            <img src="../../PHOTOS_DATABASE/COSMOGONIE/cosmogonie_001.jpg" alt="Cosmogonie">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Cosmogonie</h3>
+            <div class="card-meta">
+              <span>28 pieces</span>
+              <span>2023</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- SURFING ANGELS -->
+        <div class="collection-card" data-categories="blue surface">
+          <div class="card-image">
+            <img src="../../PHOTOS_DATABASE/Surfing_Angels/surfing_angels_001.jpg" alt="Surfing Angels">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Surfing Angels</h3>
+            <div class="card-meta">
+              <span>36 pieces</span>
+              <span>2024</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- TISSER LA MATIÈRE -->
+        <div class="collection-card" data-categories="abstract surface">
+          <div class="card-image">
+            <img src="../../PHOTOS_DATABASE/TISSER_LA_MATIERE/tisser_la_matiere_001.jpg" alt="Tisser la Matière">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Tisser la Matière</h3>
+            <div class="card-meta">
+              <span>15 pieces</span>
+              <span>2022</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- RENVERSER LES MONTAGNES -->
+        <div class="collection-card" data-categories="blue abstract depth">
+          <div class="card-image">
+            <img src="../../PHOTOS_DATABASE/RENVERSER_LES_MONTAGNES/renverser_les_montagnes_001.jpg" alt="Renverser les Montagnes">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Renverser les Montagnes</h3>
+            <div class="card-meta">
+              <span>22 pieces</span>
+              <span>2023</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- COMME À GIVERNY -->
+        <div class="collection-card" data-categories="abstract surface">
+          <div class="card-image">
+            <img src="../../PHOTOS_DATABASE/COMME_A_GIVERNY/comme_a_giverny_001.jpg" alt="Comme à Giverny">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Comme à Giverny</h3>
+            <div class="card-meta">
+              <span>20 pieces</span>
+              <span>2022</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ESPRITS DE NOTRE ESPRIT -->
+        <div class="collection-card" data-categories="abstract depth">
+          <div class="card-image">
+            <img src="../../PHOTOS_DATABASE/ESPRITS_DE_NOTRE_ESPRIT/esprits_de_notre_esprit_001.jpg" alt="Esprits de Notre Esprit">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Esprits de Notre Esprit</h3>
+            <div class="card-meta">
+              <span>24 pieces</span>
+              <span>2021</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Featured Collection -->
+    <section class="featured-collection">
+      <div class="featured-image">
+        <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_002.jpg" alt="Le Grand Bleu - Featured">
+      </div>
+      <div class="featured-content">
+        <h3 class="featured-subtitle">Featured Collection</h3>
+        <h2 class="featured-title">Le Grand Bleu</h2>
+        <p class="featured-description">An exploration of the vast oceanic depths and their mysterious blue hues. Each photograph reveals a unique dimension of blue that escapes our everyday perception.</p>
+        <p class="featured-description">Taken without any digital retouching, these works capture the essence of the interaction between light and water, creating mesmerizing patterns that blur the boundary between abstraction and reality.</p>
+        
+        <div class="featured-details">
+          <div class="detail-item">
+            <div class="detail-label">Year</div>
+            <div class="detail-value">2024</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Pieces</div>
+            <div class="detail-value">34</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Technique</div>
+            <div class="detail-value">Unretouched</div>
+          </div>
+        </div>
+        
+        <a href="#" class="view-collection">
+          <span>View Collection</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+    
+    <!-- Quote -->
+    <section class="quote-section">
+      <blockquote>
+        "Water is not just the subject of my work, but the very medium through which I explore the boundaries between perception and reality."
+      </blockquote>
+      <cite>— Giandra de Castro</cite>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-info">
+          <div class="footer-logo">GIANDRA</div>
+          <p class="footer-tagline">Capturing the fluid essence of water through unretouched photography.</p>
+          <div class="social-links">
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">Facebook</a>
+            <a href="#" class="social-link">Twitter</a>
+          </div>
+        </div>
+        
+        <div class="footer-nav">
+          <div class="footer-nav-group">
+            <h4>Collections</h4>
+            <a href="#" class="footer-nav-link">Le Grand Bleu</a>
+            <a href="#" class="footer-nav-link">Cosmogonie</a>
+            <a href="#" class="footer-nav-link">Surfing Angels</a>
+            <a href="#" class="footer-nav-link">View All</a>
+          </div>
+          
+          <div class="footer-nav-group">
+            <h4>Information</h4>
+            <a href="#" class="footer-nav-link">About</a>
+            <a href="#" class="footer-nav-link">Exhibitions</a>
+            <a href="#" class="footer-nav-link">Technique</a>
+            <a href="#" class="footer-nav-link">News</a>
+          </div>
+          
+          <div class="footer-nav-group">
+            <h4>Contact</h4>
+            <a href="#" class="footer-nav-link">Gallery</a>
+            <a href="#" class="footer-nav-link">Acquisitions</a>
+            <a href="#" class="footer-nav-link">Commissions</a>
+            <a href="#" class="footer-nav-link">Press</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        © 2025 Giandra de Castro. All rights reserved.
+      </div>
+    </footer>
+  </div>
+  
+  <!-- Collection Overlay -->
+  <div class="collection-overlay">
+    <div class="overlay-header">
+      <h2 class="overlay-title">Le Grand Bleu</h2>
+      <button class="close-overlay">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="overlay-content">
+      <div class="collection-hero">
+        <div class="collection-main-image">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Le Grand Bleu">
+        </div>
+        
+        <div class="collection-info">
+          <h1 class="collection-info-title">Le Grand Bleu</h1>
+          <p class="collection-info-description">An exploration of the depths of oceanic blue, this collection captures the mesmerizing patterns and hues found in water. Each piece reveals the fluid nature of reality and the way light dances through liquid matter.</p>
+          <p class="collection-info-description">Photographed along the Mediterranean coast, these unretouched images preserve the authentic interaction between light and water, creating abstract forms that challenge our perception.</p>
+          
+          <div class="collection-metadata">
+            <div class="metadata-item">
+              <div class="metadata-label">Year</div>
+              <div class="metadata-value">2024</div>
+            </div>
+            <div class="metadata-item">
+              <div class="metadata-label">Pieces</div>
+              <div class="metadata-value">34</div>
+            </div>
+            <div class="metadata-item">
+              <div class="metadata-label">Technique</div>
+              <div class="metadata-value">Unretouched</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <h3 class="collection-gallery-title">Gallery</h3>
+      
+      <div class="image-grid">
+        <div class="image-item" data-index="1">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_001.jpg" alt="Le Grand Bleu 001">
+        </div>
+        <div class="image-item" data-index="2">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_002.jpg" alt="Le Grand Bleu 002">
+        </div>
+        <div class="image-item" data-index="3">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_003.jpg" alt="Le Grand Bleu 003">
+        </div>
+        <div class="image-item" data-index="4">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_004.jpg" alt="Le Grand Bleu 004">
+        </div>
+        <div class="image-item" data-index="5">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_005.jpg" alt="Le Grand Bleu 005">
+        </div>
+        <div class="image-item" data-index="6">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_006.jpg" alt="Le Grand Bleu 006">
+        </div>
+        <div class="image-item" data-index="7">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_007.jpg" alt="Le Grand Bleu 007">
+        </div>
+        <div class="image-item" data-index="8">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_008.jpg" alt="Le Grand Bleu 008">
+        </div>
+        <div class="image-item" data-index="9">
+          <img src="../../PHOTOS_DATABASE/LE_GRAND_BLEU/le_grand_bleu_009.jpg" alt="Le Grand Bleu 009">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Lightbox -->
+  <div class="lightbox">
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-image">
+      <button class="lightbox-close">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="lightbox-controls">
+        <button class="lightbox-nav prev-image">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="lightbox-nav next-image">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="lightbox-counter">1 / 9</div>
+    </div>
+  </div>
+  
+  <script>
+    // Collection Cards
+    const collectionCards = document.querySelectorAll('.collection-card');
+    const collectionOverlay = document.querySelector('.collection-overlay');
+    const closeOverlay = document.querySelector('.close-overlay');
+    
+    // Filter buttons
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    // Lightbox elements
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImage = document.querySelector('.lightbox-image');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const prevButton = document.querySelector('.prev-image');
+    const nextButton = document.querySelector('.next-image');
+    const lightboxCounter = document.querySelector('.lightbox-counter');
+    const imageItems = document.querySelectorAll('.image-item');
+    
+    let currentImageIndex = 0;
+    const totalImages = imageItems.length;
+    
+    // Collection card click handler
+    collectionCards.forEach(card => {
+      card.addEventListener('click', () => {
+        collectionOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    // Close overlay handler
+    closeOverlay.addEventListener('click', () => {
+      collectionOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    
+    // Filter functionality
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        // Get filter value
+        const filter = button.getAttribute('data-filter');
+        
+        // Filter cards
+        collectionCards.forEach(card => {
+          const categories = card.getAttribute('data-categories').split(' ');
+          
+          if (filter === 'all' || categories.includes(filter)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Open lightbox when clicking on an image item
+    imageItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        currentImageIndex = index;
+        const imgSrc = item.querySelector('img').src;
+        
+        lightboxImage.src = imgSrc;
+        lightboxCounter.textContent = `${index + 1} / ${totalImages}`;
+        
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    // Close lightbox
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    
+    // Navigate to previous image
+    prevButton.addEventListener('click', () => {
+      currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+      updateLightboxImage();
+    });
+    
+    // Navigate to next image
+    nextButton.addEventListener('click', () => {
+      currentImageIndex = (currentImageIndex + 1) % totalImages;
+      updateLightboxImage();
+    });
+    
+    // Update lightbox image
+    function updateLightboxImage() {
+      const imgSrc = imageItems[currentImageIndex].querySelector('img').src;
+      lightboxImage.src = imgSrc;
+      lightboxCounter.textContent = `${currentImageIndex + 1} / ${totalImages}`;
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') {
+          prevButton.click();
+        } else if (e.key === 'ArrowRight') {
+          nextButton.click();
+        } else if (e.key === 'Escape') {
+          lightboxClose.click();
+        }
+      } else if (collectionOverlay.classList.contains('active')) {
+        if (e.key === 'Escape') {
+          closeOverlay.click();
+        }
+      }
+    });
+    
+    // Link the view collection button to open the overlay
+    const viewCollectionLink = document.querySelector('.view-collection');
+    
+    if (viewCollectionLink) {
+      viewCollectionLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        collectionOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+    
+    // Smooth scroll for hero CTA
+    const heroCta = document.querySelector('.hero-cta');
+    
+    if (heroCta) {
+      heroCta.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = heroCta.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+          window.scrollTo({
+            top: targetSection.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

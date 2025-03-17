@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MontPC - Interactive Repair Configurator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap">
+</head>
+<body class="light-mode">
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <div class="fashion-overlay"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">
+                    <span class="logo-text">Mont<span class="logo-highlight">PC</span></span>
+                    <span class="tagline">Interactive Configurator</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link">Home</a></li>
+                    <li><a href="#" class="nav-link">Services</a></li>
+                    <li><a href="#" class="nav-link">About</a></li>
+                    <li><a href="#" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="reveal-text">Interactive <span class="fashion-text">Repair Configurator</span></h1>
+                    <p class="subtitle reveal-text delay-1">Find the perfect repair solution for your device in just a few clicks.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="configurator">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-text">Configure Your <span class="fashion-text">Perfect</span> Repair</h2>
+                    <p class="section-subheading reveal-text delay-1">Step-by-step to a tailored solution</p>
+                </div>
+                
+                <div class="configurator-container">
+                    <div class="configurator-progress">
+                        <div class="progress-step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Device Type</div>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Brand</div>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Series</div>
+                        </div>
+                        <div class="progress-step" data-step="4">
+                            <div class="step-number">4</div>
+                            <div class="step-label">Model</div>
+                        </div>
+                        <div class="progress-step" data-step="5">
+                            <div class="step-number">5</div>
+                            <div class="step-label">Issue</div>
+                        </div>
+                        <div class="progress-step" data-step="6">
+                            <div class="step-number">6</div>
+                            <div class="step-label">Quality</div>
+                        </div>
+                    </div>
+                    
+                    <div class="configurator-steps">
+                        <!-- Step 1: Device Type -->
+                        <div class="config-step active" id="step-1">
+                            <h3>Select Your Device Type</h3>
+                            <div class="option-cards">
+                                <div class="option-card" data-value="smartphone">
+                                    <div class="option-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M17 2H7C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V4C19 2.89543 18.1046 2 17 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M12 18H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <h4>Smartphone</h4>
+                                </div>
+                                <div class="option-card" data-value="laptop">
+                                    <div class="option-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 16V7C20 5.89543 19.1046 5 18 5H6C4.89543 5 4 5.89543 4 7V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M2 16H22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M12 20H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <h4>Laptop</h4>
+                                </div>
+                                <div class="option-card" data-value="tablet">
+                                    <div class="option-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <line x1="12" y1="18" x2="12.01" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <h4>Tablet</h4>
+                                </div>
+                                <div class="option-card" data-value="desktop">
+                                    <div class="option-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <h4>Desktop</h4>
+                                </div>
+                            </div>
+                            <div class="config-nav">
+                                <button class="btn secondary-btn disabled">Back</button>
+                                <button class="btn primary-btn next-step" data-next="2" disabled>Continue</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Brand -->
+                        <div class="config-step" id="step-2">
+                            <h3>Select Your Brand</h3>
+                            <div class="option-cards brands">
+                                <!-- Brands will be loaded dynamically based on device type -->
+                            </div>
+                            <div class="config-nav">
+                                <button class="btn secondary-btn prev-step" data-prev="1">Back</button>
+                                <button class="btn primary-btn next-step" data-next="3" disabled>Continue</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Series -->
+                        <div class="config-step" id="step-3">
+                            <h3>Select Your Series</h3>
+                            <div class="option-cards series">
+                                <!-- Series will be loaded dynamically based on brand -->
+                            </div>
+                            <div class="config-nav">
+                                <button class="btn secondary-btn prev-step" data-prev="2">Back</button>
+                                <button class="btn primary-btn next-step" data-next="4" disabled>Continue</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4: Model -->
+                        <div class="config-step" id="step-4">
+                            <h3>Select Your Model</h3>
+                            <div class="option-cards models">
+                                <!-- Models will be loaded dynamically based on series -->
+                            </div>
+                            <div class="config-nav">
+                                <button class="btn secondary-btn prev-step" data-prev="3">Back</button>
+                                <button class="btn primary-btn next-step" data-next="5" disabled>Continue</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 5: Issue -->
+                        <div class="config-step" id="step-5">
+                            <h3>What Needs Fixing?</h3>
+                            <div class="option-cards issues">
+                                <!-- Issues will be loaded dynamically based on model -->
+                            </div>
+                            <div class="config-nav">
+                                <button class="btn secondary-btn prev-step" data-prev="4">Back</button>
+                                <button class="btn primary-btn next-step" data-next="6" disabled>Continue</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 6: Quality Preference -->
+                        <div class="config-step" id="step-6">
+                            <h3>Choose Your Quality Preference</h3>
+                            <div class="option-cards quality">
+                                <div class="option-card quality-card" data-value="standard">
+                                    <div class="quality-header">
+                                        <h4>Standard</h4>
+                                        <span class="quality-price">$89</span>
+                                    </div>
+                                    <ul class="quality-features">
+                                        <li>Good quality parts</li>
+                                        <li>90-day warranty</li>
+                                        <li>Standard service time</li>
+                                    </ul>
+                                </div>
+                                <div class="option-card quality-card" data-value="premium">
+                                    <div class="quality-header">
+                                        <h4>Premium</h4>
+                                        <span class="quality-price">$129</span>
+                                    </div>
+                                    <div class="recommended-tag">Recommended</div>
+                                    <ul class="quality-features">
+                                        <li>High quality parts</li>
+                                        <li>6-month warranty</li>
+                                        <li>Priority service</li>
+                                        <li>Free screen protector</li>
+                                    </ul>
+                                </div>
+                                <div class="option-card quality-card" data-value="genuine">
+                                    <div class="quality-header">
+                                        <h4>Genuine</h4>
+                                        <span class="quality-price">$179</span>
+                                    </div>
+                                    <ul class="quality-features">
+                                        <li>Official manufacturer parts</li>
+                                        <li>1-year warranty</li>
+                                        <li>Express service</li>
+                                        <li>Free screen protector</li>
+                                        <li>Free diagnostic</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="config-nav">
+                                <button class="btn secondary-btn prev-step" data-prev="5">Back</button>
+                                <button class="btn primary-btn" id="get-quote">Get Your Quote</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Results -->
+                        <div class="config-step" id="step-results">
+                            <div class="results-container">
+                                <div class="results-header">
+                                    <h3>Your Personalized Repair Quote</h3>
+                                    <div class="cute-accent accent-1"></div>
+                                    <div class="cute-accent accent-2"></div>
+                                    <div class="cute-accent accent-3"></div>
+                                </div>
+                                <div class="repair-summary">
+                                    <div class="repair-device">
+                                        <h4>Device Details</h4>
+                                        <ul>
+                                            <li id="result-device">Smartphone</li>
+                                            <li id="result-brand">Apple</li>
+                                            <li id="result-series">iPhone 13</li>
+                                            <li id="result-model">iPhone 13 Pro</li>
+                                        </ul>
+                                    </div>
+                                    <div class="repair-service">
+                                        <h4>Service Details</h4>
+                                        <ul>
+                                            <li id="result-issue">Screen Replacement</li>
+                                            <li id="result-quality">Premium Quality</li>
+                                            <li id="result-warranty">6-Month Warranty</li>
+                                            <li id="result-time">Same-Day Service</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="repair-pricing">
+                                    <div class="price-breakdown">
+                                        <div class="price-row">
+                                            <span>Base repair cost:</span>
+                                            <span id="base-price">$109.00</span>
+                                        </div>
+                                        <div class="price-row">
+                                            <span>Quality upgrade:</span>
+                                            <span id="quality-price">$20.00</span>
+                                        </div>
+                                        <div class="price-row">
+                                            <span>Parts cost:</span>
+                                            <span id="parts-price">$0.00</span>
+                                        </div>
+                                        <div class="price-row total">
+                                            <span>Total:</span>
+                                            <span id="total-price">$129.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="repair-actions">
+                                    <button class="btn secondary-btn" id="reconfigure">Start Over</button>
+                                    <button class="btn primary-btn" id="book-appointment">Book Appointment</button>
+                                </div>
+                            </div>
+                            <div class="additional-options">
+                                <h4>Additional Services</h4>
+                                <div class="add-on-options">
+                                    <div class="add-on-option">
+                                        <input type="checkbox" id="add-screen-protector">
+                                        <label for="add-screen-protector">Premium Screen Protector <span class="add-on-price">+$19.99</span></label>
+                                    </div>
+                                    <div class="add-on-option">
+                                        <input type="checkbox" id="add-diagnostic">
+                                        <label for="add-diagnostic">Full Device Diagnostic <span class="add-on-price">+$29.99</span></label>
+                                    </div>
+                                    <div class="add-on-option">
+                                        <input type="checkbox" id="add-case">
+                                        <label for="add-case">Protective Case <span class="add-on-price">+$24.99</span></label>
+                                    </div>
+                                    <div class="add-on-option">
+                                        <input type="checkbox" id="add-express">
+                                        <label for="add-express">Express Service (1-hour) <span class="add-on-price">+$49.99</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Not Sure What You Need?</h2>
+                    <p>Our experts are ready to help you diagnose your device issues and find the perfect solution.</p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn primary-btn">Get Expert Help</a>
+                        <a href="#" class="btn secondary-btn">Call Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <span class="logo-text">Mont<span class="logo-highlight">PC</span></span>
+                    </div>
+                    <p class="footer-tagline">Tech Repair That's Always in Vogue</p>
+                </div>
+                <div class="footer-navigation">
+                    <div class="footer-nav-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">iPhone Repair</a></li>
+                            <li><a href="#">Android Repair</a></li>
+                            <li><a href="#">Laptop Repair</a></li>
+                            <li><a href="#">Tablet Repair</a></li>
+                            <li><a href="#">Data Recovery</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Our Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Warranty</a></li>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MontPC. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <div class="theme-toggle" id="theme-toggle" title="Toggle theme">
+        <svg class="theme-toggle-icon light" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 1V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 21V23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4.22 4.22L5.64 5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.36 18.36L19.78 19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 12H23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4.22 19.78L5.64 18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="theme-toggle-icon dark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/configurator.js"></script>
+</body>
+</html>

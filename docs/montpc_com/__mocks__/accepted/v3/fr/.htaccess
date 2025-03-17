@@ -1,0 +1,44 @@
+# Redirection du www vers non-www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.montpc.com [NC]
+RewriteRule ^(.*)$ https://montpc.com/$1 [L,R=301]
+
+# Forcer HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Compression Gzip
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json
+</IfModule>
+
+# Cache du navigateur
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# En-têtes de sécurité
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Redirections pour les URLs en français
+Redirect 301 /reparation-iphone /reparation-iphone-haute-savoie
+Redirect 301 /reparation-macbook /reparation-macbook-saint-gervais
+Redirect 301 /reparation-ordinateur /reparation-ordinateur-portable-74
+Redirect 301 /reparation-tablette /reparation-ipad-tablette-haute-savoie
+Redirect 301 /recuperation-donnees /recuperation-donnees-saint-gervais

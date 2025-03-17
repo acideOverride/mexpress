@@ -1,0 +1,28 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Lune_sur_Bionnassay",
+  "originalName": "Lune sur Bionnassay",
+  "downloadDate": "2025-03-15T05:45:42.734Z",
+  "variations": [
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Lune_sur_Bionnassay/Lune_sur_Bionnassay_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648463266624-898C0266U0W9O7B6HVPV/Lune+sur+Bionnassay+%C2%A9Boris+Molinier.jpg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Lune_sur_Bionnassay/Lune_sur_Bionnassay_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648463261784-7UQKVWKHJ0MI10BXEPWL/lune-sur-bionnassay-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Lune_sur_Bionnassay/Lune_sur_Bionnassay_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648463256524-3ZPTH18AJVM5ZI3F23H9/lune-sur-bionnassay-caisse-americaine-boris-molinier.jpg"
+    },
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Lune_sur_Bionnassay/Lune_sur_Bionnassay_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648463130310-MKR12REBP23MK5FMGUZG/La-lune-sur-Bionnassay-ms-boris-molinier-photographie.JPG"
+    }
+  ]
+}

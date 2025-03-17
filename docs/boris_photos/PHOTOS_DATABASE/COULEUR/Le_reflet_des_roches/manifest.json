@@ -1,0 +1,23 @@
+{
+  "collection": "COULEUR",
+  "photoName": "Le_reflet_des_roches",
+  "originalName": "Le reflet des roches",
+  "downloadDate": "2025-03-15T19:46:24.920Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Le_reflet_des_roches/Le_reflet_des_roches_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679948656886-ZEFCU69HK7BVMLW741UX/IMG_5377061C468E-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Le_reflet_des_roches/Le_reflet_des_roches_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679948587343-0L7N62G93QEJLIXBSLLP/Matrice-Alu-noirPano.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Le_reflet_des_roches/Le_reflet_des_roches_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1679948594964-CCA9UTE946WCGWYE2567/Matrice-Caisse-am%C3%A9ricaine-noir-Pano.jpg"
+    }
+  ]
+}

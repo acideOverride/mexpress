@@ -1,0 +1,28 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Les_reflets_du_Sel",
+  "originalName": "Les reflets du Sel",
+  "downloadDate": "2025-03-15T05:45:49.115Z",
+  "variations": [
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_reflets_du_Sel/Les_reflets_du_Sel_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648129434118-RBZO9TKRHAWSQN5LUZYL/Salin+de+Giraud%C2%A9Boris+Molinier.jpg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_reflets_du_Sel/Les_reflets_du_Sel_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648129397309-TDGUOIUS56O7AWQ7ZMXZ/salin-de-giraud-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_reflets_du_Sel/Les_reflets_du_Sel_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648129415162-OGPZBG67OVJ3GKBCR0XS/salins-de-giraud-caisse-americaine-boris-molinier.jpg"
+    },
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Les_reflets_du_Sel/Les_reflets_du_Sel_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646385502789-GL226JNJMNBYGZWS55D4/IMG_5687.JPG"
+    }
+  ]
+}

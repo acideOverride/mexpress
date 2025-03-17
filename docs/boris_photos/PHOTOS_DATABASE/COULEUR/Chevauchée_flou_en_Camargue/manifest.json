@@ -1,0 +1,23 @@
+{
+  "collection": "COULEUR",
+  "photoName": "Chevauchée_flou_en_Camargue",
+  "originalName": "Chevauchée flou en Camargue",
+  "downloadDate": "2025-03-15T19:46:25.697Z",
+  "variations": [
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Chevauchée_flou_en_Camargue/Chevauchée_flou_en_Camargue_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648475208804-U12S704UXQIX3WTS3K73/balade-%C3%A0-cheval-en-camargue-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Chevauchée_flou_en_Camargue/Chevauchée_flou_en_Camargue_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648475208803-QUMA0GYZDH4A7HNW77H0/balade-%C3%A0-cheval-en-camargue-caisse-americaine-boris-molinier.jpg"
+    },
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Chevauchée_flou_en_Camargue/Chevauchée_flou_en_Camargue_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648475057967-9Z9XU7QPJM8CAOLSJUG8/IMG_5685.JPG"
+    }
+  ]
+}

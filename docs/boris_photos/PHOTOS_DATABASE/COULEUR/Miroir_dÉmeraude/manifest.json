@@ -1,0 +1,23 @@
+{
+  "collection": "COULEUR",
+  "photoName": "Miroir_dÉmeraude",
+  "originalName": "Miroir d'Émeraude",
+  "downloadDate": "2025-03-15T19:46:27.375Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Miroir_dÉmeraude/Miroir_dÉmeraude_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648130356790-WDKWYCT1JFSLIDANDPHZ/IMG_A09185ABE18C-1.jpeg"
+    },
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Miroir_dÉmeraude/Miroir_dÉmeraude_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648130731651-VMJFCALQKK4AX82YJNTX/etang-de-brenne-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/COULEUR/Miroir_dÉmeraude/Miroir_dÉmeraude_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648130731969-WP789T4IO4QF1IY8FHS5/etang-de-brenne-caisse-am%C3%A9ricaine-boris-molinier.jpg"
+    }
+  ]
+}

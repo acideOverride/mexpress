@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historique des Expositions - Giandra Photos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="gallery-portal.css">
+</head>
+<body data-theme="light">
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo">
+        <div class="logo-icon">G</div>
+        <span class="logo-text">Giandra Photos</span>
+      </div>
+      <div class="header-right">
+        <nav class="top-nav">
+          <ul class="nav-links">
+            <li><a href="gallery-portal.html">Accueil</a></li>
+            <li><a href="#">Galerie</a></li>
+            <li><a href="#">Boutique</a></li>
+            <li><a href="#">Locations</a></li>
+            <li><a href="#" class="active">Événements</a></li>
+            <li><a href="#">À Propos</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-toggle" id="themeToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <button class="language-toggle">FR</button>
+          <a href="#" class="user-profile">
+            <div class="avatar">JM</div>
+            <span class="username">Jeanne Martin</span>
+          </a>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="page-header">
+      <div class="header-content">
+        <h1>Historique des Expositions</h1>
+        <p>Découvrez mes expositions passées et les lieux qui ont accueilli mon travail</p>
+      </div>
+    </section>
+
+    <section class="exhibition-navigation">
+      <div class="exhibition-nav-container">
+        <a href="#" class="exhibition-nav-link active">Toutes les expositions</a>
+        <a href="#" class="exhibition-nav-link">Expositions solo</a>
+        <a href="#" class="exhibition-nav-link">Expositions collectives</a>
+        <a href="#" class="exhibition-nav-link">Événements spéciaux</a>
+        <a href="#" class="exhibition-nav-link upcoming">Expositions à venir</a>
+      </div>
+      <div class="exhibition-filter">
+        <label for="exhibition-year">Filtrer par année:</label>
+        <select id="exhibition-year">
+          <option value="all">Toutes les années</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020 et avant</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="exhibition-featured">
+      <div class="featured-exhibition">
+        <div class="featured-banner">
+          <div class="featured-label">Exposition Majeure</div>
+        </div>
+        <div class="featured-content">
+          <div class="featured-image">
+            <img src="../img/hero_image.jpg" alt="Exposition au Parc Floral de Paris">
+          </div>
+          <div class="featured-details">
+            <h2>FORMAT XXL - Parc Floral de Paris</h2>
+            <div class="featured-meta">
+              <div class="featured-dates">
+                <i class="far fa-calendar"></i>
+                <span>15 Juin - 30 Septembre 2023</span>
+              </div>
+              <div class="featured-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Parc Floral de Paris - Bois de Vincennes</span>
+              </div>
+              <div class="featured-type">
+                <i class="fas fa-tag"></i>
+                <span>Exposition Solo en plein air</span>
+              </div>
+            </div>
+            <p class="featured-description">
+              Installation monumentale de 12 photographies grand format (2m x 3m) dans les jardins du Parc Floral de Paris. Cette exposition exceptionnelle a permis aux visiteurs de découvrir mes œuvres au format XXL, intégrées dans un environnement naturel qui fait écho à mes sujets aquatiques. Une expérience immersive où art et nature dialoguent en harmonie.
+            </p>
+            <div class="featured-stats">
+              <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Œuvres exposées</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">45K+</div>
+                <div class="stat-label">Visiteurs</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">3,5</div>
+                <div class="stat-label">Mois d'exposition</div>
+              </div>
+            </div>
+            <div class="featured-actions">
+              <a href="#" class="featured-gallery-link">
+                <i class="fas fa-images"></i> Voir la galerie de l'exposition
+              </a>
+              <a href="#" class="featured-catalog-link">
+                <i class="fas fa-book-open"></i> Catalogue de l'exposition
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="exhibition-timeline">
+      <div class="year-marker">
+        <h2>2023</h2>
+      </div>
+
+      <div class="exhibition-cards">
+        <div class="exhibition-card solo">
+          <div class="exhibition-image">
+            <img src="../img/hero_image.jpg" alt="Biennale des Arts Visuels">
+            <div class="exhibition-type">Solo</div>
+          </div>
+          <div class="exhibition-details">
+            <h3>Biennale des Arts Visuels</h3>
+            <div class="exhibition-meta">
+              <div class="exhibition-dates">
+                <i class="far fa-calendar"></i>
+                <span>10 Mars - 15 Mai 2023</span>
+              </div>
+              <div class="exhibition-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Musée d'Art Contemporain, Marseille</span>
+              </div>
+            </div>
+            <p class="exhibition-description">
+              Exposition personnelle en tant que lauréate du Grand Prix de la Biennale. Présentation de 24 œuvres des séries "RENVERSER LES MONTAGNES" et "COMME A GIVERNY", installées dans l'aile est du musée.
+            </p>
+            <div class="exhibition-highlight">
+              <span class="highlight-label">Distinction :</span>
+              <span class="highlight-text">Grand Prix du Jury</span>
+            </div>
+            <a href="#" class="exhibition-details-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="exhibition-card collective">
+          <div class="exhibition-image">
+            <img src="../img/hero_image.jpg" alt="Festival Photo Nature">
+            <div class="exhibition-type">Collective</div>
+          </div>
+          <div class="exhibition-details">
+            <h3>Festival Photo Nature</h3>
+            <div class="exhibition-meta">
+              <div class="exhibition-dates">
+                <i class="far fa-calendar"></i>
+                <span>5 - 28 Août 2023</span>
+              </div>
+              <div class="exhibition-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Jardins Botaniques, Montpellier</span>
+              </div>
+            </div>
+            <p class="exhibition-description">
+              Participation à l'exposition collective "Éléments" avec 8 photographes internationaux. Présentation de 6 œuvres de la série "TISSER LA MATIERE" sur le thème de l'eau comme élément fondamental.
+            </p>
+            <a href="#" class="exhibition-details-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="exhibition-card special">
+          <div class="exhibition-image">
+            <img src="../img/hero_image.jpg" alt="Nuit des Musées">
+            <div class="exhibition-type">Événement</div>
+          </div>
+          <div class="exhibition-details">
+            <h3>Nuit des Musées - Projection Monumentale</h3>
+            <div class="exhibition-meta">
+              <div class="exhibition-dates">
+                <i class="far fa-calendar"></i>
+                <span>20 Mai 2023</span>
+              </div>
+              <div class="exhibition-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Façade du Musée d'Orsay, Paris</span>
+              </div>
+            </div>
+            <p class="exhibition-description">
+              Projection monumentale de photographies de la série "COMME A GIVERNY" sur la façade du Musée d'Orsay. Animation visuelle spéciale créée pour l'événement mettant en mouvement mes œuvres aquatiques.
+            </p>
+            <div class="exhibition-highlight">
+              <span class="highlight-label">Public :</span>
+              <span class="highlight-text">Plus de 15 000 spectateurs</span>
+            </div>
+            <a href="#" class="exhibition-details-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-marker">
+        <h2>2022</h2>
+      </div>
+
+      <div class="exhibition-cards">
+        <div class="exhibition-card solo">
+          <div class="exhibition-image">
+            <img src="../img/hero_image.jpg" alt="Galerie Moderne">
+            <div class="exhibition-type">Solo</div>
+          </div>
+          <div class="exhibition-details">
+            <h3>Méditations Aquatiques</h3>
+            <div class="exhibition-meta">
+              <div class="exhibition-dates">
+                <i class="far fa-calendar"></i>
+                <span>3 Septembre - 15 Octobre 2022</span>
+              </div>
+              <div class="exhibition-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Galerie Moderne, Paris</span>
+              </div>
+            </div>
+            <p class="exhibition-description">
+              Première exposition solo majeure à Paris présentant 30 œuvres des séries "COSMOGONIE" et "TISSER LA MATIERE". Vernissage avec performance musicale de Philippe Glass.
+            </p>
+            <div class="exhibition-highlight">
+              <span class="highlight-label">Catalogue :</span>
+              <span class="highlight-text">Publié aux Éditions Artistiques de Paris</span>
+            </div>
+            <a href="#" class="exhibition-details-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="exhibition-card collective">
+          <div class="exhibition-image">
+            <img src="../img/hero_image.jpg" alt="Salon d'Automne">
+            <div class="exhibition-type">Collective</div>
+          </div>
+          <div class="exhibition-details">
+            <h3>Salon d'Automne</h3>
+            <div class="exhibition-meta">
+              <div class="exhibition-dates">
+                <i class="far fa-calendar"></i>
+                <span>20 Octobre - 13 Novembre 2022</span>
+              </div>
+              <div class="exhibition-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Champs-Élysées, Paris</span>
+              </div>
+            </div>
+            <p class="exhibition-description">
+              Participation à la section photographie du prestigieux Salon d'Automne. Présentation de 3 œuvres grand format de la série "RENVERSER LES MONTAGNES".
+            </p>
+            <div class="exhibition-highlight">
+              <span class="highlight-label">Distinction :</span>
+              <span class="highlight-text">Mention d'Excellence</span>
+            </div>
+            <a href="#" class="exhibition-details-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-marker">
+        <h2>2021</h2>
+      </div>
+
+      <div class="exhibition-cards">
+        <div class="exhibition-card solo">
+          <div class="exhibition-image">
+            <img src="../img/hero_image.jpg" alt="Galerie Água Viva">
+            <div class="exhibition-type">Solo</div>
+          </div>
+          <div class="exhibition-details">
+            <h3>Reflexos - Reflets</h3>
+            <div class="exhibition-meta">
+              <div class="exhibition-dates">
+                <i class="far fa-calendar"></i>
+                <span>15 Mai - 30 Juin 2021</span>
+              </div>
+              <div class="exhibition-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Galerie Água Viva, Rio de Janeiro, Brésil</span>
+              </div>
+            </div>
+            <p class="exhibition-description">
+              Exposition personnelle présentant mon travail au Brésil. Première présentation de la série "COSMOGONIE", avec 18 œuvres explorant les thèmes de la création et du chaos.
+            </p>
+            <a href="#" class="exhibition-details-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="exhibition-card collective">
+          <div class="exhibition-image">
+            <img src="../img/hero_image.jpg" alt="Exposition Éléments">
+            <div class="exhibition-type">Collective</div>
+          </div>
+          <div class="exhibition-details">
+            <h3>Éléments - Eau</h3>
+            <div class="exhibition-meta">
+              <div class="exhibition-dates">
+                <i class="far fa-calendar"></i>
+                <span>10 - 25 Novembre 2021</span>
+              </div>
+              <div class="exhibition-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Galerie Nationale, Rio de Janeiro, Brésil</span>
+              </div>
+            </div>
+            <p class="exhibition-description">
+              Participation à une exposition thématique sur les éléments naturels. Section "Eau" avec 5 autres artistes brésiliens et internationaux.
+            </p>
+            <div class="exhibition-highlight">
+              <span class="highlight-label">Distinction :</span>
+              <span class="highlight-text">Prix du Public</span>
+            </div>
+            <a href="#" class="exhibition-details-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-marker">
+        <h2>2020 et avant</h2>
+      </div>
+
+      <div class="exhibition-cards">
+        <div class="exhibition-card collective">
+          <div class="exhibition-image">
+            <img src="../img/hero_image.jpg" alt="Talents Émergents">
+            <div class="exhibition-type">Collective</div>
+          </div>
+          <div class="exhibition-details">
+            <h3>Talents Émergents</h3>
+            <div class="exhibition-meta">
+              <div class="exhibition-dates">
+                <i class="far fa-calendar"></i>
+                <span>5 - 30 Septembre 2020</span>
+              </div>
+              <div class="exhibition-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Maison de la Photographie, Lyon</span>
+              </div>
+            </div>
+            <p class="exhibition-description">
+              Première exposition collective majeure en tant que photographe émergente. Présentation de 3 œuvres de la série préliminaire "Premières Eaux".
+            </p>
+            <a href="#" class="exhibition-details-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="exhibition-card school">
+          <div class="exhibition-image">
+            <img src="../img/hero_image.jpg" alt="Exposition de Fin d'Études">
+            <div class="exhibition-type">Académique</div>
+          </div>
+          <div class="exhibition-details">
+            <h3>Visions Nouvelles - Exposition des Diplômés</h3>
+            <div class="exhibition-meta">
+              <div class="exhibition-dates">
+                <i class="far fa-calendar"></i>
+                <span>15 - 30 Juin 2019</span>
+              </div>
+              <div class="exhibition-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>École Nationale de Photographie, Paris</span>
+              </div>
+            </div>
+            <p class="exhibition-description">
+              Exposition de fin d'études présentant mon projet de diplomation "Surfaces Sensibles", première exploration des reflets aquatiques qui deviendra ma signature artistique.
+            </p>
+            <div class="exhibition-highlight">
+              <span class="highlight-label">Distinction :</span>
+              <span class="highlight-text">Mention du Jury</span>
+            </div>
+            <a href="#" class="exhibition-details-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="exhibition-stats">
+      <div class="stats-container">
+        <div class="stats-header">
+          <h2>Mon parcours d'exposition en chiffres</h2>
+        </div>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">16</div>
+            <div class="stat-title">Expositions</div>
+            <div class="stat-breakdown">
+              <span>8 Solo</span>
+              <span>•</span>
+              <span>8 Collectives</span>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-number">7</div>
+            <div class="stat-title">Pays</div>
+            <div class="stat-breakdown">
+              <span>3 Continents</span>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-number">156</div>
+            <div class="stat-title">Œuvres exposées</div>
+            <div class="stat-breakdown">
+              <span>5 Séries majeures</span>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-number">5</div>
+            <div class="stat-title">Prix et distinctions</div>
+            <div class="stat-breakdown">
+              <span>2 Prix majeurs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="upcoming-exhibitions">
+      <div class="section-header">
+        <h2>Expositions à Venir</h2>
+        <p>Retrouvez-moi lors de ces prochains événements</p>
+      </div>
+
+      <div class="upcoming-container">
+        <a href="#" class="view-all-upcoming">Voir toutes les expositions à venir <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <div class="logo-icon">G</div>
+        <span class="logo-text">Giandra Photos</span>
+      </div>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Explorer</h3>
+          <ul>
+            <li><a href="#">Toutes les Collections</a></li>
+            <li><a href="#">Boutique</a></li>
+            <li><a href="#">Locations</a></li>
+            <li><a href="#">Commandes</a></li>
+            <li><a href="#">Événements</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Informations</h3>
+          <ul>
+            <li><a href="#">À Propos de Giandra</a></li>
+            <li><a href="past-exhibitions.html">Historique des Expositions</a></li>
+            <li><a href="awards-recognition.html">Prix et Reconnaissances</a></li>
+            <li><a href="press-publications.html">Presse et Publications</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Services Clients</h3>
+          <ul>
+            <li><a href="#">Consultation d'Art</a></li>
+            <li><a href="#">Livraison & Retours</a></li>
+            <li><a href="#">Options d'Encadrement</a></li>
+            <li><a href="#">Instructions d'Entretien</a></li>
+            <li><a href="#">Contactez-nous</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Connexion</h3>
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-pinterest-p"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+          <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> contact@giandraphotos.com</p>
+            <p><i class="fas fa-phone"></i> +33 (0)1 23 45 67 89</p>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Galerie, Suite 500<br>Paris, 75001</p>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 Giandra Photos. Tous droits réservés. Toutes les images sont la propriété de Giandra Wellington.</p>
+        <div class="footer-links">
+          <a href="#">Politique de Confidentialité</a>
+          <a href="#">Conditions d'Utilisation</a>
+          <a href="#">Accessibilité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="gallery-portal.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Retour_de_session",
+  "originalName": "Retour de session",
+  "downloadDate": "2025-03-15T19:46:15.516Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Retour_de_session/Retour_de_session_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1680020135857-TMBXAAV4UPBJJHENWDWO/IMG_6EE6C37FD170-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Retour_de_session/Retour_de_session_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1680020114517-W6QO334D1MA3VAAYA6NI/Matrice-Alu-noirPano.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Retour_de_session/Retour_de_session_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1680020114522-ULUBO0LUF4VYXCX2YR4L/Matrice-Caisse-am%C3%A9ricaine-noir-Pano.jpg"
+    }
+  ]
+}

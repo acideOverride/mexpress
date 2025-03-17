@@ -1,0 +1,18 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Chaîne_du_Mont-Blanc",
+  "originalName": "Chaîne du Mont-Blanc",
+  "downloadDate": "2025-03-15T05:45:49.415Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Chaîne_du_Mont-Blanc/Chaîne_du_Mont-Blanc_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646400042750-NQKJCZIYNITWQ1LWHEVM/IMG_2D002054454E-1.jpeg"
+    },
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Chaîne_du_Mont-Blanc/Chaîne_du_Mont-Blanc_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647946038488-UH46JTGB69QKPVXMIBBB/chaine-du-mont-blanc.jpg"
+    }
+  ]
+}

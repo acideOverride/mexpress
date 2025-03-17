@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MontPC Contact Form Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            min-height: 100px;
+        }
+        button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1a2530;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+        .loading {
+            background-color: #d9edf7;
+            color: #31708f;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>MontPC Contact Form Test</h1>
+    <p>This page tests the contact form API integration with the Resend.com email service.</p>
+    
+    <form id="contactForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="form-group">
+            <label for="device">Device Type</label>
+            <select id="device" name="device">
+                <option value="">Select Device</option>
+                <option value="iphone">iPhone</option>
+                <option value="android">Android Phone</option>
+                <option value="macbook">MacBook</option>
+                <option value="windows">Windows Laptop</option>
+                <option value="ipad">iPad</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="message">How can we help?</label>
+            <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit">Send Inquiry</button>
+    </form>
+    
+    <div id="status" style="display: none;"></div>
+    
+    <h2>API Response:</h2>
+    <pre id="response">No response yet</pre>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contactForm');
+            const statusDiv = document.getElementById('status');
+            const responseDiv = document.getElementById('response');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Reset status
+                statusDiv.className = 'status loading';
+                statusDiv.style.display = 'block';
+                statusDiv.textContent = 'Sending...';
+                
+                // Get form data
+                const formData = {
+                    name: form.querySelector('#name').value,
+                    email: form.querySelector('#email').value,
+                    phone: form.querySelector('#phone').value || '',
+                    device: form.querySelector('#device').value || '',
+                    message: form.querySelector('#message').value
+                };
+                
+                try {
+                    console.log('Sending form data:', formData);
+                    
+                    // API URL - testing with direct localhost
+                    const apiUrl = 'http://localhost:9701/api/contact';
+                    
+                    // For debugging - show the URL we're sending to
+                    console.log('API URL:', apiUrl);
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    // Show full response for debugging
+                    console.log('Response status:', response.status);
+                    console.log('Response headers:', response.headers);
+                    
+                    const data = await response.json();
+                    console.log('Response data:', data);
+                    
+                    // Update response display
+                    responseDiv.textContent = JSON.stringify(data, null, 2);
+                    
+                    if (data.success) {
+                        // Show success message
+                        statusDiv.className = 'status success';
+                        statusDiv.textContent = `Message sent successfully! Reference: ${data.reference}`;
+                        
+                        // Reset form
+                        setTimeout(() => {
+                            form.reset();
+                        }, 3000);
+                    } else {
+                        // Show error message
+                        statusDiv.className = 'status error';
+                        statusDiv.textContent = data.error?.message || 'An error occurred';
+                    }
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    
+                    // Show error message
+                    statusDiv.className = 'status error';
+                    statusDiv.textContent = 'Network error: ' + error.message;
+                    responseDiv.textContent = 'Error: ' + error.message;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

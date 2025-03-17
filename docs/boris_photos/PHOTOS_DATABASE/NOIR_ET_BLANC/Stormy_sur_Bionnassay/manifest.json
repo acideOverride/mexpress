@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Stormy_sur_Bionnassay",
+  "originalName": "Stormy sur Bionnassay",
+  "downloadDate": "2025-03-15T05:45:48.517Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Stormy_sur_Bionnassay/Stormy_sur_Bionnassay_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1646384497506-MAVK8QPW3XKMS5DG1XYS/IMG_E37AECC154BE-1.jpeg"
+    },
+    {
+      "finition": "dibond/plexi",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Stormy_sur_Bionnassay/Stormy_sur_Bionnassay_dibond_plexi.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647960195729-RXOF01EGIH33M9R691BL/stormy-sur-bionnassay-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Stormy_sur_Bionnassay/Stormy_sur_Bionnassay_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1647960195729-ZA1AG1TA3AIUHOWIPDA3/stormy-sur-bionnassay-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

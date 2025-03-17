@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Vertical_Black-Summit",
+  "originalName": "Vertical Black-Summit",
+  "downloadDate": "2025-03-15T19:46:16.632Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Vertical_Black-Summit/Vertical_Black-Summit_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648145044584-GXP12FQGB98IO4SNBFTT/IMG_E7AF39103505-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Vertical_Black-Summit/Vertical_Black-Summit_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648145014897-ZG3HRWA2HM1DZFM64G5Y/black-summit-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Vertical_Black-Summit/Vertical_Black-Summit_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648145035497-6Z3H4J1TG7HEXWWT1HIW/black-summit-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

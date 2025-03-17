@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Livresse_des_voiles_solitaires",
+  "originalName": "L'ivresse des voiles solitaires",
+  "downloadDate": "2025-03-15T19:46:16.500Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Livresse_des_voiles_solitaires/Livresse_des_voiles_solitaires_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648216573127-6WSC6CVHP608FZOECB65/IMG_8A0BE206D56D-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Livresse_des_voiles_solitaires/Livresse_des_voiles_solitaires_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648216784222-GKLRJVJKKPJ3ZOHRO29J/movement-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Livresse_des_voiles_solitaires/Livresse_des_voiles_solitaires_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648216786192-92CMQ81VJWT2RTM5DY36/movement-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

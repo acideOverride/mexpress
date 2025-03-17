@@ -1,0 +1,23 @@
+{
+  "collection": "NOIR_ET_BLANC",
+  "photoName": "Bionnassay_et_Vorassay",
+  "originalName": "Bionnassay et Vorassay",
+  "downloadDate": "2025-03-15T19:46:16.913Z",
+  "variations": [
+    {
+      "finition": "original",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Bionnassay_et_Vorassay/Bionnassay_et_Vorassay_original.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648220253692-FO5ZLSUCH5YV2K89AW2G/IMG_22F987E37DEE-1.jpeg"
+    },
+    {
+      "finition": "dibond cadre alu / plexi cadre alu",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Bionnassay_et_Vorassay/Bionnassay_et_Vorassay_dibond cadre alu _ plexi cadre alu.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648219996447-X2KDC3RG0A92HU3W29ZB/bionnassay-et-vorassay-cadre-alu-boris-molinier.jpg"
+    },
+    {
+      "finition": "dibond caisse americaine / plexi caisse americaine",
+      "path": "/opt/mExpress/docs/boris_photos/PHOTOS_DATABASE/NOIR_ET_BLANC/Bionnassay_et_Vorassay/Bionnassay_et_Vorassay_dibond caisse americaine _ plexi caisse americaine.jpg",
+      "sourceUrl": "https://images.squarespace-cdn.com/content/v1/61af753f994e62432b67f0bf/1648219996687-CH8IS8EW8N49Q3V38G03/bionnassay-et-vorassay-caisse-americaine-boris-molinier.jpg"
+    }
+  ]
+}

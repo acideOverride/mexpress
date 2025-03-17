@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MontPC | Luxury Device Care</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap">
+    <meta name="description" content="Réparation de smartphones haut de gamme avec une approche innovante qui combine luxe et technologie de pointe.">
+</head>
+<body>
+    <!-- Loading Sequence -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-screen">
+            <div class="loading-logo">
+                <svg class="logo-svg" viewBox="0 0 100 40" width="120" height="48">
+                    <path class="logo-path" d="M10,30 L20,10 L30,30 M40,10 L40,30 M50,10 C55,10 60,15 60,20 C60,25 55,30 50,30 M70,10 L70,30 L80,30 M90,10 L90,30" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <div class="loading-title">MONTPC</div>
+            </div>
+            <div class="circular-progress">
+                <svg class="progress-ring" width="120" height="120">
+                    <circle class="progress-ring-circle" stroke-width="2" fill="transparent" r="54" cx="60" cy="60"/>
+                </svg>
+                <div class="progress-percentage">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Device Repair Visualizer -->
+    <div class="device-repair-visualizer hidden">
+        <div class="device-container">
+            <div class="device-model">
+                <div class="device-screen"></div>
+                <div class="device-home-button"></div>
+            </div>
+            <div class="repair-steps">
+                <div class="repair-step" data-step="screen">
+                    <div class="step-marker"></div>
+                    <div class="step-info">
+                        <h3>Écran</h3>
+                        <p>Remplacement d'écran avec calibration colorimétrique.</p>
+                        <div class="repair-price">À partir de 89€</div>
+                        <div class="repair-time">45 min</div>
+                    </div>
+                </div>
+                <div class="repair-step" data-step="battery">
+                    <div class="step-marker"></div>
+                    <div class="step-info">
+                        <h3>Batterie</h3>
+                        <p>Batteries haute capacité avec garantie de performance.</p>
+                        <div class="repair-price">À partir de 59€</div>
+                        <div class="repair-time">30 min</div>
+                    </div>
+                </div>
+                <div class="repair-step" data-step="camera">
+                    <div class="step-marker"></div>
+                    <div class="step-info">
+                        <h3>Caméra</h3>
+                        <p>Module photo et calibration professionnelle.</p>
+                        <div class="repair-price">À partir de 79€</div>
+                        <div class="repair-time">40 min</div>
+                    </div>
+                </div>
+                <div class="repair-step" data-step="charging">
+                    <div class="step-marker"></div>
+                    <div class="step-info">
+                        <h3>Connecteur</h3>
+                        <p>Remplacement précis du connecteur de charge.</p>
+                        <div class="repair-price">À partir de 69€</div>
+                        <div class="repair-time">35 min</div>
+                    </div>
+                </div>
+            </div>
+            <div class="close-visualizer">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round" />
+                    <line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-left">
+                <div class="brand">
+                    <svg class="brand-logo" viewBox="0 0 100 40" width="100" height="40">
+                        <path class="logo-path" d="M10,30 L20,10 L30,30 M40,10 L40,30 M50,10 C55,10 60,15 60,20 C60,25 55,30 50,30 M70,10 L70,30 L80,30 M90,10 L90,30" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <div class="brand-name">
+                        <div class="brand-title">MONTPC</div>
+                        <div class="brand-tagline">LUXURY DEVICE CARE</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#innovation">Innovation</a></li>
+                    <li><a href="#process">Processus</a></li>
+                    <li><a href="#testimonials">Témoignages</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <a href="#device-selector" class="cta-button">Réparer mon appareil</a>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">La réparation smartphone <span class="highlight">réinventée</span></h1>
+                <p class="hero-subtitle">Une approche luxueuse pour redonner vie à vos appareils les plus précieux</p>
+                <div class="hero-buttons">
+                    <a href="#innovations" class="primary-button">Découvrir nos innovations</a>
+                    <a href="#device-selector" class="secondary-button">Diagnostic en ligne</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">99.7<span>%</span></div>
+                        <div class="stat-label">Taux de satisfaction</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2<span>ans</span></div>
+                        <div class="stat-label">Garantie premium</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">30<span>min</span></div>
+                        <div class="stat-label">Réparation express</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="device-carousel">
+                    <div class="carousel-device active">
+                        <div class="device-frame">
+                            <div class="device-screen">
+                                <img src="img/screen-1.jpg" alt="Écran smartphone">
+                            </div>
+                            <div class="device-details">
+                                <span class="device-name">iPhone 13 Pro</span>
+                                <span class="repair-type">Remplacement écran</span>
+                            </div>
+                            <div class="device-status">
+                                <div class="status-indicator"></div>
+                                <span>Réparé en 45 min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-dot active"></button>
+                        <button class="carousel-dot"></button>
+                        <button class="carousel-dot"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-dot"></div>
+        </div>
+    </section>
+
+    <!-- Innovation Section -->
+    <section id="innovation" class="innovation">
+        <div class="section-header">
+            <h2 class="section-title">Notre approche <span class="highlight">innovante</span></h2>
+            <p class="section-subtitle">La technologie de pointe au service de votre appareil</p>
+        </div>
+        <div class="container">
+            <div class="innovation-grid">
+                <div class="innovation-item">
+                    <div class="innovation-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3>Diagnostic 3D</h3>
+                    <p>Technologie exclusive de scan complet qui identifie les problèmes invisibles à l'œil nu.</p>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="22" y1="12" x2="18" y2="12"></line>
+                            <line x1="6" y1="12" x2="2" y2="12"></line>
+                            <line x1="12" y1="6" x2="12" y2="2"></line>
+                            <line x1="12" y1="22" x2="12" y2="18"></line>
+                        </svg>
+                    </div>
+                    <h3>Calibration Précise</h3>
+                    <p>Chaque écran est calibré individuellement pour une reproduction exacte des couleurs.</p>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg>
+                    </div>
+                    <h3>Pièces Premium</h3>
+                    <p>Composants de qualité supérieure rigoureusement testés pour une longévité accrue.</p>
+                </div>
+                <div class="innovation-item highlight-item">
+                    <div class="item-image">
+                        <img src="img/repair-lab.jpg" alt="Laboratoire de réparation">
+                    </div>
+                    <div class="innovation-badge">
+                        <span>Innovation exclusive</span>
+                    </div>
+                    <h3>Environnement Contrôlé</h3>
+                    <p>Réparation en salle blanche classe 10000 pour une qualité irréprochable.</p>
+                    <a href="#innovation-detail" class="learn-more">En savoir plus</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header inverse">
+                <h2 class="section-title">Services <span class="highlight">Premium</span></h2>
+                <p class="section-subtitle">Des solutions adaptées à chaque besoin</p>
+            </div>
+            <div class="device-selector" id="device-selector">
+                <div class="selector-header">
+                    <h3>Choisissez votre appareil</h3>
+                    <p>Sélectionnez votre appareil pour visualiser les réparations disponibles</p>
+                </div>
+                <div class="device-categories">
+                    <button class="device-category active" data-category="iphone">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="7" y="4" width="10" height="16" rx="1" ry="1"></rect>
+                            <line x1="11" y1="17" x2="13" y2="17"></line>
+                        </svg>
+                        <span>iPhone</span>
+                    </button>
+                    <button class="device-category" data-category="samsung">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="6" y="3" width="12" height="18" rx="1" ry="1"></rect>
+                            <line x1="12" y1="18" x2="12" y2="18"></line>
+                        </svg>
+                        <span>Samsung</span>
+                    </button>
+                    <button class="device-category" data-category="tablet">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="4" y="4" width="16" height="16" rx="1" ry="1"></rect>
+                            <line x1="12" y1="17" x2="12" y2="17"></line>
+                        </svg>
+                        <span>Tablette</span>
+                    </button>
+                    <button class="device-category" data-category="laptop">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="12" rx="1" ry="1"></rect>
+                            <line x1="3" y1="16" x2="21" y2="16"></line>
+                            <path d="M5 20h14"></path>
+                        </svg>
+                        <span>Ordinateur</span>
+                    </button>
+                </div>
+                <div class="device-models">
+                    <div class="models-list">
+                        <div class="model-item active" data-device="iphone-13-pro">
+                            <div class="model-image">
+                                <img src="img/iphone-13-pro.jpg" alt="iPhone 13 Pro">
+                            </div>
+                            <div class="model-name">iPhone 13 Pro</div>
+                        </div>
+                        <div class="model-item" data-device="iphone-13">
+                            <div class="model-image">
+                                <img src="img/iphone-13.jpg" alt="iPhone 13">
+                            </div>
+                            <div class="model-name">iPhone 13</div>
+                        </div>
+                        <div class="model-item" data-device="iphone-12-pro">
+                            <div class="model-image">
+                                <img src="img/iphone-12-pro.jpg" alt="iPhone 12 Pro">
+                            </div>
+                            <div class="model-name">iPhone 12 Pro</div>
+                        </div>
+                        <div class="model-item" data-device="iphone-12">
+                            <div class="model-image">
+                                <img src="img/iphone-12.jpg" alt="iPhone 12">
+                            </div>
+                            <div class="model-name">iPhone 12</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="repair-options">
+                    <h3>Sélectionnez votre réparation</h3>
+                    <div class="repair-option-list">
+                        <div class="repair-option" data-repair="screen" data-visualizer="true">
+                            <div class="repair-option-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                            </div>
+                            <div class="repair-option-details">
+                                <div class="repair-name">Écran</div>
+                                <div class="repair-info">
+                                    <span class="price">89€</span>
+                                    <span class="time">45 min</span>
+                                </div>
+                            </div>
+                            <div class="repair-option-link">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="repair-option" data-repair="battery" data-visualizer="true">
+                            <div class="repair-option-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                                    <path d="M6 6h12v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6z"></path>
+                                    <line x1="12" y1="10" x2="12" y2="16"></line>
+                                    <line x1="9" y1="13" x2="15" y2="13"></line>
+                                </svg>
+                            </div>
+                            <div class="repair-option-details">
+                                <div class="repair-name">Batterie</div>
+                                <div class="repair-info">
+                                    <span class="price">59€</span>
+                                    <span class="time">30 min</span>
+                                </div>
+                            </div>
+                            <div class="repair-option-link">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="repair-option" data-repair="camera" data-visualizer="true">
+                            <div class="repair-option-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="repair-option-details">
+                                <div class="repair-name">Caméra</div>
+                                <div class="repair-info">
+                                    <span class="price">79€</span>
+                                    <span class="time">40 min</span>
+                                </div>
+                            </div>
+                            <div class="repair-option-link">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="repair-option" data-repair="charging" data-visualizer="true">
+                            <div class="repair-option-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M15.5 2H14l-1 5h5l-1 5h-3l-1 5h5l-3 5"></path>
+                                    <path d="M7 12h3l-3 8h3"></path>
+                                </svg>
+                            </div>
+                            <div class="repair-option-details">
+                                <div class="repair-name">Connecteur</div>
+                                <div class="repair-info">
+                                    <span class="price">69€</span>
+                                    <span class="time">35 min</span>
+                                </div>
+                            </div>
+                            <div class="repair-option-link">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="repair-option" data-repair="full">
+                            <div class="repair-option-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                                </svg>
+                            </div>
+                            <div class="repair-option-details">
+                                <div class="repair-name">Diagnostic Complet</div>
+                                <div class="repair-info">
+                                    <span class="price">Gratuit*</span>
+                                    <span class="time">20 min</span>
+                                </div>
+                            </div>
+                            <div class="repair-option-link">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="repair-cta">
+                        <a href="#contact" class="primary-button">Prendre rendez-vous</a>
+                        <div class="repair-note">* Gratuit en cas de réparation, sinon 29€</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Un processus <span class="highlight">transparent</span></h2>
+                <p class="section-subtitle">Suivez chaque étape de la réparation de votre appareil</p>
+            </div>
+            <div class="process-timeline">
+                <div class="timeline-progress"></div>
+                <div class="timeline-steps">
+                    <div class="timeline-step active">
+                        <div class="step-marker">
+                            <div class="step-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                </svg>
+                            </div>
+                            <div class="step-number">1</div>
+                        </div>
+                        <div class="step-content">
+                            <h3>Diagnostic Avancé</h3>
+                            <p>Analyse complète de votre appareil avec notre technologie propriétaire pour identifier tous les problèmes.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-marker">
+                            <div class="step-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                    <polyline points="21 15 16 10 5 21"></polyline>
+                                </svg>
+                            </div>
+                            <div class="step-number">2</div>
+                        </div>
+                        <div class="step-content">
+                            <h3>Devis Transparent</h3>
+                            <p>Présentation détaillée des options de réparation avec prix fixes garantis, sans frais cachés.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-marker">
+                            <div class="step-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                </svg>
+                            </div>
+                            <div class="step-number">3</div>
+                        </div>
+                        <div class="step-content">
+                            <h3>Réparation Premium</h3>
+                            <p>Intervention en salle blanche avec composants haut de gamme et équipements de précision.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-marker">
+                            <div class="step-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <div class="step-number">4</div>
+                        </div>
+                        <div class="step-content">
+                            <h3>Contrôle Qualité</h3>
+                            <p>42 points de vérification pour garantir une performance optimale avant la remise de votre appareil.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header inverse">
+                <h2 class="section-title">Avis <span class="highlight">clients</span></h2>
+                <p class="section-subtitle">L'excellence reconnue par nos clients</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"Service exceptionnel. Mon iPhone est comme neuf après le remplacement d'écran, la calibration des couleurs est parfaite et la réparation a été réalisée en moins d'une heure."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="img/author-1.jpg" alt="Sophie Martin">
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Sophie Martin</div>
+                                <div class="author-device">iPhone 13 Pro</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"Après avoir tenté plusieurs solutions, j'ai finalement confié mon Samsung à MontPC. Non seulement ils ont résolu le problème que personne d'autre n'avait pu régler, mais l'autonomie de mon appareil est meilleure qu'à l'origine."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="img/author-2.jpg" alt="Thomas Dubois">
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Thomas Dubois</div>
+                                <div class="author-device">Samsung S21 Ultra</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"L'expérience client est tout simplement parfaite. Prise en charge rapide, diagnostic précis, service premium et surtout, une transparence totale sur les interventions effectuées. Je recommande vivement!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="img/author-3.jpg" alt="Julie Laurent">
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Julie Laurent</div>
+                                <div class="author-device">iPad Pro 12.9"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="testimonial-arrow prev">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="testimonial-dots">
+                        <button class="testimonial-dot active"></button>
+                        <button class="testimonial-dot"></button>
+                        <button class="testimonial-dot"></button>
+                    </div>
+                    <button class="testimonial-arrow next">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="9 6 15 12 9 18"></polyline>
+                        </svg>
+                    </button>
+                </div>
+                <div class="testimonial-trust">
+                    <div class="trust-badge">
+                        <img src="img/trustpilot.svg" alt="Trustpilot">
+                        <div class="trust-rating">4.9/5 basé sur 742 avis</div>
+                    </div>
+                    <div class="trust-badge">
+                        <img src="img/google-reviews.svg" alt="Google Reviews">
+                        <div class="trust-rating">4.8/5 basé sur 512 avis</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contactez <span class="highlight">nos experts</span></h2>
+                <p class="section-subtitle">Un service personnalisé pour votre appareil</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Adresse</h3>
+                                <p>23 Avenue du Mont-Blanc<br>74000 Annecy</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Téléphone</h3>
+                                <p>+33 (0)4 50 XX XX XX</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p>contact@montpc.fr</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Horaires</h3>
+                                <p>Lun-Ven: 9h-19h<br>Samedi: 10h-18h</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-map">
+                        <img src="img/map.jpg" alt="Localisation MontPC">
+                        <a href="https://maps.google.com" target="_blank" class="map-link">Voir sur Google Maps</a>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form">
+                        <div class="form-header">
+                            <h3>Demande de réparation</h3>
+                            <p>Remplissez ce formulaire pour une prise en charge rapide</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="device-type">Type d'appareil</label>
+                                <select id="device-type" name="device-type" required>
+                                    <option value="">Sélectionnez</option>
+                                    <option value="iphone">iPhone</option>
+                                    <option value="samsung">Samsung</option>
+                                    <option value="tablet">Tablette</option>
+                                    <option value="laptop">Ordinateur</option>
+                                    <option value="other">Autre</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="device-model">Modèle</label>
+                                <input type="text" id="device-model" name="device-model" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="repair-type">Type de réparation</label>
+                            <select id="repair-type" name="repair-type" required>
+                                <option value="">Sélectionnez</option>
+                                <option value="screen">Écran</option>
+                                <option value="battery">Batterie</option>
+                                <option value="camera">Caméra</option>
+                                <option value="charging">Connecteur de charge</option>
+                                <option value="water">Dégât des eaux</option>
+                                <option value="other">Autre / Je ne sais pas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message (optionnel)</label>
+                            <textarea id="message" name="message" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">J'accepte les <a href="#">conditions générales</a> et la <a href="#">politique de confidentialité</a></label>
+                            </div>
+                        </div>
+                        <button type="submit" class="primary-button">Envoyer ma demande</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="brand">
+                        <svg class="brand-logo" viewBox="0 0 100 40" width="80" height="32">
+                            <path class="logo-path" d="M10,30 L20,10 L30,30 M40,10 L40,30 M50,10 C55,10 60,15 60,20 C60,25 55,30 50,30 M70,10 L70,30 L80,30 M90,10 L90,30" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <div class="brand-name">
+                            <div class="brand-title">MONTPC</div>
+                            <div class="brand-tagline">LUXURY DEVICE CARE</div>
+                        </div>
+                    </div>
+                    <p class="footer-tagline">L'excellence au service de votre appareil</p>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-nav-column">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Réparation iPhone</a></li>
+                            <li><a href="#">Réparation Samsung</a></li>
+                            <li><a href="#">Réparation Tablette</a></li>
+                            <li><a href="#">Réparation PC Portable</a></li>
+                            <li><a href="#">Récupération de données</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-column">
+                        <h3>Entreprise</h3>
+                        <ul>
+                            <li><a href="#">À propos</a></li>
+                            <li><a href="#">Nos innovations</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Recrutement</a></li>
+                            <li><a href="#">Partenaires</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-column">
+                        <h3>Assistance</h3>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Garantie</a></li>
+                            <li><a href="#">Expédition</a></li>
+                            <li><a href="#">Conditions générales</a></li>
+                            <li><a href="#">Politique de confidentialité</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h3>Restez connecté</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <p>Recevez nos conseils et offres exclusives</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Votre email">
+                            <button type="submit">
+                                <svg viewBox="0 0 24 24">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 MontPC - Luxury Device Care. Tous droits réservés.
+                </div>
+                <div class="payment-methods">
+                    <span>Paiements sécurisés</span>
+                    <div class="payment-icons">
+                        <img src="img/visa.svg" alt="Visa">
+                        <img src="img/mastercard.svg" alt="Mastercard">
+                        <img src="img/amex.svg" alt="American Express">
+                        <img src="img/apple-pay.svg" alt="Apple Pay">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
