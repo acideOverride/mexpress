@@ -81,7 +81,11 @@ const handleLogin = async () => {
     loading.value = true;
     error.value = '';
     
-    await AuthService.login({ email: email.value, password: password.value });
+    await AuthService.login({ 
+      email: email.value, 
+      password: password.value,
+      rememberMe: rememberMe.value 
+    });
     
     // Redirect to intended destination or home page
     const redirectPath = route.query.redirect?.toString() || '/';
