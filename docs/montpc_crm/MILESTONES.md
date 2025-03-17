@@ -188,16 +188,17 @@ It is updated regularly to reflect current project status.
 ### MS-MONT-012: Repair Ticket Management
 - **Status**: 🚧 In Progress
 - **Quarter**: Q2 2025
-- **Progress**: 60%
+- **Progress**: 70%
 - **Related BRQs**:
   - MONT-2025-032-API
   - MONT-2025-033-API
 - **Key Deliverables**:
-  - Repair ticket model
-  - Status workflow
-  - Technician assignment
-  - Customer notifications
-  - Currently 0/3 tests passing
+  - Repair ticket model (✅ Completed)
+  - API endpoints (✅ Completed)
+  - Status workflow (✅ Completed)
+  - Technician assignment (📅 Planned)
+  - Customer notifications (📅 Planned)
+  - Currently 2/3 tests passing
 
 ### MS-MONT-013: MontPC CRM MVP Frontend
 - **Status**: 🚧 In Progress
